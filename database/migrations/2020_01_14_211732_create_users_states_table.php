@@ -17,6 +17,7 @@ class CreateUsersStatesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
             $table->bigInteger('admin_id');
+            $table->tinyInteger('state');
             $table->string('IP');
             $table->timestamps();
             $table->softDeletes();
