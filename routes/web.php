@@ -10,10 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-});
+
+Route::get('/','IndexController@index')->name('/');
+
 Route::get('/register', function () {
     return view('register');
-});
+})->name('register');
+
+Route::get('/event/{id}','EventController@index')->name("event");

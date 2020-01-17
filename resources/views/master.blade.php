@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{asset('css/style-main.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type='text/css' media='all'>
 
+    @yield('header')
+
 </head>
 <body>
 <header id="header">

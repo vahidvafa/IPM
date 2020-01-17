@@ -1,5 +1,5 @@
 @extends('master')
-<head>
+@section('header')
     <link href='{{asset('fullcalendar/core/main.css')}}' rel='stylesheet' />
     <link href='{{asset('fullcalendar/daygrid/main.css')}}' rel='stylesheet' />
     <link rel="stylesheet" href="{{asset('fullcalendar/list/main.css')}}">
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{asset('fullcalendar/timegrid/main.css')}}">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/css/datepicker.css'>
     <link rel="stylesheet" href="{{asset('css/style-calender.css')}}">
-</head>
+@stop
 @section('content')
     <main id="content-page" role="main">
         <!-- calender main -->

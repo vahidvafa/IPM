@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Category extends Model
 {
     use SoftDeletes;
+
+    public function events(){
+        return $this->hasMany(Event::class);
+    }
 }

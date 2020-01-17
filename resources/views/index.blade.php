@@ -124,7 +124,7 @@
 
                             <div class="sidebar-form-footer text-center pt-3 pb-3">
                                 <p class="text-white font-14 text-regular  m-0">میخواهید عضو شوید؟ <a
-                                        class="text-yellow" href="/">عضویت انجمن</a></p>
+                                            class="text-yellow" href="/">عضویت انجمن</a></p>
 
                             </div>
                         </div>
@@ -148,144 +148,45 @@
         <div class="popular-pack pt-5 pb-5 ">
             <div class="container">
                 <div class="row">
-                    <h2 class="text-center font-24 text-medium text-black col-12 mb-4 mb-sm-5"><span class="text-yellow">پرطرفدارترین </span>رویدادها
+                    <h2 class="text-center font-24 text-medium text-black col-12 mb-4 mb-sm-5"><span
+                                class="text-yellow">پرطرفدارترین </span>رویدادها
                     </h2>
-                    <div class="col-12 col-md-6 mb-4">
-                        <div class="popular-pack-in  d-flex flex-column flex-sm-row  flex-md-column flex-lg-row">
+                    @foreach($events as $event)
+                        <div class="col-12 col-md-6 mb-4">
+                            <div class="popular-pack-in  d-flex flex-column flex-sm-row  flex-md-column flex-lg-row">
 
-                            <div class="popular-pack-in-info mt-xl-0 mt-4 mt-sm-0 mt-md-4 order-2 order-sm-1   order-md-2 order-lg-1">
-                                <div class="popular-pack-in-info-titles">
-                                    <h4 class="popular-pack-in-info-title font-16 text-medium text-black mb-3 "><a
-                                            class="text-black hover-text-black" href="/">لورم ایپسوم متن ساختگی با تولید
-                                            سادگی نامفهوم
-                                            از صنعت چاپ</a></h4>
-                                    <div class="popular-pack-in-info-title-sub text-yellow font-16 text-light2 mb-2">۲
-                                        شهریور ۱۳۹۸
+                                <div class="popular-pack-in-info mt-xl-0 mt-4 mt-sm-0 mt-md-4 order-2 order-sm-1   order-md-2 order-lg-1">
+                                    <div class="popular-pack-in-info-titles">
+                                        <h4 class="popular-pack-in-info-title font-16 text-medium text-black mb-3 ">
+                                            <a class="text-black hover-text-black"
+                                               href="{{route('event',[$event->id])}}">
+                                                {{$event->title}}
+                                            </a></h4>
+                                        <div class="popular-pack-in-info-title-sub text-yellow font-16 text-light2 mb-2">
+                                            {{$event->ad_date}}
+                                        </div>
+                                    </div>
+                                    <div class="popular-pack-in-info-title-excerpt text-black-light font-14 text-light2">
+                                        {{substr($event->description,0,150)."..."}}
                                     </div>
                                 </div>
-                                <div class="popular-pack-in-info-title-excerpt text-black-light font-14 text-light2">
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                    است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-                                </div>
-                            </div>
-                            <div class="popular-pack-in-images mt-4 mt-sm-0 order-1 order-sm-2  order-md-1 order-lg-2">
-                                <div class="popular-pack-in-img">
-                                    <img class="rounded" src="img/popular1.jpg" alt="انجمن مدیریت پروژه">
-                                </div>
-                                <div class="popular-pack-in-img-mores">
-                                    <a href="#" class="popular-pack-in-img-more font-16">شرکت در رویداد</a>
+                                <div class="popular-pack-in-images mt-4 mt-sm-0 order-1 order-sm-2  order-md-1 order-lg-2">
+                                    <div class="popular-pack-in-img">
+                                        <img class="rounded" src="img/events/{{$event->photo}}" alt="انجمن مدیریت پروژه">
+                                    </div>
+                                    <div class="popular-pack-in-img-mores">
+                                        <a href="#" class="popular-pack-in-img-more font-16">شرکت در رویداد</a>
 
-                                </div>
-                            </div>
-                            <div class="popular-svg">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 361.1 62.7">
-                                    <path d="M59.2,19.4c91.2-28.9,166.6,27.1,224,33.9c37.7,4.5,67.8-9.4,77.9-53.3H0v62.4C11.5,45.7,30.5,29.4,59.2,19.4z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 mb-4">
-                        <div class="popular-pack-in d-flex flex-column flex-sm-row  flex-md-column flex-lg-row">
-
-                            <div class="popular-pack-in-info mt-xl-0 mt-4 mt-sm-0 mt-md-4 order-2 order-sm-1  order-md-2 order-lg-1">
-                                <div class="popular-pack-in-info-titles">
-                                    <h4 class="popular-pack-in-info-title font-16 text-medium text-black mb-3 "><a
-                                            class="text-black hover-text-black" href="/">لورم ایپسوم متن ساختگی با تولید
-                                            سادگی نامفهوم
-                                            از صنعت چاپ</a></h4>
-                                    <div class="popular-pack-in-info-title-sub text-yellow font-16 text-light2 mb-2">۲
-                                        شهریور ۱۳۹۸
                                     </div>
                                 </div>
-                                <div class="popular-pack-in-info-title-excerpt text-black-light font-14 text-light2">
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                    است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
+                                <div class="popular-svg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 361.1 62.7">
+                                        <path d="M59.2,19.4c91.2-28.9,166.6,27.1,224,33.9c37.7,4.5,67.8-9.4,77.9-53.3H0v62.4C11.5,45.7,30.5,29.4,59.2,19.4z"></path>
+                                    </svg>
                                 </div>
-                            </div>
-                            <div class="popular-pack-in-images mt-4 mt-sm-0 order-1 order-sm-2 order-md-1 order-lg-2">
-                                <div class="popular-pack-in-img">
-                                    <img class="rounded" src="img/popular2.jpg" alt="انجمن مدیریت پروژه">
-                                </div>
-                                <div class="popular-pack-in-img-mores">
-                                    <a href="#" class="popular-pack-in-img-more font-16">شرکت در رویداد</a>
-
-                                </div>
-                            </div>
-                            <div class="popular-svg">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 361.1 62.7">
-                                    <path d="M59.2,19.4c91.2-28.9,166.6,27.1,224,33.9c37.7,4.5,67.8-9.4,77.9-53.3H0v62.4C11.5,45.7,30.5,29.4,59.2,19.4z"></path>
-                                </svg>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-6 mb-4">
-                        <div class="popular-pack-in d-flex flex-column flex-sm-row  flex-md-column flex-lg-row">
-
-                            <div class="popular-pack-in-info mt-xl-0 mt-4 mt-sm-0mt-md-4 order-2 order-sm-1  order-md-2 order-lg-1">
-                                <div class="popular-pack-in-info-titles">
-                                    <h4 class="popular-pack-in-info-title font-16 text-medium text-black mb-3 "><a
-                                            class="text-black hover-text-black" href="/">لورم ایپسوم متن ساختگی با تولید
-                                            سادگی نامفهوم
-                                            از صنعت چاپ</a></h4>
-                                    <div class="popular-pack-in-info-title-sub text-yellow font-16 text-light2 mb-2">۲
-                                        شهریور ۱۳۹۸
-                                    </div>
-                                </div>
-                                <div class="popular-pack-in-info-title-excerpt text-black-light font-14 text-light2">
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                    است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-                                </div>
-                            </div>
-                            <div class="popular-pack-in-images mt-4 mt-sm-0 order-1 order-sm-2 order-md-1 order-lg-2">
-                                <div class="popular-pack-in-img">
-                                    <img class="rounded" src="img/popular3.jpg" alt="انجمن مدیریت پروژه">
-                                </div>
-                                <div class="popular-pack-in-img-mores">
-                                    <a href="#" class="popular-pack-in-img-more font-16">شرکت در رویداد</a>
-
-                                </div>
-                            </div>
-                            <div class="popular-svg">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 361.1 62.7">
-                                    <path d="M59.2,19.4c91.2-28.9,166.6,27.1,224,33.9c37.7,4.5,67.8-9.4,77.9-53.3H0v62.4C11.5,45.7,30.5,29.4,59.2,19.4z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 mb-4">
-                        <div class="popular-pack-in d-flex flex-column flex-sm-row  flex-md-column flex-lg-row">
-
-                            <div class="popular-pack-in-info mt-xl-0 mt-4 mt-sm-0 mt-md-4 order-2 order-sm-1  order-md-2 order-lg-1">
-                                <div class="popular-pack-in-info-titles">
-                                    <h4 class="popular-pack-in-info-title font-16 text-medium text-black mb-3 "><a
-                                            class="text-black hover-text-black" href="/">لورم ایپسوم متن ساختگی با تولید
-                                            سادگی نامفهوم
-                                            از صنعت چاپ</a></h4>
-                                    <div class="popular-pack-in-info-title-sub text-yellow font-16 text-light2 mb-2">۲
-                                        شهریور ۱۳۹۸
-                                    </div>
-                                </div>
-                                <div class="popular-pack-in-info-title-excerpt text-black-light font-14 text-light2">
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                    است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-                                </div>
-                            </div>
-                            <div class="popular-pack-in-images mt-4 mt-sm-0 order-1 order-sm-2 order-md-1 order-lg-2">
-                                <div class="popular-pack-in-img">
-                                    <img class="rounded" src="img/popular4.jpg" alt="انجمن مدیریت پروژه">
-                                </div>
-                                <div class="popular-pack-in-img-mores">
-                                    <a href="#" class="popular-pack-in-img-more font-16">شرکت در رویداد</a>
-
-                                </div>
-                            </div>
-                            <div class="popular-svg">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 361.1 62.7">
-                                    <path d="M59.2,19.4c91.2-28.9,166.6,27.1,224,33.9c37.7,4.5,67.8-9.4,77.9-53.3H0v62.4C11.5,45.7,30.5,29.4,59.2,19.4z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -295,26 +196,33 @@
                     <h3 class="font-20 text-yellow text-light2 text-center col-12 mb-3">رویدادها</h3>
                     <h2 class="text-center font-24 text-medium text-black col-12 mb-4">آخرین رویدادها
                     </h2>
-                    <p class="col-md-6 text-center text-black-light font-16">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه </p>
+                    <p class="col-md-6 text-center text-black-light font-16">لورم ایپسوم متن ساختگی با تولید سادگی
+                        نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه </p>
                     <div class="w-100"></div>
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs d-block d-md-flex nav-justified last-pack-tabs col-12 mt-4">
                         <li class="nav-item">
-                            <a class="nav-link active font-22 text-black text-regular" data-toggle="tab" href="#home">آزمون ها
+                            <a class="nav-link active font-22 text-black text-regular" data-toggle="tab" href="#home">آزمون
+                                ها
 
-                                <p class="font-14 text-black-light text-regular m-0 m-md-2">تعداد آزمون ها <span>۲۵</span></p>
+                                <p class="font-14 text-black-light text-regular m-0 m-md-2">تعداد آزمون ها
+                                    <span>۲۵</span></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  font-22 text-black-light text-regular" data-toggle="tab" href="#menu1">جوایز و مسابقات
+                            <a class="nav-link  font-22 text-black-light text-regular" data-toggle="tab" href="#menu1">جوایز
+                                و مسابقات
 
-                                <p class="font-14 text-black-light text-regular m-0 m-md-2">تعداد آزمون ها <span>۲۵</span></p>
+                                <p class="font-14 text-black-light text-regular m-0 m-md-2">تعداد آزمون ها
+                                    <span>۲۵</span></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link font-22 text-black-light text-regular" data-toggle="tab" href="#menu2">گواهینامه ها
+                            <a class="nav-link font-22 text-black-light text-regular" data-toggle="tab" href="#menu2">گواهینامه
+                                ها
 
-                                <p class="font-14 text-black-light text-regular m-0 m-md-2">تعداد آزمون ها <span>۲۵</span></p>
+                                <p class="font-14 text-black-light text-regular m-0 m-md-2">تعداد آزمون ها
+                                    <span>۲۵</span></p>
                             </a>
                         </li>
                     </ul>
@@ -323,10 +231,12 @@
                     <div class="tab-content col-12 last-pack-content ">
                         <div class="tab-pane row  active" id="home">
                             <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                                <div class="row align-items-center" >
+                                <div class="row align-items-center">
                                     <div class="last-pack-content-in-time text-lg-left text-center col-12 col-lg-2">
-                                        <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span></p>
-                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span class="pl-3">۲۶/۵/۹۸</span></p>
+                                        <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                                        </p>
+                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
+                                                    class="pl-3">۲۶/۵/۹۸</span></p>
                                     </div>
                                     <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
                                         <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -336,8 +246,12 @@
 
                                         </div>
                                         <div class="last-pack-content-in-description pl-3">
-                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های سطوح </h2>
-                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط</h3>
+                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
+                                                سطوح </h2>
+                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
+                                                تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                                چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
+                                                برای شرایط</h3>
                                         </div>
                                     </div>
 
@@ -348,10 +262,12 @@
 
                             </div>
                             <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                                <div class="row align-items-center" >
+                                <div class="row align-items-center">
                                     <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                        <p class="text-medium font-14 mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span></p>
-                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span class="pl-3">۲۶/۵/۹۸</span></p>
+                                        <p class="text-medium font-14 mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                                        </p>
+                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
+                                                    class="pl-3">۲۶/۵/۹۸</span></p>
                                     </div>
                                     <div class="col-12 col-lg-8 d-lg-flex  align-items-center text-lg-left text-center">
                                         <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -361,8 +277,12 @@
 
                                         </div>
                                         <div class="last-pack-content-in-description pl-3">
-                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های سطوح </h2>
-                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط</h3>
+                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
+                                                سطوح </h2>
+                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
+                                                تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                                چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
+                                                برای شرایط</h3>
                                         </div>
                                     </div>
 
@@ -372,10 +292,12 @@
                                 </div>
                             </div>
                             <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                                <div class="row align-items-center" >
+                                <div class="row align-items-center">
                                     <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                        <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span></p>
-                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span class="pl-3">۲۶/۵/۹۸</span></p>
+                                        <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                                        </p>
+                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
+                                                    class="pl-3">۲۶/۵/۹۸</span></p>
                                     </div>
                                     <div class="col-12 col-lg-8 d-lg-flex text-lg-left text-center  align-items-center">
                                         <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -385,8 +307,12 @@
 
                                         </div>
                                         <div class="last-pack-content-in-description pl-3">
-                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های سطوح </h2>
-                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط</h3>
+                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
+                                                سطوح </h2>
+                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
+                                                تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                                چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
+                                                برای شرایط</h3>
                                         </div>
                                     </div>
 
@@ -396,10 +322,12 @@
                                 </div>
                             </div>
                             <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                                <div class="row align-items-center" >
+                                <div class="row align-items-center">
                                     <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                        <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span></p>
-                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span class="pl-3">۲۶/۵/۹۸</span></p>
+                                        <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                                        </p>
+                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
+                                                    class="pl-3">۲۶/۵/۹۸</span></p>
                                     </div>
                                     <div class="col-12 col-lg-8 d-lg-flex text-lg-left text-center align-items-center">
                                         <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -409,8 +337,12 @@
 
                                         </div>
                                         <div class="last-pack-content-in-description pl-3">
-                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های سطوح </h2>
-                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط</h3>
+                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
+                                                سطوح </h2>
+                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
+                                                تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                                چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
+                                                برای شرایط</h3>
                                         </div>
                                     </div>
 
@@ -422,10 +354,12 @@
                         </div>
                         <div class="tab-pane row fade" id="menu1">
                             <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                                <div class="row align-items-center" >
+                                <div class="row align-items-center">
                                     <div class="last-pack-content-in-time text-lg-left text-center col-12 col-lg-2">
-                                        <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span></p>
-                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span class="pl-3">۲۶/۵/۹۸</span></p>
+                                        <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                                        </p>
+                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
+                                                    class="pl-3">۲۶/۵/۹۸</span></p>
                                     </div>
                                     <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
                                         <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -435,8 +369,12 @@
 
                                         </div>
                                         <div class="last-pack-content-in-description pl-3">
-                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های سطوح </h2>
-                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط</h3>
+                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
+                                                سطوح </h2>
+                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
+                                                تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                                چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
+                                                برای شرایط</h3>
                                         </div>
                                     </div>
 
@@ -447,10 +385,12 @@
 
                             </div>
                             <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                                <div class="row align-items-center" >
+                                <div class="row align-items-center">
                                     <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                        <p class="text-medium font-14 mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span></p>
-                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span class="pl-3">۲۶/۵/۹۸</span></p>
+                                        <p class="text-medium font-14 mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                                        </p>
+                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
+                                                    class="pl-3">۲۶/۵/۹۸</span></p>
                                     </div>
                                     <div class="col-12 col-lg-8 d-lg-flex  align-items-center text-lg-left text-center">
                                         <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -460,8 +400,12 @@
 
                                         </div>
                                         <div class="last-pack-content-in-description pl-3">
-                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های سطوح </h2>
-                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط</h3>
+                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
+                                                سطوح </h2>
+                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
+                                                تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                                چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
+                                                برای شرایط</h3>
                                         </div>
                                     </div>
 
@@ -471,10 +415,12 @@
                                 </div>
                             </div>
                             <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                                <div class="row align-items-center" >
+                                <div class="row align-items-center">
                                     <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                        <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span></p>
-                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span class="pl-3">۲۶/۵/۹۸</span></p>
+                                        <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                                        </p>
+                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
+                                                    class="pl-3">۲۶/۵/۹۸</span></p>
                                     </div>
                                     <div class="col-12 col-lg-8 d-lg-flex text-lg-left text-center  align-items-center">
                                         <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -484,8 +430,12 @@
 
                                         </div>
                                         <div class="last-pack-content-in-description pl-3">
-                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های سطوح </h2>
-                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط</h3>
+                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
+                                                سطوح </h2>
+                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
+                                                تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                                چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
+                                                برای شرایط</h3>
                                         </div>
                                     </div>
 
@@ -497,10 +447,12 @@
                         </div>
                         <div class="tab-pane row fade" id="menu2">
                             <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                                <div class="row align-items-center" >
+                                <div class="row align-items-center">
                                     <div class="last-pack-content-in-time text-lg-left text-center col-12 col-lg-2">
-                                        <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span></p>
-                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span class="pl-3">۲۶/۵/۹۸</span></p>
+                                        <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                                        </p>
+                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
+                                                    class="pl-3">۲۶/۵/۹۸</span></p>
                                     </div>
                                     <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
                                         <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -510,8 +462,12 @@
 
                                         </div>
                                         <div class="last-pack-content-in-description pl-3">
-                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های سطوح </h2>
-                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط</h3>
+                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
+                                                سطوح </h2>
+                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
+                                                تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                                چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
+                                                برای شرایط</h3>
                                         </div>
                                     </div>
 
@@ -522,10 +478,12 @@
 
                             </div>
                             <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                                <div class="row align-items-center" >
+                                <div class="row align-items-center">
                                     <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                        <p class="text-medium font-14 mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span></p>
-                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span class="pl-3">۲۶/۵/۹۸</span></p>
+                                        <p class="text-medium font-14 mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                                        </p>
+                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
+                                                    class="pl-3">۲۶/۵/۹۸</span></p>
                                     </div>
                                     <div class="col-12 col-lg-8 d-lg-flex  align-items-center text-lg-left text-center">
                                         <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -535,8 +493,12 @@
 
                                         </div>
                                         <div class="last-pack-content-in-description pl-3">
-                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های سطوح </h2>
-                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط</h3>
+                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
+                                                سطوح </h2>
+                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
+                                                تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                                چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
+                                                برای شرایط</h3>
                                         </div>
                                     </div>
 
@@ -546,10 +508,12 @@
                                 </div>
                             </div>
                             <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                                <div class="row align-items-center" >
+                                <div class="row align-items-center">
                                     <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                        <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span></p>
-                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span class="pl-3">۲۶/۵/۹۸</span></p>
+                                        <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                                        </p>
+                                        <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
+                                                    class="pl-3">۲۶/۵/۹۸</span></p>
                                     </div>
                                     <div class="col-12 col-lg-8 d-lg-flex text-lg-left text-center  align-items-center">
                                         <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -559,8 +523,12 @@
 
                                         </div>
                                         <div class="last-pack-content-in-description pl-3">
-                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های سطوح </h2>
-                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط</h3>
+                                            <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
+                                                سطوح </h2>
+                                            <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
+                                                تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                                چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
+                                                برای شرایط</h3>
                                         </div>
                                     </div>
 
@@ -597,27 +565,33 @@
                             <div class="row">
                                 <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
                                     <img class="mb-3" src="img/003-patent-1.png" alt="anjoman">
-                                    <a class="Committee-icons-text d-block text-white text-medium" href="/">مرکز گواهینامه ها</a>
+                                    <a class="Committee-icons-text d-block text-white text-medium" href="/">مرکز
+                                        گواهینامه ها</a>
                                 </div>
                                 <div class="col-6 text-center  bb-1 pt-5 pb-5">
                                     <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
-                                    <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته جایزه ها</a>
+                                    <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته جایزه
+                                        ها</a>
                                 </div>
                                 <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
                                     <img class="mb-3" src="img/001-user-group.png" alt="anjoman">
-                                    <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته عضویت</a>
+                                    <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته
+                                        عضویت</a>
                                 </div>
                                 <div class="col-6 text-center  bb-1 pt-5 pb-5">
                                     <img class="mb-3" src="img/009-exam.png" alt="anjoman">
-                                    <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته آموزش</a>
+                                    <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته
+                                        آموزش</a>
                                 </div>
                                 <div class="col-6 text-center bl-1  pt-5 pb-5">
                                     <img class="mb-3" src="img/002-loupe.png" alt="anjoman">
-                                    <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته پژوهش</a>
+                                    <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته
+                                        پژوهش</a>
                                 </div>
                                 <div class="col-6 text-center pt-5 pb-5">
                                     <img class="mb-3" src="img/003-crowd-of-users.png" alt="anjoman">
-                                    <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته گردهمایی </a>
+                                    <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته
+                                        گردهمایی </a>
                                 </div>
                             </div>
                         </div>
@@ -625,8 +599,10 @@
                         <div class="col-12 col-lg-5 Committee-text pl-0 pt-5 pt-lg-0 text-center text-lg-left">
                             <h2 class="font-26 text-white mb-4">چهاردهمین <span class="text-yellow">کنفرانس بین المللی مدیریت پروژه</span>
                             </h2>
-                            <h3 class="font-20 text-white mb-5">ثبت نام پیش از تاریخ ۲۰/۵/۹۸ دارای ۱۰ درصد تخفیف است</h3>
-                            <p class="font-18 text-white text-center ">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span></p>
+                            <h3 class="font-20 text-white mb-5">ثبت نام پیش از تاریخ ۲۰/۵/۹۸ دارای ۱۰ درصد تخفیف
+                                است</h3>
+                            <p class="font-18 text-white text-center ">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                            </p>
                             <div class="text-center">
                                 <a class="btn btn-violet font-16 text-black mt-3">در رویداد شرکت کنید</a>
                             </div>
@@ -647,7 +623,8 @@
                         </h2>
                     </div>
                     <div class="col-12 col-lg-7 align-self-end">
-                        <p class="text-black-light font-16">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه </p>
+                        <p class="text-black-light font-16">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
+                            با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه </p>
 
                     </div>
                     <div class="col-12 col-lg-2">
@@ -661,8 +638,10 @@
                                 <img src="img/last3.jpg" class="" alt="...">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title font-14 text-black"><span>[</span> 23 شهریور 1398 <span>]</span></h5>
-                                <p class="card-text font-14">ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                <h5 class="card-title font-14 text-black"><span>[</span> 23 شهریور 1398 <span>]</span>
+                                </h5>
+                                <p class="card-text font-14">ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
+                                    با
                                     استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله </p>
                                 <a href="/" class="btn btn-news text-yellow text-medium">ادامه مطلب</a>
                             </div>
@@ -674,8 +653,10 @@
                                 <img src="img/last2.jpg" class="" alt="...">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title font-14 text-black"><span>[</span> 23 شهریور 1398 <span>]</span></h5>
-                                <p class="card-text font-14">ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                <h5 class="card-title font-14 text-black"><span>[</span> 23 شهریور 1398 <span>]</span>
+                                </h5>
+                                <p class="card-text font-14">ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
+                                    با
                                     استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله </p>
                                 <a href="/" class="btn btn-news text-yellow text-medium">ادامه مطلب</a>
                             </div>
@@ -688,8 +669,10 @@
                             </div>
 
                             <div class="card-body">
-                                <h5 class="card-title font-14 text-black"><span>[</span> 23 شهریور 1398 <span>]</span></h5>
-                                <p class="card-text font-14">ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                <h5 class="card-title font-14 text-black"><span>[</span> 23 شهریور 1398 <span>]</span>
+                                </h5>
+                                <p class="card-text font-14">ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
+                                    با
                                     استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله </p>
                                 <a href="/" class="btn btn-news text-yellow text-medium">ادامه مطلب</a>
                             </div>
@@ -706,22 +689,26 @@
                         <div class="counters pt-4 pb-4 justify-content-around  row">
                             <div class="counter-in text-center col-6 col-md-3 mb-4 mb-md-0">
 
-                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="300" data-speed="1500"></h2>
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="300"
+                                    data-speed="1500"></h2>
                                 <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
                             </div>
                             <div class="counter-in text-center col-6  col-md-3 mb-4 mb-md-0">
 
-                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="60" data-speed="1500"></h2>
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="60"
+                                    data-speed="1500"></h2>
                                 <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
                             </div>
                             <div class="counter-in text-center col-6 col-md-3  mb-md-0">
 
-                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="100" data-speed="1500"></h2>
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="100"
+                                    data-speed="1500"></h2>
                                 <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
                             </div>
                             <div class="counter-in text-center col-6 col-md-3 ">
 
-                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="40" data-speed="1500"></h2>
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="40"
+                                    data-speed="1500"></h2>
                                 <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
                             </div>
                         </div>
@@ -735,7 +722,7 @@
                 <div class="row">
                     <div class="col-12 mt-sm-5 pt-sm-5">
                         <div class="logo-slid  ">
-                            <div><img src="img/b1.png" alt=""> </div>
+                            <div><img src="img/b1.png" alt=""></div>
                             <div><img src="img/b2.png" alt=""></div>
                             <div><img src="img/b3.png" alt=""></div>
                             <div><img src="img/b4.png" alt=""></div>
@@ -755,7 +742,7 @@
 <script src="{{asset('js/all.js')}}"></script>
 <script src="{{asset('js/slick.min.js')}}"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('.logo-slid').slick({
             dots: false,
             infinite: false,
@@ -805,11 +792,11 @@
             return $(this).each(function () {
                 // set options for current element
                 var settings = $.extend({}, $.fn.countTo.defaults, {
-                    from:            $(this).data('from'),
-                    to:              $(this).data('to'),
-                    speed:           $(this).data('speed'),
+                    from: $(this).data('from'),
+                    to: $(this).data('to'),
+                    speed: $(this).data('speed'),
                     refreshInterval: $(this).data('refresh-interval'),
-                    decimals:        $(this).data('decimals')
+                    decimals: $(this).data('decimals')
                 }, options);
 
                 // how many times to update the value, and how much to increment the value on each update
@@ -840,7 +827,7 @@
 
                     render(value);
 
-                    if (typeof(settings.onUpdate) == 'function') {
+                    if (typeof (settings.onUpdate) == 'function') {
                         settings.onUpdate.call(self, value);
                     }
 
@@ -850,7 +837,7 @@
                         clearInterval(data.interval);
                         value = settings.to;
 
-                        if (typeof(settings.onComplete) == 'function') {
+                        if (typeof (settings.onComplete) == 'function') {
                             settings.onComplete.call(self, value);
                         }
                     }

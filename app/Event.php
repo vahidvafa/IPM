@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Event extends Model
 {
     use SoftDeletes;
+
+    protected $fillable=[0];
+
+
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
 }

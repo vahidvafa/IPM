@@ -12,9 +12,24 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+   /*     $events = Event::all();
+        foreach ($events as $event){
+            $event->title.="$event->id";
+            $event->description.="$event->id";
+            $event->detail.="$event->id";
+            $event->course_headings.="$event->id";
+            $event->address.="$event->id";
+            $event->price.=$event->id;
+            $event->photo ="popular$event->id.jpg";
+            $event->save();
+        }
+return;*/
+
+        $event = Event::find($id);
+        $similars = Event::where("category_id",'=',$event->category_id)->where('id','!=',$id)->get(['id','photo','title','solar_date']);
+        return view('event_detail',compact('event','similars'));
     }
 
     /**
