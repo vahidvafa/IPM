@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->bigInteger('branch');
             $table->bigInteger('expire');
             $table->bigInteger('membership_type_id');
+            $table->text('resume_address');
             $table->rememberToken();
             $table->timestamps();
         });

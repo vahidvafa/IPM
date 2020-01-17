@@ -1,0 +1,163 @@
+@media screen and  (max-width: 1200px){
+    footer:before{
+        display: none;
+        }
+    footer {
+        
+        padding-top: 50px;
+        }
+    }
+
+
+@media screen and  (max-width: 993px) {
+    .nav-login-out {
+        flex-direction: row;
+        }
+    .nav-login-out span{
+        display: none;
+        }
+    .nav-login-out li:first-child{
+        margin-left: 1.5rem;
+        }
+    .header-main{
+        padding-top: 1.5rem;
+        }
+    .popular-pack-in-images {
+        padding-right: 0;
+        }
+    .header-main .dropdown-menu{
+        background-color: transparent;
+        border: none;
+        }
+    .header-main .dropdown-menu .dropdown-item{
+        color: white;
+        }
+    .Committee-content {
+        position: relative;
+        
+        padding: 50px 0;
+        background-color: #372b7d;
+        }
+    
+    .Committee-icons {
+        background-color: #372b7d;
+        }
+    
+    .Committee {
+        height: auto;
+        }
+    
+    .Committee-text .btn-violet {
+        background-color: white;
+        color: #372b7d !important;
+        border: 1px solid #372b7d;
+        }
+    
+    .Committee-text .btn-violet:hover {
+        background-color: #fca80f;
+        color: white !important;
+        border: 1px solid #fca80f;
+        }
+    /* ==========================================================================
+                            calender
+   ========================================================================== */
+    .fc-content svg{
+        display: inline-block;
+        }
+    .fc-time,.fc-title{
+        display: none;
+        }
+    .fc-toolbar .fc-left{
+        display: flex  !important;
+        width: 100% !important;
+        justify-content: center;
+        order: 3;
+        }
+    .fc-toolbar .fc-left h2{
+        float: none;
+        /* width: 100%; */
+        /* text-align: right; */
+        }
+    .fc .fc-toolbar > * > *{
+        float: none;
+        }
+    .fc-toolbar .fc-right {
+        float: none;
+        }
+    .fc-toolbar .fc-center{
+        display: flex  !important;
+        width: 100% !important;
+        padding: 10px 0;
+        }
+    .fc-toolbar .fc-center .btn-group{
+        margin: 0 auto;
+        }
+    .fc-left h2{
+        margin-bottom: 10px;
+        }
+    .fc-toolbar{
+        flex-flow: column;
+        }
+        
+    }
+@media screen and  (max-width: 719px){
+    .last-pack {
+        background: #f3f3f3 none;
+        
+        }
+    .slider-form-out{
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        }
+    .slider-text{
+        padding-bottom: 120px !important;
+        }
+    #content{
+        padding-top: 575px;
+        }
+    .card-news img {
+        max-height: unset;
+        min-height: unset;
+        width: 100%;
+        }
+    .card-news-img {
+        height: auto;
+        
+        }
+   
+        
+    }
+@media screen and  (max-width: 576px){
+    .title-page{
+        font-size: 30px;
+        }
+    .fc-toolbar .fc-left {
+        display: block !important;
+       
+        }
+    .sidebar:after{
+        display: none;
+        }
+    .sidebar {
+        padding-bottom: 0;
+        }
+    .slider-text {
+        padding-bottom: 50px !important;
+        }
+    .sidebar-form-header {
+  
+        padding-right: 20px !important;
+        padding-left: 20px !important;
+        }
+    .logo:before{
+        display: none;
+        }
+    }
+
+
+
+
+
+
