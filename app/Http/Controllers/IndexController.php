@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\MembershipType;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -83,5 +84,11 @@ class IndexController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function register()
+    {
+        $memberships = MembershipType::all();
+        return view('register',compact('memberships'));
     }
 }

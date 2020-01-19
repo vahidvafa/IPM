@@ -17,46 +17,51 @@
                 <h2 class=" font-24 text-medium text-black  mb-4">درخواست چه نوع عضویتی دارید؟
                 </h2>
                 <p class=" text-black-light font-16 mb-5">لطفا نوع عضویت خود را انتخاب نمایید و فرم عضویت مرتبط با آن را پر نمایید</p>
-
                 <!-- Nav pills -->
                 <ul class="nav nav-pills row">
                     <li class="nav-item col-12 col-sm-6 col-lg-3">
 
                         <a class="nav-link active p-4" data-toggle="pill" href="#home">
                             <span class="option-input "></span>
-                            <span class=" text-medium text-black"> عضویت حقیقی</span>
-                            <p class="font-12 text-black-light m-0 mt-4">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-
-
+                            <span class=" text-medium text-black">{{$memberships[0]->title}}</span>
+                            <p class="font-12 text-black-light m-0 mt-4">
+                                {{tr_num(unixToDay($memberships[0]->period),'fa')}} روز
+                                <br>
+                                {{tr_num(number_format($memberships[0]->price),'fa')}} ریال </p>
                         </a>
 
                     </li>
                     <li class="nav-item  col-12 col-sm-6 col-lg-3 mt-4 mt-sm-0">
                         <a class="nav-link p-4" data-toggle="pill" href="#menu1">
                             <span class="option-input "></span>
-                            <span class=" text-medium text-black">  عضویت حقوقی</span>
-                            <p class="font-12 text-black-light m-0 mt-4">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-
+                            <span class=" text-medium text-black">{{$memberships[1]->title}}</span>
+                            <p class="font-12 text-black-light m-0 mt-4">
+                                {{tr_num(unixToDay($memberships[1]->period),'fa')}} روز
+                                <br>
+                                {{tr_num(number_format($memberships[1]->price),'fa')}} ریال </p>
                         </a>
                     </li>
                     <li class="nav-item  col-12 col-sm-6 col-lg-3 mt-4 mt-lg-0">
                         <a class="nav-link p-4" data-toggle="pill" href="#menu2">
                             <span class="option-input "></span>
-                            <span class="text-medium text-black">عضویت دانشجویی</span>
-                            <p class="font-12 text-black-light m-0 mt-4">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-
+                            <span class=" text-medium text-black">{{$memberships[2]->title}}</span>
+                            <p class="font-12 text-black-light m-0 mt-4">
+                                {{tr_num(unixToDay($memberships[2]->period),'fa')}} روز
+                                <br>
+                                {{tr_num(number_format($memberships[2]->price),'fa')}} ریال </p>
                         </a>
                     </li>
                     <li class="nav-item  col-12 col-sm-6 col-lg-3  mt-4 mt-lg-0">
                         <a class="nav-link p-4" data-toggle="pill" href="#menu3">
                             <span class="option-input "></span>
-                            <span class="text-medium text-black">عضویت دانش آموزی</span>
-                            <p class="font-12 text-black-light m-0 mt-4">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-
+                            <span class=" text-medium text-black">{{$memberships[3]->title}}</span>
+                            <p class="font-12 text-black-light m-0 mt-4">
+                                {{tr_num(unixToDay($memberships[3]->period),'fa')}} روز
+                                <br>
+                                {{tr_num(number_format($memberships[3]->price),'fa')}} ریال </p>
                         </a>
                     </li>
                 </ul>
-
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane  active" id="home">
@@ -188,13 +193,8 @@
                         </form>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
-
-
     </main>
 @endsection
 <script src='{{asset('fullcalendar/core/main.js')}}'></script>

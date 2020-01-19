@@ -14,10 +14,10 @@ class CreateMembershipTypesTable extends Migration
     public function up()
     {
         Schema::create('membership_types', function (Blueprint $table) {
-            $table->tinyInteger('id');
+            $table->bigIncrements('id');
             $table->string('title');
             $table->string('price');
-            $table->bigInteger('period');
+            $table->bigInteger('period')->default(0);
             $table->timestamps();
         });
     }

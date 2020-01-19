@@ -14,9 +14,5 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/','IndexController@index')->name('/');
-
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
-
+Route::get('/register','IndexController@register')->name('register');
 Route::get('/event/{id}','EventController@index')->name("event");
