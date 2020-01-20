@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMembershipTypesTable extends Migration
+class CreateDocumentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateMembershipTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('membership_types', function (Blueprint $table) {
+        Schema::create('documents', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->string('price');
-            $table->bigInteger('period')->default(0);
-            $table->text('required_documents')->nullable();
+            $table->bigInteger('user_id');
+            $table->text('address');
+            $table->text('explain');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +30,6 @@ class CreateMembershipTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('membership_types');
+        Schema::dropIfExists('documents');
     }
 }

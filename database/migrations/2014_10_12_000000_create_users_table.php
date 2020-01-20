@@ -15,9 +15,8 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('en_name');
+            $table->string('name');
+            $table->string('name_en');
             $table->string('user_code')->unique();
             $table->string('email')->unique();
             $table->string('mobile')->unique();
@@ -29,7 +28,10 @@ class CreateUsersTable extends Migration
             $table->bigInteger('branch');
             $table->bigInteger('expire');
             $table->bigInteger('membership_type_id');
-            $table->text('resume_address');
+            $table->text('profile_picture')->nullable();
+            $table->text('resume_address')->nullable();
+            $table->text('about_me')->nullable();
+            $table->text('shortcomings')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
