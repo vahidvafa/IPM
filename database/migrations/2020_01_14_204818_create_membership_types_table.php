@@ -19,6 +19,7 @@ class CreateMembershipTypesTable extends Migration
             $table->string('price');
             $table->bigInteger('period')->default(0);
             $table->text('required_documents')->nullable();
+            $table->tinyInteger('lang_id',false,true);
             $table->timestamps();
         });
     }

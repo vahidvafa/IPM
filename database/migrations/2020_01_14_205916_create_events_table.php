@@ -20,8 +20,7 @@ class CreateEventsTable extends Migration
             $table->text('detail')->nullable();
             $table->text('course_headings')->nullable();
             $table->string('photo')->nullable();
-            $table->string('ad_date');
-            $table->string('solar_date');
+            $table->string('date');
             $table->string('price');
             $table->bigInteger('province_id');
             $table->string('tel');
@@ -31,6 +30,7 @@ class CreateEventsTable extends Migration
             $table->bigInteger('category_id');
             $table->bigInteger('creator_uid');
             $table->timestamps();
+            $table->tinyInteger('lang_id',false,true);
             $table->softDeletes();
         });
     }

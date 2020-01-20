@@ -20,6 +20,7 @@ class CreateUsersStatesTable extends Migration
             $table->tinyInteger('state');
             $table->string('IP');
             $table->timestamps();
+            $table->tinyInteger('lang_id',false,true);
             $table->softDeletes();
         });
     }

@@ -2,34 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Event;
+use App\langs;
 use Illuminate\Http\Request;
 
-class EventController extends Controller
+class LangsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-   /*     $events = Event::all();
-        foreach ($events as $event){
-            $event->title.="$event->id";
-            $event->description.="$event->id";
-            $event->detail.="$event->id";
-            $event->course_headings.="$event->id";
-            $event->address.="$event->id";
-            $event->price.=$event->id;
-            $event->photo ="popular$event->id.jpg";
-            $event->save();
-        }
-return;*/
-
-        $event = Event::find($id);
-        $similars = Event::where("category_id",'=',$event->category_id)->where('id','!=',$id)->get(['id','photo','title','date']);
-        return view('event_detail',compact('event','similars'));
+        //
     }
 
     /**
@@ -56,10 +41,10 @@ return;*/
     /**
      * Display the specified resource.
      *
-     * @param  \App\Event  $event
+     * @param  \App\langs  $langs
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show(langs $langs)
     {
         //
     }
@@ -67,10 +52,10 @@ return;*/
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Event  $event
+     * @param  \App\langs  $langs
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit(langs $langs)
     {
         //
     }
@@ -79,10 +64,10 @@ return;*/
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Event  $event
+     * @param  \App\langs  $langs
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, langs $langs)
     {
         //
     }
@@ -90,10 +75,10 @@ return;*/
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Event  $event
+     * @param  \App\langs  $langs
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy(langs $langs)
     {
         //
     }

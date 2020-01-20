@@ -24,6 +24,7 @@ class CreateJobsTable extends Migration
             $table->bigInteger('category_id');
             $table->tinyInteger('state')->default(0);
             $table->timestamps();
+            $table->tinyInteger('lang_id',false,true);
             $table->softDeletes();
         });
     }

@@ -20,6 +20,7 @@ class CreateMembershipsTable extends Migration
             $table->bigInteger('start');
             $table->bigInteger('end');
             $table->timestamps();
+            $table->tinyInteger('lang_id',false,true);
             $table->softDeletes();
         });
     }

@@ -3,31 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use App\MembershipType;
+use App\User;
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($slug)
     {
-        $events = Event::all(['id','photo','title','description','date']);
 
-        return view('index',compact('events'));
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $user = User::with(['word_experience','education','education'])->where('slug','=',$slug);
+        return $user;
+        return view('profile',compact("user"));
     }
 
     /**
@@ -53,17 +45,6 @@ class IndexController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -84,11 +65,5 @@ class IndexController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function register()
-    {
-        $memberships = MembershipType::all();
-        return view('register',compact('memberships'));
     }
 }

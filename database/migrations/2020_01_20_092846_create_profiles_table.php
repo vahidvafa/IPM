@@ -45,6 +45,7 @@ class CreateProfilesTable extends Migration
             $table->string('agent_name');
             $table->string('agent_name_en');
             $table->text('agent_picture');
+            $table->tinyInteger('lang_id',false,true);
             $table->timestamps();
         });
     }

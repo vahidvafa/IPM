@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->timestamps();
+            $table->tinyInteger('lang_id',false,true);
             $table->softDeletes();
         });
     }

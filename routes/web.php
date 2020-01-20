@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','IndexController@index')->name('/');
 Route::get('/register','IndexController@register')->name('register');
 Route::get('/event/{id}','EventController@index')->name("event");
+Route::get('/profile/{slug}','UserController@index')->name("profile");

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJobsCategoriesTable extends Migration
+class CreateLangsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateJobsCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('jobs_categories', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('title');
+        Schema::create('langs', function (Blueprint $table) {
+            $table->integerIncrements('id');
+            $table->string("name",30);
+            $table->string("photo");
             $table->timestamps();
-            $table->tinyInteger('lang_id',false,true);
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +28,6 @@ class CreateJobsCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jobs_categories');
+        Schema::dropIfExists('langs');
     }
 }

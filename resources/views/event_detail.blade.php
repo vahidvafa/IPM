@@ -103,7 +103,7 @@
                                         {{$similar->title}}
                                 </a></h4>
                                 <div class="Related-post-title-sub text-yellow font-14 text-light2 mb-0">
-                                    {{$similar->solar_date}}
+                                    {{$similar->date}}
                                 </div>
                             </div>
                         </div>

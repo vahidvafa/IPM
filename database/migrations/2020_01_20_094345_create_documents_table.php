@@ -19,6 +19,7 @@ class CreateDocumentsTable extends Migration
             $table->text('address');
             $table->text('explain');
             $table->timestamps();
+            $table->tinyInteger('lang_id',false,true);
             $table->softDeletes();
         });
     }

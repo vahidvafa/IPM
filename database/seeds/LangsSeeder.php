@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class EventSeeder extends Seeder
+class LangsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class EventSeeder extends Seeder
      */
     public function run()
     {
-
+        //
     }
 }
