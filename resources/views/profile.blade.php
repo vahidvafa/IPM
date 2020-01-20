@@ -2,13 +2,13 @@
 @section('header')
     <title>انجمن مدیریت پروژه</title>
 
-    <link href='fullcalendar/core/main.css' rel='stylesheet' />
-    <link href='fullcalendar/daygrid/main.css' rel='stylesheet' />
-    <link rel="stylesheet" href="fullcalendar/list/main.css">
-    <link href='fullcalendar/bootstrap/main.css' rel='stylesheet' />
-    <link rel="stylesheet" href="fullcalendar/timegrid/main.css">
+    <link href='{{asset('fullcalendar/core/main.css')}}' rel='stylesheet' />
+    <link href='{{asset('fullcalendar/daygrid/main.css')}}' rel='stylesheet' />
+    <link rel="stylesheet" href="{{asset('fullcalendar/list/main.css')}}">
+    <link href='{{asset('fullcalendar/bootstrap/main.css')}}' rel='stylesheet' />
+    <link rel="stylesheet" href="{{asset('fullcalendar/timegrid/main.css')}}">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/css/datepicker.css'>
-    <link rel="stylesheet" href="css/style-calender.css">
+    <link rel="stylesheet" href="{{asset('css/style-calender.css')}}">
 @stop
 @section('content')
 <main id="content-page" role="main">
@@ -38,38 +38,42 @@
                                {{$user->name}}
                           </h2>
                            <p class="font-16 text-regular text-black">
-                               @if()
-                               <span>سن :</span>
-                               <span class="text-black-light">۲۵ سال</span>
+                               @if($user->membership_type_id==2)
+                               <span>تاریخ تاسیس شرکت : {{$user->profile[0]->established_date}}</span>
+                               <span class="text-black-light"></span>
+                               @else
+                               <span>سن : {{$user->profile[0]->birth_date}}</span>
+                               <span class="text-black-light"></span>
+                               @endif
                            </p>
                            <p class="font-16 text-regular text-black">
                                <span>سابقه :</span>
-                               <span class="text-black-light">تولید متن تصادفی</span>
+                               @foreach($user->word_experience as $word_experience)
+                               <span class="text-black-light">{{$word_experience->company_name}} ({{$word_experience->from_date}} تا {{$word_experience->to_date}})</span><br>
+                                   @endforeach
                            </p>
                            <p class="font-16 text-regular text-black">
                                <span>مدرک تحصیلی :</span>
-                               <span class="text-black-light">تولید متن تصادفی</span>
+                               @foreach($user->word_experience as $word_experience)
+                                   <span class="text-black-light">{{$word_experience->company_name}} ({{$word_experience->from_date}} تا {{$word_experience->to_date}})</span><br>
+                               @endforeach
                            </p>
                            <p class="font-16 text-regular text-black">
-                               <span>متن تصادفی :</span>
-                               <span class="text-black-light">تولید متن تصادفی</span>
-                           </p>
-                           <p class="font-16 text-regular text-black">
-                               <span>متن تصادفی :</span>
-                               <span class="text-black-light">تولید متن تصادفی</span>
+                               <span>درباره من :</span>
+                               <span class="text-black-light">{{$user->about_me}}</span>
                            </p>
                           <div class="social-profile mt-3">
-                              <a href="/"><img src="{{asset('imgsocial11.png')}}" alt="..."></a>
-                              <a href="/"><img src="{{asset('imgsocial22.png')}}" alt="..."></a>
-                              <a href="/"><img src="{{asset('imgsocial33.png')}}" alt="..."></a>
-                              <a href="/"><img src="{{asset('imgsocial44.png')}}" alt="..."></a>
-                              <a href="/"><img src="{{asset('imgsocial55.png')}}" alt="..."></a>
+                              <a href="/"><img src="{{asset('img/social11.png')}}" alt="..."></a>
+                              <a href="/"><img src="{{asset('img/social22.png')}}" alt="..."></a>
+                              <a href="/"><img src="{{asset('img/social33.png')}}" alt="..."></a>
+                              <a href="/"><img src="{{asset('img/social44.png')}}" alt="..."></a>
+                              <a href="/"><img src="{{asset('img/social55.png')}}" alt="..."></a>
                           </div>
 
                        </div>
                        <div class="col-md-6 col-lg-4">
                           <div class="qr-profile">
-                              <img class="img-fluid" src="{{asset('imggoogleQRcodes.png')}}" alt="..">
+                              <img class="img-fluid" src="{{asset('img/googleQRcodes.png')}}" alt="..">
                           </div>
                        </div>
                        <div class="profile-top-svg">
@@ -110,25 +114,26 @@
                         <form class="sidebar-form-body row">
                             <div class="input-form col-md-6 ">
                                 <input type="text" name="text-759" value="" size="40" aria-invalid="false" placeholder="موبایل*">
-                                <img src="{{asset('img002-telephone.png')}}" class="form-icon">
+                                <img src="{{asset('img/002-telephone.png')}}" class="form-icon">
 
                             </div>
                             <div class="input-form col-md-6">
                                 <input type="email" name="text-759" value="" size="40" aria-invalid="false" placeholder="ایمیل*">
-                                <img src="{{asset('img003-envelope.png')}}" class="form-icon">
+                                <img src="{{asset('img/003-envelope.png')}}" class="form-icon">
                             </div>
                             <div class="input-form col-md-6">
                                 <input type="text" name="text-759" value="" size="40" aria-invalid="false" placeholder="سابقه کار*">
-                                <img src="{{asset('img001-user.png')}}" class="form-icon">
+                                <img src="{{asset('img/001-user.png')}}" class="form-icon">
                             </div>
                             <div class="input-form col-md-6">
                                 <input type="text" name="text-759" value="" size="40" aria-invalid="false" placeholder="صنعت قالب*">
-                                <img src="{{asset('imgengineer.png')}}" class="form-icon">
+                                <img src="{{asset('img/engineer.png')}}" class="form-icon">
                             </div>
                             <div class="col-12">
                                 <div class="input-upload ">
-                                    <input type="file" class="custom-file-input" id="customFile">
                                     <label class="custom-file-label" for="customFile">انتخاب فایل</label>
+                                    <input type="file" class="custom-file-input" id="customFile">
+
                                 </div>
                             </div>
 

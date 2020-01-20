@@ -16,9 +16,9 @@ class UserController extends Controller
     public function index($slug)
     {
 
-
-        $user = User::with(['word_experience','education','education'])->where('slug','=',$slug);
-        return $user;
+//['word_experience','education','education'])->where('slug','=',$slug);
+        $user = User::with(['word_experience','education','profile'])->where('slug','=',$slug)->get()[0];
+//        return $user;
         return view('profile',compact("user"));
     }
 

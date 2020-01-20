@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\langs;
+use App\Lang;
 use Illuminate\Http\Request;
 
 class LangsController extends Controller
@@ -41,10 +41,10 @@ class LangsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\langs  $langs
+     * @param  \App\Lang  $langs
      * @return \Illuminate\Http\Response
      */
-    public function show(langs $langs)
+    public function show(Lang $langs)
     {
         //
     }
@@ -52,10 +52,10 @@ class LangsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\langs  $langs
+     * @param  \App\Lang  $langs
      * @return \Illuminate\Http\Response
      */
-    public function edit(langs $langs)
+    public function edit(Lang $langs)
     {
         //
     }
@@ -64,10 +64,10 @@ class LangsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\langs  $langs
+     * @param  \App\Lang  $langs
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, langs $langs)
+    public function update(Request $request, Lang $langs)
     {
         //
     }
@@ -75,10 +75,10 @@ class LangsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\langs  $langs
+     * @param  \App\Lang  $langs
      * @return \Illuminate\Http\Response
      */
-    public function destroy(langs $langs)
+    public function destroy(Lang $langs)
     {
         //
     }

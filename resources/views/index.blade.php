@@ -1,149 +1,180 @@
-@extends('master')
-@section('sidebar')
-    <div class="sidebar ">
-        <div class="header-menu pt-2 pb-2">
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href=""/>
+    <title>انجمن مدیریت پروژه</title>
+    <link rel="stylesheet" href="{{asset('css/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('css/slick-theme.css')}}">
+    <link rel='stylesheet' href="{{asset('css/bootstrap.min.css')}}" type='text/css' media='all'/>
+    <link rel="stylesheet" href="{{asset('css/stylefont.css')}}" type='text/css' media='all'>
+    <link rel="stylesheet" href="{{asset('css/fontiran.css')}}" type='text/css' media='all'>
+    <link rel="stylesheet" href="{{asset('css/all.css')}}" type='text/css' media='all'>
+    <link rel="stylesheet" href="{{asset('css/style-main.css')}}" type='text/css' media='all'>
+    <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type='text/css' media='all'>
+
+</head>
+<body>
+    <header id="header">
+
+        <div class="header-top-bar back-dark-violet pt-3 pb-3">
             <div class="container">
                 <div class="row">
-                    <nav class="navbar navbar-expand-lg  navbar-dark col-12">
+                    <div class="col-md-6">
+                        <img src="img/logo.png" alt="انجمن مدیریت پروژه">
+                        <h1 class="text-white d-inline-block font-18 text-regular ml-2">انجمن مدیریت پروژه ایران</h1>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <img src="img/ipma-logo.png" alt="انجمن مدیریت پروژه">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar" >
+            <div class="header-menu pt-2 pb-2">
+                <div class="container">
+                    <div class="row">
+                        <nav class="navbar navbar-expand-lg  navbar-dark col-12">
 
 
-                        <!-- Toggler/collapsibe Button -->
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#collapsibleNavbar">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <ul class="navbar-nav nav-login-out ml-auto  order-lg-1">
-                            <li class="nav-item ">
-                                <a class="nav-link nav-login" data-toggle="modal" data-target="#ModalLogin">
-                                    <i class="fa fa-user mr-1"></i>
-                                    <span>   ورود کاربران</span>
-                                </a>
+                            <!-- Toggler/collapsibe Button -->
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                    data-target="#collapsibleNavbar">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <ul class="navbar-nav nav-login-out ml-auto  order-lg-1">
+                                <li class="nav-item ">
+                                    <a class="nav-link nav-login" data-toggle="modal" data-target="#ModalLogin">
+                                        <i class="fa fa-user mr-1"></i>
+                                        <span>   ورود کاربران</span>
+                                    </a>
 
-                            </li>
-                            <!-- Dropdown -->
-                            <li class="nav-item dropdown nav-lang">
-                                <a class="nav-link dropdown-toggle nav-lang-persian" href="#" id="navbardrop5"
-                                   data-toggle="dropdown">
-                                    <span>فارسی</span>
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item nav-lang-eng" href="#"><span>انگلیسی</span></a>
+                                </li>
+                                <!-- Dropdown -->
+                                <li class="nav-item dropdown nav-lang">
+                                    <a class="nav-link dropdown-toggle nav-lang-persian" href="#" id="navbardrop5"
+                                       data-toggle="dropdown">
+                                        <span>فارسی</span>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item nav-lang-eng" href="#"><span>انگلیسی</span></a>
+
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- Navbar links -->
+                            <div class="collapse navbar-collapse order-lg-0" id="collapsibleNavbar">
+                                <ul class="navbar-nav header-main">
+                                    <li class="nav-item active">
+                                        <a class="nav-link " href="#">صفحه اول</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">درباره انجمن</a>
+                                    </li>
+
+                                    <!-- Dropdown -->
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                            شبکه اعضا </a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Link 1</a>
+                                            <a class="dropdown-item" href="#">Link 2</a>
+                                            <a class="dropdown-item" href="#">Link 3</a>
+                                        </div>
+                                    </li>
+                                    <!-- Dropdown -->
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop2"
+                                           data-toggle="dropdown">
+                                            محصولات و خدمات </a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Link 1</a>
+                                            <a class="dropdown-item" href="#">Link 2</a>
+                                            <a class="dropdown-item" href="#">Link 3</a>
+                                        </div>
+                                    </li>
+                                    <!-- Dropdown -->
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop3"
+                                           data-toggle="dropdown">
+                                            ارکان انجمن </a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Link 1</a>
+                                            <a class="dropdown-item" href="#">Link 2</a>
+                                            <a class="dropdown-item" href="#">Link 3</a>
+                                        </div>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-text pt-5 pb-5">
+                <div class="container">
+                    <div class="row align-items-center justify-content-around">
+                        <div class="slider-form-out col-md-6 col-lg-4 order-2 order-md-1 z-index">
+                            <div class="sidebar-form">
+                                <div class="sidebar-form-header text-center pb-3">
+                                    <p class="font-18 text-medium text-black sidebar-form-header-text pb-3">همین حالا در
+                                        جریان قرار بگیر</p>
+                                    <p class="font-14 text-light2 text-black-light  pb-1">جهت در جریان قرار گرفتن تمام
+                                        رویداد های
+                                        انجمن فرم زیر را پر کنید</p>
+                                    <form class="sidebar-form-body">
+                                        <div class="input-form">
+                                            <input type="text" name="text-759" value="" size="40" aria-invalid="false"
+                                                   placeholder="نام و نام خانوادگی*">
+                                            <img src="img/001-user.png" class="form-icon">
+
+                                        </div>
+                                        <div class="input-form">
+                                            <input type="text" name="text-759" value="" size="40" aria-invalid="false"
+                                                   placeholder="کد ملی*">
+                                            <img src="img/004-key.png" class="form-icon">
+                                        </div>
+                                        <div class="input-form">
+                                            <input type="text" name="text-759" value="" size="40" aria-invalid="false"
+                                                   placeholder="شماره تماس*">
+                                            <img src="img/002-telephone.png" class="form-icon">
+                                        </div>
+                                        <div class="input-form">
+                                            <input type="email" name="text-759" value="" size="40" aria-invalid="false"
+                                                   placeholder="ایمیل*">
+                                            <img src="img/003-envelope.png" class="form-icon">
+                                        </div>
+                                        <input type="submit" value="هوادار شوید"
+                                               class="form-submit text-white font-16 text-medium">
+
+                                    </form>
+                                </div>
+
+                                <div class="sidebar-form-footer text-center pt-3 pb-3">
+                                    <p class="text-white font-14 text-regular  m-0">میخواهید عضو شوید؟ <a
+                                                class="text-yellow" href="/">عضویت انجمن</a></p>
 
                                 </div>
-                            </li>
-                        </ul>
-                        <!-- Navbar links -->
-                        <div class="collapse navbar-collapse order-lg-0" id="collapsibleNavbar">
-                            <ul class="navbar-nav header-main">
-                                <li class="nav-item active">
-                                    <a class="nav-link " href="#">صفحه اول</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">درباره انجمن</a>
-                                </li>
-
-                                <!-- Dropdown -->
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                        شبکه اعضا </a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Link 1</a>
-                                        <a class="dropdown-item" href="#">Link 2</a>
-                                        <a class="dropdown-item" href="#">Link 3</a>
-                                    </div>
-                                </li>
-                                <!-- Dropdown -->
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop2"
-                                       data-toggle="dropdown">
-                                        محصولات و خدمات </a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Link 1</a>
-                                        <a class="dropdown-item" href="#">Link 2</a>
-                                        <a class="dropdown-item" href="#">Link 3</a>
-                                    </div>
-                                </li>
-                                <!-- Dropdown -->
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop3"
-                                       data-toggle="dropdown">
-                                        ارکان انجمن </a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Link 1</a>
-                                        <a class="dropdown-item" href="#">Link 2</a>
-                                        <a class="dropdown-item" href="#">Link 3</a>
-                                    </div>
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    </nav>
-                </div>
-            </div>
-        </div>
-        <div class="slider-text pt-5 pb-5">
-            <div class="container">
-                <div class="row align-items-center justify-content-around">
-                    <div class="slider-form-out col-md-6 col-lg-4 order-2 order-md-1 z-index">
-                        <div class="sidebar-form">
-                            <div class="sidebar-form-header text-center pb-3">
-                                <p class="font-18 text-medium text-black sidebar-form-header-text pb-3">همین حالا در
-                                    جریان قرار بگیر</p>
-                                <p class="font-14 text-light2 text-black-light  pb-1">جهت در جریان قرار گرفتن تمام
-                                    رویداد های
-                                    انجمن فرم زیر را پر کنید</p>
-                                <form class="sidebar-form-body">
-                                    <div class="input-form">
-                                        <input type="text" name="text-759" value="" size="40" aria-invalid="false"
-                                               placeholder="نام و نام خانوادگی*">
-                                        <img src="img/001-user.png" class="form-icon">
-
-                                    </div>
-                                    <div class="input-form">
-                                        <input type="text" name="text-759" value="" size="40" aria-invalid="false"
-                                               placeholder="کد ملی*">
-                                        <img src="img/004-key.png" class="form-icon">
-                                    </div>
-                                    <div class="input-form">
-                                        <input type="text" name="text-759" value="" size="40" aria-invalid="false"
-                                               placeholder="شماره تماس*">
-                                        <img src="img/002-telephone.png" class="form-icon">
-                                    </div>
-                                    <div class="input-form">
-                                        <input type="email" name="text-759" value="" size="40" aria-invalid="false"
-                                               placeholder="ایمیل*">
-                                        <img src="img/003-envelope.png" class="form-icon">
-                                    </div>
-                                    <input type="submit" value="هوادار شوید"
-                                           class="form-submit text-white font-16 text-medium">
-
-                                </form>
                             </div>
 
-                            <div class="sidebar-form-footer text-center pt-3 pb-3">
-                                <p class="text-white font-14 text-regular  m-0">میخواهید عضو شوید؟ <a
-                                            class="text-yellow" href="/">عضویت انجمن</a></p>
-
-                            </div>
                         </div>
-
-                    </div>
-                    <div class="col-md-6 order-1 order-md-2  ">
-                        <h2 class="font-28 text-white mb-5">چهاردهمین <span class="text-yellow">کنفرانس بین المللی مدیریت پروژه</span>
-                        </h2>
-                        <h3 class="font-22 text-white mb-4">ثبت نام پیش از تاریخ ۲۰/۵/۹۸ دارای ۱۰ درصد تخفیف است</h3>
-                        <p class="font-18 text-white ">ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-                            استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و</p>
-                        <a class="btn btn-white font-16 text-black mt-5">در رویداد شرکت کنید</a>
+                        <div class="col-md-6 order-1 order-md-2  ">
+                            <h2 class="font-28 text-white mb-5">چهاردهمین <span class="text-yellow">کنفرانس بین المللی مدیریت پروژه</span>
+                            </h2>
+                            <h3 class="font-22 text-white mb-4">ثبت نام پیش از تاریخ ۲۰/۵/۹۸ دارای ۱۰ درصد تخفیف است</h3>
+                            <p class="font-18 text-white ">ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و</p>
+                            <a class="btn btn-white font-16 text-black mt-5">در رویداد شرکت کنید</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-@endsection
-@section('content')
+    </header>
+
     <main id="content" role="main">
         <div class="popular-pack pt-5 pb-5 ">
             <div class="container">
@@ -175,7 +206,7 @@
                                         <img class="rounded" src="img/events/{{$event->photo}}" alt="انجمن مدیریت پروژه">
                                     </div>
                                     <div class="popular-pack-in-img-mores">
-                                        <a href="#" class="popular-pack-in-img-more font-16">شرکت در رویداد</a>
+                                        <a href="{{route('event',[$event->id])}}" class="popular-pack-in-img-more font-16">شرکت در رویداد</a>
 
                                     </div>
                                 </div>
@@ -735,7 +766,116 @@
 
         </div>
     </main>
-@endsection
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row mb-3">
+                <div class="contact-footer col-12 col-lg-5">
+                    <div class="footer-logo mb-3">
+                        <img src="img/logo-foo.png" alt="..">
+                        <span class="text-regular text-white">تماس با انجمن</span>
+                    </div>
+                    <div class="contact-footer-in">
+                        <p class="text-gray font-14"><span>آدرس:</span><span>تهران، امیرآباد شمالی، بالاتر از بزرگراه جلال آل احمد، پردیس دانشکده های فنی دانشگاه تهران، ساختمان انستیتو مهندسی نفت، طبقه همکف</span></p>
+                    </div>
+                    <div class="contact-footer-in">
+                        <p class="text-gray font-14"><span>تلفن:</span><span>(5خط) 88229406</span></p>
+                    </div>
+                    <div class="contact-footer-in">
+                        <p class="text-gray font-14"><span>نمابر:</span><span>89784216</span></p>
+                    </div>
+                    <div class="contact-footer-in">
+                        <p class="text-gray font-14"><span>پست الكترونيك دبیرخانه:</span><span>info@ipma.ir</span></p>
+                    </div>
+                    <div class="contact-footer-in">
+                        <p class="text-gray font-14"><span>پست الکترونیک عضویت: </span><span>membership@ipma.ir</span></p>
+                    </div>
+                </div>
+                <div class="link-footer col-6 col-sm-6 col-md-3 col-lg-2">
+                    <p class="text-regular text-white pt-2">لینک انجمن</p>
+                    <nav class="navbar p-0">
+
+                        <!-- Links -->
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link text-gray font-14" href="#">تاریخچه انجمن</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-gray font-14" href="#">سازمان انجمن</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-gray font-14" href="#">اساسنامه و مجوزها</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-gray font-14" href="#">اعضای هیات مدیره</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-gray font-14" href="#">موسسین انجمن</a>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+                </div>
+                <div class="link-footer col-6 col-sm-6 col-md-3 col-lg-2">
+                    <p class="text-regular text-white pt-2">خدمات انجمن</p>
+                    <nav class="navbar p-0">
+
+                        <!-- Links -->
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link text-gray font-14" href="#">دوره های آموزشی</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-gray font-14" href="#">کارگاه ها</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-gray font-14" href="#">همایش ها</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-gray font-14" href="#">جوایز</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-gray font-14" href="#">گواهی نامه ها</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-gray font-14" href="#">مسابقات</a>
+                            </li>
+                        </ul>
+
+                    </nav>
+                </div>
+                <div class="register-footer col-12 col-md-6 col-lg-3">
+                    <p class="text-regular text-white pt-2">عضویت در خبرنامه</p>
+                    <form action="">
+                        <div class="form-group">
+
+                            <input type="email" class="form-control" placeholder="ایمیل" id="email">
+                        </div>
+
+                        <button type="submit" class="btn ">عضویت</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-copy row align-items-center pt-4 pb-3">
+
+                <div class="col-12 col-lg-6 text-center text-lg-left">
+                    <p class="text-gray font-14 ">تمامی حقوق این سایت محفوظ و متعلق به انجمن پروژه ایران می باشد</p>
+                </div>
+                <div class="col-12 col-lg-6 ">
+                    <ul class="social m-0 text-center text-lg-right">
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 <script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
 <script src="{{asset('js/popper.min.js')}}"></script>
 <script type='text/javascript' src='{{asset('js/bootstrap.min.js')}}'></script>
@@ -884,3 +1024,5 @@
         }
     });
 </script>
+</body>
+</html>

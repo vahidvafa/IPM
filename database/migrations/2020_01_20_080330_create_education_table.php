@@ -15,13 +15,14 @@ class CreateEducationTable extends Migration
     {
         Schema::create('education', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id');
             $table->string('education_place',50);
             $table->string('grade',20);
             $table->string('from_date','10');
             $table->string('to_date','10');
             $table->string('gpa','10');
-            $table->tinyInteger('state',false,true)->comment("0=>reject(reject_text not null ) | 1=> accept");
-            $table->text('reject_text')->comment("0=>reject()");
+//            $table->tinyInteger('state',false,true)->comment("0=>reject(reject_text not null ) | 1=> accept");
+//            $table->text('reject_text')->comment("0=>reject()");
             $table->timestamps();
             $table->tinyInteger('lang_id',false,true);
             $table->softDeletes();

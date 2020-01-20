@@ -23,16 +23,116 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="img/logo.png" alt="انجمن مدیریت پروژه">
+                    <img src="{{asset('img/logo.png')}}" alt="انجمن مدیریت پروژه">
                     <h1 class="text-white d-inline-block font-18 text-regular ml-2">انجمن مدیریت پروژه ایران</h1>
                 </div>
                 <div class="col-md-6 text-right">
-                    <img src="img/ipma-logo.png" alt="انجمن مدیریت پروژه">
+                    <img src="{{asset('img/ipma-logo.png')}}" alt="انجمن مدیریت پروژه">
                 </div>
             </div>
         </div>
     </div>
-    @yield('sidebar')
+    <div class="sidebar-pages ">
+        <div class="header-menu pt-2 pb-2">
+            <div class="container">
+                <div class="row">
+                    <nav class="navbar navbar-expand-lg  navbar-dark col-12">
+
+
+                        <!-- Toggler/collapsibe Button -->
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#collapsibleNavbar">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <ul class="navbar-nav nav-login-out ml-auto  order-lg-1">
+                            <li class="nav-item ">
+                                <a class="nav-link nav-login" data-toggle="modal" data-target="#ModalLogin">
+                                    <i class="fa fa-user mr-1"></i>
+                                    <span>   ورود کاربران</span>
+                                </a>
+
+                            </li>
+                            <!-- Dropdown -->
+                            <li class="nav-item dropdown nav-lang">
+                                <a class="nav-link dropdown-toggle nav-lang-persian" href="#" id="navbardrop5"
+                                   data-toggle="dropdown">
+                                    <span>فارسی</span>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item nav-lang-eng" href="#"><span>انگلیسی</span></a>
+
+                                </div>
+                            </li>
+                        </ul>
+                        <!-- Navbar links -->
+                        <div class="collapse navbar-collapse order-lg-0" id="collapsibleNavbar">
+                            <ul class="navbar-nav header-main">
+                                <li class="nav-item active">
+                                    <a class="nav-link " href="#">صفحه اول</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">درباره انجمن</a>
+                                </li>
+
+                                <!-- Dropdown -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                        شبکه اعضا </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Link 1</a>
+                                        <a class="dropdown-item" href="#">Link 2</a>
+                                        <a class="dropdown-item" href="#">Link 3</a>
+                                    </div>
+                                </li>
+                                <!-- Dropdown -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop2"
+                                       data-toggle="dropdown">
+                                        محصولات و خدمات </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Link 1</a>
+                                        <a class="dropdown-item" href="#">Link 2</a>
+                                        <a class="dropdown-item" href="#">Link 3</a>
+                                    </div>
+                                </li>
+                                <!-- Dropdown -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop3"
+                                       data-toggle="dropdown">
+                                        ارکان انجمن </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Link 1</a>
+                                        <a class="dropdown-item" href="#">Link 2</a>
+                                        <a class="dropdown-item" href="#">Link 3</a>
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-text-page pt-5 pt-lg-5 mt-lg-5">
+            <div class="container">
+                <div class="row justify-content-end">
+                    <div class="col-12">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item font-20"><a href="#">خانه</a></li>
+                            <li class="breadcrumb-item font-20 active">کاربر</li>
+                        </ul>
+                        <h1 class="title-page font-42 text-white">صفحه کاربری</h1>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </header>
 @yield('content')
 <footer id="footer">
@@ -40,7 +140,7 @@
         <div class="row mb-3">
             <div class="contact-footer col-12 col-lg-5">
                 <div class="footer-logo mb-3">
-                    <img src="img/logo-foo.png" alt="..">
+                    <img src="{{asset('img/logo-foo.png')}}" alt="..">
                     <span class="text-regular text-white">تماس با انجمن</span>
                 </div>
                 <div class="contact-footer-in">
@@ -157,17 +257,17 @@
 
             <!-- Modal body -->
             <div class="modal-body text-center pt-0 pr-3 pl-3 pr-sm-5 pl-sm-5">
-                <img src=" img/logo-login.png" alt="" class="mb-4">
+                <img src="{{asset('img/logo-login.png')}}" alt="" class="mb-4">
                 <h4 class="modal-title text-black">ورود به انجمن مدیریت پروژه</h4>
                 <p class="text-black-light font-18 text-light2 mt-4 mb-4">جهت ورورد به سایت اطلاعات زیر را تکمیل نمایید</p>
                 <form class="sidebar-form-body">
                     <div class="input-form">
                         <input type="email" name="text-759" value="" size="40" aria-invalid="false" placeholder="ایمیل*">
-                        <img src="img/003-envelope.png" class="form-icon">
+                        <img src="{{asset('img/003-envelope.png')}}" class="form-icon">
                     </div>
                     <div class="input-form">
                         <input class="mb-3" type="password" name="text-759" value="" size="40" aria-invalid="false" placeholder="پسورد*">
-                        <img src="img/002-telephone.png" class="form-icon">
+                        <img src="{{asset('img/002-telephone.png')}}" class="form-icon">
                     </div>
                     <a href="/" class="d-block text-left text-dark-violet font-14 text-light2">رمز عبور خود را فراموش کرده ام؟</a>
                     <input type="submit" value="وارد شوید" class="form-submit mt-5 text-white font-16 text-medium">
@@ -179,6 +279,7 @@
         </div>
     </div>
 </div>
+
 <script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
 <script src="{{asset('js/popper.min.js')}}"></script>
 <script type='text/javascript' src='{{asset('js/bootstrap.min.js')}}'></script>

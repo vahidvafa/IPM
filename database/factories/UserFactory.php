@@ -19,8 +19,8 @@ use Illuminate\Support\Str;
 $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'slug' => str_replace($faker->name,' ','-'),
-        'user_code' => $faker->randomDigit,
+        'slug' => str_replace(' ','-',$faker->name),
+        'user_code' => $faker->unique()->randomDigit,
         'mobile' => $faker->phoneNumber,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
@@ -28,7 +28,7 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
         'roles' => random_int(0,2),
         'active' => random_int(0,1),
-        'reagent_id' => User::all('id')->random()->id,
+        'reagent_id' => random_int(0,User::all('id')->count()),
         'branch' => 1,
         'expire' => random_int(time(),time()+31568385),
         'membership_type_id' => random_int(0,4),

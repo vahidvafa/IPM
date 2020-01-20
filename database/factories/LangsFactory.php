@@ -2,12 +2,18 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\langs;
+use App\Lang;
 use Faker\Generator as Faker;
 
-$factory->define(langs::class, function (Faker $faker) {
+$factory->define(Lang::class, function (Faker $faker) {
     return [
-        "name"=>'test '.(langs::all('id')->last()->id+1),
-        "photo"=>"test.png",
+        "name"=>'fa',
+        "photo"=>"fa.png",
+    ];
+});
+$factory->define(Lang::class, function (Faker $faker) {
+    return [
+        "name"=>'en',
+        "photo"=>"en.png",
     ];
 });
