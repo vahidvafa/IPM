@@ -18,6 +18,7 @@ class CreateDocumentsTable extends Migration
             $table->bigInteger('user_id');
             $table->text('address');
             $table->text('explain');
+            $table->tinyInteger('state')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
