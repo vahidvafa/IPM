@@ -29,6 +29,7 @@ class CreateEventsTable extends Migration
             $table->double('latitude');
             $table->double('longitude');
             $table->bigInteger('category_id');
+            $table->bigInteger('creator_uid');
             $table->timestamps();
             $table->softDeletes();
         });

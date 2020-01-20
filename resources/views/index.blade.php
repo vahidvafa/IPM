@@ -163,7 +163,7 @@
                                                 {{$event->title}}
                                             </a></h4>
                                         <div class="popular-pack-in-info-title-sub text-yellow font-16 text-light2 mb-2">
-                                            {{$event->ad_date}}
+                                            {{$event->solar_date}}
                                         </div>
                                     </div>
                                     <div class="popular-pack-in-info-title-excerpt text-black-light font-14 text-light2">

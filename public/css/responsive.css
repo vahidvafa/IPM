@@ -98,6 +98,30 @@
     .fc-toolbar{
         flex-flow: column;
         }
+    /* ==========================================================================
+                       profile
+========================================================================== */
+    .profile-top-icons{
+        left: 20px;
+        right: 20px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        text-align: center;
+
+        }
+    .profile-top:hover .profile-top-icons {
+        width: -webkit-calc(100% - 40px);
+        width: -moz-calc(100% - 40px);
+        width: calc(100% - 40px);
+        margin-right: 0;
+        -webkit-border-top-right-radius: 50px;
+        -moz-border-radius-topright: 50px;
+        border-top-right-radius: 50px;
+        -webkit-border-bottom-right-radius: 50px;
+        -moz-border-radius-bottomright: 50px;
+        border-bottom-right-radius: 50px;
+        }
         
     }
 @media screen and  (max-width: 719px){
@@ -153,6 +177,15 @@
         }
     .logo:before{
         display: none;
+        }
+    .profile-top-svg{
+        display: none;
+        }
+    .form-contact{
+        margin-right: 0 !important;
+
+        margin-left: 0 !important;
+
         }
     }
 

@@ -51,4 +51,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(Membership::class);
     }
+
+    public function word_experience()
+    {
+        return $this->hasMany(workExperience::class);
+    }
+
+    public function education()
+    {
+        return $this->hasMany(education::class);
+    }
+
+    public function event(){
+        return $this->hasMany(Event::class);
+    }
+
+
 }
