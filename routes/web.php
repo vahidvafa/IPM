@@ -11,12 +11,12 @@
 |
 */
 use Illuminate\Support\Facades\Route;
+use Morilog\Jalali\Jalalian;
 
 
 Route::get('/','IndexController@index')->name('/');
-Route::get('/register','IndexController@register')->name('register');
-Route::post('/',function (){
-    return dd(request()->all());
-});
+Route::get('/register','UserController@create')->name('register');
+Route::post('/register/store','UserController@store')->name('register.store');
 Route::get('/event/{id}','EventController@index')->name("event");
 Route::get('/profile/{slug}','UserController@index')->name("profile");
+

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Request;
+use App\Request as RequestModel;
 use Illuminate\Http\Request;
 
 class RequestController extends Controller
@@ -63,11 +63,11 @@ class RequestController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param RequestModel $requestModel
+     * @return void
      */
-    public function update(Request $request, Request $request)
+    public function update(Request $request, RequestModel $requestModel)
     {
         //
     }
