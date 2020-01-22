@@ -19,7 +19,7 @@ class CreateUsersStatesTable extends Migration
             $table->bigInteger('admin_id');
             $table->tinyInteger('state');
             $table->string('IP');
-            $table->tinyInteger('lang_id',false,true);
+            $table->tinyInteger('lang_id',false,true)->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

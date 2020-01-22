@@ -32,7 +32,7 @@ class CreateEventsTable extends Migration
             $table->bigInteger('event_category_id');
             $table->bigInteger('user_id');
             $table->string('mobile',16);
-            $table->tinyInteger('lang_id',false,true);
+            $table->tinyInteger('lang_id',false,true)->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

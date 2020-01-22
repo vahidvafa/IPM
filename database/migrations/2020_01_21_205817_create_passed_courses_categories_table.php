@@ -17,7 +17,7 @@ class CreatePassedCoursesCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
             $table->string('name');
-            $table->tinyInteger('lang_id',false,true);
+            $table->tinyInteger('lang_id',false,true)->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

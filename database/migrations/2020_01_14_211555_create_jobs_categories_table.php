@@ -16,7 +16,7 @@ class CreateJobsCategoriesTable extends Migration
         Schema::create('jobs_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->tinyInteger('lang_id',false,true);
+            $table->tinyInteger('lang_id',false,true)->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

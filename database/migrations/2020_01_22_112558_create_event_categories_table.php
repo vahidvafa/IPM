@@ -16,7 +16,7 @@ class CreateEventCategoriesTable extends Migration
         Schema::create('event_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->tinyInteger('lang_id',false,true);
+            $table->tinyInteger('lang_id',false,true)->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -23,7 +23,7 @@ class CreateJobsTable extends Migration
             $table->bigInteger('province_id');
             $table->bigInteger('category_id');
             $table->tinyInteger('state')->default(0);
-            $table->tinyInteger('lang_id',false,true);
+            $table->tinyInteger('lang_id',false,true)->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

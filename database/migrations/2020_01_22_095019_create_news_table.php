@@ -19,7 +19,7 @@ class CreateNewsTable extends Migration
             $table->text('description')->nullable();
             $table->text('detail')->nullable();
             $table->text('photo')->nullable();
-            $table->tinyInteger('lang_id',false,true);
+            $table->tinyInteger('lang_id',false,true)->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

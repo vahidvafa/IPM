@@ -51,7 +51,7 @@ class CreateProfilesTable extends Migration
             $table->string('agent_name')->nullable();
             $table->string('agent_name_en')->nullable();
             $table->text('agent_picture')->nullable();
-            $table->tinyInteger('lang_id',false,true);
+            $table->tinyInteger('lang_id',false,true)->default(1);
             $table->timestamps();
         });
     }
