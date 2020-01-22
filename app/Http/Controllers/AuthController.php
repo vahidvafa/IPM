@@ -25,6 +25,8 @@ class AuthController extends Controller
     {
         $messages = [
             '*.required' => 'وارد کردن این فیلد الزامی است',
+            'password.min'=> 'رمز عبور باید حداقل 8 کاراکتر باشد',
+            'password.confirmed'=> 'تایید رمز عبور اشتباه است',
             'email.unique' => 'این ایمیل قبلا ثبت شده است',
             'mobile.unique' => 'این شماره موبایل قبلا ثبت شده است',
             'established_number.unique' => 'این شماره ثبت قبلا ثبت شده است',
