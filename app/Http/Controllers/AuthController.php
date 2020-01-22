@@ -119,23 +119,20 @@ class AuthController extends Controller
             ]
         );
         $profile = new Profile($request->all());
-        $isSuccessful = false;
-        try {
-            \DB::transaction(function () use ($user, $profile, $request) {
-                $user->save();
-                $user->profile()->save($profile);
-                $membership = new Membership(
-                    [
-                        'membership_type_id' => $request->get('type'),
-                        'user_id' => $user->id,
-                        'lang_id' => 1
-                    ]
-                );
-                $membership->save();
-                $isSuccessful = true;
-            });
-        } catch (\Throwable $e) {}
-
+        $profile->lang_id = 1;
+        $isSuccessful = \DB::transaction(function () use ($user, $profile, $request) {
+            $user->save();
+            $user->profile()->save($profile);
+            $membership = new Membership(
+                [
+                    'membership_type_id' => $request->get('type'),
+                    'user_id' => $user->id,
+                    'lang_id' => 1
+                ]
+            );
+            $membership->save();
+            return true;
+        });
         if ($isSuccessful) {
             return response()->json(makeMsgCode(true, 'successful', '00'));
         }
