@@ -270,28 +270,28 @@
                                        aria-invalid="false" placeholder="تایید رمز عبور *" required>
                                 <img src="img/004-key.png" class="form-icon">
                             </div>
-                            <div class="input-form col-md-12" id="files_div_menu0">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <span>
-                                            مدارک مورد نیاز : ( {{$memberships[0]->required_documents}} )
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-form col-md-2">
-                                        <input type="file" name="files[]" value="" size="40" aria-invalid="false"
-                                               placeholder="آپلود مدارک" >
-                                    </div>
-                                    <div class="input-form col-md-8">
-                                        <input type="text" name="files_explain[]" value="" size="40"
-                                               aria-invalid="false" placeholder="توضیحات مدارک *" >
-                                    </div>
-                                    <div class="col-md-2 py-2">
-                                        <button type="button" class="btn btn-success" onclick="addRow('files_div_menu0')">+</button>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="input-form col-md-12" id="files_div_menu0">--}}
+{{--                                <div class="row">--}}
+{{--                                    <div class="col-md-12">--}}
+{{--                                        <span>--}}
+{{--                                            مدارک مورد نیاز : ( {{$memberships[0]->required_documents}} )--}}
+{{--                                        </span>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="row">--}}
+{{--                                    <div class="input-form col-md-2">--}}
+{{--                                        <input type="file" name="files[]" value="" size="40" aria-invalid="false"--}}
+{{--                                               placeholder="آپلود مدارک" >--}}
+{{--                                    </div>--}}
+{{--                                    <div class="input-form col-md-8">--}}
+{{--                                        <input type="text" name="files_explain[]" value="" size="40"--}}
+{{--                                               aria-invalid="false" placeholder="توضیحات مدارک *" >--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-2 py-2">--}}
+{{--                                        <button type="button" class="btn btn-success" onclick="addRow('files_div_menu0')">+</button>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="col-md-12">
                                 <div class="row my-2">
                                     <div class="col-md-4 col-sm-2"></div>
@@ -522,28 +522,28 @@
                                        aria-invalid="false" placeholder="تایید رمز عبور *" required>
                                 <img src="img/004-key.png" class="form-icon">
                             </div>
-                            <div class="input-form col-md-12" id="files_div_menu1">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <span>
-                                            مدارک مورد نیاز : ( {{$memberships[1]->required_documents}} )
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-form col-md-2">
-                                        <input type="file" name="files[]" value="" size="40" aria-invalid="false"
-                                               placeholder="آپلود مدارک" >
-                                    </div>
-                                    <div class="input-form col-md-8">
-                                        <input type="text" name="files_explain[]" value="" size="40"
-                                               aria-invalid="false" placeholder="توضیحات مدارک *" >
-                                    </div>
-                                    <div class="col-md-2 py-2">
-                                        <button type="button" class="btn btn-success" onclick="addRow('files_div_menu1')">+</button>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="input-form col-md-12" id="files_div_menu1">--}}
+{{--                                <div class="row">--}}
+{{--                                    <div class="col-md-12">--}}
+{{--                                        <span>--}}
+{{--                                            مدارک مورد نیاز : ( {{$memberships[1]->required_documents}} )--}}
+{{--                                        </span>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="row">--}}
+{{--                                    <div class="input-form col-md-2">--}}
+{{--                                        <input type="file" name="files[]" value="" size="40" aria-invalid="false"--}}
+{{--                                               placeholder="آپلود مدارک" >--}}
+{{--                                    </div>--}}
+{{--                                    <div class="input-form col-md-8">--}}
+{{--                                        <input type="text" name="files_explain[]" value="" size="40"--}}
+{{--                                               aria-invalid="false" placeholder="توضیحات مدارک *" >--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-2 py-2">--}}
+{{--                                        <button type="button" class="btn btn-success" onclick="addRow('files_div_menu1')">+</button>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="col-md-12">
                                 <div class="row my-2">
                                     <div class="col-md-4 col-sm-2"></div>
@@ -762,28 +762,28 @@
                                        aria-invalid="false" placeholder="تایید رمز عبور *" required>
                                 <img src="img/004-key.png" class="form-icon">
                             </div>
-                            <div class="input-form col-md-12" id="files_div_menu2">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <span>
-                                            مدارک مورد نیاز : ( {{$memberships[2]->required_documents}} )
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-form col-md-2">
-                                        <input type="file" name="files[]" value="" size="40" aria-invalid="false"
-                                               placeholder="آپلود مدارک" >
-                                    </div>
-                                    <div class="input-form col-md-8">
-                                        <input type="text" name="files_explain[]" value="" size="40"
-                                               aria-invalid="false" placeholder="توضیحات مدارک *" >
-                                    </div>
-                                    <div class="col-md-2 py-2">
-                                        <button type="button" class="btn btn-success" onclick="addRow('files_div_menu2')">+</button>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="input-form col-md-12" id="files_div_menu2">--}}
+{{--                                <div class="row">--}}
+{{--                                    <div class="col-md-12">--}}
+{{--                                        <span>--}}
+{{--                                            مدارک مورد نیاز : ( {{$memberships[2]->required_documents}} )--}}
+{{--                                        </span>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="row">--}}
+{{--                                    <div class="input-form col-md-2">--}}
+{{--                                        <input type="file" name="files[]" value="" size="40" aria-invalid="false"--}}
+{{--                                               placeholder="آپلود مدارک" >--}}
+{{--                                    </div>--}}
+{{--                                    <div class="input-form col-md-8">--}}
+{{--                                        <input type="text" name="files_explain[]" value="" size="40"--}}
+{{--                                               aria-invalid="false" placeholder="توضیحات مدارک *" >--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-2 py-2">--}}
+{{--                                        <button type="button" class="btn btn-success" onclick="addRow('files_div_menu2')">+</button>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="col-md-12">
                                 <div class="row my-2">
                                     <div class="col-md-4 col-sm-2"></div>

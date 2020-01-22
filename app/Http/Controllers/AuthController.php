@@ -79,22 +79,34 @@ class AuthController extends Controller
                     ], $messages);
                 break;
             case 4:
-                $this->validate($request,
-                    [
-                        'name' => ['required', 'string', 'max:255'],
-                        'name_en' => ['required', 'string', 'max:255'],
-                        'father_name' => ['required', 'string', 'max:255'],
-                        'national_code' => ['required', 'string', 'max:255'],
-                        'mobile' => ['required', 'string', 'unique:users'],
-                        'certificate_number' => ['required', 'string'],
-                        'birth_date' => ['required', 'string'],
-                        'birth_place' => ['required', 'string'],
-                        'sex' => ['required'],
-                        'home_address' => ['required', 'string'],
-                        'home_post' => ['required', 'string'],
-                        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                        'password' => ['required', 'string', 'min:8', 'confirmed'],
-                    ], $messages);
+                if ($request->has('main')){
+                    $this->validate($request,
+                        [
+                            'name' => ['required', 'string', 'max:255'],
+                            'name_en' => ['required', 'string', 'max:255'],
+                            'national_code' => ['required', 'string', 'max:255'],
+                            'mobile' => ['required', 'string', 'unique:users'],
+                            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                            'password' => ['required', 'string', 'min:8'],
+                        ], $messages);
+                }else{
+                    $this->validate($request,
+                        [
+                            'name' => ['required', 'string', 'max:255'],
+                            'name_en' => ['required', 'string', 'max:255'],
+                            'father_name' => ['required', 'string', 'max:255'],
+                            'national_code' => ['required', 'string', 'max:255'],
+                            'mobile' => ['required', 'string', 'unique:users'],
+                            'certificate_number' => ['required', 'string'],
+                            'birth_date' => ['required', 'string'],
+                            'birth_place' => ['required', 'string'],
+                            'sex' => ['required'],
+                            'home_address' => ['required', 'string'],
+                            'home_post' => ['required', 'string'],
+                            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                            'password' => ['required', 'string', 'min:8', 'confirmed'],
+                        ], $messages);
+                }
                 break;
         }
 

@@ -134,31 +134,78 @@
                                 <p class="font-14 text-light2 text-black-light  pb-1">جهت در جریان قرار گرفتن تمام
                                     رویداد های
                                     انجمن فرم زیر را پر کنید</p>
-                                <form class="sidebar-form-body">
+                                <form class="sidebar-form-body" action="{{route('register.store')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="type" value="4">
+                                    <input type="hidden" name="main" value="1">
                                     <div class="input-form">
-                                        <input type="text" name="text-759" value="" size="40" aria-invalid="false"
-                                               placeholder="نام و نام خانوادگی*">
+                                        <input type="text" name="name" value="{{old('name')}}" size="40" aria-invalid="false"
+                                               placeholder="نام و نام خانوادگی*" required>
                                         <img src="img/001-user.png" class="form-icon">
-
+                                        @if ( $errors->has('name'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="input-form">
-                                        <input type="text" name="text-759" value="" size="40" aria-invalid="false"
-                                               placeholder="کد ملی*">
+                                        <input type="text" name="name_en" value="{{old('name_en')}}" size="40" aria-invalid="false"
+                                               placeholder="نام و نام خانوادگی به انگلیسی *" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if ( $errors->has('name_en'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('name_en') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="input-form">
+                                        <input type="text" name="national_code" value="{{old('national_code')}}" size="40" aria-invalid="false"
+                                               placeholder="کد ملی*" required>
                                         <img src="img/004-key.png" class="form-icon">
+                                        @if ( $errors->has('national_code'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('national_code') }}</strong>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="input-form">
-                                        <input type="text" name="text-759" value="" size="40" aria-invalid="false"
-                                               placeholder="شماره تماس*">
+                                        <input type="text" name="mobile" value="{{old('mobile')}}" size="40" aria-invalid="false"
+                                               placeholder="شماره تماس*" required>
                                         <img src="img/002-telephone.png" class="form-icon">
+                                        @if ( $errors->has('mobile'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('mobile') }}</strong>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="input-form">
-                                        <input type="email" name="text-759" value="" size="40" aria-invalid="false"
-                                               placeholder="ایمیل*">
+                                        <input type="email" name="email" value="{{old('email')}}" size="40" aria-invalid="false"
+                                               placeholder="ایمیل*" required>
                                         <img src="img/003-envelope.png" class="form-icon">
+                                        @if ( $errors->has('email'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="input-form">
+                                        <input type="password" name="password" value="" size="40" aria-invalid="false"
+                                               placeholder="رمز عبور*" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if ( $errors->has('password'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                            </div>
+                                        @endif
                                     </div>
                                     <input type="submit" value="هوادار شوید"
                                            class="form-submit text-white font-16 text-medium">
-
                                 </form>
                             </div>
 
