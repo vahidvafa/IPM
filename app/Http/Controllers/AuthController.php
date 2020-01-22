@@ -134,9 +134,10 @@ class AuthController extends Controller
             return true;
         });
         if ($isSuccessful) {
-            return response()->json(makeMsgCode(true, 'successful', '00'));
+            \auth()->loginUsingId($user->id);
+            return redirect()->to(route('main'));
         }
-        return response()->json(makeMsgCode(false, 'unsuccessful', '500'));
+        return back();
     }
 
     public function postLogin(Request $request)
