@@ -119,6 +119,7 @@ class AuthController extends Controller
             ]
         );
         $profile = new Profile($request->all());
+        $profile->lang_id = 1;
         $isSuccessful = false;
         \DB::transaction(function () use ($user, $profile, $request) {
             $user->save();
