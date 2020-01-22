@@ -7,6 +7,5 @@ use Faker\Generator as Faker;
 
 $factory->define(Membership::class, function (Faker $faker) {
     return [
-        //
     ];
 });

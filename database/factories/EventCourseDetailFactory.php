@@ -2,12 +2,11 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\MembershipType;
+use App\EventCourseDetail;
 use Faker\Generator as Faker;
 
-$factory->define(MembershipType::class, function (Faker $faker) {
-
+$factory->define(EventCourseDetail::class, function (Faker $faker) {
     return [
-
+        //
     ];
 });

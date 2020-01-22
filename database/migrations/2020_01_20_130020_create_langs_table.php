@@ -14,7 +14,7 @@ class CreateLangsTable extends Migration
     public function up()
     {
         Schema::create('langs', function (Blueprint $table) {
-            $table->integerIncrements('id');
+            $table->tinyIncrements('id');
             $table->string("name",30);
             $table->string("photo");
             $table->timestamps();

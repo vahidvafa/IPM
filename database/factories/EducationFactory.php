@@ -2,17 +2,19 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\education;
+use App\Education;
 use Faker\Generator as Faker;
 
-$factory->define(education::class, function (Faker $faker) {
+$factory->define(Education::class, function (Faker $faker) {
+    $education_place=array("دانسگاه شمسی پور",'دانسگاه ازاد واحد تهران شمال','دانسگاه علم و صنعت','دانسگاه تهران حنوب','دانسگاه علوم تجقیقات');
     return [
         'user_id'=>\App\User::all('id')->random()->id,
-        'education_place'=>$faker->name,
+        'education_place'=>$education_place[mt_rand(0,3)],
         'grade'=>"کاردانی",
-    'from_date'=>"1398/10/23",
-    'to_date'=>"1399/10/",
-    'gpa'=>'19',
-    'lang_id'=>'19',
+    'from_date'=>$faker->date("Y/m/d"),
+    'to_date'=>$faker->date("Y/m/d"),
+    'gpa'=>mt_rand(0,20),
+    'lang_id'=>\App\Lang::all('id')->random()->id,
+        'created_at' => now(),
     ];
 });

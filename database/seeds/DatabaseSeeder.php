@@ -13,12 +13,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 //        $this->call();
-        factory(\App\Lang::class,2)->create();
-        factory(\App\User::class,5)->create();
-        factory(\App\Category::class,5)->create();
+        $this->call(LangsSeeder::class);
+        $this->call(MembershipTypeSeeder::class);
+        factory(\App\User::class,8)->create();
+        factory(\App\EventCategory::class,18)->create();
         factory(\App\Event::class,10)->create();
-        factory(\App\Profile::class,6)->create();
-        factory(\App\workExperience::class,6)->create();
-        factory(\App\education::class,6)->create();
+        factory(\App\Profile::class,5)->create();
+        factory(\App\WorkExperience::class,12)->create();
+        factory(\App\Education::class,15)->create();
+        factory(\App\PassedCoursesCategory::class,10)->create();
+        factory(\App\PassedCourses::class,25)->create();
+        factory(\App\Document::class,45)->create();
     }
 }

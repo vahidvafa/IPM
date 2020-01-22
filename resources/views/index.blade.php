@@ -155,7 +155,7 @@
 
                                 <div class="sidebar-form-footer text-center pt-3 pb-3">
                                     <p class="text-white font-14 text-regular  m-0">میخواهید عضو شوید؟ <a
-                                                class="text-yellow" href="/">عضویت انجمن</a></p>
+                                                class="text-yellow" href="{{asset('register')}}">عضویت انجمن</a></p>
 
                                 </div>
                             </div>
@@ -194,7 +194,7 @@
                                                 {{$event->title}}
                                             </a></h4>
                                         <div class="popular-pack-in-info-title-sub text-yellow font-16 text-light2 mb-2">
-                                            {{$event->date}}
+                                            {{jdate($event->from_date)}}
                                         </div>
                                     </div>
                                     <div class="popular-pack-in-info-title-excerpt text-black-light font-14 text-light2">

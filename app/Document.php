@@ -41,7 +41,14 @@ class Document extends Model
 
 
     public function education(){
-        return $this->belongsTo(education::class);
+        return $this->belongsTo(Education::class);
     }
+
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+
 
 }

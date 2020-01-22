@@ -28,8 +28,11 @@ class EventController extends Controller
 return;*/
 
         $event = Event::find($id);
-        $similars = Event::where("category_id",'=',$event->category_id)->where('id','!=',$id)->get(['id','photo','title','date']);
-        return view('event_detail',compact('event','similars'));
+        $similars = Event::where("event_category_id",'=',$event->event_category_id)->where('id','!=',$id)->get();
+        $titleHeader = $event->title;
+        $breadcrumb = "رویداد";
+//        return jdate($event->from_date);
+        return view('event_detail',compact('event','similars','titleHeader',"breadcrumb"));
     }
 
     /**

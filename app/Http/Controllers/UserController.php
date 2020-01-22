@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Document;
 use App\Membership;
 use App\MembershipType;
+use App\PassedCourses;
 use App\Profile;
 use App\User;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Event;
 use Morilog\Jalali\Jalalian;
 
 class UserController extends Controller
@@ -22,8 +24,16 @@ class UserController extends Controller
     {
 
         //['word_experience','education','education'])->where('slug','=',$slug);
-        $user = User::with(['word_experience', 'education', 'profile'])->where('slug', '=', $slug)->get()[0];
-        return view('profile', compact("user"));
+        $user = User::with(['wordExperience', 'education', 'profile','documents'=>function(HasMany $doc){
+            $doc->where('state','=',0);
+        },'PassedCoursesCat'=>function(HasMany $relation){
+            $relation->with('PassedCourses')->get();
+        }])->where('slug', '=', $slug)->get();
+        $breadcrumb=$titleHeader="پروفایل";
+        if (count($user)!=0) {
+            $user=$user[0];
+            return view('profile', compact("user", "titleHeader", "breadcrumb"));
+        }else return view("404");
     }
 
     /**
@@ -34,7 +44,10 @@ class UserController extends Controller
     public function create()
     {
         $memberships = MembershipType::all();
-        return view('register', compact('memberships'));
+
+        $titleHeader="ثبت نام ";
+        $breadcrumb="عضویت";
+        return view('register', compact('memberships',"titleHeader","breadcrumb"));
     }
 
     /**

@@ -23,8 +23,8 @@ class CreateEducationTable extends Migration
             $table->string('gpa','10');
 //            $table->tinyInteger('state',false,true)->comment("0=>reject(reject_text not null ) | 1=> accept");
 //            $table->text('reject_text')->comment("0=>reject()");
-            $table->timestamps();
             $table->tinyInteger('lang_id',false,true);
+            $table->timestamps();
             $table->softDeletes();
         });
     }

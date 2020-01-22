@@ -21,8 +21,8 @@ class CreateWorkExperiencesTable extends Migration
             $table->string('from_date','10');
             $table->string('to_date','10');
             $table->string('optional_description')->nullable();
-            $table->timestamps();
             $table->tinyInteger('lang_id',false,true);
+            $table->timestamps();
             $table->softDeletes();
         });
     }

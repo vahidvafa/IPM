@@ -17,9 +17,10 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    $name = $faker->name;
     return [
-        'name' => $faker->name,
-        'slug' => str_replace(' ','-',$faker->name),
+        'name' => $name,
+        'slug' => str_replace(' ','-',$name),
         'user_code' => $faker->unique()->randomDigit,
         'mobile' => $faker->phoneNumber,
         'email' => $faker->unique()->safeEmail,
@@ -36,5 +37,6 @@ $factory->define(User::class, function (Faker $faker) {
         'resume_address' => $faker->name."resume",
         'about_me' => str_repeat('about me text ',10),
         'shortcomings' => str_repeat("shortcomings ",4),
+        'created_at' => now(),
     ];
 });

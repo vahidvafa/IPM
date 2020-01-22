@@ -2,19 +2,20 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\workExperience;
+use App\WorkExperience;
 use Faker\Generator as Faker;
 
-$factory->define(workExperience::class, function (Faker $faker) {
+$factory->define(WorkExperience::class, function (Faker $faker) {
     return [
         'user_id'=>\App\User::all('id')->random()->id,
-        'company_name'=>'شرکت تستی',
-        'job_title'=>'برنامه نویس ارشد',
-        'from_date'=>'1398/10/23',
-        'to_date'=>'1398/12/23',
+        'company_name'=>$faker->company,
+        'job_title'=>$faker->jobTitle,
+        'from_date'=>$faker->date("Y/m/d"),
+        'to_date'=>$faker->date("Y/m/d"),
 //        'optional_description'=>"",
-        'created_at'=>now(),
         'lang_id'=>\App\Lang::all('id')->random()->id,
-        
+        'created_at'=>now(),
+
+
     ];
 });

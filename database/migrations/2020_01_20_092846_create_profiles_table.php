@@ -29,8 +29,12 @@ class CreateProfilesTable extends Migration
             $table->text('home_post')->nullable();
             $table->string('work_tel')->nullable();
             $table->string('home_tel')->nullable();
-//            $table->string('mobile_number')->nullable();
             $table->tinyInteger('receive_place')->nullable();
+            $table->text("youTube")->nullable();
+            $table->text("facebook")->nullable();
+            $table->text("instagram")->nullable();
+            $table->text("telegram")->nullable();
+            $table->text("twitter")->nullable();
             //-------------------------------------
             $table->string('established_date')->nullable();
             $table->string('established_place')->nullable();
@@ -47,6 +51,7 @@ class CreateProfilesTable extends Migration
             $table->string('agent_name')->nullable();
             $table->string('agent_name_en')->nullable();
             $table->text('agent_picture')->nullable();
+            $table->tinyInteger('lang_id',false,true);
             $table->timestamps();
         });
     }

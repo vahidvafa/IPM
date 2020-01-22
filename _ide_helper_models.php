@@ -496,7 +496,7 @@ namespace App{
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Profile[] $profile
  * @property-read int|null $profile_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\workExperience[] $word_experience
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\WorkExperience[] $word_experience
  * @property-read int|null $word_experience_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User newQuery()
@@ -560,7 +560,7 @@ namespace App{
 
 namespace App{
 /**
- * App\workExperience
+ * App\WorkExperience
  *
  * @property int $id
  * @property string $company_name
@@ -573,23 +573,23 @@ namespace App{
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\User $user
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\workExperience newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\workExperience newQuery()
- * @method static \Illuminate\Database\Query\Builder|\App\workExperience onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\workExperience query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\WorkExperience newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\WorkExperience newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\WorkExperience onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\WorkExperience query()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\workExperience whereCompanyName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\workExperience whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\workExperience whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\workExperience whereFromDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\workExperience whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\workExperience whereJobTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\workExperience whereOptionalDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\workExperience whereToDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\workExperience whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\workExperience withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\workExperience withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\WorkExperience whereCompanyName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\WorkExperience whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\WorkExperience whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\WorkExperience whereFromDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\WorkExperience whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\WorkExperience whereJobTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\WorkExperience whereOptionalDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\WorkExperience whereToDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\WorkExperience whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\WorkExperience withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\WorkExperience withoutTrashed()
  */
-	class workExperience extends \Eloquent {}
+	class WorkExperience extends \Eloquent {}
 }
 

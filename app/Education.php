@@ -43,7 +43,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\education withoutTrashed()
  * @mixin \Eloquent
  */
-class education extends Model
+class Education extends Model
 {
     use SoftDeletes;
 

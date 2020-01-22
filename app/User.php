@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -42,7 +41,7 @@ use Illuminate\Notifications\Notifiable;
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Profile[] $profile
  * @property-read int|null $profile_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\workExperience[] $word_experience
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\WorkExperience[] $word_experience
  * @property-read int|null $word_experience_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User newQuery()
@@ -116,18 +115,24 @@ class User extends Authenticatable
         return $this->hasMany(Membership::class);
     }
 
-    public function word_experience()
+    public function wordExperience()
     {
-        return $this->hasMany(workExperience::class);
+        return $this->hasMany(WorkExperience::class);
     }
 
     public function education()
     {
-        return $this->hasMany(education::class);
+        return $this->hasMany(Education::class);
     }
 
     public function event(){
         return $this->hasMany(Event::class);
     }
+
+    public function PassedCoursesCat(){
+        return $this->hasMany(PassedCoursesCategory::class);
+    }
+
+
 
 }

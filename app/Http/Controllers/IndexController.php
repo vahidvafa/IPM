@@ -15,8 +15,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $events = Event::where('id','<',7)->get(['id','photo','title','description','date']);
-
+        $events = Event::where('id','<',7)->get(['id','photo','title','description','from_date']);
         return view('index',compact('events'));
     }
 

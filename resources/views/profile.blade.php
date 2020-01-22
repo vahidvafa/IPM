@@ -39,23 +39,24 @@
                           </h2>
                            <p class="font-16 text-regular text-black">
                                @if($user->membership_type_id==2)
-                               <span>تاریخ تاسیس شرکت : {{$user->profile[0]->established_date}}</span>
+                               <span>تاریخ تاسیس شرکت : {{count($user->profile)!=0??$user->profile[0]->established_date}}</span>
                                <span class="text-black-light"></span>
                                @else
-                               <span>سن : {{$user->profile[0]->birth_date}}</span>
+                               <span>سن : {{count($user->profile)!=0??$user->profile[0]->birth_date}}</span>
                                <span class="text-black-light"></span>
                                @endif
                            </p>
                            <p class="font-16 text-regular text-black">
                                <span>سابقه :</span>
-                               @foreach($user->word_experience as $word_experience)
-                               <span class="text-black-light">{{$word_experience->company_name}} ({{$word_experience->from_date}} تا {{$word_experience->to_date}})</span><br>
+                               <br>
+                               @foreach($user->wordExperience as $word_experience)
+                               <span class="text-black-light">{{$word_experience->company_name}} ({{substr($word_experience->from_date,0,4)}} تا {{substr($word_experience->to_date,0,4)}})</span><br>
                                    @endforeach
                            </p>
                            <p class="font-16 text-regular text-black">
-                               <span>مدرک تحصیلی :</span>
-                               @foreach($user->word_experience as $word_experience)
-                                   <span class="text-black-light">{{$word_experience->company_name}} ({{$word_experience->from_date}} تا {{$word_experience->to_date}})</span><br>
+                               <span>مدرک تحصیلی :</span><br>
+                               @foreach($user->education as $education)
+                                   <span class="text-black-light">دانشگاه: {{$education->education_place}}, معدل: {{$education->gpa}}</span><br>
                                @endforeach
                            </p>
                            <p class="font-16 text-regular text-black">
@@ -90,35 +91,38 @@
                         <p class=" text-black-light font-16 mb-4">
                             تمامی دوره های گذرانده مورد تایید مدیریت پروژه ایران می باشد
                         </p>
-                        <h2 class=" font-20 text-medium text-black  mb-4">گواهی نامه ها :
-                        </h2>
-                        <ul class="list-profile">
-                            <li><p class="font-16"><span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span class="text-dark-violet text-medium">[ از 89 تا 95 ]</span></p></li>
-                            <li><p class="font-16"><span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span class="text-dark-violet text-medium">[ از 89 تا 95 ]</span></p></li>
-                            <li><p class="font-16"><span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span class="text-dark-violet text-medium">[ از 89 تا 95 ]</span></p></li>
 
-                        </ul>
-                        <h2 class=" font-20 text-medium text-black mt-4  mb-4">دوره های آموزشی :
-                        </h2>
+                        @foreach($user->PassedCoursesCat as $courseCat)
+                        <h2 class=" font-20 text-medium text-black  mb-4">{{$courseCat->name}}: </h2>
+                        @foreach($courseCat->PassedCourses as $course)
                         <ul class="list-profile">
-                            <li><p class="font-16"><span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span class="text-dark-violet text-medium">[ از 89 تا 95 ]</span></p></li>
-                            <li><p class="font-16"><span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span class="text-dark-violet text-medium">[ از 89 تا 95 ]</span></p></li>
-                            <li><p class="font-16"><span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span class="text-dark-violet text-medium">[ از 89 تا 95 ]</span></p></li>
-
+                            <li><p class="font-16"><span class="text-black text-medium">{{$course->title}}: </span>
+                                    {!! $course->content !!}
                         </ul>
+
+                            @endforeach
+                            @endforeach
                     </div>
 
                     <div class="form-profile">
+                        <h2 class=" font-24 text-medium text-black  mb-3 mt-5">نواقصی مدارک </h2>
+                        @foreach($user->documents as $document)
+                        <p class=" text-black-light font-16 mb-2">
+                            ادرس: {{$document->address}} ||
+                            نواقصی: {{$document->explain}}
+                         </p>
+                        @endforeach
+
                         <h2 class=" font-24 text-medium text-black  mb-4 mt-5">اطلاعات تکمیلی
                         </h2>
                         <form class="sidebar-form-body row">
                             <div class="input-form col-md-6 ">
-                                <input type="text" name="text-759" value="" size="40" aria-invalid="false" placeholder="موبایل*">
+                                <input type="text" name="text-759" value="{{old('mobile',$user->mobile)}}" size="40" aria-invalid="false" placeholder="موبایل*">
                                 <img src="{{asset('img/002-telephone.png')}}" class="form-icon">
 
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="email" name="text-759" value="" size="40" aria-invalid="false" placeholder="ایمیل*">
+                                <input type="email" name="text-759" value="{{old('mobile',$user->mobile)}}" size="40" aria-invalid="false" placeholder="ایمیل*">
                                 <img src="{{asset('img/003-envelope.png')}}" class="form-icon">
                             </div>
                             <div class="input-form col-md-6">

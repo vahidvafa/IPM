@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\WorkExperience;
+use App\PassedCourses;
 use Illuminate\Http\Request;
 
-class WorkExperienceController extends Controller
+class PassedCoursesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class WorkExperienceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\WorkExperience  $workExperience
+     * @param  \App\PassedCourses  $passedCourses
      * @return \Illuminate\Http\Response
      */
-    public function show(WorkExperience $workExperience)
+    public function show(PassedCourses $passedCourses)
     {
         //
     }
@@ -52,10 +52,10 @@ class WorkExperienceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\WorkExperience  $workExperience
+     * @param  \App\PassedCourses  $passedCourses
      * @return \Illuminate\Http\Response
      */
-    public function edit(WorkExperience $workExperience)
+    public function edit(PassedCourses $passedCourses)
     {
         //
     }
@@ -64,10 +64,10 @@ class WorkExperienceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\WorkExperience  $workExperience
+     * @param  \App\PassedCourses  $passedCourses
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, WorkExperience $workExperience)
+    public function update(Request $request, PassedCourses $passedCourses)
     {
         //
     }
@@ -75,10 +75,10 @@ class WorkExperienceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\WorkExperience  $workExperience
+     * @param  \App\PassedCourses  $passedCourses
      * @return \Illuminate\Http\Response
      */
-    public function destroy(WorkExperience $workExperience)
+    public function destroy(PassedCourses $passedCourses)
     {
         //
     }

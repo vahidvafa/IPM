@@ -34,12 +34,15 @@ $factory->define(Event::class, function (Faker $faker) {
         'tel' => '09199999',
         'latitude' => '35.733249',
         'longitude' => '51.388087',
-        'category_id' => \App\Category::all('id')->random()->id,
-        'date' => '1398/10/02',
+        'event_category_id' => \App\EventCategory::all('id')->random()->id,
+        'to_date' => random_int(time(),time()+31568385),
+        'from_date' => random_int(time()-31568385,time()),
+        'start_register_date' => random_int(time(),time()+31568385),
         'province_id' => '10',
         'photo' => 'popular'.random_int(1,4).'.jpg',
-        'creator_uid' => \App\User::all('id')->random()->id,
+        'user_id' => \App\User::all('id')->random()->id,
         'lang_id' =>\App\Lang::all('id')->random()->id,
+        'mobile'=>$faker->phoneNumber,
         'created_at' => now(),
 
 

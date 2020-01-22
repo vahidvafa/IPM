@@ -19,8 +19,8 @@ class CreateMembershipsTable extends Migration
             $table->bigInteger('membership_type_id');
             $table->bigInteger('start')->default(0);
             $table->bigInteger('end')->default(0);
-            $table->timestamps();
             $table->tinyInteger('lang_id',false,true);
+            $table->timestamps();
             $table->softDeletes();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJobsCategoriesTable extends Migration
+class CreatePassedCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateJobsCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('jobs_categories', function (Blueprint $table) {
+        Schema::create('passed_courses', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('passed_courses_category_id');
             $table->string('title');
-            $table->tinyInteger('lang_id',false,true);
+            $table->text('content');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +30,6 @@ class CreateJobsCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jobs_categories');
+        Schema::dropIfExists('passed_courses');
     }
 }

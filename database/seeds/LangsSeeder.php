@@ -11,6 +11,16 @@ class LangsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('langs')->insert([
+            "name"=>'فارسی',
+            "photo"=>"fa.png",
+            'created_at'=>now(),
+        ]);
+
+        DB::table('langs')->insert([
+            "name"=>'english',
+            "photo"=>"en.png",
+            'created_at'=>now(),
+        ]);
     }
 }

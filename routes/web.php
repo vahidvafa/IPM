@@ -19,4 +19,6 @@ Route::get('/register','UserController@create')->name('register');
 Route::post('/register/store','UserController@store')->name('register.store');
 Route::get('/event/{id}','EventController@index')->name("event");
 Route::get('/profile/{slug}','UserController@index')->name("profile");
-
+Route::get('404',function (){
+    return view("404");
+});

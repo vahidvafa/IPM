@@ -53,7 +53,10 @@
                         <h2 class=" font-24 text-medium text-black  mb-4">اطلاعات برگذاری
                         </h2>
                         <p class=" text-black-light font-16 ">
-                            {{$event->address}}
+                            ادرس: {{$event->address}}
+                        </p>
+                        <p class=" text-black-light font-16 ">
+                            تلفن: {{$event->mobile}}
                         </p>
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1020.2035107695417!2d{{$event->longitude}}!3d{{$event->latitude}}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0728f1286b91%3A0xf8a61ce1468a9dcd!2sKuy-e-Daneshgah%2C%20District%206%2C%20Tehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2s!4v1578650567409!5m2!1sen!2s" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                     </div>
@@ -63,10 +66,12 @@
                     <div class="bar-detail pt-4 pb-4 pr-3 pl-3">
                         <h2 class="title-bar-detail text-white font-18 text-medium mb-4">زمانبندی دوره</h2>
                         <ul class="list-detail-in">
-                            <li><span class="text-black pr-1 text-regular ">شروع ثبت نام : </span><span class="text-red">2/5/1398</span></li>
-                            <li><span class="text-black pr-1 text-regular">شروع دوره : </span><span class="text-black-light">2/5/1398</span></li>
-                            <li ><span class="text-black pr-1 text-regular">پایان دوره : </span><span class="text-black-light">2/5/1398</span></li>
-                            <li ><span class="text-black pr-1 text-regular">زمان دوره : </span><span class="text-black-light">2/5/1398</span></li>
+                            {{--$table->string('from_date');
+            $table->string('to_date');
+            $table->string('start_register_date');--}}
+                            <li><span class="text-black pr-1 text-regular ">شروع ثبت نام : </span><span dir="ltr" class="text-red">{{jdate($event->start_register_date)}}</span></li>
+                            <li><span class="text-black pr-1 text-regular">شروع دوره : </span><span dir="ltr" class="text-black-light">{{jdate($event->from_date)}}</span></li>
+                            <li ><span class="text-black pr-1 text-regular">پایان دوره : </span><span dir="ltr" class="text-black-light">{{jdate($event->to_date)}}</span></li>
 
                         </ul>
                         <h2 class="title-bar-detail text-white font-18 text-medium mb-4">جزییات دوره</h2>
@@ -103,7 +108,7 @@
                                         {{$similar->title}}
                                 </a></h4>
                                 <div class="Related-post-title-sub text-yellow font-14 text-light2 mb-0">
-                                    {{$similar->date}}
+                                    {{jdate($similar->from_date)}}
                                 </div>
                             </div>
                         </div>

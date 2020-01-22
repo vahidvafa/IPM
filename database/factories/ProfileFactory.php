@@ -6,45 +6,49 @@ use App\Profile;
 use Faker\Generator as Faker;
 
 $factory->define(Profile::class, function (Faker $faker) {
+
+    $ownership_type=array("خصوصی","دولتی",'عمومی',' سایر','دولتی / خصوصی','خصوصی / دولتی');
+    $legal_type=array('سهامی خاص','سهامی عام','با مسئولیت محدود','تضامنی سایر');
+//    $receive_place = array('منزل','محل کار');
+    $user=\App\User::all('id',"slug")->random();
     return [
-        'user_id'=>\App\User::all('id')->random()->id,
+        'user_id'=>$user->id,
+        'father_name'=>$faker->name,
+        'certificate_number'=>mt_rand(0,99999999),
+        'birth_date'=>$faker->date("Y/m/d"),
+        'birth_place'=>$faker->city,
+        'national_code'=>mt_rand(0,999999999999),
+        'work_name'=>"نام شرکت ".$faker->name,
+        'work_address'=>$faker->address,
+        'home_address'=>$faker->address,
+        'work_post'=>$faker->postcode,
+        'home_post'=>$faker->postcode,
+        'work_tel'=>$faker->phoneNumber,
+        'home_tel'=>$faker->e164PhoneNumber,
+        'receive_place'=>mt_rand(0,1),
+        'established_date'=>$faker->date("Y/m/d"),
+        'established_place'=>$faker->city,
+        'established_number'=>mt_rand(0,99999999999909),
+        'economy_number'=>mt_rand(0,99999999999909),
+        'national_number'=>mt_rand(0,9999999999),
+        'post_number'=>$faker->postcode,
+        'ownership_type'=>$ownership_type[random_int(0,5)],
+        'legal_type'=>$ownership_type[random_int(0,3)],
+        'address'=>$faker->address,
+        'ceo_name'=>$faker->name,
+        'ceo_name_en'=>"ceo_name_en",
+        'ceo_picture'=>"s.png",
+        'agent_name'=>$faker->name,
+        'agent_name_en'=>"agent_name_en",
+        'sex'=>\App\User::all('id')->random()->id,
+        "youTube"=>"https://youTube.com/".$user->slug,
+        "facebook"=>"https://facebook.com/".$user->slug,
+        "instagram"=>"https://instagram.com/".$user->slug,
+        "telegram"=>"https://telegram.com/".$user->slug,
+        "twitter"=>"https://twitter.com/".$user->slug,
+        'lang_id' => mt_rand(0,1),
+        'created_at' => now(),
     ];
+
 });
-/*
- Schema::create('profiles', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('user_id');
-            $table->tinyInteger('sex')->nullable();
-            $table->string('father_name')->nullable();
-            $table->string('certificate_number')->nullable();
-            $table->string('birth_date')->nullable();
-            $table->string('birth_place')->nullable();
-            $table->string('national_code')->nullable();
-            $table->string('work_name')->nullable();
-            $table->text('work_address')->nullable();
-            $table->text('home_address')->nullable();
-            $table->text('work_post')->nullable();
-            $table->text('home_post')->nullable();
-            $table->string('work_tel')->nullable();
-            $table->string('home_tel')->nullable();
-//            $table->string('mobile_number')->nullable();
-            $table->tinyInteger('receive_place')->nullable();
-            //-------------------------------------
-            $table->string('established_date')->nullable();
-            $table->string('established_place')->nullable();
-            $table->string('established_number')->nullable();
-            $table->string('economy_number')->nullable();
-            $table->string('national_number')->nullable();
-            $table->string('post_number')->nullable();
-            $table->string('ownership_type')->nullable();
-            $table->string('legal_type')->nullable();
-            $table->string('address')->nullable();
-            $table->string('ceo_name')->nullable();
-            $table->string('ceo_name_en')->nullable();
-            $table->text('ceo_picture')->nullable();
-            $table->string('agent_name')->nullable();
-            $table->string('agent_name_en')->nullable();
-            $table->text('agent_picture')->nullable();
-            $table->timestamps();
-        });
-  */
+

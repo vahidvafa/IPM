@@ -68,7 +68,7 @@
                         <div class="collapse navbar-collapse order-lg-0" id="collapsibleNavbar">
                             <ul class="navbar-nav header-main">
                                 <li class="nav-item active">
-                                    <a class="nav-link " href="#">صفحه اول</a>
+                                    <a class="nav-link " href="{{route('/')}}">صفحه اول</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">درباره انجمن</a>
@@ -122,9 +122,9 @@
                     <div class="col-12">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item font-20"><a href="#">خانه</a></li>
-                            <li class="breadcrumb-item font-20 active">کاربر</li>
+                            <li class="breadcrumb-item font-20 active">{{$breadcrumb??''}}</li>
                         </ul>
-                        <h1 class="title-page font-42 text-white">صفحه کاربری</h1>
+                        <h1 class="title-page font-42 text-white" style="display: block;text-overflow: ellipsis;word-wrap: break-word;overflow: hidden;max-height: 1.3em;line-height: 1.3em;">{{$titleHeader ?? ''}}</h1>
                     </div>
 
                 </div>
