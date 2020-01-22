@@ -49,10 +49,17 @@
                         </button>
                         <ul class="navbar-nav nav-login-out ml-auto  order-lg-1">
                             <li class="nav-item ">
-                                <a class="nav-link nav-login" data-toggle="modal" data-target="#ModalLogin">
-                                    <i class="fa fa-user mr-1"></i>
-                                    <span>   ورود کاربران</span>
-                                </a>
+                                @auth()
+                                    <a class="nav-link nav-login" href="{{route('profile',auth()->user()->slug)}}">
+                                        <i class="fa fa-user mr-1"></i>
+                                        <span >پروفایل</span>
+                                    </a>
+                                @else
+                                    <a class="nav-link nav-login" data-toggle="modal" data-target="#ModalLogin">
+                                        <i class="fa fa-user mr-1"></i>
+                                        <span href="/res">   ورود کاربران</span>
+                                    </a>
+                                @endauth
 
                             </li>
                             <!-- Dropdown -->

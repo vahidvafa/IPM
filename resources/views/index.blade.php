@@ -47,11 +47,17 @@
                         </button>
                         <ul class="navbar-nav nav-login-out ml-auto  order-lg-1">
                             <li class="nav-item ">
+                                @auth()
+                                    <a class="nav-link nav-login" href="{{route('profile',auth()->user()->slug)}}">
+                                        <i class="fa fa-user mr-1"></i>
+                                        <span >پروفایل</span>
+                                    </a>
+                                @else
                                 <a class="nav-link nav-login" data-toggle="modal" data-target="#ModalLogin">
                                     <i class="fa fa-user mr-1"></i>
-                                    <span>   ورود کاربران</span>
+                                        <span href="/res">   ورود کاربران</span>
                                 </a>
-
+                                @endauth
                             </li>
                             <!-- Dropdown -->
                             <li class="nav-item dropdown nav-lang">
@@ -72,7 +78,7 @@
                                     <a class="nav-link " href="#">صفحه اول</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">درباره انجمن</a>
+                                    <a class="nav-link" href="{{route('about-us')}}">درباره انجمن</a>
                                 </li>
 
                                 <!-- Dropdown -->
@@ -119,6 +125,7 @@
         <div class="slider-text pt-5 pb-5">
             <div class="container">
                 <div class="row align-items-center justify-content-around">
+                    @guest()
                     <div class="slider-form-out col-md-6 col-lg-4 order-2 order-md-1 z-index">
                         <div class="sidebar-form">
                             <div class="sidebar-form-header text-center pb-3">
@@ -163,6 +170,7 @@
                         </div>
 
                     </div>
+                    @endguest
                     <div class="col-md-6 order-1 order-md-2  ">
                         <h2 class="font-28 text-white mb-5">چهاردهمین <span class="text-yellow">کنفرانس بین المللی مدیریت پروژه</span>
                         </h2>

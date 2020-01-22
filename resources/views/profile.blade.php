@@ -113,6 +113,7 @@
                          </p>
                         @endforeach
 
+                        @if(auth()->id() == $user->id)
                         <h2 class=" font-24 text-medium text-black  mb-4 mt-5">اطلاعات تکمیلی
                         </h2>
                         <form class="sidebar-form-body row">
@@ -147,6 +148,7 @@
                             </div>
 
                         </form>
+                            @endauth
                     </div>
 
 

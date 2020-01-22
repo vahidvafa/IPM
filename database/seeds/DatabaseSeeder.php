@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         factory(\App\PassedCourses::class,25)->create();
         factory(\App\Document::class,45)->create();
         factory(\App\News::class,6)->create();
+        factory(\App\GoldenEvent::class,1)->create();
     }
 }
