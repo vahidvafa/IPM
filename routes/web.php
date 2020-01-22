@@ -10,15 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 use Illuminate\Support\Facades\Route;
-use Morilog\Jalali\Jalalian;
 
 
-Route::get('/','IndexController@index')->name('/');
-Route::get('/register','UserController@create')->name('register');
-Route::post('/register/store','UserController@store')->name('register.store');
-Route::get('/event/{id}','EventController@index')->name("event");
-Route::get('/profile/{slug}','UserController@index')->name("profile");
+Route::get('/', 'IndexController@index')->name('main');
+Route::get('/register', 'AuthController@register')->name('register');
+Route::post('/register/store', 'AuthController@postRegister')->name('register.store');
+Route::get('/event/{id}', 'EventController@index')->name("event");
+Route::get('/profile/{slug}', 'UserController@index')->name("profile");
 Route::get('404',function (){
     return view("404");
 });
+Route::post('/login','AuthController@postLogin');
+Route::get('about-us','IndexController@about_us')->name('about-us');
+Route::get('news/{news}','NewsController@show')->name('news.show');

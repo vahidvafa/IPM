@@ -27,6 +27,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\JobsCategory withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\JobsCategory withoutTrashed()
  * @mixin \Eloquent
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\JobsCategory whereLangId($value)
  */
 class JobsCategory extends Model
 {

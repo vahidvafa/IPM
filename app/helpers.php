@@ -26,3 +26,26 @@ function makeMsgCode($status, $msg, $code, $arr_res = null, $token = null)
 {
     return $arr_res == null ? array("status" => $status, "msg" => $msg, "code" => $code) : array("status" => $status, "msg" => $msg, "code" => $code, "results" => $arr_res, "token" => $token);
 }
+
+function checkIsMobile($number)
+{
+    $re = '/((09)\d{9})/m';
+    preg_match_all($re, $number, $matches, PREG_SET_ORDER, 0);
+    return ($matches) ? true : false;
+}
+
+function checkUserNameType($username)
+{
+    if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
+        if (!checkIsMobile($username)) {
+            return makeObj(['status' => false]);
+        }
+        return makeObj(['status' => true, 'type' => 'mobile']);
+    }
+    return makeObj(['status' => true, 'type' => 'email']);
+}
+
+function makeObj($array)
+{
+    return (object)$array;
+}

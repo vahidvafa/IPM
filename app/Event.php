@@ -56,6 +56,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Event withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Event withoutTrashed()
  * @mixin \Eloquent
+ * @property string $date
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereLangId($value)
  */
 class Event extends Model
 {

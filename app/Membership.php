@@ -35,6 +35,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Membership withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Membership withoutTrashed()
  * @mixin \Eloquent
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership whereLangId($value)
  */
 class Membership extends Model
 {

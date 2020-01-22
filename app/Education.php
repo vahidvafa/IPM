@@ -42,6 +42,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\education withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\education withoutTrashed()
  * @mixin \Eloquent
+ * @property int $user_id
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\education whereLangId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\education whereUserId($value)
  */
 class Education extends Model
 {

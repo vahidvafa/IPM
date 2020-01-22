@@ -15,12 +15,14 @@ class LangsSeeder extends Seeder
             "name"=>'فارسی',
             "photo"=>"fa.png",
             'created_at'=>now(),
+            'updated_at'=>now(),
         ]);
 
         DB::table('langs')->insert([
             "name"=>'english',
             "photo"=>"en.png",
             'created_at'=>now(),
+            'updated_at'=>now(),
         ]);
     }
 }

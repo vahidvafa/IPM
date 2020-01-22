@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\MembershipType;
+use App\News;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -15,8 +16,9 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $events = Event::where('id','<',7)->get(['id','photo','title','description','from_date']);
-        return view('index',compact('events'));
+        $events = Event::latest()->limit(7)->get(['id', 'photo', 'title', 'description', 'from_date']);
+        $news = News::latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
+        return view('index', compact('events', 'news'));
     }
 
     /**
@@ -32,7 +34,7 @@ class IndexController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,7 +45,7 @@ class IndexController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -54,7 +56,7 @@ class IndexController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -65,8 +67,8 @@ class IndexController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -77,7 +79,7 @@ class IndexController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -85,9 +87,10 @@ class IndexController extends Controller
         //
     }
 
-    public function register()
+    public function about_us()
     {
-        $memberships = MembershipType::all();
-        return view('register',compact('memberships'));
+        $titleHeader = "درباره انجمن";
+        $breadcrumb = "درباره ما";
+        return view('about_us',compact('titleHeader','breadcrumb'));
     }
 }

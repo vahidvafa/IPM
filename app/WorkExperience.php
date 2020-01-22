@@ -36,6 +36,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\WorkExperience withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\WorkExperience withoutTrashed()
  * @mixin \Eloquent
+ * @property int $user_id
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\workExperience whereLangId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\workExperience whereUserId($value)
  */
 class WorkExperience extends Model
 {

@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="shortcut icon" href=""/>
-    <title>انجمن مدیریت پروژه</title>
+    <title>
+        انجمن مدیریت پروژه - {{$titleHeader ?? ''}}
+    </title>
     <link rel="stylesheet" href="{{asset('css/slick.css')}}">
     <link rel="stylesheet" href="{{asset('css/slick-theme.css')}}">
     <link rel='stylesheet' href="{{asset('css/bootstrap.min.css')}}" type='text/css' media='all'/>
@@ -13,6 +15,7 @@
     <link rel="stylesheet" href="{{asset('css/all.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/style-main.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type='text/css' media='all'>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @yield('header')
 
@@ -68,10 +71,10 @@
                         <div class="collapse navbar-collapse order-lg-0" id="collapsibleNavbar">
                             <ul class="navbar-nav header-main">
                                 <li class="nav-item active">
-                                    <a class="nav-link " href="{{route('/')}}">صفحه اول</a>
+                                    <a class="nav-link " href="{{route('main')}}">صفحه اول</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">درباره انجمن</a>
+                                    <a class="nav-link" href="{{route('about-us')}}">درباره انجمن</a>
                                 </li>
 
                                 <!-- Dropdown -->
@@ -135,7 +138,7 @@
 
 </header>
 @yield('content')
-<footer id="footer">
+<footer id="footer" class="footer-pages">
     <div class="container">
         <div class="row mb-3">
             <div class="contact-footer col-12 col-lg-5">
@@ -259,18 +262,35 @@
             <div class="modal-body text-center pt-0 pr-3 pl-3 pr-sm-5 pl-sm-5">
                 <img src="{{asset('img/logo-login.png')}}" alt="" class="mb-4">
                 <h4 class="modal-title text-black">ورود به انجمن مدیریت پروژه</h4>
-                <p class="text-black-light font-18 text-light2 mt-4 mb-4">جهت ورورد به سایت اطلاعات زیر را تکمیل نمایید</p>
+                <p class="text-black-light font-18 text-light2 mt-4 mb-4">جهت ورورد به سایت اطلاعات زیر را تکمیل
+                    نمایید</p>
                 <form class="sidebar-form-body">
                     <div class="input-form">
-                        <input type="email" name="text-759" value="" size="40" aria-invalid="false" placeholder="ایمیل*">
+                        <input type="text" name="username" id="input_username" value="" size="40" aria-invalid="false"
+                               placeholder="ایمیل یا شماره موبایل*">
                         <img src="{{asset('img/003-envelope.png')}}" class="form-icon">
+                        <div id="username-error" class="error text-danger pl-3" for="username"
+                             style="display: block;">
+                            <strong id="username-error-text"></strong>
+                        </div>
                     </div>
                     <div class="input-form">
-                        <input class="mb-3" type="password" name="text-759" value="" size="40" aria-invalid="false" placeholder="پسورد*">
+                        <input class="mb-3" type="password" name="password" id="input_password" value="" size="40"
+                               aria-invalid="false" placeholder="پسورد*">
                         <img src="{{asset('img/002-telephone.png')}}" class="form-icon">
+                        <div id="password-error" class="error text-danger pl-3" for="password"
+                             style="display: block;">
+                            <strong id="password-error-text"></strong>
+                        </div>
                     </div>
-                    <a href="/" class="d-block text-left text-dark-violet font-14 text-light2">رمز عبور خود را فراموش کرده ام؟</a>
-                    <input type="submit" value="وارد شوید" class="form-submit mt-5 text-white font-16 text-medium">
+                    <a href="/" class="d-block text-left text-dark-violet font-14 text-light2">رمز عبور خود را فراموش
+                        کرده ام؟</a>
+                    <div id="text-error" class="error text-danger pl-3"
+                         style="display: block;">
+                        <strong id="text-error"></strong>
+                    </div>
+                    <input type="button" value="وارد شوید" class="form-submit mt-5 text-white font-16 text-medium"
+                           onclick="login()">
 
                 </form>
             </div>
@@ -281,6 +301,7 @@
 </div>
 
 <script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
+<script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
 <script src="{{asset('js/popper.min.js')}}"></script>
 <script type='text/javascript' src='{{asset('js/bootstrap.min.js')}}'></script>
 <script src="{{asset('js/all.js')}}"></script>
@@ -427,6 +448,46 @@
             $this.countTo(options);
         }
     });
+</script>
+<script>
+    function clearLoginErrors() {
+        $('#text-error').text('');
+        $('#username-error-text').text('');
+        $('#password-error-text').text('');
+    }
+    function login() {
+        clearLoginErrors();
+        var username = $('#input_username').val();
+        var password = $('#input_password').val();
+        $.post("/login",
+            {
+                '_token': $('meta[name=csrf-token]').attr('content'),
+                username: username,
+                password: password
+            },
+            function (json) {
+                console.log(json);
+                if (!json.status) {
+                    if (json.code == 100) {
+                        $('#text-error').text(json.errors.username[0]);
+                        console.log(1);
+                    } else {
+                        if (typeof json.errors.username !== 'undefined'){
+                            console.log(2);
+                            $('#username-error-text').text(json.errors.username[0]);
+                        }
+                        if (typeof json.errors.password !== 'undefined'){
+                            console.log(3);
+                            $('#password-error-text').text(json.errors.password[0]);
+                        }
+                        console.log(4);
+                    }
+                }else{
+                    console.log('hooooraaa')
+                    location.reload();
+                }
+            });
+    }
 </script>
 
 </body>

@@ -34,6 +34,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Document withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Document withoutTrashed()
  * @mixin \Eloquent
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Document whereLangId($value)
  */
 class Document extends Model
 {

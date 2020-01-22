@@ -41,6 +41,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Job withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Job withoutTrashed()
  * @mixin \Eloquent
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereLangId($value)
  */
 class Job extends Model
 {

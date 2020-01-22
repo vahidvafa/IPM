@@ -21,7 +21,7 @@
                 <ul class="nav nav-pills row">
                     <li class="nav-item col-12 col-sm-6 col-lg-3">
 
-                        <a class="nav-link active p-4" data-toggle="pill" href="#menu0">
+                        <a class="nav-link {{(old('type') == 1) ? 'active':(!old('type')?'active':'')}} p-4" data-toggle="pill" href="#menu0">
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[0]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
@@ -32,7 +32,7 @@
 
                     </li>
                     <li class="nav-item  col-12 col-sm-6 col-lg-3 mt-4 mt-sm-0">
-                        <a class="nav-link p-4" data-toggle="pill" href="#menu1">
+                        <a class="nav-link {{(old('type') == 2) ? 'active':''}} p-4" data-toggle="pill" href="#menu1">
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[1]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li class="nav-item  col-12 col-sm-6 col-lg-3 mt-4 mt-lg-0">
-                        <a class="nav-link p-4" data-toggle="pill" href="#menu2">
+                        <a class="nav-link {{(old('type') == 3) ? 'active':''}} p-4" data-toggle="pill" href="#menu2">
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[2]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
@@ -52,7 +52,7 @@
                         </a>
                     </li>
                     <li class="nav-item  col-12 col-sm-6 col-lg-3  mt-4 mt-lg-0">
-                        <a class="nav-link p-4" data-toggle="pill" href="#menu3">
+                        <a class="nav-link {{(old('type') == 4) ? 'active':''}} p-4" data-toggle="pill" href="#menu3">
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[3]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
@@ -64,17 +64,17 @@
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div class="tab-pane  active" id="menu0">
+                    <div class="tab-pane  {{(old('type') == 1) ? 'active':(!old('type')?'active':'fade')}}" id="menu0">
                         <h2 class=" font-22 text-medium text-black mt-5 mb-4"> فرم {{$memberships[0]->title}}
                         </h2>
                         <form class="sidebar-form-body row" action="{{route('register.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="type" value="{{$memberships[0]->id}}">
                             <div class="input-form col-md-6 ">
-                                <input type="text" name="name" value="{{old('name')}}" size="40" aria-invalid="false"
+                                <input type="text" name="name" value="{{(old('type') == 1) ? old('name'):''}}" size="40" aria-invalid="false"
                                        placeholder="نام و نام خانوادگی*" required>
                                 <img src="img/001-user.png" class="form-icon">
-                                @if ($errors->has('name'))
+                                @if (old('type') == 1 && $errors->has('name'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -82,10 +82,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6 ">
-                                <input type="text" name="name_en" value="{{old('name_en')}}" size="40" aria-invalid="false"
+                                <input type="text" name="name_en" value="{{(old('type') == 1) ?old('name_en'):''}}" size="40" aria-invalid="false"
                                        placeholder="نام و نام خانوادگی انگلیسی*" required>
                                 <img src="img/001-user.png" class="form-icon">
-                                @if ($errors->has('name_en'))
+                                @if (old('type') == 1 && $errors->has('name_en'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('name_en') }}</strong>
@@ -93,10 +93,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="father_name" value="{{old('father_name')}}" size="40" aria-invalid="false"
+                                <input type="text" name="father_name" value="{{(old('type') == 1) ?old('father_name'):''}}" size="40" aria-invalid="false"
                                        placeholder="نام پدر*" required>
                                 <img src="img/004-key.png" class="form-icon">
-                                @if ($errors->has('father_name'))
+                                @if (old('type') == 1 && $errors->has('father_name'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('father_name') }}</strong>
@@ -104,10 +104,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="national_code" value="{{old('national_code')}}" size="40" aria-invalid="false"
+                                <input type="text" name="national_code" value="{{(old('type') == 1) ?old('national_code'):''}}" size="40" aria-invalid="false"
                                        placeholder="کد ملی*" required>
                                 <img src="img/004-key.png" class="form-icon">
-                                @if ($errors->has('national_code'))
+                                @if (old('type') == 1 && $errors->has('national_code'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('national_code') }}</strong>
@@ -115,10 +115,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="mobile" value="{{old('mobile')}}" size="40" aria-invalid="false"
+                                <input type="text" name="mobile" value="{{(old('type') == 1) ?old('mobile'):''}}" size="40" aria-invalid="false"
                                        placeholder="شماره تماس*" required>
                                 <img src="img/002-telephone.png" class="form-icon">
-                                @if ($errors->has('mobile'))
+                                @if (old('type') == 1 && $errors->has('mobile'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('mobile') }}</strong>
@@ -126,10 +126,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="email" name="email" value="{{old('email')}}" size="40" aria-invalid="false"
+                                <input type="email" name="email" value="{{(old('type') == 1) ?old('email'):''}}" size="40" aria-invalid="false"
                                        placeholder="ایمیل*" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('email'))
+                                @if (old('type') == 1 && $errors->has('email'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -137,10 +137,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="certificate_number" value="{{old('certificate_number')}}" size="40" aria-invalid="false"
+                                <input type="text" name="certificate_number" value="{{(old('type') == 1) ?old('certificate_number'):''}}" size="40" aria-invalid="false"
                                        placeholder="شماره شناسنامه*" required>
                                 <img src="img/004-key.png" class="form-icon">
-                                @if ($errors->has('certificate_number'))
+                                @if (old('type') == 1 && $errors->has('certificate_number'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('certificate_number') }}</strong>
@@ -148,10 +148,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="birth_date" value="{{old('birth_date')}}" size="40" aria-invalid="false"
+                                <input type="text" name="birth_date" value="{{(old('type') == 1) ?old('birth_date'):''}}" size="40" aria-invalid="false"
                                        placeholder="تاریخ تولد*" required>
                                 <img src="img/001-user.png" class="form-icon">
-                                @if ($errors->has('birth_date'))
+                                @if (old('type') == 1 && $errors->has('birth_date'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('birth_date') }}</strong>
@@ -159,10 +159,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="birth_place" value="{{old('birth_place')}}" size="40" aria-invalid="false"
+                                <input type="text" name="birth_place" value="{{(old('type') == 1) ?old('birth_place'):''}}" size="40" aria-invalid="false"
                                        placeholder="محل تولد*" required>
                                 <img src="img/001-user.png" class="form-icon">
-                                @if ($errors->has('birth_place'))
+                                @if (old('type') == 1 && $errors->has('birth_place'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('birth_place') }}</strong>
@@ -177,7 +177,7 @@
                                 <input type="radio" class="option-input" name="sex" value="0" size="40"
                                        aria-invalid="false" placeholder="زن" required>
                                 زن
-                                @if ($errors->has('sex'))
+                                @if (old('type') == 1 && $errors->has('sex'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('sex') }}</strong>
@@ -185,10 +185,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="work_address" value="{{old('work_address')}}" size="40" aria-invalid="false"
+                                <input type="text" name="work_address" value="{{(old('type') == 1) ?old('work_address'):''}}" size="40" aria-invalid="false"
                                        placeholder="نشانی محل کار *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('work_address'))
+                                @if (old('type') == 1 && $errors->has('work_address'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('work_address') }}</strong>
@@ -196,10 +196,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="work_post" value="{{old('work_post')}}" size="40" aria-invalid="false"
+                                <input type="text" name="work_post" value="{{(old('type') == 1) ?old('work_post'):''}}" size="40" aria-invalid="false"
                                        placeholder="کد پستی محل کار *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('work_post'))
+                                @if (old('type') == 1 && $errors->has('work_post'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('work_post') }}</strong>
@@ -207,10 +207,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="home_address" value="{{old('home_address')}}" size="40" aria-invalid="false"
+                                <input type="text" name="home_address" value="{{(old('type') == 1) ?old('home_address'):''}}" size="40" aria-invalid="false"
                                        placeholder="نشانی منزل *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('home_address'))
+                                @if (old('type') == 1 && $errors->has('home_address'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('home_address') }}</strong>
@@ -218,10 +218,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="home_post" value="{{old('home_post')}}" size="40" aria-invalid="false"
+                                <input type="text" name="home_post" value="{{(old('type') == 1) ?old('home_post'):''}}" size="40" aria-invalid="false"
                                        placeholder="کد پستی منزل *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('home_post'))
+                                @if (old('type') == 1 && $errors->has('home_post'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('home_post') }}</strong>
@@ -229,10 +229,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="work_name" value="{{old('work_name')}}" size="40" aria-invalid="false"
+                                <input type="text" name="work_name" value="{{(old('type') == 1) ?old('work_name'):''}}" size="40" aria-invalid="false"
                                        placeholder="محل کار *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('work_name'))
+                                @if (old('type') == 1 && $errors->has('work_name'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('work_name') }}</strong>
@@ -247,7 +247,7 @@
                                 <input type="radio" class="option-input" name="receive_place" value="محل کار" size="40"
                                        aria-invalid="false" placeholder="زن" required>
                                 محل کار
-                                @if ($errors->has('receive_place'))
+                                @if (old('type') == 1 && $errors->has('receive_place'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('receive_place') }}</strong>
@@ -258,7 +258,7 @@
                                 <input type="password" name="password" value="" size="40" aria-invalid="false"
                                        placeholder="رمز عبور*" required>
                                 <img src="img/004-key.png" class="form-icon">
-                                @if ($errors->has('password'))
+                                @if (old('type') == 1 && $errors->has('password'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -274,7 +274,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <span>
-                                            مدارک مورد نیاز : ( {{$memberships[2]->required_documents}} )
+                                            مدارک مورد نیاز : ( {{$memberships[0]->required_documents}} )
                                         </span>
                                     </div>
                                 </div>
@@ -304,17 +304,17 @@
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane fade" id="menu1">
+                    <div class="tab-pane {{(old('type') == 2) ? 'active':'fade'}}" id="menu1">
                         <h2 class=" font-22 text-medium text-black mt-5 mb-4"> فرم  {{$memberships[1]->title}}
                         </h2>
                         <form class="sidebar-form-body row" action="{{route('register.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="type" value="{{$memberships[1]->id}}">
                             <div class="input-form col-md-6 ">
-                                <input type="text" name="name" value="{{old('name')}}" size="40" aria-invalid="false"
+                                <input type="text" name="name" value="{{(old('type') == 2) ?old('name'):''}}" size="40" aria-invalid="false"
                                        placeholder="نام سازمان*" required>
                                 <img src="img/001-user.png" class="form-icon">
-                                @if ($errors->has('name'))
+                                @if (old('type') == 2 && $errors->has('name'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -323,10 +323,10 @@
 
                             </div>
                             <div class="input-form col-md-6 ">
-                                <input type="text" name="name_en" value="{{old('name_en')}}" size="40" aria-invalid="false"
+                                <input type="text" name="name_en" value="{{(old('type') == 2) ?old('name_en'):''}}" size="40" aria-invalid="false"
                                        placeholder="نام سازمان انگلیسی*" required>
                                 <img src="img/001-user.png" class="form-icon">
-                                @if ($errors->has('name_en'))
+                                @if (old('type') == 2 && $errors->has('name_en'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('name_en') }}</strong>
@@ -335,10 +335,10 @@
 
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="established_date" value="{{old('established_date')}}" size="40" aria-invalid="false"
+                                <input type="text" name="established_date" value="{{(old('type') == 2) ?old('established_date'):''}}" size="40" aria-invalid="false"
                                        placeholder="سال تاسیس*" required>
                                 <img src="img/004-key.png" class="form-icon">
-                                @if ($errors->has('established_date'))
+                                @if (old('type') == 2 && $errors->has('established_date'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('established_date') }}</strong>
@@ -346,10 +346,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="established_number" value="{{old('established_number')}}" size="40" aria-invalid="false"
+                                <input type="text" name="established_number" value="{{(old('type') == 2) ?old('established_number'):''}}" size="40" aria-invalid="false"
                                        placeholder="شماره ثبت*" required>
                                 <img src="img/002-telephone.png" class="form-icon">
-                                @if ($errors->has('established_number'))
+                                @if (old('type') == 2 && $errors->has('established_number'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('established_number') }}</strong>
@@ -357,10 +357,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="email" name="email" value="{{old('email')}}" size="40" aria-invalid="false"
+                                <input type="email" name="email" value="{{(old('type') == 2) ?old('email'):''}}" size="40" aria-invalid="false"
                                        placeholder="ایمیل*" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('email'))
+                                @if (old('type') == 2 && $errors->has('email'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -368,10 +368,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="economy_number" value="{{old('economy_number')}}" size="40" aria-invalid="false"
+                                <input type="text" name="economy_number" value="{{(old('type') == 2) ?old('economy_number'):''}}" size="40" aria-invalid="false"
                                        placeholder="شماره اقتصادی*" required>
                                 <img src="img/004-key.png" class="form-icon">
-                                @if ($errors->has('economy_number'))
+                                @if (old('type') == 2 && $errors->has('economy_number'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('economy_number') }}</strong>
@@ -379,10 +379,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="national_number" value="{{old('national_number')}}" size="40" aria-invalid="false"
+                                <input type="text" name="national_number" value="{{(old('type') == 2) ?old('national_number'):''}}" size="40" aria-invalid="false"
                                        placeholder="شناسه ملی *" required>
                                 <img src="img/001-user.png" class="form-icon">
-                                @if ($errors->has('national_number'))
+                                @if (old('type') == 2 && $errors->has('national_number'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('national_number') }}</strong>
@@ -390,10 +390,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="post_number" value="{{old('post_number')}}" size="40" aria-invalid="false"
+                                <input type="text" name="post_number" value="{{(old('type') == 2) ?old('post_number'):''}}" size="40" aria-invalid="false"
                                        placeholder="کد پستی*" required>
                                 <img src="img/001-user.png" class="form-icon">
-                                @if ($errors->has('post_number'))
+                                @if (old('type') == 2 && $errors->has('post_number'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('post_number') }}</strong>
@@ -420,7 +420,7 @@
                                 <input type="radio" class="option-input" name="ownership_type" value="سایر" size="40"
                                        aria-invalid="false" placeholder="سایر" required>
                                 سایر
-                                @if ($errors->has('ownership_type'))
+                                @if (old('type') == 2 && $errors->has('ownership_type'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('ownership_type') }}</strong>
@@ -444,7 +444,7 @@
                                 <input type="radio" class="option-input" name="legal_type" value="سایر" size="40"
                                        aria-invalid="false" placeholder="سایر" required>
                                 سایر
-                                @if ($errors->has('legal_type'))
+                                @if (old('type') == 2 && $errors->has('legal_type'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('legal_type') }}</strong>
@@ -452,10 +452,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-12">
-                                <input type="text" name="address" value="{{old('address')}}" size="40" aria-invalid="false"
+                                <input type="text" name="address" value="{{(old('type') == 2) ?old('address'):''}}" size="40" aria-invalid="false"
                                        placeholder="نشانی دفتر مرکزی *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('address'))
+                                @if (old('type') == 2 && $errors->has('address'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('address') }}</strong>
@@ -463,10 +463,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="ceo_name" value="{{old('ceo_name')}}" size="40" aria-invalid="false"
+                                <input type="text" name="ceo_name" value="{{(old('type') == 2) ?old('ceo_name'):''}}" size="40" aria-invalid="false"
                                        placeholder="نام مدیر عامل شرکت *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('name'))
+                                @if (old('type') == 2 && $errors->has('name'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -474,10 +474,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="ceo_name_en" value="{{old('ceo_name_en')}}" size="40" aria-invalid="false"
+                                <input type="text" name="ceo_name_en" value="{{(old('type') == 2) ?old('ceo_name_en'):''}}" size="40" aria-invalid="false"
                                        placeholder="نام مدیر عامل شرکت به انگلیسی *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('ceo_name_en'))
+                                @if (old('type') == 2 && $errors->has('ceo_name_en'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('ceo_name_en') }}</strong>
@@ -485,10 +485,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="agent_name" value="{{old('agent_name')}}" size="40" aria-invalid="false"
+                                <input type="text" name="agent_name" value="{{(old('type') == 2) ?old('agent_name'):''}}" size="40" aria-invalid="false"
                                        placeholder="نام نماینده شرکت *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('agent_name'))
+                                @if (old('type') == 2 && $errors->has('agent_name'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('agent_name') }}</strong>
@@ -496,10 +496,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="agent_name_en" value="{{old('agent_name_en')}}" size="40" aria-invalid="false"
+                                <input type="text" name="agent_name_en" value="{{(old('type') == 2) ?old('agent_name_en'):''}}" size="40" aria-invalid="false"
                                        placeholder="نام نماینده شرکت به انگلیسی *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('agent_name_en'))
+                                @if (old('type') == 2 && $errors->has('agent_name_en'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('agent_name_en') }}</strong>
@@ -510,7 +510,7 @@
                                 <input type="password" name="password" value="" size="40" aria-invalid="false"
                                        placeholder="رمز عبور*" required>
                                 <img src="img/004-key.png" class="form-icon">
-                                @if ($errors->has('password'))
+                                @if (old('type') == 2 && $errors->has('password'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -556,41 +556,39 @@
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane  fade" id="menu2">
+                    <div class="tab-pane  {{(old('type') == 3) ? 'active':'fade'}}" id="menu2">
                         <h2 class=" font-22 text-medium text-black mt-5 mb-4"> فرم {{$memberships[2]->title}}
                         </h2>
                         <form class="sidebar-form-body row" action="{{route('register.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="type" value="{{$memberships[2]->id}}">
                             <div class="input-form col-md-6 ">
-                                <input type="text" name="name" value="{{old('name')}}" size="40" aria-invalid="false"
+                                <input type="text" name="name" value="{{(old('type') == 3) ? old('name'):''}}" size="40" aria-invalid="false"
                                        placeholder="نام و نام خانوادگی*" required>
                                 <img src="img/001-user.png" class="form-icon">
-                                @if ($errors->has('name'))
+                                @if (old('type') == 3 && $errors->has('name'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </div>
                                 @endif
-
                             </div>
                             <div class="input-form col-md-6 ">
-                                <input type="text" name="name_en" value="{{old('name_en')}}" size="40" aria-invalid="false"
+                                <input type="text" name="name_en" value="{{(old('type') == 3) ?old('name_en'):''}}" size="40" aria-invalid="false"
                                        placeholder="نام و نام خانوادگی انگلیسی*" required>
                                 <img src="img/001-user.png" class="form-icon">
-                                @if ($errors->has('name_en'))
+                                @if (old('type') == 3 && $errors->has('name_en'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('name_en') }}</strong>
                                     </div>
                                 @endif
-
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="father_name" value="{{old('father_name')}}" size="40" aria-invalid="false"
+                                <input type="text" name="father_name" value="{{(old('type') == 3) ?old('father_name'):''}}" size="40" aria-invalid="false"
                                        placeholder="نام پدر*" required>
                                 <img src="img/004-key.png" class="form-icon">
-                                @if ($errors->has('father_name'))
+                                @if (old('type') == 3 && $errors->has('father_name'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('father_name') }}</strong>
@@ -598,10 +596,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="national_code" value="{{old('national_code')}}" size="40" aria-invalid="false"
+                                <input type="text" name="national_code" value="{{(old('type') == 3) ?old('national_code'):''}}" size="40" aria-invalid="false"
                                        placeholder="کد ملی*" required>
                                 <img src="img/004-key.png" class="form-icon">
-                                @if ($errors->has('national_code'))
+                                @if (old('type') == 3 && $errors->has('national_code'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('national_code') }}</strong>
@@ -609,10 +607,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="mobile" value="{{old('mobile')}}" size="40" aria-invalid="false"
+                                <input type="text" name="mobile" value="{{(old('type') == 3) ?old('mobile'):''}}" size="40" aria-invalid="false"
                                        placeholder="شماره تماس*" required>
                                 <img src="img/002-telephone.png" class="form-icon">
-                                @if ($errors->has('mobile'))
+                                @if (old('type') == 3 && $errors->has('mobile'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('mobile') }}</strong>
@@ -620,10 +618,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="email" name="email" value="{{old('email')}}" size="40" aria-invalid="false"
+                                <input type="email" name="email" value="{{(old('type') == 3) ?old('email'):''}}" size="40" aria-invalid="false"
                                        placeholder="ایمیل*" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('email'))
+                                @if (old('type') == 3 && $errors->has('email'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -631,10 +629,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="certificate_number" value="{{old('certificate_number')}}" size="40" aria-invalid="false"
+                                <input type="text" name="certificate_number" value="{{(old('type') == 3) ?old('certificate_number'):''}}" size="40" aria-invalid="false"
                                        placeholder="شماره شناسنامه*" required>
                                 <img src="img/004-key.png" class="form-icon">
-                                @if ($errors->has('certificate_number'))
+                                @if (old('type') == 3 && $errors->has('certificate_number'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('certificate_number') }}</strong>
@@ -642,10 +640,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="birth_date" value="{{old('birth_date')}}" size="40" aria-invalid="false"
+                                <input type="text" name="birth_date" value="{{(old('type') == 3) ?old('birth_date'):''}}" size="40" aria-invalid="false"
                                        placeholder="تاریخ تولد*" required>
                                 <img src="img/001-user.png" class="form-icon">
-                                @if ($errors->has('birth_date'))
+                                @if (old('type') == 3 && $errors->has('birth_date'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('birth_date') }}</strong>
@@ -653,10 +651,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="birth_place" value="{{old('birth_place')}}" size="40" aria-invalid="false"
+                                <input type="text" name="birth_place" value="{{(old('type') == 3) ?old('birth_place'):''}}" size="40" aria-invalid="false"
                                        placeholder="محل تولد*" required>
                                 <img src="img/001-user.png" class="form-icon">
-                                @if ($errors->has('birth_place'))
+                                @if (old('type') == 3 && $errors->has('birth_place'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('birth_place') }}</strong>
@@ -671,7 +669,7 @@
                                 <input type="radio" class="option-input" name="sex" value="0" size="40"
                                        aria-invalid="false" placeholder="زن" required>
                                 زن
-                                @if ($errors->has('sex'))
+                                @if (old('type') == 3 && $errors->has('sex'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('sex') }}</strong>
@@ -679,10 +677,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="work_address" value="{{old('work_address')}}" size="40" aria-invalid="false"
+                                <input type="text" name="work_address" value="{{(old('type') == 3) ?old('work_address'):''}}" size="40" aria-invalid="false"
                                        placeholder="نشانی محل کار *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('work_address'))
+                                @if (old('type') == 3 && $errors->has('work_address'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('work_address') }}</strong>
@@ -690,10 +688,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="work_post" value="{{old('work_post')}}" size="40" aria-invalid="false"
+                                <input type="text" name="work_post" value="{{(old('type') == 3) ?old('work_post'):''}}" size="40" aria-invalid="false"
                                        placeholder="کد پستی محل کار *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('work_post'))
+                                @if (old('type') == 3 && $errors->has('work_post'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('work_post') }}</strong>
@@ -701,10 +699,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="home_address" value="{{old('home_address')}}" size="40" aria-invalid="false"
+                                <input type="text" name="home_address" value="{{(old('type') == 3) ?old('home_address'):''}}" size="40" aria-invalid="false"
                                        placeholder="نشانی منزل *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('home_address'))
+                                @if (old('type') == 3 && $errors->has('home_address'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('home_address') }}</strong>
@@ -712,10 +710,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="home_post" value="{{old('home_post')}}" size="40" aria-invalid="false"
+                                <input type="text" name="home_post" value="{{(old('type') == 3) ?old('home_post'):''}}" size="40" aria-invalid="false"
                                        placeholder="کد پستی منزل *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('home_post'))
+                                @if (old('type') == 3 && $errors->has('home_post'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('home_post') }}</strong>
@@ -723,10 +721,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="work_name" value="{{old('work_name')}}" size="40" aria-invalid="false"
+                                <input type="text" name="work_name" value="{{(old('type') == 3) ?old('work_name'):''}}" size="40" aria-invalid="false"
                                        placeholder="محل کار *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('work_name'))
+                                @if (old('type') == 3 && $errors->has('work_name'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('work_name') }}</strong>
@@ -735,13 +733,13 @@
                             </div>
                             <div class="input-form col-md-6 py-2 px-4">
                                 <label for="">انتخاب نشانی ارسال مراسلات : </label>
-                                <input type="radio" class="option-input" name="receive_place" value="0" size="40"
+                                <input type="radio" class="option-input" name="receive_place" value="منزل" size="40"
                                        aria-invalid="false" placeholder="مرد" required>
                                 منزل
-                                <input type="radio" class="option-input" name="receive_place" value="1" size="40"
+                                <input type="radio" class="option-input" name="receive_place" value="محل کار" size="40"
                                        aria-invalid="false" placeholder="زن" required>
                                 محل کار
-                                @if ($errors->has('receive_place'))
+                                @if (old('type') == 3 && $errors->has('receive_place'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('receive_place') }}</strong>
@@ -752,7 +750,7 @@
                                 <input type="password" name="password" value="" size="40" aria-invalid="false"
                                        placeholder="رمز عبور*" required>
                                 <img src="img/004-key.png" class="form-icon">
-                                @if ($errors->has('password'))
+                                @if (old('type') == 3 && $errors->has('password'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -798,17 +796,17 @@
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane fade" id="menu3">
+                    <div class="tab-pane {{(old('type') == 4) ? 'active':'fade'}}" id="menu3">
                         <h2 class=" font-22 text-medium text-black mt-5 mb-4"> فرم {{$memberships[3]->title}}
                         </h2>
                         <form class="sidebar-form-body row" action="{{route('register.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="type" value="{{$memberships[3]->id}}">
                             <div class="input-form col-md-6 ">
-                                <input type="text" name="name" value="{{old('name')}}" size="40" aria-invalid="false"
+                                <input type="text" name="name" value="{{(old('type') == 4) ?old('name'):''}}" size="40" aria-invalid="false"
                                        placeholder="نام و نام خانوادگی*" required>
                                 <img src="img/001-user.png" class="form-icon">
-                                @if ($errors->has('name'))
+                                @if (old('type') == 4 && $errors->has('name'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -817,10 +815,10 @@
 
                             </div>
                             <div class="input-form col-md-6 ">
-                                <input type="text" name="name_en" value="{{old('name_en')}}" size="40" aria-invalid="false"
+                                <input type="text" name="name_en" value="{{(old('type') == 4) ?old('name_en'):''}}" size="40" aria-invalid="false"
                                        placeholder="نام و نام خانوادگی انگلیسی*" required>
                                 <img src="img/001-user.png" class="form-icon">
-                                @if ($errors->has('name_en'))
+                                @if (old('type') == 4 && $errors->has('name_en'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('name_en') }}</strong>
@@ -829,10 +827,10 @@
 
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="father_name" value="{{old('father_name')}}" size="40" aria-invalid="false"
+                                <input type="text" name="father_name" value="{{(old('type') == 4) ?old('father_name'):''}}" size="40" aria-invalid="false"
                                        placeholder="نام پدر*" required>
                                 <img src="img/004-key.png" class="form-icon">
-                                @if ($errors->has('father_name'))
+                                @if (old('type') == 4 && $errors->has('father_name'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('father_name') }}</strong>
@@ -840,10 +838,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="national_code" value="{{old('national_code')}}" size="40" aria-invalid="false"
+                                <input type="text" name="national_code" value="{{(old('type') == 4) ?old('national_code'):''}}" size="40" aria-invalid="false"
                                        placeholder="کد ملی*" required>
                                 <img src="img/004-key.png" class="form-icon">
-                                @if ($errors->has('national_code'))
+                                @if (old('type') == 4 && $errors->has('national_code'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('national_code') }}</strong>
@@ -851,10 +849,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="mobile" value="{{old('mobile')}}" size="40" aria-invalid="false"
+                                <input type="text" name="mobile" value="{{(old('type') == 4) ?old('mobile'):''}}" size="40" aria-invalid="false"
                                        placeholder="شماره تماس*" required>
                                 <img src="img/002-telephone.png" class="form-icon">
-                                @if ($errors->has('mobile'))
+                                @if (old('type') == 4 && $errors->has('mobile'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('mobile') }}</strong>
@@ -862,10 +860,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="email" name="email" value="{{old('email')}}" size="40" aria-invalid="false"
+                                <input type="email" name="email" value="{{(old('type') == 4) ?old('email'):''}}" size="40" aria-invalid="false"
                                        placeholder="ایمیل*" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('email'))
+                                @if (old('type') == 4 && $errors->has('email'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -873,10 +871,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="certificate_number" value="{{old('certificate_number')}}" size="40" aria-invalid="false"
+                                <input type="text" name="certificate_number" value="{{(old('type') == 4) ?old('certificate_number'):''}}" size="40" aria-invalid="false"
                                        placeholder="شماره شناسنامه*" required>
                                 <img src="img/004-key.png" class="form-icon">
-                                @if ($errors->has('certificate_number'))
+                                @if (old('type') == 4 && $errors->has('certificate_number'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('certificate_number') }}</strong>
@@ -884,10 +882,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="birth_date" value="{{old('birth_date')}}" size="40" aria-invalid="false"
+                                <input type="text" name="birth_date" value="{{(old('type') == 4) ?old('birth_date'):''}}" size="40" aria-invalid="false"
                                        placeholder="تاریخ تولد*" required>
                                 <img src="img/001-user.png" class="form-icon">
-                                @if ($errors->has('birth_date'))
+                                @if (old('type') == 4 && $errors->has('birth_date'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('birth_date') }}</strong>
@@ -895,10 +893,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="birth_place" value="{{old('birth_place')}}" size="40" aria-invalid="false"
+                                <input type="text" name="birth_place" value="{{(old('type') == 4) ?old('birth_place'):''}}" size="40" aria-invalid="false"
                                        placeholder="محل تولد*" required>
                                 <img src="img/001-user.png" class="form-icon">
-                                @if ($errors->has('birth_place'))
+                                @if (old('type') == 4 && $errors->has('birth_place'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('birth_place') }}</strong>
@@ -913,7 +911,7 @@
                                 <input type="radio" class="option-input" name="sex" value="0" size="40"
                                        aria-invalid="false" placeholder="زن" required>
                                 زن
-                                @if ($errors->has('sex'))
+                                @if (old('type') == 4 && $errors->has('sex'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('sex') }}</strong>
@@ -921,10 +919,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="home_address" value="{{old('home_address')}}" size="40" aria-invalid="false"
+                                <input type="text" name="home_address" value="{{(old('type') == 4) ?old('home_address'):''}}" size="40" aria-invalid="false"
                                        placeholder="نشانی منزل *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('home_address'))
+                                @if (old('type') == 4 && $errors->has('home_address'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('home_address') }}</strong>
@@ -932,10 +930,10 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="home_post" value="{{old('home_post')}}" size="40" aria-invalid="false"
+                                <input type="text" name="home_post" value="{{(old('type') == 4) ?old('home_post'):''}}" size="40" aria-invalid="false"
                                        placeholder="کد پستی منزل *" required>
                                 <img src="img/003-envelope.png" class="form-icon">
-                                @if ($errors->has('home_post'))
+                                @if (old('type') == 4 && $errors->has('home_post'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('home_post') }}</strong>
@@ -946,7 +944,7 @@
                                 <input type="password" name="password" value="" size="40" aria-invalid="false"
                                        placeholder="رمز عبور*" required>
                                 <img src="img/004-key.png" class="form-icon">
-                                @if ($errors->has('password'))
+                                @if (old('type') == 4 && $errors->has('password'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('password') }}</strong>

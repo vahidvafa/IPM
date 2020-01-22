@@ -27,6 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\MembershipType whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\MembershipType whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MembershipType whereLangId($value)
  */
 class MembershipType extends Model
 {

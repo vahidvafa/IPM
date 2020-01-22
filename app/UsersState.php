@@ -33,6 +33,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\UsersState withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\UsersState withoutTrashed()
  * @mixin \Eloquent
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UsersState whereLangId($value)
  */
 class UsersState extends Model
 {

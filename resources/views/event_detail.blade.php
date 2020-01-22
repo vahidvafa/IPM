@@ -1,7 +1,4 @@
 @extends('master')
-@section('header')
-    @stop
-
 @section('content')
 <main id="content-page" role="main">
     <!-- calender main -->
@@ -129,4 +126,4 @@
 <script src="{{asset('js/all.js')}}"></script>
 <script src="{{asset('js/slick.min.js')}}"></script>
 
-@stop
+@endsection

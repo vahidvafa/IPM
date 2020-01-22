@@ -2,38 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Document;
-use App\Membership;
-use App\MembershipType;
-use App\PassedCourses;
-use App\Profile;
-use App\User;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\News;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Morilog\Jalali\Jalalian;
 
-class UserController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($slug)
+    public function index()
     {
-
-        //['word_experience','education','education'])->where('slug','=',$slug);
-        $user = User::with(['wordExperience', 'education', 'profile','documents'=>function(HasMany $doc){
-            $doc->where('state','=',0);
-        },'PassedCoursesCat'=>function(HasMany $relation){
-            $relation->with('PassedCourses')->get();
-        }])->where('slug', '=', $slug)->get();
-        $breadcrumb=$titleHeader="پروفایل";
-        if (count($user)!=0) {
-            $user=$user[0];
-            return view('profile', compact("user", "titleHeader", "breadcrumb"));
-        }else return view("404");
+        //
     }
 
     /**
@@ -60,21 +41,23 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param \App\News $news
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(News $news)
     {
-        //
+        $titleHeader = $news->title;
+        $breadcrumb = "اخبار";
+        return view('news_detail', compact('news','titleHeader','breadcrumb'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param \App\News $news
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(News $news)
     {
         //
     }
@@ -83,10 +66,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param \App\News $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, News $news)
     {
         //
     }
@@ -94,10 +77,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param \App\News $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(News $news)
     {
         //
     }
