@@ -1,0 +1,235 @@
+
+/*style of request and panel*/
+.main-panel{
+    /*background-image: linear-gradient(to left, #80b9ea , #26445f);*/
+/*linear-gradient(to left, #d0dfec , #b1a3ff);*/
+}
+body{
+    overflow-x: hidden !important;
+}
+/*******designer Added*************/
+/***dashboard Page***/
+.yourPlan .card-stats{
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.5) !important;
+}
+.yourPlan .card-icon{
+    padding: 0px !important;
+}
+.yourPlan .card-icon .material-icons{
+    font-size: 28px !important;
+    line-height: 52px !important;
+    width: 51px !important;
+    height: 51px !important;
+}
+.yourPlan .card-body span{
+    width: 140px;
+    display: inline-block;
+    color: #000;
+    font-size: 16px;
+}
+.yourPlan .card-body .material-icons{
+    vertical-align: sub;
+    font-size: 20px !important;
+    width: 25px !important;
+    color: #000;
+}
+.yourPlan .card-body{
+    padding-bottom: 0px !important;
+    padding-top: 1px !important;
+}
+.yourPlan .card-body ul{
+    padding-left: 0px !important;
+}
+.yourPlan .card-footer form{
+    display: block;
+    margin: 0 auto;
+}
+.pack-info .card-footer{
+    border-top: 1px solid #eeeeee !important;
+}
+.pack-info .link-input{
+    width: 180px !important;
+}
+
+.price-info .currency span{
+    font-size: 25px;
+    width: auto !important;
+}
+.price-input span{
+    width: 100% !important;
+}
+.add-feature{
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    cursor: pointer;
+}
+/****account Page******/
+.reg-request .Inventory{
+    background-color: #eee;
+    padding: 3px 8px;
+    font-size: 11px;
+    color: #666;
+    margin-top: 5px;
+}
+.request-table thead tr th{
+    color: #ff8142;
+}
+
+/*table*/
+.rwd-table {
+    margin: auto;
+    min-width: 300px;
+    max-width: 100%;
+    border-collapse: collapse;
+}
+
+
+.rwd-table tr {
+    border-top: 1px solid #ddd;
+
+}
+
+.rwd-table tr td .link{
+    color: #30aad7 !important;
+}
+
+.rwd-table th {
+    display: none;
+}
+
+.rwd-table td {
+    display: block;
+}
+
+.rwd-table td:first-child {
+    margin-top: .5em;
+}
+
+.rwd-table td:last-child {
+    margin-bottom: .5em;
+}
+
+.rwd-table td:before {
+    content: attr(data-th) ": ";
+    font-weight: bold;
+    width: 120px;
+    display: inline-block;
+    color: #000;
+}
+
+.rwd-table th,
+.rwd-table td {
+    text-align: left;
+}
+
+.rwd-table {
+    color: #333;
+    border-radius: .4em;
+    overflow: hidden;
+}
+
+.rwd-table tr {
+    border-color: #bfbfbf;
+}
+
+.rwd-table th,
+.rwd-table td {
+    padding: .5em 1em;
+}
+
+
+
+/* THE END OF THE IMPORTANT STUFF */
+
+/* Basic Styling */
+
+
+@-webkit-keyframes leftRight {
+    0%    { -webkit-transform: translateX(0)}
+    25%   { -webkit-transform: translateX(-10px)}
+    75%   { -webkit-transform: translateX(10px)}
+    100%  { -webkit-transform: translateX(0)}
+}
+@keyframes leftRight {
+    0%    { transform: translateX(0)}
+    25%   { transform: translateX(-10px)}
+    75%   { transform: translateX(10px)}
+    100%  { transform: translateX(0)}
+}
+.active_button {
+    background-color: #9c27b0;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+    display: block;
+    padding: 9px 11px;
+    margin-right: 15px;
+    margin-left: 12px;
+    border-radius: 3px;
+    width: 89%;
+    color: #fff;
+    border-color: #9c27b0;
+}
+.nav li.active > a {
+    background-color: #ff9800 !important;
+}
+
+/*craete*/
+.ticket-msg{
+    border: 1px solid #cecccc;
+    background-image: none !important;
+    transition: all 2ms ease-out;
+}
+.ticket-msg:focus{
+    box-shadow: 0px 0px 2px #9c27b0 !important;
+}
+.renge{
+    width: 100%;
+    background-color: #4caf50;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    height: 32px;
+}
+
+/*****responsive******/
+@media screen and (max-width: 601px) {
+    .rwd-table tr:nth-child(2) {
+        border-top: none;
+    }
+}
+
+@media screen and (min-width: 927px) {
+    /*.rwd-table tr:hover:not(:first-child) {*/
+    /*background-color: #d8e7f3;*/
+    /*}*/
+    .rwd-table td:before {
+        display: none;
+    }
+    .rwd-table th,
+    .rwd-table td {
+        display: table-cell;
+        padding: .25em .5em;
+    }
+    .rwd-table th:first-child,
+    .rwd-table td:first-child {
+        padding-left: 0;
+    }
+    .rwd-table th:last-child,
+    .rwd-table td:last-child {
+        padding-right: 0;
+    }
+    .rwd-table th,
+    .rwd-table td {
+        padding: 1em !important;
+    }
+
+}
+@media screen and (max-width: 480px) {
+
+    .yourPlan .card-body span{
+        margin-bottom: 10px;
+    }
+    .price-info .card-body span{
+        font-size: 18px;
+    }
+}

@@ -25,3 +25,4 @@ Route::get('404',function (){
 Route::post('/login','AuthController@postLogin');
 Route::get('about-us','IndexController@about_us')->name('about-us');
 Route::get('news/{news}','NewsController@show')->name('news.show');
+Route::get('news/','NewsController@index')->name('news.index');

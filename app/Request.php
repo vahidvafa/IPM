@@ -37,4 +37,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Request extends Model
 {
     use SoftDeletes;
+
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
+    }
 }

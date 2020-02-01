@@ -47,4 +47,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Job extends Model
 {
     use SoftDeletes;
+
+    protected $fillable = ['content', 'min_salary', 'max_salary', 'province_id', 'category_id_id'];
+
+    protected static function boot()
+    {
+        parent::boot();
+        self::deleting(function ($job) {
+            $job->requests->delete();
+        });
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function requests()
+    {
+        return $this->hasMany(Request::class);
+    }
 }

@@ -133,6 +133,8 @@ class User extends Authenticatable
         return $this->hasMany(PassedCoursesCategory::class);
     }
 
-
-
+    public function jobs()
+    {
+        return $this->hasMany(Job::Class);
+    }
 }

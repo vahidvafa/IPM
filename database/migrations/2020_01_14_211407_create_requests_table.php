@@ -17,7 +17,6 @@ class CreateRequestsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('job_id');
             $table->bigInteger('user_id');
-            $table->text('resume_url');
             $table->tinyInteger('state')->default(0);
             $table->timestamps();
             $table->softDeletes();

@@ -16,10 +16,14 @@ class CreateJobsTable extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
+            $table->string('title');
             $table->text('content');
             $table->bigInteger('min_salary');
             $table->bigInteger('max_salary');
-            $table->bigInteger('expire');
+            $table->string('education')->nullable();
+            $table->string('location')->nullable();
+            $table->string('type')->nullable();
+//            $table->bigInteger('expire');
             $table->bigInteger('province_id');
             $table->bigInteger('category_id');
             $table->tinyInteger('state')->default(0);
