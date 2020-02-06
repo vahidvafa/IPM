@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class IPASeeder extends Seeder
+class VisibiliySeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -18,6 +18,13 @@ class NewsController extends Controller
         return  view('cms.news.index', compact('news'));
     }
 
+    public function indexWeb(){
+        $titleHeader = "تمام اخبار";
+        $breadcrumb = "اخبار";
+        $news = News::latest()->paginate(15);
+        return  view('news', compact('news','titleHeader',"breadcrumb"));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

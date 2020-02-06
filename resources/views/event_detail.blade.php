@@ -1,4 +1,5 @@
 @extends('master')
+
 @section('content')
 <main id="content-page" role="main">
     <!-- calender main -->
@@ -6,14 +7,7 @@
         <div class="detail-main mt-5 mb-5">
             <div class="row">
                 <div class="col-lg-9">
-                        <div class="card img-top-detail" >
-                            <img class="card-img-top" src="{{asset("img/events/$event->photo")}}" alt="Card image">
-                            <div class="card-body">
-                                <h4 class="card-title text-white m-0">{{$event->title}}</h4>
 
-
-                            </div>
-                        </div>
                     <div class="text-detail mt-4">
                         <h2 class=" font-24 text-medium text-black  mb-4">توضیحات دوره
                         </h2>
@@ -47,7 +41,7 @@
                         </ul>--}}
                     </div>
                     <div class="address-detail mt-4">
-                        <h2 class=" font-24 text-medium text-black  mb-4">اطلاعات برگذاری
+                        <h2 class=" font-24 text-medium text-black  mb-4">اطلاعات برگزاری
                         </h2>
                         <p class=" text-black-light font-16 ">
                             ادرس: {{$event->address}}
@@ -61,34 +55,28 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="bar-detail pt-4 pb-4 pr-3 pl-3">
+                        <img class="card-img-top" src="{{asset("img/events/$event->photo")}}" alt="Card image"style="margin-bottom: 20px" >
                         <h2 class="title-bar-detail text-white font-18 text-medium mb-4">زمانبندی دوره</h2>
+
                         <ul class="list-detail-in">
                             {{--$table->string('from_date');
             $table->string('to_date');
             $table->string('start_register_date');--}}
-                            <li><span class="text-black pr-1 text-regular ">شروع ثبت نام : </span><span dir="ltr" class="text-red">{{jdate($event->start_register_date)}}</span></li>
-                            <li><span class="text-black pr-1 text-regular">شروع دوره : </span><span dir="ltr" class="text-black-light">{{jdate($event->from_date)}}</span></li>
-                            <li ><span class="text-black pr-1 text-regular">پایان دوره : </span><span dir="ltr" class="text-black-light">{{jdate($event->to_date)}}</span></li>
+                            <li><span class="text-black pr-1 text-regular "  >شروع ثبت نام : </span><span dir="ltr" class="text-red">{{explode(" ",jdate($event->start_register_date))[0]}}</span></li>
+                            <li><span class="text-black pr-1 text-regular" style="margin-top: -20px;margin-bottom: -20px" > شروع دوره : </span><span dir="ltr" class="text-black-light">{{explode(" ",jdate($event->from_date))[0]}}</span></li>
+                            <li ><span class="text-black pr-1 text-regular">مدت دوره: </span><span  class="text-black-light">۶ ساعت - ۲ روز </span></li>
 
                         </ul>
-                        <h2 class="title-bar-detail text-white font-18 text-medium mb-4">جزییات دوره</h2>
+                        <h2 class="title-bar-detail text-white font-18 text-medium mb-4">اطلاعات ثبت نام</h2>
 
                         <ul class="list-detail-in">
-                            {!! $event->detail  !!}
+                            <li ><span class="text-black pr-1 text-regular">مخاطبین  : </span><span class="text-black-light">متن تصادفی</span></li>
+                            <li ><span class="text-black pr-1 text-regular">مدرس : </span><span class="text-black-light">متن تصادفی</span></li>
+                            <li ><span class="text-black pr-1 text-regular">سرمایه گذاری : </span><span class="text-black-light">3,000 تومان</span></li>
                         </ul>
 
-                        <a href="/" class="btn btn-bar-detail mt-3 mb-4">میخواهم شرکت کنم</a>
-                        <div class="d-flex justify-content-end mt-2">
-                            <a href="/" class="ml-2">
-                                <img src="{{asset('img/save.png')}}" alt="..">
-                            </a>
-                            <a href="/" class="ml-2">
-                                <img src="{{asset('img/print.png')}}" alt="..">
-                            </a>
-                            <a href="/" class="ml-2">
-                                <img src="{{asset('img/pdf.png')}}" alt="..">
-                            </a>
-                        </div>
+                        <a href="/" class="btn btn-bar-detail mt-3 mb-4">ثبت نام</a>
+
                     </div>
                     <div class="bar-detail pt-4 pb-4 pr-3 pl-3 mt-4">
                         <h2 class="title-bar-detail text-white font-18 text-medium mb-4">دوره های مرتبط</h2>
@@ -96,7 +84,7 @@
                         <div class="Related-post row mb-4 pr-3 pr-lg-0 pl-3 pl-lg-0">
                             <div class="col-12 col-sm-3 col-md-2 col-lg-5 col-xl-4">
                                 <div class="Related-post-img ">
-                                    <img class="rounded" src="{{asset("img/events/$similar->photo")}}" alt="">
+                                     <img class="rounded" src="{{asset("img/events/$similar->photo")}}" alt="">
                                 </div>
                             </div>
                             <div class="Related-post-titles pl-0 col-12 col-sm-9 col-md-10 col-lg-7 col-xl-8 mt-2 mt-sm-0">
@@ -119,11 +107,4 @@
     </div>
 
 </main>
-
-<script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
-<script src="{{asset('js/popper.min.js')}}"></script>
-<script type='text/javascript' src="{{asset('js/bootstrap.min.js')}}"></script>
-<script src="{{asset('js/all.js')}}"></script>
-<script src="{{asset('js/slick.min.js')}}"></script>
-
 @endsection

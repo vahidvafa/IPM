@@ -241,10 +241,10 @@
                             </div>
                             <div class="input-form col-md-6 py-2 px-4">
                                 <label for="">انتخاب نشانی ارسال مراسلات : </label>
-                                <input type="radio" class="option-input" name="receive_place" value="منزل" size="40"
+                                <input type="radio" class="option-input" name="receive_place" value="0" size="40"
                                        aria-invalid="false" placeholder="مرد" required>
                                 منزل
-                                <input type="radio" class="option-input" name="receive_place" value="محل کار" size="40"
+                                <input type="radio" class="option-input" name="receive_place" value="1" size="40"
                                        aria-invalid="false" placeholder="زن" required>
                                 محل کار
                                 @if (old('type') == 1 && $errors->has('receive_place'))
