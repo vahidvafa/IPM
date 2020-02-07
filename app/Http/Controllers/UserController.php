@@ -49,21 +49,13 @@ class UserController extends Controller
 
             $profileVisible = Profile::where('id', '=', $user->id)->get($fields)[0];
             $profileVisible = json_decode($profileVisible, true);
-//            echo ($profileVisible);
-//            echo "<br>";
-//            echo "<br>";
-//            echo json_encode($FieldsInClass);
-//            exit();
 
-            foreach ($profileVisible as $keyVisible => $valueVisible) {
-                foreach ($FieldsInClass as $key => $value) {
-                    if ($keyVisible == $key) {
 
+            foreach ($profileVisible as $keyVisible => $valueVisible)
+                foreach ($FieldsInClass as $key => $value)
+                    if ($keyVisible == $key)
                         $profileVisible["$keyVisible"] = $value . " " . $valueVisible;
-                    }
-                }
 
-            }
 
             $titleHeader = $user->name;
 
