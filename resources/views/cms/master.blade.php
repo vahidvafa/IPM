@@ -16,7 +16,8 @@
     <link href="{{ asset('material/css/material-dashboard-rtl.css?v=1.1') }}" rel="stylesheet"/>
     <link href="{{ asset('material/css/main.css') }}" rel="stylesheet"/>
 
-    <script type="text/javascript" src="{{URL::to('js/p.js')}}"></script>
+{{--    <script type="text/javascript" src="{{URL::to('js/p.js')}}"></script>--}}
+{{--    <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>--}}
     <meta name="csrf-token" content="{{ Session::token() }}">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <style> body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
@@ -188,7 +189,7 @@
         </nav>
         <div class="content">
             <div class="container-fluid">
-{{--                @include('flash-message')--}}
+                @include('cms.flash-message')
                 @yield('content')
             </div>
         </div>

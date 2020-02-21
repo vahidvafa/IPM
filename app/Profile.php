@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Profile
@@ -81,8 +82,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Profile extends Model
 {
-    protected $fillable = ['sex', 'father_name','certificate_number','birth_date','birth_place','national_code','work_name','work_address','home_address','work_post','home_post','work_tel','home_tel','receive_place'
-    ,'established_date','established_place','established_number','economy_number','national_number','post_number','ownership_type','legal_type','address','ceo_name','ceo_name_en','ceo_picture','agent_name','agent_name_en','agent_name_en','agent_picture','lang_id'
+    use SoftDeletes;
+    protected $fillable = ['sex', 'father_name', 'certificate_number', 'birth_date', 'birth_place', 'national_code', 'work_name', 'work_address', 'home_address', 'work_post', 'home_post', 'work_tel', 'home_tel', 'receive_place'
+        , 'established_date', 'established_place', 'established_number', 'economy_number', 'national_number', 'post_number', 'ownership_type', 'legal_type', 'address', 'ceo_name', 'ceo_name_en', 'ceo_picture', 'agent_name', 'agent_name_en', 'agent_name_en', 'agent_picture', 'lang_id'
     ];
 
     public function user()

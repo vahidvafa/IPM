@@ -10,6 +10,8 @@ use App\Membership;
 use App\MembershipType;
 use App\Profile;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\Console\Input\Input;
+use Validator;
 
 class AuthController extends Controller
 {
@@ -18,98 +20,103 @@ class AuthController extends Controller
         $memberships = MembershipType::all();
         $titleHeader = "ثبت نام ";
         $breadcrumb = "عضویت";
-        return view('register', compact('memberships', 'titleHeader', 'breadcrumb'));
+        $type = 0;
+        return view('register', compact('memberships', 'titleHeader', 'breadcrumb', 'type'));
     }
 
     public function postRegister(Request $request)
     {
         $messages = [
             '*.required' => 'وارد کردن این فیلد الزامی است',
-            'password.min'=> 'رمز عبور باید حداقل 8 کاراکتر باشد',
-            'password.confirmed'=> 'تایید رمز عبور اشتباه است',
+            'password.min' => 'رمز عبور باید حداقل 8 کاراکتر باشد',
+            'password.confirmed' => 'تایید رمز عبور اشتباه است',
             'email.unique' => 'این ایمیل قبلا ثبت شده است',
             'mobile.unique' => 'این شماره موبایل قبلا ثبت شده است',
-            'established_number.unique' => 'این شماره ثبت قبلا ثبت شده است',
-            'economy_number.unique' => 'این شماره اقتصادی قبلا ثبت شده است',
-            'national_number.unique' => 'این شناسه ملی قبلا ثبت شده است',
+            'company.established_number.unique' => 'این شماره ثبت قبلا ثبت شده است',
+            'company.economy_number.unique' => 'این شماره اقتصادی قبلا ثبت شده است',
+            'company.national_number.unique' => 'این شناسه ملی قبلا ثبت شده است',
         ];
         switch ($request->get('type')) {
             case (1):
             case (3):
-                $this->validate($request,
-                    [
-                        'name' => ['required', 'string', 'max:255'],
-                        'name_en' => ['required', 'string', 'max:255'],
-                        'father_name' => ['required', 'string', 'max:255'],
-                        'national_code' => ['required', 'string', 'max:255'],
-                        'mobile' => ['required', 'string', 'unique:users'],
-                        'certificate_number' => ['required', 'string'],
-                        'birth_date' => ['required', 'string'],
-                        'birth_place' => ['required', 'string'],
-                        'sex' => ['required'],
-                        'work_address' => ['required', 'string'],
-                        'home_address' => ['required', 'string'],
-                        'home_post' => ['required', 'string'],
-                        'work_name' => ['required', 'string'],
-                        'receive_place' => ['required', 'string'],
-                        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                        'password' => ['required', 'string', 'min:8', 'confirmed'],
-                    ], $messages);
+                $validator = Validator::make($request->all(), [
+                    'first_name' => ['bail', 'required', 'string', 'max:255'],
+                    'last_name' => ['bail', 'required', 'string', 'max:255'],
+                    'name_en' => ['bail', 'required', 'string', 'max:255'],
+                    'father_name' => ['bail', 'required', 'string', 'max:255'],
+                    'national_code' => ['bail', 'required', 'string', 'max:255'],
+                    'mobile' => ['bail', 'required', 'string', 'unique:users'],
+                    'certificate_number' => ['bail', 'required', 'string'],
+                    'birth_date' => ['bail', 'required', 'string'],
+                    'birth_place' => ['bail', 'required', 'string'],
+                    'sex' => ['bail', 'required'],
+                    'work_address' => ['bail', 'required', 'string'],
+                    'home_address' => ['bail', 'required', 'string'],
+                    'home_post' => ['bail', 'required', 'string'],
+                    'work_name' => ['bail', 'required', 'string'],
+                    'receive_place' => ['bail', 'required', 'string'],
+                    'email' => ['bail', 'required', 'string', 'email', 'max:255', 'unique:users'],
+                    'password' => ['bail', 'required', 'string', 'min:8', 'confirmed'],
+                ], $messages);
                 break;
             case 2:
-                $this->validate($request,
-                    [
-                        'name' => ['required', 'string', 'max:255'],
-                        'name_en' => ['required', 'string', 'max:255'],
-                        'established_date' => ['required', 'string', 'max:255'],
-                        'established_number' => ['required', 'string', 'max:255', 'unique:profiles'],
-                        'economy_number' => ['required', 'string', 'unique:profiles'],
-                        'national_number' => ['required', 'string', 'unique:profiles'],
-                        'post_number' => ['required', 'string'],
-                        'ownership_type' => ['required', 'string'],
-                        'legal_type' => ['required', 'string'],
-                        'address' => ['required', 'string'],
-                        'ceo_name' => ['required', 'string'],
-                        'ceo_name_en' => ['required', 'string'],
-                        'agent_name' => ['required', 'string'],
-                        'agent_name_en' => ['required', 'string'],
-                        'receive_place' => ['required', 'string'],
-                        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                        'password' => ['required', 'string', 'min:8', 'confirmed'],
-                    ], $messages);
+
+                $validator = Validator::make($request->all(), [
+                    'first_name' => ['bail', 'required', 'string', 'max:255'],
+                    'last_name' => ['bail', 'required', 'string', 'max:255'],
+                    'name_en' => ['bail', 'required', 'string', 'max:255'],
+                    'father_name' => ['bail', 'required', 'string', 'max:255'],
+                    'national_code' => ['bail', 'required', 'string', 'max:255'],
+                    'mobile' => ['bail', 'required', 'string', 'unique:users'],
+                    'certificate_number' => ['bail', 'required', 'string'],
+                    'birth_date' => ['bail', 'required', 'string'],
+                    'birth_place' => ['bail', 'required', 'string'],
+                    'sex' => ['bail', 'required'],
+                    'home_address' => ['bail', 'required', 'string'],
+                    'home_post' => ['bail', 'required', 'string'],
+                    'email' => ['bail', 'required', 'string', 'email', 'max:255', 'unique:users'],
+                    'company.name' => ['bail', 'required', 'string', 'max:255'],
+                    'company.established_date' => ['bail', 'required', 'string', 'max:255'],
+                    'company.established_number' => ['bail', 'required', 'string', 'max:255', 'unique:companies,established_number'],
+                    'company.economy_number' => ['bail', 'required', 'string', 'unique:companies,economy_number'],
+                    'company.national_number' => ['bail', 'required', 'string', 'unique:companies,national_number'],
+                    'company.post_number' => ['bail', 'required', 'string'],
+                    'company.ownership_type' => ['bail', 'required', 'string'],
+                    'company.legal_type' => ['bail', 'required', 'string'],
+                    'company.address' => ['bail', 'required', 'string'],
+                    'company.ceo_name' => ['bail', 'required', 'string'],
+                    'company.ceo_name_en' => ['bail', 'required', 'string'],
+                    'password' => ['bail', 'required', 'string', 'min:8', 'confirmed'],
+                ], $messages);
                 break;
             case 4:
-                if ($request->has('main')){
-                    $this->validate($request,
-                        [
-                            'name' => ['required', 'string', 'max:255'],
-                            'name_en' => ['required', 'string', 'max:255'],
-                            'national_code' => ['required', 'string', 'max:255'],
-                            'mobile' => ['required', 'string', 'unique:users'],
-                            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                            'password' => ['required', 'string', 'min:8'],
-                        ], $messages);
-                }else{
-                    $this->validate($request,
-                        [
-                            'name' => ['required', 'string', 'max:255'],
-                            'name_en' => ['required', 'string', 'max:255'],
-                            'father_name' => ['required', 'string', 'max:255'],
-                            'national_code' => ['required', 'string', 'max:255'],
-                            'mobile' => ['required', 'string', 'unique:users'],
-                            'certificate_number' => ['required', 'string'],
-                            'birth_date' => ['required', 'string'],
-                            'birth_place' => ['required', 'string'],
-                            'sex' => ['required'],
-                            'home_address' => ['required', 'string'],
-                            'home_post' => ['required', 'string'],
-                            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                            'password' => ['required', 'string', 'min:8', 'confirmed'],
-                        ], $messages);
-                }
+                $validator = Validator::make($request->all(), [
+                    'first_name' => ['bail', 'required', 'string', 'max:255'],
+                    'last_name' => ['bail', 'required', 'string', 'max:255'],
+                    'name_en' => ['bail', 'required', 'string', 'max:255'],
+                    'father_name' => ['bail', 'required', 'string', 'max:255'],
+                    'national_code' => ['bail', 'required', 'string', 'max:255'],
+                    'mobile' => ['bail', 'required', 'string', 'unique:users'],
+                    'certificate_number' => ['bail', 'required', 'string'],
+                    'birth_date' => ['bail', 'required', 'string'],
+                    'birth_place' => ['bail', 'required', 'string'],
+                    'sex' => ['bail', 'required'],
+                    'home_address' => ['bail', 'required', 'string'],
+                    'home_post' => ['bail', 'required', 'string'],
+                    'email' => ['bail', 'required', 'string', 'email', 'max:255', 'unique:users'],
+                    'password' => ['bail', 'required', 'string', 'min:8', 'confirmed'],
+                ], $messages);
                 break;
         }
-
+//
+        if ($validator->fails()) {
+            \Session::flash('type', $request->get('type'));
+//            foreach ($validator->errors()->messages() as $key => $value) {
+//                \Session::put('error-'.$key, $value[0]);
+//            }
+            return redirect()->back()->withErrors($validator);
+        }
+        dd(1);
         $slug = str_replace(' ', '-', $request->get('name_en'));
         $number = 1;
         while (User::whereSlug($slug)->exists()) {
@@ -123,7 +130,8 @@ class AuthController extends Controller
         $userCode = $date . '-' . $userCode;
         $user = new User(
             [
-                'name' => $request->get('name'),
+                'first_name' => $request->get('first_name'),
+                'last_name' => $request->get('last_name'),
                 'mobile' => $request->get('mobile'),
                 'email' => $request->get('email'),
                 'password' => Hash::make($request->get('password')),

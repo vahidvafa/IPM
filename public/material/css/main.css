@@ -21,18 +21,18 @@ body{
     width: 51px !important;
     height: 51px !important;
 }
-.yourPlan .card-body span{
-    width: 140px;
-    display: inline-block;
-    color: #000;
-    font-size: 16px;
-}
-.yourPlan .card-body .material-icons{
-    vertical-align: sub;
-    font-size: 20px !important;
-    width: 25px !important;
-    color: #000;
-}
+/*.yourPlan .card-body span{*/
+/*    width: 140px;*/
+/*    display: inline-block;*/
+/*    color: #000;*/
+/*    font-size: 16px;*/
+/*}*/
+/*.yourPlan .card-body .material-icons{*/
+/*    vertical-align: sub;*/
+/*    font-size: 20px !important;*/
+/*    width: 25px !important;*/
+/*    color: #000;*/
+/*}*/
 .yourPlan .card-body{
     padding-bottom: 0px !important;
     padding-top: 1px !important;

@@ -36,23 +36,9 @@ class CreateProfilesTable extends Migration
             $table->text("telegram")->nullable();
             $table->text("twitter")->nullable();
             //-------------------------------------
-            $table->string('established_date')->nullable();
-            $table->string('established_place')->nullable();
-            $table->string('established_number')->nullable();
-            $table->string('economy_number')->nullable();
-            $table->string('national_number')->nullable();
-            $table->string('post_number')->nullable();
-            $table->string('ownership_type')->nullable();
-            $table->string('legal_type')->nullable();
-            $table->string('address')->nullable();
-            $table->string('ceo_name')->nullable();
-            $table->string('ceo_name_en')->nullable();
-            $table->text('ceo_picture')->nullable();
-            $table->string('agent_name')->nullable();
-            $table->string('agent_name_en')->nullable();
-            $table->text('agent_picture')->nullable();
             $table->tinyInteger('lang_id',false,true)->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

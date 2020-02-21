@@ -17,10 +17,12 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    $name = $faker->name;
+    $firstName = $faker->firstName;
+    $lastName = $faker->lastName;
     return [
-        'name' => $name,
-        'slug' => str_replace(' ','-',$name),
+        'first_name' => $firstName,
+        'last_name' => $lastName,
+        'slug' => str_replace(' ','-',$firstName.' '.$lastName),
         'user_code' => $faker->unique()->randomDigit,
         'mobile' => $faker->phoneNumber,
         'email' => $faker->unique()->safeEmail,

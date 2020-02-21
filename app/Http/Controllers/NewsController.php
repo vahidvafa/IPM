@@ -15,7 +15,7 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::latest()->paginate(10);
-        return  view('cms.news.index', compact('news'));
+        return view('cms.news.index', compact('news'));
     }
 
     /**
@@ -25,7 +25,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('cms.news.create');
     }
 
     /**
@@ -36,7 +36,24 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            "title" => "required",
+            "description" => "required",
+            "detail" => "required",
+            "image" => "required|image",
+        ], ['*.required' => 'وارد کردن این فیلد الزامی است']);
+        try {
+            $news = new News($request->all());
+            $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path('/img/news'), $imageName);
+            $news->photo = $imageName;
+            $news->save();
+            flash_message('success', 'موفقیت ثبت شد');
+            return redirect()->route('news.index');
+        } catch (\Exception $exception) {
+            flash_message('error', 'سیستم با مشکل مواجه شد');
+            return back()->withInput($request->all());
+        }
     }
 
     /**
@@ -49,7 +66,7 @@ class NewsController extends Controller
     {
         $titleHeader = $news->title;
         $breadcrumb = "اخبار";
-        return view('news_detail', compact('news','titleHeader','breadcrumb'));
+        return view('news_detail', compact('news', 'titleHeader', 'breadcrumb'));
     }
 
     /**
@@ -60,7 +77,7 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        //
+        return view('cms.news.edit',compact('news'));
     }
 
     /**
@@ -72,7 +89,25 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
-        //
+        $this->validate($request, [
+            "title" => "required",
+            "description" => "required",
+            "detail" => "required",
+        ], ['*.required' => 'وارد کردن این فیلد الزامی است']);
+        try {
+            $news->update($request->all());
+            if ($request->has('image')) {
+                $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+                $request->file('image')->move(public_path('/img/news'), $imageName);
+                $news->photo = $imageName;
+                $news->save();
+            }
+            flash_message('success', 'موفقیت ویرایش شد');
+            return redirect()->route('news.index');
+        } catch (\Exception $exception) {
+            flash_message('error', 'سیستم با مشکل مواجه شد');
+            return back();
+        }
     }
 
     /**
@@ -83,6 +118,12 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        //
+        try{
+            $news->delete();
+            flash_message('success', 'موفقیت حذف شد');
+        }catch (\Exception $exception){
+            flash_message('error', 'سیستم با مشکل مواجه شد');
+        }
+        return back();
     }
 }
