@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class GoldenEventSeeder extends Seeder
+class IPMASeeder extends Seeder
 {
     /**
      * Run the database seeds.

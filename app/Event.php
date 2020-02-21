@@ -72,8 +72,4 @@ class Event extends Model
         return $this->belongsTo(EventCategory::class);
     }
 
-
-    public function goldenEvent(){
-        return $this->belongsTo(GoldenEvent::class);
-    }
 }

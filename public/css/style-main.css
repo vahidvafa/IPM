@@ -1561,3 +1561,15 @@ click-wave { 0% {
     -moz-box-shadow: 0 15px 38px 0 rgba(0,0,0,0.1);
     box-shadow: 0 15px 38px 0 rgba(0,0,0,0.1);
     }
+
+.center-y{
+    margin-left: auto;
+    margin-right: auto;
+}
+.center-x{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.center{
+    margin: auto;
+}

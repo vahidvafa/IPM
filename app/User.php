@@ -137,4 +137,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Job::Class);
     }
+
+    public function visibilities()
+    {
+        return $this->hasMany(visibiliy::Class);
+    }
 }

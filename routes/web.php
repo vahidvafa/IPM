@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'IndexController@index')->name('main');
 Route::get('/register', 'AuthController@register')->name('register');
-Route::group(['middleware' => ['web']], function () {
-    Route::post('/register/store', 'AuthController@postRegister')->name('register.store');
-});
+Route::post('/register/store', 'AuthController@postRegister')->name('register.store');
 Route::get('/event/{id}', 'EventController@index')->name("event");
 Route::get('/profile/{slug}', 'UserController@index')->name("profile");
 Route::get('404', function () {
@@ -36,3 +34,6 @@ Route::prefix('/cms/')->group(function (){
     Route::post('news/{news}/delete', 'NewsController@destroy')->name('news.delete');
     Route::post('news/{news}/update', 'NewsController@update')->name('news.update');
 });
+
+Route::get('logout','UserController@logout')->name('logout');
+Route::get('news','NewsController@indexWeb')->name('news');

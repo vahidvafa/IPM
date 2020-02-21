@@ -67,7 +67,7 @@
             </div>
 
         </div>
-        <div class="history-about pt-5 pb-5">
+        <div class="history-about pt-5 pb-5" id="history">
             <div class="container">
                 <div class="row">
                     <div class="col-12 ">
@@ -112,7 +112,7 @@
                 </div>
             </div>
         </div>
-        <div class="backImg-about pt-5 pb-5">
+        <div class="backImg-about pt-5 pb-5" id="creator">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-9 pt-5 pb-5">

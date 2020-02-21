@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use App\GoldenEvent;
+use App\IPMA;
 use App\MembershipType;
 use App\News;
 use Illuminate\Http\Request;
@@ -17,10 +17,11 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $events = Event::latest()->limit(6)->get(['id', 'photo', 'title', 'description', 'from_date']);
+        $events = Event::latest()->limit(4)->get(['id', 'photo', 'title', 'description', 'from_date']);
         $news = News::latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
-//        $golenEvent = GoldenEvent::all()->get();
-        return view('index', compact('events', 'news'));
+        $ipma = IPMA::get()[0];
+
+        return view('index', compact('events', 'news','ipma'));
     }
 
     /**

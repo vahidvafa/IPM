@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGoldenEventsTable extends Migration
+class CreateVisibiliysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateGoldenEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('golden_events', function (Blueprint $table) {
+        Schema::create('visibiliys', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('event_id');
-            $table->text('title');
-            $table->text('sub_title');
-            $table->text('description');
+            $table->bigInteger("user_id");
+            $table->string("profile_fields");
+            $table->tinyInteger("status")->default(1)->comment("0=>deactive | 1=>active");
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateGoldenEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('golden_events');
+        Schema::dropIfExists('visibiliys');
     }
 }

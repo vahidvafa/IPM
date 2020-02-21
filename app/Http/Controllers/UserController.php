@@ -8,10 +8,13 @@ use App\MembershipType;
 use App\PassedCourses;
 use App\Profile;
 use App\User;
+use App\Utils\UserProFields;
+use App\visibiliy;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Morilog\Jalali\Jalalian;
+use PhpParser\Node\Stmt\Break_;
 
 class UserController extends Controller
 {
@@ -23,17 +26,41 @@ class UserController extends Controller
     public function index($slug)
     {
 
-        //['word_experience','education','education'])->where('slug','=',$slug);
-        $user = User::with(['wordExperience', 'education', 'profile','documents'=>function(HasMany $doc){
-            $doc->where('state','=',0);
-        },'PassedCoursesCat'=>function(HasMany $relation){
+        $FieldsInClass = new UserProFields();
+
+        $FieldsInClass = $FieldsInClass->asArray();
+
+        $user = User::with(['wordExperience', 'education', 'profile', 'documents' => function (HasMany $doc) {
+            $doc->where('state', '=', 0);
+        }, 'PassedCoursesCat' => function (HasMany $relation) {
             $relation->with('PassedCourses')->get();
         }])->where('slug', '=', $slug)->get();
-        $breadcrumb=$titleHeader="پروفایل";
-        if (count($user)!=0) {
-            $user=$user[0];
-            return view('profile', compact("user", "titleHeader", "breadcrumb"));
-        }else return view("404");
+
+        $breadcrumb = "پروفایل";
+
+
+        if (count($user) != 0) {
+            $user = $user[0];
+            $others_visibles = visibiliy::where("user_id", '=', "$user->id")->get();
+
+            $fields = array();
+            foreach ($others_visibles as $field)
+                array_push($fields, $field->profile_fields);
+
+            $profileVisible = Profile::where('id', '=', $user->id)->get($fields)[0];
+            $profileVisible = json_decode($profileVisible, true);
+
+
+            foreach ($profileVisible as $keyVisible => $valueVisible)
+                foreach ($FieldsInClass as $key => $value)
+                    if ($keyVisible == $key)
+                        $profileVisible["$keyVisible"] = $value . " " . $valueVisible;
+
+
+            $titleHeader = $user->name;
+
+            return view('profile', compact("user", "titleHeader", "breadcrumb", 'profileVisible'));
+        } else return view("404");
     }
 
     /**
@@ -101,4 +128,12 @@ class UserController extends Controller
     {
         //
     }
+
+    public function logout()
+    {
+        auth()->logout();
+        return redirect()->route("main");
+    }
+
+
 }

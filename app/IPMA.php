@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class IPA extends Model
+class IPMA extends Model
 {
     //
 }

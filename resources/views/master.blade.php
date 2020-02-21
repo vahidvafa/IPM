@@ -20,14 +20,14 @@
     @yield('header')
 
 </head>
-<body>
+<body style="overflow-x: hidden;">
 <header id="header">
     <div class="header-top-bar back-dark-violet pt-3 pb-3">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <img src="{{asset('img/logo.png')}}" alt="انجمن مدیریت پروژه">
-                    <h1 class="text-white d-inline-block font-18 text-regular ml-2">انجمن مدیریت پروژه ایران</h1>
+                    <h1 class="text-white d-inline-block font-18 text-regular ml-2" style="font-weight: bold;font-size: 27px;" >انجمن مدیریت پروژه ایران</h1>
                 </div>
                 <div class="col-md-6 text-right">
                     <img src="{{asset('img/ipma-logo.png')}}" alt="انجمن مدیریت پروژه">
@@ -80,18 +80,29 @@
                                 <li class="nav-item active">
                                     <a class="nav-link " href="{{route('main')}}">صفحه اول</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{route('about-us')}}">درباره انجمن</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
+                                    >درباره انجمن</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{route('about-us')}}#history">تاریخچه</a>
+                                        <a class="dropdown-item" href="{{route('about-us')}}#target">اهداف و نقشه راهبردی</a>
+                                        <a class="dropdown-item" href="{{route('about-us')}}#creator">موسسین</a>
+                                        <a class="dropdown-item" href="{{route('about-us')}}#board-of-directors">هیات مدیره</a>
+                                        <a class="dropdown-item" href="{{route('about-us')}}#chart">چارت سازمانی</a>
+                                        <div class="dropdown-divider">برای دانلود</div>
+                                        <a class="dropdown-item" href="#">اسناد مرجع</a>
+                                        <a class="dropdown-item" href="#">مجوزها</a>
+                                        <a class="dropdown-item" href="#">گزارش ها</a>
+                                    </div>
                                 </li>
-
                                 <!-- Dropdown -->
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                         شبکه اعضا </a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Link 1</a>
-                                        <a class="dropdown-item" href="#">Link 2</a>
-                                        <a class="dropdown-item" href="#">Link 3</a>
+                                        <a class="dropdown-item" href="#">كميته عضويت</a>
+                                        <a class="dropdown-item" href="#">يافتن اعضا</a>
+                                        <a class="dropdown-item" href="#">شبكه اعضا جوان</a>
                                     </div>
                                 </li>
                                 <!-- Dropdown -->
@@ -116,6 +127,11 @@
                                         <a class="dropdown-item" href="#">Link 3</a>
                                     </div>
                                 </li>
+                                @auth()
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="{{route('logout')}}" >خروج</a>
+                                </li>
+                                @endauth
 
                             </ul>
 
@@ -126,15 +142,15 @@
             </div>
         </div>
 
-        <div class="slider-text-page pt-5 pt-lg-5 mt-lg-5">
+        <div class="slider-text-page pt-2 pt-lg-2 mt-lg-2">
             <div class="container">
                 <div class="row justify-content-end">
                     <div class="col-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item font-20"><a href="#">خانه</a></li>
+                            <li class="breadcrumb-item font-20"><a href="/">خانه</a></li>
                             <li class="breadcrumb-item font-20 active">{{$breadcrumb??''}}</li>
                         </ul>
-                        <h1 class="title-page font-42 text-white" style="display: block;text-overflow: ellipsis;word-wrap: break-word;overflow: hidden;max-height: 1.3em;line-height: 1.3em;">{{$titleHeader ?? ''}}</h1>
+                        <h1 class="title-page font-40 text-white" style="display: block;text-overflow: ellipsis;word-wrap: break-word;overflow: hidden;max-height: 1.3em;line-height: 1.3em;">{{$titleHeader ?? ''}}</h1>
                     </div>
 
                 </div>

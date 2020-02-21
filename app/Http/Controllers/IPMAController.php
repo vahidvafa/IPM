@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\GoldenEvent;
+use App\IPMA;
 use Illuminate\Http\Request;
 
-class GoldenEventController extends Controller
+class IPMAController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class GoldenEventController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\GoldenEvent  $goldenEvent
+     * @param  \App\IPMA  $iPA
      * @return \Illuminate\Http\Response
      */
-    public function show(GoldenEvent $goldenEvent)
+    public function show(IPMA $iPA)
     {
         //
     }
@@ -52,10 +52,10 @@ class GoldenEventController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\GoldenEvent  $goldenEvent
+     * @param  \App\IPMA  $iPA
      * @return \Illuminate\Http\Response
      */
-    public function edit(GoldenEvent $goldenEvent)
+    public function edit(IPMA $iPA)
     {
         //
     }
@@ -64,10 +64,10 @@ class GoldenEventController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\GoldenEvent  $goldenEvent
+     * @param  \App\IPMA  $iPA
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, GoldenEvent $goldenEvent)
+    public function update(Request $request, IPMA $iPA)
     {
         //
     }
@@ -75,10 +75,10 @@ class GoldenEventController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\GoldenEvent  $goldenEvent
+     * @param  \App\IPMA  $iPA
      * @return \Illuminate\Http\Response
      */
-    public function destroy(GoldenEvent $goldenEvent)
+    public function destroy(IPMA $iPA)
     {
         //
     }

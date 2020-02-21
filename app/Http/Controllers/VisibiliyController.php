@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\IPA;
+use App\visibiliy;
 use Illuminate\Http\Request;
 
-class IPAController extends Controller
+class VisibiliyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class IPAController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\IPA  $iPA
+     * @param  \App\visibiliy  $visibiliy
      * @return \Illuminate\Http\Response
      */
-    public function show(IPA $iPA)
+    public function show(visibiliy $visibiliy)
     {
         //
     }
@@ -52,10 +52,10 @@ class IPAController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\IPA  $iPA
+     * @param  \App\visibiliy  $visibiliy
      * @return \Illuminate\Http\Response
      */
-    public function edit(IPA $iPA)
+    public function edit(visibiliy $visibiliy)
     {
         //
     }
@@ -64,10 +64,10 @@ class IPAController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\IPA  $iPA
+     * @param  \App\visibiliy  $visibiliy
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, IPA $iPA)
+    public function update(Request $request, visibiliy $visibiliy)
     {
         //
     }
@@ -75,10 +75,10 @@ class IPAController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\IPA  $iPA
+     * @param  \App\visibiliy  $visibiliy
      * @return \Illuminate\Http\Response
      */
-    public function destroy(IPA $iPA)
+    public function destroy(visibiliy $visibiliy)
     {
         //
     }
