@@ -662,7 +662,7 @@
                     <p class="text-black-light font-16">
                 </div>
                 <div class="col-12 col-lg-2">
-                    <a href="/" class="btn btn-white-border">آرشیو خبر</a>
+                    <a href="{{route("news")}}" class="btn btn-white-border">آرشیو خبر</a>
                 </div>
             </div>
             <div class="row mt-5">

@@ -36,7 +36,7 @@
                             <div class="card card-stats">
                                 <div class="card-header card-header-danger card-header-icon">
                                     <h3 class="card-title mt-4">
-                                        تعداد سمینار ها :
+                                        تعداد رویداد ها :
                                         {{\App\Event::count()}}
                                     </h3>
                                 </div>

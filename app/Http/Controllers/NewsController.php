@@ -22,7 +22,7 @@ class NewsController extends Controller
     {
         $titleHeader = "تمام اخبار";
         $breadcrumb = "اخبار";
-        $news = News::latest()->paginate(15);
+        $news = News::whereState(1)->latest()->paginate(15);
         return view('news', compact('news', 'titleHeader', "breadcrumb"));
     }
 

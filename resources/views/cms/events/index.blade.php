@@ -7,7 +7,7 @@
                     <a href="{{route('event.create')}}">
                         <i class="material-icons" style="float: left;font-size: 32px;color: white">add_box</i>
                     </a>
-                    <h4 class="card-title">لیست سمینار ها</h4>
+                    <h4 class="card-title">لیست رویداد ها</h4>
                 </div>
             </div>
             <div class="card-body table-responsive request-table">
@@ -15,7 +15,7 @@
                     <thead>
                     <tr>
                         <th scope="col">ردیف</th>
-                        <th scope="col">عنوان سمینار</th>
+                        <th scope="col">عنوان رویداد</th>
                         <th scope="col">ویرایش</th>
                         <th scope="col">حذف</th>
                     </tr>

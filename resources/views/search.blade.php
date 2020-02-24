@@ -18,7 +18,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link  font-22 text-black-light text-regular" data-toggle="tab" href="#events">
-                            سمینار ها
+                            رویداد ها
                         </a>
                     </li>
                 </ul>
