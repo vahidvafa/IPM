@@ -82,6 +82,9 @@
                                 <li class="nav-item active">
                                     <a class="nav-link " href="{{route('main')}}">صفحه اول</a>
                                 </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="{{route('message.create')}}">تماس با ما</a>
+                                </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
                                     >درباره انجمن</a>
@@ -95,7 +98,7 @@
                                         <a class="dropdown-item" href="{{route('about-us')}}#chart">چارت سازمانی</a>
                                         <div class="dropdown-divider">برای دانلود</div>
                                         <a class="dropdown-item" href="#">اسناد مرجع</a>
-                                        <a class="dropdown-item" href="{{url('files/certificate.pdf')}}"
+                                        <a class="dropdown-item" href="{{route('download')}}"
                                            target="_blank">مجوزها</a>
                                         <a class="dropdown-item" href="#">گزارش ها</a>
                                     </div>
@@ -134,6 +137,10 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link " href="{{route('search')}}">جستجو</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link " href="{{route('job.index')}}">فرصت های شغلی</a>
                                 </li>
                                 @auth()
                                     <li class="nav-item ">
@@ -346,6 +353,8 @@
 <script src="{{asset('js/all.js')}}"></script>
 <script src="{{asset('js/slick.min.js')}}"></script>
 <script src="{{asset('js/persianDatepicker.min.js')}}"></script>
+
+
 <script>
     $(".datePickerInputs").persianDatepicker();
     $(document).ready(function () {

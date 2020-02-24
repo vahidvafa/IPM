@@ -13,6 +13,7 @@
         $i=-1;
         $offsets =4;
     @endphp--}}
+    <div class="container">
     @auth()
         <a href="{{route('job.create')}}" class="col-2 btn btn-white-border center-y mt-4 mb-4 ">افزودن فرصت شغلی</a>
 
@@ -86,13 +87,11 @@
                 <button type="submit" class="col-3 btn btn-white-border center-y ">جست و جو</button>
 
             </form>
-            <div class="container m-5">
-
-
+            <div class="container m-5  ">
                 {{ $jobs->links() }}
                 @foreach($jobs as $job)
                     <div class="row mt-1 mb-4 center-y">
-                        <div class="last-pack-content-in col-11 col-lg-11   col-md-6 mb-3 mt-3 pt-4 pb-4">
+                        <div class="last-pack-content-in col-11 col-lg-11   col-md-6 mb-3 mt-3 pt-4 pb-4 ">
                             <div class="row align-items-center">
                                 <div class="last-pack-content-in-time text-lg-left text-center col-12 col-lg-2">
                                     <p class="text-medium font-14  mb-1 mb-lg-2">دسته بندی :<span
@@ -209,5 +208,5 @@
         </div>
 
     </div>
-
+    </div>
 @stop

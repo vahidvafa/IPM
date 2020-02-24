@@ -5,8 +5,8 @@
         <div class="container my-5">
             <form action="{{route('search.post')}}" method="post">
                 @csrf
-                <input class="form-control" type="text" name="search" placeholder="جستجو">
-                <input type="submit" value="جستجو" class="form-submit-violet text-white font-16 text-medium">
+                <input class="form-control col-10" type="text" name="search" placeholder="جستجو">
+                <input type="submit" value="جستجو" class="form-submit-violet text-white font-16 text-medium col-2 ">
             </form>
             <div class="row justify-content-center">
                 <!-- Nav tabs -->

@@ -128,7 +128,7 @@ class JobController extends Controller
      */
     public function show($id)
     {
-        $job = Job::whereState(1)->with('province', "jobCategory")->find($id);
+        $job = Job::whereState(auth()->check() && auth()->id())->with('province', "jobCategory")->find($id);
 
         $breadcrumb = "توضیحات فرصت شغلی";
         $titleHeader = "";
@@ -237,4 +237,54 @@ class JobController extends Controller
         $status = Job::whereId($id)->delete();
         return back()->with("success", [$status, $status ? 'فرصت شغلی مورد نظر با موفقیت حذف شد' : "حطا! متاسفانه درخواست شما با خطا مواجه شده است. لطفا مجددا تلاش کنید"]);
     }
+
+
+    public function indexCms(){
+        $jobs = Job::whereState(0)->paginate(20);
+
+        flash_message(false,"لیست خالی میباید");
+
+        return view('cms.job.index',compact("jobs"));
+    }
+
+
+    public function showCms($id){
+
+        $job = Job::whereState(0)->find($id);
+
+        $similar = [];
+
+        if ($job == null)
+            flash_message(false,"متاسفانه این فرصت شغلی برای نمایش وجود ندارد");
+
+        $breadcrumb = "توضیحات فرصت شغلی";
+        $titleHeader = "قابل مشاهده تنها توصت ادمین";
+
+        return view($job == null ? '404' : 'job.job_detail',compact("job",'similar','breadcrumb','titleHeader'));
+    }
+
+    public function storeCms($id){
+        $job = Job::find($id);
+        if ($job!=null) {
+            $job->state = 1;
+            $isSave = $job->save();
+            flash_message($isSave,$isSave?"تایید با موفقیت انجام شد":"خطا! متاسفانه درخواست تایید با مشکل مواجه شده است");
+
+        }else{
+            flash_message(false,"متاسفانه این فرصت شغلی پیدا نشد");
+        }
+
+        return back();
+
+    }
+
+
+    public function destroyCms($id)
+    {
+
+        $status = Job::whereId($id)->delete();
+        flash_message($status, $status ? 'فرصت شغلی مورد نظر با موفقیت حذف شد' : "حطا! متاسفانه درخواست شما با خطا مواجه شده است. لطفا مجددا تلاش کنید");
+        return back();
+    }
+
 }

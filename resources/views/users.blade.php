@@ -3,10 +3,10 @@
     <main id="content-page" role="main">
         <!-- calender main -->
         <div class="container my-5">
-            <form action="{{route('user.search')}}" method="post">
+            <form action="{{route('user.search')}}" method="post" class="row" >
                 @csrf
-                <input class="form-control" type="text" name="search" placeholder="جستجو">
-                <input type="submit" value="جستجو"  class="form-submit-violet text-white font-16 text-medium">
+                <input class="form-control col-10" type="text" name="search" placeholder="جستجو" >
+                <input type="submit" value="جستجو"  class="col-2 form-submit-violet text-white font-16 text-medium">
             </form>
             <table class="table">
                 <thead>

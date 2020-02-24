@@ -129,7 +129,7 @@ class NewsController extends Controller
     {
         try {
             $news->delete();
-            flash_message('success', 'موفقیت حذف شد');
+            flash_message('success', 'با موفقیت حذف شد');
         } catch (\Exception $exception) {
             flash_message('error', 'سیستم با مشکل مواجه شد');
         }

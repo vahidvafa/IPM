@@ -12,6 +12,12 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function indexJs(){
+
+        return Event::get();
+    }
+
     public function index($id)
     {
         /*     $events = Event::all();
@@ -181,4 +187,6 @@ class EventController extends Controller
         }
         return back();
     }
+
+
 }

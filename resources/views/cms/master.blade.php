@@ -85,6 +85,19 @@
                         <p>پیام ها</p>
                     </a>
                 </li>
+                <li class="nav-item {{checkMenu("cms/jobs",$title)}}">
+                    <a class="nav-link" href="{{route('cms.job.index')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>فرصت های شغلی</p>
+                    </a>
+                </li>
+                {{--<li class="nav-item {{checkMenu("cms/jobs",$title)}}">
+                    <a class="nav-link" href="{{route('cms.users.index')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>تایید کاربران</p>
+                    </a>
+                </li>--}}
+
                 {{--                <li class="nav-item {{checkMenu("panel/request",$title)}}">--}}
                 {{--                    <a class="nav-link " href={{route('ownRequests')}}>--}}
                 {{--                        <i class="material-icons">notifications</i>--}}

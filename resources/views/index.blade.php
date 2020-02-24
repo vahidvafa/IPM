@@ -74,7 +74,10 @@
                         <div class="collapse navbar-collapse order-lg-0" id="collapsibleNavbar">
                             <ul class="navbar-nav header-main">
                                 <li class="nav-item active">
-                                    <a class="nav-link " href="#">صفحه اول</a>
+                                    <a class="nav-link " href="{{route("main")}}">صفحه اول</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="{{route('message.create')}}">تماس با ما</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">درباره
@@ -128,6 +131,10 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link " href="{{route('search')}}">جستجو</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link " href="{{route('job.index')}}">فرصت های شغلی</a>
                                 </li>
                             @auth()
                                 <!-- Dropdown -->
@@ -566,7 +573,7 @@
                     </div>
                 </div>
                 <div class="col-12 text-center last-pack-calender">
-                    <a class="btn text-center last-pack-calender-btn" href="/">مشاهده تقویم رویدادها</a>
+                    <a class="btn text-center last-pack-calender-btn" href="{{route('event.calender')}}">مشاهده تقویم رویدادها</a>
                 </div>
             </div>
         </div>

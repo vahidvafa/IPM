@@ -15,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'IndexController@index')->name('main');
+Route::get('/downloads', function (){
+    $breadcrumb = "دانلود";
+    $titleHeader = "فایل های برای دانلود";
+
+    return view("download_page",compact('breadcrumb','titleHeader'));
+})->name('download');
+Route::get('/event/calender', function (){
+    $breadcrumb = "تاریخ رویداد ها";
+    $titleHeader = "نمایش تاریخ بر گذاری رویدادها";
+
+    return view("event_calender",compact('breadcrumb','titleHeader'));
+})->name('event.calender');
 Route::get('/contact_us/', 'MessageController@create')->name('message.create');
 Route::post('/contact_us/', 'MessageController@store')->name('message.store');
 Route::get('/users', 'UserController@usersIndex')->name('user.index');
@@ -51,6 +63,13 @@ Route::get('news/{news}', 'NewsController@show')->name('news.show');
             //------
             Route::get('messages/', 'MessageController@index')->name('message.index');
             Route::post('messages/{message}/delete', 'MessageController@destroy')->name('message.delete');
+            //------
+            Route::get('jobs','JobController@indexCms')->name("cms.job.index");
+            Route::get('job/{id}','JobController@showCms')->name("cms.job.show");
+            Route::post('job/state/store/{id}','JobController@storeCms')->name('cms.job.store');
+            Route::post('job//{id}/delete','JobController@destroyCms')->name('cms.job.destroy');
+            //------
+//            Route::get('users')->name('cms.users');
         });
 //    });
 //});
@@ -64,3 +83,4 @@ Route::post("/applyJob","RequestController@store")->name("applyJob");
 Route::get('news', 'NewsController@index')->name('news');
 
 Route::resource("job","JobController");
+Route::post('/event/list','EventController@indexJs')->name('event.list');
