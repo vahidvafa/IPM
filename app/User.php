@@ -115,7 +115,7 @@ class User extends Authenticatable
         return $this->hasMany(Membership::class);
     }
 
-    public function wordExperience()
+    public function workExperience()
     {
         return $this->hasMany(WorkExperience::class);
     }
@@ -141,5 +141,9 @@ class User extends Authenticatable
     public function visibilities()
     {
         return $this->hasMany(visibiliy::Class);
+    }
+
+    public function companies(){
+        return $this->hasMany(Company::class);
     }
 }

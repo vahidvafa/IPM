@@ -8,6 +8,7 @@ use App\MembershipType;
 use App\PassedCourses;
 use App\Profile;
 use App\User;
+use App\Utils\UnsetUserRelation;
 use App\Utils\UserProFields;
 use App\visibiliy;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,6 +16,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Morilog\Jalali\Jalalian;
 use PhpParser\Node\Stmt\Break_;
+use Symfony\Component\Routing\Matcher\RedirectableUrlMatcher;
+use Symfony\Component\VarDumper\VarDumper;
 
 class UserController extends Controller
 {
@@ -25,12 +28,15 @@ class UserController extends Controller
      */
     public function index($slug)
     {
+        $profileVisible = [];
+        $memberships = [];
+
 
         $FieldsInClass = new UserProFields();
 
         $FieldsInClass = $FieldsInClass->asArray();
 
-        $user = User::with(['wordExperience', 'education', 'profile', 'documents' => function (HasMany $doc) {
+        $user = User::with(['workExperience', 'education', 'profile','companies','documents' => function (HasMany $doc) {
             $doc->where('state', '=', 0);
         }, 'PassedCoursesCat' => function (HasMany $relation) {
             $relation->with('PassedCourses')->get();
@@ -43,23 +49,39 @@ class UserController extends Controller
             $user = $user[0];
             $others_visibles = visibiliy::where("user_id", '=', "$user->id")->get();
 
-            $fields = array();
-            foreach ($others_visibles as $field)
-                array_push($fields, $field->profile_fields);
+            if (count($others_visibles) != 0) {
 
-            $profileVisible = Profile::where('id', '=', $user->id)->get($fields)[0];
-            $profileVisible = json_decode($profileVisible, true);
+                $fields = array();
+                foreach ($others_visibles as $field)
+                    array_push($fields, $field->profile_fields);
 
 
-            foreach ($profileVisible as $keyVisible => $valueVisible)
-                foreach ($FieldsInClass as $key => $value)
-                    if ($keyVisible == $key)
-                        $profileVisible["$keyVisible"] = $value . " " . $valueVisible;
+                $profileVisible = Profile::where('id', '=', $user->id)->get($fields);
+                if (count($profileVisible) != 0) {
 
+                    $profileVisible = json_decode($profileVisible[0], true);
+
+
+                    foreach ($profileVisible as $keyVisible => $valueVisible)
+                        foreach ($FieldsInClass as $key => $value)
+                            if ($keyVisible == $key)
+                                $profileVisible["$keyVisible"] = $value . " " . $valueVisible;
+
+
+                }
+
+
+            }
 
             $titleHeader = $user->name;
 
-            return view('profile', compact("user", "titleHeader", "breadcrumb", 'profileVisible'));
+            if (auth()->check() && (auth()->user()->roles == 0 || auth()->user()->roles == 1))
+                $memberships = MembershipType::all();
+
+            $name_en = str_replace("-"," ",$user->slug);
+//            $name_en = str_replace(str_split('1234567890'),'',$name_en);
+
+            return view('profile', compact("user", "titleHeader", "breadcrumb", 'profileVisible', 'memberships','name_en'));
         } else return view("404");
     }
 
@@ -113,9 +135,90 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user = User::find(auth()->id());
+
+        $user->update($request->all());
+
+        $user->profile()->update($request->all('profile')['profile']);
+
+        return redirect()->back();
+    }
+
+    public function updateAdm(Request $request)
+    {
+
+//        return $request;
+    //        'profile[birth_date]' => "birthday error",
+//        'profile[birth_place]' => "birth_place error",
+//        'profile[work_address]' => "work_address error",
+
+   $validate =  \Validator::make($request->all(),[
+//        "name" => 'required|string|max:4',
+
+       'about_me'=>'required|string',
+       "profile.birth_date"=>"required"
+    ],[
+       'about_me.*' => "about error",
+       'profile.birth_date.*' => "max 1 for profile[birth_date] error"
+    ]);
+
+//        return $validate->errors();
+
+    /*$validate = $this->validate($request, [
+//        "name" => 'required|string|max:4',
+        "about_me" => ['min:6']
+    ],[
+        'about_me.*' => "name error"
+    ]);*/
+
+        $user = User::whereSlug($request->all("slug"))->get("id")[0];
+        $user = User::find($user->id);
+
+        $check_slug = str_replace(" ","-",$request->get('name_en'));
+
+        if ($user->slug != $check_slug){
+            $slug = str_replace(' ', '-', $request->get('name_en'));
+
+            $number = 1;
+
+            if (User::whereSlug($slug)->exists()) {
+                if (User::whereSlug($slug)->get('id')[0]['id'] != $user->id )
+                  $slug .= '-' . ++$number;
+
+
+            }
+        }
+
+
+        $user->update($request->all());
+        if (isset($slug)) {
+            $user->slug = $slug;
+            $user->save(['slug'=>$slug]);
+        }
+
+        $user->profile()->update($request->all('profile')['profile']);
+
+        switch ($request->get('type')) {
+            case 2:
+                $user->companies()->update($request->all('companies')['companies']);
+                break;
+            case 30:
+                $user->workExperience()->update($request->all('workExperience')['workExperience']);
+
+                $user->education()->update($request->all('education')['education']);
+
+                break;
+
+
+        }
+
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate);
+        }
+        else
+            return redirect("profile",['slug'=>$user->slug]);
     }
 
     /**
@@ -132,7 +235,7 @@ class UserController extends Controller
     public function logout()
     {
         auth()->logout();
-        return redirect()->route("main");
+        return redirect()->back();
     }
 
 

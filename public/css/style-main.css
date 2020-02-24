@@ -1573,3 +1573,8 @@ click-wave { 0% {
 .center{
     margin: auto;
 }
+
+.hidden{
+    display: none;
+
+}

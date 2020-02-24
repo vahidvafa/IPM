@@ -91,7 +91,7 @@
                                         <a class="dropdown-item" href="{{route('about-us')}}#chart">چارت سازمانی</a>
                                         <div class="dropdown-divider">برای دانلود</div>
                                         <a class="dropdown-item" href="#">اسناد مرجع</a>
-                                        <a class="dropdown-item" href="#">مجوزها</a>
+                                        <a class="dropdown-item" href="{{asset('uploads/مجوز.pdf')}}">مجوزها</a>
                                         <a class="dropdown-item" href="#">گزارش ها</a>
                                     </div>
                                 </li>
@@ -151,6 +151,12 @@
                             <li class="breadcrumb-item font-20 active">{{$breadcrumb??''}}</li>
                         </ul>
                         <h1 class="title-page font-40 text-white" style="display: block;text-overflow: ellipsis;word-wrap: break-word;overflow: hidden;max-height: 1.3em;line-height: 1.3em;">{{$titleHeader ?? ''}}</h1>
+                        @if( Route::currentRouteName() == "profile" && auth()->check() )
+                        <h5 class="title-page font-40 text-white" style="display: block;text-overflow: ellipsis;word-wrap: break-word;overflow: hidden;max-height: 1.3em;line-height: 1.3em;">
+                            <a class="text-white" href="{{route("job.index")}}">فرصت های شغلی</a> |
+                            <a class="text-white" href="{{route("job.create")}}" >ثبت فرصت شغلی</a> |
+                        </h5>
+                            @endif
                     </div>
 
                 </div>
@@ -160,6 +166,7 @@
 
 
 </header>
+<div class="alert p-4 @if(session('success')==null) hidden @elseif(session('success')[0]) alert-success @else alert-danger @endif">{{session('success')[1]}}</div>
 @yield('content')
 <footer id="footer" class="footer-pages">
     <div class="container">

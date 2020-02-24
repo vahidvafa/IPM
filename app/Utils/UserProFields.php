@@ -41,7 +41,7 @@ class UserProFields
     public $agent_name="نام نماینده شرکت:";
     public $agent_name_en="نام نماینده شرکت انگلیسی";
     public $agent_picture="عکس نماینده:";
-    public $youTube ="لینک یوتویوذ:";
+    public $youTube ="لینک یوتویوپ:";
     public $facebook ="لینک فیسبوک:";
     public $instagram ="لینک اینستاگرام:";
     public $telegram ="لینک تلگرام:";

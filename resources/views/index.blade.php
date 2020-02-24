@@ -91,7 +91,7 @@
                                         <a class="dropdown-item" href="{{route('about-us')}}#chart">چارت سازمانی</a>
                                         <div class="dropdown-divider">برای دانلود</div>
                                         <a class="dropdown-item" href="#">اسناد مرجع</a>
-                                        <a class="dropdown-item" href="#">مجوزها</a>
+                                        <a class="dropdown-item" href="{{asset('uploads/مجوز.pdf')}}">مجوزها</a>
                                         <a class="dropdown-item" href="#">گزارش ها</a>
                                     </div>
                                 </li>

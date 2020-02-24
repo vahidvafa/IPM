@@ -33,4 +33,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class JobsCategory extends Model
 {
     use SoftDeletes;
+
+    public function job(){
+        return $this->hasMany(Job::class);
+    }
 }

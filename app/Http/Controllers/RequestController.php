@@ -41,8 +41,8 @@ class RequestController extends Controller
         $requestModel = new RequestModel();
         $requestModel->user_id = auth()->id();
         $requestModel->job_id = $request->post('job_id');
-        $requestModel->save();
-        return response()->json(makeMsgCode(true, 'success', '00'));
+        $status = $requestModel->save();
+        return back()->with("success", [$status, $status ? 'درخوسات شما با موفقیت ثبت شد' : "حطا! متاسفانه درخواست شما با خطا مواجه شده است. لطفا مجددا تلاش کنید"]);
     }
 
     /**
@@ -75,7 +75,7 @@ class RequestController extends Controller
      */
     public function update(RequestModel $requestModel)
     {
-        $requestModel->update(['state'=>0]);
+        $requestModel->update(['state' => 0]);
         return response()->json(makeMsgCode(true, 'success', '00'));
     }
 
@@ -88,6 +88,5 @@ class RequestController extends Controller
     public function destroy(RequestModel $requestModel)
     {
         $requestModel->delete();
-        return response()->json(makeMsgCode(true, 'success', '00'));
     }
 }

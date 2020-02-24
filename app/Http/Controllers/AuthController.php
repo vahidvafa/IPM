@@ -26,6 +26,7 @@ class AuthController extends Controller
 
     public function postRegister(Request $request)
     {
+
         $messages = [
             '*.required' => 'وارد کردن این فیلد الزامی است',
             'password.min' => 'رمز عبور باید حداقل 8 کاراکتر باشد',
@@ -137,7 +138,7 @@ class AuthController extends Controller
                 'password' => Hash::make($request->get('password')),
                 'slug' => $slug,
                 'user_code' => $userCode,
-                'remembership_type_id', $request->get('type')
+                'remembership_ty    pe_id', $request->get('type')
             ]
         );
         $profile = new Profile($request->all());

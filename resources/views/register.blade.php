@@ -261,10 +261,10 @@
                                 <input type="radio" class="option-input" name="receive_place" value="1" size="40"
                                        aria-invalid="false" placeholder="زن" required>
                                 محل کار
-                                @if (Session::get('type') == 1 && $errors->has('receive_place'))
+                                @if (Session::get('type') == 1 && $errors->has('profile.receive_place'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
-                                        <strong>{{ $errors->first('receive_place') }}</strong>
+                                        <strong>{{ $errors->first('profile.receive_place') }}</strong>
                                     </div>
                                 @endif
                             </div>
@@ -873,10 +873,10 @@
                                 <input type="radio" class="option-input" name="receive_place" value="محل کار" size="40"
                                        aria-invalid="false" placeholder="زن" required>
                                 محل کار
-                                @if (Session::get('type') == 3 && $errors->has('receive_place'))
+                                @if (Session::get('type') == 3 && $errors->has('profile.receive_place'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
-                                        <strong>{{ $errors->first('receive_place') }}</strong>
+                                        <strong>{{ $errors->first('profile.receive_place') }}</strong>
                                     </div>
                                 @endif
                             </div>
