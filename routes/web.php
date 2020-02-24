@@ -60,8 +60,6 @@ Route::get('news','NewsController@indexWeb')->name('news');
 Route::post('/user/update', 'UserController@Update')->name('user.update');
 Route::post('user/updateAdm','UserController@UpdateAdm')->name('user.updateAdm');
 
-Route::get("/jobs","JobController@jobs")->name("jobs");
-Route::post("/jobs","JobController@jobs")->name("jobs");
 Route::post("/applyJob","RequestController@store")->name("applyJob");
 Route::get('news', 'NewsController@index')->name('news');
 
