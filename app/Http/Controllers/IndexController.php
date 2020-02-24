@@ -41,6 +41,11 @@ class IndexController extends Controller
         return view('search', compact('titleHeader', 'breadcrumb', 'news', 'events'));
     }
 
+    public function cms()
+    {
+        return view('cms.panel');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

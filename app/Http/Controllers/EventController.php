@@ -64,9 +64,9 @@ class EventController extends Controller
             "description" => "required",
             "course_headings" => "required",
             "detail" => "required",
-            "from_date" => "required",
-            "to_date" => "required",
-            "start_register_date" => "required",
+            "from_date" => "required | numeric | lte:to_date",
+            "to_date" => "required | numeric | gte:from_date",
+            "start_register_date" => "required | numeric",
             "price" => "required | integer",
             "province_id" => "required | integer",
             "event_category_id" => "required | integer",
@@ -115,6 +115,7 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
+//        dd(jdate($event->from_date)->format('Y/m/d H:i'));
         return view('cms.events.edit', compact('event'));
     }
 
@@ -127,13 +128,14 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
+//        dd($request->all());
         $this->validate($request, [
             "title" => "required",
             "description" => "required",
             "detail" => "required",
-            "from_date" => "required",
-            "to_date" => "required",
-            "start_register_date" => "required",
+            "from_date" => "required | numeric | lte:to_date",
+            "to_date" => "required | numeric | gte:from_date",
+            "start_register_date" => "required | numeric",
             "price" => "required | integer",
             "province_id" => "required | integer",
             "event_category_id" => "required | integer",

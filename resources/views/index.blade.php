@@ -120,21 +120,26 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop3"
                                        data-toggle="dropdown">
                                         ارکان انجمن </a>
-{{--                                    <div class="dropdown-menu">--}}
-{{--                                        <a class="dropdown-item" href="#">Link 1</a>--}}
-{{--                                        <a class="dropdown-item" href="#">Link 2</a>--}}
-{{--                                        <a class="dropdown-item" href="#">Link 3</a>--}}
-{{--                                    </div>--}}
+                                    {{--                                    <div class="dropdown-menu">--}}
+                                    {{--                                        <a class="dropdown-item" href="#">Link 1</a>--}}
+                                    {{--                                        <a class="dropdown-item" href="#">Link 2</a>--}}
+                                    {{--                                        <a class="dropdown-item" href="#">Link 3</a>--}}
+                                    {{--                                    </div>--}}
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link " href="{{route('search')}}">جستجو</a>
                                 </li>
                             @auth()
                                 <!-- Dropdown -->
+                                    @if(auth()->user()->roles == 0 || auth()->user()->roles == 1)
+                                        <li class="nav-item ">
+                                            <a class="nav-link" href="{{route('cms.index')}}">پنل مدیریت</a>
+                                        </li>
+                                    @endif
                                     <li class="nav-item ">
                                         <a class="nav-link" href="{{route('logout')}}">خروج</a>
                                     </li>
-                                @endauth
+                            @endauth
                             </ul>
                         </div>
                     </nav>

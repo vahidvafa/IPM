@@ -203,4 +203,9 @@ class AuthController extends Controller
         ), 200);
         //        return Redirect::to("login")->withSuccess('Oppes! You have entered invalid credentials');
     }
+
+    public function login()
+    {
+        return view('login');
+    }
 }

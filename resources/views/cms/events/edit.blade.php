@@ -60,8 +60,10 @@
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
                                             <lable>از تاریخ</lable>
-                                            <input class="form-control datePickerInputs" name="from_date" type="text"
+                                            <input class="form-control datePickerInputs" name="from_date_display" id="from_date_display" type="text"
                                                    placeholder="از تاریخ"
+                                                   value="{{tr_num(jdate($event->from_date)->format('Y/m/d H:i'),'fa')}}">
+                                            <input class="form-control datePickerInputs" name="from_date" id="from_date" type="hidden"
                                                    value="{{$event->from_date}}">
                                             @error('from_date')
                                             <div class="error text-danger">{{ $message }}</div>
@@ -69,8 +71,10 @@
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
                                             <lable>تا تاریخ</lable>
-                                            <input class="form-control datePickerInputs" name="to_date" type="text"
+                                            <input class="form-control datePickerInputs" name="to_date_display" id="to_date_display" type="text"
                                                    placeholder="تا تاریخ"
+                                                   value="{{tr_num(jdate($event->to_date)->format('Y/m/d H:i'),'fa')}}">
+                                            <input class="form-control datePickerInputs" name="to_date" id="to_date" type="hidden"
                                                    value="{{$event->to_date}}">
                                             @error('to_date')
                                             <div class="error text-danger">{{ $message }}</div>
@@ -78,8 +82,10 @@
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
                                             <lable>تاریخ شروع ثبت نام</lable>
-                                            <input class="form-control datePickerInputs" name="start_register_date" type="text"
+                                            <input class="form-control datePickerInputs" name="start_register_date_display" id="start_register_date_display" type="text"
                                                    placeholder="تاریخ شروع ثبت نام"
+                                                   value="{{tr_num(jdate($event->start_register_date)->format('Y/m/d H:i'),'fa')}}">
+                                            <input class="form-control datePickerInputs" name="start_register_date" id="start_register_date" type="hidden"
                                                    value="{{$event->start_register_date}}">
                                             @error('start_register_date')
                                             <div class="error text-danger">{{ $message }}</div>
@@ -169,13 +175,72 @@
             </div>
         </div>
     </div>
-    {{--    <script src="{{ asset('material/js/core/jquery.min.js') }}"></script>--}}
+        <script src="{{ asset('material/js/core/jquery.min.js') }}"></script>
     <script type="text/javascript">
         CKEDITOR.replace('detail', {
             contentsLangDirection: "rtl",
         });
         CKEDITOR.replace('course_headings', {
             contentsLangDirection: "rtl",
+        });
+        $(document).ready(function() {
+            $("#to_date_display").pDatepicker(
+                {
+                    initialValue:false,
+                    responsive:true,
+                    format:'L H:m',
+                    altFormat:'X',
+                    altField: '#to_date',
+                    calendarType:'persian',
+                    timePicker: {
+                        enabled:true,
+                        second:{
+                            enabled:false
+                        }
+                    },
+                    toolbox: {
+                        enabled: false,
+                    }
+                }
+            );
+            $("#from_date_display").pDatepicker(
+                {
+                    initialValue:false,
+                    responsive:true,
+                    format:'L H:m',
+                    altFormat:'X',
+                    altField: '#from_date',
+                    calendarType:'persian',
+                    timePicker: {
+                        enabled:true,
+                        second:{
+                            enabled:false
+                        }
+                    },
+                    toolbox: {
+                        enabled: false,
+                    }
+                }
+            );
+            $("#start_register_date_display").pDatepicker(
+                {
+                    initialValue:false,
+                    responsive:true,
+                    format:'L H:m',
+                    altFormat:'X',
+                    altField: '#start_register_date',
+                    calendarType:'persian',
+                    timePicker: {
+                        enabled:true,
+                        second:{
+                            enabled:false
+                        }
+                    },
+                    toolbox: {
+                        enabled: false,
+                    }
+                }
+            );
         });
     </script>
 @endsection
