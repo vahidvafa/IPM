@@ -15,13 +15,18 @@
     <link href="{{ asset('material/css/material-dashboard.css?v=2.1.1') }}" rel="stylesheet"/>
     <link href="{{ asset('material/css/material-dashboard-rtl.css?v=1.1') }}" rel="stylesheet"/>
     <link href="{{ asset('material/css/main.css') }}" rel="stylesheet"/>
+{{--    <link rel="stylesheet" href="{{asset('css/persianDatepicker-default.css')}}" type='text/css' media='all'>--}}
+    <link rel="stylesheet" href="{{asset('css/persian-datepicker.min.css')}}" type='text/css' media='all'>
 
-{{--    <script type="text/javascript" src="{{URL::to('js/p.js')}}"></script>--}}
-{{--    <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>--}}
+    {{--    <script type="text/javascript" src="{{URL::to('js/p.js')}}"></script>--}}
+    {{--    <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>--}}
     <meta name="csrf-token" content="{{ Session::token() }}">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
-    <style> body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
-            font-family: "Cairo";
+    <style>
+        @import url('{{ asset('css/fontiran.css') }}');
+
+        body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
+            font-family: IRANSans !important;
         } </style>
     @php
         $title = request()->route()->uri;
@@ -43,79 +48,98 @@
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">
-                        <i class="material-icons">person</i>
-{{--                        <p>{{auth()->user()->name}}</p>--}}
+                {{--                <li class="nav-item ">--}}
+                {{--                    <a class="nav-link" href="#">--}}
+                {{--                        <i class="material-icons">person</i>--}}
+                {{--                        <p>{{auth()->user()->name}}</p>--}}
+                {{--                    </a>--}}
+                {{--                </li>--}}
+                {{--                <li class="nav-item {{checkMenu("panel",$title)}}">--}}
+                {{--                    <a class="nav-link" href="{{route('indexPanel')}}">--}}
+                {{--                        <i class="material-icons">dashboard</i>--}}
+                {{--                        <p>داشبورد</p>--}}
+                {{--                    </a>--}}
+                {{--                </li>--}}
+                <li class="nav-item {{checkMenu("cms/works",$title)}}">
+                    <a class="nav-link" href="{{route('event.index')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>کارتابل</p>
                     </a>
                 </li>
-{{--                <li class="nav-item {{checkMenu("panel",$title)}}">--}}
-{{--                    <a class="nav-link" href="{{route('indexPanel')}}">--}}
-{{--                        <i class="material-icons">dashboard</i>--}}
-{{--                        <p>داشبورد</p>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--                <li class="nav-item {{checkMenu("panel/profile",$title)}}">--}}
-{{--                    <a class="nav-link" href="{{route('profile')}}">--}}
-{{--                        <i class="material-icons">library_books</i>--}}
-{{--                        <p>ویرایش حساب</p>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--                <li class="nav-item {{checkMenu("panel/request",$title)}}">--}}
-{{--                    <a class="nav-link " href={{route('ownRequests')}}>--}}
-{{--                        <i class="material-icons">notifications</i>--}}
-{{--                        <p>تسویه حساب</p>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--                @if(auth()->user()->type_id == 2)--}}
-{{--                    <li class="nav-item {{checkMenu("panel/requests",$title)}}">--}}
-{{--                        <a class="nav-link " href={{route('requests')}}>--}}
-{{--                            <i class="material-icons">restore</i>--}}
-{{--                            <p>لیست تسویه حساب ها</p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                <hr>
+                <li class="nav-item {{checkMenu("cms/events",$title)}}">
+                    <a class="nav-link" href="{{route('event.index')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>سمینار ها</p>
+                    </a>
+                </li>
+                <li class="nav-item {{checkMenu("cms/news",$title)}}">
+                    <a class="nav-link" href="{{route('news.index')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>اخبار</p>
+                    </a>
+                </li>
+                <li class="nav-item {{checkMenu("cms/messages",$title)}}">
+                    <a class="nav-link" href="{{route('message.index')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>پیام ها</p>
+                    </a>
+                </li>
+                {{--                <li class="nav-item {{checkMenu("panel/request",$title)}}">--}}
+                {{--                    <a class="nav-link " href={{route('ownRequests')}}>--}}
+                {{--                        <i class="material-icons">notifications</i>--}}
+                {{--                        <p>تسویه حساب</p>--}}
+                {{--                    </a>--}}
+                {{--                </li>--}}
+                {{--                @if(auth()->user()->type_id == 2)--}}
+                {{--                    <li class="nav-item {{checkMenu("panel/requests",$title)}}">--}}
+                {{--                        <a class="nav-link " href={{route('requests')}}>--}}
+                {{--                            <i class="material-icons">restore</i>--}}
+                {{--                            <p>لیست تسویه حساب ها</p>--}}
+                {{--                        </a>--}}
+                {{--                    </li>--}}
 
-{{--                    <li class="nav-item {{checkMenu("panel/orders",$title)}}">--}}
-{{--                        <a class="nav-link " href={{route('orders')}}>--}}
-{{--                            <i class="material-icons">restore</i>--}}
-{{--                            <p>لیست خرید ها</p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                {{--                    <li class="nav-item {{checkMenu("panel/orders",$title)}}">--}}
+                {{--                        <a class="nav-link " href={{route('orders')}}>--}}
+                {{--                            <i class="material-icons">restore</i>--}}
+                {{--                            <p>لیست خرید ها</p>--}}
+                {{--                        </a>--}}
+                {{--                    </li>--}}
 
-{{--                    <li class="nav-item {{checkMenu("panel/plans",$title)}}">--}}
-{{--                        <a class="nav-link " href={{route('plans')}}>--}}
-{{--                            <i class="material-icons">dns</i>--}}
-{{--                            <p>لیست پلن ها</p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                {{--                    <li class="nav-item {{checkMenu("panel/plans",$title)}}">--}}
+                {{--                        <a class="nav-link " href={{route('plans')}}>--}}
+                {{--                            <i class="material-icons">dns</i>--}}
+                {{--                            <p>لیست پلن ها</p>--}}
+                {{--                        </a>--}}
+                {{--                    </li>--}}
 
-{{--                    <li class="nav-item {{checkMenu("panel/users",$title)}}">--}}
-{{--                        <a class="nav-link " href={{route('usersList')}}>--}}
-{{--                            <i class="material-icons">people</i>--}}
-{{--                            <p>لیست کاربران</p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                {{--                    <li class="nav-item {{checkMenu("panel/users",$title)}}">--}}
+                {{--                        <a class="nav-link " href={{route('usersList')}}>--}}
+                {{--                            <i class="material-icons">people</i>--}}
+                {{--                            <p>لیست کاربران</p>--}}
+                {{--                        </a>--}}
+                {{--                    </li>--}}
 
-{{--                    <li class="nav-item {{checkMenu("panel/prices",$title)}}">--}}
-{{--                        <a class="nav-link " href={{route('prices')}}>--}}
-{{--                            <i class="material-icons">sync_alt</i>--}}
-{{--                            <p>قیمت ارز ها</p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                @endif--}}
-{{--                @if (Session::get('adminId'))--}}
+                {{--                    <li class="nav-item {{checkMenu("panel/prices",$title)}}">--}}
+                {{--                        <a class="nav-link " href={{route('prices')}}>--}}
+                {{--                            <i class="material-icons">sync_alt</i>--}}
+                {{--                            <p>قیمت ارز ها</p>--}}
+                {{--                        </a>--}}
+                {{--                    </li>--}}
+                {{--                @endif--}}
+                {{--                @if (Session::get('adminId'))--}}
 
-{{--                    <form method="post" action="{{route('userLogin')}}">--}}
-{{--                        @csrf--}}
-{{--                        <li class="nav-item active">--}}
-{{--                            <button class="nav-link text-right active_button">--}}
-{{--                                <i class="material-icons" style="color: #fff">power_settings_new</i>--}}
-{{--                                <p>بازگشت</p>--}}
-{{--                            </button>--}}
-{{--                        </li>--}}
-{{--                    </form>--}}
+                {{--                    <form method="post" action="{{route('userLogin')}}">--}}
+                {{--                        @csrf--}}
+                {{--                        <li class="nav-item active">--}}
+                {{--                            <button class="nav-link text-right active_button">--}}
+                {{--                                <i class="material-icons" style="color: #fff">power_settings_new</i>--}}
+                {{--                                <p>بازگشت</p>--}}
+                {{--                            </button>--}}
+                {{--                        </li>--}}
+                {{--                    </form>--}}
 
-{{--                @endif--}}
+                {{--                @endif--}}
                 <form method="post" action="/logout">
                     @csrf
                     <li class="nav-item active">
@@ -206,6 +230,22 @@
     <script src="{{ asset('material/js/material-dashboard.js?v=2.1.1') }}" type="text/javascript"></script>
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ asset('material/js/settings.js') }}"></script>
+{{--    <script src="{{asset('js/persianDatepicker.min.js')}}"></script>--}}
+    <script src="{{asset('js/persian-date.min.js')}}"></script>
+    <script src="{{asset('js/persian-datepicker.min.js')}}"></script>
+    <script>
+        // $(".datePickerInputs").persianDatepicker({formatDate: "YYYY/0M/0D"});
+        // $(document).ready(function() {
+        //     $(".datePickerInputs").pDatepicker(
+        //         {
+        //             altFormat:'YYYY/MM/DD H:i:s',
+        //             timePicker: {
+        //                 enabled:true
+        //             }
+        //         }
+        //     );
+        // });
+    </script>
 </div>
 </body>
 </html>

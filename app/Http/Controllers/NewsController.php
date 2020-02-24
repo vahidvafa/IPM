@@ -12,17 +12,18 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexCms()
     {
         $news = News::latest()->paginate(10);
         return view('cms.news.index', compact('news'));
     }
 
-    public function indexWeb(){
+    public function index()
+    {
         $titleHeader = "تمام اخبار";
         $breadcrumb = "اخبار";
         $news = News::latest()->paginate(15);
-        return  view('news', compact('news','titleHeader',"breadcrumb"));
+        return view('news', compact('news', 'titleHeader', "breadcrumb"));
     }
 
     /**
@@ -84,7 +85,7 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        return view('cms.news.edit',compact('news'));
+        return view('cms.news.edit', compact('news'));
     }
 
     /**
@@ -100,6 +101,7 @@ class NewsController extends Controller
             "title" => "required",
             "description" => "required",
             "detail" => "required",
+            "image" => "image"
         ], ['*.required' => 'وارد کردن این فیلد الزامی است']);
         try {
             $news->update($request->all());
@@ -125,10 +127,10 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        try{
+        try {
             $news->delete();
             flash_message('success', 'موفقیت حذف شد');
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             flash_message('error', 'سیستم با مشکل مواجه شد');
         }
         return back();

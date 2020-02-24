@@ -33,6 +33,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Request withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Request withoutTrashed()
  * @mixin \Eloquent
+ * @property-read \App\Job $job
  */
 class Request extends Model
 {

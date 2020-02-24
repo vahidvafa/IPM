@@ -36,6 +36,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @mixin \Eloquent
  * @property int $lang_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Document whereLangId($value)
+ * @property-read \App\User $user
  */
 class Document extends Model
 {

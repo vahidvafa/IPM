@@ -31,7 +31,7 @@ $factory->define(Event::class, function (Faker $faker) {
 کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.'.(Event::all('id')->first()),
         'address' => ' تهران، امیرآباد شمالی، بالاتر از بزرگراه جلال آل احمد، پردیس دانشکده های فنی دانشگاه تهران، ساختمان انستیتو مهندسی نفت، طبقه همکف '.(Event::all('id')->first()),
         'price' => '30000',
-        'tel' => '09199999',
+        'tel' => $faker->phoneNumber,
         'latitude' => '35.733249',
         'longitude' => '51.388087',
         'event_category_id' => \App\EventCategory::all('id')->random()->id,
@@ -42,7 +42,6 @@ $factory->define(Event::class, function (Faker $faker) {
         'photo' => 'popular'.random_int(1,4).'.jpg',
         'user_id' => \App\User::all('id')->random()->id,
         'lang_id' =>\App\Lang::all('id')->random()->id,
-        'mobile'=>$faker->phoneNumber,
         'created_at' => now(),
 
 

@@ -42,6 +42,47 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
  * @property-read \App\User $user
+ * @property string|null $youTube
+ * @property string|null $facebook
+ * @property string|null $instagram
+ * @property string|null $telegram
+ * @property string|null $twitter
+ * @property int $lang_id
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Profile onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereBirthDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereBirthPlace($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereCertificateNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereFacebook($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereFatherName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereHomeAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereHomePost($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereHomeTel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereInstagram($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereLangId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereNationalCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereReceivePlace($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereSex($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereTelegram($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereTwitter($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereWorkAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereWorkName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereWorkPost($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereWorkTel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereYouTube($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Profile withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Profile withoutTrashed()
+ * @mixin \Eloquent
  */
 class Profile extends Model
 {

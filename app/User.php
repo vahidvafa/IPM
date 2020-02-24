@@ -68,6 +68,18 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUserCode($value)
  * @mixin \Eloquent
+ * @property string $first_name
+ * @property string $last_name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\PassedCoursesCategory[] $PassedCoursesCat
+ * @property-read int|null $passed_courses_cat_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Job[] $jobs
+ * @property-read int|null $jobs_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\visibiliy[] $visibilities
+ * @property-read int|null $visibilities_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\WorkExperience[] $wordExperience
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User like($field, $value)
  */
 class User extends Authenticatable
 {
@@ -146,4 +158,9 @@ class User extends Authenticatable
     public function companies(){
         return $this->hasMany(Company::class);
     }
+
+    public function scopeLike($query, $field, $value){
+        return $query->where($field, 'LIKE', "%$value%");
+    }
+
 }

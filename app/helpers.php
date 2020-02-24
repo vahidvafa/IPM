@@ -34,6 +34,12 @@ function checkIsMobile($number)
     return ($matches) ? true : false;
 }
 
+
+function checkMenu($button, $page)
+{
+    return ($button == $page) ? 'active' :'';
+}
+
 function checkUserNameType($username)
 {
     if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {

@@ -31,6 +31,6 @@ class DatabaseSeeder extends Seeder
         factory(\App\IPMA::class,1)->create();
         factory(\App\JobsCategory::class,19)->create();
         factory(\App\Job::class,350)->create();
-
+        factory(\App\Message::class,10)->create();
     }
 }

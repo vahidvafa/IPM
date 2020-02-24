@@ -21,6 +21,22 @@ use Symfony\Component\VarDumper\VarDumper;
 
 class UserController extends Controller
 {
+
+    public function usersIndex()
+    {
+        if (\request()->has('search')) {
+            $searchString = \request()->get('search');
+            $users = User::where("first_name", "LIKE", "%$searchString%")
+                ->orWhere("last_name", "LIKE", "%$searchString%")
+                ->orWhere("user_code", "LIKE", "%$searchString%")->latest()->paginate(10);
+        } else {
+            $users = User::latest()->paginate(10);
+        }
+        $breadcrumb = "یافتن اعضای انجمن";
+        $titleHeader = "لیست اعضای انجمن";
+        return view('users', compact('users', 'breadcrumb', 'titleHeader'));
+    }
+
     /**
      * Display a listing of the resource.
      *
