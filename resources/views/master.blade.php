@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{asset('css/all.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/style-main.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type='text/css' media='all'>
+    <link rel="stylesheet" href="{{asset('css/persianDatepicker-default.css')}}" type='text/css' media='all'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @yield('header')
@@ -27,7 +28,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <img src="{{asset('img/logo.png')}}" alt="انجمن مدیریت پروژه">
-                    <h1 class="text-white d-inline-block font-18 text-regular ml-2" style="font-weight: bold;font-size: 27px;" >انجمن مدیریت پروژه ایران</h1>
+                    <h1 class="text-white d-inline-block font-18 text-regular ml-2"
+                        style="font-weight: bold;font-size: 27px;">انجمن مدیریت پروژه ایران</h1>
                 </div>
                 <div class="col-md-6 text-right">
                     <img src="{{asset('img/ipma-logo.png')}}" alt="انجمن مدیریت پروژه">
@@ -52,7 +54,7 @@
                                 @auth()
                                     <a class="nav-link nav-login" href="{{route('profile',auth()->user()->slug)}}">
                                         <i class="fa fa-user mr-1"></i>
-                                        <span >پروفایل</span>
+                                        <span>پروفایل</span>
                                     </a>
                                 @else
                                     <a class="nav-link nav-login" data-toggle="modal" data-target="#ModalLogin">
@@ -85,13 +87,16 @@
                                     >درباره انجمن</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{{route('about-us')}}#history">تاریخچه</a>
-                                        <a class="dropdown-item" href="{{route('about-us')}}#target">اهداف و نقشه راهبردی</a>
+                                        <a class="dropdown-item" href="{{route('about-us')}}#target">اهداف و نقشه
+                                            راهبردی</a>
                                         <a class="dropdown-item" href="{{route('about-us')}}#creator">موسسین</a>
-                                        <a class="dropdown-item" href="{{route('about-us')}}#board-of-directors">هیات مدیره</a>
+                                        <a class="dropdown-item" href="{{route('about-us')}}#board-of-directors">هیات
+                                            مدیره</a>
                                         <a class="dropdown-item" href="{{route('about-us')}}#chart">چارت سازمانی</a>
                                         <div class="dropdown-divider">برای دانلود</div>
                                         <a class="dropdown-item" href="#">اسناد مرجع</a>
-                                        <a class="dropdown-item" href="#">مجوزها</a>
+                                        <a class="dropdown-item" href="{{url('files/certificate.pdf')}}"
+                                           target="_blank">مجوزها</a>
                                         <a class="dropdown-item" href="#">گزارش ها</a>
                                     </div>
                                 </li>
@@ -101,7 +106,7 @@
                                         شبکه اعضا </a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#">كميته عضويت</a>
-                                        <a class="dropdown-item" href="#">يافتن اعضا</a>
+                                        <a class="dropdown-item" href="{{route('user.search')}}">يافتن اعضا</a>
                                         <a class="dropdown-item" href="#">شبكه اعضا جوان</a>
                                     </div>
                                 </li>
@@ -121,16 +126,19 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop3"
                                        data-toggle="dropdown">
                                         ارکان انجمن </a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Link 1</a>
-                                        <a class="dropdown-item" href="#">Link 2</a>
-                                        <a class="dropdown-item" href="#">Link 3</a>
-                                    </div>
+{{--                                    <div class="dropdown-menu">--}}
+{{--                                        <a class="dropdown-item" href="#">Link 1</a>--}}
+{{--                                        <a class="dropdown-item" href="#">Link 2</a>--}}
+{{--                                        <a class="dropdown-item" href="#">Link 3</a>--}}
+{{--                                    </div>--}}
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="{{route('search')}}">جستجو</a>
                                 </li>
                                 @auth()
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="{{route('logout')}}" >خروج</a>
-                                </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="{{route('logout')}}">خروج</a>
+                                    </li>
                                 @endauth
 
                             </ul>
@@ -150,7 +158,8 @@
                             <li class="breadcrumb-item font-20"><a href="/">خانه</a></li>
                             <li class="breadcrumb-item font-20 active">{{$breadcrumb??''}}</li>
                         </ul>
-                        <h1 class="title-page font-40 text-white" style="display: block;text-overflow: ellipsis;word-wrap: break-word;overflow: hidden;max-height: 1.3em;line-height: 1.3em;">{{$titleHeader ?? ''}}</h1>
+                        <h1 class="title-page font-40 text-white"
+                            style="display: block;text-overflow: ellipsis;word-wrap: break-word;overflow: hidden;max-height: 1.3em;line-height: 1.3em;">{{$titleHeader ?? ''}}</h1>
                     </div>
 
                 </div>
@@ -170,7 +179,8 @@
                     <span class="text-regular text-white">تماس با انجمن</span>
                 </div>
                 <div class="contact-footer-in">
-                    <p class="text-gray font-14"><span>آدرس:</span><span>تهران، امیرآباد شمالی، بالاتر از بزرگراه جلال آل احمد، پردیس دانشکده های فنی دانشگاه تهران، ساختمان انستیتو مهندسی نفت، طبقه همکف</span></p>
+                    <p class="text-gray font-14"><span>آدرس:</span><span>تهران، امیرآباد شمالی، بالاتر از بزرگراه جلال آل احمد، پردیس دانشکده های فنی دانشگاه تهران، ساختمان انستیتو مهندسی نفت، طبقه همکف</span>
+                    </p>
                 </div>
                 <div class="contact-footer-in">
                     <p class="text-gray font-14"><span>تلفن:</span><span>(5خط) 88229406</span></p>
@@ -329,8 +339,10 @@
 <script type='text/javascript' src='{{asset('js/bootstrap.min.js')}}'></script>
 <script src="{{asset('js/all.js')}}"></script>
 <script src="{{asset('js/slick.min.js')}}"></script>
+<script src="{{asset('js/persianDatepicker.min.js')}}"></script>
 <script>
-    $(document).ready(function(){
+    $(".datePickerInputs").persianDatepicker();
+    $(document).ready(function () {
         $('.logo-slid').slick({
             dots: false,
             infinite: false,
@@ -369,8 +381,6 @@
             ]
         });
     });
-
-
 </script>
 <script>
     (function ($) {
@@ -380,11 +390,11 @@
             return $(this).each(function () {
                 // set options for current element
                 var settings = $.extend({}, $.fn.countTo.defaults, {
-                    from:            $(this).data('from'),
-                    to:              $(this).data('to'),
-                    speed:           $(this).data('speed'),
+                    from: $(this).data('from'),
+                    to: $(this).data('to'),
+                    speed: $(this).data('speed'),
                     refreshInterval: $(this).data('refresh-interval'),
-                    decimals:        $(this).data('decimals')
+                    decimals: $(this).data('decimals')
                 }, options);
 
                 // how many times to update the value, and how much to increment the value on each update
@@ -415,7 +425,7 @@
 
                     render(value);
 
-                    if (typeof(settings.onUpdate) == 'function') {
+                    if (typeof (settings.onUpdate) == 'function') {
                         settings.onUpdate.call(self, value);
                     }
 
@@ -425,7 +435,7 @@
                         clearInterval(data.interval);
                         value = settings.to;
 
-                        if (typeof(settings.onComplete) == 'function') {
+                        if (typeof (settings.onComplete) == 'function') {
                             settings.onComplete.call(self, value);
                         }
                     }
@@ -478,6 +488,7 @@
         $('#username-error-text').text('');
         $('#password-error-text').text('');
     }
+
     function login() {
         clearLoginErrors();
         var username = $('#input_username').val();
@@ -495,17 +506,17 @@
                         $('#text-error').text(json.errors.username[0]);
                         console.log(1);
                     } else {
-                        if (typeof json.errors.username !== 'undefined'){
+                        if (typeof json.errors.username !== 'undefined') {
                             console.log(2);
                             $('#username-error-text').text(json.errors.username[0]);
                         }
-                        if (typeof json.errors.password !== 'undefined'){
+                        if (typeof json.errors.password !== 'undefined') {
                             console.log(3);
                             $('#password-error-text').text(json.errors.password[0]);
                         }
                         console.log(4);
                     }
-                }else{
+                } else {
                     console.log('hooooraaa')
                     location.reload();
                 }

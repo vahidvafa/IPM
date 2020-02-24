@@ -75,9 +75,11 @@
                         <h2 class="font-24 text-medium text-black text-center  mb-5">تاریخچه انجمن مدیریت پروژه ایران
                         </h2>
                         <p class="text-black-light font-16 font-line-30">
-                            گرچه تلاشهای متعددی از اوایل دهه هفتاد برای شكل گیری انجمن مدیریت پروژه توسط افراد و نهاد های
+                            گرچه تلاشهای متعددی از اوایل دهه هفتاد برای شكل گیری انجمن مدیریت پروژه توسط افراد و نهاد
+                            های
                             مختلف صورت گرفت، لیكن از سال1381، تلاش براي ثبت انجمن مديريت پروژه در كشور، توسط مهندس فرهاد
-                            نصرالله پور آغاز شد. در این راستا با جمع آوري تجارب انجمنهاي مشابه، مطالعه و بررسي مدارك ساير
+                            نصرالله پور آغاز شد. در این راستا با جمع آوري تجارب انجمنهاي مشابه، مطالعه و بررسي مدارك
+                            ساير
                             انجمن‏ها و برگزاري جلسات كارشناسي با مشاركت فعالان شناخته شده مديريت پروژه كشور، سند مقدماتي
                             تشكيلات انجمن تهيه و با هدف رشد و تعالی دانش مدیریت پروژه و ترویج عملی این دانش در کشور
                             سازماندهی و به عنوان یک انجمن علمی، غیر انتفاعی و مردم نهاد.
@@ -88,10 +90,26 @@
                         <p class="text-black-light font-16 font-line-30">
 
                             پس از گذشت 3 سال از فعالیت خود در تابستان 1387 در مجمع عمومي انجمن بين المللي مديريت پروژه
-                            (IPMA) به عنوان نماینده رسمی و انحصاری این انجمن در ایران در کنار مسئولیت ها و خدمات بومی خود،
+                            (IPMA) به عنوان نماینده رسمی و انحصاری این انجمن در ایران در کنار مسئولیت ها و خدمات بومی
+                            خود،
                             عهده دار ارائه خدمات و محصولات این موسسه بین المللی به مدیران، اساتید، دانشجویان، فعالان و
                             علاقمندان مدیریت پروژه شد
                         </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="history-about pt-5 pb-5" id="target">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 ">
+                        <h3 class="font-20 text-yellow text-center text-light2 mb-4">اهداف و نقشه راهبردی انجمن</h3>
+                        <h2 class="font-24 text-medium text-black text-center  mb-5"> هدف عالی انجمن ،
+                            ارتقا جایگاه مدیریت پروژه در ایران ،
+                            اهداف و نقشه راهبردی انجمن برای تحقق هدف
+                        </h2>
+                        <img style="margin-right: auto;margin-left: auto;display: block"
+                             src="{{asset('img/target.jpg')}}">
                     </div>
                 </div>
             </div>
@@ -102,7 +120,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="logo-slid  ">
-                            <div><img src="img/b11.png" alt=""> </div>
+                            <div><img src="img/b11.png" alt=""></div>
                             <div><img src="img/b22.png" alt=""></div>
                             <div><img src="img/b3.png" alt=""></div>
                             <div><img src="img/b44.png" alt=""></div>
@@ -121,10 +139,16 @@
                         </h2>
                         <h3 class="font-20 text-white text-center mb-5">به ترتیب حروف الفبا </h3>
                         <p class="font-18 text-white text-center ">
-                            آقایان مهندس علي محمد احمدوند - دكتر اخوان نیاكی- دكتر حسین اسلامی - دكتر محمد اقدسي- دكتر محمدحامد امام جمعه زاده-مهندس وفا تابش-مهندس سهیل جعفری - مهندس جلال جلالیان -مهندس نصرالله جهانگرد - مهندس مرتضی چرمی- دكتر علی حاج شیرمحمدی -دكتر سید محمد سید حسینی - مهندس علی اكبر زحمتكش- دكتر محمد حسین صبحیه-مهندس محسن صفایی فراهانی- مهندس مجید فراهانی ماستری-مهندس محمدرضا فرشید نژاد-مهندس حسین كاشفی- مهندس محمود نادری پور - دكتر احد نظری - مهندس فرهاد نصرالله پور- مهندس هومن نصراللهی شیرازی.
+                            آقای دکتر محمدحسین صبحیه
+                            - آقای مهندس فرهاد نصراله پور
+                            - آقای دکتر احد نظری
+                            - آقای مهندس علی اکبر زحمتکش
+                            - آقای مهندس سهیل جعفری
+                            - آقای دکتر محمد حامد امام جمعه زاده
+                            - آقای مهندس محسن صفایی فراهانی
+                            - آقای مهندس جلال جلالیان
+                            - آقای دکتر حسین اسلامی
                         </p>
-
-
                     </div>
                 </div>
             </div>
@@ -133,16 +157,15 @@
             <div class="container">
                 <div class="row ">
                     <div class="col-12">
-                        <h2 class="font-26 text-black text-center mb-4"> <span class="text-yellow">اعضای</span>
+                        <h2 class="font-26 text-black text-center mb-4"><span class="text-yellow">اعضای</span>
                             هیات مدیره انجمن
                         </h2>
-                        <h3 class="font-16 text-black-light text-center mb-5">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان  </h3>
                     </div>
                     <div class="col-12 col-sm-6 col-lg-3">
                         <div class="ceo-out">
                             <div class="ceo-in">
                                 <div class="ceo-img">
-                                    <img class="rounded" src="img/nasrollahpour.jpg" alt="انجمن مدیریت پروژه">
+                                    <img class="rounded" src="{{asset('img/managers/2.jpg')}}" alt="انجمن مدیریت پروژه">
                                 </div>
                                 <div class="ceo-more-out">
                                     <a href="#" class="ceo-more font-16"><i class="fas fa-address-card"></i>مشاهده رزومه</a>
@@ -150,9 +173,11 @@
                                 </div>
                                 <div class="ceo-text text-center">
                                     <p class="text-black text-medium font-16 mb-0 mt-3">
-                                        نام و نام خانوادگی                            </p>
-                                    <p class="text-yellow font-16 m-0">
-                                        سمت در هیات مدیره </p>
+                                        مهندس فرهاد نصراله پور </p>
+                                    <p class="text-yellow font-16 m-0">عضو هیات مدیره و دبیر
+                                        رئیس شبکه اعضاء
+                                        دبیر و عضو شورایعالی
+                                    </p>
                                 </div>
                             </div>
 
@@ -162,7 +187,7 @@
                         <div class="ceo-out">
                             <div class="ceo-in">
                                 <div class="ceo-img">
-                                    <img class="rounded" src="img/mohammad.jpg" alt="انجمن مدیریت پروژه">
+                                    <img class="rounded" src="{{asset('img/managers/5.jpg')}}" alt="انجمن مدیریت پروژه">
                                 </div>
                                 <div class="ceo-more-out">
                                     <a href="#" class="ceo-more font-16"><i class="fas fa-address-card"></i>مشاهده رزومه</a>
@@ -170,9 +195,9 @@
                                 </div>
                                 <div class="ceo-text text-center">
                                     <p class="text-black text-medium font-16 mb-0 mt-3">
-                                        نام و نام خانوادگی                            </p>
+                                        دکتر سعید محمد</p>
                                     <p class="text-yellow font-16 m-0">
-                                        سمت در هیات مدیره </p>
+                                        رئیس هیات مدیره </p>
                                 </div>
                             </div>
                         </div>
@@ -181,7 +206,7 @@
                         <div class="ceo-out">
                             <div class="ceo-in">
                                 <div class="ceo-img">
-                                    <img class="rounded" src="img/khameneh.jpg" alt="انجمن مدیریت پروژه">
+                                    <img class="rounded" src="{{asset('img/managers/9.jpg')}}" alt="انجمن مدیریت پروژه">
                                 </div>
                                 <div class="ceo-more-out">
                                     <a href="#" class="ceo-more font-16"><i class="fas fa-address-card"></i>مشاهده رزومه</a>
@@ -189,9 +214,11 @@
                                 </div>
                                 <div class="ceo-text text-center">
                                     <p class="text-black text-medium font-16 mb-0 mt-3">
-                                        نام و نام خانوادگی                            </p>
+                                        دکتر امیر حسین خامنه </p>
                                     <p class="text-yellow font-16 m-0">
-                                        سمت در هیات مدیره </p>
+                                        عضو هیات مدیره
+                                        رئیس کارگروه های تخصصی
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -200,7 +227,8 @@
                         <div class="ceo-out">
                             <div class="ceo-in">
                                 <div class="ceo-img">
-                                    <img class="rounded" src="img/keshavarz.jpg" alt="انجمن مدیریت پروژه">
+                                    <img class="rounded" src="{{asset('img/managers/11.jpg')}}"
+                                         alt="انجمن مدیریت پروژه">
                                 </div>
                                 <div class="ceo-more-out">
                                     <a href="#" class="ceo-more font-16"><i class="fas fa-address-card"></i>مشاهده رزومه</a>
@@ -208,9 +236,9 @@
                                 </div>
                                 <div class="ceo-text text-center">
                                     <p class="text-black text-medium font-16 mb-0 mt-3">
-                                        نام و نام خانوادگی                            </p>
+                                        مهندس داود کشاورز </p>
                                     <p class="text-yellow font-16 m-0">
-                                        سمت در هیات مدیره </p>
+                                        عضو علی البدل هیات مدیره </p>
                                 </div>
                             </div>
                         </div>
@@ -219,7 +247,7 @@
                         <div class="ceo-out">
                             <div class="ceo-in">
                                 <div class="ceo-img">
-                                    <img class="rounded" src="img/hamidifar.jpg" alt="انجمن مدیریت پروژه">
+                                    <img class="rounded" src="{{asset('img/managers/1.jpg')}}" alt="انجمن مدیریت پروژه">
                                 </div>
                                 <div class="ceo-more-out">
                                     <a href="#" class="ceo-more font-16"><i class="fas fa-address-card"></i>مشاهده رزومه</a>
@@ -227,9 +255,11 @@
                                 </div>
                                 <div class="ceo-text text-center">
                                     <p class="text-black text-medium font-16 mb-0 mt-3">
-                                        نام و نام خانوادگی                            </p>
+                                        مهندس حسین حمیدی فر </p>
                                     <p class="text-yellow font-16 m-0">
-                                        سمت در هیات مدیره </p>
+                                        عضو هیات مدیره
+                                        رئیس کارگروه تخصصی سیستم های اطلاعات مدیریت پروژه
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -238,7 +268,7 @@
                         <div class="ceo-out">
                             <div class="ceo-in">
                                 <div class="ceo-img">
-                                    <img class="rounded" src="img/emam.jpg" alt="انجمن مدیریت پروژه">
+                                    <img class="rounded" src="{{asset('img/managers/3.jpg')}}" alt="انجمن مدیریت پروژه">
                                 </div>
                                 <div class="ceo-more-out">
                                     <a href="#" class="ceo-more font-16"><i class="fas fa-address-card"></i>مشاهده رزومه</a>
@@ -246,9 +276,11 @@
                                 </div>
                                 <div class="ceo-text text-center">
                                     <p class="text-black text-medium font-16 mb-0 mt-3">
-                                        نام و نام خانوادگی                            </p>
+                                        مهندس علی امام </p>
                                     <p class="text-yellow font-16 m-0">
-                                        سمت در هیات مدیره </p>
+                                        عضو هیات مدیره و
+                                        خزانه دار
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -257,7 +289,7 @@
                         <div class="ceo-out">
                             <div class="ceo-in">
                                 <div class="ceo-img">
-                                    <img class="rounded" src="img/azizi.jpg" alt="انجمن مدیریت پروژه">
+                                    <img class="rounded" src="{{asset('img/managers/4.jpg')}}" alt="انجمن مدیریت پروژه">
                                 </div>
                                 <div class="ceo-more-out">
                                     <a href="#" class="ceo-more font-16"><i class="fas fa-address-card"></i>مشاهده رزومه</a>
@@ -265,9 +297,11 @@
                                 </div>
                                 <div class="ceo-text text-center">
                                     <p class="text-black text-medium font-16 mb-0 mt-3">
-                                        نام و نام خانوادگی                            </p>
+                                        دکتر مجتبی عزیزی</p>
                                     <p class="text-yellow font-16 m-0">
-                                        سمت در هیات مدیره </p>
+                                        نایب رئیس هیات مدیره
+                                        رئیس کارگروه تخصصی BIM
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -276,7 +310,8 @@
                         <div class="ceo-out">
                             <div class="ceo-in">
                                 <div class="ceo-img">
-                                    <img class="rounded" src="img/azadmanesh.jpg" alt="انجمن مدیریت پروژه">
+                                    <img class="rounded" src="{{asset('img/managers/10.jpg')}}"
+                                         alt="انجمن مدیریت پروژه">
                                 </div>
                                 <div class="ceo-more-out">
                                     <a href="#" class="ceo-more font-16"><i class="fas fa-address-card"></i>مشاهده رزومه</a>
@@ -284,12 +319,136 @@
                                 </div>
                                 <div class="ceo-text text-center">
                                     <p class="text-black text-medium font-16 mb-0 mt-3">
-                                        نام و نام خانوادگی                            </p>
+                                        مهندس وحید آزادمنش</p>
                                     <p class="text-yellow font-16 m-0">
-                                        سمت در هیات مدیره </p>
+                                        عضو علی البدل هیات مدیره
+                                        رئیس امور بین الملل
+                                    </p>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="ceo-out">
+                            <div class="ceo-in">
+                                <div class="ceo-img">
+                                    <img class="rounded" src="{{asset('img/managers/13.jpg')}}"
+                                         alt="انجمن مدیریت پروژه">
+                                </div>
+                                <div class="ceo-more-out">
+                                    <a href="#" class="ceo-more font-16"><i class="fas fa-address-card"></i>مشاهده رزومه</a>
+
+                                </div>
+                                <div class="ceo-text text-center">
+                                    <p class="text-black text-medium font-16 mb-0 mt-3">
+                                        مهندس ریحانه کاظمی</p>
+                                    <p class="text-yellow font-16 m-0">
+                                        بازرس
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="ceo-out">
+                            <div class="ceo-in">
+                                <div class="ceo-img">
+                                    <img class="rounded" src="{{asset('img/managers/12.jpg')}}"
+                                         alt="انجمن مدیریت پروژه">
+                                </div>
+                                <div class="ceo-more-out">
+                                    <a href="#" class="ceo-more font-16"><i class="fas fa-address-card"></i>مشاهده رزومه</a>
+
+                                </div>
+                                <div class="ceo-text text-center">
+                                    <p class="text-black text-medium font-16 mb-0 mt-3">
+                                        مهندس رضا معینی فر</p>
+                                    <p class="text-yellow font-16 m-0">
+                                        بازرس علی البدل
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="ceo-out">
+                            <div class="ceo-in">
+                                <div class="ceo-img">
+                                    <img class="rounded" src="{{asset('img/managers/6.jpg')}}"
+                                         alt="انجمن مدیریت پروژه">
+                                </div>
+                                <div class="ceo-more-out">
+                                    <a href="#" class="ceo-more font-16"><i class="fas fa-address-card"></i>مشاهده رزومه</a>
+
+                                </div>
+                                <div class="ceo-text text-center">
+                                    <p class="text-black text-medium font-16 mb-0 mt-3">
+                                        دکتر محمد سبزوی</p>
+                                    <p class="text-yellow font-16 m-0">
+                                        عضو هیات مدیره
+                                        رئیس شاخه های استانی
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="ceo-out">
+                            <div class="ceo-in">
+                                <div class="ceo-img">
+                                    <img class="rounded" src="{{asset('img/managers/7.jpg')}}"
+                                         alt="انجمن مدیریت پروژه">
+                                </div>
+                                <div class="ceo-more-out">
+                                    <a href="#" class="ceo-more font-16"><i class="fas fa-address-card"></i>مشاهده رزومه</a>
+
+                                </div>
+                                <div class="ceo-text text-center">
+                                    <p class="text-black text-medium font-16 mb-0 mt-3">
+                                        دکتر محمد حسین صبحیه</p>
+                                    <p class="text-yellow font-16 m-0">
+                                        عضو هیات مدیره
+                                        عضو شورای عالی
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="ceo-out">
+                            <div class="ceo-in">
+                                <div class="ceo-img">
+                                    <img class="rounded" src="{{asset('img/managers/8.jpg')}}"
+                                         alt="انجمن مدیریت پروژه">
+                                </div>
+                                <div class="ceo-more-out">
+                                    <a href="#" class="ceo-more font-16"><i class="fas fa-address-card"></i>مشاهده رزومه</a>
+
+                                </div>
+                                <div class="ceo-text text-center">
+                                    <p class="text-black text-medium font-16 mb-0 mt-3">
+                                        دکتر آرنوش شاکری</p>
+                                    <p class="text-yellow font-16 m-0">
+                                        عضو هیات مدیره
+                                        رئیس کمیته جایزه پژوهش
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="history-about pt-5 pb-5" id="chart">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 ">
+                        <h3 class="font-20 text-yellow text-center text-light2 mb-4">چارت سازمانی</h3>
+                        <h2 class="font-24 text-medium text-black text-center  mb-5">ساختار سازمانی این انجمن از
+                            1396/08/01 به شرح زیر تصویب و برقرار می باشد
+                        </h2>
+                        <img style="margin-right: auto;margin-left: auto;display: block"
+                             src="{{asset('img/chart.png')}}">
                     </div>
                 </div>
             </div>

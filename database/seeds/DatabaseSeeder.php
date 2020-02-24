@@ -29,5 +29,6 @@ class DatabaseSeeder extends Seeder
         factory(\App\News::class,96)->create();
         factory(\App\visibiliy::class,20)->create();
         factory(\App\IPMA::class,1)->create();
+        factory(\App\Message::class,10)->create();
     }
 }

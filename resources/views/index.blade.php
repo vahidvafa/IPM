@@ -24,12 +24,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="img/logo.png" alt="انجمن مدیریت پروژه">
+                    <img src="{{asset('img/logo.png')}}" alt="انجمن مدیریت پروژه">
                     <h1 class="text-white d-inline-block font-18 text-regular ml-2"
                         style="font-weight: bold;font-size: 27px;">انجمن مدیریت پروژه ایران</h1>
                 </div>
                 <div class="col-md-6 text-right">
-                    <img src="img/ipma-logo.png" alt="انجمن مدیریت پروژه">
+                    <img src="{{asset('img/ipma-logo.png')}}" alt="انجمن مدیریت پروژه">
                 </div>
             </div>
         </div>
@@ -39,8 +39,6 @@
             <div class="container">
                 <div class="row">
                     <nav class="navbar navbar-expand-lg  navbar-dark col-12">
-
-
                         <!-- Toggler/collapsibe Button -->
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#collapsibleNavbar">
@@ -79,8 +77,8 @@
                                     <a class="nav-link " href="#">صفحه اول</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
-                                    >درباره انجمن</a>
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">درباره
+                                        انجمن</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{{route('about-us')}}#history">تاریخچه</a>
                                         <a class="dropdown-item" href="{{route('about-us')}}#target">اهداف و نقشه
@@ -91,19 +89,18 @@
                                         <a class="dropdown-item" href="{{route('about-us')}}#chart">چارت سازمانی</a>
                                         <div class="dropdown-divider">برای دانلود</div>
                                         <a class="dropdown-item" href="#">اسناد مرجع</a>
-                                        <a class="dropdown-item" href="#">مجوزها</a>
+                                        <a class="dropdown-item" href="{{url('files/certificate.pdf')}}"
+                                           target="_blank">مجوزها</a>
                                         <a class="dropdown-item" href="#">گزارش ها</a>
                                     </div>
                                 </li>
-
-
                                 <!-- Dropdown -->
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                         شبکه اعضا </a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#">كميته عضويت</a>
-                                        <a class="dropdown-item" href="#">يافتن اعضا</a>
+                                        <a class="dropdown-item" href="{{route('user.search')}}">يافتن اعضا</a>
                                         <a class="dropdown-item" href="#">شبكه اعضا جوان</a>
                                     </div>
                                 </li>
@@ -123,11 +120,14 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop3"
                                        data-toggle="dropdown">
                                         ارکان انجمن </a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Link 1</a>
-                                        <a class="dropdown-item" href="#">Link 2</a>
-                                        <a class="dropdown-item" href="#">Link 3</a>
-                                    </div>
+{{--                                    <div class="dropdown-menu">--}}
+{{--                                        <a class="dropdown-item" href="#">Link 1</a>--}}
+{{--                                        <a class="dropdown-item" href="#">Link 2</a>--}}
+{{--                                        <a class="dropdown-item" href="#">Link 3</a>--}}
+{{--                                    </div>--}}
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="{{route('search')}}">جستجو</a>
                                 </li>
                             @auth()
                                 <!-- Dropdown -->
@@ -136,22 +136,18 @@
                                     </li>
                                 @endauth
                             </ul>
-
                         </div>
-
                     </nav>
                 </div>
             </div>
         </div>
         <div class="slider-text pt-5 pb-5">
-
             <div class="row align-items-center justify-content-around">
                 <div class="slider-form-out col-md-4 col-lg-2 order-2 order-md-1 z-index "
                      style="margin-right: -144px ;">
                     <input type="submit" value="هوادار شوید" style="transform: rotate(-90deg);margin-top: 150px;"
                            class="form-submit text-white font-16 text-medium">
                 </div>
-
                 <div class="col-md-6 order-1 order-md-2 " style="margin-right: 490px;margin-bottom: 90px">
                     <h2 class="font-28 text-white mb-5 "><span class="text-yellow">{{$ipma->head_title}}</span></h2>
                     <h3 class="font-22 text-white mb-4">{{$ipma->head_subtitle}}</h3>
@@ -159,7 +155,6 @@
                     <a class="btn btn-white font-16 text-black mt-5">در رویداد شرکت کنید</a>
                 </div>
             </div>
-
         </div>
     </div>
 </header>
@@ -169,14 +164,14 @@
         <div class="container">
             <div class="row">
                 <h2 class="text-center font-24 text-medium text-black col-12 mb-4 mb-sm-5"><span
-                            class="text-yellow">پرطرفدارترین </span>رویدادها
+                        class="text-yellow">پرطرفدارترین </span>رویدادها
                 </h2>
                 @foreach($events as $event)
                     <div class="col-12 col-md-6 mb-4">
                         <div class="popular-pack-in  d-flex flex-column flex-sm-row  flex-md-column flex-lg-row">
 
                             <div
-                                    class="popular-pack-in-info mt-xl-0 mt-4 mt-sm-0 mt-md-4 order-2 order-sm-1   order-md-2 order-lg-1">
+                                class="popular-pack-in-info mt-xl-0 mt-4 mt-sm-0 mt-md-4 order-2 order-sm-1   order-md-2 order-lg-1">
                                 <div class="popular-pack-in-info-titles">
                                     <h4 class="popular-pack-in-info-title font-16 text-medium text-black mb-3 ">
                                         <a class="text-black hover-text-black"
@@ -204,7 +199,7 @@
                             <div class="popular-svg">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 361.1 62.7">
                                     <path
-                                            d="M59.2,19.4c91.2-28.9,166.6,27.1,224,33.9c37.7,4.5,67.8-9.4,77.9-53.3H0v62.4C11.5,45.7,30.5,29.4,59.2,19.4z"></path>
+                                        d="M59.2,19.4c91.2-28.9,166.6,27.1,224,33.9c37.7,4.5,67.8-9.4,77.9-53.3H0v62.4C11.5,45.7,30.5,29.4,59.2,19.4z"></path>
                                 </svg>
                             </div>
                         </div>
@@ -258,7 +253,7 @@
                                     <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                                class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۲۶/۵/۹۸</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -278,7 +273,7 @@
                                 </div>
 
                                 <div
-                                        class="last-pack-content-in-more text-center col-12 col-lg-2 text-lg-left text-center">
+                                    class="last-pack-content-in-more text-center col-12 col-lg-2 text-lg-left text-center">
                                     <a href="/" class="btn btn-white-border">شرکت در رویداد</a>
                                 </div>
                             </div>
@@ -288,10 +283,10 @@
                             <div class="row align-items-center">
                                 <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
                                     <p class="text-medium font-14 mb-1 mb-lg-2">شروع ثبت نام :<span
-                                                class="pl-3">۲۶/۵/۹۸</span>
+                                            class="pl-3">۲۶/۵/۹۸</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                                class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۲۶/۵/۹۸</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex  align-items-center text-lg-left text-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -311,7 +306,7 @@
                                 </div>
 
                                 <div
-                                        class="last-pack-content-in-more text-center text-lg-left text-center col-12 col-lg-2">
+                                    class="last-pack-content-in-more text-center text-lg-left text-center col-12 col-lg-2">
                                     <a href="/" class="btn btn-white-border">شرکت در رویداد</a>
                                 </div>
                             </div>
@@ -322,7 +317,7 @@
                                     <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                                class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۲۶/۵/۹۸</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex text-lg-left text-center  align-items-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -352,7 +347,7 @@
                                     <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                                class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۲۶/۵/۹۸</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex text-lg-left text-center align-items-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -384,7 +379,7 @@
                                     <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                                class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۲۶/۵/۹۸</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -404,7 +399,7 @@
                                 </div>
 
                                 <div
-                                        class="last-pack-content-in-more text-center col-12 col-lg-2 text-lg-left text-center">
+                                    class="last-pack-content-in-more text-center col-12 col-lg-2 text-lg-left text-center">
                                     <a href="/" class="btn btn-white-border">شرکت در رویداد</a>
                                 </div>
                             </div>
@@ -414,10 +409,10 @@
                             <div class="row align-items-center">
                                 <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
                                     <p class="text-medium font-14 mb-1 mb-lg-2">شروع ثبت نام :<span
-                                                class="pl-3">۲۶/۵/۹۸</span>
+                                            class="pl-3">۲۶/۵/۹۸</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                                class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۲۶/۵/۹۸</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex  align-items-center text-lg-left text-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -437,7 +432,7 @@
                                 </div>
 
                                 <div
-                                        class="last-pack-content-in-more text-center text-lg-left text-center col-12 col-lg-2">
+                                    class="last-pack-content-in-more text-center text-lg-left text-center col-12 col-lg-2">
                                     <a href="/" class="btn btn-white-border">شرکت در رویداد</a>
                                 </div>
                             </div>
@@ -448,7 +443,7 @@
                                     <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                                class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۲۶/۵/۹۸</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex text-lg-left text-center  align-items-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -480,7 +475,7 @@
                                     <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                                class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۲۶/۵/۹۸</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -500,7 +495,7 @@
                                 </div>
 
                                 <div
-                                        class="last-pack-content-in-more text-center col-12 col-lg-2 text-lg-left text-center">
+                                    class="last-pack-content-in-more text-center col-12 col-lg-2 text-lg-left text-center">
                                     <a href="/" class="btn btn-white-border">شرکت در رویداد</a>
                                 </div>
                             </div>
@@ -510,10 +505,10 @@
                             <div class="row align-items-center">
                                 <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
                                     <p class="text-medium font-14 mb-1 mb-lg-2">شروع ثبت نام :<span
-                                                class="pl-3">۲۶/۵/۹۸</span>
+                                            class="pl-3">۲۶/۵/۹۸</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                                class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۲۶/۵/۹۸</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex  align-items-center text-lg-left text-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -533,7 +528,7 @@
                                 </div>
 
                                 <div
-                                        class="last-pack-content-in-more text-center text-lg-left text-center col-12 col-lg-2">
+                                    class="last-pack-content-in-more text-center text-lg-left text-center col-12 col-lg-2">
                                     <a href="/" class="btn btn-white-border">شرکت در رویداد</a>
                                 </div>
                             </div>
@@ -544,7 +539,7 @@
                                     <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                                class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۲۶/۵/۹۸</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex text-lg-left text-center  align-items-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -800,10 +795,12 @@
                     <p class="text-gray font-14"><span>نمابر:</span><span>{{$ipma->fax}}</span></p>
                 </div>
                 <div class="contact-footer-in">
-                    <p class="text-gray font-14"><span>پست الكترونيك دبیرخانه:</span><span>{{$ipma->secretariat_email}}</span></p>
+                    <p class="text-gray font-14">
+                        <span>پست الكترونيك دبیرخانه:</span><span>{{$ipma->secretariat_email}}</span></p>
                 </div>
                 <div class="contact-footer-in">
-                    <p class="text-gray font-14"><span>پست الکترونیک عضویت: </span><span>{{$ipma->membership_email  }}</span></p>
+                    <p class="text-gray font-14">
+                        <span>پست الکترونیک عضویت: </span><span>{{$ipma->membership_email  }}</span></p>
                 </div>
             </div>
             <div class="link-footer col-6 col-sm-6 col-md-3 col-lg-2">

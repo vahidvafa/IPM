@@ -19,9 +19,26 @@ class IndexController extends Controller
     {
         $events = Event::latest()->limit(4)->get(['id', 'photo', 'title', 'description', 'from_date']);
         $news = News::latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
-        $ipma = IPMA::get()[0];
+        $ipma = IPMA::latest()->first();
+        return view('index', compact('events', 'news', 'ipma'));
+    }
 
-        return view('index', compact('events', 'news','ipma'));
+    public function search()
+    {
+        $titleHeader = $breadcrumb = "جستجو";
+        if (\request()->has('search')) {
+            $searchString = \request()->get('search');
+            $news = News::where("title", "LIKE", "%$searchString%")->get(['id', 'title', 'photo']);
+            $events = Event::where("title", "LIKE", "%$searchString%")
+                ->orWhere("address", "LIKE", "%$searchString%")
+                ->orWhere("tel", "LIKE", "%$searchString%")
+                ->orWhere("course_headings", "LIKE", "%$searchString%")
+                ->get(['id', 'title', 'photo']);
+        } else {
+            $news = News::latest()->limit(10)->get(['id', 'title', 'photo']);
+            $events = Event::latest()->limit(10)->get(['id', 'title', 'photo']);
+        }
+        return view('search', compact('titleHeader', 'breadcrumb', 'news', 'events'));
     }
 
     /**
@@ -94,6 +111,6 @@ class IndexController extends Controller
     {
         $titleHeader = "درباره انجمن";
         $breadcrumb = "درباره ما";
-        return view('about_us',compact('titleHeader','breadcrumb'));
+        return view('about_us', compact('titleHeader', 'breadcrumb'));
     }
 }

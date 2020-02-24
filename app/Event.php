@@ -60,15 +60,27 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $lang_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereLangId($value)
+ * @property string $from_date
+ * @property string $to_date
+ * @property string $start_register_date
+ * @property int $event_category_id
+ * @property int $user_id
+ * @property string $mobile
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereEventCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereFromDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereMobile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereStartRegisterDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereToDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereUserId($value)
  */
 class Event extends Model
 {
     use SoftDeletes;
 
-    protected $fillable=[0];
+    protected $fillable = ['title', 'description', 'detail', 'course_headings', 'from_date', 'to_date', 'start_register_date', 'price', 'province_id', 'tel', 'address', 'latitude', 'longitude', 'event_category_id', ''];
 
-
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(EventCategory::class);
     }
 

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{asset('fullcalendar/timegrid/main.css')}}">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/css/datepicker.css'>
     <link rel="stylesheet" href="{{asset('css/style-calender.css')}}">
+
 @stop
 @section('content')
     <main id="content-page" role="main">
@@ -417,7 +418,7 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="birth_date" value="{{(Session::get('type') == 2) ?request()->old('birth_date'):''}}" size="40" aria-invalid="false"
+                                <input type="text" name="birth_date" value="{{(Session::get('type') == 2) ?request()->old('birth_date'):''}}"
                                        placeholder="تاریخ تولد*" required>
                                 <img src="img/001-user.png" class="form-icon">
                                 @if (Session::get('type') == 2 && $errors->has('birth_date'))
@@ -1128,7 +1129,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/locales/fa.js"
         integrity="sha256-xMKbF/7LQq6ROtSHcNKZtylu1zhGqEFvefXb7ENciKc=" crossorigin="anonymous"></script>
 <script>
-
     document.addEventListener('DOMContentLoaded', function () {
 
         var initialLocaleCode = 'fa';

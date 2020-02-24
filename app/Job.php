@@ -43,6 +43,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @mixin \Eloquent
  * @property int $lang_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereLangId($value)
+ * @property string $title
+ * @property string|null $education
+ * @property string|null $location
+ * @property string|null $type
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Request[] $requests
+ * @property-read int|null $requests_count
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereEducation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereLocation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereType($value)
  */
 class Job extends Model
 {
