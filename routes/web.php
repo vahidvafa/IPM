@@ -40,13 +40,18 @@ Route::get('/profile/{slug}', 'UserController@index')->name("profile");
 Route::get('404', function () {
     return view("404");
 })->name("404");
-Route::post('/login', 'AuthController@postLogin');
+Route::post('/login', 'AuthController@postLogin')->name('login.post');
+Route::get('/login', 'AuthController@Login')->name('login')->middleware('guest');
 Route::get('about-us', 'IndexController@about_us')->name('about-us');
 Route::get('news/{news}', 'NewsController@show')->name('news.show');
-//Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('logout', 'UserController@logout')->name('logout');
-//    Route::middleware('checkAdmin')->group(function (){
+    Route::post('/logout', 'UserController@logout')->name('logout.post');
+    Route::middleware('checkAdmin')->group(function (){
         Route::prefix('/cms/')->group(function () {
+
+            Route::get('/', 'IndexController@cms')->name('cms.index');
+
             Route::get('news/', 'NewsController@indexCms')->name('news.index');
             Route::get('news/create', 'NewsController@create')->name('news.create');
             Route::get('news/{news}/edit', 'NewsController@edit')->name('news.edit');
@@ -71,8 +76,8 @@ Route::get('news/{news}', 'NewsController@show')->name('news.show');
             //------
 //            Route::get('users')->name('cms.users');
         });
-//    });
-//});
+    });
+});
 
 
 Route::get('news','NewsController@indexWeb')->name('news');
@@ -83,4 +88,5 @@ Route::post("/applyJob","RequestController@store")->name("applyJob");
 Route::get('news', 'NewsController@index')->name('news');
 
 Route::resource("job","JobController");
+
 Route::post('/event/list','EventController@indexJs')->name('event.list');
