@@ -79,9 +79,9 @@
                         <!-- Navbar links -->
                         <div class="collapse navbar-collapse order-lg-0" id="collapsibleNavbar">
                             <ul class="navbar-nav header-main">
-                                <li class="nav-item active">
+                                {{--<li class="nav-item active">
                                     <a class="nav-link " href="{{route('main')}}">صفحه اول</a>
-                                </li>
+                                </li>--}}
                                 <li class="nav-item ">
                                     <a class="nav-link " href="{{route('message.create')}}">تماس با ما</a>
                                 </li>

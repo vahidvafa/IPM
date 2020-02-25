@@ -2544,6 +2544,7 @@ declare module '@fullcalendar/core/api/EventApi' {
         readonly allDay: boolean;
         readonly title: string;
         readonly url: string;
+        readonly link: string;
         readonly rendering: string;
         readonly startEditable: boolean;
         readonly durationEditable: boolean;

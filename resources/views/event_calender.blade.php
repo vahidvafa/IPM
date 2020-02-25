@@ -57,7 +57,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <a href="{{route('event',[1])}}" type="button" class="btn btn-primary btn-violet-calender" data-dismiss="modal">بیشتر بدانید</a>
+                    <a {{--href="{{route('event',[1])}}"--}} id="url" class="btn btn-primary btn-violet-calender">بیشتر بدانید</a>
                     {{--<button type="button" class="btn btn-primary btn-yellow-calender" data-dismiss="modal">ثبت نام</button>--}}
                 </div>
             </div>
@@ -102,7 +102,8 @@
                             "end":end.getFullYear()+"-"+(end.getMonth()<=9?"0"+end.getMonth():end.getMonth())+"-"+(end.getDay()<=9?"0"+end.getDay():end.getDay())+"T"+(end.getHours()<=9?"0"+end.getHours():end.getHours())+":"+(end.getMinutes()<=9?"0"+end.getMinutes():end.getMinutes())+":"+(end.getSeconds()<=9?"0"+end.getSeconds():end.getSeconds()),
                             "className": 'fc-bg-red',
                             "icon": "calendar",
-                            "extendedProps":{"description":e.description}
+                            "extendedProps":{"description":e.description},
+                            "id":"{{url("/")}}/event/"+e.id,
                         })
 
                     });
@@ -139,14 +140,14 @@
                     element.find(".fc-content").prepend("<i class='fa fa-"+event.icon+"'></i>");
 
                 }
-                console.log('hhhh')
+
             },
 
             eventClick: function(event, jsEvent, view) {
                 jQuery('.event-icon').html("<i class='fa fa-"+event.event.icon+"'></i>");
                 jQuery('.event-title').html(event.event.title);
                 jQuery('.event-body').html(event.event.extendedProps.description);
-                jQuery('.eventUrl').attr('href',event.event.url);
+                jQuery('#url').attr('href',event.event.id);
                 jQuery('#modal-view-event').modal();
             }
         });
