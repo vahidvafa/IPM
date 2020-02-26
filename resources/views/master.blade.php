@@ -57,7 +57,7 @@
                                         <i class="fa fa-user mr-1"></i>
                                         <span>پروفایل</span>
                                     </a>
-                                @else
+                                @elseif( Route::currentRouteName() != "login" )
                                     <a class="nav-link nav-login" data-toggle="modal" data-target="#ModalLogin">
                                         <i class="fa fa-user mr-1"></i>
                                         <span href="/res">   ورود کاربران</span>

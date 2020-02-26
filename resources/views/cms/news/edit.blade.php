@@ -17,11 +17,11 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <form action="{{route('news.update',[$news->id])}}" method="post" enctype="multipart/form-data">
+                                <form action="{{route('cms.user.update',[$news->id])}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-lg-12 mb-4">
-                                            <lable>عنوان خبر</lable>
+                                            <label>عنوان خبر</label>
                                             <input class="form-control" name="title" type="text" placeholder="عنوان خبر"
                                                    value="{{$news->title}}">
                                             @error('title')
@@ -29,7 +29,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-12 mb-4">
-                                            <lable>خلاصه خبر</lable>
+                                            <label>خلاصه خبر</label>
                                             <input class="form-control" name="description" type="text"
                                                    placeholder="خلاصه خبر"
                                                    value="{{$news->description}}">
@@ -38,7 +38,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-12 mb-4">
-                                            <lable>متن خبر</lable>
+                                            <label>متن خبر</label>
                                             <div class="editor">
                                                 <textarea id="detail" name="detail"
                                                           class="form-control ckeditor cke_rtl">{{ $news->detail }}</textarea>
@@ -48,11 +48,14 @@
                                             @enderror
                                         </div>
                                         <div class="col-lg-12 mb-4">
-                                            <lable>عکس خبر ( برای تغییر عکس ، عکس جدید را بارگذاری کنید )</lable>
+                                            <label>عکس خبر ( برای تغییر عکس ، عکس جدید را بارگذاری کنید )</label>
                                             <input class="form-control-file my-2" type="file" name="image" id="image">
                                             @error('image')
                                                 <div class="error text-danger">{{ $message }}</div>
                                             @enderror
+                                        </div>
+                                        <div class="col-lg-12 mb-4">
+
                                         </div>
                                     </div>
                                     <div class="card-footer">

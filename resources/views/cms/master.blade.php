@@ -70,7 +70,7 @@
                 <li class="nav-item {{checkMenu("cms/messages",$title)}}">
                     <a class="nav-link" href="{{route('message.index')}}">
                         <i class="material-icons">library_books</i>
-                        <p>پیام ها</p>
+                        <p>تماس با ما</p>
                     </a>
                 </li>
                 <li class="nav-item {{checkMenu("cms/jobs",$title)}}">
@@ -79,8 +79,14 @@
                         <p>فرصت های شغلی</p>
                     </a>
                 </li>
+                <li class="nav-item {{checkMenu("cms/users",$title)}}">
+                    <a class="nav-link" href="{{route('cms.user.index')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>کاربران</p>
+                    </a>
+                </li>
 
-                <form method="post" action="/logout">
+                <form method="post" action="{{route('logout')}}">
                     @csrf
                     <li class="nav-item active">
                         <button class="nav-link text-right active_button mt-1">

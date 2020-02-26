@@ -242,7 +242,7 @@ class JobController extends Controller
 
 
     public function indexCms(){
-        $jobs = Job::whereState(0)->paginate(20);
+        $jobs = Job::paginate(20);
 
         flash_message(false,"لیست خالی میباید");
 

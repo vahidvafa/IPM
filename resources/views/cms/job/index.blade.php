@@ -38,12 +38,15 @@
                                 </a>
                             </td>
                             <td data-th="تایید" class="text-right">
+
+                                @if($job->state == 0)
                                 <form action="{{route('cms.job.store',[$job->id])}}" method="post">
                                     @csrf
                                     <a href="#" onclick="confirm('{{ __("آیا مطمئن به تایید این فرصت شغلی هستید؟") }}') ? this.parentElement.submit() : ''">
                                         <i class="material-icons text-success">done</i>
                                     </a>
                                 </form>
+                                    @endif
                             </td>
                             <td data-th="حذف" class="text-right">
                                 <form action="{{route('cms.job.destroy',[$job->id])}}" method="post">

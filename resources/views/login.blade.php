@@ -7,8 +7,8 @@
             <h4 class="modal-title text-black">ورود به انجمن مدیریت پروژه</h4>
             <p class="text-black-light font-18 text-light2 mt-4 mb-4">جهت ورورد به سایت اطلاعات زیر را تکمیل
                 نمایید</p>
-            <form class="sidebar-form-body">
-                <div class="input-form">
+            <form class="sidebar-form-body row">
+                <div class="input-form col-6">
                     <input type="text" name="username" id="input_username" value="" size="40" aria-invalid="false"
                            placeholder="ایمیل یا شماره موبایل*">
                     <img src="{{asset('img/003-envelope.png')}}" class="form-icon">
@@ -17,7 +17,7 @@
                         <strong id="username-error-text"></strong>
                     </div>
                 </div>
-                <div class="input-form">
+                <div class="input-form col-6">
                     <input class="mb-3" type="password" name="password" id="input_password" value="" size="40"
                            aria-invalid="false" placeholder="پسورد*">
                     <img src="{{asset('img/002-telephone.png')}}" class="form-icon">
@@ -26,19 +26,18 @@
                         <strong id="password-error-text"></strong>
                     </div>
                 </div>
-                <a href="/" class="d-block text-left text-dark-violet font-14 text-light2">رمز عبور خود را فراموش
+                <a href="/" class="col-12 d-block text-left text-dark-violet font-14 text-light2">رمز عبور خود را فراموش
                     کرده ام؟</a>
-                <div id="text-error" class="error text-danger pl-3"
-                     style="display: block;">
-                    <strong id="text-error"></strong>
-                </div>
-                <input type="button" value="وارد شوید" class="form-submit mt-5 text-white font-16 text-medium"
+                <div class="row col-12">
+                <input type="button" value="وارد شوید" class="center-y col-5 form-submit mt-1 text-white font-16 text-medium"
                        onclick="login()">
+                </div>
 
             </form>
         </div>
     </main>
     <script>
+
         function clearLoginErrors() {
             $('#text-error').text('');
             $('#username-error-text').text('');

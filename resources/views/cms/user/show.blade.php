@@ -1,9 +1,6 @@
-@extends('master')
-@section('header')
-
-@stop
-
+@extends('cms.master')
 @section('content')
+
 
 
 

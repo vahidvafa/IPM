@@ -21,7 +21,7 @@
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-lg-12 mb-4">
-                                            <lable>عنوان رویداد</lable>
+                                            <label>عنوان رویداد</label>
                                             <input class="form-control" name="title" type="text"
                                                    placeholder="عنوان رویداد"
                                                    value="{{old('title')}}">
@@ -30,7 +30,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-12 mb-4">
-                                            <lable>خلاصه دوره</lable>
+                                            <label>خلاصه دوره</label>
                                             <input class="form-control" name="description" type="text"
                                                    placeholder="خلاصه دوره"
                                                    value="{{old('description')}}">
@@ -39,7 +39,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-12 mb-4">
-                                            <lable>سرفصل های دوره</lable>
+                                            <label>سرفصل های دوره</label>
                                             <div class="editor">
                                                 <textarea id="course_headings" name="course_headings"
                                                           class="form-control ckeditor cke_rtl">{{ old('course_headings') }}</textarea>
@@ -49,7 +49,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-12 mb-4">
-                                            <lable>متن رویداد</lable>
+                                            <label>متن رویداد</label>
                                             <div class="editor">
                                                 <textarea id="detail" name="detail"
                                                           class="form-control ckeditor cke_rtl">{{ old('detail') }}</textarea>
@@ -85,7 +85,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
-                                            <lable>تاریخ شروع ثبت نام</lable>
+                                            <label>تاریخ شروع ثبت نام</label>
                                             <input class="form-control datePickerInputs" name="start_register_date_display"
                                                    type="text"
                                                    id="start_register_date_display"
@@ -100,7 +100,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
-                                            <lable>قیمت (ریال به صورت عدد)</lable>
+                                            <label>قیمت (ریال به صورت عدد)</label>
                                             <input class="form-control" name="price" type="text" placeholder="قیمت"
                                                    value="{{old('price')}}">
                                             @error('price')
@@ -108,7 +108,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
-                                            <lable>شماره تلفن</lable>
+                                            <label>شماره تلفن</label>
                                             <input class="form-control" name="tel" type="text" placeholder="شماره تلفن"
                                                    value="{{old('tel')}}">
                                             @error('tel')
@@ -116,7 +116,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
-                                            <lable>آدرس</lable>
+                                            <label>آدرس</label>
                                             <input class="form-control" name="address" type="text" placeholder="آدرس"
                                                    value="{{old('address')}}">
                                             @error('address')
@@ -124,7 +124,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
-                                            <lable>عرض جغرافیایی</lable>
+                                            <label>عرض جغرافیایی</label>
                                             <input class="form-control" name="latitude" type="text"
                                                    placeholder="عرض جغرافیایی"
                                                    value="{{old('latitude')}}">
@@ -133,7 +133,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
-                                            <lable>طول جغرافیایی</lable>
+                                            <label>طول جغرافیایی</label>
                                             <input class="form-control" name="longitude" type="text"
                                                    placeholder="طول جغرافیایی"
                                                    value="{{old('longitude')}}">
@@ -142,7 +142,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
-                                            <lable>دسته بندی</lable>
+                                            <label>دسته بندی</label>
                                             <select class="form-control" name="event_category_id">
                                                 @foreach(\App\EventCategory::all() as $category)
                                                     <option value="{{$category->id}}"> {{$category->name}} </option>
@@ -153,7 +153,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
-                                            <lable>استان</lable>
+                                            <label>استان</label>
                                             <select class="form-control" name="province_id">
                                                 @foreach(\App\Province::all() as $province)
                                                     <option value="{{$province->id}}"> {{$province->title}} </option>
@@ -164,7 +164,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-lg-12 mb-4">
-                                            <lable>عکس رویداد</lable>
+                                            <label>عکس رویداد</label>
                                             <input class="form-control-file my-2" type="file" name="image" id="image">
                                             @error('image')
                                             <div class="error text-danger">{{ $message }}</div>

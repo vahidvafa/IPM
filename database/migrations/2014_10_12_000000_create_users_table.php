@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('name_en');
             $table->string('slug')->unique();
             $table->string('user_code')->unique();
             $table->string('email')->unique();
@@ -24,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->tinyInteger('roles')->default(2)->comment("0=> admin | 1=> manager | 2=>user");
-            $table->tinyInteger('active')->default(0)->comment("0=>expire | 1=>Document defect  | 2=>peyment unsuccess | 3=>active");
+            $table->tinyInteger('active')->default(0)->comment("-1=> wait for confirm from admin | 0=>expire | 1=>Document defect | 2=>peyment unsuccess | 3=>active");
             $table->bigInteger('reagent_id')->default(0);
             $table->bigInteger('branch')->default(0);
             $table->bigInteger('expire')->default(0);

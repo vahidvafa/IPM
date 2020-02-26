@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Company::class, function (Faker $faker) {
     $ownership_type = array("خصوصی", "دولتی", 'عمومی', ' سایر', 'دولتی / خصوصی', 'خصوصی / دولتی');
-    $legal_type = array('سهامی خاص', 'سهامی عام', 'با مسئولیت محدود', 'تضامنی سایر');
+    $legal_type = array('سهامی خاص', 'سهامی عام', 'با مسئولیت محدود', 'تضامنی','سایر');
     $user = \App\User::all('id', "slug")->random();
     return [
         'user_id' => $user->id,

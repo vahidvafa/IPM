@@ -37,68 +37,20 @@ class UserController extends Controller
         return view('users', compact('users', 'breadcrumb', 'titleHeader'));
     }
 
+    public function indexCms()
+    {
+        $users = User::paginate(15);
+
+        return view('cms.user.index',compact('users'));
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($slug)
+    public function index()
     {
-        $profileVisible = [];
-        $memberships = [];
-
-
-        $FieldsInClass = new UserProFields();
-
-        $FieldsInClass = $FieldsInClass->asArray();
-
-        $user = User::with(['workExperience', 'education', 'profile','companies','documents' => function (HasMany $doc) {
-            $doc->where('state', '=', 0);
-        }, 'PassedCoursesCat' => function (HasMany $relation) {
-            $relation->with('PassedCourses')->get();
-        }])->where('slug', '=', $slug)->get();
-
-        $breadcrumb = "پروفایل";
-
-
-        if (count($user) != 0) {
-            $user = $user[0];
-            $others_visibles = visibiliy::where("user_id", '=', "$user->id")->get();
-
-            if (count($others_visibles) != 0) {
-
-                $fields = array();
-                foreach ($others_visibles as $field)
-                    array_push($fields, $field->profile_fields);
-
-
-                $profileVisible = Profile::where('id', '=', $user->id)->get($fields);
-                if (count($profileVisible) != 0) {
-
-                    $profileVisible = json_decode($profileVisible[0], true);
-
-
-                    foreach ($profileVisible as $keyVisible => $valueVisible)
-                        foreach ($FieldsInClass as $key => $value)
-                            if ($keyVisible == $key)
-                                $profileVisible["$keyVisible"] = $value . " " . $valueVisible;
-
-
-                }
-
-
-            }
-
-            $titleHeader = $user->name;
-
-            if (auth()->check() && (auth()->user()->roles == 0 || auth()->user()->roles == 1))
-                $memberships = MembershipType::all();
-
-            $name_en = str_replace("-"," ",$user->slug);
-//            $name_en = str_replace(str_split('1234567890'),'',$name_en);
-
-            return view('profile', compact("user", "titleHeader", "breadcrumb", 'profileVisible', 'memberships','name_en'));
-        } else return view("404");
     }
 
     /**
@@ -130,7 +82,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -141,7 +93,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::with(['education','companies'])->findOrFail($id);
+        $membershipTitle = MembershipType::findOrFail($user->membership_type_id)->title;
+
+
+
+        return view('cms.user.edit',compact('user','membershipTitle'));
     }
 
     /**
@@ -166,42 +123,44 @@ class UserController extends Controller
     {
 
 //        return $request;
-    //        'profile[birth_date]' => "birthday error",
+        //        'profile[birth_date]' => "birthday error",
 //        'profile[birth_place]' => "birth_place error",
 //        'profile[work_address]' => "work_address error",
 
-   $validate =  \Validator::make($request->all(),[
+        $validate = validator($request->all(), [
 //        "name" => 'required|string|max:4',
 
-       'about_me'=>'required|string',
-       "profile.birth_date"=>"required"
-    ],[
-       'about_me.*' => "about error",
-       'profile.birth_date.*' => "max 1 for profile[birth_date] error"
-    ]);
+            'first_name' => 'required|string|max:2',
+            "last_name" => "required|max:2"
+        ], [
+            'first_name.*' => "first_name error",
+            'last_name.*' => "max 1 for last_name    error"
+        ]);
 
 //        return $validate->errors();
 
-    /*$validate = $this->validate($request, [
-//        "name" => 'required|string|max:4',
-        "about_me" => ['min:6']
-    ],[
-        'about_me.*' => "name error"
-    ]);*/
+   /*     $validate = $this->validate($request, [
+    //        "name" => 'required|string|max:4',
+            "about_me" => ['min:6']
+        ],[
+            'about_me.*' => "name error"
+        ]);*/
+
+        return back()->withErrors($validate)->withInput();
 
         $user = User::whereSlug($request->all("slug"))->get("id")[0];
         $user = User::find($user->id);
 
-        $check_slug = str_replace(" ","-",$request->get('name_en'));
+        $check_slug = str_replace(" ", "-", $request->get('name_en'));
 
-        if ($user->slug != $check_slug){
+        if ($user->slug != $check_slug) {
             $slug = str_replace(' ', '-', $request->get('name_en'));
 
             $number = 1;
 
             if (User::whereSlug($slug)->exists()) {
-                if (User::whereSlug($slug)->get('id')[0]['id'] != $user->id )
-                  $slug .= '-' . ++$number;
+                if (User::whereSlug($slug)->get('id')[0]['id'] != $user->id)
+                    $slug .= '-' . ++$number;
 
 
             }
@@ -211,7 +170,7 @@ class UserController extends Controller
         $user->update($request->all());
         if (isset($slug)) {
             $user->slug = $slug;
-            $user->save(['slug'=>$slug]);
+            $user->save(['slug' => $slug]);
         }
 
         $user->profile()->update($request->all('profile')['profile']);
@@ -232,9 +191,8 @@ class UserController extends Controller
 
         if ($validate->fails()) {
             return redirect()->back()->withErrors($validate);
-        }
-        else
-            return redirect("profile",['slug'=>$user->slug]);
+        } else
+            return redirect("profile", ['slug' => $user->slug]);
     }
 
     /**
@@ -242,16 +200,19 @@ class UserController extends Controller
      *
      * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        //
+        $status = User::whereId($id)->delete();
+        flash_message($status, $status ? 'کاربر مورد نظر با موفقیت حذف شد' : "حطا! متاسفانه درخواست شما با خطا مواجه شده است. لطفا مجددا تلاش کنید");
+        return back();
     }
 
     public function logout()
     {
         auth()->logout();
-        return redirect()->back();
+        return redirect()->route('main');
     }
 
 

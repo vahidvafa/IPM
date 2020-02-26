@@ -36,7 +36,7 @@ Route::post('/search', 'IndexController@search')->name('search.post');
 Route::get('/register', 'AuthController@register')->name('register');
 Route::post('/register/store', 'AuthController@postRegister')->name('register.store');
 Route::get('/event/{id}', 'EventController@index')->name("event");
-Route::get('/profile/{slug}', 'UserController@index')->name("profile");
+Route::get('/profile/{slug}', 'ProfileController@show')->name("profile");
 Route::get('404', function () {
     return view("404");
 })->name("404");
@@ -74,7 +74,11 @@ Route::middleware('auth')->group(function () {
             Route::post('job/state/store/{id}','JobController@storeCms')->name('cms.job.store');
             Route::post('job//{id}/delete','JobController@destroyCms')->name('cms.job.destroy');
             //------
-//            Route::get('users')->name('cms.users');
+            Route::get('users','UserController@indexCms')->name('cms.user.index');
+            Route::post('user/{id}/confirm','UserController@active')->name('cms.user.active');
+            Route::get('user/{id}/edit','UserController@edit')->name('cms.user.edit');
+            Route::post('user/{id}/update','UserController@update')->name('cms.user.update');
+//            Route::post('user/{id}/destroy','UserController@destroy')->name('cms.user.del');
         });
     });
 });

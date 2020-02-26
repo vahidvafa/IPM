@@ -21,7 +21,7 @@
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-lg-12 mb-4">
-                                            <lable>عنوان خبر</lable>
+                                            <label>عنوان خبر</label>
                                             <input class="form-control" name="title" type="text" placeholder="عنوان خبر"
                                                    value="{{old('title')}}">
                                             @error('title')
@@ -29,7 +29,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-12 mb-4">
-                                            <lable>خلاصه خبر</lable>
+                                            <label>خلاصه خبر</label>
                                             <input class="form-control" name="description" type="text"
                                                    placeholder="خلاصه خبر"
                                                    value="{{old('description')}}">
@@ -38,7 +38,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-12 mb-4">
-                                            <lable>متن خبر</lable>
+                                            <label>متن خبر</label>
                                             <div class="editor">
                                                 <textarea id="detail" name="detail"
                                                           class="form-control ckeditor cke_rtl">{{ old('detail') }}</textarea>
@@ -48,7 +48,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-lg-12 mb-4">
-                                            <lable>عکس خبر</lable>
+                                            <label>عکس خبر</label>
                                             <input class="form-control-file my-2" type="file" name="image" id="image">
                                             @error('image')
                                             <div class="error text-danger">{{ $message }}</div>
