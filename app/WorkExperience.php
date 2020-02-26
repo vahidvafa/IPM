@@ -45,7 +45,10 @@ class WorkExperience extends Model
 {
     use SoftDeletes;
 
-    public function user(){
+    protected $fillable = ['company_name', 'job_title', 'from_date', 'to_date', 'optional_description'];
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 

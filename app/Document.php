@@ -42,16 +42,12 @@ class Document extends Model
 {
     use SoftDeletes;
 
+    protected $fillable = ['address', 'explain'];
 
-    public function education(){
-        return $this->belongsTo(Education::class);
-    }
-
-
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-
 
 
 }

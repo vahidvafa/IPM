@@ -91,9 +91,9 @@ class MessageController extends Controller
     {
         try {
             $message->delete();
-            flash_message('success', 'موفقیت حذف شد');
+            flash_message('success', __('string.successful.delete'));
         } catch (\Exception $exception) {
-            flash_message('error', 'سیستم با مشکل مواجه شد');
+            flash_message('error', __('string.unsuccessful'));
         }
         return back();
     }

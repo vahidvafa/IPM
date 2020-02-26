@@ -56,10 +56,10 @@ class NewsController extends Controller
             $request->file('image')->move(public_path('/img/news'), $imageName);
             $news->photo = $imageName;
             $news->save();
-            flash_message('success', 'موفقیت ثبت شد');
+            flash_message('success',  __('string.successful'));
             return redirect()->route('news.index');
         } catch (\Exception $exception) {
-            flash_message('error', 'سیستم با مشکل مواجه شد');
+            flash_message('error',  __('string.unsuccessful'));
             return back()->withInput($request->all());
         }
     }
@@ -111,10 +111,10 @@ class NewsController extends Controller
                 $news->photo = $imageName;
                 $news->save();
             }
-            flash_message('success', 'موفقیت ویرایش شد');
+            flash_message('success', __('string.successful.edit'));
             return redirect()->route('news.index');
         } catch (\Exception $exception) {
-            flash_message('error', 'سیستم با مشکل مواجه شد');
+            flash_message('error', __('string.unsuccessful'));
             return back();
         }
     }
@@ -129,9 +129,9 @@ class NewsController extends Controller
     {
         try {
             $news->delete();
-            flash_message('success', 'با موفقیت حذف شد');
+            flash_message('success', __('string.successful.delete'));
         } catch (\Exception $exception) {
-            flash_message('error', 'سیستم با مشکل مواجه شد');
+            flash_message('error', __('string.unsuccessful'));
         }
         return back();
     }

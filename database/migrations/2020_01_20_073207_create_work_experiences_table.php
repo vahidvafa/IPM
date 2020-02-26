@@ -16,12 +16,12 @@ class CreateWorkExperiencesTable extends Migration
         Schema::create('work_experiences', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
-            $table->string('company_name','100');
-            $table->string('job_title','150');
-            $table->string('from_date','10');
-            $table->string('to_date','10');
+            $table->string('company_name', '100')->nullable();
+            $table->string('job_title', '150')->nullable();
+            $table->string('from_date', '10')->nullable();
+            $table->string('to_date', '10')->nullable();
             $table->string('optional_description')->nullable();
-            $table->tinyInteger('lang_id',false,true)->default(1);
+            $table->tinyInteger('lang_id', false, true)->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

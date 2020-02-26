@@ -17,7 +17,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <form action="{{route('event.store')}}" method="post" enctype="multipart/form-data">
+                                <form action="{{route('event.store')}}" method="post" enctype="multipart/form-data" id="ccreeateForm">
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-lg-12 mb-4">
@@ -60,9 +60,12 @@
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
                                             <lable>از تاریخ</lable>
-                                            <input class="form-control datePickerInputs" name="from_date" id="from_date"
+                                            <input class="form-control datePickerInputs" name="from_date_display" id="from_date_display"
                                                    type="text"
                                                    placeholder="از تاریخ"
+                                                   value="{{old('from_date_display')}}">
+                                            <input class="form-control datePickerInputs" name="from_date" id="from_date"
+                                                   type="hidden"
                                                    value="{{old('from_date')}}">
                                             @error('from_date')
                                             <div class="error text-danger">{{ $message }}</div>
@@ -70,9 +73,12 @@
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
                                             <lable>تا تاریخ</lable>
-                                            <input class="form-control datePickerInputs" name="to_date" id="to_date"
+                                            <input class="form-control datePickerInputs" name="to_date_display" id="to_date_display"
                                                    type="text"
                                                    placeholder="تا تاریخ"
+                                                   value="{{old('to_date_display')}}">
+                                            <input class="form-control datePickerInputs" name="to_date" id="to_date"
+                                                   type="hidden"
                                                    value="{{old('to_date')}}">
                                             @error('to_date')
                                             <div class="error text-danger">{{ $message }}</div>
@@ -80,9 +86,14 @@
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
                                             <lable>تاریخ شروع ثبت نام</lable>
-                                            <input class="form-control datePickerInputs" name="start_register_date"
+                                            <input class="form-control datePickerInputs" name="start_register_date_display"
                                                    type="text"
+                                                   id="start_register_date_display"
                                                    placeholder="تاریخ شروع ثبت نام"
+                                                   value="{{old('start_register_date_display')}}">
+                                            <input class="form-control " name="start_register_date"
+                                                   type="hidden"
+                                                   id="start_register_date"
                                                    value="{{old('start_register_date')}}">
                                             @error('start_register_date')
                                             <div class="error text-danger">{{ $message }}</div>
@@ -181,12 +192,60 @@
             contentsLangDirection: "rtl",
         });
         $(document).ready(function() {
-            $(".datePickerInputs").pDatepicker(
+            $("#to_date_display").pDatepicker(
                 {
-                    altFormat:'YYYY/MM/DD',
-                    viewMode:'year',
+                    initialValue:false,
+                    responsive:true,
+                    format:'L H:m',
+                    altFormat:'X',
+                    altField: '#to_date',
+                    calendarType:'persian',
                     timePicker: {
-                        enabled:true
+                        enabled:true,
+                        second:{
+                            enabled:false
+                        }
+                    },
+                    toolbox: {
+                        enabled: false,
+                    }
+                }
+            );
+            $("#from_date_display").pDatepicker(
+                {
+                    initialValue:false,
+                    responsive:true,
+                    format:'L H:m',
+                    altFormat:'X',
+                    altField: '#from_date',
+                    calendarType:'persian',
+                    timePicker: {
+                        enabled:true,
+                        second:{
+                            enabled:false
+                        }
+                    },
+                    toolbox: {
+                        enabled: false,
+                    }
+                }
+            );
+            $("#start_register_date_display").pDatepicker(
+                {
+                    initialValue:false,
+                    responsive:true,
+                    format:'L H:m',
+                    altFormat:'X',
+                    altField: '#start_register_date',
+                    calendarType:'persian',
+                    timePicker: {
+                        enabled:true,
+                        second:{
+                            enabled:false
+                        }
+                    },
+                    toolbox: {
+                        enabled: false,
                     }
                 }
             );

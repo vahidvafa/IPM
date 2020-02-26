@@ -46,6 +46,14 @@ class IndexController extends Controller
         return view('cms.panel');
     }
 
+    public function callback()
+    {
+        $status = true;
+//        $status = false;
+        $titleHeader = $breadcrumb ='وضعیت پرداخت';
+        return view('call_back',compact('status','titleHeader','breadcrumb'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

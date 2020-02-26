@@ -90,3 +90,4 @@ Route::get('news', 'NewsController@index')->name('news');
 Route::resource("job","JobController");
 
 Route::post('/event/list','EventController@indexJs')->name('event.list');
+Route::get('callback','IndexController@callback')->name('callback');

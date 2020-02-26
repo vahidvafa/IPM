@@ -94,10 +94,10 @@ class EventController extends Controller
             $event->photo = $imageName;
             $event->user_id = (auth()->check()) ? auth()->id() : 0;
             $event->save();
-            flash_message('success', 'موفقیت ثبت شد');
+            flash_message('success', __('string.successful'));
             return redirect()->route('event.index');
         } catch (\Exception $exception) {
-            flash_message('error', 'سیستم با مشکل مواجه شد');
+            flash_message('error', __('string.unsuccessful'));
             return back()->withInput($request->all());
         }
     }
@@ -165,10 +165,10 @@ class EventController extends Controller
             }
             $event->user_id = (auth()->check()) ? auth()->id() : 0;
             $event->save();
-            flash_message('success', 'موفقیت ثبت شد');
+            flash_message('success',  __('string.successful.edit'));
             return redirect()->route('event.index');
         } catch (\Exception $exception) {
-            flash_message('error', 'سیستم با مشکل مواجه شد');
+            flash_message('error',  __('string.unsuccessful'));
             return back()->withInput($request->all());
         }
     }
@@ -183,9 +183,9 @@ class EventController extends Controller
     {
         try {
             $event->delete();
-            flash_message('success', 'موفقیت حذف شد');
+            flash_message('success', __('string.successful.delete'));
         } catch (\Exception $exception) {
-            flash_message('error', 'سیستم با مشکل مواجه شد');
+            flash_message('error', __('string.unsuccessful'));
         }
         return back();
     }

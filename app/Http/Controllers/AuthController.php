@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Document;
 use App\User;
+use App\WorkExperience;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Morilog\Jalali\Jalalian;
@@ -26,7 +28,7 @@ class AuthController extends Controller
 
     public function postRegister(Request $request)
     {
-
+//        dd($request->get('experience'));
         $messages = [
             '*.required' => 'وارد کردن این فیلد الزامی است',
             'password.min' => 'رمز عبور باید حداقل 8 کاراکتر باشد',
@@ -36,76 +38,81 @@ class AuthController extends Controller
             'company.established_number.unique' => 'این شماره ثبت قبلا ثبت شده است',
             'company.economy_number.unique' => 'این شماره اقتصادی قبلا ثبت شده است',
             'company.national_number.unique' => 'این شناسه ملی قبلا ثبت شده است',
+            'files.*.mimes' => 'فرمت فایل های ارسالی صحیح نمی باشد',
         ];
         switch ($request->get('type')) {
             case (1):
             case (3):
                 $validator = Validator::make($request->all(), [
-                    'first_name' => ['bail', 'required', 'string', 'max:255'],
-                    'last_name' => ['bail', 'required', 'string', 'max:255'],
-                    'name_en' => ['bail', 'required', 'string', 'max:255'],
-                    'father_name' => ['bail', 'required', 'string', 'max:255'],
-                    'national_code' => ['bail', 'required', 'string', 'max:255'],
-                    'mobile' => ['bail', 'required', 'string', 'unique:users'],
-                    'certificate_number' => ['bail', 'required', 'string'],
-                    'birth_date' => ['bail', 'required', 'string'],
-                    'birth_place' => ['bail', 'required', 'string'],
-                    'sex' => ['bail', 'required'],
-                    'work_address' => ['bail', 'required', 'string'],
-                    'home_address' => ['bail', 'required', 'string'],
-                    'home_post' => ['bail', 'required', 'string'],
-                    'work_name' => ['bail', 'required', 'string'],
-                    'receive_place' => ['bail', 'required', 'string'],
-                    'email' => ['bail', 'required', 'string', 'email', 'max:255', 'unique:users'],
-                    'password' => ['bail', 'required', 'string', 'min:8', 'confirmed'],
+                    'first_name' => 'bail | required | string | max:255',
+                    'last_name' => 'bail | required | string | max:255',
+                    'name_en' => 'bail | required | string | max:255',
+                    'father_name' => 'bail | required | string | max:255',
+                    'national_code' => 'bail | required | numeric ',
+                    'mobile' => 'bail | required | string |unique:users',
+                    'certificate_number' => 'bail | required | numeric',
+                    'birth_date' => 'bail | required | string',
+                    'birth_place' => 'bail | required | string',
+                    'sex' => 'bail | required',
+                    'work_address' => 'bail | required | string',
+                    'home_address' => 'bail | required | string',
+                    'home_post' => 'bail | required | string',
+                    'work_name' => 'bail | required | string',
+                    'receive_place' => 'bail | required | string',
+                    'email' => 'bail | required | string | email | max:255 | unique:users',
+                    'password' => 'bail | required | string | min:8 | confirmed',
+                    'files.*' => 'bail | required | mimes:jpeg,bmp,png,jpg,pdf',
+                    'files_explain.*' => 'bail | required | string',
                 ], $messages);
                 break;
             case 2:
 
                 $validator = Validator::make($request->all(), [
-                    'first_name' => ['bail', 'required', 'string', 'max:255'],
-                    'last_name' => ['bail', 'required', 'string', 'max:255'],
-                    'name_en' => ['bail', 'required', 'string', 'max:255'],
-                    'father_name' => ['bail', 'required', 'string', 'max:255'],
-                    'national_code' => ['bail', 'required', 'string', 'max:255'],
-                    'mobile' => ['bail', 'required', 'string', 'unique:users'],
-                    'certificate_number' => ['bail', 'required', 'string'],
-                    'birth_date' => ['bail', 'required', 'string'],
-                    'birth_place' => ['bail', 'required', 'string'],
-                    'sex' => ['bail', 'required'],
-                    'home_address' => ['bail', 'required', 'string'],
-                    'home_post' => ['bail', 'required', 'string'],
-                    'email' => ['bail', 'required', 'string', 'email', 'max:255', 'unique:users'],
-                    'company.name' => ['bail', 'required', 'string', 'max:255'],
-                    'company.established_date' => ['bail', 'required', 'string', 'max:255'],
-                    'company.established_number' => ['bail', 'required', 'string', 'max:255', 'unique:companies,established_number'],
-                    'company.economy_number' => ['bail', 'required', 'string', 'unique:companies,economy_number'],
-                    'company.national_number' => ['bail', 'required', 'string', 'unique:companies,national_number'],
-                    'company.post_number' => ['bail', 'required', 'string'],
-                    'company.ownership_type' => ['bail', 'required', 'string'],
-                    'company.legal_type' => ['bail', 'required', 'string'],
-                    'company.address' => ['bail', 'required', 'string'],
-                    'company.ceo_name' => ['bail', 'required', 'string'],
-                    'company.ceo_name_en' => ['bail', 'required', 'string'],
-                    'password' => ['bail', 'required', 'string', 'min:8', 'confirmed'],
+                    'first_name' => 'bail | required | string | max:255',
+                    'last_name' => 'bail | required | string | max:255',
+                    'name_en' => 'bail | required | string | max:255',
+                    'father_name' => 'bail | required | string | max:255',
+                    'national_code' => 'bail | required | numeric',
+                    'mobile' => 'bail | required | string |unique:users',
+                    'certificate_number' => 'bail | required | numeric',
+                    'birth_date' => 'bail | required | string',
+                    'birth_place' => 'bail | required | string',
+                    'sex' => 'bail | required',
+                    'home_address' => 'bail | required | string',
+                    'home_post' => 'bail | required | string',
+                    'email' => 'bail | required | string | email | max:255 | unique:users',
+                    'company.name' => 'bail | required | string | max:255',
+                    'company.established_date' => 'bail | required | string | max:255',
+                    'company.established_number' => 'bail | required | string | max:255 | unique:companies,established_number',
+                    'company.economy_number' => 'bail | required | string | unique:companies,economy_number',
+                    'company.national_number' => 'bail | required | string | unique:companies,national_number',
+                    'company.post_number' => 'bail | required | string',
+                    'company.ownership_type' => 'bail | required | string',
+                    'company.legal_type' => 'bail | required | string',
+                    'company.address' => 'bail | required | string',
+                    'company.ceo_name' => 'bail | required | string',
+                    'company.ceo_name_en' => 'bail | required | string',
+                    'password' => 'bail | required | string | min:8 | confirmed',
+                    'files.*' => 'bail | required | mimes:jpeg,bmp,png,jpg,pdf ',
+                    'files_explain.*' => 'bail | required | string ',
                 ], $messages);
                 break;
             case 4:
                 $validator = Validator::make($request->all(), [
-                    'first_name' => ['bail', 'required', 'string', 'max:255'],
-                    'last_name' => ['bail', 'required', 'string', 'max:255'],
-                    'name_en' => ['bail', 'required', 'string', 'max:255'],
-                    'father_name' => ['bail', 'required', 'string', 'max:255'],
-                    'national_code' => ['bail', 'required', 'string', 'max:255'],
-                    'mobile' => ['bail', 'required', 'string', 'unique:users'],
-                    'certificate_number' => ['bail', 'required', 'string'],
-                    'birth_date' => ['bail', 'required', 'string'],
-                    'birth_place' => ['bail', 'required', 'string'],
-                    'sex' => ['bail', 'required'],
-                    'home_address' => ['bail', 'required', 'string'],
-                    'home_post' => ['bail', 'required', 'string'],
-                    'email' => ['bail', 'required', 'string', 'email', 'max:255', 'unique:users'],
-                    'password' => ['bail', 'required', 'string', 'min:8', 'confirmed'],
+                    'first_name' => 'bail | required | string | max:255',
+                    'last_name' => 'bail | required | string | max:255',
+                    'name_en' => 'bail | required | string | max:255',
+                    'father_name' => 'bail | required | string | max:255',
+                    'national_code' => 'bail | required | numeric ',
+                    'mobile' => 'bail | required | string |unique:users',
+                    'certificate_number' => 'bail | required | numeric',
+                    'birth_date' => 'bail | required | string',
+                    'birth_place' => 'bail | required | string',
+                    'sex' => 'bail | required',
+                    'home_address' => 'bail | required | string',
+                    'home_post' => 'bail | required | string',
+                    'email' => 'bail | required | string | email | max:255 | unique:users',
+                    'password' => 'bail | required | string | min:8 | confirmed',
                 ], $messages);
                 break;
         }
@@ -115,9 +122,9 @@ class AuthController extends Controller
 //            foreach ($validator->errors()->messages() as $key => $value) {
 //                \Session::put('error-'.$key, $value[0]);
 //            }
-            return redirect()->back()->withErrors($validator);
+            return redirect()->route('register')->withErrors($validator)->withInput();
         }
-        dd(1);
+//        dd(1);
         $slug = str_replace(' ', '-', $request->get('name_en'));
         $number = 1;
         while (User::whereSlug($slug)->exists()) {
@@ -138,7 +145,7 @@ class AuthController extends Controller
                 'password' => Hash::make($request->get('password')),
                 'slug' => $slug,
                 'user_code' => $userCode,
-                'remembership_ty    pe_id', $request->get('type')
+                'membership_type_id', $request->get('type')
             ]
         );
         $profile = new Profile($request->all());
@@ -146,6 +153,23 @@ class AuthController extends Controller
         $isSuccessful = \DB::transaction(function () use ($user, $profile, $request) {
             $user->save();
             $user->profile()->save($profile);
+            if ($request->hasFile('files')) {
+                for ($i = 0; $i < count($request->file('files')); $i++) {
+                    $documentName = time() . $i . '.' . $request->file('files')[$i]->getClientOriginalExtension();
+                    $request->file('files')[$i]->move(public_path('/files/documents'), $documentName);
+                    $document = new Document(['address' => $documentName, 'explain' => $request->get('files_explain')[$i]]);
+                    $user->education()->save($document);
+                }
+            }
+            if ($request->has('experience')) {
+                $experience = new WorkExperience([
+                    'company_name' => ((isset($request->get('experience')['company_name'])) ? $request->get('experience')['company_name'] : null),
+                    'job_title' => ((isset($request->get('experience')['job_title'])) ? $request->get('experience')['job_title'] : null),
+                    'from_date' => ((isset($request->get('experience')['from_date'])) ? $request->get('experience')['from_date'] : null),
+                    'to_date' => ((isset($request->get('experience')['to_date'])) ? $request->get('experience')['to_date'] : null),
+                ]);
+                $user->workExperience()->save($experience);
+            }
             $membership = new Membership(
                 [
                     'membership_type_id' => $request->get('type'),

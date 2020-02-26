@@ -25,7 +25,8 @@
                 <ul class="nav nav-pills row">
                     <li class="nav-item col-12 col-sm-6 col-lg-3">
 
-                        <a class="nav-link {{(Session::get('type') == 1) ? 'active':(!Session::get('type')?'active':'')}} p-4" data-toggle="pill" href="#menu0">
+                        <a class="nav-link {{(Session::get('type') == 1) ? 'active':(!Session::get('type')?'active':'')}} p-4"
+                           data-toggle="pill" href="#menu0">
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[0]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
@@ -36,7 +37,8 @@
 
                     </li>
                     <li class="nav-item  col-12 col-sm-6 col-lg-3 mt-4 mt-sm-0">
-                        <a class="nav-link {{(Session::get('type') == 2) ? 'active':''}} p-4" data-toggle="pill" href="#menu1">
+                        <a class="nav-link {{(Session::get('type') == 2) ? 'active':''}} p-4" data-toggle="pill"
+                           href="#menu1">
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[1]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
@@ -46,7 +48,8 @@
                         </a>
                     </li>
                     <li class="nav-item  col-12 col-sm-6 col-lg-3 mt-4 mt-lg-0">
-                        <a class="nav-link {{(Session::get('type') == 3) ? 'active':''}} p-4" data-toggle="pill" href="#menu2">
+                        <a class="nav-link {{(Session::get('type') == 3) ? 'active':''}} p-4" data-toggle="pill"
+                           href="#menu2">
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[2]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
@@ -56,7 +59,8 @@
                         </a>
                     </li>
                     <li class="nav-item  col-12 col-sm-6 col-lg-3  mt-4 mt-lg-0">
-                        <a class="nav-link {{(Session::get('type') == 4) ? 'active':''}} p-4" data-toggle="pill" href="#menu3">
+                        <a class="nav-link {{(Session::get('type') == 4) ? 'active':''}} p-4" data-toggle="pill"
+                           href="#menu3">
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[3]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
@@ -71,120 +75,211 @@
                     <div class="tab-pane  {{(Session::get('type') == 1) ? 'active':(!Session::get('type')?'active':'fade')}}" id="menu0">
                         <h2 class=" font-22 text-medium text-black mt-5 mb-4"> فرم {{$memberships[0]->title}}
                         </h2>
-                        <form class="sidebar-form-body row" action="{{route('register.store')}}" method="POST" enctype="multipart/form-data">
+                        <form class="sidebar-form-body row" action="{{route('register.store')}}" method="POST"
+                              enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="type" value="{{$memberships[0]->id}}">
-                            <div class="input-form col-md-6 ">
-                                <input type="text" name="first_name" value="{{(Session::get('type') == 1) ? request()->old('first_name'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام *" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 1 && $errors->has('first_name'))
-                                    <div id="first_name-error" class="error text-danger pl-3" for="first_name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('first_name') }}</strong>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام :</label>
                                     </div>
-                                @endif
-                            </div>
-                            <div class="input-form col-md-6 ">
-                                <input type="text" name="last_name" value="{{(Session::get('type') == 1) ? request()->old('last_name'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام خانوادگی *" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 1 && $errors->has('last_name'))
-                                    <div id="last_name-error" class="error text-danger pl-3" for="last_name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('last_name') }}</strong>
+                                    <div class="col-12">
+                                        <input type="text" name="first_name"
+                                               value="{{(Session::get('type') == 1) ? request()->old('first_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام *" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('first_name'))
+                                            <div id="first_name-error" class="error text-danger pl-3" for="first_name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('first_name') }}</strong>
+                                            </div>
+                                        @endif
                                     </div>
-                                @endif
-                            </div>
-                            <div class="input-form col-md-6 ">
-                                <input type="text" name="name_en" value="{{(Session::get('type') == 1) ?request()->old('name_en'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام و نام خانوادگی انگلیسی*" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 1 && $errors->has('name_en'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('name_en') }}</strong>
-                                    </div>
-                                @endif
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="father_name" value="{{(Session::get('type') == 1) ?request()->old('father_name'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام پدر*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 1 && $errors->has('father_name'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('father_name') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام خانوادگی :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="last_name"
+                                               value="{{(Session::get('type') == 1) ? request()->old('last_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام خانوادگی *" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('last_name'))
+                                            <div id="last_name-error" class="error text-danger pl-3" for="last_name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('last_name') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="national_code" value="{{(Session::get('type') == 1) ?request()->old('national_code'):''}}" size="40" aria-invalid="false"
-                                       placeholder="کد ملی*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 1 && $errors->has('national_code'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('national_code') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام و نام خانوادگی انگلیسی :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="name_en"
+                                               value="{{(Session::get('type') == 1) ?request()->old('name_en'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام و نام خانوادگی انگلیسی*" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('name_en'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('name_en') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="mobile" value="{{(Session::get('type') == 1) ?request()->old('mobile'):''}}" size="40" aria-invalid="false"
-                                       placeholder="شماره تماس*" required>
-                                <img src="img/002-telephone.png" class="form-icon">
-                                @if (Session::get('type') == 1 && $errors->has('mobile'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('mobile') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام پدر :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="father_name"
+                                               value="{{(Session::get('type') == 1) ?request()->old('father_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام پدر*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('father_name'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('father_name') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="email" name="email" value="{{(Session::get('type') == 1) ?request()->old('email'):''}}" size="40" aria-invalid="false"
-                                       placeholder="ایمیل*" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 1 && $errors->has('email'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>کد ملی :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="national_code"
+                                               value="{{(Session::get('type') == 1) ?request()->old('national_code'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="کد ملی*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('national_code'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('national_code') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="certificate_number" value="{{(Session::get('type') == 1) ?request()->old('certificate_number'):''}}" size="40" aria-invalid="false"
-                                       placeholder="شماره شناسنامه*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 1 && $errors->has('certificate_number'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('certificate_number') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>شماره تماس :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="mobile"
+                                               value="{{(Session::get('type') == 1) ?request()->old('mobile'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="شماره تماس*" required>
+                                        <img src="img/002-telephone.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('mobile'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('mobile') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="birth_date" value="{{(Session::get('type') == 1) ?request()->old('birth_date'):''}}" size="40" aria-invalid="false"
-                                       placeholder="تاریخ تولد*" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 1 && $errors->has('birth_date'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('birth_date') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>ایمیل :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="email" name="email"
+                                               value="{{(Session::get('type') == 1) ?request()->old('email'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="ایمیل*" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('email'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="birth_place" value="{{(Session::get('type') == 1) ?request()->old('birth_place'):''}}" size="40" aria-invalid="false"
-                                       placeholder="محل تولد*" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 1 && $errors->has('birth_place'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('birth_place') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>شماره شناسنامه :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="certificate_number"
+                                               value="{{(Session::get('type') == 1) ?request()->old('certificate_number'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="شماره شناسنامه*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('certificate_number'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('certificate_number') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
-                            <div class="input-form col-md-6 py-2 px-4">
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ تولد :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="birth_date"
+                                               value="{{(Session::get('type') == 1) ?request()->old('birth_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ تولد*" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('birth_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('birth_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>محل تولد :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="birth_place"
+                                               value="{{(Session::get('type') == 1) ?request()->old('birth_place'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="محل تولد*" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('birth_place'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('birth_place') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-12 py-2 px-4">
                                 <label for="">جنسیت : </label>
                                 <input type="radio" class="option-input" name="sex" value="1" size="40"
                                        aria-invalid="false" placeholder="مرد" required>
@@ -200,61 +295,107 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="work_address" value="{{(Session::get('type') == 1) ?request()->old('work_address'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نشانی محل کار *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 1 && $errors->has('work_address'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('work_address') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نشانی محل کار :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="work_address"
+                                               value="{{(Session::get('type') == 1) ?request()->old('work_address'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نشانی محل کار *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('work_address'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('work_address') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="work_post" value="{{(Session::get('type') == 1) ?request()->old('work_post'):''}}" size="40" aria-invalid="false"
-                                       placeholder="کد پستی محل کار *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 1 && $errors->has('work_post'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('work_post') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>کد پستی محل کار :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="work_post"
+                                               value="{{(Session::get('type') == 1) ?request()->old('work_post'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="کد پستی محل کار *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('work_post'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('work_post') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="home_address" value="{{(Session::get('type') == 1) ?request()->old('home_address'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نشانی منزل *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 1 && $errors->has('home_address'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('home_address') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نشانی منزل :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="home_address"
+                                               value="{{(Session::get('type') == 1) ?request()->old('home_address'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نشانی منزل *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('home_address'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('home_address') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="home_post" value="{{(Session::get('type') == 1) ?request()->old('home_post'):''}}" size="40" aria-invalid="false"
-                                       placeholder="کد پستی منزل *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 1 && $errors->has('home_post'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('home_post') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>کد پستی منزل :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="home_post"
+                                               value="{{(Session::get('type') == 1) ?request()->old('home_post'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="کد پستی منزل *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('home_post'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('home_post') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="work_name" value="{{(Session::get('type') == 1) ?request()->old('work_name'):''}}" size="40" aria-invalid="false"
-                                       placeholder="محل کار *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 1 && $errors->has('work_name'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('work_name') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام محل کار :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="work_name"
+                                               value="{{(Session::get('type') == 1) ?request()->old('work_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام محل کار *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('work_name'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('work_name') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
-                            <div class="input-form col-md-6 py-2 px-4">
+                            <div class="input-form col-md-6 py-5 px-4">
                                 <label for="">انتخاب نشانی ارسال مراسلات : </label>
                                 <input type="radio" class="option-input" name="receive_place" value="0" size="40"
                                        aria-invalid="false" placeholder="مرد" required>
@@ -269,44 +410,154 @@
                                     </div>
                                 @endif
                             </div>
-                            <div class="input-form col-md-6">
-                                <input type="password" name="password" value="" size="40" aria-invalid="false"
-                                       placeholder="رمز عبور*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 1 && $errors->has('password'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                            <div class="input-form col-md-12" id="files_div_menu0">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <span>
+                                            مدارک مورد نیاز : ( {{$memberships[0]->required_documents}} )
+                                        </span>
                                     </div>
-                                @endif
+                                    <div class="col-md-12">
+                                        @if(Session::get('type') == 1)
+                                            @error('files.*')
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                            @enderror
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-form col-md-2">
+                                        <input type="file" name="files[]" value="" size="40" aria-invalid="false"
+                                               placeholder="آپلود مدارک" required>
+                                    </div>
+                                    <div class="input-form col-md-8">
+                                        <input type="text" name="files_explain[]" value="" size="40"
+                                               aria-invalid="false" placeholder="توضیحات مدارک *" required>
+                                    </div>
+                                    <div class="col-md-2 py-2">
+                                        <button type="button" class="btn btn-success"
+                                                onclick="addRow('files_div_menu0')">+
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 my-4">
+                                <h2 class="font-22 text-medium text-black">سابقه کاری :</h2>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="password" name="password_confirmation" value="" size="40"
-                                       aria-invalid="false" placeholder="تایید رمز عبور *" required>
-                                <img src="img/004-key.png" class="form-icon">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام محل کار :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="experience[company_name]"
+                                               value="{{(Session::get('type') == 1) ?request()->old('experience.company_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام محل کار">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('experience.company_name'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('experience.company_name') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
-{{--                            <div class="input-form col-md-12" id="files_div_menu0">--}}
-{{--                                <div class="row">--}}
-{{--                                    <div class="col-md-12">--}}
-{{--                                        <span>--}}
-{{--                                            مدارک مورد نیاز : ( {{$memberships[0]->required_documents}} )--}}
-{{--                                        </span>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="row">--}}
-{{--                                    <div class="input-form col-md-2">--}}
-{{--                                        <input type="file" name="files[]" value="" size="40" aria-invalid="false"--}}
-{{--                                               placeholder="آپلود مدارک" >--}}
-{{--                                    </div>--}}
-{{--                                    <div class="input-form col-md-8">--}}
-{{--                                        <input type="text" name="files_explain[]" value="" size="40"--}}
-{{--                                               aria-invalid="false" placeholder="توضیحات مدارک *" >--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-2 py-2">--}}
-{{--                                        <button type="button" class="btn btn-success" onclick="addRow('files_div_menu0')">+</button>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>عنوان شغلی :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="experience[job_title]"
+                                               value="{{(Session::get('type') == 1) ?request()->old('experience.job_title'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="عنوان شغلی">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('experience.job_title'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('experience.job_title') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ شروع به کار :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input class="datePickerInput" type="text" name="experience[from_date]"
+                                               value="{{(Session::get('type') == 1) ?request()->old('experience.from_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ شروع به کار">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('experience.from_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('experience.from_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ اتمام کار : (در صورت ادامه همکاری فیلد را خالی بگذارید)</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input class="datePickerInput" type="text" name="experience[to_date]"
+                                               value="{{(Session::get('type') == 1) ?request()->old('experience.to_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ اتمام کار">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('experience.to_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('experience.to_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6 border-top border-dark pt-3 mt-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>رمز عبور :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="password" name="password" value="" size="40" aria-invalid="false"
+                                               placeholder="رمز عبور*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('password'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="input-form col-md-6 border-top border-dark pt-3 mt-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تایید رمز عبور :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="password" name="password_confirmation" value="" size="40"
+                                               aria-invalid="false" placeholder="تایید رمز عبور *" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <div class="row my-2">
                                     <div class="col-md-4 col-sm-2"></div>
@@ -320,126 +571,218 @@
                         </form>
                     </div>
                     <div class="tab-pane {{(Session::get('type') == 2) ? 'active':'fade'}}" id="menu1">
-                        <h2 class=" font-22 text-medium text-black mt-5 mb-4"> فرم  {{$memberships[1]->title}}
+                        <h2 class=" font-22 text-medium text-black mt-5 mb-4" onclick="setInputs()">
+                            فرم {{$memberships[1]->title}}
                         </h2>
-                        <form class="sidebar-form-body row" action="{{route('register.store')}}" method="POST" enctype="multipart/form-data">
+                        <form class="sidebar-form-body row" action="{{route('register.store')}}" method="POST"
+                              enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="type" value="{{$memberships[1]->id}}">
                             <div class="col-md-12 my-4">
                                 <h2 class="font-22 text-medium text-black">مشخصات فردی نماینده :</h2>
                             </div>
-                            <div class="input-form col-md-6 ">
-                                <input type="text" name="first_name" value="{{(Session::get('type') == 2) ? request()->old('first_name'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام *" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('first_name'))
-                                    <div id="first_name-error" class="error text-danger pl-3" for="first_name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('first_name') }}</strong>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام :</label>
                                     </div>
-                                @endif
-                            </div>
-                            <div class="input-form col-md-6 ">
-                                <input type="text" name="last_name" value="{{(Session::get('type') == 2) ? request()->old('last_name'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام خانوادگی *" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('last_name'))
-                                    <div id="last_name-error" class="error text-danger pl-3" for="last_name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('last_name') }}</strong>
+                                    <div class="col-12">
+                                        <input type="text" name="first_name"
+                                               value="{{(Session::get('type') == 2) ? request()->old('first_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام *" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('first_name'))
+                                            <div id="first_name-error" class="error text-danger pl-3" for="first_name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('first_name') }}</strong>
+                                            </div>
+                                        @endif
                                     </div>
-                                @endif
-                            </div>
-                            <div class="input-form col-md-6 ">
-                                <input type="text" name="name_en" value="{{(Session::get('type') == 2) ?request()->old('name_en'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام و نام خانوادگی انگلیسی*" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('name_en'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('name_en') }}</strong>
-                                    </div>
-                                @endif
-
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="father_name" value="{{(Session::get('type') == 2) ?request()->old('father_name'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام پدر*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('father_name'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('father_name') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام خانوادگی :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="last_name"
+                                               value="{{(Session::get('type') == 2) ? request()->old('last_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام خانوادگی *" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('last_name'))
+                                            <div id="last_name-error" class="error text-danger pl-3" for="last_name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('last_name') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="national_code" value="{{(Session::get('type') == 2) ?request()->old('national_code'):''}}" size="40" aria-invalid="false"
-                                       placeholder="کد ملی*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('national_code'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('national_code') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام و نام خانوادگی انگلیسی :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="name_en"
+                                               value="{{(Session::get('type') == 2) ?request()->old('name_en'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام و نام خانوادگی انگلیسی*" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('name_en'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('name_en') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="mobile" value="{{(Session::get('type') == 2) ?request()->old('mobile'):''}}" size="40" aria-invalid="false"
-                                       placeholder="شماره تماس*" required>
-                                <img src="img/002-telephone.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('mobile'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('mobile') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام پدر :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="father_name"
+                                               value="{{(Session::get('type') == 2) ?request()->old('father_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام پدر*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('father_name'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('father_name') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="email" name="email" value="{{(Session::get('type') == 2) ?request()->old('email'):''}}" size="40" aria-invalid="false"
-                                       placeholder="ایمیل*" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('email'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>کد ملی :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="national_code"
+                                               value="{{(Session::get('type') == 2) ?request()->old('national_code'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="کد ملی*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('national_code'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('national_code') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="certificate_number" value="{{(Session::get('type') == 2) ?request()->old('certificate_number'):''}}" size="40" aria-invalid="false"
-                                       placeholder="شماره شناسنامه*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('certificate_number'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('certificate_number') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>شماره تماس :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="mobile"
+                                               value="{{(Session::get('type') == 2) ?request()->old('mobile'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="شماره تماس*" required>
+                                        <img src="img/002-telephone.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('mobile'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('mobile') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="birth_date" value="{{(Session::get('type') == 2) ?request()->old('birth_date'):''}}"
-                                       placeholder="تاریخ تولد*" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('birth_date'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('birth_date') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>ایمیل :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="email" name="email"
+                                               value="{{(Session::get('type') == 2) ?request()->old('email'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="ایمیل*" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('email'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="birth_place" value="{{(Session::get('type') == 2) ?request()->old('birth_place'):''}}" size="40" aria-invalid="false"
-                                       placeholder="محل تولد*" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('birth_place'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('birth_place') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>شماره شناسنامه :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="certificate_number"
+                                               value="{{(Session::get('type') == 2) ?request()->old('certificate_number'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="شماره شناسنامه*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('certificate_number'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('certificate_number') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
-                            <div class="input-form col-md-6 py-2 px-4">
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ تولد :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="birth_date"
+                                               class="datePickerInput"
+                                               value="{{(Session::get('type') == 2) ?request()->old('birth_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ تولد*" required autocomplete="off">
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('birth_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('birth_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>محل تولد :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="birth_place"
+                                               value="{{(Session::get('type') == 2) ?request()->old('birth_place'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="محل تولد*" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('birth_place'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('birth_place') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-12 py-2 px-4">
                                 <label for="">جنسیت : </label>
                                 <input type="radio" class="option-input" name="sex" value="1" size="40"
                                        aria-invalid="false" placeholder="مرد" required>
@@ -447,7 +790,7 @@
                                 <input type="radio" class="option-input" name="sex" value="0" size="40"
                                        aria-invalid="false" placeholder="زن" required>
                                 زن
-                                @if (Session::get('type') == 2 && Session::get('sex'))
+                                @if (Session::get('type') == 2 && $errors->has('sex'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
                                         <strong>{{ $errors->first('sex') }}</strong>
@@ -455,115 +798,278 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="home_address" value="{{(Session::get('type') == 2) ?request()->old('home_address'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نشانی منزل *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('home_address'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('home_address') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نشانی منزل :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="home_address"
+                                               value="{{(Session::get('type') == 2) ?request()->old('home_address'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نشانی منزل *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('home_address'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('home_address') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="home_post" value="{{(Session::get('type') == 2) ?request()->old('home_post'):''}}" size="40" aria-invalid="false"
-                                       placeholder="کد پستی منزل *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('home_post'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('home_post') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>کد پستی منزل :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="home_post"
+                                               value="{{(Session::get('type') == 2) ?request()->old('home_post'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="کد پستی منزل *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('home_post'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('home_post') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 my-4">
+                                <h2 class="font-22 text-medium text-black">سابقه کاری :</h2>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام محل کار :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="experience[company_name]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('experience.company_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام محل کار">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('experience.company_name'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('experience.company_name') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>عنوان شغلی :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="experience[job_title]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('experience.job_title'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="عنوان شغلی">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('experience.job_title'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('experience.job_title') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ شروع به کار :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input class="datePickerInput" type="text" name="experience[from_date]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('experience.from_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ شروع به کار">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('experience.from_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('experience.from_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ اتمام کار : (در صورت ادامه همکاری فیلد را خالی بگذارید)</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input class="datePickerInput" type="text" name="experience[to_date]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('experience.to_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ اتمام کار">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('experience.to_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('experience.to_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-12 my-4">
                                 <h2 class="font-22 text-medium text-black">مشخصات شرکت :</h2>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="company[name]" value="{{(Session::get('type') == 2) ?request()->old('company.name'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام سازمان *" >
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('company.name'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('company.name') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام سازمان :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="company[name]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('company.name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام سازمان *">
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('company.name'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('company.name') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ تاسیس :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="company[established_date]"
+                                               class="datePickerInput"
+                                               value="{{(Session::get('type') == 2) ?request()->old('company.established_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ تاسیس*" required autocomplete="off">
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('company.established_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('company.established_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>شماره ثبت :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="company[established_number]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('company.established_number'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="شماره ثبت*" required>
+                                        <img src="img/002-telephone.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('company.established_number'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong> {{ $errors->first('company.established_number') }} </strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>شماره اقتصادی :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="company[economy_number]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('company.economy_number'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="شماره اقتصادی*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('company.economy_number'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('company.economy_number') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
 
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="company[established_date]" value="{{(Session::get('type') == 2) ?request()->old('company.established_date'):''}}" size="40" aria-invalid="false"
-                                       placeholder="سال تاسیس*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('company.established_date'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('company.established_date') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>شناسه ملی :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="company[national_number]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('company.national_number'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="شناسه ملی *" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('company.national_number'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('company.national_number') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="company[established_number]" value="{{(Session::get('type') == 2) ?request()->old('company.established_number'):''}}" size="40" aria-invalid="false"
-                                       placeholder="شماره ثبت*" required>
-                                <img src="img/002-telephone.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('company.established_number'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong> {{ $errors->first('company.established_number') }} </strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>کد پستی :</label>
                                     </div>
-                                @endif
-                            </div>
-                            <div class="input-form col-md-6">
-                                <input type="text" name="company[economy_number]" value="{{(Session::get('type') == 2) ?request()->old('company.economy_number'):''}}" size="40" aria-invalid="false"
-                                       placeholder="شماره اقتصادی*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('company.economy_number'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('company.economy_number') }}</strong>
+                                    <div class="col-12">
+                                        <input type="text" name="company[post_number]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('company.post_number'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="کد پستی*" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('company.post_number'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('company.post_number') }}</strong>
+                                            </div>
+                                        @endif
                                     </div>
-                                @endif
+                                </div>
                             </div>
-                            <div class="input-form col-md-6">
-                                <input type="text" name="company[national_number]" value="{{(Session::get('type') == 2) ?request()->old('company.national_number'):''}}" size="40" aria-invalid="false"
-                                       placeholder="شناسه ملی *" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('company.national_number'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('company.national_number') }}</strong>
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="input-form col-md-6">
-                                <input type="text" name="company[post_number]" value="{{(Session::get('type') == 2) ?request()->old('company.post_number'):''}}" size="40" aria-invalid="false"
-                                       placeholder="کد پستی*" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('company.post_number'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('company.post_number') }}</strong>
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="input-form col-md-6 py-2 px-4">
+                            <div class="input-form col-md-12 py-2 px-4">
                                 <label for="">نوع مالکیت شرکت : </label>
-                                <input type="radio" class="option-input" name="company[ownership_type]" value="دولتی" size="40"
-                                       aria-invalid="false" placeholder="دولتی" required>
+                                <input type="radio" class="option-input" name="company[ownership_type]" value="دولتی"
+                                       size="40"
+                                       aria-invalid="false" placeholder="دولتی" required checked>
                                 دولتی
-                                <input type="radio" class="option-input" name="company[ownership_type]" value="خصوصی" size="40"
+                                <input type="radio" class="option-input" name="company[ownership_type]" value="خصوصی"
+                                       size="40"
                                        aria-invalid="false" placeholder="خصوصی" required>
                                 خصوصی
-                                <input type="radio" class="option-input" name="company[ownership_type]" value="عمومی" size="40"
+                                <input type="radio" class="option-input" name="company[ownership_type]" value="عمومی"
+                                       size="40"
                                        aria-invalid="false" placeholder="عمومی" required>
                                 عمومی
-                                <input type="radio" class="option-input" name="company[ownership_type]" value="دولتی / خصوصی" size="40"
+                                <input type="radio" class="option-input" name="company[ownership_type]"
+                                       value="دولتی / خصوصی" size="40"
                                        aria-invalid="false" placeholder="دولتی / خصوصی" required>
                                 دولتی / خصوصی
-                                <input type="radio" class="option-input" name="company[ownership_type]" value="خصوصی / دولتی" size="40"
+                                <input type="radio" class="option-input" name="company[ownership_type]"
+                                       value="خصوصی / دولتی" size="40"
                                        aria-invalid="false" placeholder="خصوصی / دولتی" required>
                                 خصوصی / دولتی
-                                <input type="radio" class="option-input" name="company[ownership_type]" value="سایر" size="40"
+                                <input type="radio" class="option-input" name="company[ownership_type]" value="سایر"
+                                       size="40"
                                        aria-invalid="false" placeholder="سایر" required>
                                 سایر
                                 @if (Session::get('type') == 2 && $errors->has('company.ownership_type'))
@@ -573,21 +1079,26 @@
                                     </div>
                                 @endif
                             </div>
-                            <div class="input-form col-md-6 py-2 px-4">
+                            <div class="input-form col-md-12 py-2 px-4">
                                 <label for="">نوع حقوقی شرکت : </label>
-                                <input type="radio" class="option-input" name="company[legal_type]" value="سهامی خاص" size="40"
+                                <input type="radio" class="option-input" name="company[legal_type]" value="سهامی خاص"
+                                       size="40"
                                        aria-invalid="false" placeholder="سهامی خاص" required>
                                 سهامی خاص
-                                <input type="radio" class="option-input" name="company[legal_type]" value="سهامی عام" size="40"
-                                       aria-invalid="false" placeholder="سهامی عام" required>
+                                <input type="radio" class="option-input" name="company[legal_type]" value="سهامی عام"
+                                       size="40"
+                                       aria-invalid="false" placeholder="سهامی عام" required checked>
                                 سهامی عام
-                                <input type="radio" class="option-input" name="company[legal_type]" value="با مسئولیت محدود" size="40"
+                                <input type="radio" class="option-input" name="company[legal_type]"
+                                       value="با مسئولیت محدود" size="40"
                                        aria-invalid="false" placeholder="با مسئولیت محدود" required>
                                 با مسئولیت محدود
-                                <input type="radio" class="option-input" name="company[legal_type]" value="تضامنی" size="40"
+                                <input type="radio" class="option-input" name="company[legal_type]" value="تضامنی"
+                                       size="40"
                                        aria-invalid="false" placeholder="تضامنی" required>
                                 تضامنی
-                                <input type="radio" class="option-input" name="company[legal_type]" value="سایر" size="40"
+                                <input type="radio" class="option-input" name="company[legal_type]" value="سایر"
+                                       size="40"
                                        aria-invalid="false" placeholder="سایر" required>
                                 سایر
                                 @if (Session::get('type') == 2 && $errors->has('company.legal_type'))
@@ -598,76 +1109,131 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-12">
-                                <input type="text" name="company[address]" value="{{(Session::get('type') == 2) ?request()->old('company.address'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نشانی دفتر مرکزی *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('company.address'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('company.address') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نشانی دفتر مرکزی :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="company[address]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('company.address'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نشانی دفتر مرکزی *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('company.address'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('company.address') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="company[ceo_name]" value="{{(Session::get('type') == 2) ?request()->old('company.ceo_name'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام مدیر عامل شرکت *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('company.ceo_name'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('company.ceo_name') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام مدیر عامل شرکت :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="company[ceo_name]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('company.ceo_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام مدیر عامل شرکت *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('company.ceo_name'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('company.ceo_name') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="company[ceo_name_en]" value="{{(Session::get('type') == 2) ?request()->old('company.ceo_name_en'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام مدیر عامل شرکت به انگلیسی *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('company.ceo_name_en'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('company.ceo_name_en') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام مدیر عامل شرکت به انگلیسی :</label>
                                     </div>
-                                @endif
-                            </div>
-                            <div class="input-form col-md-6">
-                                <input type="password" name="password" value="" size="40" aria-invalid="false"
-                                       placeholder="رمز عبور*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 2 && $errors->has('password'))
-                                    <div id="password-error" class="error text-danger pl-3"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                    <div class="col-12">
+                                        <input type="text" name="company[ceo_name_en]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('company.ceo_name_en'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام مدیر عامل شرکت به انگلیسی *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('company.ceo_name_en'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('company.ceo_name_en') }}</strong>
+                                            </div>
+                                        @endif
                                     </div>
-                                @endif
+                                </div>
                             </div>
-                            <div class="input-form col-md-6">
-                                <input type="password" name="password_confirmation" value="" size="40"
-                                       aria-invalid="false" placeholder="تایید رمز عبور *" required>
-                                <img src="img/004-key.png" class="form-icon">
+                            <div class="input-form col-md-12" id="files_div_menu1">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <span>
+                                            مدارک مورد نیاز : ( {{$memberships[1]->required_documents}} )
+                                        </span>
+                                    </div>
+                                    <div class="col-md-12">
+                                        @if(Session::get('type') == 2)
+                                            @error('files.*')
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                            @enderror
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-form col-md-2">
+                                        <input type="file" name="files[]" value="" size="40" aria-invalid="false"
+                                               placeholder="آپلود مدارک" required>
+                                    </div>
+                                    <div class="input-form col-md-8">
+                                        <input type="text" name="files_explain[]" value="" size="40"
+                                               aria-invalid="false" placeholder="توضیحات مدارک *" required>
+                                    </div>
+                                    <div class="col-md-2 py-2">
+                                        <button type="button" class="btn btn-success"
+                                                onclick="addRow('files_div_menu1')">+
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-{{--                            <div class="input-form col-md-12" id="files_div_menu1">--}}
-{{--                                <div class="row">--}}
-{{--                                    <div class="col-md-12">--}}
-{{--                                        <span>--}}
-{{--                                            مدارک مورد نیاز : ( {{$memberships[1]->required_documents}} )--}}
-{{--                                        </span>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="row">--}}
-{{--                                    <div class="input-form col-md-2">--}}
-{{--                                        <input type="file" name="files[]" value="" size="40" aria-invalid="false"--}}
-{{--                                               placeholder="آپلود مدارک" >--}}
-{{--                                    </div>--}}
-{{--                                    <div class="input-form col-md-8">--}}
-{{--                                        <input type="text" name="files_explain[]" value="" size="40"--}}
-{{--                                               aria-invalid="false" placeholder="توضیحات مدارک *" >--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-2 py-2">--}}
-{{--                                        <button type="button" class="btn btn-success" onclick="addRow('files_div_menu1')">+</button>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            <div class="input-form col-md-6 border-top border-dark pt-3 mt-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>رمز عبور :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="password" name="password" value="" size="40" aria-invalid="false"
+                                               placeholder="رمز عبور*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('password'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="input-form col-md-6 border-top border-dark pt-3 mt-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تایید رمز عبور :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="password" name="password_confirmation" value="" size="40"
+                                               aria-invalid="false" placeholder="تایید رمز عبور *" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <div class="row my-2">
                                     <div class="col-md-4 col-sm-2"></div>
@@ -683,120 +1249,212 @@
                     <div class="tab-pane  {{(Session::get('type') == 3) ? 'active':'fade'}}" id="menu2">
                         <h2 class=" font-22 text-medium text-black mt-5 mb-4"> فرم {{$memberships[2]->title}}
                         </h2>
-                        <form class="sidebar-form-body row" action="{{route('register.store')}}" method="POST" enctype="multipart/form-data">
+                        <form class="sidebar-form-body row" action="{{route('register.store')}}" method="POST"
+                              enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="type" value="{{$memberships[2]->id}}">
-                            <div class="input-form col-md-6 ">
-                                <input type="text" name="first_name" value="{{(Session::get('type') == 3) ? request()->old('first_name'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام *" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 3 && $errors->has('first_name'))
-                                    <div id="first_name-error" class="error text-danger pl-3" for="first_name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('first_name') }}</strong>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام :</label>
                                     </div>
-                                @endif
-                            </div>
-                            <div class="input-form col-md-6 ">
-                                <input type="text" name="last_name" value="{{(Session::get('type') == 3) ? request()->old('last_name'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام خانوادگی *" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 3 && $errors->has('last_name'))
-                                    <div id="last_name-error" class="error text-danger pl-3" for="last_name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('last_name') }}</strong>
+                                    <div class="col-12">
+                                        <input type="text" name="first_name"
+                                               value="{{(Session::get('type') == 3) ? request()->old('first_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام *" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('first_name'))
+                                            <div id="first_name-error" class="error text-danger pl-3" for="first_name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('first_name') }}</strong>
+                                            </div>
+                                        @endif
                                     </div>
-                                @endif
-                            </div>
-                            <div class="input-form col-md-6 ">
-                                <input type="text" name="name_en" value="{{(Session::get('type') == 3) ?request()->old('name_en'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام و نام خانوادگی انگلیسی*" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 3 && $errors->has('name_en'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('name_en') }}</strong>
-                                    </div>
-                                @endif
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="father_name" value="{{(Session::get('type') == 3) ?request()->old('father_name'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام پدر*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 3 && $errors->has('father_name'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('father_name') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام خانوادگی :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="last_name"
+                                               value="{{(Session::get('type') == 3) ? request()->old('last_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام خانوادگی *" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('last_name'))
+                                            <div id="last_name-error" class="error text-danger pl-3" for="last_name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('last_name') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="national_code" value="{{(Session::get('type') == 3) ?request()->old('national_code'):''}}" size="40" aria-invalid="false"
-                                       placeholder="کد ملی*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 3 && $errors->has('national_code'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('national_code') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام و نام خانوادگی انگلیسی :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="name_en"
+                                               value="{{(Session::get('type') == 3) ?request()->old('name_en'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام و نام خانوادگی انگلیسی*" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('name_en'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('name_en') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="mobile" value="{{(Session::get('type') == 3) ?request()->old('mobile'):''}}" size="40" aria-invalid="false"
-                                       placeholder="شماره تماس*" required>
-                                <img src="img/002-telephone.png" class="form-icon">
-                                @if (Session::get('type') == 3 && $errors->has('mobile'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('mobile') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام پدر :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="father_name"
+                                               value="{{(Session::get('type') == 3) ?request()->old('father_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام پدر*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('father_name'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('father_name') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="email" name="email" value="{{(Session::get('type') == 3) ?request()->old('email'):''}}" size="40" aria-invalid="false"
-                                       placeholder="ایمیل*" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 3 && $errors->has('email'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>کد ملی :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="national_code"
+                                               value="{{(Session::get('type') == 3) ?request()->old('national_code'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="کد ملی*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('national_code'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('national_code') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="certificate_number" value="{{(Session::get('type') == 3) ?request()->old('certificate_number'):''}}" size="40" aria-invalid="false"
-                                       placeholder="شماره شناسنامه*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 3 && $errors->has('certificate_number'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('certificate_number') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>شماره تماس :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="mobile"
+                                               value="{{(Session::get('type') == 3) ?request()->old('mobile'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="شماره تماس*" required>
+                                        <img src="img/002-telephone.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('mobile'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('mobile') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="birth_date" value="{{(Session::get('type') == 3) ?request()->old('birth_date'):''}}" size="40" aria-invalid="false"
-                                       placeholder="تاریخ تولد*" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 3 && $errors->has('birth_date'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ Session::get('birth_date') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>ایمیل :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="email" name="email"
+                                               value="{{(Session::get('type') == 3) ?request()->old('email'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="ایمیل*" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('email'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="birth_place" value="{{(Session::get('type') == 3) ?request()->old('birth_place'):''}}" size="40" aria-invalid="false"
-                                       placeholder="محل تولد*" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 3 && $errors->has('birth_place'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('birth_place') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>شماره شناسنامه :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="certificate_number"
+                                               value="{{(Session::get('type') == 3) ?request()->old('certificate_number'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="شماره شناسنامه*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('certificate_number'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('certificate_number') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
-                            <div class="input-form col-md-6 py-2 px-4">
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ تولد :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="birth_date"
+                                               class="datePickerInput"
+                                               value="{{(Session::get('type') == 3) ?request()->old('birth_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ تولد*" required autocomplete="off">
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('birth_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('birth_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>محل تولد :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="birth_place"
+                                               value="{{(Session::get('type') == 3) ?request()->old('birth_place'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="محل تولد*" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('birth_place'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('birth_place') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-12 py-2 px-4">
                                 <label for="">جنسیت : </label>
                                 <input type="radio" class="option-input" name="sex" value="1" size="40"
                                        aria-invalid="false" placeholder="مرد" required>
@@ -812,66 +1470,112 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="work_address" value="{{(Session::get('type') == 3) ?request()->old('work_address'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نشانی محل کار *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 3 && $errors->has('work_address'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('work_address') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نشانی محل کار :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="work_address"
+                                               value="{{(Session::get('type') == 3) ?request()->old('work_address'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نشانی محل کار *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('work_address'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('work_address') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="work_post" value="{{(Session::get('type') == 3) ?request()->old('work_post'):''}}" size="40" aria-invalid="false"
-                                       placeholder="کد پستی محل کار *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 3 && $errors->has('work_post'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('work_post') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>کد پستی محل کار :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="work_post"
+                                               value="{{(Session::get('type') == 3) ?request()->old('work_post'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="کد پستی محل کار *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('work_post'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('work_post') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="home_address" value="{{(Session::get('type') == 3) ?request()->old('home_address'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نشانی منزل *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 3 && $errors->has('home_address'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('home_address') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نشانی منزل :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="home_address"
+                                               value="{{(Session::get('type') == 3) ?request()->old('home_address'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نشانی منزل *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('home_address'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('home_address') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="home_post" value="{{(Session::get('type') == 3) ?request()->old('home_post'):''}}" size="40" aria-invalid="false"
-                                       placeholder="کد پستی منزل *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 3 && $errors->has('home_post'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('home_post') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>کد پستی منزل :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="home_post"
+                                               value="{{(Session::get('type') == 3) ?request()->old('home_post'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="کد پستی منزل *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('home_post'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('home_post') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="work_name" value="{{(Session::get('type') == 3) ?request()->old('work_name'):''}}" size="40" aria-invalid="false"
-                                       placeholder="محل کار *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 3 && $errors->has('work_name'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('work_name') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام محل کار :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="work_name"
+                                               value="{{(Session::get('type') == 3) ?request()->old('work_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام محل کار *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('work_name'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('work_name') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
-                            <div class="input-form col-md-6 py-2 px-4">
+                            <div class="input-form col-md-6 py-5 px-4">
                                 <label for="">انتخاب نشانی ارسال مراسلات : </label>
-                                <input type="radio" class="option-input" name="receive_place" value="منزل" size="40"
+                                <input type="radio" class="option-input" name="receive_place" value="0" size="40"
                                        aria-invalid="false" placeholder="مرد" required>
                                 منزل
-                                <input type="radio" class="option-input" name="receive_place" value="محل کار" size="40"
+                                <input type="radio" class="option-input" name="receive_place" value="1" size="40"
                                        aria-invalid="false" placeholder="زن" required>
                                 محل کار
                                 @if (Session::get('type') == 3 && $errors->has('profile.receive_place'))
@@ -881,44 +1585,154 @@
                                     </div>
                                 @endif
                             </div>
-                            <div class="input-form col-md-6">
-                                <input type="password" name="password" value="" size="40" aria-invalid="false"
-                                       placeholder="رمز عبور*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 3 && $errors->has('password'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                            <div class="input-form col-md-12" id="files_div_menu2">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <span>
+                                            مدارک مورد نیاز : ( {{$memberships[2]->required_documents}} )
+                                        </span>
                                     </div>
-                                @endif
+                                    <div class="col-md-12">
+                                        @if(Session::get('type') == 2)
+                                            @error('files.*')
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                            @enderror
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-form col-md-2">
+                                        <input type="file" name="files[]" value="" size="40" aria-invalid="false"
+                                               placeholder="آپلود مدارک" required>
+                                    </div>
+                                    <div class="input-form col-md-8">
+                                        <input type="text" name="files_explain[]" value="" size="40"
+                                               aria-invalid="false" placeholder="توضیحات مدارک *" required>
+                                    </div>
+                                    <div class="col-md-2 py-2">
+                                        <button type="button" class="btn btn-success"
+                                                onclick="addRow('files_div_menu2')">+
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 my-4">
+                                <h2 class="font-22 text-medium text-black">سابقه کاری :</h2>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="password" name="password_confirmation" value="" size="40"
-                                       aria-invalid="false" placeholder="تایید رمز عبور *" required>
-                                <img src="img/004-key.png" class="form-icon">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام محل کار :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="experience[company_name]"
+                                               value="{{(Session::get('type') == 3) ?request()->old('experience.company_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام محل کار">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('experience.company_name'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('experience.company_name') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
-{{--                            <div class="input-form col-md-12" id="files_div_menu2">--}}
-{{--                                <div class="row">--}}
-{{--                                    <div class="col-md-12">--}}
-{{--                                        <span>--}}
-{{--                                            مدارک مورد نیاز : ( {{$memberships[2]->required_documents}} )--}}
-{{--                                        </span>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="row">--}}
-{{--                                    <div class="input-form col-md-2">--}}
-{{--                                        <input type="file" name="files[]" value="" size="40" aria-invalid="false"--}}
-{{--                                               placeholder="آپلود مدارک" >--}}
-{{--                                    </div>--}}
-{{--                                    <div class="input-form col-md-8">--}}
-{{--                                        <input type="text" name="files_explain[]" value="" size="40"--}}
-{{--                                               aria-invalid="false" placeholder="توضیحات مدارک *" >--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-2 py-2">--}}
-{{--                                        <button type="button" class="btn btn-success" onclick="addRow('files_div_menu2')">+</button>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>عنوان شغلی :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="experience[job_title]"
+                                               value="{{(Session::get('type') == 3) ?request()->old('experience.job_title'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="عنوان شغلی">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('experience.job_title'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('experience.job_title') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ شروع به کار :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input class="datePickerInput" type="text" name="experience[from_date]"
+                                               value="{{(Session::get('type') == 3) ?request()->old('experience.from_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ شروع به کار">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('experience.from_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('experience.from_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ اتمام کار : (در صورت ادامه همکاری فیلد را خالی بگذارید)</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input class="datePickerInput" type="text" name="experience[to_date]"
+                                               value="{{(Session::get('type') == 3) ?request()->old('experience.to_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ اتمام کار">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('experience.to_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('experience.to_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6 border-top border-dark pt-3 mt-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>رمز عبور :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="password" name="password" value="" size="40" aria-invalid="false"
+                                               placeholder="رمز عبور*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('password'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="input-form col-md-6 border-top border-dark pt-3 mt-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تایید رمز عبور :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="password" name="password_confirmation" value="" size="40"
+                                               aria-invalid="false" placeholder="تایید رمز عبور *" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <div class="row my-2">
                                     <div class="col-md-4 col-sm-2"></div>
@@ -934,121 +1748,212 @@
                     <div class="tab-pane {{(Session::get('type') == 4) ? 'active':'fade'}}" id="menu3">
                         <h2 class=" font-22 text-medium text-black mt-5 mb-4"> فرم {{$memberships[3]->title}}
                         </h2>
-                        <form class="sidebar-form-body row" action="{{route('register.store')}}" method="POST" enctype="multipart/form-data">
+                        <form class="sidebar-form-body row" action="{{route('register.store')}}" method="POST"
+                              enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="type" value="{{$memberships[3]->id}}">
-                            <div class="input-form col-md-6 ">
-                                <input type="text" name="first_name" value="{{(Session::get('type') == 4) ? request()->old('first_name'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام *" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 4 && $errors->has('first_name'))
-                                    <div id="first_name-error" class="error text-danger pl-3" for="first_name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('first_name') }}</strong>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام :</label>
                                     </div>
-                                @endif
-                            </div>
-                            <div class="input-form col-md-6 ">
-                                <input type="text" name="last_name" value="{{(Session::get('type') == 4) ? request()->old('last_name'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام خانوادگی *" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 4 && $errors->has('last_name'))
-                                    <div id="last_name-error" class="error text-danger pl-3" for="last_name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('last_name') }}</strong>
+                                    <div class="col-12">
+                                        <input type="text" name="first_name"
+                                               value="{{(Session::get('type') == 4) ? request()->old('first_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام *" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 4 && $errors->has('first_name'))
+                                            <div id="first_name-error" class="error text-danger pl-3" for="first_name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('first_name') }}</strong>
+                                            </div>
+                                        @endif
                                     </div>
-                                @endif
-                            </div>
-                            <div class="input-form col-md-6 ">
-                                <input type="text" name="name_en" value="{{(Session::get('type') == 4) ?request()->old('name_en'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام و نام خانوادگی انگلیسی*" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 4 && $errors->has('name_en'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('name_en') }}</strong>
-                                    </div>
-                                @endif
-
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="father_name" value="{{(Session::get('type') == 4) ?request()->old('father_name'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نام پدر*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 4 && $errors->has('father_name'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('father_name') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام خانوادگی :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="last_name"
+                                               value="{{(Session::get('type') == 4) ? request()->old('last_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام خانوادگی *" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 4 && $errors->has('last_name'))
+                                            <div id="last_name-error" class="error text-danger pl-3" for="last_name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('last_name') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="national_code" value="{{(Session::get('type') == 4) ?request()->old('national_code'):''}}" size="40" aria-invalid="false"
-                                       placeholder="کد ملی*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 4 && $errors->has('national_code'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('national_code') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام و نام خانوادگی انگلیسی :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="name_en"
+                                               value="{{(Session::get('type') == 4) ?request()->old('name_en'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام و نام خانوادگی انگلیسی*" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 4 && $errors->has('name_en'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('name_en') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="mobile" value="{{(Session::get('type') == 4) ?request()->old('mobile'):''}}" size="40" aria-invalid="false"
-                                       placeholder="شماره تماس*" required>
-                                <img src="img/002-telephone.png" class="form-icon">
-                                @if (Session::get('type') == 4 && $errors->has('mobile'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('mobile') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نام پدر :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="father_name"
+                                               value="{{(Session::get('type') == 4) ?request()->old('father_name'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نام پدر*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 4 && $errors->has('father_name'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('father_name') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="email" name="email" value="{{(Session::get('type') == 4) ?request()->old('email'):''}}" size="40" aria-invalid="false"
-                                       placeholder="ایمیل*" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 4 && $errors->has('email'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>کد ملی :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="national_code"
+                                               value="{{(Session::get('type') == 4) ?request()->old('national_code'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="کد ملی*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 4 && $errors->has('national_code'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('national_code') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="certificate_number" value="{{(Session::get('type') == 4) ?request()->old('certificate_number'):''}}" size="40" aria-invalid="false"
-                                       placeholder="شماره شناسنامه*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 4 && $errors->has('certificate_number'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('certificate_number') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>شماره تماس :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="mobile"
+                                               value="{{(Session::get('type') == 4) ?request()->old('mobile'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="شماره تماس*" required>
+                                        <img src="img/002-telephone.png" class="form-icon">
+                                        @if (Session::get('type') == 4 && $errors->has('mobile'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('mobile') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="birth_date" value="{{(Session::get('type') == 4) ?request()->old('birth_date'):''}}" size="40" aria-invalid="false"
-                                       placeholder="تاریخ تولد*" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 4 && $errors->has('birth_date'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('birth_date') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>ایمیل :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="email" name="email"
+                                               value="{{(Session::get('type') == 4) ?request()->old('email'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="ایمیل*" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 4 && $errors->has('email'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="birth_place" value="{{(Session::get('type') == 4) ?request()->old('birth_place'):''}}" size="40" aria-invalid="false"
-                                       placeholder="محل تولد*" required>
-                                <img src="img/001-user.png" class="form-icon">
-                                @if (Session::get('type') == 4 && $errors->has('birth_place'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('birth_place') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>شماره شناسنامه :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="certificate_number"
+                                               value="{{(Session::get('type') == 4) ?request()->old('certificate_number'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="شماره شناسنامه*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 4 && $errors->has('certificate_number'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('certificate_number') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
-                            <div class="input-form col-md-6 py-2 px-4">
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ تولد :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="birth_date"
+                                               class="datePickerInput"
+                                               value="{{(Session::get('type') == 4) ?request()->old('birth_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ تولد*" required autocomplete="off">
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 4 && $errors->has('birth_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('birth_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>محل تولد :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="birth_place"
+                                               value="{{(Session::get('type') == 4) ?request()->old('birth_place'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="محل تولد*" required>
+                                        <img src="img/001-user.png" class="form-icon">
+                                        @if (Session::get('type') == 4 && $errors->has('birth_place'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('birth_place') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-12 py-2 px-4">
                                 <label for="">جنسیت : </label>
                                 <input type="radio" class="option-input" name="sex" value="1" size="40"
                                        aria-invalid="false" placeholder="مرد" required>
@@ -1064,42 +1969,75 @@
                                 @endif
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="home_address" value="{{(Session::get('type') == 4) ?request()->old('home_address'):''}}" size="40" aria-invalid="false"
-                                       placeholder="نشانی منزل *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 4 && $errors->has('home_address'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('home_address') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>نشانی منزل :</label>
                                     </div>
-                                @endif
+                                    <div class="col-12">
+                                        <input type="text" name="home_address"
+                                               value="{{(Session::get('type') == 4) ?request()->old('home_address'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="نشانی منزل *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 4 && $errors->has('home_address'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('home_address') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-form col-md-6">
-                                <input type="text" name="home_post" value="{{(Session::get('type') == 4) ?request()->old('home_post'):''}}" size="40" aria-invalid="false"
-                                       placeholder="کد پستی منزل *" required>
-                                <img src="img/003-envelope.png" class="form-icon">
-                                @if (Session::get('type') == 4 && $errors->has('home_post'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('home_post') }}</strong>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>کد پستی منزل :</label>
                                     </div>
-                                @endif
-                            </div>
-                            <div class="input-form col-md-6">
-                                <input type="password" name="password" value="" size="40" aria-invalid="false"
-                                       placeholder="رمز عبور*" required>
-                                <img src="img/004-key.png" class="form-icon">
-                                @if (Session::get('type') == 4 && $errors->has('password'))
-                                    <div id="name-error" class="error text-danger pl-3" for="name"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                    <div class="col-12">
+                                        <input type="text" name="home_post"
+                                               value="{{(Session::get('type') == 4) ?request()->old('home_post'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="کد پستی منزل *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 4 && $errors->has('home_post'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('home_post') }}</strong>
+                                            </div>
+                                        @endif
                                     </div>
-                                @endif
+                                </div>
                             </div>
-                            <div class="input-form col-md-6">
-                                <input type="password" name="password_confirmation" value="" size="40"
-                                       aria-invalid="false" placeholder="تایید رمز عبور *" required>
-                                <img src="img/004-key.png" class="form-icon">
+                            <div class="input-form col-md-6 border-top border-dark pt-3 mt-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>رمز عبور :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="password" name="password" value="" size="40" aria-invalid="false"
+                                               placeholder="رمز عبور*" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                        @if (Session::get('type') == 4 && $errors->has('password'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="input-form col-md-6 border-top border-dark pt-3 mt-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تایید رمز عبور :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="password" name="password_confirmation" value="" size="40"
+                                               aria-invalid="false" placeholder="تایید رمز عبور *" required>
+                                        <img src="img/004-key.png" class="form-icon">
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="row my-2">
@@ -1117,6 +2055,32 @@
             </div>
         </div>
     </main>
+    <script src="{{ asset('material/js/core/jquery.min.js') }}"></script>
+    <script>
+        function setInputs() {
+            $(':text').val('1000');
+            $('#email-input').val('vahid.izadyar@gmail.com');
+            $('#password').val('12345678');
+            $('#password_confirmation').val('12345678');
+        }
+
+        $(document).ready(function () {
+            $(".datePickerInput").pDatepicker(
+                {
+                    initialValue: false,
+                    responsive: true,
+                    format: 'L',
+                    calendarType: 'persian',
+                    timePicker: {
+                        enabled: false,
+                    },
+                    toolbox: {
+                        enabled: false,
+                    }
+                }
+            );
+        });
+    </script>
 @endsection
 <script src='{{asset('fullcalendar/core/main.js')}}'></script>
 <script src='{{asset('fullcalendar/daygrid/main.js')}}'></script>
@@ -1340,19 +2304,21 @@
         var row_id = Date.now();
         var new_row = "                                <div class=\"row\" id=" + row_id + ">\n" +
             "                                    <div class=\"input-form col-md-2\">\n" +
-            "                                        <input type=\"file\" name=\"files[]\" value=\"\" size=\"40\" aria-invalid=\"false\" placeholder=\"آپلود مدارک\">\n" +
+            "                                        <input type=\"file\" name=\"files[]\" value=\"\" size=\"40\" aria-invalid=\"false\" placeholder=\"آپلود مدارک\" required>\n" +
             "                                    </div>\n" +
             "                                    <div class=\"input-form col-md-8\">\n" +
-            "                                        <input type=\"text\" name=\"files_explain[]\" value=\"\" size=\"40\" aria-invalid=\"false\" placeholder=\"توضیحات مدارک *\">\n" +
+            "                                        <input type=\"text\" name=\"files_explain[]\" value=\"\" size=\"40\" aria-invalid=\"false\" placeholder=\"توضیحات مدارک *\" required>\n" +
             "                                    </div>\n" +
             "                                    <div class=\"col-md-2 py-2\">\n" +
             "                                        <button type=\"button\" class=\"btn btn-danger\" onclick=\"deleteRow(" + row_id + ")\">-</button>\n" +
             "                                    </div>\n" +
             "                                </div>";
-        $("#"+id).append(new_row);
+        $("#" + id).append(new_row);
     }
 
     function deleteRow(id) {
         $("#" + id).remove();
     }
+
+
 </script>

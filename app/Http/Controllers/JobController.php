@@ -24,7 +24,7 @@ class JobController extends Controller
 
         $contract_type = array("همه موارد", "تمام وقت", "نیمه وقت", "قراردادی / پروژه ای",);
         $work_experience = array("همه موارد", "زیر ۲ سال", "بین ۲ تا ۵ سال", "بین ۵ تا ۸ سال", "۸ سال به بالا");
-        $education = array("فرقی نمی کن", "دیپلم", "کاردانی", "کارشناسی", "کارشناسی ارشد", "دکترا");
+        $education = array("تفاوتی ندارد", "دیپلم", "کاردانی", "کارشناسی", "کارشناسی ارشد", "دکترا");
 
         $jobs = Job::query();
 
@@ -58,8 +58,9 @@ class JobController extends Controller
 
 
         $breadcrumb = "فرصت های شغلی";
+        $titleHeader = "فرصت های شغلی";
 
-        return view("job.jobs", compact("jobs", "cats", 'myJobs', 'breadcrumb', 'contract_type', 'work_experience', 'education'));
+        return view("job.jobs", compact("jobs", "cats", 'myJobs', 'titleHeader','breadcrumb', 'contract_type', 'work_experience', 'education'));
     }
 
     /**
@@ -78,8 +79,9 @@ class JobController extends Controller
         $education = array("فرقی نمی کن", "دیپلم", "کاردانی", "کارشناسی", "کارشناسی ارشد", "دکترا");
 
         $breadcrumb = "ثبت فرصت شغلی";
+        $titleHeader = "ثبت فرصت شغلی";
 
-        return view("job.create", compact('province', 'cats', 'contract_type', 'work_experience', 'education', 'breadcrumb'));
+        return view("job.create", compact('province', 'cats', 'contract_type', 'work_experience', 'education', 'breadcrumb','titleHeader'));
 
 
     }
@@ -158,7 +160,6 @@ class JobController extends Controller
 
         $job = Job::with('province', "jobCategory")->find($id);
 
-        $titleHeader = "";
         $similar = [];
 
         if ($job != null) {
@@ -177,6 +178,7 @@ class JobController extends Controller
         $cats = JobsCategory::all(['id', 'title']);
 
         $breadcrumb = "ویرایش فرصت شغلی من";
+        $titleHeader = "ویرایش فرصت شغلی من";
 
         return view($job == null ? '404' : 'job.job_edit', compact('job', 'breadcrumb', 'titleHeader', 'similar', "cats", 'contract_type', 'work_experience', 'education', 'province'));
     }
