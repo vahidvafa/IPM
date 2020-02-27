@@ -255,13 +255,44 @@ class JobController extends Controller
     }
 
 
-    public function indexCms(){
-        $jobs = Job::latest()->paginate(20);
+    public function indexCms(Request $request){
+        $contract_type = array("همه موارد", "تمام وقت", "نیمه وقت", "قراردادی / پروژه ای",);
+        $work_experience = array("همه موارد", "زیر ۲ سال", "بین ۲ تا ۵ سال", "بین ۵ تا ۸ سال", "۸ سال به بالا");
+        $education = array("تفاوتی ندارد", "دیپلم", "کاردانی", "کارشناسی", "کارشناسی ارشد", "دکترا");
+
+        $jobs = Job::query();
+
+        if ($request->has("cats")) {
+
+//            return $request->get("cats");
+
+            if ($request->get("cats") != "-100")
+                $jobs->where("jobsCategory_id", "=", $request->get("cats"));
+
+            if ($request->get("contract_type") != $contract_type[0])
+                $jobs->where("contract_type", "=", $request->get("contract_type"));
+
+            if ($request->get("work_experience") != $work_experience[0])
+                $jobs->where("work_experience", "=", $request->get("work_experience"));
+
+            if ($request->get("education") != $education[0])
+                $jobs->where("education", "=", $request->get("education"));
+
+            if ($request->get('sex') != "-1")
+                $jobs->where("sex", "=", $request->get("sex"));
+
+        }
+
+        $jobs = $jobs->with('province', "jobCategory")->latest('id')->paginate(15)
+            ->appends(['cats' => $request->get("cats"), 'contract_type' => $request->get("contract_type"), 'work_experience' => $request->get("work_experience"), 'education' => $request->get("education"), 'sex' => $request->get("sex")],
+                null);
+        $cats = JobsCategory::all();
+
 
         if (count($jobs) == 0)
         flash_message("success","لیست خالی میباید");
 
-        return view('cms.job.index',compact("jobs"));
+        return view('cms.job.index',compact("jobs",'cats','contract_type','work_experience','education'));
     }
 
 

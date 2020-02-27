@@ -11,6 +11,55 @@
                 </div>
             </div>
             <div class="card-body table-responsive request-table">
+
+                <form action="{{route('cms.job.index')}}" method="post" class="col-12 row shadow mb-2 mt-3 p-5 form-group">
+                    @csrf
+                    <label class="col-3">
+                        دسته بندی: <select name="cats" class="form-control">
+                            <option value="-100" @if(request()->get("cats") == "-100") selected @endif>--------------</option>
+                            @foreach($cats as $cat)
+                                <option value="{{$cat->id}}" @if(request()->get("cats") == $cat->title) selected @endif >{{$cat->title}}</option>
+                            @endforeach
+                        </select>
+                    </label>
+
+                    <label class="col-2">
+                        نوع قرار داد: <select name="contract_type"  class="form-control" >
+                            @foreach($contract_type as $type)
+                                <option value="{{$type}}" @if(request()->get("contract_type") == $type) selected @endif >{{$type}}</option>
+                            @endforeach
+                        </select>
+                    </label>
+
+                    <label class="col-2 ">
+                        سابقه کاری: <select name="work_experience" class="form-control">
+                            @foreach($work_experience as $work)
+                                <option value="{{$work}}" @if(request()->get("work_experience") == $work) selected @endif >{{$work}}</option>
+                            @endforeach
+                        </select>
+                    </label>
+
+                    <label class="col-2" >
+                        مدرک تحصیلی: <select name="education" class="form-control">
+                            @foreach($education as $ed)
+                                <option value="{{$ed}}" @if(request()->get("education") == $ed) selected @endif >{{$ed}}</option>
+                            @endforeach
+                        </select>
+                    </label>
+
+                    <label class="col-2">
+                        جنسیت: <select name="sex" class="form-control">
+                            <option value="-1" @if(request()->get("sex") == null  || request()->get("sex") == -1) selected @endif >تفاوتی ندارد</option>
+                            <option value="0" @if(request()->get("sex") !=null && request()->get("sex") == 0) selected @endif >زن</option>
+                            <option value="1" @if(request()->get("sex") == 1) selected @endif >مرد</option>
+
+                        </select>
+                    </label>
+
+                    <button type="submit" class="col-3 btn btn-primary center-y ">جست و جو</button>
+
+                </form>
+
                 <table class="rwd-table table">
                     <thead>
                     <tr>

@@ -33,7 +33,7 @@ $factory->define(User::class, function (Faker $faker) {
         'roles' => random_int(0,2),
         'active' => random_int(0,1),
         'reagent_id' => random_int(0,User::all('id')->count()),
-        'branch' => 1,
+        'branch_id' => \App\Branch::all('id')->random()->id,
         'expire' => random_int(time(),time()+31568385),
         'membership_type_id' => random_int(0,4),
         'profile_picture' => $faker->name.".png",

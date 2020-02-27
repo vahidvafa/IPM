@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function () {
             Route::post('messages/{message}/delete', 'MessageController@destroy')->name('message.delete');
             //------
             Route::get('jobs','JobController@indexCms')->name("cms.job.index");
+            Route::post('jobs','JobController@indexCms')->name("cms.job.index");
             Route::get('job/{id}','JobController@showCms')->name("cms.job.show");
             Route::post('job/state/store/{id}','JobController@storeCms')->name('cms.job.store');
             Route::post('job//{id}/delete','JobController@destroyCms')->name('cms.job.destroy');
