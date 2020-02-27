@@ -8,6 +8,7 @@
                 </div>
             </div>
             <div class="card-body table-responsive request-table">
+                {{$messages->links()}}
                 <table class="rwd-table table">
                     <thead>
                     <tr>
@@ -32,7 +33,9 @@
                             <td data-th="نام" class="text-right">{{$message->name}}</td>
                             <td data-th="ایمیل" class="text-right">{{$message->email}}</td>
                             <td data-th="متن" class="text-right">
-                                <textarea class="form-control" disabled rows="6" cols="20">{{$message->detail}}</textarea>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailModal" data-detail="{{$message->detail}}">
+                                    نمایش متن
+                                </button>
                             </td>
                             <td data-th="تاریخ و ساعت" class="text-right">
                                 <h4 dir="ltr">
@@ -56,4 +59,34 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('material/js/core/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#detailModal').on('show.bs.modal',function (event) {
+                //get data-id attribute of the clicked element
+                var detail = $(event.relatedTarget).data('detail');
+                //populate the textbox
+                $(event.currentTarget).find('#detail-element').text(detail);
+            })
+        });
+    </script>
+    <!-- Modal -->
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">متن پیام</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="detail-element" dir="rtl" class="text-center"></p>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection

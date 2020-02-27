@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="col-12 text-center mb-5 mb-lg-5 pb-3 pb-lg-5 pt-0 pt-lg-3">
-            <a class="btn text-center  btn-in-calender" href="/">لیست تمام رویداد های سال 98</a>
+            <a class="btn text-center  btn-in-calender" href="{{route('events')}}">لیست تمام رویداد ها</a>
         </div>
     </div>
 

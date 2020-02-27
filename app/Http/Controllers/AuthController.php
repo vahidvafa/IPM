@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Branch;
 use App\Document;
 use App\User;
 use App\WorkExperience;
@@ -12,6 +13,8 @@ use App\Membership;
 use App\MembershipType;
 use App\Profile;
 use Illuminate\Support\Facades\Hash;
+use Shetabit\Payment\Facade\Payment;
+use Shetabit\Payment\Invoice;
 use Symfony\Component\Console\Input\Input;
 use Validator;
 
@@ -23,13 +26,12 @@ class AuthController extends Controller
         $titleHeader = "ثبت نام ";
         $breadcrumb = "عضویت";
         $type = 0;
-        return view('register', compact('memberships', 'titleHeader', 'breadcrumb', 'type'));
+        $branches = Branch::all();
+        return view('register', compact('memberships', 'titleHeader', 'breadcrumb', 'type','branches'));
     }
 
     public function postRegister(Request $request)
     {
-
-
 //        dd($request->get('experience'));
         $messages = [
             '*.required' => 'وارد کردن این فیلد الزامی است',
@@ -63,6 +65,7 @@ class AuthController extends Controller
                     'receive_place' => 'bail | required | string',
                     'email' => 'bail | required | string | email | max:255 | unique:users',
                     'password' => 'bail | required | string | min:8 | confirmed',
+                    'branch_id' => 'bail | required | numeric',
                     'files.*' => 'bail | required | mimes:jpeg,bmp,png,jpg,pdf',
                     'files_explain.*' => 'bail | required | string',
                 ], $messages);
@@ -95,6 +98,7 @@ class AuthController extends Controller
                     'company.ceo_name' => 'bail | required | string',
                     'company.ceo_name_en' => 'bail | required | string',
                     'password' => 'bail | required | string | min:8 | confirmed',
+                    'branch_id' => 'bail | required | numeric',
                     'files.*' => 'bail | required | mimes:jpeg,bmp,png,jpg,pdf ',
                     'files_explain.*' => 'bail | required | string ',
                 ], $messages);
@@ -115,6 +119,7 @@ class AuthController extends Controller
                     'home_post' => 'bail | required | string',
                     'email' => 'bail | required | string | email | max:255 | unique:users',
                     'password' => 'bail | required | string | min:8 | confirmed',
+                    'branch_id' => 'bail | required | numeric',
                 ], $messages);
                 break;
         }
@@ -138,7 +143,6 @@ class AuthController extends Controller
             $userCode = mt_rand(1000, 100000);
         }
         $userCode = $date . '-' . $userCode;
-
         $user = new User(
             [
                 'first_name' => $request->get('first_name'),
@@ -149,10 +153,10 @@ class AuthController extends Controller
                 'password' => Hash::make($request->get('password')),
                 'slug' => $slug,
                 'user_code' => $userCode,
-                'membership_type_id' => $request->get('type')
+                'membership_type_id' => $request->get('type'),
+                'branch_id' => $request->get('branch_id'),
             ]
         );
-
         $profile = new Profile($request->all());
         $profile->lang_id = 1;
         $isSuccessful = \DB::transaction(function () use ($user, $profile, $request) {
@@ -186,7 +190,7 @@ class AuthController extends Controller
             return true;
         });
         if ($isSuccessful) {
-            \auth()->loginUsingId($user->id);
+            auth()->loginUsingId($user->id);
             return redirect()->to(route('main'));
         }
         return back();

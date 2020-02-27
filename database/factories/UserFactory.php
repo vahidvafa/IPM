@@ -31,7 +31,7 @@ $factory->define(User::class, function (Faker $faker) {
         'password' => '$2y$10$kFUrrQ/.CelUMYMb0arAR.q0Bg06EcYqh8udKP6VqjDefKF.U5z2C', // password ( 1 to 6 )
         'remember_token' => Str::random(10),
         'roles' => random_int(0,2),
-        'active' => random_int(-1,3),
+        'active' => random_int(0,1),
         'reagent_id' => random_int(0,User::all('id')->count()),
         'branch' => 1,
         'expire' => random_int(time(),time()+31568385),

@@ -124,7 +124,7 @@ class User extends Authenticatable
 
     public function memberships()
     {
-        return $this->hasMany(Membership::class);
+        return $this->hasMany(Membership::class,'user_id','id');
     }
 
     public function workExperience()
@@ -157,6 +157,11 @@ class User extends Authenticatable
 
     public function companies(){
         return $this->hasMany(Company::class);
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
     }
 
     public function scopeLike($query, $field, $value){

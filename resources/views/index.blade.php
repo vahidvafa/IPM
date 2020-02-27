@@ -24,12 +24,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="{{asset('img/logo.png')}}" alt="انجمن مدیریت پروژه">
-                    <h1 class="text-white d-inline-block font-18 text-regular ml-2"
-                        style="font-weight: bold;font-size: 27px;">انجمن مدیریت پروژه ایران</h1>
+                    <a href="{{route('main')}}">
+                        <img src="{{asset('img/logo.png')}}" alt="انجمن مدیریت پروژه">
+                        <h1 class="text-white d-inline-block font-18 text-regular ml-2"
+                            style="font-weight: bold;font-size: 27px;">انجمن مدیریت پروژه ایران</h1>
+                    </a>
                 </div>
                 <div class="col-md-6 text-right">
-                    <img src="{{asset('img/ipma-logo.png')}}" alt="انجمن مدیریت پروژه">
+                    <a href="{{route('main')}}">
+                        <img src="{{asset('img/ipma-logo.png')}}" alt="انجمن مدیریت پروژه">
+                    </a>
                 </div>
             </div>
         </div>
@@ -136,7 +140,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link " href="{{route('job.index')}}">فرصت های شغلی</a>
                                 </li>
-                            @auth()
+                                @auth()
                                 <!-- Dropdown -->
                                     @if(auth()->user()->roles == 0 || auth()->user()->roles == 1)
                                         <li class="nav-item ">
@@ -146,7 +150,7 @@
                                     <li class="nav-item ">
                                         <a class="nav-link" href="{{route('logout')}}">خروج</a>
                                     </li>
-                            @endauth
+                                @endauth
                             </ul>
                         </div>
                     </nav>
@@ -578,7 +582,8 @@
                     </div>
                 </div>
                 <div class="col-12 text-center last-pack-calender">
-                    <a class="btn text-center last-pack-calender-btn" href="{{route('event.calender')}}">مشاهده تقویم رویدادها</a>
+                    <a class="btn text-center last-pack-calender-btn" href="{{route('event.calender')}}">مشاهده تقویم
+                        رویدادها</a>
                 </div>
             </div>
         </div>
@@ -822,21 +827,21 @@
                     <!-- Links -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">تاریخچه انجمن</a>
+                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#history">تاریخچه انجمن</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">سازمان انجمن</a>
+                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#chart">سازمان انجمن</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">اساسنامه و مجوزها</a>
+                            <a class="nav-link text-gray font-14" href="{{route('download')}}">اساسنامه و مجوزها</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">اعضای هیات مدیره</a>
+                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#board-of-directors">اعضای
+                                هیات مدیره</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">موسسین انجمن</a>
+                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#creator">موسسین انجمن</a>
                         </li>
-
                     </ul>
 
                 </nav>
@@ -888,8 +893,8 @@
             </div>
             <div class="col-12 col-lg-6 ">
                 <ul class="social m-0 text-center text-lg-right">
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
+                    <li><a href="https://telegram.me/PMAIran"></a></li>
+                    <li><a href="https://www.instagram.com/iranpma/"></a></li>
                     <li><a href="#"></a></li>
                     <li><a href="#"></a></li>
                     <li><a href="#"></a></li>

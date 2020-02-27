@@ -280,13 +280,12 @@
                                 </div>
                             </div>
                             <div class="input-form col-md-12 py-2 px-4">
-                                <label for="">جنسیت : </label>
-                                <input type="radio" class="option-input" name="sex" value="1" size="40"
-                                       aria-invalid="false" placeholder="مرد" required>
-                                مرد
-                                <input type="radio" class="option-input" name="sex" value="0" size="40"
-                                       aria-invalid="false" placeholder="زن" required>
-                                زن
+                                <label>جنسیت : </label>
+                                <select name="sex" required>
+                                    <option disabled selected value>جنسیت مورد نظر را انتخاب کنید *</option>
+                                    <option value="1">مرد</option>
+                                    <option value="0">زن</option>
+                                </select>
                                 @if (Session::get('type') == 1 && $errors->has('sex'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
@@ -395,18 +394,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="input-form col-md-6 py-5 px-4">
+                            <div class="input-form col-md-6">
                                 <label for="">انتخاب نشانی ارسال مراسلات : </label>
-                                <input type="radio" class="option-input" name="receive_place" value="0" size="40"
-                                       aria-invalid="false" placeholder="مرد" required>
-                                منزل
-                                <input type="radio" class="option-input" name="receive_place" value="1" size="40"
-                                       aria-invalid="false" placeholder="زن" required>
-                                محل کار
-                                @if (Session::get('type') == 1 && $errors->has('profile.receive_place'))
+                                <select name="receive_place" required>
+                                    <option disabled selected value>نشانی مورد نظر را انتخاب کنید *</option>
+                                    <option value="0">منزل</option>
+                                    <option value="1">محل کار</option>
+                                </select>
+                                @if (Session::get('type') == 1 && $errors->has('receive_place'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
-                                        <strong>{{ $errors->first('profile.receive_place') }}</strong>
+                                        <strong>{{ $errors->first('receive_place') }}</strong>
                                     </div>
                                 @endif
                             </div>
@@ -526,6 +524,21 @@
                                         @endif
                                     </div>
                                 </div>
+                            </div>
+                            <div class="input-form col-md-12 py-2 px-4">
+                                <label for="branch">شاخه : </label>
+                                <select name="branch_id" required>
+                                    <option disabled selected value>شاخه مورد نظر را انتخاب کنید *</option>
+                                    @foreach($branches as $branch)
+                                        <option value="{{$branch->id}}">{{ $branch->title }}</option>
+                                    @endforeach
+                                </select>
+                                @if (Session::get('type') == 1 && $errors->has('branch_id'))
+                                    <div id="name-error" class="error text-danger pl-3" for="name"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('branch_id') }}</strong>
+                                    </div>
+                                @endif
                             </div>
                             <div class="input-form col-md-6 border-top border-dark pt-3 mt-3">
                                 <div class="row">
@@ -783,13 +796,12 @@
                                 </div>
                             </div>
                             <div class="input-form col-md-12 py-2 px-4">
-                                <label for="">جنسیت : </label>
-                                <input type="radio" class="option-input" name="sex" value="1" size="40"
-                                       aria-invalid="false" placeholder="مرد" required>
-                                مرد
-                                <input type="radio" class="option-input" name="sex" value="0" size="40"
-                                       aria-invalid="false" placeholder="زن" required>
-                                زن
+                                <label>جنسیت : </label>
+                                <select name="sex" required>
+                                    <option disabled selected value>جنسیت مورد نظر را انتخاب کنید *</option>
+                                    <option value="1">مرد</option>
+                                    <option value="0">زن</option>
+                                </select>
                                 @if (Session::get('type') == 2 && $errors->has('sex'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
@@ -1048,30 +1060,15 @@
                             </div>
                             <div class="input-form col-md-12 py-2 px-4">
                                 <label for="">نوع مالکیت شرکت : </label>
-                                <input type="radio" class="option-input" name="company[ownership_type]" value="دولتی"
-                                       size="40"
-                                       aria-invalid="false" placeholder="دولتی" required checked>
-                                دولتی
-                                <input type="radio" class="option-input" name="company[ownership_type]" value="خصوصی"
-                                       size="40"
-                                       aria-invalid="false" placeholder="خصوصی" required>
-                                خصوصی
-                                <input type="radio" class="option-input" name="company[ownership_type]" value="عمومی"
-                                       size="40"
-                                       aria-invalid="false" placeholder="عمومی" required>
-                                عمومی
-                                <input type="radio" class="option-input" name="company[ownership_type]"
-                                       value="دولتی / خصوصی" size="40"
-                                       aria-invalid="false" placeholder="دولتی / خصوصی" required>
-                                دولتی / خصوصی
-                                <input type="radio" class="option-input" name="company[ownership_type]"
-                                       value="خصوصی / دولتی" size="40"
-                                       aria-invalid="false" placeholder="خصوصی / دولتی" required>
-                                خصوصی / دولتی
-                                <input type="radio" class="option-input" name="company[ownership_type]" value="سایر"
-                                       size="40"
-                                       aria-invalid="false" placeholder="سایر" required>
-                                سایر
+                                <select name="company[ownership_type]" required>
+                                    <option disabled selected value>نوع مالکیت را انتخاب کنید *</option>
+                                    <option value="دولتی">دولتی</option>
+                                    <option value="خصوصی">خصوصی</option>
+                                    <option value="عمومی">عمومی</option>
+                                    <option value="دولتی / خصوصی">دولتی / خصوصی</option>
+                                    <option value="خصوصی / دولتی">خصوصی / دولتی</option>
+                                    <option value="سایر">سایر</option>
+                                </select>
                                 @if (Session::get('type') == 2 && $errors->has('company.ownership_type'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
@@ -1081,26 +1078,14 @@
                             </div>
                             <div class="input-form col-md-12 py-2 px-4">
                                 <label for="">نوع حقوقی شرکت : </label>
-                                <input type="radio" class="option-input" name="company[legal_type]" value="سهامی خاص"
-                                       size="40"
-                                       aria-invalid="false" placeholder="سهامی خاص" required>
-                                سهامی خاص
-                                <input type="radio" class="option-input" name="company[legal_type]" value="سهامی عام"
-                                       size="40"
-                                       aria-invalid="false" placeholder="سهامی عام" required checked>
-                                سهامی عام
-                                <input type="radio" class="option-input" name="company[legal_type]"
-                                       value="با مسئولیت محدود" size="40"
-                                       aria-invalid="false" placeholder="با مسئولیت محدود" required>
-                                با مسئولیت محدود
-                                <input type="radio" class="option-input" name="company[legal_type]" value="تضامنی"
-                                       size="40"
-                                       aria-invalid="false" placeholder="تضامنی" required>
-                                تضامنی
-                                <input type="radio" class="option-input" name="company[legal_type]" value="سایر"
-                                       size="40"
-                                       aria-invalid="false" placeholder="سایر" required>
-                                سایر
+                                <select name="company[legal_type]" required>
+                                    <option disabled selected value>نوع حقوقی را انتخاب کنید *</option>
+                                    <option value="سهامی خاص">سهامی خاص</option>
+                                    <option value="سهامی عام">سهامی عام</option>
+                                    <option value="با مسئولیت محدود">با مسئولیت محدود</option>
+                                    <option value="تضامنیی">تضامنی</option>
+                                    <option value="سایر">سایر</option>
+                                </select>
                                 @if (Session::get('type') == 2 && $errors->has('company.legal_type'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
@@ -1202,6 +1187,21 @@
                                         </button>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="input-form col-md-12 py-2 px-4">
+                                <label for="branch">شاخه : </label>
+                                <select name="branch_id" required>
+                                    <option disabled selected value>شاخه مورد نظر را انتخاب کنید *</option>
+                                    @foreach($branches as $branch)
+                                        <option value="{{$branch->id}}">{{ $branch->title }}</option>
+                                    @endforeach
+                                </select>
+                                @if (Session::get('type') == 2 && $errors->has('branch_id'))
+                                    <div id="name-error" class="error text-danger pl-3" for="name"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('branch_id') }}</strong>
+                                    </div>
+                                @endif
                             </div>
                             <div class="input-form col-md-6 border-top border-dark pt-3 mt-3">
                                 <div class="row">
@@ -1455,13 +1455,12 @@
                                 </div>
                             </div>
                             <div class="input-form col-md-12 py-2 px-4">
-                                <label for="">جنسیت : </label>
-                                <input type="radio" class="option-input" name="sex" value="1" size="40"
-                                       aria-invalid="false" placeholder="مرد" required>
-                                مرد
-                                <input type="radio" class="option-input" name="sex" value="0" size="40"
-                                       aria-invalid="false" placeholder="زن" required>
-                                زن
+                                <label>جنسیت : </label>
+                                <select name="sex" required>
+                                    <option disabled selected value>جنسیت مورد نظر را انتخاب کنید *</option>
+                                    <option value="1">مرد</option>
+                                    <option value="0">زن</option>
+                                </select>
                                 @if (Session::get('type') == 3 && $errors->has('sex'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
@@ -1570,18 +1569,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="input-form col-md-6 py-5 px-4">
+                            <div class="input-form col-md-6">
                                 <label for="">انتخاب نشانی ارسال مراسلات : </label>
-                                <input type="radio" class="option-input" name="receive_place" value="0" size="40"
-                                       aria-invalid="false" placeholder="مرد" required>
-                                منزل
-                                <input type="radio" class="option-input" name="receive_place" value="1" size="40"
-                                       aria-invalid="false" placeholder="زن" required>
-                                محل کار
-                                @if (Session::get('type') == 3 && $errors->has('profile.receive_place'))
+                                <select name="receive_place" required>
+                                    <option disabled selected value>نشانی مورد نظر را انتخاب کنید *</option>
+                                    <option value="0">منزل</option>
+                                    <option value="1">محل کار</option>
+                                </select>
+                                @if (Session::get('type') == 3 && $errors->has('receive_place'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
-                                        <strong>{{ $errors->first('profile.receive_place') }}</strong>
+                                        <strong>{{ $errors->first('receive_place') }}</strong>
                                     </div>
                                 @endif
                             </div>
@@ -1701,6 +1699,21 @@
                                         @endif
                                     </div>
                                 </div>
+                            </div>
+                            <div class="input-form col-md-12 py-2 px-4">
+                                <label for="branch">شاخه : </label>
+                                <select name="branch_id" required>
+                                    <option disabled selected value>شاخه مورد نظر را انتخاب کنید *</option>
+                                    @foreach($branches as $branch)
+                                        <option value="{{$branch->id}}">{{ $branch->title }}</option>
+                                    @endforeach
+                                </select>
+                                @if (Session::get('type') == 3 && $errors->has('branch_id'))
+                                    <div id="name-error" class="error text-danger pl-3" for="name"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('branch_id') }}</strong>
+                                    </div>
+                                @endif
                             </div>
                             <div class="input-form col-md-6 border-top border-dark pt-3 mt-3">
                                 <div class="row">
@@ -1954,13 +1967,12 @@
                                 </div>
                             </div>
                             <div class="input-form col-md-12 py-2 px-4">
-                                <label for="">جنسیت : </label>
-                                <input type="radio" class="option-input" name="sex" value="1" size="40"
-                                       aria-invalid="false" placeholder="مرد" required>
-                                مرد
-                                <input type="radio" class="option-input" name="sex" value="0" size="40"
-                                       aria-invalid="false" placeholder="زن" required>
-                                زن
+                                <label>جنسیت : </label>
+                                <select name="sex" required>
+                                    <option disabled selected value>جنسیت مورد نظر را انتخاب کنید *</option>
+                                    <option value="1">مرد</option>
+                                    <option value="0">زن</option>
+                                </select>
                                 @if (Session::get('type') == 4 && $errors->has('sex'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
@@ -2007,6 +2019,21 @@
                                         @endif
                                     </div>
                                 </div>
+                            </div>
+                            <div class="input-form col-md-12 py-2 px-4">
+                                <label for="branch">شاخه : </label>
+                                <select name="branch_id" required>
+                                    <option disabled selected value>شاخه مورد نظر را انتخاب کنید *</option>
+                                    @foreach($branches as $branch)
+                                        <option value="{{$branch->id}}">{{ $branch->title }}</option>
+                                    @endforeach
+                                </select>
+                                @if (Session::get('type') == 4 && $errors->has('branch_id'))
+                                    <div id="name-error" class="error text-danger pl-3" for="name"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('branch_id') }}</strong>
+                                    </div>
+                                @endif
                             </div>
                             <div class="input-form col-md-6 border-top border-dark pt-3 mt-3">
                                 <div class="row">

@@ -13,7 +13,7 @@
                                 <div class="card-header card-header-danger card-header-icon">
                                     <h3 class="card-title mt-4">
                                         تعداد کاربران :
-                                        {{\App\User::whereRoles(2)->count()}}
+                                        {{tr_num(\App\User::whereRoles(2)->count(),'fa')}}
                                     </h3>
                                 </div>
                                 <div class="card-footer">
@@ -25,7 +25,7 @@
                                 <div class="card-header card-header-danger card-header-icon">
                                     <h3 class="card-title mt-4">
                                         تعداد اخبار :
-                                        {{\App\News::count()}}
+                                        {{tr_num(\App\News::count(),'fa')}}
                                     </h3>
                                 </div>
                                 <div class="card-footer">
@@ -37,7 +37,7 @@
                                 <div class="card-header card-header-danger card-header-icon">
                                     <h3 class="card-title mt-4">
                                         تعداد رویداد ها :
-                                        {{\App\Event::count()}}
+                                        {{tr_num(\App\Event::count(),'fa')}}
                                     </h3>
                                 </div>
                                 <div class="card-footer">

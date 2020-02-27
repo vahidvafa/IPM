@@ -56,11 +56,17 @@
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{route('main')}}">
                         <i class="material-icons">library_books</i>
-                        <p>کارتابل</p>
+                        <p>صفحه ی اصلی سایت</p>
                     </a>
                 </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="#">--}}
+{{--                        <i class="material-icons">library_books</i>--}}
+{{--                        <p>کارتابل</p>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <hr>
                 <li class="nav-item {{checkMenu("cms/events",$title)}}">
                     <a class="nav-link" href="{{route('event.index')}}">
@@ -151,6 +157,7 @@
     <script src="{{ asset('material/js/core/jquery.min.js') }}"></script>
     <script src="{{ asset('material/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('material/js/core/bootstrap-material-design.min.js') }}"></script>
+{{--    <script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
     <script src="{{ asset('material/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
     <!-- Chartist JS -->
     <script src="{{ asset('material/js/plugins/chartist.min.js') }}"></script>

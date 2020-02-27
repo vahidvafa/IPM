@@ -7,6 +7,8 @@ use App\IPMA;
 use App\MembershipType;
 use App\News;
 use Illuminate\Http\Request;
+use Shetabit\Payment\Facade\Payment;
+use Shetabit\Payment\Invoice;
 
 class IndexController extends Controller
 {
@@ -52,6 +54,20 @@ class IndexController extends Controller
 //        $status = false;
         $titleHeader = $breadcrumb ='وضعیت پرداخت';
         return view('call_back',compact('status','titleHeader','breadcrumb'));
+    }
+
+    public function bank()
+    {
+        dd(response(auth()->user()->profile()->get()->first()));
+        $price = (int)MembershipType::whereId(auth()->user()->membership_type_id)->get('price')->first()->price;
+//        dd($price);
+        return Payment::purchase(
+            (new Invoice)->amount($price),
+            function($driver, $transactionId) {
+                // store transactionId in database.
+                // we need the transactionId to verify payment in future
+            }
+        )->pay();
     }
 
     /**
