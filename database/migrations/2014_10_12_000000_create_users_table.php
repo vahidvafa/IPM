@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->tinyInteger('roles')->default(2)->comment("0=> admin | 1=> manager | 2=>user");
-            $table->tinyInteger('active')->default(0)->comment("-1=> wait for confirm from admin | 0=>expire | 1=>Document defect | 2=>peyment unsuccess | 3=>active");
+            $table->tinyInteger('active')->default(0)->comment("0=>payment pending | 1=>admin pending  | 2=>active  | 3=>expire");
             $table->bigInteger('reagent_id')->default(0);
             $table->bigInteger('branch')->default(0);
             $table->bigInteger('expire')->default(0);
@@ -33,7 +33,7 @@ class CreateUsersTable extends Migration
             $table->text('profile_picture')->nullable();
             $table->text('resume_address')->nullable();
             $table->text('about_me')->nullable();
-            $table->text('shortcomings')->nullable();
+            $table->text('shortcomings')->nullable()->comment('Not NULL => admin rejected');
             $table->rememberToken();
             $table->timestamps();
         });

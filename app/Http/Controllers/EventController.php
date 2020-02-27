@@ -18,27 +18,11 @@ class EventController extends Controller
         return Event::get();
     }
 
-    public function index($id)
+    public function index()
     {
-        /*     $events = Event::all();
-             foreach ($events as $event){
-                 $event->title.="$event->id";
-                 $event->description.="$event->id";
-                 $event->detail.="$event->id";
-                 $event->course_headings.="$event->id";
-                 $event->address.="$event->id";
-                 $event->price.=$event->id;
-                 $event->photo ="popular$event->id.jpg";
-                 $event->save();
-             }
-     return;*/
-
-        $event = Event::find($id);
-        $similars = Event::where("event_category_id", '=', $event->event_category_id)->where('id', '!=', $id)->get();
-        $titleHeader = $event->title;
-        $breadcrumb = "رویداد";
-//        return jdate($event->from_date);
-        return view('event_detail', compact('event', 'similars', 'titleHeader', "breadcrumb"));
+        $events = Event::latest()->paginate(15);
+        $titleHeader = $breadcrumb = "لیست تمام رویداد ها";
+        return view('events',compact('events','titleHeader','breadcrumb'));
     }
 
     public function indexCms()
@@ -108,9 +92,27 @@ class EventController extends Controller
      * @param \App\Event $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show($id)
     {
-        //
+        /*     $events = Event::all();
+     foreach ($events as $event){
+         $event->title.="$event->id";
+         $event->description.="$event->id";
+         $event->detail.="$event->id";
+         $event->course_headings.="$event->id";
+         $event->address.="$event->id";
+         $event->price.=$event->id;
+         $event->photo ="popular$event->id.jpg";
+         $event->save();
+     }
+return;*/
+
+        $event = Event::find($id);
+        $similars = Event::where("event_category_id", '=', $event->event_category_id)->where('id', '!=', $id)->get();
+        $titleHeader = $event->title;
+        $breadcrumb = "رویداد";
+//        return jdate($event->from_date);
+        return view('event_detail', compact('event', 'similars', 'titleHeader', "breadcrumb"));
     }
 
     /**

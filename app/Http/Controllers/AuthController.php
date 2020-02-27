@@ -12,6 +12,8 @@ use App\Membership;
 use App\MembershipType;
 use App\Profile;
 use Illuminate\Support\Facades\Hash;
+use Shetabit\Payment\Facade\Payment;
+use Shetabit\Payment\Invoice;
 use Symfony\Component\Console\Input\Input;
 use Validator;
 
@@ -140,12 +142,13 @@ class AuthController extends Controller
             [
                 'first_name' => $request->get('first_name'),
                 'last_name' => $request->get('last_name'),
+                'name_en' => $request->get('name_en'),
                 'mobile' => $request->get('mobile'),
                 'email' => $request->get('email'),
                 'password' => Hash::make($request->get('password')),
                 'slug' => $slug,
                 'user_code' => $userCode,
-                'membership_type_id', $request->get('type')
+                'membership_type_id' => $request->get('type'),
             ]
         );
         $profile = new Profile($request->all());
@@ -181,7 +184,7 @@ class AuthController extends Controller
             return true;
         });
         if ($isSuccessful) {
-            \auth()->loginUsingId($user->id);
+            auth()->loginUsingId($user->id);
             return redirect()->to(route('main'));
         }
         return back();

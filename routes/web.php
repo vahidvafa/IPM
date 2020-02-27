@@ -35,11 +35,9 @@ Route::get('/search/', 'IndexController@search')->name('search');
 Route::post('/search', 'IndexController@search')->name('search.post');
 Route::get('/register', 'AuthController@register')->name('register');
 Route::post('/register/store', 'AuthController@postRegister')->name('register.store');
-Route::get('/event/{id}', 'EventController@index')->name("event");
+Route::get('/event/{id}', 'EventController@show')->name("event");
+Route::get('/events/', 'EventController@index')->name("events");
 Route::get('/profile/{slug}', 'ProfileController@show')->name("profile");
-Route::get('404', function () {
-    return view("404");
-})->name("404");
 Route::post('/login', 'AuthController@postLogin')->name('login.post');
 Route::get('/login', 'AuthController@Login')->name('login')->middleware('guest');
 Route::get('about-us', 'IndexController@about_us')->name('about-us');
@@ -84,7 +82,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('news','NewsController@indexWeb')->name('news');
 Route::post('/user/update', 'UserController@Update')->name('user.update');
 Route::post('user/updateAdm','UserController@UpdateAdm')->name('user.updateAdm');
 
@@ -95,3 +92,4 @@ Route::resource("job","JobController");
 
 Route::post('/event/list','EventController@indexJs')->name('event.list');
 Route::get('callback','IndexController@callback')->name('callback');
+Route::get('bank','IndexController@bank')->name('bank');

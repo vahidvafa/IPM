@@ -91,7 +91,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name', 'email','mobile', 'password','slug','user_code','roles','reagent_id','branch','membership_type_id','about_me','shortcomings','profile_picture'
+        'first_name','last_name','name_en', 'email','mobile', 'password','slug','user_code','roles','reagent_id','branch','membership_type_id','about_me','shortcomings','profile_picture'
     ];
 
     /**
@@ -124,7 +124,7 @@ class User extends Authenticatable
 
     public function memberships()
     {
-        return $this->hasMany(Membership::class);
+        return $this->hasMany(Membership::class,'user_id','id');
     }
 
     public function workExperience()

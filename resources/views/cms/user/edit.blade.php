@@ -242,7 +242,7 @@
                     </div>
 
 
-                    {{--<div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 mb-3">
                         <label for="profile[work_name]" class="col-12">محل کار *</label>
                         <input type="text" name="profile[work_name]" id="profile[work_name]"
                                value="{{old('profile.work_name')??$user->profile[0]->work_name}}"
@@ -257,7 +257,7 @@
                             </div>
                         @endif
 
-                    </div>--}}
+                    </div>
 
 
                     <div class="form-group col-md-6 mb-3 py-2 px-4">

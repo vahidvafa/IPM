@@ -9,7 +9,7 @@ return [
     | You can switch to a different driver at runtime.
     |
     */
-    'default' => 'zarinpal',
+    'default' => 'irankish',
 
     /*
     |--------------------------------------------------------------------------
@@ -59,9 +59,9 @@ return [
             'apiPurchaseUrl' => 'https://ikc.shaparak.ir/XToken/Tokens.xml',
             'apiPaymentUrl' => 'https://ikc.shaparak.ir/TPayment/Payment/index/',
             'apiVerificationUrl' => 'https://ikc.shaparak.ir/XVerify/Verify.xml',
-            'merchantId' => '',
+            'merchantId' => '11175778',
             'sha1Key' => '',
-            'callbackUrl' => 'http://yoursite.com/path/to',
+            'callbackUrl' => 'http://ipma.vahidizadyar.ir',
             'description' => 'payment in '.config('app.name'),
         ],
         'nextpay' => [
