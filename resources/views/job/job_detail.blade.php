@@ -13,7 +13,7 @@
                         <div class="row p-5 card-body mt-0">
                             {{--<h2 class="title-bar-detail text-white font-18 text-medium mb-4 col-12 ">{{$job->title}}</h2>--}}
                         <div class="row col-12 mb-4">
-                            <img src="{{asset("img/".$job->company_logo)}}" class="col-lg-3 col-12 col-sm-5" style="height: 90px">
+                            <img src="{{asset("img/job/".$job->company_logo)}}" class="col-lg-3 col-12 col-sm-5" style="height: 90px">
                             <div class="col-12 col-lg-9 mt-4">
                             <p style="line-height: 0">سابقه کار: {{$job->work_experience}}</p>
                             <p >میزان تحصیلات: {{$job->education}}</p>
@@ -56,7 +56,7 @@
                         <div class="Related-post row mb-4 pr-3 pr-lg-0 pl-3 pl-lg-0 ">
                             <div class="col-12 col-sm-3 col-md-2 col-lg-5 col-xl-4">
                                 <div class="Related-post-img ">
-                                    <img class="rounded" src="{{asset("img/".$job->company_logo)}}" alt="">
+                                    <img class="rounded" src="{{asset("img/job/".$job->company_logo)}}" alt="">
                                 </div>
                             </div>
                             <div class="Related-post-titles pl-0 col-12 col-sm-9 col-md-10 col-lg-7 col-xl-8 mt-2 mt-sm-0">

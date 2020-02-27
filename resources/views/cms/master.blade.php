@@ -15,6 +15,13 @@
     <link href="{{ asset('material/css/material-dashboard.css?v=2.1.1') }}" rel="stylesheet"/>
     <link href="{{ asset('material/css/material-dashboard-rtl.css?v=1.1') }}" rel="stylesheet"/>
     <link href="{{ asset('material/css/main.css') }}" rel="stylesheet"/>
+    {{--<link href="{{asset('/css/select2.min.css')}}" rel="stylesheet"/>--}}
+    {{--<script src="{{asset('/js/select2.min.js')}}"></script>--}}
+
+    <script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
+    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{asset('js/popper.min.js')}}"></script>
+    <script type='text/javascript' src='{{asset('js/bootstrap.min.js')}}'></script>
 {{--    <link rel="stylesheet" href="{{asset('css/persianDatepicker-default.css')}}" type='text/css' media='all'>--}}
     <link rel="stylesheet" href="{{asset('css/persian-datepicker.min.css')}}" type='text/css' media='all'>
 
@@ -83,6 +90,19 @@
                     <a class="nav-link" href="{{route('cms.user.index')}}">
                         <i class="material-icons">library_books</i>
                         <p>کاربران</p>
+                    </a>
+                </li>
+                <li class="nav-item {{checkMenu("cms/PassedCourses",$title)}}">
+                    <a class="nav-link" href="{{route('PassedCourses')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>دوره ها</p>
+                    </a>
+                </li>
+
+                <li class="nav-item {{checkMenu("cms/ManageCourses",$title)}}">
+                    <a class="nav-link" href="{{route('ManageCourses')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>اتصال دوره به کاربر</p>
                     </a>
                 </li>
 

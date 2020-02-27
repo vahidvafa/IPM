@@ -108,9 +108,12 @@ class JobController extends Controller
         ]);
         if (auth()->check()) {
             if (!$validate->fails()) {
-                $job = new Job($request->all());
-                $user = \App\User::find(auth()->id());
-                $user->jobs()->save($job);
+                $job = new Job($request->except(['image']));
+                $job->user_id = auth()->id();
+                $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+                $request->file('image')->move(public_path('/img/job'), $imageName);
+                $job->company_logo = $imageName;
+                $job->save();
                 return back()->withErrors($validate)->withInput([])->with("success",[true,"فرصت شغلی شما به درستی درج شد. لطفا منتظر تایید از سوی انجمن باشید"]);
             }else
             return back()->withErrors($validate)->withInput()->with("success",[false,"لطفا فرم را به درستی پر کنید"]);
@@ -130,7 +133,16 @@ class JobController extends Controller
      */
     public function show($id)
     {
-        $job = Job::whereState(auth()->check() && auth()->id())->with('province', "jobCategory")->find($id);
+
+        $job = Job::with('province', "jobCategory")->find($id);
+
+        if (auth()->check()){
+            $user = User::find(auth()->id());
+            if ($user->roles == 2 && $job->user_id != $user->id)
+            return redirect('404');
+        }else {
+            return redirect('404');
+        }
 
         $breadcrumb = "توضیحات فرصت شغلی";
         $titleHeader = "";
@@ -211,8 +223,10 @@ class JobController extends Controller
             $job->state = 0;
             if (auth()->check() && auth()->id() == $job->user_id) {
                 if (!$validate->fails()) {
-                    if ($job->update($request->all()))
+                    if ($job->update($request->except(['image']))) {
+                        $request->file('image')->move(public_path('/img/job'), $job->company_logo);
                         $res = [true, "فرصت شغلی مورد نظر با موفقیت ویرایش شد"];
+                    }
                     else
                         $res = [false . "خطا! متاسفانه در این لحظه سیستم قادر به ویرایش این فرصت شغلی نمی باشد"];
                 } else
@@ -242,9 +256,10 @@ class JobController extends Controller
 
 
     public function indexCms(){
-        $jobs = Job::paginate(20);
+        $jobs = Job::latest()->paginate(20);
 
-        flash_message(false,"لیست خالی میباید");
+        if (count($jobs) == 0)
+        flash_message("success","لیست خالی میباید");
 
         return view('cms.job.index',compact("jobs"));
     }
@@ -257,7 +272,7 @@ class JobController extends Controller
         $similar = [];
 
         if ($job == null)
-            flash_message(false,"متاسفانه این فرصت شغلی برای نمایش وجود ندارد");
+            flash_message("error","متاسفانه این فرصت شغلی برای نمایش وجود ندارد");
 
         $breadcrumb = "توضیحات فرصت شغلی";
         $titleHeader = "قابل مشاهده تنها توصت ادمین";
@@ -273,7 +288,7 @@ class JobController extends Controller
             flash_message($isSave,$isSave?"تایید با موفقیت انجام شد":"خطا! متاسفانه درخواست تایید با مشکل مواجه شده است");
 
         }else{
-            flash_message(false,"متاسفانه این فرصت شغلی پیدا نشد");
+            flash_message("error","متاسفانه این فرصت شغلی پیدا نشد");
         }
 
         return back();
@@ -283,9 +298,10 @@ class JobController extends Controller
 
     public function destroyCms($id)
     {
-
-        $status = Job::whereId($id)->delete();
-        flash_message($status, $status ? 'فرصت شغلی مورد نظر با موفقیت حذف شد' : "حطا! متاسفانه درخواست شما با خطا مواجه شده است. لطفا مجددا تلاش کنید");
+        $job = Job::whereId($id);
+        $job->update(['state'=>0]);
+        $status = $job->delete();
+        flash_message($status?"success":"error", $status ? 'فرصت شغلی مورد نظر با موفقیت حذف شد' : "حطا! متاسفانه درخواست شما با خطا مواجه شده است. لطفا مجددا تلاش کنید");
         return back();
     }
 

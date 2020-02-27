@@ -37,7 +37,7 @@
                             <div class="row p-5 card-body mt-0">
                                 <h2 class="title-bar-detail text-white font-18 text-medium mb-4 col-12 ">{{$job->title}}</h2>
                                 <div class="row col-12 mb-4">
-                                    <img src="{{asset("img/".$job->company_logo)}}" class="col-lg-3 col-12 col-sm-5"
+                                    <img src="{{asset("img/job/".$job->company_logo)}}" class="col-lg-3 col-12 col-sm-5"
                                          style="height: 90px">
                                     <div class="col-12 col-lg-9 mt-4">
                                         <p style="line-height: 0">سابقه کار: {{$job->work_experience}}</p>
@@ -96,7 +96,7 @@
                                 <div class="Related-post row mb-4 pr-3 pr-lg-0 pl-3 pl-lg-0 ">
                                     <div class="col-12 col-sm-3 col-md-2 col-lg-5 col-xl-4">
                                         <div class="Related-post-img ">
-                                            <img class="rounded" src="{{asset("img/".$similarJob->company_logo)}}"
+                                            <img class="rounded" src="{{asset("img/job/".$similarJob->company_logo)}}"
                                                  alt="">
                                         </div>
                                     </div>
@@ -125,7 +125,7 @@
 
         <div class="tab-pane row show active" id="edit">
             <div class="container ">
-                <form action="{{route('job.update',$job->id)}}" method="post" class="row">
+                <form action="{{route('job.update',$job->id)}}" method="post" class="row form-profile" enctype="multipart/form-data"  >
                     @csrf
                     @method("put")
                     <div class="input-form col-md-11 mb-5 ">
@@ -280,7 +280,19 @@
                         </label>
                     </div>
 
-                    <div class="col-12  ">
+                    <div class="row mb-5 col-12">
+                    <div class="input-upload col-5 mt-4 mr-5 col-lg-12  ">
+                        <input type="file" class="custom-file-input" id="customFile"  name="image" >
+                        <label class="custom-file-label" for="customFile">انتخاب فایل</label>
+                    </div>
+                        <div class="col-lg-12">
+                        <label class="ml-5 mr-2 " for="imgPreview" > غکس فرصت شغلی: </label>
+                        <img src="{{asset("img/job/".$job->company_logo)}}" class="col-3" id="imgPreview"  height="130px" >
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 ">
                         <div class="col-md-4 col-sm-8 center-y">
                             <input type="submit" value="ویرایش"
                                    class="form-submit-violet text-white font-16 text-medium">

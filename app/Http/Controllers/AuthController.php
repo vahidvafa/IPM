@@ -28,6 +28,8 @@ class AuthController extends Controller
 
     public function postRegister(Request $request)
     {
+
+
 //        dd($request->get('experience'));
         $messages = [
             '*.required' => 'وارد کردن این فیلد الزامی است',
@@ -136,18 +138,21 @@ class AuthController extends Controller
             $userCode = mt_rand(1000, 100000);
         }
         $userCode = $date . '-' . $userCode;
+
         $user = new User(
             [
                 'first_name' => $request->get('first_name'),
                 'last_name' => $request->get('last_name'),
+                'name_en' => $request->get('name_en'),
                 'mobile' => $request->get('mobile'),
                 'email' => $request->get('email'),
                 'password' => Hash::make($request->get('password')),
                 'slug' => $slug,
                 'user_code' => $userCode,
-                'membership_type_id', $request->get('type')
+                'membership_type_id' => $request->get('type')
             ]
         );
+
         $profile = new Profile($request->all());
         $profile->lang_id = 1;
         $isSuccessful = \DB::transaction(function () use ($user, $profile, $request) {

@@ -38,7 +38,19 @@ class PassedCourses extends Model
     use SoftDeletes;
     //
 
-    function PassedCoursesCat(){
+//    protected $fillable = ['passed_courses_category_id','title'];
+
+    protected $guarded = ['id'];
+
+    public function PassedCoursesCat(){
         return $this->belongsTo(PassedCoursesCategory::class);
     }
+
+
+    public function PassedCourses(){
+        return $this->belongsToMany(User::class);
+    }
+
+
+
 }

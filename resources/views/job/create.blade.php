@@ -4,8 +4,8 @@
 @stop
 
 @section('content')
-    <div class="container mt-5">
-        <form action="{{route('job.store')}}" method="post" class="row">
+    <div class="container mt-5 form-profile">
+        <form action="{{route('job.store')}}" method="post" class="row" enctype="multipart/form-data" >
             @csrf
 
             <div class="input-form col-md-11 mb-5 ">
@@ -160,6 +160,12 @@
                 </label>
             </div>
 
+            <div class="col-8">
+                <div class="input-upload ">
+                    <input type="file" class="custom-file-input" name="image" id="customFile">
+                    <label class="custom-file-label" for="customFile">انتخاب عکس فرصت شغلی</label>
+                </div>
+            </div>
 
             <div class="col-12  ">
                 <div class="col-md-4 col-sm-8 center-y">

@@ -77,8 +77,16 @@ Route::middleware('auth')->group(function () {
             Route::get('users','UserController@indexCms')->name('cms.user.index');
             Route::post('user/{id}/confirm','UserController@active')->name('cms.user.active');
             Route::get('user/{id}/edit','UserController@edit')->name('cms.user.edit');
-            Route::post('user/{id}/update','UserController@update')->name('cms.user.update');
+            Route::post('user/updateAdm','UserController@UpdateAdm')->name('user.updateAdm');
 //            Route::post('user/{id}/destroy','UserController@destroy')->name('cms.user.del');
+            //------
+            Route::get('passedCourse/{id}/edit','PassedCoursesController@edit')->name('PassedCourses.edit');
+            Route::get('passedCourses','PassedCoursesController@index')->name('PassedCourses');
+            Route::post('passedCourse/{id}/del','PassedCoursesController@destroy')->name('PassedCourses.del');
+            Route::get('passedCourse/create','PassedCoursesController@create')->name('PassedCourses.create');
+            Route::post('passedCourse/store','PassedCoursesController@store')->name('PassedCourses.store');
+            Route::post('passedCourse/{id}/update','PassedCoursesController@update')->name('PassedCourses.update');
+            Route::get('ManageCourses','PassedCoursesController@relationUserCourse')->name('ManageCourses');
         });
     });
 });
@@ -86,7 +94,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('news','NewsController@indexWeb')->name('news');
 Route::post('/user/update', 'UserController@Update')->name('user.update');
-Route::post('user/updateAdm','UserController@UpdateAdm')->name('user.updateAdm');
+
 
 Route::post("/applyJob","RequestController@store")->name("applyJob");
 Route::get('news', 'NewsController@index')->name('news');

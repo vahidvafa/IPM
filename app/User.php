@@ -91,7 +91,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name', 'email','mobile', 'password','slug','user_code','roles','reagent_id','branch','membership_type_id','about_me','shortcomings','profile_picture'
+        'first_name','last_name','name_en', 'email','mobile', 'password','slug','user_code','roles','reagent_id','branch','membership_type_id','about_me','shortcomings','profile_picture'
     ];
 
     /**
@@ -161,6 +161,10 @@ class User extends Authenticatable
 
     public function scopeLike($query, $field, $value){
         return $query->where($field, 'LIKE', "%$value%");
+    }
+
+    public function passedCourse(){
+        return $this->hasMany(PassedCourses::class);
     }
 
 }

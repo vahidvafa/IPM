@@ -4,9 +4,9 @@
         <div class="card">
             <div class="card-header card-header-warning">
                 <div>
-                    <a href="{{route('news.create')}}">
-                        <i class="material-icons" style="float: left;font-size: 32px;color: white">add_box</i>
-                    </a>
+{{--                    <a href="{{route('job.create')}}">--}}
+                        {{--<i class="material-icons" style="float: left;font-size: 32px;color: white">add_box</i>--}}
+                    {{--</a>--}}
                     <h4 class="card-title">لیست فرصت های شغلی</h4>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                             <td data-th="ردیف" class="text-right">{{++$i}}</td>
                             <td data-th="عنوان فرصت شغلی" class="text-right">{{$job->title}}</td>
                             <td data-th="نمایش جزئیات" class="text-right">
-                                <a href="{{route('cms.job.show',[$job->id])}}">
+                                <a href="{{route('job.show',[$job->id])}}">
                                     <i class="material-icons text-gray">pageview</i>
                                 </a>
                             </td>

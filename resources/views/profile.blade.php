@@ -175,7 +175,7 @@
                                     @auth()
                                         @if(auth()->id() == $user->id )
                                 </div>
-                                <div class="tab-pane row " id="edit">
+                                <div class="tab-pane row form-profile" id="edit">
                                     <form class="sidebar-form-body row" action="{{route("user.update")}}" method="POST"
                                           enctype="multipart/form-data">
                                         @csrf

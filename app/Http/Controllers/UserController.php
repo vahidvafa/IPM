@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
 use App\Document;
 use App\Membership;
 use App\MembershipType;
@@ -18,6 +19,7 @@ use Morilog\Jalali\Jalalian;
 use PhpParser\Node\Stmt\Break_;
 use Symfony\Component\Routing\Matcher\RedirectableUrlMatcher;
 use Symfony\Component\VarDumper\VarDumper;
+use Validator;
 
 class UserController extends Controller
 {
@@ -41,7 +43,7 @@ class UserController extends Controller
     {
         $users = User::paginate(15);
 
-        return view('cms.user.index',compact('users'));
+        return view('cms.user.index', compact('users'));
     }
 
     /**
@@ -93,12 +95,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::with(['education','companies'])->findOrFail($id);
-        $membershipTitle = MembershipType::findOrFail($user->membership_type_id)->title;
+        $user = User::with(['education', 'companies'])->findOrFail($id);
+        $membership = MembershipType::findOrFail($user->membership_type_id);
 
+        $documents = Document::whereUserId($user->id)->get();
 
-
-        return view('cms.user.edit',compact('user','membershipTitle'));
+        return view('cms.user.edit', compact('user', 'membership','documents'));
     }
 
     /**
@@ -122,77 +124,172 @@ class UserController extends Controller
     public function updateAdm(Request $request)
     {
 
-//        return $request;
-        //        'profile[birth_date]' => "birthday error",
-//        'profile[birth_place]' => "birth_place error",
-//        'profile[work_address]' => "work_address error",
+        $messages = [
+            '*.required' => 'وارد کردن این فیلد الزامی است',
+            'files.*.mimes' => 'فرمت فایل های ارسالی صحیح نمی باشد',
+        ];
 
-        $validate = validator($request->all(), [
-//        "name" => 'required|string|max:4',
+        $roles =  [
+            'first_name' => 'bail | required | string | max:255',
+            'last_name' => 'bail | required | string | max:255',
+            'mobile' => 'bail | required | string ',
+            'email' => 'bail | required | string | email | max:255',
+            'profile.father_name' => 'bail | required | string | max:255',
+            'profile.national_code' => 'bail | required | numeric ',
+            'profile.certificate_number' => 'bail | required | numeric',
+            'profile.birth_date' => 'bail | required | string',
+            'profile.birth_place' => 'bail | required | string',
+            'profile.sex' => 'bail | required',
+            'profile.work_address' => 'bail | required | string',
+            'profile.home_address' => 'bail | required | string',
+            'profile.home_post' => 'bail | required | string',
+            'profile.work_name' => 'bail | required | string',
+            'profile.receive_place' => 'bail | required | string',
+            'files.*' => 'bail | required | mimes:jpeg,bmp,png,jpg,pdf',
+            'files_explain.*' => 'bail | required | string',
+        ];
 
-            'first_name' => 'required|string|max:2',
-            "last_name" => "required|max:2"
-        ], [
-            'first_name.*' => "first_name error",
-            'last_name.*' => "max 1 for last_name    error"
-        ]);
+        switch ($request->get('type')) {
+            case (3):
+                $roles +=[
+                    'education.education_place'=>"bail | required | string  ",
+                    'education.grade'=>"bail | required | string | ",
+                    'education.from_date'=>"bail | required | ",
+                    'education.gpa'=>"bail | required | string | ",
+                ];
+                break;
+            case 2:
+                $roles +=['company.name' => 'bail | required | string | max:255',
+                    'company.established_date' => 'bail | required | string | max:255',
+                    'company.established_number' => 'bail | required | string | max:255',
+                    'company.economy_number' => 'bail | required | string',
+                    'company.national_number' => 'bail | required | string',
+                    'company.post_number' => 'bail | required | string',
+                    'company.ownership_type' => 'bail | required | string',
+                    'company.legal_type' => 'bail | required | string',
+                    'company.address' => 'bail | required | string',
+                    'company.ceo_name' => 'bail | required | string',
+                    'company.ceo_name_en' => 'bail | required | string'];
 
-//        return $validate->errors();
 
-   /*     $validate = $this->validate($request, [
-    //        "name" => 'required|string|max:4',
-            "about_me" => ['min:6']
-        ],[
-            'about_me.*' => "name error"
-        ]);*/
+        }
 
-        return back()->withErrors($validate)->withInput();
+        $validator = Validator::make($request->all(),$roles,$messages);
 
-        $user = User::whereSlug($request->all("slug"))->get("id")[0];
-        $user = User::find($user->id);
+        if ($validator->fails()) {
 
-        $check_slug = str_replace(" ", "-", $request->get('name_en'));
+            flash_message("error", "لطفا فیلد هارو به درستی پر کنید");
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $rq = $request;
+
+
+        $user = User::with("education","companies",'documents')->find($request->get("tmp"));
+
+
+        Document::whereUserId($user->id)->update(['state'=>0]);
+
+        foreach($request->get('documents') as $docId ){
+            Document::whereId($docId)->update(['state'=>1]);
+        }
+
+        if ($user->profile[0]->certificate_number != $request->get('profile')['certificate_number']){
+            if (Profile::whereCertificateNumber($request->get('profile')['certificate_number']) )
+                flash_message("error", "متاسفانه این کد ملی قبلا ثبت شده است.");
+            return redirect()->back();
+        }
+
+
+        if ( $request->get('type') == 2) {
+
+            if ($user->companies[0]->established_number != $request->get('company')['established_number']){
+                if (Company::whereEstablishedNumber($request->get('profile')['certificate_number']) )
+                    flash_message("error", "متاسفانه این شماره ثبت قبلا ثبت شده است.");
+                return redirect()->back();
+            }
+            if ($user->companies[0]->economy_number != $request->get('company')['economy_number']){
+                if (Company::whereEconomyNumber($request->get('profile')['certificate_number']) )
+                    flash_message("error", "متاسفانه این شماره اقتصادی قبلا ثبت شده است.");
+                return redirect()->back();
+            }
+
+            if ($user->companies[0]->national_number != $request->get('company')['national_number']){
+                if (Company::whereNationalNumber($request->get('profile')['certificate_number']) )
+                    flash_message("error", "متاسفانه این شناسه ملی قبلا ثبت شده است.");
+                return redirect()->back();
+            }
+
+            }
+        /*'company.established_number' => 'bail | required | string | max:255',
+                    'company.economy_number' => 'bail | required | string',
+                    'company.national_number' => 'bail | required | string',*/
+
+
+        if ($user->email != $rq->get('email') || $user->mobile != $rq->get('mobile') ){
+
+            if ($user->email != $rq->get('email')) {
+            if (User::whereEmail($rq->get('email')) != null)
+                flash_message("error","این ایمیل قبلا برای کاربر دیگه ای ثبت شده است");
+                return back();
+                }
+
+            if ( $user->mobile != $rq->get('mobile') ){
+                if (User::whereMobile($rq->get('mobile')) != null)
+                    flash_message("error","این شماره قبلا برای کاربر دیگه ای ثبت شده است");
+                        return back();
+            }
+
+        }
+
+/*        $check_slug = str_replace(" ", "-", $rq->get('name_en'));
 
         if ($user->slug != $check_slug) {
-            $slug = str_replace(' ', '-', $request->get('name_en'));
+            $slug = str_replace(' ', '-', $rq->get('name_en'));
 
             $number = 1;
 
-            if (User::whereSlug($slug)->exists()) {
-                if (User::whereSlug($slug)->get('id')[0]['id'] != $user->id)
-                    $slug .= '-' . ++$number;
-
-
+            while (User::whereSlug($slug)->where('id','!=',$user->id)->exists()) {
+                $slug .= '-' . ++$number;
             }
+        }*/
+
+        $pass = $rq->get('password');
+
+        if ($pass != null)
+            $pass = Hash::make($pass);
+
+        $rq = $rq->except('password');
+
+
+        $user->update($rq);
+
+        if ($pass != null) {
+            $user->password = $pass;
+            $user->save();
         }
 
-
-        $user->update($request->all());
-        if (isset($slug)) {
+        /*if (isset($slug)) {
             $user->slug = $slug;
             $user->save(['slug' => $slug]);
-        }
+        }*/
 
         $user->profile()->update($request->all('profile')['profile']);
 
         switch ($request->get('type')) {
             case 2:
-                $user->companies()->update($request->all('companies')['companies']);
+                $user->companies()->update($request->all('company')['company']);
                 break;
-            case 30:
-                $user->workExperience()->update($request->all('workExperience')['workExperience']);
-
+            case 3:
                 $user->education()->update($request->all('education')['education']);
 
                 break;
-
-
         }
 
-        if ($validate->fails()) {
-            return redirect()->back()->withErrors($validate);
-        } else
-            return redirect("profile", ['slug' => $user->slug]);
+
+
+
+        return back();
     }
 
     /**
