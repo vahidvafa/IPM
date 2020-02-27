@@ -11,6 +11,7 @@
                 </div>
             </div>
             <div class="card-body table-responsive request-table">
+                {{$news->links()}}
                 <table class="rwd-table table">
                     <thead>
                     <tr>
@@ -30,7 +31,11 @@
                     @foreach($news as $singleNews)
                         <tr>
                             <td data-th="ردیف" class="text-right">{{++$i}}</td>
-                            <td data-th="عنوان خبر" class="text-right">{{$singleNews->title}}</td>
+                            <td data-th="عنوان خبر" class="text-right">
+                                <a href="{{route('news.show',[$singleNews->id])}}" style="color: black !important;" target="_blank">
+                                    {{$singleNews->title}}
+                                </a>
+                            </td>
                             <td data-th="ویرایش" class="text-right">
                                 <a href="{{route('news.edit',[$singleNews->id])}}">
                                     <i class="material-icons text-gray">edit</i>

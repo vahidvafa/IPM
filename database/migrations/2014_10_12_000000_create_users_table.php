@@ -27,7 +27,8 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('roles')->default(2)->comment("0=> admin | 1=> manager | 2=>user");
             $table->tinyInteger('active')->default(0)->comment("0=>payment pending | 1=>admin pending  | 2=>active  | 3=>expire");
             $table->bigInteger('reagent_id')->default(0);
-            $table->bigInteger('branch')->default(0);
+            $table->bigInteger('branch_id')->default(0);
+            $table->bigInteger('main')->default(0);
             $table->bigInteger('expire')->default(0);
             $table->bigInteger('membership_type_id')->default(0);
             $table->text('profile_picture')->nullable();

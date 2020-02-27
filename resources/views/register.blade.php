@@ -527,6 +527,21 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="input-form col-md-12 py-2 px-4">
+                                <label for="branch">شاخه : </label>
+                                <select name="branch_id" required>
+                                    <option disabled selected value>شاخه مورد نظر را انتخاب کنید *</option>
+                                    @foreach($branches as $branch)
+                                        <option value="{{$branch->id}}">{{ $branch->title }}</option>
+                                    @endforeach
+                                </select>
+                                @if (Session::get('type') == 1 && $errors->has('branch_id'))
+                                    <div id="name-error" class="error text-danger pl-3" for="name"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('branch_id') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
                             <div class="input-form col-md-6 border-top border-dark pt-3 mt-3">
                                 <div class="row">
                                     <div class="col-12">
@@ -1203,6 +1218,21 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="input-form col-md-12 py-2 px-4">
+                                <label for="branch">شاخه : </label>
+                                <select name="branch_id" required>
+                                    <option disabled selected value>شاخه مورد نظر را انتخاب کنید *</option>
+                                    @foreach($branches as $branch)
+                                        <option value="{{$branch->id}}">{{ $branch->title }}</option>
+                                    @endforeach
+                                </select>
+                                @if (Session::get('type') == 2 && $errors->has('branch_id'))
+                                    <div id="name-error" class="error text-danger pl-3" for="name"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('branch_id') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
                             <div class="input-form col-md-6 border-top border-dark pt-3 mt-3">
                                 <div class="row">
                                     <div class="col-12">
@@ -1702,6 +1732,21 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="input-form col-md-12 py-2 px-4">
+                                <label for="branch">شاخه : </label>
+                                <select name="branch_id" required>
+                                    <option disabled selected value>شاخه مورد نظر را انتخاب کنید *</option>
+                                    @foreach($branches as $branch)
+                                        <option value="{{$branch->id}}">{{ $branch->title }}</option>
+                                    @endforeach
+                                </select>
+                                @if (Session::get('type') == 3 && $errors->has('branch_id'))
+                                    <div id="name-error" class="error text-danger pl-3" for="name"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('branch_id') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
                             <div class="input-form col-md-6 border-top border-dark pt-3 mt-3">
                                 <div class="row">
                                     <div class="col-12">
@@ -2007,6 +2052,21 @@
                                         @endif
                                     </div>
                                 </div>
+                            </div>
+                            <div class="input-form col-md-12 py-2 px-4">
+                                <label for="branch">شاخه : </label>
+                                <select name="branch_id" required>
+                                    <option disabled selected value>شاخه مورد نظر را انتخاب کنید *</option>
+                                    @foreach($branches as $branch)
+                                        <option value="{{$branch->id}}">{{ $branch->title }}</option>
+                                    @endforeach
+                                </select>
+                                @if (Session::get('type') == 4 && $errors->has('branch_id'))
+                                    <div id="name-error" class="error text-danger pl-3" for="name"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('branch_id') }}</strong>
+                                    </div>
+                                @endif
                             </div>
                             <div class="input-form col-md-6 border-top border-dark pt-3 mt-3">
                                 <div class="row">

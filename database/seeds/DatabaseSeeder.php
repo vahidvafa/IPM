@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LangsSeeder::class);
         $this->call(MembershipTypeSeeder::class);
         $this->call(ProvinceSeeder::class);
+        $this->call(BranchSeeder::class);
         factory(\App\User::class,10)->create();
         factory(\App\EventCategory::class,18)->create();
         factory(\App\Event::class,20)->create();

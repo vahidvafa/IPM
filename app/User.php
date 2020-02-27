@@ -159,6 +159,11 @@ class User extends Authenticatable
         return $this->hasMany(Company::class);
     }
 
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
+
     public function scopeLike($query, $field, $value){
         return $query->where($field, 'LIKE', "%$value%");
     }
