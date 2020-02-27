@@ -170,6 +170,8 @@
 {{--    <script src="{{asset('js/persianDatepicker.min.js')}}"></script>--}}
     <script src="{{asset('js/persian-date.min.js')}}"></script>
     <script src="{{asset('js/persian-datepicker.min.js')}}"></script>
+    <link href="{{asset('css/select2.min.css')}}" rel="stylesheet" />
+    <script src="{{asset('js/select2.min.js')}}"></script>
 </div>
 </body>
 </html>

@@ -1,9 +1,6 @@
 @extends('cms.master')
 @section('content')
-    <script src="{{asset('js/jquery.js')}}"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
     <div class="col-12">
         <div class="card">
@@ -54,10 +51,10 @@
             </div>
         </div>
     </div>
-
-    <script async>
+    <script src="{{asset('js/jquery.js')}}"></script>
+    <script>
     $(document).ready(function() {
-    $('#sl').select2();
+        $('#sl').select2();
     });
     </script>
 
