@@ -257,12 +257,12 @@
                     </div>
 
                     <div class="input-form col-md-6 mb-5 ">
-                        <label class="col-12">مهارت های مورد نیا
+                        <label class="col-12">مهارت های مورد نیاز</label>
                         <textarea type="text" name="skills"
                                   class="mb-0"
                                   aria-invalid="false"
                                   placeholder="مهارت های مورد نیاز">{{old('skills')??$job->skills}}</textarea>
-                        <img src="{{asset("img/001-user.png")}}" class="form-icon">
+                        <img src="{{asset("img/001-user.png")}}" class="form-icon" alt="">
                     </div>
                     <div class="input-form col-md-12 mb-5 ">
                         <label class="col-12">شرح شغل و وظایف*
@@ -302,5 +302,15 @@
             </div>
         </div>
     </div>
+
     </div>
+
+    <script async>
+        // Add the following code if you want the name of the file appear on select
+        $("#customFile").on("input", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+
 @stop

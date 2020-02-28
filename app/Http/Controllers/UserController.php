@@ -4,21 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\Document;
-use App\Membership;
 use App\MembershipType;
-use App\PassedCourses;
 use App\Profile;
 use App\User;
-use App\Utils\UnsetUserRelation;
-use App\Utils\UserProFields;
-use App\visibiliy;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Morilog\Jalali\Jalalian;
-use PhpParser\Node\Stmt\Break_;
-use Symfony\Component\Routing\Matcher\RedirectableUrlMatcher;
-use Symfony\Component\VarDumper\VarDumper;
+
 use Validator;
 
 class UserController extends Controller
@@ -39,9 +30,23 @@ class UserController extends Controller
         return view('users', compact('users', 'breadcrumb', 'titleHeader'));
     }
 
-    public function indexCms()
+    public function indexCms(Request $request)
     {
-        $users = User::paginate(15);
+
+        $users = User::query();
+        if ($request->get('str')) {
+
+            $users = $users->orWhere('first_name', 'like', "%" . $request->get('str') . "%")
+                ->orWhere('last_name', 'like', "%" . $request->get('str') . "%")
+                ->orWhere('mobile', 'like', "%" . $request->get('str') . "%")
+                ->orWhere('user_code', 'like', "%" . $request->get('str') . "%")
+                ->orWhere('email', 'like', "%" . $request->get('str') . "%")
+                ->orWhere('email', 'like', "%" . $request->get('str') . "%");
+
+//            return var_dump($users->get());
+        }
+
+        $users = $users->paginate(15)->appends($request->all());
 
         return view('cms.user.index', compact('users'));
     }
@@ -100,7 +105,7 @@ class UserController extends Controller
 
         $documents = Document::whereUserId($user->id)->get();
 
-        return view('cms.user.edit', compact('user', 'membership','documents'));
+        return view('cms.user.edit', compact('user', 'membership', 'documents'));
     }
 
     /**
@@ -129,7 +134,7 @@ class UserController extends Controller
             'files.*.mimes' => 'فرمت فایل های ارسالی صحیح نمی باشد',
         ];
 
-        $roles =  [
+        $roles = [
             'first_name' => 'bail | required | string | max:255',
             'last_name' => 'bail | required | string | max:255',
             'mobile' => 'bail | required | string ',
@@ -151,15 +156,15 @@ class UserController extends Controller
 
         switch ($request->get('type')) {
             case (3):
-                $roles +=[
-                    'education.education_place'=>"bail | required | string  ",
-                    'education.grade'=>"bail | required | string | ",
-                    'education.from_date'=>"bail | required | ",
-                    'education.gpa'=>"bail | required | string | ",
+                $roles += [
+                    'education.education_place' => "bail | required | string  ",
+                    'education.grade' => "bail | required | string | ",
+                    'education.from_date' => "bail | required | ",
+                    'education.gpa' => "bail | required | string | ",
                 ];
                 break;
             case 2:
-                $roles +=['company.name' => 'bail | required | string | max:255',
+                $roles += ['company.name' => 'bail | required | string | max:255',
                     'company.established_date' => 'bail | required | string | max:255',
                     'company.established_number' => 'bail | required | string | max:255',
                     'company.economy_number' => 'bail | required | string',
@@ -174,7 +179,7 @@ class UserController extends Controller
 
         }
 
-        $validator = Validator::make($request->all(),$roles,$messages);
+        $validator = Validator::make($request->all(), $roles, $messages);
 
         if ($validator->fails()) {
 
@@ -185,74 +190,74 @@ class UserController extends Controller
         $rq = $request;
 
 
-        $user = User::with("education","companies",'documents')->find($request->get("tmp"));
+        $user = User::with("education", "companies", 'documents')->find($request->get("tmp"));
 
 
-        Document::whereUserId($user->id)->update(['state'=>0]);
+        Document::whereUserId($user->id)->update(['state' => 0]);
 
-        foreach($request->get('documents') as $docId ){
-            Document::whereId($docId)->update(['state'=>1]);
+        foreach ($request->get('documents') as $docId) {
+            Document::whereId($docId)->update(['state' => 1]);
         }
 
-        if ($user->profile[0]->certificate_number != $request->get('profile')['certificate_number']){
-            if (Profile::whereCertificateNumber($request->get('profile')['certificate_number']) )
+        if ($user->profile[0]->certificate_number != $request->get('profile')['certificate_number']) {
+            if (Profile::whereCertificateNumber($request->get('profile')['certificate_number']))
                 flash_message("error", "متاسفانه این کد ملی قبلا ثبت شده است.");
             return redirect()->back();
         }
 
 
-        if ( $request->get('type') == 2) {
+        if ($request->get('type') == 2) {
 
-            if ($user->companies[0]->established_number != $request->get('company')['established_number']){
-                if (Company::whereEstablishedNumber($request->get('profile')['certificate_number']) )
+            if ($user->companies[0]->established_number != $request->get('company')['established_number']) {
+                if (Company::whereEstablishedNumber($request->get('profile')['certificate_number']))
                     flash_message("error", "متاسفانه این شماره ثبت قبلا ثبت شده است.");
                 return redirect()->back();
             }
-            if ($user->companies[0]->economy_number != $request->get('company')['economy_number']){
-                if (Company::whereEconomyNumber($request->get('profile')['certificate_number']) )
+            if ($user->companies[0]->economy_number != $request->get('company')['economy_number']) {
+                if (Company::whereEconomyNumber($request->get('profile')['certificate_number']))
                     flash_message("error", "متاسفانه این شماره اقتصادی قبلا ثبت شده است.");
                 return redirect()->back();
             }
 
-            if ($user->companies[0]->national_number != $request->get('company')['national_number']){
-                if (Company::whereNationalNumber($request->get('profile')['certificate_number']) )
+            if ($user->companies[0]->national_number != $request->get('company')['national_number']) {
+                if (Company::whereNationalNumber($request->get('profile')['certificate_number']))
                     flash_message("error", "متاسفانه این شناسه ملی قبلا ثبت شده است.");
                 return redirect()->back();
             }
 
-            }
+        }
         /*'company.established_number' => 'bail | required | string | max:255',
                     'company.economy_number' => 'bail | required | string',
                     'company.national_number' => 'bail | required | string',*/
 
 
-        if ($user->email != $rq->get('email') || $user->mobile != $rq->get('mobile') ){
+        if ($user->email != $rq->get('email') || $user->mobile != $rq->get('mobile')) {
 
             if ($user->email != $rq->get('email')) {
-            if (User::whereEmail($rq->get('email')) != null)
-                flash_message("error","این ایمیل قبلا برای کاربر دیگه ای ثبت شده است");
+                if (User::whereEmail($rq->get('email')) != null)
+                    flash_message("error", "این ایمیل قبلا برای کاربر دیگه ای ثبت شده است");
                 return back();
-                }
+            }
 
-            if ( $user->mobile != $rq->get('mobile') ){
+            if ($user->mobile != $rq->get('mobile')) {
                 if (User::whereMobile($rq->get('mobile')) != null)
-                    flash_message("error","این شماره قبلا برای کاربر دیگه ای ثبت شده است");
-                        return back();
+                    flash_message("error", "این شماره قبلا برای کاربر دیگه ای ثبت شده است");
+                return back();
             }
 
         }
 
-/*        $check_slug = str_replace(" ", "-", $rq->get('name_en'));
+        /*        $check_slug = str_replace(" ", "-", $rq->get('name_en'));
 
-        if ($user->slug != $check_slug) {
-            $slug = str_replace(' ', '-', $rq->get('name_en'));
+                if ($user->slug != $check_slug) {
+                    $slug = str_replace(' ', '-', $rq->get('name_en'));
 
-            $number = 1;
+                    $number = 1;
 
-            while (User::whereSlug($slug)->where('id','!=',$user->id)->exists()) {
-                $slug .= '-' . ++$number;
-            }
-        }*/
+                    while (User::whereSlug($slug)->where('id','!=',$user->id)->exists()) {
+                        $slug .= '-' . ++$number;
+                    }
+                }*/
 
         $pass = $rq->get('password');
 
@@ -287,8 +292,6 @@ class UserController extends Controller
         }
 
 
-
-
         return back();
     }
 
@@ -312,5 +315,22 @@ class UserController extends Controller
         return redirect()->route('main');
     }
 
+
+    public function search(Request $request)
+    {
+
+        if ($request->get('str') == null)
+            return makeMsgCode(false, "دیتای ارسالی نادرست", 500);
+
+
+        return User::orWhere('first_name', 'like', "%" . $request->get('str') . "%")
+            ->orWhere('last_name', 'like', "%" . $request->get('str') . "%")
+            ->orWhere('mobile', 'like', "%" . $request->get('str') . "%")
+            ->orWhere('user_code', 'like', "%" . $request->get('str') . "%")
+            ->orWhere('email', 'like', "%" . $request->get('str') . "%")
+            ->orWhere('name_en', 'like', "%" . $request->get('str') . "%")
+            ->orWhere('email', 'like', "%" . $request->get('str') . "%")->get(['id', 'first_name', 'last_name']);
+
+    }
 
 }

@@ -15,7 +15,6 @@ class CreatePassedCoursesCategoriesTable extends Migration
     {
         Schema::create('passed_courses_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
             $table->string('name');
             $table->tinyInteger('lang_id',false,true)->default(1);
             $table->timestamps();

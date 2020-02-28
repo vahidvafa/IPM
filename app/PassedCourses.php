@@ -43,11 +43,11 @@ class PassedCourses extends Model
     protected $guarded = ['id'];
 
     public function PassedCoursesCat(){
-        return $this->belongsTo(PassedCoursesCategory::class);
+        return $this->belongsTo(PassedCoursesCategory::class,"passed_courses_category_id");
     }
 
 
-    public function PassedCourses(){
+    public function user(){
         return $this->belongsToMany(User::class);
     }
 

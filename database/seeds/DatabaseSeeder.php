@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LangsSeeder::class);
         $this->call(MembershipTypeSeeder::class);
         $this->call(ProvinceSeeder::class);
+        $this->call(PassedCoursesCategorySeeder::class);
         $this->call(BranchSeeder::class);
         factory(\App\User::class,10)->create();
         factory(\App\EventCategory::class,18)->create();
@@ -24,7 +25,6 @@ class DatabaseSeeder extends Seeder
         factory(\App\Company::class,5)->create();
         factory(\App\WorkExperience::class,12)->create();
         factory(\App\Education::class,15)->create();
-        factory(\App\PassedCoursesCategory::class,10)->create();
         factory(\App\PassedCourses::class,25)->create();
         factory(\App\Document::class,45)->create();
         factory(\App\News::class,96)->create();

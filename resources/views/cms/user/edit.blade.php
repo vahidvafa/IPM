@@ -669,23 +669,6 @@
                             @endif
                         </div>
 
-                    <div class="form-group col-md-6 mb-3 mt-3 py-2 px-4">
-                        <label for="active">تایید کاربر: </label>
-                        <input type="checkbox" class="option-input"
-                               name="active"
-                               value="true"
-                               aria-invalid="false" @if($user->active == 1) checked @endif>
-
-                        @if ($errors->has('active'))
-                            <div id="name-error" class="error text-danger pl-3"
-                                 for="active"
-                                 style="display: block;">
-                                <strong>{{ $errors->first('active') }}</strong>
-                            </div>
-                        @endif
-                    </div>
-
-
                     <div class="form-group col-md-6 mb-3">
                         <label for="" class="col-12">معدل</label>
                         <input type="text" name="docuent" id="education[gpa]"
@@ -703,6 +686,22 @@
                     </div>
 
                     @endif
+
+                    <div class="form-group col-md-6 mb-3 mt-3 py-2 px-4">
+                        <label for="active">تایید کاربر: </label>
+                        <input type="checkbox" class="option-input"
+                               name="active"
+                               value="true"
+                               aria-invalid="false" @if($user->active == 1) checked @endif>
+
+                        @if ($errors->has('active'))
+                            <div id="name-error" class="error text-danger pl-3"
+                                 for="active"
+                                 style="display: block;">
+                                <strong>{{ $errors->first('active') }}</strong>
+                            </div>
+                        @endif
+                    </div>
 
                     {{-- ------------ document ------------------}}
                     <div class="col-md-12 my-4">

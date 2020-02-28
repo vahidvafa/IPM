@@ -11,6 +11,14 @@ class PassedCoursesCategorySeeder extends Seeder
      */
     public function run()
     {
-        //
+        $names=array("گواهی نامه ها","جوایز","مدارک");
+
+        foreach ($names as $name)
+        DB::table("passed_courses_categories")->insert([
+            'name'=>$name,
+            "lang_id"=>mt_rand(0,1),
+
+        ]);
+
     }
 }

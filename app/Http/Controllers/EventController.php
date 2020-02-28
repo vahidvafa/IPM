@@ -107,7 +107,7 @@ class EventController extends Controller
      }
 return;*/
 
-        $event = Event::find($id);
+        $event = Event::findOrFail($id);
         $similars = Event::where("event_category_id", '=', $event->event_category_id)->where('id', '!=', $id)->get();
         $titleHeader = $event->title;
         $breadcrumb = "رویداد";

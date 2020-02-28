@@ -73,7 +73,7 @@
                     <tbody>
                     @php
                         if (request('page'))
-                            $i = 10 * (request('page') - 1);
+                            $i = 10 * request('page');
                         else
                             $i = 0;
                     @endphp

@@ -141,10 +141,6 @@ class User extends Authenticatable
         return $this->hasMany(Event::class);
     }
 
-    public function PassedCoursesCat(){
-        return $this->hasMany(PassedCoursesCategory::class);
-    }
-
     public function jobs()
     {
         return $this->hasMany(Job::Class);
@@ -169,7 +165,7 @@ class User extends Authenticatable
     }
 
     public function passedCourse(){
-        return $this->hasMany(PassedCourses::class);
+        return $this->belongsToMany(PassedCourses::class);
     }
 
 }

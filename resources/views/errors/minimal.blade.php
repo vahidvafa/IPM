@@ -1,4 +1,4 @@
-@extends('master',['titleHeader'=>$titleHeader,'breadcrumb'=>$code])
+@extends('master',['titleHeader'=>$titleHeader??"",'breadcrumb'=>$code??""])
 @section('content')
     <div class="container">
         <div class="row profile-top py-5 my-5" style="height: 370px">
@@ -13,6 +13,7 @@
                     <div class="col-12 text-center my-1">
                         <h4 class="text-danger">
                             @yield('message')
+
                         </h4>
                     </div>
                 </div>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\PassedCourses;
 use App\PassedCoursesCategory;
+use App\User;
 use Illuminate\Http\Request;
+use test\Mockery\Adapter\Phpunit\BaseClassStub;
 
 class PassedCoursesController extends Controller
 {
@@ -42,20 +44,26 @@ class PassedCoursesController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $validate = validator($request->all(), [
-            'title' => "bail | required |min:4",
-            'content' => "bail | required |min:6"
+            'selectedUser' => "bail | required | integer | min:1",
+            'course' => "bail | required | array"
         ], [
-            'title' => "عنوان باید بیش از ۴ حرف باشد",
-            'content' => "متن باید بیش از ۶ حرف باشد"
+            'selectedUser.*' => "لطفا یک کاربر را انتخاب کنید",
+            'course.*' => "حداقل یک دسته بندی را انتخاب کنید"
         ]);
 
+        $passedCourses = false;
+        if (!$validate->fails()) {
+            $user = User::find($request->get('selectedUser'));
+            $user->passedCourse()->attach($request->get('course'));
+            $passedCourses = true;
+        }
 
-        $passedCourses = new PassedCourses($request->all());
-        $passedCourses = $passedCourses->save($request->all());
+//        return $validate->errors();
 
         flash_message($passedCourses ? "success" : "error", $passedCourses ? "باموفقیت ثبت شد" : "خطا متاسفانه عملیات درج با مشکل مواجح شد");
-
         return back()->withErrors($validate)->withInput();
     }
 
@@ -131,9 +139,43 @@ class PassedCoursesController extends Controller
     public function relationUserCourse()
     {
         $PassedCoursesCategory = PassedCoursesCategory::get();
-        $PassedCourses = PassedCourses::get();
 
-        return view('cms.PassedCourses.user_course_relation', compact('PassedCourses', 'PassedCoursesCategory'));
+        $PassedCourse = PassedCourses::wherePassedCoursesCategoryId($PassedCoursesCategory->first->get()->id)->get();
+
+        return view('cms.PassedCourses.user_course_relation', compact('PassedCoursesCategory','PassedCourse'));
+    }
+
+    public function getCouseByCat(Request $request){
+
+        if ($request->get('cat_id') == null)
+            return makeMsgCode(false, "دیتای ارسالی نادرست", 500);
+
+
+        return PassedCourses::wherePassedCoursesCategoryId($request->get('cat_id'))->get(['id','title']);
+
+    }
+
+    public function PassedCoursesByUser($id){
+
+       $user = User::findOrFail($id);
+       $name = $user->first_name." ".$user->last_name;
+       $user = $user->passedCourse()->get();
+
+        $PassedCoursesCategory = PassedCoursesCategory::get();
+
+        $PassedCourse = PassedCourses::wherePassedCoursesCategoryId($PassedCoursesCategory->first->get()->id)->get();
+
+        return view('cms.PassedCourses.user_passedCourse',compact('user','name','PassedCoursesCategory','PassedCourse','id'));
+    }
+
+
+    public function destroyCourseForUser(Request $request){
+
+
+        User::find($request->get('user'))->passedCourse()->detach($request->get('course'));
+
+        return back();
+
     }
 
 }

@@ -74,9 +74,11 @@ Route::middleware('auth')->group(function () {
             Route::post('job//{id}/delete','JobController@destroyCms')->name('cms.job.destroy');
             //------
             Route::get('users','UserController@indexCms')->name('cms.user.index');
+            Route::post('users','UserController@indexCms')->name('cms.user.index');
             Route::post('user/{id}/confirm','UserController@active')->name('cms.user.active');
             Route::get('user/{id}/edit','UserController@edit')->name('cms.user.edit');
             Route::post('user/updateAdm','UserController@UpdateAdm')->name('user.updateAdm');
+            Route::post('user/search','UserController@search')->name('user.search');
 //            Route::post('user/{id}/destroy','UserController@destroy')->name('cms.user.del');
             //------
             Route::get('passedCourse/{id}/edit','PassedCoursesController@edit')->name('PassedCourses.edit');
@@ -85,7 +87,11 @@ Route::middleware('auth')->group(function () {
             Route::get('passedCourse/create','PassedCoursesController@create')->name('PassedCourses.create');
             Route::post('passedCourse/store','PassedCoursesController@store')->name('PassedCourses.store');
             Route::post('passedCourse/{id}/update','PassedCoursesController@update')->name('PassedCourses.update');
+            Route::post('passedCourse/bycat','PassedCoursesController@getCouseByCat')->name('PassedCourses.bycats');
             Route::get('ManageCourses','PassedCoursesController@relationUserCourse')->name('ManageCourses');
+            Route::get('userPassedCourse/{id}','PassedCoursesController@PassedCoursesByUser')->name('PassedCourses.byUser');
+            Route::post('userPassedCourse/del','PassedCoursesController@destroyCourseForUser')->name('PassedCourses.byUser.del');
+
         });
     });
 });

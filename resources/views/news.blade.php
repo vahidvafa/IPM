@@ -92,7 +92,7 @@
                                 <span>]</span>
                             </h5>
                             <p class="card-text font-14">{{$singleNews->title}}</p>
-                            <a href="{{route('event',[$singleNews->id])}}" class="btn btn-news text-yellow text-medium">
+                            <a href="{{route('news.show',[$singleNews->id])}}" class="btn btn-news text-yellow text-medium">
                                 ادامه مطلب
                             </a>
                         </div>

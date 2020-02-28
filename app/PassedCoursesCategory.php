@@ -39,11 +39,6 @@ class PassedCoursesCategory extends Model
 {
     use  SoftDeletes;
 
-
-    function user(){
-        return $this->belongsTo(User::class);
-    }
-
     function PassedCourses(){
         return $this->hasMany(PassedCourses::class);
     }

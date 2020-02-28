@@ -2,13 +2,6 @@
 @section('header')
     <title>انجمن مدیریت پروژه</title>
 
-    <link href='{{asset('fullcalendar/core/main.css')}}' rel='stylesheet'/>
-    <link href='{{asset('fullcalendar/daygrid/main.css')}}' rel='stylesheet'/>
-    <link rel="stylesheet" href="{{asset('fullcalendar/list/main.css')}}">
-    <link href='{{asset('fullcalendar/bootstrap/main.css')}}' rel='stylesheet'/>
-    <link rel="stylesheet" href="{{asset('fullcalendar/timegrid/main.css')}}">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/css/datepicker.css'>
-    <link rel="stylesheet" href="{{asset('css/style-calender.css')}}">
 @stop
 @section('content')
 
@@ -35,6 +28,9 @@
 
                             </div>
                             <div class="col-md-6 col-lg-4 mb-4 mb-md-0">
+                                @if(time() >= $user->expire)
+                                    <p class="text-danger font-26 text-bold">اشتراک شما به پایان رسیده</p>
+                                @endif
                                 <p class="font-16 text-regular text-black">
                                     <span>سابقه :</span>
                                     <br>
@@ -55,11 +51,11 @@
                                     <span class="text-black-light">{{$user->about_me}}</span>
                                 </p>
                                 <div class="social-profile mt-3">
-                                    <a href="/"><img src="{{asset('img/social11.png')}}" alt="..."></a>
-                                    <a href="/"><img src="{{asset('img/social22.png')}}" alt="..."></a>
-                                    <a href="/"><img src="{{asset('img/social33.png')}}" alt="..."></a>
-                                    <a href="/"><img src="{{asset('img/social44.png')}}" alt="..."></a>
-                                    <a href="/"><img src="{{asset('img/social55.png')}}" alt="..."></a>
+                                    <a href="{{$user->profile[0]->telegram}}"><img src="{{asset('img/social11.png')}}" alt="..."></a>
+                                    <a href="{{$user->profile[0]->instagram}}"><img src="{{asset('img/social22.png')}}" alt="..."></a>
+                                    <a href="{{$user->profile[0]->facebook}}"><img src="{{asset('img/social33.png')}}" alt="..."></a>
+                                    <a href="{{$user->profile[0]->twitter}}"><img src="{{asset('img/social44.png')}}" alt="..."></a>
+                                    <a href="{{$user->profile[0]->youTube}}"><img src="{{asset('img/social55.png')}}" alt="..."></a>
                                 </div>
 
                             </div>
@@ -116,59 +112,60 @@
                                                 تمامی دوره های گذرانده شده مورد تایید انجمن مدیریت پروژه ایران می باشد
                                             </p>
 
-                                            @foreach($user->PassedCoursesCat as $courseCat)
+                                            @foreach($PassedCoursesCats as $courseCat)
+
                                                 @if(count($courseCat->PassedCourses) != 0)
                                                     <h2 class=" font-20 text-medium text-black  mb-4">{{$courseCat->name}}
                                                         : </h2>
 
                                                 @endif
-                                                @foreach($courseCat->PassedCourses as $course)
                                                     <ul class="list-profile">
-                                                        <li><p class="font-16"><span
-                                                                        class="text-black text-medium">{{$course->title}}: </span>
-                                                        {!! $course->content !!}
-                                                    </ul>
+                                                @foreach($user->passedCourse as $course)
+                                                    @if($courseCat->id == $course->passed_courses_category_id)
+
+                                                            <li><p class="font-16"><span
+                                                                            class="text-black text-medium">{{$course->title}}: </span>
+                                                            {!! $course->content !!}
+                                                                </p>
+                                                            </li>
+
+                                                    @endif
 
                                                 @endforeach
+                                                    </ul>
                                             @endforeach
                                         </div>
 
                                         <div class="form-profile">
-                                            @if(count($user->documents) !=0 )
+                                            @if( auth()->check() && $user->id == auth()->id() && count($user->documents) !=0 )
                                                 <h2 class=" font-24 text-medium text-black  mb-3 mt-5">نواقصی
                                                     مدارک </h2>
-                                            @else
-                                                <h2 class=" font-24 text-medium text-black  mb-3 mt-5">ویرایش
-                                                    اطلاعات</h2>
-                                            @endif
+
                                             @foreach($user->documents as $document)
                                                 <p class=" text-black-light font-16 mb-2">
                                                     ادرس: {{$document->address}} ||
                                                     نواقصی: {{$document->explain}}
                                                 </p>
                                             @endforeach
-                                                @if(auth()->id() != $user->id)
-                                                    <h2 class=" font-24 text-medium text-black  mb-4 mt-5">اطلاعات بیشتر
-                                                        قابل مشاهده
-                                                    </h2>
-                                                    <div class="sidebar-form-body row">
-                                                        @foreach($profileVisible as $key=>$value)
-                                                            <div class="input-form col-md-12 ">
-                                                                <img src="{{asset('img/002-telephone.png')}}"
-                                                                     class="form-icon">
-                                                                <p>{{$value}}</p>
-                                                            </div>
-                                                        @endforeach
-
-                                                    </div>
-
-
-
                                             @endif
 
+                                            @if(auth()->id() != $user->id)
+                                                <h2 class=" font-24 text-medium text-black  mb-4 mt-5">اطلاعات بیشتر
+                                                    قابل مشاهده
+                                                </h2>
+                                                <div class="sidebar-form-body row">
+                                                    @foreach($profileVisible as $key=>$value)
+                                                        <div class="input-form col-md-12 ">
+                                                            <img src="{{asset('img/002-telephone.png')}}"
+                                                                 class="form-icon">
+                                                            <p>{{$value}}</p>
+                                                        </div>
+                                                    @endforeach
+
+                                                </div>
+                                            @endif
 
                                         </div>
-
 
                                     </div>
 
@@ -186,7 +183,7 @@
                                                    placeholder="لینک یوتویوپ"
                                                    value="{{old('profile.birth_date',$user->profile[0]->youTube)}}"
                                                    required>
-{{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
+                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
                                         </div>
 
                                         <div class="input-form col-md-5">
@@ -195,7 +192,7 @@
                                                    placeholder="لینک فیسبوک"
                                                    value="{{old('profile.birth_place',$user->profile[0]->facebook)}}"
                                                    required>
-{{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
+                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
                                         </div>
 
                                         <div class="input-form col-md-5">
@@ -204,7 +201,7 @@
                                                    placeholder="لینک اینستاگرام"
                                                    value="{{old('profile.birth_place',$user->profile[0]->instagram)}}"
                                                    required>
-{{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
+                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
                                         </div>
 
                                         <div class="input-form col-md-5">
@@ -213,7 +210,7 @@
                                                    placeholder="لینک تلگرام"
                                                    value="{{old('profile.birth_date',$user->profile[0]->telegram)}}"
                                                    required>
-{{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
+                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
                                         </div>
 
                                         <div class="input-form col-md-5">
@@ -222,7 +219,7 @@
                                                    placeholder="لینک تویتر"
                                                    value="{{old('profile.birth_place',$user->profile[0]->twitter)}}"
                                                    required>
-{{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
+                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
                                         </div>
 
                                         <div class="input-form col-md-5">
@@ -231,7 +228,7 @@
                                                    placeholder="تلفن منزل*"
                                                    value="{{old('profile.birth_date',$user->profile[0]->home_tel)}}"
                                                    required>
-{{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
+                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
                                         </div>
 
                                         <div class="input-form col-md-3">
@@ -240,7 +237,7 @@
                                                    placeholder="تاریخ تولد*"
                                                    value="{{old('profile.birth_date',$user->profile[0]->birth_date)}}"
                                                    required>
-{{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
+                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
                                         </div>
 
                                         <div class="input-form col-md-3">
@@ -250,7 +247,7 @@
                                                    placeholder="محل تولد*"
                                                    value="{{old('profile.birth_place',$user->profile[0]->birth_place)}}"
                                                    required>
-{{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
+                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
                                         </div>
 
                                         <div class="col-md-4 mt-5">
@@ -283,17 +280,14 @@
                     @endauth
                 </div>
 
-
             </div>
-
         </div>
-
 
     </main>
 
-    <script>
+    <script async>
         // Add the following code if you want the name of the file appear on select
-        $(".custom-file-input").on("change", function () {
+        $("#customFile").on("input", function () {
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });

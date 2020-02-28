@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\MembershipType;
+use App\PassedCoursesCategory;
 use App\Profile;
 use App\User;
 use App\Utils\UserProFields;
 use App\visibiliy;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 
@@ -60,18 +62,34 @@ class ProfileController extends Controller
 
         $FieldsInClass = $FieldsInClass->asArray();
 
-        $user = User::with(['workExperience', 'education', 'profile','companies','documents' => function (HasMany $doc) {
+        $user = User::with(['workExperience', 'education', 'profile','companies','passedCourse'=>function(BelongsToMany $query){
+            $query->with(['PassedCoursesCat'])->orderBy('passed_courses_category_id')->get();
+        },'documents' => function (HasMany $doc) {
             $doc->where('state', '=', 0);
-        }, 'PassedCoursesCat' => function (HasMany $relation) {
-            $relation->with('PassedCourses')->get();
         }])->where('slug', '=', $slug)->get();
 
         $breadcrumb = "پروفایل";
 
+        if (count($user) == 0)
+            return abort(404);
 
-        if (count($user) != 0) {
-            $user = $user[0];
-            $others_visibles = visibiliy::where("user_id", '=', "$user->id")->get();
+        $user = $user[0];
+
+        if ($user->active <= 1) {
+            if (!auth()->check()) {
+                abort(404, $user->active == 0 ? "نسبت به پرداخت اقدام کنید" : "منتطر تایید ادمین باشید");
+            }else {
+                if (auth()->user()->roles == 2 )
+                    abort(404, $user->active == 0 ? "نسبت به پرداخت اقدام کنید" : "منتطر تایید ادمین باشید");
+            }
+        }
+
+        /*--------------------- start work  ------------------*/
+
+
+
+
+        $others_visibles = visibiliy::where("user_id", '=', "$user->id")->get();
 
             if (count($others_visibles) != 0) {
 
@@ -91,22 +109,23 @@ class ProfileController extends Controller
                             if ($keyVisible == $key)
                                 $profileVisible["$keyVisible"] = $value . " " . $valueVisible;
 
-
                 }
-
 
             }
 
             $titleHeader = $user->name;
 
+
             if (auth()->check() && (auth()->user()->roles == 0 || auth()->user()->roles == 1))
                 $memberships = MembershipType::all();
 
-            $name_en = str_replace("-"," ",$user->slug);
 //            $name_en = str_replace(str_split('1234567890'),'',$name_en);
 
-            return view('profile', compact("user", "titleHeader", "breadcrumb", 'profileVisible', 'memberships','name_en'));
-        } else return view("404");
+        $PassedCoursesCats = PassedCoursesCategory::get();
+
+
+            return view('profile', compact("user", "titleHeader", "breadcrumb", 'profileVisible', 'memberships','PassedCoursesCats'));
+
     }
 
     /**

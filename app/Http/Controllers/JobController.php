@@ -134,14 +134,14 @@ class JobController extends Controller
     public function show($id)
     {
 
-        $job = Job::with('province', "jobCategory")->find($id);
+        $job = Job::with('province', "jobCategory")->findOrFail($id);
 
         if (auth()->check()){
             $user = User::find(auth()->id());
             if ($user->roles == 2 && $job->user_id != $user->id)
-            return redirect('404');
+            return abort('404');
         }else {
-            return redirect('404');
+            return abort('404');
         }
 
         $breadcrumb = "توضیحات فرصت شغلی";
@@ -154,7 +154,7 @@ class JobController extends Controller
             $similar = Job::whereState(1)->with('province')->where('jobsCategory_id', '=', $job->jobsCategory_id)->get(['id', 'province_id', "title", 'work_experience', 'education', 'company_logo'])->take(10);
         }
 
-        return view($job == null ? '404' : 'job.job_detail', compact("job", "titleHeader", "breadcrumb", 'similar'));
+        return view('job.job_detail', compact("job", "titleHeader", "breadcrumb", 'similar'));
     }
 
     /**
@@ -170,7 +170,7 @@ class JobController extends Controller
         $work_experience = array("همه موارد", "زیر ۲ سال", "بین ۲ تا ۵ سال", "بین ۵ تا ۸ سال", "۸ سال به بالا");
         $education = array("فرقی نمی کن", "دیپلم", "کاردانی", "کارشناسی", "کارشناسی ارشد", "دکترا");
 
-        $job = Job::with('province', "jobCategory")->find($id);
+        $job = Job::with('province', "jobCategory")->findOrFail($id);
 
         $similar = [];
 
@@ -192,7 +192,7 @@ class JobController extends Controller
         $breadcrumb = "ویرایش فرصت شغلی من";
         $titleHeader = "ویرایش فرصت شغلی من";
 
-        return view($job == null ? '404' : 'job.job_edit', compact('job', 'breadcrumb', 'titleHeader', 'similar', "cats", 'contract_type', 'work_experience', 'education', 'province'));
+        return view( 'job.job_edit', compact('job', 'breadcrumb', 'titleHeader', 'similar', "cats", 'contract_type', 'work_experience', 'education', 'province'));
     }
 
     /**
@@ -298,7 +298,7 @@ class JobController extends Controller
 
     public function showCms($id){
 
-        $job = Job::whereState(0)->find($id);
+        $job = Job::whereState(0)->findOrFail($id);
 
         $similar = [];
 
@@ -308,7 +308,7 @@ class JobController extends Controller
         $breadcrumb = "توضیحات فرصت شغلی";
         $titleHeader = "قابل مشاهده تنها توصت ادمین";
 
-        return view($job == null ? '404' : 'job.job_detail',compact("job",'similar','breadcrumb','titleHeader'));
+        return view( 'job.job_detail',compact("job",'similar','breadcrumb','titleHeader'));
     }
 
     public function storeCms($id){
