@@ -102,7 +102,6 @@
 
                                     @endif
                                     @endauth
-
                                     <div class="col-12">
                                         <div class="detail-profile ">
                                             <h2 class=" font-24 text-medium text-black mb-4 text-dark-violet">مدارک و
@@ -291,5 +290,9 @@
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
+
+
+
+
     </script>
 @stop

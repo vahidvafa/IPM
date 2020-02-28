@@ -108,7 +108,7 @@
         $('#users').on('input',function(e){
 
             if (this.value.length >= 4) {
-                $.post("{{route('user.search')}}",
+                $.post("{{route('cms.user.search')}}",
                     {
                         '_token': $('meta[name=csrf-token]').attr('content'),
                         str: this.value,

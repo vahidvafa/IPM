@@ -78,7 +78,8 @@ Route::middleware('auth')->group(function () {
             Route::post('user/{id}/confirm','UserController@active')->name('cms.user.active');
             Route::get('user/{id}/edit','UserController@edit')->name('cms.user.edit');
             Route::post('user/updateAdm','UserController@UpdateAdm')->name('user.updateAdm');
-            Route::post('user/search','UserController@search')->name('user.search');
+            Route::post('user/search','UserController@search')->name('cms.user.search');
+            Route::get('user/search','UserController@search')->name('cms.user.search');
 //            Route::post('user/{id}/destroy','UserController@destroy')->name('cms.user.del');
             //------
             Route::get('passedCourse/{id}/edit','PassedCoursesController@edit')->name('PassedCourses.edit');
