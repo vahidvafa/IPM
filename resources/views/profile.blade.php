@@ -149,10 +149,10 @@
                                             @endif
 
                                             @if(auth()->id() != $user->id)
-                                                <h2 class=" font-24 text-medium text-black  mb-4 mt-5">اطلاعات بیشتر
+                                                <h2 class=" font-24 text-medium text-black mb-4 mt-5 hide ">اطلاعات بیشتر
                                                     قابل مشاهده
                                                 </h2>
-                                                <div class="sidebar-form-body row">
+                                                <div class="sidebar-form-body row hide"  >
                                                     @foreach($profileVisible as $key=>$value)
                                                         <div class="input-form col-md-12 ">
                                                             <img src="{{asset('img/002-telephone.png')}}"

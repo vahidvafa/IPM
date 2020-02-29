@@ -1,7 +1,5 @@
 @extends('cms.master')
 @section('content')
-
-
     <div class="col-12">
         <div class="card">
             <div class="card-header card-header-warning">
@@ -11,12 +9,11 @@
             </div>
             <div id="menu0" class="card-body">
                 <form class="sidebar-form-body form-row"
-                      action="{{route('PassedCourses.store')}}" method="post"
+                      action="{{route('UserPassedCourses.store')}}" method="post"
                       enctype="multipart/form-data"
                 >
                     @method('post')
                     @csrf
-
                     <div class="form-group col-5 mb-2 ">
                         <label for="passed_courses_category_id">دسته بندی اصلی</label>
                         <select name="passed_courses_category_id" id="passed_courses_category_id"

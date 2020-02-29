@@ -42,12 +42,10 @@ class PassedCoursesController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
 
-
+    public function storeCourseForUser(Request $request){
         $validate = validator($request->all(), [
-            'selectedUser' => "bail | required | integer | min:1",
+            'selectedUser' => "bail | required | min:1",
             'course' => "bail | required | array"
         ], [
             'selectedUser.*' => "لطفا یک کاربر را انتخاب کنید",
@@ -61,10 +59,29 @@ class PassedCoursesController extends Controller
             $passedCourses = true;
         }
 
-//        return $validate->errors();
-
-        flash_message($passedCourses ? "success" : "error", $passedCourses ? "باموفقیت ثبت شد" : "خطا متاسفانه عملیات درج با مشکل مواجح شد");
+        flash_message($passedCourses ? "success" : "error", $passedCourses ? "باموفقیت ثبت شد" : "خطا متاسفانه عملیات درج با مشکل مواجه شد");
         return back()->withErrors($validate)->withInput();
+    }
+
+
+    public function store(Request $request)
+    {
+        $validate = validator($request->all(), [
+            'title' => "bail | required | min:4",
+            'content' => "bail | required | min:6"
+        ], [
+            'title.*' => "عنوان باید بییش از ۴ حرف باشد",
+            'content.*' => "محتوا باید بیش از ۶ حرف باشد"
+        ]);
+
+        if (!$validate->fails()){
+            $passCourse = new PassedCourses($request->all());
+            $passCourse->save();
+        }
+
+        flash_message(isset($passCourse)? "success" : "error", isset($passCourse)? "باموفقیت ثبت شد" : "خطا متاسفانه عملیات درج با مشکل مواجه شد");
+        return back()->withErrors($validate)->withInput();
+
     }
 
     /**
@@ -114,7 +131,7 @@ class PassedCoursesController extends Controller
         if ($passedCourses != null)
             $passedCourses = $passedCourses->update($request->all());
 
-        flash_message($passedCourses ? "success" : "error", $passedCourses ? "باموفقیت ویرایش شد" : "خطا متاسفانه عملیات ویرایش با مشکل مواجح شد");
+        flash_message($passedCourses ? "success" : "error", $passedCourses ? "باموفقیت ویرایش شد" : "خطا متاسفانه عملیات ویرایش با مشکل مواجه شد");
 
         return back()->withErrors($validate)->withInput();
     }
@@ -131,7 +148,7 @@ class PassedCoursesController extends Controller
         if ($passedCourses != null)
             $passedCourses->delete();
 
-        flash_message($passedCourses ? "success" : "error", $passedCourses ? "باموفقیت حذف شد" : "خطا متاسفانه عملیات حذف با مشکل مواجح شد");
+        flash_message($passedCourses ? "success" : "error", $passedCourses ? "باموفقیت حذف شد" : "خطا متاسفانه عملیات حذف با مشکل مواجه شد");
 
         return back();
     }

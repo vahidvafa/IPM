@@ -1,6 +1,6 @@
 @extends('cms.master')
 @section('content')
-    {{var_dump(request()->get('id'))}}
+
     <div class="col-12">
         <div class="card">
             <div class="card-header card-header-warning">
@@ -15,7 +15,7 @@
 
                 <div class="row">
                     <form class="sidebar-form-body form-row"
-                          action="{{route('PassedCourses.store')}}" method="post"
+                          action="{{route('UserPassedCourses.store')}}" method="post"
                           enctype="multipart/form-data"
                     >
                         @method('post')

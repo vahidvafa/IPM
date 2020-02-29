@@ -1,5 +1,6 @@
 @extends('cms.master')
 @section('content')
+
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <div class="col-12">
         <div class="card">
@@ -41,11 +42,21 @@
                             </div>
                         @endif
                     </div>
+                    {{--{{old('content')}}--}}
 
                     <div class="editor">
                         <label for="content">متن دوره</label>
+
                         <textarea id="content" name="content"
-                                  class="form-control ckeditor cke_rtl">{{ $PassedCourse->content }}</textarea>
+                                  class="form-control ckeditor cke_rtl">{{old('content')??$PassedCourse->content}}</textarea>
+                        @if ($errors->has('content'))
+                            <div id="title-error"
+                                 class="error text-danger pl-3" for="title"
+                                 style="display: block;">
+                                <strong>{{ $errors->first('content') }}</strong>
+                            </div>
+                        @endif
+
                     </div>
 
                     <div class="card-footer">

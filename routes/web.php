@@ -87,6 +87,7 @@ Route::middleware('auth')->group(function () {
             Route::post('passedCourse/{id}/del','PassedCoursesController@destroy')->name('PassedCourses.del');
             Route::get('passedCourse/create','PassedCoursesController@create')->name('PassedCourses.create');
             Route::post('passedCourse/store','PassedCoursesController@store')->name('PassedCourses.store');
+            Route::post('userPassedCourse/store','PassedCoursesController@storeCourseForUser')->name('UserPassedCourses.store');
             Route::post('passedCourse/{id}/update','PassedCoursesController@update')->name('PassedCourses.update');
             Route::post('passedCourse/bycat','PassedCoursesController@getCouseByCat')->name('PassedCourses.bycats');
             Route::get('ManageCourses','PassedCoursesController@relationUserCourse')->name('ManageCourses');

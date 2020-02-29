@@ -45,7 +45,15 @@
                     <div class="editor">
                         <label for="content">متن دوره</label>
                         <textarea id="content" name="content"
-                                  class="form-control ckeditor cke_rtl"></textarea>
+                                  class="form-control ckeditor cke_rtl">{{ old('content') }}</textarea>
+                        @if ($errors->has('content'))
+                            <div id="title-error"
+                                 class="error text-danger pl-3" for="title"
+                                 style="display: block;">
+                                <strong>{{ $errors->first('content') }}</strong>
+                            </div>
+                        @endif
+
                     </div>
 
                     <div class="card-footer">

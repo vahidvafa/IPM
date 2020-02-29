@@ -669,22 +669,6 @@
                             @endif
                         </div>
 
-                    <div class="form-group col-md-6 mb-3">
-                        <label for="" class="col-12">معدل</label>
-                        <input type="text" name="docuent" id="education[gpa]"
-                               value="{{old('education.gpa')??$user->education[0]->gpa}}"
-                               class="form-control" aria-invalid="false"
-                               required>
-
-                        @if ($errors->has('education.gpa'))
-                            <div id="name-error" class="error text-danger pl-3"
-                                 for="education[gpa]"
-                                 style="display: block;">
-                                <strong>{{ $errors->first('education.gpa') }}</strong>
-                            </div>
-                        @endif
-                    </div>
-
                     @endif
 
                     <div class="form-group col-md-6 mb-3 mt-3 py-2 px-4">
