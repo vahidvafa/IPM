@@ -1,6 +1,5 @@
 @extends('cms.master')
 @section('content')
-    {{var_dump(request()->get('id'))}}
     <div class="col-12">
         <div class="card">
             <div class="card-header card-header-warning">

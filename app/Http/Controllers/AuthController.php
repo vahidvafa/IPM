@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Branch;
+use App\Company;
 use App\Document;
 use App\User;
 use App\WorkExperience;
@@ -27,7 +28,7 @@ class AuthController extends Controller
         $breadcrumb = "عضویت";
         $type = 0;
         $branches = Branch::all();
-        return view('register', compact('memberships', 'titleHeader', 'breadcrumb', 'type','branches'));
+        return view('register', compact('memberships', 'titleHeader', 'breadcrumb', 'type', 'branches'));
     }
 
     public function postRegister(Request $request)
@@ -126,12 +127,8 @@ class AuthController extends Controller
 //
         if ($validator->fails()) {
             \Session::flash('type', $request->get('type'));
-//            foreach ($validator->errors()->messages() as $key => $value) {
-//                \Session::put('error-'.$key, $value[0]);
-//            }
             return redirect()->route('register')->withErrors($validator)->withInput();
         }
-//        dd(1);
         $slug = str_replace(' ', '-', $request->get('name_en'));
         $number = 1;
         while (User::whereSlug($slug)->exists()) {
@@ -143,6 +140,7 @@ class AuthController extends Controller
             $userCode = mt_rand(1000, 100000);
         }
         $userCode = $date . '-' . $userCode;
+        $memberShipType = MembershipType::find($request->get('type'));
         $user = new User(
             [
                 'first_name' => $request->get('first_name'),
@@ -157,6 +155,7 @@ class AuthController extends Controller
                 'branch_id' => $request->get('branch_id'),
             ]
         );
+        $user->active = ($memberShipType->price == 0) ? 2 : 1;
         $profile = new Profile($request->all());
         $profile->lang_id = 1;
         $isSuccessful = \DB::transaction(function () use ($user, $profile, $request) {
@@ -178,6 +177,10 @@ class AuthController extends Controller
                     'to_date' => ((isset($request->get('experience')['to_date'])) ? $request->get('experience')['to_date'] : null),
                 ]);
                 $user->workExperience()->save($experience);
+            }
+            if ($request->has('company')) {
+                $company = new Company($request->all('company')['company']);
+                $user->companies()->save($company);
             }
             $membership = new Membership(
                 [

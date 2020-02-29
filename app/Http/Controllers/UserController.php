@@ -36,7 +36,7 @@ class UserController extends Controller
         $users = User::query();
         if ($request->get('str')) {
 
-            $users = $users->orWhere('first_name', 'like', "%" . $request->get('str') . "%")
+            $users = $users->latest()->orWhere('first_name', 'like', "%" . $request->get('str') . "%")
                 ->orWhere('last_name', 'like', "%" . $request->get('str') . "%")
                 ->orWhere('mobile', 'like', "%" . $request->get('str') . "%")
                 ->orWhere('user_code', 'like', "%" . $request->get('str') . "%")
@@ -46,7 +46,7 @@ class UserController extends Controller
 //            return var_dump($users->get());
         }
 
-        $users = $users->paginate(15)->appends($request->all());
+        $users = $users->latest()->paginate(15)->appends($request->all());
 
         return view('cms.user.index', compact('users'));
     }
@@ -128,7 +128,6 @@ class UserController extends Controller
 
     public function updateAdm(Request $request)
     {
-
         $messages = [
             '*.required' => 'وارد کردن این فیلد الزامی است',
             'files.*.mimes' => 'فرمت فایل های ارسالی صحیح نمی باشد',
@@ -156,12 +155,12 @@ class UserController extends Controller
 
         switch ($request->get('type')) {
             case (3):
-                $roles += [
-                    'education.education_place' => "bail | required | string  ",
-                    'education.grade' => "bail | required | string | ",
-                    'education.from_date' => "bail | required | ",
-                    'education.gpa' => "bail | required | string | ",
-                ];
+//                $roles += [
+//                    'education.education_place' => "bail | string  ",
+//                    'education.grade' => "bail | required | string | ",
+//                    'education.from_date' => "bail | required | ",
+//                    'education.gpa' => "bail | required | string  ",
+//                ];
                 break;
             case 2:
                 $roles += ['company.name' => 'bail | required | string | max:255',
@@ -175,8 +174,6 @@ class UserController extends Controller
                     'company.address' => 'bail | required | string',
                     'company.ceo_name' => 'bail | required | string',
                     'company.ceo_name_en' => 'bail | required | string'];
-
-
         }
 
         $validator = Validator::make($request->all(), $roles, $messages);
@@ -194,9 +191,10 @@ class UserController extends Controller
 
 
         Document::whereUserId($user->id)->update(['state' => 0]);
-
-        foreach ($request->get('documents') as $docId) {
-            Document::whereId($docId)->update(['state' => 1]);
+        if ($request->has('documents')) {
+            foreach ($request->get('documents') as $docId) {
+                Document::whereId($docId)->update(['state' => 1]);
+            }
         }
 
         if ($user->profile[0]->certificate_number != $request->get('profile')['certificate_number']) {
@@ -269,6 +267,15 @@ class UserController extends Controller
 
         $user->update($rq);
 
+        if ($request->has('active') && $user->active == 1) {
+            if ($request->get('active')) {
+                $membershipType = MembershipType::find($user->membership_type_id);
+                $user->expire = time() + $membershipType->period;
+                $user->active = 2;
+                $user->save();
+            }
+        }
+
         if ($pass != null) {
             $user->password = $pass;
             $user->save();
@@ -286,12 +293,27 @@ class UserController extends Controller
                 $user->companies()->update($request->all('company')['company']);
                 break;
             case 3:
-                $user->education()->update($request->all('education')['education']);
-
+                if ($request->has('education'))
+                    $user->education()->update($request->all('education')['education']);
                 break;
         }
 
+        flash_message("success", __('string.successful'));
 
+        return back();
+    }
+
+    public function active($id)
+    {
+        $user = User::find($id);
+        if ($user->active == 1) {
+            $membershipType = MembershipType::find($user->membership_type_id);
+            $user->expire = time() + $membershipType->period;
+            $user->active = 2;
+            $user->save();
+            flash_message('success', __('string.successful'));
+            return back();
+        }
         return back();
     }
 

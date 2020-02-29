@@ -63,7 +63,7 @@ class PassedCoursesController extends Controller
 
 //        return $validate->errors();
 
-        flash_message($passedCourses ? "success" : "error", $passedCourses ? "باموفقیت ثبت شد" : "خطا متاسفانه عملیات درج با مشکل مواجح شد");
+        flash_message($passedCourses ? "success" : "error", $passedCourses ? "باموفقیت ثبت شد" : "خطا متاسفانه عملیات درج با مشکل مواجه شد");
         return back()->withErrors($validate)->withInput();
     }
 
@@ -114,7 +114,7 @@ class PassedCoursesController extends Controller
         if ($passedCourses != null)
             $passedCourses = $passedCourses->update($request->all());
 
-        flash_message($passedCourses ? "success" : "error", $passedCourses ? "باموفقیت ویرایش شد" : "خطا متاسفانه عملیات ویرایش با مشکل مواجح شد");
+        flash_message($passedCourses ? "success" : "error", $passedCourses ? "باموفقیت ویرایش شد" : "خطا متاسفانه عملیات ویرایش با مشکل مواجه شد");
 
         return back()->withErrors($validate)->withInput();
     }
