@@ -585,98 +585,99 @@
 
 
                     @elseif($user->membership_type_id == 3)
-                        <div class="col-md-12 my-4">
-                            <h2 class="font-22 text-medium text-black">مشخصات تحصیلی
-                                :</h2>
-                        </div>
-                        <div class="form-group col-md-6 mb-3">
-                            <label for="education[education_place]" class="col-12">نام مجل تحصیل*</label>
-                            <input type="text" name="education[education_place]" id="education[education_place]"
-                                   value="{{old('education.education_place')??$user->education[0]->education_place}}"
-                                   class="form-control" aria-invalid="false"
-                                   required>
+                        @if(count($user->education) >0)
+                            <div class="col-md-12 my-4">
+                                <h2 class="font-22 text-medium text-black">مشخصات تحصیلی
+                                    :</h2>
+                            </div>
+                            <div class="form-group col-md-6 mb-3">
+                                <label for="education[education_place]" class="col-12">نام مجل تحصیل*</label>
+                                <input type="text" name="education[education_place]" id="education[education_place]"
+                                       value="{{old('education.education_place')??$user->education[0]->education_place}}"
+                                       class="form-control" aria-invalid="false"
+                                       required>
 
-                            @if ($errors->has('education.education_place'))
-                                <div id="name-error" class="error text-danger pl-3"
-                                     for="education[education_place]"
-                                     style="display: block;">
-                                    <strong>{{ $errors->first('education.education_place') }}</strong>
-                                </div>
-                            @endif
-                        </div>
+                                @if ($errors->has('education.education_place'))
+                                    <div id="name-error" class="error text-danger pl-3"
+                                         for="education[education_place]"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('education.education_place') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
 
-                        <div class="form-group col-md-6 mb-3">
-                            <label for="education[grade]" class="col-12">سطح*</label>
-                            <input type="text" name="education[grade]" id="education[grade]"
-                                   value="{{old('education.grade')??$user->education[0]->grade}}"
-                                   class="form-control" aria-invalid="false"
-                                   required>
+                            <div class="form-group col-md-6 mb-3">
+                                <label for="education[grade]" class="col-12">سطح*</label>
+                                <input type="text" name="education[grade]" id="education[grade]"
+                                       value="{{old('education.grade')??$user->education[0]->grade}}"
+                                       class="form-control" aria-invalid="false"
+                                       required>
 
-                            @if ($errors->has('education.grade'))
-                                <div id="name-error" class="error text-danger pl-3"
-                                     for="education[grade]"
-                                     style="display: block;">
-                                    <strong>{{ $errors->first('education.grade') }}</strong>
-                                </div>
-                            @endif
-                        </div>
+                                @if ($errors->has('education.grade'))
+                                    <div id="name-error" class="error text-danger pl-3"
+                                         for="education[grade]"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('education.grade') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
 
-                        <div class="form-group col-md-6 mb-3">
-                            <label for="education[from_date]" class="col-12">از تاریخ*</label>
-                            <input type="text" name="education[from_date]" id="education[from_date]"
-                                   value="{{old('education.from_date')??$user->education[0]->from_date}}"
-                                   class="form-control" aria-invalid="false"
-                                   required>
+                            <div class="form-group col-md-6 mb-3">
+                                <label for="education[from_date]" class="col-12">از تاریخ*</label>
+                                <input type="text" name="education[from_date]" id="education[from_date]"
+                                       value="{{old('education.from_date')??$user->education[0]->from_date}}"
+                                       class="form-control" aria-invalid="false"
+                                       required>
 
-                            @if ($errors->has('education.from_date'))
-                                <div id="name-error" class="error text-danger pl-3"
-                                     for="education[from_date]"
-                                     style="display: block;">
-                                    <strong>{{ $errors->first('education.from_date') }}</strong>
-                                </div>
-                            @endif
-                        </div>
+                                @if ($errors->has('education.from_date'))
+                                    <div id="name-error" class="error text-danger pl-3"
+                                         for="education[from_date]"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('education.from_date') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
 
-                        <div class="form-group col-md-6 mb-3">
-                            <label for="education[to_date]" class="col-12">تا تاریخ</label>
-                            <input type="text" name="education[to_date]" id="education[to_date]"
-                                   value="{{old('education.to_date')??$user->education[0]->to_date}}"
-                                   class="form-control" aria-invalid="false"
-                            >
+                            <div class="form-group col-md-6 mb-3">
+                                <label for="education[to_date]" class="col-12">تا تاریخ</label>
+                                <input type="text" name="education[to_date]" id="education[to_date]"
+                                       value="{{old('education.to_date')??$user->education[0]->to_date}}"
+                                       class="form-control" aria-invalid="false"
+                                >
 
-                            @if ($errors->has('education.to_date'))
-                                <div id="name-error" class="error text-danger pl-3"
-                                     for="education[to_date]"
-                                     style="display: block;">
-                                    <strong>{{ $errors->first('education.to_date') }}</strong>
-                                </div>
-                            @endif
-                        </div>
+                                @if ($errors->has('education.to_date'))
+                                    <div id="name-error" class="error text-danger pl-3"
+                                         for="education[to_date]"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('education.to_date') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
 
-                        <div class="form-group col-md-6 mb-3">
-                            <label for="education[gpa]" class="col-12">معدل</label>
-                            <input type="text" name="education[gpa]" id="education[gpa]"
-                                   value="{{old('education.gpa')??$user->education[0]->gpa}}"
-                                   class="form-control" aria-invalid="false"
-                                   required>
+                            <div class="form-group col-md-6 mb-3">
+                                <label for="education[gpa]" class="col-12">معدل</label>
+                                <input type="text" name="education[gpa]" id="education[gpa]"
+                                       value="{{old('education.gpa')??$user->education[0]->gpa}}"
+                                       class="form-control" aria-invalid="false"
+                                       required>
 
-                            @if ($errors->has('education.gpa'))
-                                <div id="name-error" class="error text-danger pl-3"
-                                     for="education[gpa]"
-                                     style="display: block;">
-                                    <strong>{{ $errors->first('education.gpa') }}</strong>
-                                </div>
-                            @endif
-                        </div>
+                                @if ($errors->has('education.gpa'))
+                                    <div id="name-error" class="error text-danger pl-3"
+                                         for="education[gpa]"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('education.gpa') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+                        @endif
 
-                    @endif
 
                     <div class="form-group col-md-6 mb-3 mt-3 py-2 px-4">
                         <label for="active">تایید کاربر: </label>
                         <input type="checkbox" class="option-input"
                                name="active"
                                value="true"
-                               aria-invalid="false" @if($user->active == 1) checked @endif>
+                               aria-invalid="false" @if($user->active == 2) checked @endif>
 
                         @if ($errors->has('active'))
                             <div id="name-error" class="error text-danger pl-3"

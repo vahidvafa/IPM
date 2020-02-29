@@ -19,16 +19,6 @@
     <link rel="stylesheet" href="{{asset('css/persian-datepicker.min.css')}}" type='text/css' media='all'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
-    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{asset('js/popper.min.js')}}"></script>
-    <script type='text/javascript' src='{{asset('js/bootstrap.min.js')}}'></script>
-    <script src="{{asset('js/all.js')}}"></script>
-    <script src="{{asset('js/slick.min.js')}}"></script>
-    <script src="{{asset('js/persian-date.min.js')}}"></script>
-    <script src="{{asset('js/persian-datepicker.min.js')}}"></script>
-
-
     @yield('header')
 
 </head>
@@ -363,9 +353,16 @@
         </div>
     </div>
 </div>
-
+<script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
+<script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{asset('js/popper.min.js')}}"></script>
+<script type='text/javascript' src='{{asset('js/bootstrap.min.js')}}'></script>
+<script src="{{asset('js/all.js')}}"></script>
+<script src="{{asset('js/slick.min.js')}}"></script>
+<script src="{{asset('js/persian-date.min.js')}}"></script>
+<script src="{{asset('js/persian-datepicker.min.js')}}"></script>
 <script>
-    $(".datePickerInputs").persianDatepicker();
+    // $(".datePickerInputs").persianDatepicker();
     $(document).ready(function () {
         $('.logo-slid').slick({
             dots: false,
