@@ -5,8 +5,17 @@
         <div class="container my-5">
             <form action="{{route('search.post')}}" method="post">
                 @csrf
-                <input class="form-control col-10" type="text" name="search" placeholder="جستجو">
-                <input type="submit" value="جستجو" class="form-submit-violet text-white font-16 text-medium col-2 ">
+                <div class="row w-100">
+                    <div class="col-12 col-md-8">
+                        <input class="form-control w-100" type="text" name="search" placeholder="جستجو">
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <input type="submit" value="جستجو" class="form-submit-violet text-white font-16 text-medium w-100">
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <a href="{{route('search')}}" class="btn btn-news text-yellow text-medium w-100">نمایش همه </a>
+                    </div>
+                </div>
             </form>
             <div class="row justify-content-center">
                 <!-- Nav tabs -->

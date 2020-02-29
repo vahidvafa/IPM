@@ -70,7 +70,9 @@ class JobController extends Controller
      */
     public function create(Request $request)
     {
-
+        if (!auth()->check() || auth()->user()->active != 2){
+            abort(404,'شما مجاز به دیدن این صفحه نمی باشید');
+        }
         $province = Province::all();
         $cats = JobsCategory::all();
 

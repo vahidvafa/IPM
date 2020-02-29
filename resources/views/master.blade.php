@@ -84,6 +84,11 @@
                         <!-- Navbar links -->
                         <div class="collapse navbar-collapse order-lg-0" id="collapsibleNavbar">
                             <ul class="navbar-nav header-main">
+                                @guest
+                                    <li class="nav-item ">
+                                        <a class="nav-link " href="{{route('register')}}">ثبت نام</a>
+                                    </li>
+                                @endguest
                                 {{--<li class="nav-item active">
                                     <a class="nav-link " href="{{route('main')}}">صفحه اول</a>
                                 </li>--}}
@@ -102,10 +107,10 @@
                                             مدیره</a>
                                         <a class="dropdown-item" href="{{route('about-us')}}#chart">چارت سازمانی</a>
                                         <div class="dropdown-divider">برای دانلود</div>
-                                        <a class="dropdown-item" href="#">اسناد مرجع</a>
+                                        <a class="dropdown-item" href="{{route('download')}}">اسناد مرجع</a>
                                         <a class="dropdown-item" href="{{route('download')}}"
                                            target="_blank">مجوزها</a>
-                                        <a class="dropdown-item" href="#">گزارش ها</a>
+                                        <a class="dropdown-item" href="{{route('download')}}">گزارش ها</a>
                                     </div>
                                 </li>
                                 <!-- Dropdown -->
@@ -115,7 +120,7 @@
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#">كميته عضويت</a>
                                         <a class="dropdown-item" href="{{route('user.search')}}">يافتن اعضا</a>
-                                        <a class="dropdown-item" href="#">شبكه اعضا جوان</a>
+                                        <a class="dropdown-item" href="http://yc.ipma.ir/" target="_blank">شبكه اعضا جوان</a>
                                     </div>
                                 </li>
                                 <!-- Dropdown -->
@@ -255,7 +260,7 @@
                             <a class="nav-link text-gray font-14" href="#">کارگاه ها</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">همایش ها</a>
+                            <a class="nav-link text-gray font-14" href="{{route('events')}}">همایش ها</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-gray font-14" href="#">جوایز</a>

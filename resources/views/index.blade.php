@@ -77,6 +77,11 @@
                         <!-- Navbar links -->
                         <div class="collapse navbar-collapse order-lg-0" id="collapsibleNavbar">
                             <ul class="navbar-nav header-main">
+                                @guest
+                                    <li class="nav-item ">
+                                        <a class="nav-link " href="{{route('register')}}">ثبت نام</a>
+                                    </li>
+                                @endguest
                                 {{--<li class="nav-item active">
                                     <a class="nav-link " href="{{route("main")}}">صفحه اول</a>
                                 </li>--}}
@@ -95,10 +100,10 @@
                                             مدیره</a>
                                         <a class="dropdown-item" href="{{route('about-us')}}#chart">چارت سازمانی</a>
                                         <div class="dropdown-divider">برای دانلود</div>
-                                        <a class="dropdown-item" href="#">اسناد مرجع</a>
-                                        <a class="dropdown-item" href="{{url('files/certificate.pdf')}}"
+                                        <a class="dropdown-item" href="{{route('download')}}">اسناد مرجع</a>
+                                        <a class="dropdown-item" href="{{route('download')}}"
                                            target="_blank">مجوزها</a>
-                                        <a class="dropdown-item" href="#">گزارش ها</a>
+                                        <a class="dropdown-item" href="{{route('download')}}">گزارش ها</a>
                                     </div>
                                 </li>
                                 <!-- Dropdown -->
@@ -108,7 +113,7 @@
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#">كميته عضويت</a>
                                         <a class="dropdown-item" href="{{route('user.search')}}">يافتن اعضا</a>
-                                        <a class="dropdown-item" href="#">شبكه اعضا جوان</a>
+                                        <a class="dropdown-item" href="http://yc.ipma.ir/" target="_blank">شبكه اعضا جوان</a>
                                     </div>
                                 </li>
                                 <!-- Dropdown -->
@@ -161,8 +166,10 @@
             <div class="row align-items-center justify-content-around">
                 <div class="slider-form-out col-md-4 col-lg-2 order-2 order-md-1 z-index "
                      style="margin-right: -144px ;">
-                    <input type="submit" value="هوادار شوید" style="transform: rotate(-90deg);margin-top: 150px;"
-                           class="form-submit text-white font-16 text-medium">
+                    <form action="{{route('register')}}" method="get">
+                        <input type="submit" value="هوادار شوید" style="transform: rotate(-90deg);margin-top: 150px;"
+                               class="form-submit text-white font-16 text-medium">
+                    </form>
                 </div>
                 <div class="col-md-6 order-1 order-md-2 " style="margin-right: 490px;margin-bottom: 90px">
                     <h2 class="font-28 text-white mb-5 "><span class="text-yellow">{{$ipma->head_title}}</span></h2>
@@ -859,7 +866,7 @@
                             <a class="nav-link text-gray font-14" href="#">کارگاه ها</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">همایش ها</a>
+                            <a class="nav-link text-gray font-14" href="{{route('events')}}">همایش ها</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-gray font-14" href="#">جوایز</a>
