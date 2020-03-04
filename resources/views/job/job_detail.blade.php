@@ -41,12 +41,14 @@
                         <li><span class="text-black pr-1 text-regular ">شهر:</span> {{$job->province->title}}</li>
                         <li><span class="text-black pr-1 text-regular ">نوع همکاری: </span>{{$job->contract_type}}</li>
                         <li><span class="text-black pr-1 text-regular ">جنسیت:</span> @if($job->sex==-1 ) تفاوتی مدارد @elseif($job->sex ==0 ) زن @else مرد @endif</li>
+                        <li><span class="text-black pr-1 text-regular ">تغداد بازدید:</span>{{$job->visibility_count}}</li>
+                        <li><span class="text-black pr-1 text-regular ">تعداد درخواست:</span>{{count($job->requests)}}</li>
 
                     </ul>
                         <form method="post" action="{{route('applyJob')}}" >
                             <input type="hidden" name="job_id" value="{{$job->id}}" >
                             @csrf
-                        <button type="submit" class="btn btn-bar-detail mt-3 mb-4">ثبت نام</button>
+                        <button type="submit" class="btn btn-bar-detail mt-3 mb-4">ارسال درخواست</button>
                         </form>
                     </div>
                         <div class="bar-detail pt-4 pb-4 pr-3 pl-3">

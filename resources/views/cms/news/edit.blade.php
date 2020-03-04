@@ -1,6 +1,10 @@
 @extends('cms.master')
 @section('content')
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+
+    <script src="{{asset('js/dropzone.js')}}"></script>
+    <link href="{{asset('css/dropzone.css')}}" rel="stylesheet" />
+
     <div class="col-12">
         <div class="card">
             <div class="card-header card-header-warning">
@@ -17,11 +21,11 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <form action="{{route('cms.user.update',[$news->id])}}" method="post" enctype="multipart/form-data">
+                                <form action="{{route('news.update',[$news->id])}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-lg-12 mb-4">
-                                            <label>عنوان خبر</label>
+                                            <label class="col-12">عنوان خبر</label>
                                             <input class="form-control" name="title" type="text" placeholder="عنوان خبر"
                                                    value="{{$news->title}}">
                                             @error('title')
@@ -29,8 +33,8 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-12 mb-4">
-                                            <label>خلاصه خبر</label>
-                                            <input class="form-control" name="description" type="text"
+                                            <label class="col-12" for="description">خلاصه خبر</label>
+                                            <input class="form-control" name="description" id="description" type="text"
                                                    placeholder="خلاصه خبر"
                                                    value="{{$news->description}}">
                                             @error('description')
@@ -38,10 +42,10 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-12 mb-4">
-                                            <label>متن خبر</label>
+                                            <label class="col-12 " for="detail">متن خبر</label>
                                             <div class="editor">
                                                 <textarea id="detail" name="detail"
-                                                          class="form-control ckeditor cke_rtl">{{ $news->detail }}</textarea>
+                                                          class="form-control ckeditor cke_rtl mt-5">{{ $news->detail }}</textarea>
                                             </div>
                                             @error('detail')
                                                 <div class="error text-danger">{{ $message }}</div>
@@ -58,6 +62,7 @@
 
                                         </div>
                                     </div>
+
                                     <div class="card-footer">
                                         <button class="btn btn-success" type="submit">ویرایش</button>
                                     </div>

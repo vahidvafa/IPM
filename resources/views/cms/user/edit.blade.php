@@ -671,6 +671,8 @@
                             </div>
                         @endif
 
+                    @endif
+
 
                     <div class="form-group col-md-6 mb-3 mt-3 py-2 px-4">
                         <label for="active">تایید کاربر: </label>
@@ -702,14 +704,18 @@
                                 <th scope="col">توضیخات</th>
                                 <th scope="col">عکس مدرک</th>
                                 <th scope="col">تایید</th>
+                                {{--<th scope="col">حذف</th>--}}
                             </tr>
                             </thead>
                             <tbody>
+
                             @php
-                                    $i = 0;
+
+                                $i = 0;
                             @endphp
 
-                            @foreach($documents as $doc)
+
+                            @foreach($user->documents as $doc)
                                 @php
                                     $i++;
                                 @endphp
@@ -725,6 +731,15 @@
                                                value="{{$doc->id}}"
                                                aria-invalid="false" @if($doc->state == 1 ) checked @endif>
                                     </td>
+                                    {{--<td data-th="حذف" class="text-right">
+                                        <form action="{{route('document.del')}}" method="post" id="form{{$doc->id}}" >
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{$doc->id}}" >
+                                            <input type="submit" class="btn btn-danger" value="حذف" >
+
+                                        </form>
+
+                                    </td>--}}
                                 </tr>
                             @endforeach
                             </tbody>
@@ -732,6 +747,10 @@
 
                     </div>
 
+                    <div class="form-group col-12">
+                        <label for="shortcomings" class="col-12"  >نقص مدارک</label>
+                    <textarea placeholder="لطفا مدارکی که مجدد کاربر جاری لازم دارد که اپلود کند را بنویسید" name="shortcomings" id="shortcomings" class="form-control"  >{{$user->shortcomings}}</textarea>
+                    </div>
 
 
                     <div class="col-md-12 card-footer">

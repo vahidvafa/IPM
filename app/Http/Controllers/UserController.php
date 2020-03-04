@@ -100,12 +100,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::with(['education', 'companies'])->findOrFail($id);
+        $user = User::with(['education', 'companies','documents'])->findOrFail($id);
         $membership = MembershipType::findOrFail($user->membership_type_id);
 
-        $documents = Document::whereUserId($user->id)->get();
-
-        return view('cms.user.edit', compact('user', 'membership', 'documents'));
+        return view('cms.user.edit', compact('user', 'membership'));
     }
 
     /**
@@ -122,6 +120,15 @@ class UserController extends Controller
         $user->update($request->all());
 
         $user->profile()->update($request->all('profile')['profile']);
+
+        if ($request->hasFile('files')) {
+            for ($i = 0; $i < count($request->file('files')); $i++) {
+                $documentName = time() . $i . '.' . $request->file('files')[$i]->getClientOriginalExtension();
+                $request->file('files')[$i]->move(public_path('/files/documents'), $documentName);
+                $document = new Document(['address' => $documentName, 'explain' => $request->get('files_explain')[$i]]);
+                $user->documents()->save($document);
+            }
+        }
 
         return redirect()->back();
     }

@@ -102,7 +102,7 @@
                                 <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
                                         <div class="last-pack-content-in-img-in">
-                                            <img src="img/last1.jpg" alt="anjoman">
+                                            <img src="{{asset('img/job/'.$job->company_logo)}}" alt="anjoman">
                                         </div>
 
                                     </div>
@@ -159,7 +159,7 @@
                                 <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
                                         <div class="last-pack-content-in-img-in">
-                                            <img src="img/last1.jpg" alt="anjoman">
+                                            <img src="{{asset('img/job/'.$myJob->company_logo)}}" alt="anjoman">
                                         </div>
 
                                     </div>

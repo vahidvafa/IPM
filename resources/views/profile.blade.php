@@ -4,7 +4,6 @@
 
 @stop
 @section('content')
-
     <main id="content-page" role="main">
         <!-- calender main -->
         <div class="container">
@@ -31,6 +30,17 @@
                                 @if(time() >= $user->expire)
                                     <p class="text-danger font-26 text-bold">اشتراک شما به پایان رسیده</p>
                                 @endif
+
+                                    @if( auth()->check() && $user->id == auth()->id() && $user->shortcomings != null )
+
+                                        <p class=" text-danger text-bold">
+                                            نواقصی مدارک:
+                                            {{--ادرس: {{$document->address}} ||--}}
+                                            {{$user->shortcomings}}
+                                        </p>
+
+                                    @endif
+
                                 <p class="font-16 text-regular text-black">
                                     <span>سابقه :</span>
                                     <br>
@@ -46,6 +56,18 @@
                                         <br>
                                     @endforeach
                                 </p>
+                                    @if($user->membership_type_id == 2 )
+                                        <p class="font-16 text-regular text-black">
+                                            <span>نام شرکت: </span>
+                                            {{$user->companies[0]->name}}
+                                        </p>
+
+                                        <p class="font-16 text-regular text-black">
+                                            <span>محل شرکت: </span>
+                                            {{$user->companies[0]->established_place}}
+                                        </p>
+                                        @endif
+
                                 <p class="font-16 text-regular text-black">
                                     <span>درباره من :</span>
                                     <span class="text-black-light">{{$user->about_me}}</span>
@@ -58,11 +80,20 @@
                                     <a href="{{$user->profile[0]->youTube}}"><img src="{{asset('img/social55.png')}}" alt="..."></a>
                                 </div>
 
+
                             </div>
                             <div class="col-md-6 col-lg-4">
+                                @if((jdate()->getYear() - (int)explode('/',$user->profile[0]->birth_date)[0]) <= 35)
+                                <div class="row col-6 mb-3 "  >
+                                    <img class="img-fluid" src="{{asset('img/YC1.jpeg')}}" alt="..">
+                                </div>
+
+                                @endif
+
                                 <div class="qr-profile">
                                     <img class="img-fluid" src="{{asset('img/googleQRcodes.png')}}" alt="..">
                                 </div>
+
                             </div>
                             <div class="profile-top-svg">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 223.5 607.6">
@@ -136,22 +167,11 @@
                                         </div>
 
                                         <div class="form-profile">
-                                            @if( auth()->check() && $user->id == auth()->id() && count($user->documents) !=0 )
-                                                <h2 class=" font-24 text-medium text-black  mb-3 mt-5">نواقصی
-                                                    مدارک </h2>
-
-                                            @foreach($user->documents as $document)
-                                                <p class=" text-black-light font-16 mb-2">
-                                                    ادرس: {{$document->address}} ||
-                                                    نواقصی: {{$document->explain}}
-                                                </p>
-                                            @endforeach
-                                            @endif
 
                                             @if(auth()->id() != $user->id)
-                                                <h2 class=" font-24 text-medium text-black mb-4 mt-5 hide ">اطلاعات بیشتر
+                                                {{--<h2 class=" font-24 text-medium text-black mb-4 mt-5 hide ">اطلاعات بیشتر
                                                     قابل مشاهده
-                                                </h2>
+                                                </h2>--}}
                                                 <div class="sidebar-form-body row hide"  >
                                                     @foreach($profileVisible as $key=>$value)
                                                         <div class="input-form col-md-12 ">
@@ -171,7 +191,7 @@
                                     @auth()
                                         @if(auth()->id() == $user->id )
                                 </div>
-                                <div class="tab-pane row form-profile" id="edit">
+                                <div class="tab-pane row form-profile show active " id="edit">
                                     <form class="sidebar-form-body row" action="{{route("user.update")}}" method="POST"
                                           enctype="multipart/form-data">
                                         @csrf
@@ -259,6 +279,39 @@
                                             </div>
                                         </div>
 
+                                        @if( auth()->check() && $user->id == auth()->id() && $user->shortcomings != null )
+
+                                            <p class=" text-danger text-bold col-12">
+                                                نواقصی مدارک:
+                                                {{--ادرس: {{$document->address}} ||--}}
+                                                {{$user->shortcomings}}
+                                            </p>
+
+                                        @endif
+
+                                        <div class="row ">
+                                            <div class="input-form col-md-2 " >
+                                                <input type="file" name="files[]" aria-invalid="false"
+                                                       placeholder="آپلود مدارک" required
+
+                                                >
+                                            </div>
+                                            <div class="input-form col-md-8">
+                                                <input type="text" name="files_explain[]" value="" size="40"
+                                                       aria-invalid="false" placeholder="توضیحات مدارک *" required>
+                                            </div>
+                                            <div class="col-md-2 py-2">
+                                                <button type="button" class="btn btn-success"
+                                                        onclick="addRow('documentDefect')">+
+                                                </button>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-9" id="documentDefect" >
+
+                                        </div>
+
 
                                         <div class="input-form col-md-12">
                                             <textarea type="text" name="about_me" size="40" aria-invalid="false"
@@ -292,6 +345,26 @@
         });
 
 
+        function addRow(id) {
+            var row_id = Date.now();
+            var new_row = "                                <div class=\"row\" id=" + row_id + ">\n" +
+                "                                    <div class=\"input-form col-md-2\">\n" +
+                "                                        <input type=\"file\" name=\"files[]\" value=\"\" size=\"40\" aria-invalid=\"false\" placeholder=\"آپلود مدارک\" required>\n" +
+                "                                    </div>\n" +
+                "                                    <div class=\"input-form col-md-8\">\n" +
+                "                                        <input type=\"text\" name=\"files_explain[]\" value=\"\" size=\"40\" aria-invalid=\"false\" placeholder=\"توضیحات مدارک *\" required>\n" +
+                "                                    </div>\n" +
+                "                                    <div class=\"col-md-2 py-2\">\n" +
+                "                                        <button type=\"button\" class=\"btn btn-danger\" onclick=\"deleteRow(" + row_id + ")\">-</button>\n" +
+                "                                    </div>\n" +
+                "                                </div>";
+            $("#" + id).append(new_row);
+        }
+
+
+        function deleteRow(id) {
+            $("#" + id).remove();
+        }
 
 
     </script>
