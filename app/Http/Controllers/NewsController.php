@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\News;
+use App\Picture;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -50,18 +51,24 @@ class NewsController extends Controller
             "detail" => "required",
             "image" => "required|image",
         ], ['*.required' => 'وارد کردن این فیلد الزامی است']);
-        try {
-            $news = new News($request->all());
-            $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('/img/news'), $imageName);
-            $news->photo = $imageName;
-            $news->save();
-            flash_message('success',  __('string.successful'));
-            return redirect()->route('news.index');
-        } catch (\Exception $exception) {
-            flash_message('error',  __('string.unsuccessful'));
-            return back()->withInput($request->all());
+//        try {
+        $news = new News($request->all());
+        $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+        $request->file('image')->move(public_path('/img/news/'), $imageName);
+        $news->photo = $imageName;
+        $news->save();
+        for ($i = 0; $i < count($request->file('pictures')); $i++) {
+            $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
+            $request->file('pictures')[$i]->move(public_path('/img/news/'), $imageName);
+            $photo = new Picture(['url' => $imageName]);
+            $news->pictures()->save($photo);
         }
+        flash_message('success', __('string.successful'));
+        return redirect()->route('news.index');
+//        } catch (\Exception $exception) {
+        flash_message('error', __('string.unsuccessful'));
+        return back()->withInput($request->all());
+//        }
     }
 
     /**
@@ -107,9 +114,17 @@ class NewsController extends Controller
             $news->update($request->all());
             if ($request->has('image')) {
                 $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $request->file('image')->move(public_path('/img/news'), $imageName);
+                $request->file('image')->move(public_path('/img/news/'), $imageName);
                 $news->photo = $imageName;
                 $news->save();
+            }
+            if ($request->hasFile('pictures')) {
+                for ($i = 0; $i < count($request->file('pictures')); $i++) {
+                    $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
+                    $request->file('pictures')[$i]->move(public_path('/img/news/'), $imageName);
+                    $photo = new Picture(['url' => $imageName]);
+                    $news->pictures()->save($photo);
+                }
             }
             flash_message('success', __('string.successful.edit'));
             return redirect()->route('news.index');

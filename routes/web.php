@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function () {
             Route::post('news/store', 'NewsController@store')->name('news.store');
             Route::post('news/{news}/delete', 'NewsController@destroy')->name('news.delete');
             Route::post('news/{news}/update', 'NewsController@update')->name('news.update');
+            Route::post('picture/{picture}/delete', 'PictureController@destroy')->name('picture.delete');
             //------
             Route::get('events/', 'EventController@indexCms')->name('event.index');
             Route::get('events/create', 'EventController@create')->name('event.create');

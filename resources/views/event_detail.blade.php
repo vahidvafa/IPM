@@ -12,14 +12,14 @@
                         <h2 class=" font-24 text-medium text-black  mb-4">توضیحات دوره
                         </h2>
                         {{--<p class=" text-black-light font-16 "></p>--}}
-                        <p class=" text-black-light font-16 ">{{$event->description}}</p>
+                        <p class=" text-black-light font-16 ">{!!$event->description !!}</p>
 
                     </div>
                     <div class="list-detail mt-4">
                         <h2 class=" font-24 text-medium text-black  mb-4">سر فصل های دوره
                         </h2>
                         <p>
-                            {{$event->course_headings}}
+                            {!! $event->course_headings !!}
                         </p>
                         {{--<ul class="list-detail-in">
                             <li class="text-black-light mb-2">فصل اول: کار با صفحات گسترده</li>

@@ -7,7 +7,11 @@ function unixToDay($timestamp)
 function dayToUnix($day)
 {
     return $day * 86400;
+}
 
+function yearToUnix($year)
+{
+    return dayToUnix($year * 365);
 }
 
 function tr_num($str, $mod = 'en', $mf = '٫')
@@ -37,7 +41,7 @@ function checkIsMobile($number)
 
 function checkMenu($button, $page)
 {
-    return ($button == $page) ? 'active' :'';
+    return ($button == $page) ? 'active' : '';
 }
 
 function checkUserNameType($username)
@@ -54,4 +58,20 @@ function checkUserNameType($username)
 function makeObj($array)
 {
     return (object)$array;
+}
+
+function checkYoung($age)
+{
+//    $age = j_to_timestamp($age);
+//    if ((now() - $age))
+}
+
+function j_to_timestamp($date, $time = null)
+{
+    $date = explode("/", tr_num($date));
+    $gregorian = \Morilog\Jalali\CalendarUtils::toGregorian($date[0], $date[1], $date[2]);
+    $gregorian = $gregorian[0] . "/" . $gregorian[1] . "/" . $gregorian[2];
+    if (isset($time))
+        $gregorian .= $time;
+    return strtotime($gregorian);
 }

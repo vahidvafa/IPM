@@ -226,7 +226,8 @@ class JobController extends Controller
             if (auth()->check() && auth()->id() == $job->user_id) {
                 if (!$validate->fails()) {
                     if ($job->update($request->except(['image']))) {
-                        $request->file('image')->move(public_path('/img/job'), $job->company_logo);
+                        if ($request->has('image'))
+                            $request->file('image')->move(public_path('/img/job'), $job->company_logo);
                         $res = [true, "فرصت شغلی مورد نظر با موفقیت ویرایش شد"];
                     }
                     else

@@ -18,36 +18,7 @@
     {{--<link href="{{asset('/css/select2.min.css')}}" rel="stylesheet"/>--}}
     {{--<script src="{{asset('/js/select2.min.js')}}"></script>--}}
 
-    <script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
-    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{asset('js/popper.min.js')}}"></script>
-    <script type='text/javascript' src='{{asset('js/bootstrap.min.js')}}'></script>
-{{--    <link rel="stylesheet" href="{{asset('css/persianDatepicker-default.css')}}" type='text/css' media='all'>--}}
-    <link rel="stylesheet" href="{{asset('css/persian-datepicker.min.css')}}" type='text/css' media='all'>
 
-    {{--    <script type="text/javascript" src="{{URL::to('js/p.js')}}"></script>--}}
-    {{--    <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>--}}
-    <meta name="csrf-token" content="{{ Session::token() }}">
-    <meta name="csrf-token" content="{{ csrf_token() }}"/>
-
-    <script src="{{ asset('material/js/core/jquery.min.js') }}"></script>
-    <script src="{{ asset('material/js/core/popper.min.js') }}"></script>
-    <script src="{{ asset('material/js/core/bootstrap-material-design.min.js') }}"></script>
-    {{--    <script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
-    <script src="{{ asset('material/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
-    <!-- Chartist JS -->
-    <script src="{{ asset('material/js/plugins/chartist.min.js') }}"></script>
-    <!--  Notifications Plugin    -->
-    <script src="{{ asset('material/js/plugins/bootstrap-notify.js') }}"></script>
-    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="{{ asset('material/js/material-dashboard.js?v=2.1.1') }}" type="text/javascript"></script>
-    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-    <script src="{{ asset('material/js/settings.js') }}"></script>
-    {{--    <script src="{{asset('js/persianDatepicker.min.js')}}"></script>--}}
-    <script src="{{asset('js/persian-date.min.js')}}"></script>
-    <script src="{{asset('js/persian-datepicker.min.js')}}"></script>
-    <link href="{{asset('css/select2.min.css')}}" rel="stylesheet" />
-    <script src="{{asset('js/select2.min.js')}}"></script>
 
     <style>
         @import url('{{ asset('css/fontiran.css') }}');
@@ -177,4 +148,34 @@
 
 </div>
 </body>
+<script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
+<script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{asset('js/popper.min.js')}}"></script>
+<script type='text/javascript' src='{{asset('js/bootstrap.min.js')}}'></script>
+{{--    <link rel="stylesheet" href="{{asset('css/persianDatepicker-default.css')}}" type='text/css' media='all'>--}}
+<link rel="stylesheet" href="{{asset('css/persian-datepicker.min.css')}}" type='text/css' media='all'>
+
+{{--    <script type="text/javascript" src="{{URL::to('js/p.js')}}"></script>--}}
+{{--    <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>--}}
+<meta name="csrf-token" content="{{ Session::token() }}">
+<meta name="csrf-token" content="{{ csrf_token() }}"/>
+
+<script src="{{ asset('material/js/core/jquery.min.js') }}"></script>
+<script src="{{ asset('material/js/core/popper.min.js') }}"></script>
+<script src="{{ asset('material/js/core/bootstrap-material-design.min.js') }}"></script>
+{{--    <script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
+<script src="{{ asset('material/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+<!-- Chartist JS -->
+<script src="{{ asset('material/js/plugins/chartist.min.js') }}"></script>
+<!--  Notifications Plugin    -->
+<script src="{{ asset('material/js/plugins/bootstrap-notify.js') }}"></script>
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="{{ asset('material/js/material-dashboard.js?v=2.1.1') }}" type="text/javascript"></script>
+<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="{{ asset('material/js/settings.js') }}"></script>
+{{--    <script src="{{asset('js/persianDatepicker.min.js')}}"></script>--}}
+<script src="{{asset('js/persian-date.min.js')}}"></script>
+<script src="{{asset('js/persian-datepicker.min.js')}}"></script>
+<link href="{{asset('css/select2.min.css')}}" rel="stylesheet" />
+<script src="{{asset('js/select2.min.js')}}"></script>
 </html>

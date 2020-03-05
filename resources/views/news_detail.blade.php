@@ -7,7 +7,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card img-top-detail">
-                            <img class="card-img-top"  height="460px" src="{{asset("img/events/$news->photo")}}" alt="Card image">
+                            <img class="card-img-top" style="max-height: 460px" height="auto"
+                                 src="{{asset("img/news/$news->photo")}}" alt="Card image">
                             <div class="card-body">
                                 <h4 class="card-title text-white m-0">{{$news->title}}</h4>
                             </div>
@@ -20,9 +21,33 @@
                                 {!!  $news->detail !!}
                             </p>
                         </div>
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                @for($j = 0 ; $j < count($news->pictures) ; $j++)
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{$j}}" {{($j == 0) ? 'class="active"' : ''}}></li>
+                                @endfor
+                            </ol>
+                            <div class="carousel-inner" style="max-height: 460px;">
+                                @for($i = 0 ; $i < count($news->pictures) ; $i++)
+                                    <div class="carousel-item {{($i ==0 ) ? 'active' : ''}}">
+                                        <img class="d-block w-100" style="max-height: 460px;"
+                                             src="{{asset("img/news/".$news->pictures[$i]->url)}}">
+                                    </div>
+                                @endfor
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                               data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                               data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </main>

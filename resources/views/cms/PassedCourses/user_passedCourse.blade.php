@@ -110,7 +110,7 @@
             </div>
         </div>
     </div>
-
+    <script src="{{ asset('material/js/core/jquery.min.js') }}"></script>
     <script>
         $(document).ready(function () {
             $('#course').select2();

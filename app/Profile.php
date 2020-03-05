@@ -98,4 +98,15 @@ class Profile extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected $appends = ['young'];
+
+    public function getYoungAttribute()
+    {
+        $membershipType = MembershipType::find($this->user()->membership_type_id);
+        if ($membershipType->exists)
+            if ($membershipType->price > 0)
+                return checkYoung($this->birth_date);
+        return false;
+    }
 }

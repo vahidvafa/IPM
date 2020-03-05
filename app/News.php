@@ -41,4 +41,9 @@ class News extends Model
     use SoftDeletes;
 
     protected $fillable = ['title', 'description', 'detail'];
+
+    public function pictures()
+    {
+        return $this->hasMany(Picture::class);
+    }
 }

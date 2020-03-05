@@ -21,7 +21,7 @@
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-lg-12 mb-4">
-                                            <label>عنوان خبر</label>
+                                            <label class="col-12">عنوان خبر</label>
                                             <input class="form-control" name="title" type="text" placeholder="عنوان خبر"
                                                    value="{{old('title')}}">
                                             @error('title')
@@ -29,7 +29,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-12 mb-4">
-                                            <label>خلاصه خبر</label>
+                                            <label class="col-12">خلاصه خبر</label>
                                             <input class="form-control" name="description" type="text"
                                                    placeholder="خلاصه خبر"
                                                    value="{{old('description')}}">
@@ -38,7 +38,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-lg-12 mb-4">
-                                            <label>متن خبر</label>
+                                            <label class="col-12">متن خبر</label>
                                             <div class="editor">
                                                 <textarea id="detail" name="detail"
                                                           class="form-control ckeditor cke_rtl">{{ old('detail') }}</textarea>
@@ -48,9 +48,17 @@
                                             @enderror
                                         </div>
                                         <div class="col-lg-12 mb-4">
-                                            <label>عکس خبر</label>
+                                            <label class="col-12">عکس خبر</label>
                                             <input class="form-control-file my-2" type="file" name="image" id="image">
                                             @error('image')
+                                            <div class="error text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-lg-12 mb-4">
+                                            <label class="col-12">گالری ( همه ی عکس ها را انتخاب کنید )</label>
+                                            <input class="form-control"
+                                                   name="pictures[]" id="input-content" type="file" multiple>
+                                            @error('pictures')
                                             <div class="error text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>

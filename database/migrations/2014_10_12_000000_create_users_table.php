@@ -35,6 +35,10 @@ class CreateUsersTable extends Migration
             $table->text('resume_address')->nullable();
             $table->text('about_me')->nullable();
             $table->text('shortcomings')->nullable()->comment('Not NULL => admin rejected');
+            $table->tinyInteger('diamond')->default(0);
+            $table->tinyInteger('gold')->default(0);
+            $table->tinyInteger('silver')->default(0);
+            $table->tinyInteger('bronze')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

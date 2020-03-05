@@ -84,4 +84,13 @@ class Event extends Model
         return $this->belongsTo(EventCategory::class);
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function gifts()
+    {
+        return $this->hasMany(Gift::class);
+    }
 }
