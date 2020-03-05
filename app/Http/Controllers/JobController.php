@@ -136,12 +136,17 @@ class JobController extends Controller
     public function show($id)
     {
 
-        $job = Job::with('province', "jobCategory")->findOrFail($id);
+        $job = Job::with(['province', "jobCategory",'requests'])->findOrFail($id);
 
         if (auth()->check()){
             $user = User::find(auth()->id());
             if ($user->roles == 2 && $job->user_id != $user->id)
-            return abort('404');
+                return abort('404');
+
+            if ($job->user_id == $user->id){
+                return redirect()->route('job.edit',$job->id);
+            }
+
         }else {
             return abort('404');
         }
@@ -227,7 +232,7 @@ class JobController extends Controller
                 if (!$validate->fails()) {
                     if ($job->update($request->except(['image']))) {
                         if ($request->has('image'))
-                            $request->file('image')->move(public_path('/img/job'), $job->company_logo);
+                        $request->file('image')->move(public_path('/img/job'), $job->company_logo);
                         $res = [true, "فرصت شغلی مورد نظر با موفقیت ویرایش شد"];
                     }
                     else

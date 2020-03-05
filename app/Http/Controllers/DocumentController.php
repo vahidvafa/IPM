@@ -75,11 +75,17 @@ class DocumentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Document  $document
+     * @param  \App\Document $document
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy(Document $document)
+    public function destroy(Request $request)
     {
-        //
+        $document = Document::findOrFail($request->get('id'));
+
+        $document->delete();
+
+        flash_message("success",__('successful.delete'));
+        return back();
     }
 }

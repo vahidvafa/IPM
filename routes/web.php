@@ -94,7 +94,8 @@ Route::middleware('auth')->group(function () {
             Route::get('ManageCourses','PassedCoursesController@relationUserCourse')->name('ManageCourses');
             Route::get('userPassedCourse/{id}','PassedCoursesController@PassedCoursesByUser')->name('PassedCourses.byUser');
             Route::post('userPassedCourse/del','PassedCoursesController@destroyCourseForUser')->name('PassedCourses.byUser.del');
-
+            //------
+            Route::post('document/del','DocumentController@destroy')->name('document.del');
         });
     });
 });

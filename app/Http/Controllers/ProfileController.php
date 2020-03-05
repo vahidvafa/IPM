@@ -64,9 +64,9 @@ class ProfileController extends Controller
 
         $user = User::with(['workExperience', 'education', 'profile','companies','passedCourse'=>function(BelongsToMany $query){
             $query->with(['PassedCoursesCat'])->orderBy('passed_courses_category_id')->get();
-        },'documents' => function (HasMany $doc) {
+        }/*,'documents' => function (HasMany $doc) {
             $doc->where('state', '=', 0);
-        }])->where('slug', '=', $slug)->get();
+        }*/])->where('slug', '=', $slug)->get();
 
         $breadcrumb = "پروفایل";
 
