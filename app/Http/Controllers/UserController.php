@@ -121,6 +121,29 @@ class UserController extends Controller
 
         $user->profile()->update($request->all('profile')['profile']);
 
+
+        if ($request->hasFile('profile_pic')) {
+
+            $picname = $user->profile_picture??(time() .$user->id. '.' . $request->file('profile_pic')->getClientOriginalExtension());
+            $request->file('profile_pic')->move(public_path('img/profile'),$picname);
+            if ($user->profile_picture == null){
+                $user->profile_picture = $picname;
+                $user->save();
+                }
+        }
+
+        if ($request->hasFile('resume')) {
+
+            $resumeAddress = $user->resume_address??(time() .$user->id. '.' . $request->file('resume')->getClientOriginalExtension());
+            $request->file('resume')->move(public_path('img/resume'),$resumeAddress);
+            if ($user->resume_address == null){
+                $user->resume_address = $resumeAddress;
+                $user->save();
+                }
+        }
+
+
+
         if ($request->hasFile('files')) {
             for ($i = 0; $i < count($request->file('files')); $i++) {
                 $documentName = time() . $i . '.' . $request->file('files')[$i]->getClientOriginalExtension();

@@ -42,6 +42,11 @@
                                     @endif
 
                                 <p class="font-16 text-regular text-black">
+                                    <span>نام: </span>
+                                    <span class="text-black-light">{{$user->first_name}} {{$user->last_name}}</span>
+                                </p>
+
+                                <p class="font-16 text-regular text-black">
                                     <span>سابقه :</span>
                                     <br>
                                     @foreach($user->workExperience as $word_experience)
@@ -126,6 +131,15 @@
                                             تنها توسط مدیران انجمن صورت میگیرد</p>
                                     </a>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link font-22 text-black-light text-regular " data-toggle="tab"
+                                       href="#edit">
+                                        پرداختی ها
+                                        <p class="font-14 text-black-light text-regular m-0 m-md-2">ویرایش اطلاعات بیشتر
+                                            تنها توسط مدیران انجمن صورت میگیرد</p>
+                                    </a>
+                                </li>
                             </ul>
 
                             <div class="tab-content col-12 last-pack-content ">
@@ -165,13 +179,13 @@
                                                     </ul>
                                             @endforeach
                                         </div>
-
+{{--
                                         <div class="form-profile">
 
                                             @if(auth()->id() != $user->id)
-                                                {{--<h2 class=" font-24 text-medium text-black mb-4 mt-5 hide ">اطلاعات بیشتر
+                                                --}}{{--<h2 class=" font-24 text-medium text-black mb-4 mt-5 hide ">اطلاعات بیشتر
                                                     قابل مشاهده
-                                                </h2>--}}
+                                                </h2>--}}{{--
                                                 <div class="sidebar-form-body row hide"  >
                                                     @foreach($profileVisible as $key=>$value)
                                                         <div class="input-form col-md-12 ">
@@ -184,14 +198,14 @@
                                                 </div>
                                             @endif
 
-                                        </div>
+                                        </div>--}}
 
                                     </div>
 
                                     @auth()
                                         @if(auth()->id() == $user->id )
                                 </div>
-                                <div class="tab-pane row form-profile show active " id="edit">
+                                <div class="tab-pane row form-profile " id="edit">
                                     <form class="sidebar-form-body row" action="{{route("user.update")}}" method="POST"
                                           enctype="multipart/form-data">
                                         @csrf
@@ -273,8 +287,18 @@
                                             <div class="input-upload ">
                                                 <label class="custom-file-label" for="customFile">انتخاب عکس
                                                     پروفایل</label>
-                                                <input type="file" name="profile_picture" class="custom-file-input"
+                                                <input type="file" name="profile_pic" class="custom-file-input"
                                                        id="customFile">
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 mt-3 mb-2">
+                                            <div class="input-upload ">
+                                                <label class="custom-file-label" id="resumeLbl" for="resume">انتخاب فایل رزومه
+                                                    </label>
+                                                <input type="file" name="resume" class="custom-file-input"
+                                                       id="resume">
 
                                             </div>
                                         </div>
@@ -292,13 +316,13 @@
                                         <div class="row ">
                                             <div class="input-form col-md-2 " >
                                                 <input type="file" name="files[]" aria-invalid="false"
-                                                       placeholder="آپلود مدارک" required
+                                                       placeholder="آپلود مدارک"
 
                                                 >
                                             </div>
                                             <div class="input-form col-md-8">
                                                 <input type="text" name="files_explain[]" value="" size="40"
-                                                       aria-invalid="false" placeholder="توضیحات مدارک *" required>
+                                                       aria-invalid="false" placeholder="توضیحات مدارک *" >
                                             </div>
                                             <div class="col-md-2 py-2">
                                                 <button type="button" class="btn btn-success"
@@ -314,7 +338,7 @@
 
 
                                         <div class="input-form col-md-12">
-                                            <textarea type="text" name="about_me" size="40" aria-invalid="false"
+                                            <textarea type="text" name="about_me" aria-invalid="false"
                                                       placeholder="درباره من">{{old('about_me',$user->about_me)}}</textarea>
 
                                         </div>
@@ -337,11 +361,17 @@
 
     </main>
 
+
     <script async>
         // Add the following code if you want the name of the file appear on select
         $("#customFile").on("input", function () {
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+
+$("#resume").on("input", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings("#resumeLbl").addClass("selected").html(fileName);
         });
 
 

@@ -142,4 +142,11 @@ class IndexController extends Controller
         $breadcrumb = "درباره ما";
         return view('about_us', compact('titleHeader', 'breadcrumb'));
     }
+
+    public function cmsReport(){
+
+
+        return view('cms.panel',compact(['']));
+    }
+
 }

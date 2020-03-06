@@ -12,6 +12,7 @@
 */
 
 use Illuminate\Support\Facades\Route;
+use Intervention\Image\Facades\Image;
 
 
 Route::get('/', 'IndexController@index')->name('main');
@@ -112,3 +113,23 @@ Route::resource("job","JobController");
 Route::post('/event/list','EventController@indexJs')->name('event.list');
 Route::get('callback','IndexController@callback')->name('callback');
 Route::get('bank','IndexController@bank')->name('bank');
+
+Route::get('test',function (){
+
+    $name = word2uni("محمد رضا وفایی احمد آبادی");
+
+    $img = Image::make(public_path('img/BO1-blue.jpg'));
+    $img->text($name, 620, 300, function(\Intervention\Image\Gd\Font $font) {
+
+        $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+        $font->size(28);
+        $font->color('#4285F4');
+        $font->align('right');
+        $font->valign('bottom');
+        $font->angle(0);
+    });
+    $img->save(public_path('img/text_with_image.jpg'));
+
+    echo "<img src='img/text_with_image.jpg'>";
+
+});

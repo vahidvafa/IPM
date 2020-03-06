@@ -58,9 +58,9 @@ class ProfileController extends Controller
         $memberships = [];
 
 
-        $FieldsInClass = new UserProFields();
+        /*$FieldsInClass = new UserProFields();
 
-        $FieldsInClass = $FieldsInClass->asArray();
+        $FieldsInClass = $FieldsInClass->asArray();*/
 
         $user = User::with(['workExperience', 'education', 'profile','companies','passedCourse'=>function(BelongsToMany $query){
             $query->with(['PassedCoursesCat'])->orderBy('passed_courses_category_id')->get();
@@ -89,7 +89,7 @@ class ProfileController extends Controller
 
 
 
-        $others_visibles = visibiliy::where("user_id", '=', "$user->id")->get();
+        /*$others_visibles = visibiliy::where("user_id", '=', "$user->id")->get();
 
             if (count($others_visibles) != 0) {
 
@@ -111,7 +111,7 @@ class ProfileController extends Controller
 
                 }
 
-            }
+            }*/
 
             $titleHeader = $user->name;
 
@@ -124,7 +124,7 @@ class ProfileController extends Controller
         $PassedCoursesCats = PassedCoursesCategory::get();
 
 
-            return view('profile', compact("user", "titleHeader", "breadcrumb", 'profileVisible', 'memberships','PassedCoursesCats'));
+            return view('profile', compact("user", "titleHeader", "breadcrumb", 'memberships','PassedCoursesCats'));
 
     }
 

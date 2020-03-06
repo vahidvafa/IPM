@@ -14,8 +14,62 @@
                                     <div class="card-icon">
                                         <i class="material-icons">person</i>
                                     </div>
-                                    <p class="card-category">تعداد کاربران :</p>
-                                    <h3 class="card-title">{{tr_num(\App\User::whereRoles(2)->count(),'fa')}}
+                                    <p class="card-category">تعداد کاربران حقیقی:</p>
+                                    <h3 class="card-title">{{tr_num(\App\User::whereMembershipTypeId(1)->whereRoles(2)->count(),'fa')}}
+                                    </h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons text-warning">person</i>تعداد کاربر های عادی
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header card-header-warning card-header-icon">
+                                    <div class="card-icon">
+                                        <i class="material-icons">person</i>
+                                    </div>
+                                    <p class="card-category">تعداد کاربران حقوقی:</p>
+                                    <h3 class="card-title">{{tr_num(\App\User::whereMembershipTypeId(2)->whereRoles(2)->count(),'fa')}}
+                                    </h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons text-warning">person</i>تعداد کاربر های عادی
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header card-header-warning card-header-icon">
+                                    <div class="card-icon">
+                                        <i class="material-icons">person</i>
+                                    </div>
+                                    <p class="card-category">تعداد کاربران دانشجویی:</p>
+                                    <h3 class="card-title">{{tr_num(\App\User::whereMembershipTypeId(3)->whereRoles(2)->count(),'fa')}}
+                                    </h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons text-warning">person</i>تعداد کاربر های عادی
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header card-header-warning card-header-icon">
+                                    <div class="card-icon">
+                                        <i class="material-icons">person</i>
+                                    </div>
+                                    <p class="card-category">تعداد کاربران دانش اموزی:</p>
+                                    <h3 class="card-title">{{tr_num(\App\User::whereMembershipTypeId(4)->whereRoles(2)->count(),'fa')}}
                                     </h3>
                                 </div>
                                 <div class="card-footer">
