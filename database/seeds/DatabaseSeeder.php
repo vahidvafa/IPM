@@ -34,5 +34,7 @@ class DatabaseSeeder extends Seeder
         factory(\App\JobsCategory::class,19)->create();
         factory(\App\Job::class,350)->create();
         factory(\App\Message::class,10)->create();
+        factory(\App\Order::class,40)->create();
+        factory(\App\OrderCode::class,80)->create();
     }
 }
