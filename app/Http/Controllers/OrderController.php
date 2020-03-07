@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -10,11 +14,45 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+
+        $orders = Order::query();
+
+        if ($request->has('payState')){
+
+            $user = $request->get('user');
+            $orders->orWhereHas("user",function ($query)use($user){
+
+                $query->where('first_name','like',"%".$user."%")
+                      ->orWhere('last_name','like',"%".$user."%")
+                      ->orWhere('email','like',"%".$user."%")
+                      ->orWhere('mobile','like',"%".$user."%")
+                      ->orWhere('user_code','like',"%".$user."%");
+
+            });
+
+            if ($request->get('payState') != -100 )
+            $orders->where('state_id','=',"".$request->get('payState')."");
+
+            if (!empty($request->get('ref_id')))
+            $orders->where('reference_id','=',"".$request->get('ref_id')."");
+
+
+
+        }
+
+            
+
+        $orders = $orders->with(['orderCodes','user'=>function($query){
+            $query->get(['id','first_name','last_name']);
+        }])->latest()->paginate(20)->appends($request->all());
+
+
+        return view('cms.buy_report',compact('orders'));
     }
 
     /**

@@ -134,6 +134,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{checkMenu("cms/buyReport",$title)}}">
+                    <a class="nav-link" href="{{route('buyReport')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>گزارشات مالی</p>
+                    </a>
+                </li>
+
                 <form method="post" action="{{route('logout')}}">
                     @csrf
                     <li class="nav-item active">

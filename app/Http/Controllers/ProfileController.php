@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\MembershipType;
+use App\Order;
 use App\PassedCoursesCategory;
 use App\Profile;
 use App\User;
@@ -57,12 +58,15 @@ class ProfileController extends Controller
         $profileVisible = [];
         $memberships = [];
 
+        $pays=[];
 
         /*$FieldsInClass = new UserProFields();
 
         $FieldsInClass = $FieldsInClass->asArray();*/
 
-        $user = User::with(['workExperience', 'education', 'profile','companies','passedCourse'=>function(BelongsToMany $query){
+        $user = User::with(['workExperience', 'education', 'profile','companies','orders'=>function(HasMany $query){
+            $query->with('orderCodes');
+        },'passedCourse'=>function(BelongsToMany $query){
             $query->with(['PassedCoursesCat'])->orderBy('passed_courses_category_id')->get();
         }/*,'documents' => function (HasMany $doc) {
             $doc->where('state', '=', 0);
@@ -116,15 +120,19 @@ class ProfileController extends Controller
             $titleHeader = $user->name;
 
 
-            if (auth()->check() && (auth()->user()->roles == 0 || auth()->user()->roles == 1))
+            if (auth()->check()) {
+
+
+                if (auth()->user()->roles == 0 || auth()->user()->roles == 1)
                 $memberships = MembershipType::all();
+            }
 
 //            $name_en = str_replace(str_split('1234567890'),'',$name_en);
 
         $PassedCoursesCats = PassedCoursesCategory::get();
 
 
-            return view('profile', compact("user", "titleHeader", "breadcrumb", 'memberships','PassedCoursesCats'));
+            return view('profile', compact("user", "titleHeader", "breadcrumb", 'memberships','PassedCoursesCats','pays'));
 
     }
 

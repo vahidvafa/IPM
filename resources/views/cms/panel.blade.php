@@ -15,7 +15,7 @@
                                         <i class="material-icons">person</i>
                                     </div>
                                     <p class="card-category">تعداد کاربران حقیقی:</p>
-                                    <h3 class="card-title">{{tr_num(\App\User::whereMembershipTypeId(1)->whereRoles(2)->count(),'fa')}}
+                                    <h3 class="card-title">{{tr_num($userType1,'fa')}}
                                     </h3>
                                 </div>
                                 <div class="card-footer">
@@ -33,7 +33,7 @@
                                         <i class="material-icons">person</i>
                                     </div>
                                     <p class="card-category">تعداد کاربران حقوقی:</p>
-                                    <h3 class="card-title">{{tr_num(\App\User::whereMembershipTypeId(2)->whereRoles(2)->count(),'fa')}}
+                                    <h3 class="card-title">{{tr_num($userType2,'fa')}}
                                     </h3>
                                 </div>
                                 <div class="card-footer">
@@ -51,7 +51,7 @@
                                         <i class="material-icons">person</i>
                                     </div>
                                     <p class="card-category">تعداد کاربران دانشجویی:</p>
-                                    <h3 class="card-title">{{tr_num(\App\User::whereMembershipTypeId(3)->whereRoles(2)->count(),'fa')}}
+                                    <h3 class="card-title">{{tr_num($userType3,'fa')}}
                                     </h3>
                                 </div>
                                 <div class="card-footer">
@@ -69,7 +69,7 @@
                                         <i class="material-icons">person</i>
                                     </div>
                                     <p class="card-category">تعداد کاربران دانش اموزی:</p>
-                                    <h3 class="card-title">{{tr_num(\App\User::whereMembershipTypeId(4)->whereRoles(2)->count(),'fa')}}
+                                    <h3 class="card-title">{{tr_num($userType4,'fa')}}
                                     </h3>
                                 </div>
                                 <div class="card-footer">
@@ -87,7 +87,7 @@
                                         <i class="material-icons">store</i>
                                     </div>
                                     <p class="card-category">تعداد اخبار :</p>
-                                    <h3 class="card-title">{{tr_num(\App\News::count(),'fa')}}</h3>
+                                    <h3 class="card-title">{{tr_num($newsCount,'fa')}}</h3>
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
@@ -104,7 +104,7 @@
                                         <i class="material-icons">info_outline</i>
                                     </div>
                                     <p class="card-category">تعداد رویداد ها :</p>
-                                    <h3 class="card-title">{{tr_num(\App\Event::count(),'fa')}}</h3>
+                                    <h3 class="card-title">{{tr_num($eventsCount,'fa')}}</h3>
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
@@ -116,12 +116,60 @@
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="card card-stats">
+                                <div class="card-header card-header-warning card-header-icon">
+                                    <div class="card-icon">
+                                        <i class="fa fa-twitter"></i>
+                                    </div>
+                                    <p class="card-category">تعداد خریدهای در انتظار پرداخت</p>
+                                    <h3 class="card-title">{{tr_num($TotalPendingBuy,'fa')}}</h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">update</i> Just Updated
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header card-header-success card-header-icon">
+                                    <div class="card-icon">
+                                        <i class="fa fa-twitter"></i>
+                                    </div>
+                                    <p class="card-category">تعداد خریدهای موفق</p>
+                                    <h3 class="card-title">{{tr_num($TotalSuccessBuy,'fa')}}</h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">update</i> Just Updated
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header card-header-danger card-header-icon">
+                                    <div class="card-icon">
+                                        <i class="fa fa-twitter"></i>
+                                    </div>
+                                    <p class="card-category">تعداد خریدهای ناموفق</p>
+                                    <h3 class="card-title">{{tr_num($TotalFailBuy,'fa')}}</h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">update</i> Just Updated
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
                                 <div class="card-header card-header-info card-header-icon">
                                     <div class="card-icon">
                                         <i class="fa fa-twitter"></i>
                                     </div>
-                                    <p class="card-category">Followers</p>
-                                    <h3 class="card-title">+245</h3>
+                                    <p class="card-category">مبلغ کل پرداختی ها</p>
+                                    <h3 class="card-title mt-4">{{tr_num($totalProfits,'fa')}} تومان</h3>
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">

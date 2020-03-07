@@ -6,6 +6,8 @@ use App\Event;
 use App\IPMA;
 use App\MembershipType;
 use App\News;
+use App\Order;
+use App\User;
 use Illuminate\Http\Request;
 use Shetabit\Payment\Facade\Payment;
 use Shetabit\Payment\Invoice;
@@ -45,7 +47,22 @@ class IndexController extends Controller
 
     public function cms()
     {
-        return view('cms.panel');
+        $userType1 = User::whereMembershipTypeId(1)->whereRoles(2)->count();
+        $userType2 = User::whereMembershipTypeId(2)->whereRoles(2)->count();
+        $userType3 = User::whereMembershipTypeId(3)->whereRoles(2)->count();
+        $userType4 = User::whereMembershipTypeId(4)->whereRoles(2)->count();
+
+        $newsCount = News::wherestate(1)->count();
+        $eventsCount = Event::count();
+
+        $TotalPendingBuy = Order::whereStateId(0)->count();
+        $TotalSuccessBuy = Order::whereStateId(1)->count();
+        $TotalFailBuy = Order::whereStateId(2)->count();
+
+        $totalProfits = Order::whereStateId(1)->sum('total_price');
+
+
+        return view('cms.panel',compact('userType1','userType2','userType3','userType4','newsCount','eventsCount','TotalPendingBuy','TotalSuccessBuy','TotalFailBuy','totalProfits'));
     }
 
     public function callback()
@@ -70,71 +87,6 @@ class IndexController extends Controller
         )->pay();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
     public function about_us()
     {
@@ -143,10 +95,7 @@ class IndexController extends Controller
         return view('about_us', compact('titleHeader', 'breadcrumb'));
     }
 
-    public function cmsReport(){
 
 
-        return view('cms.panel',compact(['']));
-    }
 
 }

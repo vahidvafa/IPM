@@ -97,6 +97,9 @@ Route::middleware('auth')->group(function () {
             Route::post('userPassedCourse/del','PassedCoursesController@destroyCourseForUser')->name('PassedCourses.byUser.del');
             //------
             Route::post('document/del','DocumentController@destroy')->name('document.del');
+            //------
+            Route::get('buyReport','OrderController@index')->name('buyReport');
+            Route::post('buyReport','OrderController@index')->name('buyReport');
         });
     });
 });
