@@ -87,6 +87,9 @@ Route::middleware('auth')->group(function () {
             Route::post('user/updateAdm','UserController@UpdateAdm')->name('user.updateAdm');
             Route::post('user/search','UserController@search')->name('cms.user.search');
             Route::get('user/search','UserController@search')->name('cms.user.search');
+            Route::get('admins','UserController@admins')->name('admins');
+            Route::post('admin/add','UserController@adminAdd')->name('admin.add');
+            Route::post('admin/del','UserController@adminDel')->name('admin.del');
 //            Route::post('user/{id}/destroy','UserController@destroy')->name('cms.user.del');
             //------
             Route::get('passedCourse/{id}/edit','PassedCoursesController@edit')->name('PassedCourses.edit');

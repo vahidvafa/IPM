@@ -381,7 +381,7 @@ class UserController extends Controller
             ->orWhere('user_code', 'like', "%" . $request->get('str') . "%")
             ->orWhere('email', 'like', "%" . $request->get('str') . "%")
             ->orWhere('name_en', 'like', "%" . $request->get('str') . "%")
-            ->orWhere('email', 'like', "%" . $request->get('str') . "%")->get(['id', 'first_name', 'last_name']);
+            ->orWhere('email', 'like', "%" . $request->get('str') . "%")->get(['id', 'first_name', 'last_name','roles']);
 
     }
 
@@ -399,6 +399,65 @@ class UserController extends Controller
             flash_message('error', __('string.unsuccessful'));
         }
         return back();
+    }
+
+
+    public function admins ( Request $request){
+
+        $users = User::whereRoles(1)->paginate(14);
+
+        return view('cms.user.admins',compact('users'));
+
+    }
+
+
+    public function adminDel ( Request $request){
+
+        if (auth()->check()){
+
+            if (auth()->user()->roles == 0){
+                $user = User::find($request->get('user'));
+                $user->roles=2;
+                $user->save();
+                flash_message("info","مدیر با موفقیت حذف شد");
+                return redirect()->back();
+            }else {
+                flash_message("error","متاسفانه شما مجاز به انجام این کار نیستید");
+                return redirect()->back();
+            }
+
+        }else {
+            flash_message("error","اجراز حویت لازم است");
+            return redirect()->back();
+        }
+
+    }
+
+
+    public function adminAdd ( Request $request){
+
+        if (auth()->check()){
+
+            if (auth()->user()->roles == 0){
+                $user = User::find($request->get('selectedUser'));
+                if ($user == null ){
+                    flash_message("error","متاسفانه کاربر مورد نظر پیدا نشد");
+                    return redirect()->back();
+                }
+                $user->roles=1;
+                $user->save();
+                flash_message("success","مدیر با موفقیت ثبت شد");
+                return redirect()->back();
+            }else {
+                flash_message("error","متاسفانه شما مجاز به انجام این کار نیستید");
+                return redirect()->back();
+            }
+
+        }else {
+            flash_message("error","اجراز حویت لازم است");
+            return redirect()->back();
+        }
+
     }
 
 }

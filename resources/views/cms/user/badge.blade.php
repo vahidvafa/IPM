@@ -6,8 +6,8 @@
             <div class="card-header card-header-warning">
                 <h4 class="card-title">نشان های کاربر</h4>
             </div>
-            <div class="card-body table-responsive yourPlan pack-info">
-                <div class="card-body table-responsive yourPlan">
+            <div class="card-body table-responsive  pack-info">
+                <div class="card-body table-responsive ">
                     <form action="{{route('cms.user.badge.update',[$user->id])}}" method="post">
                         @csrf
                         <div class="row">

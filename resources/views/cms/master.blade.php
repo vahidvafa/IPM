@@ -143,6 +143,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{checkMenu("cms/admins",$title)}}">
+                    <a class="nav-link" href="{{route('admins')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>لیست مدیران سطح ۲</p>
+                    </a>
+                </li>
+
                 <form method="post" action="{{route('logout')}}">
                     @csrf
                     <li class="nav-item active">
