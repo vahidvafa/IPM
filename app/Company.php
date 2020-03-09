@@ -55,6 +55,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Company withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Company withoutTrashed()
  * @mixin \Eloquent
+ * @property-read \App\User $user
  */
 class Company extends Model
 {

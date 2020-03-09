@@ -39,7 +39,8 @@
                         <th scope="col">نمایش اطلاعات</th>
                         <th scope="col">تایید و فعال سازی</th>
                         <th scope="col">نمایش پروفایل</th>
-                        <th scope="col">دوره ها</th>
+                        <th scope="col" class="text-center">دوره ها</th>
+                        <th scope="col" class="text-center">نشان ها</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -75,9 +76,14 @@
                                     <i class="material-icons text-gray">pageview</i>
                                 </a>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <a href="{{route('PassedCourses.byUser',[$user->id])}}">
                                 <button class="btn btn-success" type="submit">نمایش دوره</button>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a href="{{route('cms.user.badge.edit',[$user->id])}}">
+                                    <button class="btn btn-success" type="submit">نمایش نشان ها</button>
                                 </a>
                             </td>
                         </tr>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
 use App\Gift;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class GiftController extends Controller
 {
@@ -14,7 +16,8 @@ class GiftController extends Controller
      */
     public function index()
     {
-        //
+        $gifts = Gift::latest()->with(['event'])->paginate(10);
+        return view('cms.gift.index',compact('gifts'));
     }
 
     /**
@@ -24,7 +27,8 @@ class GiftController extends Controller
      */
     public function create()
     {
-        //
+        $events = Event::all();
+        return view('cms.gift.create',compact('events'));
     }
 
     /**
@@ -35,7 +39,34 @@ class GiftController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+           'event_id'=> ' required | numeric',
+           'type_id'=> ' required | numeric',
+           'price'=> ' required | numeric',
+           'maximum_count'=> ' required | numeric',
+           'minimum_price'=> ' required | numeric',
+           'maximum_price'=> ' required | numeric',
+           'members_usage'=> ' required | numeric',
+           'from_date'=> ' required | numeric',
+           'to_date'=> ' required | numeric',
+        ],[
+            '*.required' =>'وارد کردن این فیلد الزامی است',
+            '*.numeric' =>'فرمت این فیلد اشتباه است',
+        ]);
+        try{
+            $code = Str::upper(Str::random(7));
+            while (Gift::whereCode($code)->exists()){
+                $code = Str::random(7);
+            }
+            $gift = new Gift($request->all());
+            $gift->code = $code;
+            $gift->save();
+            flash_message('success', __('string.successful'));
+            return redirect()->route('gift.index');
+        }catch (\Exception $exception){
+            flash_message('error', __('string.unsuccessful'));
+            return back();
+        }
     }
 
     /**
@@ -80,6 +111,12 @@ class GiftController extends Controller
      */
     public function destroy(Gift $gift)
     {
-        //
+        try {
+            $gift->delete();
+            flash_message('success', __('string.successful.delete'));
+        } catch (\Exception $exception) {
+            flash_message('error', __('string.unsuccessful'));
+        }
+        return back();
     }
 }

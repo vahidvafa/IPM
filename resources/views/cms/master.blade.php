@@ -44,13 +44,8 @@
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ asset('material/js/settings.js') }}"></script>
     {{--    <script src="{{asset('js/persianDatepicker.min.js')}}"></script>--}}
-    <script src="{{asset('js/persian-date.min.js')}}"></script>
-    <script src="{{asset('js/persian-datepicker.min.js')}}"></script>
+
     <link href="{{asset('css/select2.min.css')}}" rel="stylesheet" />
-    <script src="{{asset('js/select2.min.js')}}"></script>
-
-
-
     <style>
         @import url('{{ asset('css/fontiran.css') }}');
 
@@ -127,6 +122,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{checkMenu("cms/gifts",$title)}}">
+                    <a class="nav-link" href="{{route('gift.index')}}">
+                        <i class="material-icons">card_giftcard</i>
+                        <p>لیست کد تخفیف ها</p>
+                    </a>
+                </li>
+
                 <li class="nav-item {{checkMenu("cms/ManageCourses",$title)}}">
                     <a class="nav-link" href="{{route('ManageCourses')}}">
                         <i class="material-icons">library_books</i>
@@ -183,6 +185,9 @@
             </div>
         </div>
     </div>
+    <script src="{{asset('js/select2.min.js')}}"></script>
+    <script src="{{asset('js/persian-date.min.js')}}"></script>
+    <script src="{{asset('js/persian-datepicker.min.js')}}"></script>
 
 </div>
 </body>

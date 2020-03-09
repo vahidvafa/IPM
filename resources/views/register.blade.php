@@ -245,8 +245,9 @@
                                     <div class="col-12">
                                         <input type="text" name="birth_date"
                                                value="{{(Session::get('type') == 1) ?request()->old('birth_date'):''}}"
+                                               class="datePickerInput"
                                                size="40" aria-invalid="false"
-                                               placeholder="تاریخ تولد*" required>
+                                               placeholder="تاریخ تولد*" required autocomplete="off">
                                         <img src="img/001-user.png" class="form-icon">
                                         @if (Session::get('type') == 1 && $errors->has('birth_date'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"

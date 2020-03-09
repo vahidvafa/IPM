@@ -80,6 +80,28 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereFirstName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User like($field, $value)
+ * @property string $name_en
+ * @property int $branch_id
+ * @property int $main
+ * @property int $diamond
+ * @property int $gold
+ * @property int $silver
+ * @property int $bronze
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Company[] $companies
+ * @property-read int|null $companies_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Order[] $orders
+ * @property-read int|null $orders_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\PassedCourses[] $passedCourse
+ * @property-read int|null $passed_course_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\WorkExperience[] $workExperience
+ * @property-read int|null $work_experience_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereBranchId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereBronze($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereDiamond($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereGold($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereMain($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereNameEn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereSilver($value)
  */
 class User extends Authenticatable
 {
@@ -91,7 +113,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name','name_en', 'email','mobile', 'password','slug','user_code','roles','reagent_id','branch','membership_type_id','about_me','shortcomings','profile_picture'
+        'first_name', 'last_name', 'name_en', 'email', 'mobile', 'password', 'slug', 'user_code', 'roles', 'reagent_id', 'branch', 'membership_type_id', 'about_me', 'shortcomings', 'profile_picture', 'diamond', 'gold', 'silver', 'bronze'
     ];
 
     /**
@@ -124,7 +146,7 @@ class User extends Authenticatable
 
     public function memberships()
     {
-        return $this->hasMany(Membership::class,'user_id','id');
+        return $this->hasMany(Membership::class, 'user_id', 'id');
     }
 
     public function workExperience()
@@ -137,7 +159,8 @@ class User extends Authenticatable
         return $this->hasMany(Education::class);
     }
 
-    public function event(){
+    public function event()
+    {
         return $this->hasMany(Event::class);
     }
 
@@ -151,7 +174,8 @@ class User extends Authenticatable
         return $this->hasMany(visibiliy::Class);
     }
 
-    public function companies(){
+    public function companies()
+    {
         return $this->hasMany(Company::class);
     }
 
@@ -160,11 +184,13 @@ class User extends Authenticatable
         return $this->belongsTo(Branch::class);
     }
 
-    public function scopeLike($query, $field, $value){
+    public function scopeLike($query, $field, $value)
+    {
         return $query->where($field, 'LIKE', "%$value%");
     }
 
-    public function passedCourse(){
+    public function passedCourse()
+    {
         return $this->belongsToMany(PassedCourses::class);
     }
 

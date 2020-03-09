@@ -54,6 +54,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereLocation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereType($value)
+ * @property string|null $contract_type
+ * @property string|null $work_experience
+ * @property int $jobsCategory_id
+ * @property int $sex
+ * @property string|null $benefits
+ * @property int $visibility_count
+ * @property string|null $company_logo
+ * @property string|null $skills
+ * @property-read \App\JobsCategory $jobCategory
+ * @property-read \App\Province $province
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereBenefits($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereCompanyLogo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereContractType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereJobsCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereSex($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereSkills($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereVisibilityCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereWorkExperience($value)
  */
 class Job extends Model
 {

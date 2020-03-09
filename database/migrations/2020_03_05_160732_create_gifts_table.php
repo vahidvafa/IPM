@@ -15,6 +15,7 @@ class CreateGiftsTable extends Migration
     {
         Schema::create('gifts', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('event_id');
             $table->string('code')->unique();
             $table->double('price')->default(0);
             $table->tinyInteger('type_id')->comment('1 => %  ,  2 => price');

@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Province whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Province whereTitle($value)
  * @mixin \Eloquent
+ * @property-read \App\Job $job
  */
 class Province extends Model
 {

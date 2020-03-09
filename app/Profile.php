@@ -83,6 +83,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Profile withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Profile withoutTrashed()
  * @mixin \Eloquent
+ * @property-read mixed $young
  */
 class Profile extends Model
 {

@@ -32,6 +32,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\PassedCourses withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\PassedCourses withoutTrashed()
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $user
+ * @property-read int|null $user_count
  */
 class PassedCourses extends Model
 {

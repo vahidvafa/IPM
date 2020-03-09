@@ -29,6 +29,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @mixin \Eloquent
  * @property int $lang_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\JobsCategory whereLangId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Job[] $job
+ * @property-read int|null $job_count
  */
 class JobsCategory extends Model
 {

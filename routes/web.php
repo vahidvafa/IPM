@@ -62,6 +62,9 @@ Route::middleware('auth')->group(function () {
             Route::get('events/', 'EventController@indexCms')->name('event.index');
             Route::get('events/create', 'EventController@create')->name('event.create');
             Route::get('events/{event}/edit', 'EventController@edit')->name('event.edit');
+            Route::get('events/{event}/orders', 'EventController@orders')->name('event.orders');
+            Route::get('events/{event_id}/orders', 'EventController@orders')->name('event.orders');
+            Route::get('events/{event_id}/orders/excel', 'OrderController@export')->name('event.orders.excel');
             Route::post('events/store', 'EventController@store')->name('event.store');
             Route::post('events/{event}/delete', 'EventController@destroy')->name('event.delete');
             Route::post('events/{event}/update', 'EventController@update')->name('event.update');
@@ -79,6 +82,8 @@ Route::middleware('auth')->group(function () {
             Route::post('users','UserController@indexCms')->name('cms.user.index');
             Route::post('user/{id}/confirm','UserController@active')->name('cms.user.active');
             Route::get('user/{id}/edit','UserController@edit')->name('cms.user.edit');
+            Route::get('user/{user}/badge','UserController@badge')->name('cms.user.badge.edit');
+            Route::post('user/{user}/badge/update','UserController@badgeUpdate')->name('cms.user.badge.update');
             Route::post('user/updateAdm','UserController@UpdateAdm')->name('user.updateAdm');
             Route::post('user/search','UserController@search')->name('cms.user.search');
             Route::get('user/search','UserController@search')->name('cms.user.search');
@@ -100,6 +105,12 @@ Route::middleware('auth')->group(function () {
             //------
             Route::get('buyReport','OrderController@index')->name('buyReport');
             Route::post('buyReport','OrderController@index')->name('buyReport');
+            //------
+            Route::get('gifts','GiftController@index')->name('gift.index');
+            Route::get('gift/create','GiftController@create')->name('gift.create');
+            Route::post('gift/store','GiftController@store')->name('gift.store');
+            Route::post('gift/{gift}/delete','GiftController@destroy')->name('gift.delete');
+
         });
     });
 });

@@ -192,5 +192,9 @@ return;*/
         return back();
     }
 
-
+    public function orders(Event $event)
+    {
+        $orders = $event->orders()->where('state_id',1)->with(['user'])->paginate(10);
+        return view('cms.events.orders',compact('event','orders'));
+    }
 }

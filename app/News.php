@@ -35,6 +35,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\News withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\News withoutTrashed()
  * @mixin \Eloquent
+ * @property int $state
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Picture[] $pictures
+ * @property-read int|null $pictures_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\News whereState($value)
  */
 class News extends Model
 {

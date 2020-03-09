@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{asset('css/fontiran.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/all.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/style-main.css')}}" type='text/css' media='all'>
+    <link rel="stylesheet" href="{{asset('css/style-main2.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type='text/css' media='all'>
 {{--    <link rel="stylesheet" href="{{asset('css/persianDatepicker-default.css')}}" type='text/css' media='all'>--}}
     <link rel="stylesheet" href="{{asset('css/persian-datepicker.min.css')}}" type='text/css' media='all'>
@@ -40,8 +41,7 @@
                 <div class="col-md-6">
                     <a href="{{route('main')}}">
                         <img src="{{asset('img/logo.png')}}" alt="انجمن مدیریت پروژه">
-                        <h1 class="text-white d-inline-block font-18 text-regular ml-2"
-                            style="font-weight: bold;font-size: 27px;">انجمن مدیریت پروژه ایران</h1>
+                        <h1 class="text-white d-inline-block font-18 text-regular ml-2">انجمن مدیریت پروژه ایران</h1>
                     </a>
                 </div>
                 <div class="col-md-6 text-right">
@@ -264,44 +264,48 @@
 
                 </nav>
             </div>
-            <div class="link-footer col-6 col-sm-6 col-md-3 col-lg-2">
-                <p class="text-regular text-white pt-2">خدمات انجمن</p>
-                <nav class="navbar p-0">
+{{--            <div class="link-footer col-6 col-sm-6 col-md-3 col-lg-2">--}}
+{{--                <p class="text-regular text-white pt-2">خدمات انجمن</p>--}}
+{{--                <nav class="navbar p-0">--}}
 
-                    <!-- Links -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">دوره های آموزشی</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">کارگاه ها</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('events')}}">همایش ها</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">جوایز</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">گواهی نامه ها</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">مسابقات</a>
-                        </li>
-                    </ul>
+{{--                    <!-- Links -->--}}
+{{--                    <ul class="navbar-nav">--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link text-gray font-14" href="#">دوره های آموزشی</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link text-gray font-14" href="#">کارگاه ها</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link text-gray font-14" href="{{route('events')}}">همایش ها</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link text-gray font-14" href="#">جوایز</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link text-gray font-14" href="#">گواهی نامه ها</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link text-gray font-14" href="#">مسابقات</a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
 
-                </nav>
-            </div>
-            <div class="register-footer col-12 col-md-6 col-lg-3">
-                <p class="text-regular text-white pt-2">عضویت در خبرنامه</p>
-                <form action="">
+{{--                </nav>--}}
+{{--            </div>--}}
+            <div class="register-footer col-12 col-md-6 col-lg-5">
+                <p class="text-regular text-white pt-2">ارسال آدرس به موبایل شما</p>
+                <form action="" class="mb-3">
                     <div class="form-group">
 
-                        <input type="email" class="form-control" placeholder="ایمیل" id="email">
+                        <input type="text" class="form-control" placeholder="شماره تماس" id="address">
                     </div>
 
-                    <button type="submit" class="btn ">عضویت</button>
+                    <button type="submit" class="btn ">ارسال </button>
                 </form>
+                <div class="map-footer">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12954.853719944527!2d51.379332384785705!3d35.73326570113224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0728f1286b91%3A0xf8a61ce1468a9dcd!2sKuy-e-Daneshgah%2C%20District%206%2C%20Tehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2sus!4v1579277414645!5m2!1sen!2sus" width="100%" height="150" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+
+                </div>
             </div>
         </div>
         <div class="footer-copy row align-items-center pt-4 pb-3">

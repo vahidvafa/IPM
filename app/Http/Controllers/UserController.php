@@ -385,4 +385,20 @@ class UserController extends Controller
 
     }
 
+    public function badge(User $user)
+    {
+        return view('cms.user.badge',compact('user'));
+    }
+
+    public function badgeUpdate (User $user , Request $request)
+    {
+        try{
+            $user->update($request->only('diamond','gold','silver','bronze'));
+            flash_message('success', __('string.successful.edit'));
+        }catch (\Exception $exception){
+            flash_message('error', __('string.unsuccessful'));
+        }
+        return back();
+    }
+
 }

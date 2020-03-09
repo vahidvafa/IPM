@@ -72,6 +72,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereStartRegisterDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereToDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereUserId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Gift[] $gifts
+ * @property-read int|null $gifts_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Order[] $orders
+ * @property-read int|null $orders_count
  */
 class Event extends Model
 {

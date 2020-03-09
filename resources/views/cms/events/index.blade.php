@@ -17,6 +17,7 @@
                     <tr>
                         <th scope="col">ردیف</th>
                         <th scope="col">عنوان رویداد</th>
+                        <th scope="col">گزارش مالی</th>
                         <th scope="col">ویرایش</th>
                         <th scope="col">حذف</th>
                     </tr>
@@ -36,6 +37,13 @@
                                     {{$event->title}}
                                 </a>
                             </td>
+                            <td data-th="گزارش مالی" class="text-right">
+                                <a href="{{route('event.orders',[$event->id])}}" class="text-black" target="_blank">
+                                    <i class="material-icons text-success">view_headline
+                                    </i>
+                                </a>
+                            </td>
+
                             <td data-th="ویرایش" class="text-right">
                                 <a href="{{route('event.edit',[$event->id])}}" target="_blank">
                                     <i class="material-icons text-gray">edit</i>

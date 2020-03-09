@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{asset('css/fontiran.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/all.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/style-main.css')}}" type='text/css' media='all'>
+    <link rel="stylesheet" href="{{asset('css/style-main2.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type='text/css' media='all'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -24,17 +25,24 @@
 
 </head>
 <body style="overflow-x: hidden">
-
+@guest()
+    <div class="register-fix">
+        <a href="{{route('register')}}">
+            <span class="register-fix-in">
+                <span class="register-fix-text">میخواهم در انجمن عضو شوم</span>
+                <i class="fa fa-laptop"></i>
+            </span>
+        </a>
+    </div>
+@endguest
 <header id="header">
-
     <div class="header-top-bar back-dark-violet pt-3 pb-3">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <a href="{{route('main')}}">
                         <img src="{{asset('img/logo.png')}}" alt="انجمن مدیریت پروژه">
-                        <h1 class="text-white d-inline-block font-18 text-regular ml-2"
-                            style="font-weight: bold;font-size: 27px;">انجمن مدیریت پروژه ایران</h1>
+                        <h1 class="text-white d-inline-block font-18 text-regular ml-2">انجمن مدیریت پروژه ایران</h1>
                     </a>
                 </div>
                 <div class="col-md-6 text-right">
@@ -170,19 +178,20 @@
             </div>
         </div>
         <div class="slider-text pt-5 pb-5">
-            <div class="row align-items-center justify-content-around">
-                <div class="slider-form-out col-md-4 col-lg-2 order-2 order-md-1 z-index "
-                     style="margin-right: -144px ;">
-                    <form action="{{route('register')}}" method="get">
-                        <input type="submit" value="هوادار شوید" style="transform: rotate(-90deg);margin-top: 150px;"
-                               class="form-submit text-white font-16 text-medium">
-                    </form>
-                </div>
-                <div class="col-md-6 order-1 order-md-2 " style="margin-right: 490px;margin-bottom: 90px">
-                    <h2 class="font-28 text-white mb-5 "><span class="text-yellow">{{$ipma->head_title}}</span></h2>
-                    <h3 class="font-22 text-white mb-4">{{$ipma->head_subtitle}}</h3>
-                    <p class="font-18 text-white ">{{$ipma->head_description}}</p>
-                    <a class="btn btn-white font-16 text-black mt-5">در رویداد شرکت کنید</a>
+            <div class="container">
+                <div class="row align-items-center justify-content-around pb-5">
+                    <div class="col-12 order-1 order-md-2 pt-5 pb-5 ">
+                        <h2 class="font-28 text-white mb-5">
+                            <span class="text-yellow">
+                                {{$ipma->head_title}}
+                            </span>
+                        </h2>
+                        <h3 class="font-22 text-white mb-4">
+                            {{$ipma->head_subtitle}}
+                        </h3>
+                        <p class="font-18 text-white ">{{$ipma->head_description}}</p>
+                        <a class="btn btn-white font-16 text-black mt-5">در رویداد شرکت کنید</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -622,48 +631,58 @@
                         <div class="row">
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
                                 <img class="mb-3" src="img/003-patent-1.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">مرکز
-                                    گواهینامه ها</a>
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">مرکز گواهینامه ها</a>
                             </div>
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
                                 <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته جایزه
-                                    ها</a>
-                            </div>
-                            <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
-                                <img class="mb-3" src="img/001-user-group.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته
-                                    عضویت</a>
-                            </div>
-                            <div class="col-6 text-center  bb-1 pt-5 pb-5">
-                                <img class="mb-3" src="img/009-exam.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته
-                                    آموزش</a>
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته جایزه ها</a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
-                                <img class="mb-3" src="img/002-loupe.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته
-                                    پژوهش</a>
+                                <img class="mb-3" src="img/001-user-group.png" alt="anjoman">
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته عضویت</a>
                             </div>
-                            <div class="col-6 text-center pt-5 pb-5">
-                                <img class="mb-3" src="img/003-crowd-of-users.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">
-                                    شاخه ها </a>
+                            <div class="col-6 text-center   pt-5 pb-5">
+                                <img class="mb-3" src="img/009-exam.png" alt="anjoman">
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته آموزش</a>
                             </div>
+                            <!--<div class="col-6 text-center bl-1  pt-5 pb-5">-->
+                            <!--<img class="mb-3" src="img/002-loupe.png" alt="anjoman">-->
+                            <!--<a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته پژوهش</a>-->
+                            <!--</div>-->
+                            <!--<div class="col-6 text-center pt-5 pb-5">-->
+                            <!--<img class="mb-3" src="img/003-crowd-of-users.png" alt="anjoman">-->
+                            <!--<a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته گردهمایی </a>-->
+                            <!--</div>-->
                         </div>
                     </div>
                     <div class="d-none d-lg-block col-lg-2"></div>
-                    <div class="col-12 col-lg-5 Committee-text pl-0 pt-5 pt-lg-0 text-center text-lg-left">
-                        <h2 class="font-26 text-white mb-4">چهاردهمین <span class="text-yellow">کنفرانس بین المللی مدیریت پروژه</span>
-                        </h2>
-                        <h3 class="font-20 text-white mb-5">ثبت نام پیش از تاریخ ۲۰/۵/۹۸ دارای ۱۰ درصد تخفیف
-                            است</h3>
-                        <p class="font-18 text-white text-center ">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
-                        </p>
-                        <div class="text-center">
-                            <a class="btn btn-violet font-16 text-black mt-3">در رویداد شرکت کنید</a>
+                    <div class="col-12 col-lg-5 Committee-icons">
+                        <div class="row">
+                            <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
+                                <img class="mb-3" src="img/003-patent-1.png" alt="anjoman">
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">مرکز گواهینامه ها</a>
+                            </div>
+                            <div class="col-6 text-center  bb-1 pt-5 pb-5">
+                                <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته جایزه ها</a>
+                            </div>
+                            <div class="col-6 text-center bl-1  pt-5 pb-5">
+                                <img class="mb-3" src="img/001-user-group.png" alt="anjoman">
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته عضویت</a>
+                            </div>
+                            <div class="col-6 text-center   pt-5 pb-5">
+                                <img class="mb-3" src="img/009-exam.png" alt="anjoman">
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته آموزش</a>
+                            </div>
+                            <!--<div class="col-6 text-center bl-1  pt-5 pb-5">-->
+                            <!--<img class="mb-3" src="img/002-loupe.png" alt="anjoman">-->
+                            <!--<a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته پژوهش</a>-->
+                            <!--</div>-->
+                            <!--<div class="col-6 text-center pt-5 pb-5">-->
+                            <!--<img class="mb-3" src="img/003-crowd-of-users.png" alt="anjoman">-->
+                            <!--<a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته گردهمایی </a>-->
+                            <!--</div>-->
                         </div>
-
                     </div>
 
                 </div>
@@ -675,7 +694,9 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-lg-3">
-                    <h2 class="font-24 text-medium text-black  mb-4">اخبارانجمن</h2>
+                    <h3 class="font-20 text-yellow text-light2 mb-3">اخبارانجمن</h3>
+                    <h2 class="font-24 text-medium text-black  mb-4">از انجمن بیشتر بدانید
+                    </h2>
                 </div>
                 <div class="col-12 col-lg-7 align-self-end">
                     <p class="text-black-light font-16">
@@ -754,46 +775,74 @@
         </div>
     </div>
     <div class="counter pt-0 pt-md-5 pb-sm-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-10">
-                    <div class="counters pt-4 pb-4 justify-content-around  row">
-                        <div class="counter-in text-center col-6 col-md-3 mb-4 mb-md-0">
+        <div class="counters">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-10">
+                        <div class=" pt-4 pb-4 justify-content-around  row">
+                            <div class="counter-in text-center col-6 col-md-3 mb-4 mb-md-0">
 
-                            <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="300"
-                                data-speed="1500"></h2>
-                            <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
-                        </div>
-                        <div class="counter-in text-center col-6  col-md-3 mb-4 mb-md-0">
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="300" data-speed="1500"></h2>
+                                <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
+                            </div>
+                            <div class="counter-in text-center col-6  col-md-3 mb-4 mb-md-0">
 
-                            <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="60"
-                                data-speed="1500"></h2>
-                            <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
-                        </div>
-                        <div class="counter-in text-center col-6 col-md-3  mb-md-0">
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="60" data-speed="1500"></h2>
+                                <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
+                            </div>
+                            <div class="counter-in text-center col-6 col-md-3  mb-md-0">
 
-                            <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="100"
-                                data-speed="1500"></h2>
-                            <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
-                        </div>
-                        <div class="counter-in text-center col-6 col-md-3 ">
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="100" data-speed="1500"></h2>
+                                <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
+                            </div>
+                            <div class="counter-in text-center col-6 col-md-3 ">
 
-                            <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="40"
-                                data-speed="1500"></h2>
-                            <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="40" data-speed="1500"></h2>
+                                <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
+                            </div>
                         </div>
+
                     </div>
-
                 </div>
             </div>
         </div>
+{{--        <div class="link-counters">--}}
+{{--            <div class="container-fluid">--}}
+{{--                <div class="row">--}}
+{{--                    <div class="link-img col-12 col-sm p-0">--}}
+{{--                        <img class="img-fluid" alt="..." src=" img/camera-lens.jpg">--}}
+{{--                        <div class="link-img-more"><a href="//" >--}}
+{{--                                <i class="fa fa-image fa-2x"></i>--}}
+{{--                                <p>گالری تصاویر</p>--}}
+{{--                            </a></div>--}}
+{{--                        <div class="overlay-img"></div>--}}
+{{--                    </div>--}}
+{{--                    <div class="link-img col-12 col-sm p-0">--}}
+{{--                        <img class="img-fluid"  alt="..." src=" img/film-camera.jpg">--}}
+{{--                        <div class="link-img-more"><a href="//" >--}}
+{{--                                <i class="fas fa-video fa-2x"></i>--}}
+{{--                                <p>گالری ویدیو </p>--}}
+{{--                            </a></div>--}}
+{{--                        <div class="overlay-img"></div>--}}
+{{--                    </div>--}}
+{{--                    <div class="link-img col-12 col-sm p-0">--}}
+{{--                        <img class="img-fluid"  alt="..." src=" img/webinar-concept.jpg">--}}
+{{--                        <div class="link-img-more"><a href="//" >--}}
+{{--                                <i class="fa fa-desktop fa-2x"></i>--}}
+{{--                                <p>وبینار ها</p>--}}
+{{--                            </a></div>--}}
+{{--                        <div class="overlay-img"></div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
     <div class="logo mt-5 pt-5 pb-5">
         <div class="container">
             <div class="row">
                 <div class="col-12 mt-sm-5 pt-sm-5">
                     <div class="logo-slid  ">
-                        <div><img src="img/b1.png" alt=""></div>
+                        <div><img src="img/b1.png" alt=""> </div>
                         <div><img src="img/b2.png" alt=""></div>
                         <div><img src="img/b3.png" alt=""></div>
                         <div><img src="img/b4.png" alt=""></div>
@@ -860,44 +909,48 @@
 
                 </nav>
             </div>
-            <div class="link-footer col-6 col-sm-6 col-md-3 col-lg-2">
-                <p class="text-regular text-white pt-2">خدمات انجمن</p>
-                <nav class="navbar p-0">
+{{--            <div class="link-footer col-6 col-sm-6 col-md-3 col-lg-2">--}}
+{{--                <p class="text-regular text-white pt-2">خدمات انجمن</p>--}}
+{{--                <nav class="navbar p-0">--}}
 
-                    <!-- Links -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">دوره های آموزشی</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">کارگاه ها</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('events')}}">همایش ها</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">جوایز</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">گواهی نامه ها</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="#">مسابقات</a>
-                        </li>
-                    </ul>
+{{--                    <!-- Links -->--}}
+{{--                    <ul class="navbar-nav">--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link text-gray font-14" href="#">دوره های آموزشی</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link text-gray font-14" href="#">کارگاه ها</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link text-gray font-14" href="{{route('events')}}">همایش ها</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link text-gray font-14" href="#">جوایز</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link text-gray font-14" href="#">گواهی نامه ها</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link text-gray font-14" href="#">مسابقات</a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
 
-                </nav>
-            </div>
-            <div class="register-footer col-12 col-md-6 col-lg-3">
-                <p class="text-regular text-white pt-2">عضویت در خبرنامه</p>
-                <form action="">
+{{--                </nav>--}}
+{{--            </div>--}}
+            <div class="register-footer col-12 col-md-6 col-lg-5">
+                <p class="text-regular text-white pt-2">ارسال آدرس به موبایل شما</p>
+                <form action="" class="mb-3">
                     <div class="form-group">
 
-                        <input type="email" class="form-control" placeholder="ایمیل" id="email">
+                        <input type="text" class="form-control" placeholder="شماره تماس" id="address">
                     </div>
 
-                    <button type="submit" class="btn ">عضویت</button>
+                    <button type="submit" class="btn ">ارسال </button>
                 </form>
+                <div class="map-footer">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12954.853719944527!2d51.379332384785705!3d35.73326570113224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0728f1286b91%3A0xf8a61ce1468a9dcd!2sKuy-e-Daneshgah%2C%20District%206%2C%20Tehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2sus!4v1579277414645!5m2!1sen!2sus" width="100%" height="150" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+
+                </div>
             </div>
         </div>
         <div class="footer-copy row align-items-center pt-4 pb-3">
