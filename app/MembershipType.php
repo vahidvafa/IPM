@@ -30,8 +30,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $lang_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\MembershipType whereLangId($value)
  */
-class MembershipType extends Model
-{
+class MembershipType extends Model{
+
+    protected $guarded = [];
+
     public function memberships()
     {
         return $this->hasMany(Membership::class);

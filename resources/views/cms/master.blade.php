@@ -150,6 +150,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{checkMenu("cms/membership",$title)}}">
+                    <a class="nav-link" href="{{route('membership')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>ویرایش عضویت ها</p>
+                    </a>
+                </li>
+
                 <form method="post" action="{{route('logout')}}">
                     @csrf
                     <li class="nav-item active">

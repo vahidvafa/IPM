@@ -114,6 +114,11 @@ Route::middleware('auth')->group(function () {
             Route::post('gift/store','GiftController@store')->name('gift.store');
             Route::post('gift/{gift}/delete','GiftController@destroy')->name('gift.delete');
 
+            Route::get('membership','MembershipTypeController@index')->name('membership');
+            Route::get('membership/{id}/edit','MembershipTypeController@edit')->name('membership.edit');
+            Route::post('membership/{id}/update','MembershipTypeController@update')->name('membership.update');
+
+
         });
     });
 });
@@ -133,7 +138,7 @@ Route::get('bank','IndexController@bank')->name('bank');
 
 Route::get('test',function (){
 
-    $name = word2uni("محمد رضا وفایی احمد آبادی");
+    $name = word2uni("محمد رضا وفایی ");
 
     $img = Image::make(public_path('img/BO1-blue.jpg'));
     $img->text($name, 620, 300, function(\Intervention\Image\Gd\Font $font) {

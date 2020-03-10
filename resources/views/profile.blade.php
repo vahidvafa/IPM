@@ -15,7 +15,7 @@
                                 <div class="row justify-content-center">
                                     <div class="profile-top-image col-12 col-sm-8 col-md-6 col-lg-12 ">
                                         <img class="img-fluid" src="{{asset('img/nasrollahpour.jpg')}}" alt="">
-                                        <div class="profile-top-icons">
+                                        <div class="profile-top-icons" style="background-color: @if($user->membership_type_id == 1) @if($user->reagent_id == 0) grey @else #372b7d @endif @endif">
                                             <p class="text-white font-18 text-medium m-0">
                                                 <span>کد عضویت :</span>
                                                 <span>{{$user->user_code}}</span>

@@ -20,6 +20,8 @@ class CreateMembershipTypesLogsTable extends Migration
             $table->string('new_price');
             $table->string('old_period');
             $table->string('new_period');
+            $table->string('old_title');
+            $table->string('new_title');
             $table->timestamps();
         });
     }

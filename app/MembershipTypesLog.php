@@ -30,5 +30,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class MembershipTypesLog extends Model
 {
-    //
+//    protected $fillable = ['*'];
+
+    protected $guarded = [];
+
 }

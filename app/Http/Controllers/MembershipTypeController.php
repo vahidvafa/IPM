@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\MembershipType;
+use App\MembershipTypesLog;
 use Illuminate\Http\Request;
 
 class MembershipTypeController extends Controller
@@ -14,7 +15,9 @@ class MembershipTypeController extends Controller
      */
     public function index()
     {
-        //
+        $memberships = MembershipType::all('id','title');
+
+        return view("cms.membership.index",compact('memberships'));
     }
 
     /**
@@ -55,9 +58,11 @@ class MembershipTypeController extends Controller
      * @param  \App\MembershipType  $membershipType
      * @return \Illuminate\Http\Response
      */
-    public function edit(MembershipType $membershipType)
+    public function edit($id)
     {
-        //
+        $membership = MembershipType::findOrFail($id);
+
+        return view("cms.membership.edit",compact('membership'));
     }
 
     /**
@@ -67,9 +72,51 @@ class MembershipTypeController extends Controller
      * @param  \App\MembershipType  $membershipType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MembershipType $membershipType)
+    public function update(Request $request, $id)
     {
-        //
+        $validate = validator($request->all(),[
+            'title'=>'bail | required | string ',
+            'price'=>'bail | required | integer ',
+            'period'=>'bail | required | integer ',
+        ],[
+            'title'=>'عنوان نمی تواند خالی باشد',
+            'price'=>'قیمت باید عدد باشد',
+            'period'=>'عدد وارد کنید',
+
+        ]);
+
+        if ($validate->fails()) {
+            flash_message("error","لطفا فیلد ها را به درستی پر کنید");
+            return back()->withErrors($validate)->withInput();
+        }
+
+
+        $membershipType = MembershipType::findOrFail($id);
+
+        $typeLog = new MembershipTypesLog([
+            'user_id'=>auth()->id(),
+            'old_price'=>$membershipType->price,
+            'new_price'=>$request->get('price'),
+            'old_period'=>$membershipType->period,
+            'new_period'=>$request->get('period'),
+            'old_title'=>$membershipType->title,
+            'new_title'=>$request->get('title'),
+
+
+            ]
+        );
+
+
+
+        if ($typeLog->save()) {
+            flash_message("success","با موفقیت انجام شد");
+            $membershipType->update($request->all());
+        }
+else {
+    flash_message("error","متسفاه عملیات پیرایش  به خاظر گرفتن نسخه پشتیبان از تغییرات با مشکل مواجه شده است");
+}
+        return back();
+
     }
 
     /**
