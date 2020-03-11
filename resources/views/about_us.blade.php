@@ -153,7 +153,7 @@
                 </div>
             </div>
         </div>
-        <div class="ceo-about pt-5 pb-5">
+        <div class="ceo-about pt-5 pb-5" id="board-of-directors">
             <div class="container">
                 <div class="row ">
                     <div class="col-12">

@@ -218,11 +218,11 @@
         <div class="row mb-3">
             <div class="contact-footer col-12 col-lg-5">
                 <div class="footer-logo mb-3">
-                    <img src="{{asset('img/logo-foo.png')}}" alt="..">
+                    <img src="{{asset('img/logo-foo.png')}}" alt=".." style="width: 60px;">
                     <span class="text-regular text-white">تماس با انجمن</span>
                 </div>
                 <div class="contact-footer-in">
-                    <p class="text-gray font-14"><span>آدرس:</span><span>تهران، امیرآباد شمالی، بالاتر از بزرگراه جلال آل احمد، پردیس دانشکده های فنی دانشگاه تهران، ساختمان انستیتو مهندسی نفت، طبقه همکف</span>
+                    <p class="text-gray font-14 text-bold"><span>آدرس:</span><span>تهران، امیرآباد شمالی، بالاتر از بزرگراه جلال آل احمد، پردیس دانشکده های فنی دانشگاه تهران، ساختمان انستیتو مهندسی نفت، طبقه همکف</span>
                     </p>
                 </div>
                 <div class="contact-footer-in">

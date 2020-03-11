@@ -187,7 +187,7 @@
                             </span>
                         </h2>
                         <h3 class="font-22 text-white mb-4">
-                            {{$ipma->head_subtitle}}
+                            ثبت نام پیش از تاریخ ۹۸/۵/۲۰ دارای ۱۰ درصد تخفیف است
                         </h3>
                         <p class="font-18 text-white ">{{$ipma->head_description}}</p>
                         <a class="btn btn-white font-16 text-black mt-5">در رویداد شرکت کنید</a>
@@ -289,10 +289,10 @@
                         <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
                             <div class="row align-items-center">
                                 <div class="last-pack-content-in-time text-lg-left text-center col-12 col-lg-2">
-                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۹۸/۵/۲۶</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۹۸/۵/۲۶</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -322,10 +322,10 @@
                             <div class="row align-items-center">
                                 <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
                                     <p class="text-medium font-14 mb-1 mb-lg-2">شروع ثبت نام :<span
-                                            class="pl-3">۲۶/۵/۹۸</span>
+                                            class="pl-3">۹۸/۵/۲۶</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۹۸/۵/۲۶</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex  align-items-center text-lg-left text-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -353,42 +353,12 @@
                         <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
                             <div class="row align-items-center">
                                 <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۹۸/۵/۲۶</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۹۸/۵/۲۶</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex text-lg-left text-center  align-items-center">
-                                    <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
-                                        <div class="last-pack-content-in-img-in">
-                                            <img src="img/last3.jpg" alt="anjoman">
-                                        </div>
-
-                                    </div>
-                                    <div class="last-pack-content-in-description pl-3">
-                                        <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
-                                            سطوح </h2>
-                                        <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
-                                            تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                            برای شرایط</h3>
-                                    </div>
-                                </div>
-
-                                <div class="last-pack-content-in-more text-lg-left text-center col-12 col-lg-2">
-                                    <a href="/" class="btn btn-white-border">شرکت در رویداد</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                            <div class="row align-items-center">
-                                <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
-                                    </p>
-                                    <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۲۶/۵/۹۸</span></p>
-                                </div>
-                                <div class="col-12 col-lg-8 d-lg-flex text-lg-left text-center align-items-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
                                         <div class="last-pack-content-in-img-in">
                                             <img src="img/last3.jpg" alt="anjoman">
@@ -415,10 +385,10 @@
                         <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
                             <div class="row align-items-center">
                                 <div class="last-pack-content-in-time text-lg-left text-center col-12 col-lg-2">
-                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۹۸/۵/۲۶</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۹۸/۵/۲۶</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -448,10 +418,10 @@
                             <div class="row align-items-center">
                                 <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
                                     <p class="text-medium font-14 mb-1 mb-lg-2">شروع ثبت نام :<span
-                                            class="pl-3">۲۶/۵/۹۸</span>
+                                            class="pl-3">۹۸/۵/۲۶</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۹۸/۵/۲۶</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex  align-items-center text-lg-left text-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -479,10 +449,10 @@
                         <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
                             <div class="row align-items-center">
                                 <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۹۸/۵/۲۶</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۹۸/۵/۲۶</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex text-lg-left text-center  align-items-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -511,10 +481,10 @@
                         <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
                             <div class="row align-items-center">
                                 <div class="last-pack-content-in-time text-lg-left text-center col-12 col-lg-2">
-                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۹۸/۵/۲۶</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۹۸/۵/۲۶</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -544,10 +514,10 @@
                             <div class="row align-items-center">
                                 <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
                                     <p class="text-medium font-14 mb-1 mb-lg-2">شروع ثبت نام :<span
-                                            class="pl-3">۲۶/۵/۹۸</span>
+                                            class="pl-3">۹۸/۵/۲۶</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۹۸/۵/۲۶</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex  align-items-center text-lg-left text-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -575,10 +545,10 @@
                         <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
                             <div class="row align-items-center">
                                 <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۲۶/۵/۹۸</span>
+                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۹۸/۵/۲۶</span>
                                     </p>
                                     <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۲۶/۵/۹۸</span></p>
+                                            class="pl-3">۹۸/۵/۲۶</span></p>
                                 </div>
                                 <div class="col-12 col-lg-8 d-lg-flex text-lg-left text-center  align-items-center">
                                     <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -631,7 +601,7 @@
                         <div class="row">
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
                                 <img class="mb-3" src="img/003-patent-1.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">مرکز گواهینامه ها</a>
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">گواهینامه ها</a>
                             </div>
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
                                 <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
@@ -639,11 +609,11 @@
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
                                 <img class="mb-3" src="img/001-user-group.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته عضویت</a>
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">پژوهش</a>
                             </div>
                             <div class="col-6 text-center   pt-5 pb-5">
                                 <img class="mb-3" src="img/009-exam.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته آموزش</a>
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">شاخه ها</a>
                             </div>
                             <!--<div class="col-6 text-center bl-1  pt-5 pb-5">-->
                             <!--<img class="mb-3" src="img/002-loupe.png" alt="anjoman">-->
@@ -660,19 +630,19 @@
                         <div class="row">
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
                                 <img class="mb-3" src="img/003-patent-1.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">مرکز گواهینامه ها</a>
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کارگروه های تخصصی</a>
                             </div>
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
                                 <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته جایزه ها</a>
+                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('about-us')}}">درباره ما</a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
                                 <img class="mb-3" src="img/001-user-group.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته عضویت</a>
+                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('about-us')}}#board-of-directors">معرفی اعضا</a>
                             </div>
                             <div class="col-6 text-center   pt-5 pb-5">
                                 <img class="mb-3" src="img/009-exam.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته آموزش</a>
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">فروم های تخصصی</a>
                             </div>
                             <!--<div class="col-6 text-center bl-1  pt-5 pb-5">-->
                             <!--<img class="mb-3" src="img/002-loupe.png" alt="anjoman">-->
@@ -806,36 +776,36 @@
                 </div>
             </div>
         </div>
-{{--        <div class="link-counters">--}}
-{{--            <div class="container-fluid">--}}
-{{--                <div class="row">--}}
-{{--                    <div class="link-img col-12 col-sm p-0">--}}
-{{--                        <img class="img-fluid" alt="..." src=" img/camera-lens.jpg">--}}
-{{--                        <div class="link-img-more"><a href="//" >--}}
-{{--                                <i class="fa fa-image fa-2x"></i>--}}
-{{--                                <p>گالری تصاویر</p>--}}
-{{--                            </a></div>--}}
-{{--                        <div class="overlay-img"></div>--}}
-{{--                    </div>--}}
-{{--                    <div class="link-img col-12 col-sm p-0">--}}
-{{--                        <img class="img-fluid"  alt="..." src=" img/film-camera.jpg">--}}
-{{--                        <div class="link-img-more"><a href="//" >--}}
-{{--                                <i class="fas fa-video fa-2x"></i>--}}
-{{--                                <p>گالری ویدیو </p>--}}
-{{--                            </a></div>--}}
-{{--                        <div class="overlay-img"></div>--}}
-{{--                    </div>--}}
-{{--                    <div class="link-img col-12 col-sm p-0">--}}
-{{--                        <img class="img-fluid"  alt="..." src=" img/webinar-concept.jpg">--}}
-{{--                        <div class="link-img-more"><a href="//" >--}}
-{{--                                <i class="fa fa-desktop fa-2x"></i>--}}
-{{--                                <p>وبینار ها</p>--}}
-{{--                            </a></div>--}}
-{{--                        <div class="overlay-img"></div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        <div class="link-counters">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="link-img col-12 col-sm p-0">
+                        <img class="img-fluid" alt="..." src=" img/camera-lens.jpg">
+                        <div class="link-img-more"><a href="//" >
+                                <i class="fa fa-image fa-2x"></i>
+                                <p>گالری تصاویر</p>
+                            </a></div>
+                        <div class="overlay-img"></div>
+                    </div>
+                    <div class="link-img col-12 col-sm p-0">
+                        <img class="img-fluid"  alt="..." src=" img/film-camera.jpg">
+                        <div class="link-img-more"><a href="//" >
+                                <i class="fas fa-video fa-2x"></i>
+                                <p>گالری ویدیو </p>
+                            </a></div>
+                        <div class="overlay-img"></div>
+                    </div>
+                    <div class="link-img col-12 col-sm p-0">
+                        <img class="img-fluid"  alt="..." src=" img/webinar-concept.jpg">
+                        <div class="link-img-more"><a href="//" >
+                                <i class="fa fa-desktop fa-2x"></i>
+                                <p>وبینار ها</p>
+                            </a></div>
+                        <div class="overlay-img"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="logo mt-5 pt-5 pb-5">
         <div class="container">
@@ -861,11 +831,11 @@
         <div class="row mb-3">
             <div class="contact-footer col-12 col-lg-5">
                 <div class="footer-logo mb-3">
-                    <img src="img/logo-foo.png" alt="..">
+                    <img src="img/logo-foo.png" alt=".." style="width: 60px;">
                     <span class="text-regular text-white">تماس با انجمن</span>
                 </div>
                 <div class="contact-footer-in">
-                    <p class="text-gray font-14"><span>آدرس:</span><span>{{$ipma->address}}</span>
+                    <p class="text-gray font-14 text-bold"><span>آدرس:</span><span>{{$ipma->address}}</span>
                     </p>
                 </div>
                 <div class="contact-footer-in">
