@@ -812,11 +812,11 @@
             <div class="row">
                 <div class="col-12 mt-sm-5 pt-sm-5">
                     <div class="logo-slid  ">
-                        <div><img src="img/b1.png" alt=""> </div>
-                        <div><img src="img/b2.png" alt=""></div>
-                        <div><img src="img/b3.png" alt=""></div>
-                        <div><img src="img/b4.png" alt=""></div>
-                        <div><img src="img/b5.png" alt=""></div>
+                        <div><a href="https://mci.ir/" target="_blank"><img src="{{asset('img/b1.png')}}" style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.iranianatlas.ir/" target="_blank"><img src="{{asset('img/b2.png')}}" style="zoom:1.3;"></a></div>
+                        <div><a href="http://www.farab.com/fa/" target="_blank"><img src="{{asset('img/b3.png')}}" style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.mapnanyp.com/" target="_blank"><img src="{{asset('img/b4.png')}}" style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}" style="zoom:1.3;"></a></div>
                     </div>
                 </div>
 
