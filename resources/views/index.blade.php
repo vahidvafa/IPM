@@ -29,8 +29,7 @@
     <div class="register-fix">
         <a href="{{route('register')}}">
             <span class="register-fix-in">
-                <span class="register-fix-text">میخواهم در انجمن عضو شوم</span>
-                <i class="fa fa-laptop"></i>
+                میخواهم در انجمن عضو شوم
             </span>
         </a>
     </div>
@@ -600,20 +599,23 @@
                     <div class="col-12 col-lg-5 Committee-icons">
                         <div class="row">
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
-                                <img class="mb-3" src="img/003-patent-1.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">گواهینامه ها</a>
+
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">
+                                <img class="mb-3" src="img/003-patent-1.png" alt="anjoman"><p>گواهینامه ها</p></a>
                             </div>
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
-                                <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته جایزه ها</a>
+
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">
+                                <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman"><p>کمیته جایزه ها</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
-                                <img class="mb-3" src="img/001-user-group.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">پژوهش</a>
+
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">
+                                <img class="mb-3" src="img/001-user-group.png" alt="anjoman"><p>پژوهش</p></a>
                             </div>
                             <div class="col-6 text-center   pt-5 pb-5">
-                                <img class="mb-3" src="img/009-exam.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">شاخه ها</a>
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">
+                                <img class="mb-3" src="img/009-exam.png" alt="anjoman"><p>شاخه ها</p></a>
                             </div>
                             <!--<div class="col-6 text-center bl-1  pt-5 pb-5">-->
                             <!--<img class="mb-3" src="img/002-loupe.png" alt="anjoman">-->
@@ -629,20 +631,22 @@
                     <div class="col-12 col-lg-5 Committee-icons">
                         <div class="row">
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
-                                <img class="mb-3" src="img/003-patent-1.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">کارگروه های تخصصی</a>
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">
+                                <img class="mb-3" src="img/003-patent-1.png" alt="anjoman"><p>کارگروه های تخصصی</p></a>
                             </div>
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
+                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('about-us')}}">
                                 <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('about-us')}}">درباره ما</a>
+                                    <p>درباره ما</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
+                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('about-us')}}#board-of-directors">
                                 <img class="mb-3" src="img/001-user-group.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('about-us')}}#board-of-directors">معرفی اعضا</a>
+                                <p>معرفی اعضا</p></a>
                             </div>
                             <div class="col-6 text-center   pt-5 pb-5">
-                                <img class="mb-3" src="img/009-exam.png" alt="anjoman">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">فروم های تخصصی</a>
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">
+                                <img class="mb-3" src="img/009-exam.png" alt="anjoman"><p>فروم های تخصصی</p></a>
                             </div>
                             <!--<div class="col-6 text-center bl-1  pt-5 pb-5">-->
                             <!--<img class="mb-3" src="img/002-loupe.png" alt="anjoman">-->
@@ -954,8 +958,8 @@
             <!-- Modal body -->
             <div class="modal-body text-center pt-0 pr-3 pl-3 pr-sm-5 pl-sm-5">
                 <img src="{{asset('img/logo-login.png')}}" alt="" class="mb-4">
-                <h4 class="modal-title text-black">ورود به انجمن مدیریت پروژه</h4>
-                <p class="text-black-light font-18 text-light2 mt-4 mb-4">جهت ورورد به سایت اطلاعات زیر را تکمیل
+                <h4 class="modal-title text-black">ورود به صفحه کاربری</h4>
+                <p class="text-black-light font-18 text-light2 mt-4 mb-4">جهت ورود به صفحه کاربری اطلاعات زیر را تکمیل
                     نمایید</p>
                 <form class="sidebar-form-body">
                     <div class="input-form">

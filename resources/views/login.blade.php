@@ -4,8 +4,8 @@
         <!-- calender main -->
         <div class="container my-5">
             <img src="{{asset('img/logo-login.png')}}" alt="" class="mb-4">
-            <h4 class="modal-title text-black">ورود به انجمن مدیریت پروژه</h4>
-            <p class="text-black-light font-18 text-light2 mt-4 mb-4">جهت ورورد به سایت اطلاعات زیر را تکمیل
+            <h4 class="modal-title text-black">ورود به صفحه کاربری</h4>
+            <p class="text-black-light font-18 text-light2 mt-4 mb-4">جهت ورود به صفحه کاربری اطلاعات زیر را تکمیل
                 نمایید</p>
             <form class="sidebar-form-body row">
                 <div class="input-form col-6">

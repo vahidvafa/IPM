@@ -31,36 +31,11 @@
                                     <p class="text-danger font-26 text-bold">اشتراک شما به پایان رسیده</p>
                                 @endif
 
-                                    @if( auth()->check() && $user->id == auth()->id() && $user->shortcomings != null )
-
-                                        <p class=" text-danger text-bold">
-                                            نواقصی مدارک:
-                                            {{--ادرس: {{$document->address}} ||--}}
-                                            {{$user->shortcomings}}
-                                        </p>
-
-                                    @endif
-
                                 <p class="font-16 text-regular text-black">
                                     <span>نام: </span>
                                     <span class="text-black-light">{{$user->first_name}} {{$user->last_name}}</span>
                                 </p>
 
-                                <p class="font-16 text-regular text-black">
-                                    <span>سابقه :</span>
-                                    <br>
-                                    @foreach($user->workExperience as $word_experience)
-                                        <span class="text-black-light">{{$word_experience->company_name}} ({{substr($word_experience->from_date,0,4)}} تا {{substr($word_experience->to_date,0,4)}})</span>
-                                        <br>
-                                    @endforeach
-                                </p>
-                                <p class="font-16 text-regular text-black">
-                                    <span>مدرک تحصیلی :</span><br>
-                                    @foreach($user->education as $education)
-                                        <span class="text-black-light">دانشگاه: {{$education->education_place}}, معدل: {{$education->gpa}}</span>
-                                        <br>
-                                    @endforeach
-                                </p>
                                     @if($user->membership_type_id == 2 )
                                         <p class="font-16 text-regular text-black">
                                             <span>نام شرکت: </span>
@@ -73,10 +48,12 @@
                                         </p>
                                         @endif
 
-                                <p class="font-16 text-regular text-black">
-                                    <span>درباره من :</span>
-                                    <span class="text-black-light">{{$user->about_me}}</span>
-                                </p>
+                                    <p class="font-16 text-regular text-black">
+                                        <span>درباره من :</span>
+                                        <span class="text-black-light">{{$user->about_me}}</span>
+                                    </p>
+
+
                                 <div class="social-profile mt-3">
                                     <a href="{{$user->profile[0]->telegram}}"><img src="{{asset('img/social11.png')}}" alt="..."></a>
                                     <a href="{{$user->profile[0]->instagram}}"><img src="{{asset('img/social22.png')}}" alt="..."></a>
@@ -148,7 +125,7 @@
                                     @endif
                                     @endauth
                                     <div class="col-12">
-                                        <div class="detail-profile ">
+                                        <div class="detail-profile mb-4">
                                             <h2 class=" font-24 text-medium text-black mb-4 text-dark-violet">مدارک و
                                                 دوره های گذرانده شده
                                             </h2>
@@ -179,26 +156,59 @@
                                                     </ul>
                                             @endforeach
                                         </div>
-{{--
-                                        <div class="form-profile">
 
-                                            @if(auth()->id() != $user->id)
-                                                --}}{{--<h2 class=" font-24 text-medium text-black mb-4 mt-5 hide ">اطلاعات بیشتر
-                                                    قابل مشاهده
-                                                </h2>--}}{{--
-                                                <div class="sidebar-form-body row hide"  >
-                                                    @foreach($profileVisible as $key=>$value)
-                                                        <div class="input-form col-md-12 ">
-                                                            <img src="{{asset('img/002-telephone.png')}}"
-                                                                 class="form-icon">
-                                                            <p>{{$value}}</p>
-                                                        </div>
-                                                    @endforeach
 
-                                                </div>
-                                            @endif
+                                        @if( auth()->check() && $user->id == auth()->id() && $user->shortcomings != null )
 
-                                        </div>--}}
+                                            <p class=" text-danger text-bold">
+                                                نواقصی مدارک:
+                                                {{--ادرس: {{$document->address}} ||--}}
+                                                {{$user->shortcomings}}
+                                            </p>
+
+                                        @endif
+
+                                        <p class="font-16 text-regular text-black">
+                                            <span>سابقه :</span>
+                                            <br>
+                                            @foreach($user->workExperience as $word_experience)
+                                                <span class="text-black-light">{{$word_experience->company_name}} ({{substr($word_experience->from_date,0,4)}} تا {{substr($word_experience->to_date,0,4)}})</span>
+                                                <br>
+                                            @endforeach
+                                        </p>
+                                        <p class="font-16 text-regular text-black">
+                                            <span>مدرک تحصیلی :</span><br>
+                                            @foreach($user->education as $education)
+                                                <span class="text-black-light">دانشگاه: {{$education->education_place}}, معدل: {{$education->gpa}}</span>
+                                                <br>
+                                            @endforeach
+                                        </p>
+
+
+
+
+
+                                        {{--
+
+                                                                                <div class="form-profile">
+
+                                                                                    @if(auth()->id() != $user->id)
+                                                                                        --}}{{--<h2 class=" font-24 text-medium text-black mb-4 mt-5 hide ">اطلاعات بیشتر
+                                                                                            قابل مشاهده
+                                                                                        </h2>--}}{{--
+                                                                                        <div class="sidebar-form-body row hide"  >
+                                                                                            @foreach($profileVisible as $key=>$value)
+                                                                                                <div class="input-form col-md-12 ">
+                                                                                                    <img src="{{asset('img/002-telephone.png')}}"
+                                                                                                         class="form-icon">
+                                                                                                    <p>{{$value}}</p>
+                                                                                                </div>
+                                                                                            @endforeach
+
+                                                                                        </div>
+                                                                                    @endif
+
+                                                                                </div>--}}
 
                                     </div>
 
