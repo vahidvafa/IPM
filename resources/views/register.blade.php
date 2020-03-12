@@ -77,6 +77,19 @@
                               enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="type" value="{{$memberships[0]->id}}">
+                            <div class="input-form col-md-12 py-2 px-4">
+                                <label>مدت زمان : </label>
+                                <select name="year" required>
+                                    <option value="1" selected>عضویت یکساله</option>
+                                    <option value="3">عضویت سه ساله</option>
+                                </select>
+                                @if (Session::get('type') == 1 && $errors->has('year'))
+                                    <div id="name-error" class="error text-danger pl-3" for="name"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('year') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
                             <div class="input-form col-md-6">
                                 <div class="row">
                                     <div class="col-12">
@@ -590,6 +603,19 @@
                               enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="type" value="{{$memberships[1]->id}}">
+                            <div class="input-form col-md-12 py-2 px-4">
+                                <label>مدت زمان : </label>
+                                <select name="year" required>
+                                    <option value="1" selected>عضویت یکساله</option>
+                                    <option value="3">عضویت سه ساله</option>
+                                </select>
+                                @if (Session::get('type') == 2 && $errors->has('year'))
+                                    <div id="name-error" class="error text-danger pl-3" for="name"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('year') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
                             <div class="col-md-12 my-4">
                                 <h2 class="font-22 text-medium text-black">مشخصات فردی نماینده :</h2>
                             </div>
@@ -1252,6 +1278,20 @@
                               enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="type" value="{{$memberships[2]->id}}">
+                            <div class="input-form col-md-12 py-2 px-4">
+                                <label>مدت زمان : </label>
+                                <select name="year" required>
+                                    <option value="1" selected>عضویت یکساله</option>
+                                    <option value="3">عضویت سه ساله</option>
+                                </select>
+                                @if (Session::get('type') == 3 && $errors->has('year'))
+                                    <div id="name-error" class="error text-danger pl-3" for="name"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('year') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+
                             <div class="input-form col-md-6">
                                 <div class="row">
                                     <div class="col-12">
