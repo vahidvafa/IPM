@@ -23,15 +23,23 @@
                     <th>نام</th>
                     <th>نام خانوادگی</th>
                     <th>کد عضویت</th>
+                    <th>نمایش پرفایل</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($users as $user)
+
                     <tr>
                         <td>{{ $user->first_name }}</td>
                         <td>{{ $user->last_name }}</td>
                         <td>{{ $user->user_code }}</td>
+                        <td ><a href="{{route('profile',[$user->slug])}}">
+                                <i class="fa fa-eye"></i>
+                            </a></td>
+
                     </tr>
+
+
                 @endforeach
                 </tbody>
             </table>

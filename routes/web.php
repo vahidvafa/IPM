@@ -137,7 +137,18 @@ Route::get('callback','IndexController@callback')->name('callback');
 Route::get('bank','IndexController@bank')->name('bank');
 
 Route::get('test',function (){
+    DB::table("i_p_m_a_s")->update([
+        'head_title'=>' چهاردهمین کنفرانس بین المللی مدیریت پروژه',
+        'head_subtitle'=>' ثبت نام پیش از تاریخ ۹۸/۵/۲۰ دارای ۱۰ درصد تخفیف است',
+        'head_description'=>'ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و',
+        'address'=>'تهران، امیرآباد شمالی، بالاتر از بزرگراه جلال آل احمد، پردیس دانشکده های فنی دانشگاه تهران، ساختمان انستیتو مهندسی نفت، طبقه همکف',
+        'tel'=>'(5خط) 88229406',
+        'fax'=>'89784216',
+        'secretariat_email'=>'info@ipma.ir',
+        'membership_email'=>'membership@ipma.ir',
+    ]);
 
+    exit();
     $name = word2uni("محمد رضا وفایی ");
 
     $img = Image::make(public_path('img/BO1-blue.jpg'));

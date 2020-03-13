@@ -191,12 +191,12 @@
                             <li class="breadcrumb-item font-20 active">{{$breadcrumb??''}}</li>
                         </ul>
                         <h1 class="title-page font-40 text-white" style="display: block;text-overflow: ellipsis;word-wrap: break-word;overflow: hidden;max-height: 1.3em;line-height: 1.3em;">{{$titleHeader ?? ''}}</h1>
-                        @if( Route::currentRouteName() == "profile" && auth()->check() )
+                        {{--@if( Route::currentRouteName() == "profile" && auth()->check() )
                         <h5 class="title-page font-40 text-white" style="display: block;text-overflow: ellipsis;word-wrap: break-word;overflow: hidden;max-height: 1.3em;line-height: 1.3em;">
                             <a class="text-white" href="{{route("job.index")}}">فرصت های شغلی</a> |
                             <a class="text-white" href="{{route("job.create")}}" >ثبت فرصت شغلی</a> |
                         </h5>
-                            @endif
+                            @endif--}}
                     </div>
                     {{--@if( Route::currentRouteName() == "profile" && auth()->check() )
                     <div class="col-5 row " style="height: 50px;color: #fff; align-items: center;" dir="ltr"  >

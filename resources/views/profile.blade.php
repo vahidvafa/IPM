@@ -7,14 +7,15 @@
     <main id="content-page" role="main">
         <!-- calender main -->
         <div class="container">
+
             <div class="profile-main mt-5 mb-5">
                 <div class="row pb-5">
                     <div class="col-12">
                         <div class="row profile-top pt-5 pb-5">
                             <div class="col-12 col-lg-4 mb-5 mb-lg-0">
                                 <div class="row justify-content-center">
-                                    <div class="profile-top-image col-12 col-sm-8 col-md-6 col-lg-12 ">
-                                        <img class="img-fluid" src="{{asset('img/nasrollahpour.jpg')}}" alt="">
+                                    <div class="profile-top-image col-10 col-sm-8 col-md-6 col-lg-10 ">
+                                        <img class="img-fluid" src="@if(file_exists("img/profile/".($user->profile_picture==null?"$.$":$user->profile_picture))) {{asset("img/profile/".$user->profile_picture)}} @else {{asset('img/nasrollahpour.jpg')}} @endif" alt="">
                                         <div class="profile-top-icons" style="background-color: @if($user->membership_type_id == 1) @if($user->reagent_id == 0) grey @else #372b7d @endif @endif">
                                             <p class="text-white font-18 text-medium m-0">
                                                 <span>کد عضویت :</span>
@@ -158,6 +159,9 @@
                                         </div>
 
 
+                                        <h2 class=" font-24 text-medium text-black mt-5 mb-4 text-dark-violet">
+                                            اطلاعات بیشتر
+                                        </h2>
                                         @if( auth()->check() && $user->id == auth()->id() && $user->shortcomings != null )
 
                                             <p class=" text-danger text-bold">
@@ -220,61 +224,8 @@
                                           enctype="multipart/form-data">
                                         @csrf
                                         {{--@method('post')--}}
-                                        <div class="input-form col-md-5">
-                                            <label for="profile[youTube]">لینک یوتویوپ</label>
-                                            <input type="text" name="profile[youTube]" size="40" aria-invalid="false"
-                                                   placeholder="لینک یوتویوپ"
-                                                   value="{{old('profile.birth_date',$user->profile[0]->youTube)}}"
-                                                   required>
-                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
-                                        </div>
 
-                                        <div class="input-form col-md-5">
-                                            <label for="profile[facebook]">لینک فیسبوک</label>
-                                            <input type="text" name="profile[facebook]" size="40" aria-invalid="false"
-                                                   placeholder="لینک فیسبوک"
-                                                   value="{{old('profile.birth_place',$user->profile[0]->facebook)}}"
-                                                   required>
-                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
-                                        </div>
-
-                                        <div class="input-form col-md-5">
-                                            <label for="profile[instagram]">لینک اینستاگرام</label>
-                                            <input type="text" name="profile[instagram]" size="40" aria-invalid="false"
-                                                   placeholder="لینک اینستاگرام"
-                                                   value="{{old('profile.birth_place',$user->profile[0]->instagram)}}"
-                                                   required>
-                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
-                                        </div>
-
-                                        <div class="input-form col-md-5">
-                                            <label for="profile[telegram]">لینک تلگرام</label>
-                                            <input type="text" name="profile[telegram]" size="40" aria-invalid="false"
-                                                   placeholder="لینک تلگرام"
-                                                   value="{{old('profile.birth_date',$user->profile[0]->telegram)}}"
-                                                   required>
-                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
-                                        </div>
-
-                                        <div class="input-form col-md-5">
-                                            <label for="profile[twitter]">لینک تویتر</label>
-                                            <input type="text" name="profile[twitter]" size="40" aria-invalid="false"
-                                                   placeholder="لینک تویتر"
-                                                   value="{{old('profile.birth_place',$user->profile[0]->twitter)}}"
-                                                   required>
-                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
-                                        </div>
-
-                                        <div class="input-form col-md-5">
-                                            <label for="profile[home_tel]">تلفن منزل*</label>
-                                            <input type="text" name="profile[home_tel]" size="40" aria-invalid="false"
-                                                   placeholder="تلفن منزل*"
-                                                   value="{{old('profile.birth_date',$user->profile[0]->home_tel)}}"
-                                                   required>
-                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
-                                        </div>
-
-                                        <div class="input-form col-md-3">
+                                        <div class="input-form col-md-4">
                                             <label for="profile[birth_date]">تاریخ تولد*</label>
                                             <input type="text" name="profile[birth_date]" size="40" aria-invalid="false"
                                                    placeholder="تاریخ تولد*"
@@ -283,7 +234,7 @@
                                             {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
                                         </div>
 
-                                        <div class="input-form col-md-3">
+                                        <div class="input-form col-md-4">
                                             <label for="profile[birth_place]">محل تولد*</label>
                                             <input type="text" name="profile[birth_place]" size="40"
                                                    aria-invalid="false"
@@ -292,8 +243,9 @@
                                                    required>
                                             {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
                                         </div>
+                                        <div class="col-4"></div>
 
-                                        <div class="col-md-4 mt-5">
+                                        <div class="col-md-4 mt-4">
                                             <div class="input-upload ">
                                                 <label class="custom-file-label" for="customFile">انتخاب عکس
                                                     پروفایل</label>
@@ -303,7 +255,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4 mt-3 mb-2">
+                                        <div class="col-md-4 mt-4 mb-3">
                                             <div class="input-upload ">
                                                 <label class="custom-file-label" id="resumeLbl" for="resume">انتخاب فایل رزومه
                                                     </label>
@@ -352,6 +304,53 @@
                                                       placeholder="درباره من">{{old('about_me',$user->about_me)}}</textarea>
 
                                         </div>
+
+                                        <div class="input-form col-md-5">
+                                            <label for="profile[youTube]">لینک یوتویوپ</label>
+                                            <input type="text" name="profile[youTube]" size="40" aria-invalid="false"
+                                                   placeholder="لینک یوتویوپ"
+                                                   value="{{old('profile.birth_date',$user->profile[0]->youTube)}}"
+                                                   required>
+                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
+                                        </div>
+
+                                        <div class="input-form col-md-5">
+                                            <label for="profile[facebook]">لینک فیسبوک</label>
+                                            <input type="text" name="profile[facebook]" size="40" aria-invalid="false"
+                                                   placeholder="لینک فیسبوک"
+                                                   value="{{old('profile.birth_place',$user->profile[0]->facebook)}}"
+                                                   required>
+                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
+                                        </div>
+
+                                        <div class="input-form col-md-5">
+                                            <label for="profile[instagram]">لینک اینستاگرام</label>
+                                            <input type="text" name="profile[instagram]" size="40" aria-invalid="false"
+                                                   placeholder="لینک اینستاگرام"
+                                                   value="{{old('profile.birth_place',$user->profile[0]->instagram)}}"
+                                                   required>
+                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
+                                        </div>
+
+                                        <div class="input-form col-md-5">
+                                            <label for="profile[telegram]">لینک تلگرام</label>
+                                            <input type="text" name="profile[telegram]" size="40" aria-invalid="false"
+                                                   placeholder="لینک تلگرام"
+                                                   value="{{old('profile.birth_date',$user->profile[0]->telegram)}}"
+                                                   required>
+                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
+                                        </div>
+
+                                        <div class="input-form col-md-5">
+                                            <label for="profile[twitter]">لینک تویتر</label>
+                                            <input type="text" name="profile[twitter]" size="40" aria-invalid="false"
+                                                   placeholder="لینک تویتر"
+                                                   value="{{old('profile.birth_place',$user->profile[0]->twitter)}}"
+                                                   required>
+                                            {{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}
+                                        </div>
+
+                                        <div class="col-6"></div>
 
                                         <div class="col-sm-6 col-md-4 col-lg-3 mt-4 center-y">
                                             <input type="submit" value="ذخیره تغییرات"

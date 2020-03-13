@@ -180,15 +180,15 @@
             <div class="container">
                 <div class="row align-items-center justify-content-around pb-5">
                     <div class="col-12 order-1 order-md-2 pt-5 pb-5 ">
-                        <h2 class="font-28 text-white mb-5">
+                        <h2 class="font-24 text-white mb-5">
                             <span class="text-yellow">
                                 {{$ipma->head_title}}
                             </span>
                         </h2>
-                        <h3 class="font-22 text-white mb-4">
-                            ثبت نام پیش از تاریخ ۹۸/۵/۲۰ دارای ۱۰ درصد تخفیف است
+                        <h3 class="font-18 text-white mb-4">
+                            {{$ipma->head_subtitle}}
                         </h3>
-                        <p class="font-18 text-white ">{{$ipma->head_description}}</p>
+                        <p class="font-16 text-white ">{{$ipma->head_description}}</p>
                         <a class="btn btn-white font-16 text-black mt-5">در رویداد شرکت کنید</a>
                     </div>
                 </div>
@@ -606,7 +606,7 @@
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
 
                                 <a class="Committee-icons-text d-block text-white text-medium" href="/">
-                                <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman"><p>کمیته جایزه ها</p></a>
+                                <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman"><p>کمیته جایزه</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
 
@@ -815,11 +815,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 mt-sm-5 pt-sm-5">
-                    <div class="logo-slid  ">
+                    <div class="logo-slid ">
                         <div><a href="https://mci.ir/" target="_blank"><img src="{{asset('img/b1.png')}}" style="zoom:1.3;"></a></div>
                         <div><a href="https://www.iranianatlas.ir/" target="_blank"><img src="{{asset('img/b2.png')}}" style="zoom:1.3;"></a></div>
                         <div><a href="http://www.farab.com/fa/" target="_blank"><img src="{{asset('img/b3.png')}}" style="zoom:1.3;"></a></div>
                         <div><a href="https://www.mapnanyp.com/" target="_blank"><img src="{{asset('img/b4.png')}}" style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}" style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}" style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}" style="zoom:1.3;"></a></div>
                         <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}" style="zoom:1.3;"></a></div>
                     </div>
                 </div>
@@ -1002,10 +1005,15 @@
         $('.logo-slid').slick({
             dots: false,
             infinite: true,
-            speed: 300,
+            autoplay: true,
+            autoplaySpeed: 2500,
+            speed: 1200,
             slidesToShow: 5,
-            slidesToScroll: 5,
+            slidesToScroll: 1,
             rtl: true,
+            centerMode: true,
+
+
 
             responsive: [
                 {
