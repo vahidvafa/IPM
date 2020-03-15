@@ -79,7 +79,9 @@
                             <input type="hidden" name="type" value="{{$memberships[0]->id}}">
                             <div class="input-form col-md-12 py-2 px-4">
                                 <label>مدت زمان : </label>
-                                <select name="year" required>
+                                {{--../icon/chevron-down--}}
+                                <i class="fa fa-chevron-down"></i>
+                                <select name="year" required >
                                     <option value="1" selected>عضویت یکساله</option>
                                     <option value="3">عضویت سه ساله</option>
                                 </select>

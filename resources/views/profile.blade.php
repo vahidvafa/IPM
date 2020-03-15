@@ -18,7 +18,7 @@
                                         <img class="img-fluid" src="@if(file_exists("img/profile/".($user->profile_picture==null?"$.$":$user->profile_picture))) {{asset("img/profile/".$user->profile_picture)}} @else {{asset('img/nasrollahpour.jpg')}} @endif" alt="">
                                         <div class="profile-top-icons" style="background-color: @if($user->membership_type_id == 1) @if($user->reagent_id == 0) grey @else #372b7d @endif @endif">
                                             <p class="text-white font-18 text-medium m-0">
-                                                <span>کد عضویت :</span>
+                                                <span >کد عضویت :</span>
                                                 <span>{{$user->user_code}}</span>
                                             </p>
 

@@ -178,7 +178,7 @@
         </div>
         <div class="slider-text pt-5 pb-5">
             <div class="container">
-                <div class="row align-items-center justify-content-around pb-5">
+                <div class="row align-items-center justify-content-around pb-5 col-6 " style="margin-right: auto;margin-left: 0" >
                     <div class="col-12 order-1 order-md-2 pt-5 pb-5 ">
                         <h2 class="font-24 text-white mb-5">
                             <span class="text-yellow">
