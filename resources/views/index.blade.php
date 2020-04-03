@@ -29,7 +29,7 @@
     <div class="register-fix">
         <a href="{{route('register')}}">
             <span class="register-fix-in">
-                میخواهم در انجمن عضو شوم
+                همین الان عضو شو
             </span>
         </a>
     </div>
@@ -131,27 +131,27 @@
                                     </div>
                                 </li>
                                 <!-- Dropdown -->
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop2"
-                                       data-toggle="dropdown">
-                                        محصولات و خدمات </a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Link 1</a>
-                                        <a class="dropdown-item" href="#">Link 2</a>
-                                        <a class="dropdown-item" href="#">Link 3</a>
-                                    </div>
-                                </li>
+{{--                                <li class="nav-item dropdown">--}}
+{{--                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop2"--}}
+{{--                                       data-toggle="dropdown">--}}
+{{--                                        محصولات و خدمات </a>--}}
+{{--                                    <div class="dropdown-menu">--}}
+{{--                                        <a class="dropdown-item" href="#">Link 1</a>--}}
+{{--                                        <a class="dropdown-item" href="#">Link 2</a>--}}
+{{--                                        <a class="dropdown-item" href="#">Link 3</a>--}}
+{{--                                    </div>--}}
+{{--                                </li>--}}
                                 <!-- Dropdown -->
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop3"
-                                       data-toggle="dropdown">
-                                        ارکان انجمن </a>
-                                    {{--                                    <div class="dropdown-menu">--}}
-                                    {{--                                        <a class="dropdown-item" href="#">Link 1</a>--}}
-                                    {{--                                        <a class="dropdown-item" href="#">Link 2</a>--}}
-                                    {{--                                        <a class="dropdown-item" href="#">Link 3</a>--}}
-                                    {{--                                    </div>--}}
-                                </li>
+{{--                                <li class="nav-item dropdown">--}}
+{{--                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop3"--}}
+{{--                                       data-toggle="dropdown">--}}
+{{--                                        ارکان انجمن </a>--}}
+{{--                                    --}}{{--                                    <div class="dropdown-menu">--}}
+{{--                                    --}}{{--                                        <a class="dropdown-item" href="#">Link 1</a>--}}
+{{--                                    --}}{{--                                        <a class="dropdown-item" href="#">Link 2</a>--}}
+{{--                                    --}}{{--                                        <a class="dropdown-item" href="#">Link 3</a>--}}
+{{--                                    --}}{{--                                    </div>--}}
+{{--                                </li>--}}
                                 <li class="nav-item">
                                     <a class="nav-link " href="{{route('search')}}">جستجو</a>
                                 </li>
@@ -605,16 +605,16 @@
                             </div>
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
 
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">
+                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('gifts')}}">
                                 <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman"><p>کمیته جایزه</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
 
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">
+                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('research')}}">
                                 <img class="mb-3" src="img/001-user-group.png" alt="anjoman"><p>پژوهش</p></a>
                             </div>
                             <div class="col-6 text-center   pt-5 pb-5">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">
+                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('branches')}}">
                                 <img class="mb-3" src="img/009-exam.png" alt="anjoman"><p>شاخه ها</p></a>
                             </div>
                             <!--<div class="col-6 text-center bl-1  pt-5 pb-5">-->
@@ -631,7 +631,7 @@
                     <div class="col-12 col-lg-5 Committee-icons">
                         <div class="row">
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">
+                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('winners')}}">
                                 <img class="mb-3" src="img/003-patent-1.png" alt="anjoman"><p>کارگروه های تخصصی</p></a>
                             </div>
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
@@ -640,7 +640,7 @@
                                     <p>درباره ما</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('about-us')}}#board-of-directors">
+                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('user.index')}}">
                                 <img class="mb-3" src="img/001-user-group.png" alt="anjoman">
                                 <p>معرفی اعضا</p></a>
                             </div>
@@ -916,13 +916,12 @@
 {{--            </div>--}}
             <div class="register-footer col-12 col-md-6 col-lg-5">
                 <p class="text-regular text-white pt-2">ارسال آدرس به موبایل شما</p>
-                <form action="" class="mb-3">
+                <form action="{{route('location')}}" method="post" class="mb-3">
+                    @csrf
                     <div class="form-group">
-
-                        <input type="text" class="form-control" placeholder="شماره تماس" id="address">
+                        <input type="text" class="form-control" placeholder="شماره تماس" id="address" name="mobile" autocomplete="off">
                     </div>
-
-                    <button type="submit" class="btn ">ارسال </button>
+                    <button type="submit" class="btn">ارسال </button>
                 </form>
                 <div class="map-footer">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12954.853719944527!2d51.379332384785705!3d35.73326570113224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0728f1286b91%3A0xf8a61ce1468a9dcd!2sKuy-e-Daneshgah%2C%20District%206%2C%20Tehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2sus!4v1579277414645!5m2!1sen!2sus" width="100%" height="150" frameborder="0" style="border:0;" allowfullscreen=""></iframe>

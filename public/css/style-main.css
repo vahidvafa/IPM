@@ -108,7 +108,7 @@ body {
     }
 .back-dark-violet{
     background-color: #372b7d;
-    
+
     }
 .hover-text-black:hover{
     color: #372b7d;
@@ -134,7 +134,7 @@ body {
     border-radius: 33px;
     height: 65px;
     min-width: 225px;
-    
+
     text-align: center;
     padding: 20px 0;
     color: white !important;
@@ -142,7 +142,7 @@ body {
     -o-transition: all .3s ease;
     -moz-transition: all .3s ease;
     transition: all .3s ease;
-    
+
     }
 .btn-violet-sm{
     background-color: #372b7d;
@@ -157,7 +157,7 @@ body {
     -o-transition: all .3s ease;
     -moz-transition: all .3s ease;
     transition: all .3s ease;
-    
+
     }
 .btn-white-border{
     background-color: white;
@@ -278,8 +278,8 @@ body {
     padding-top: 35px;
     padding-right: 40px !important;
     padding-left: 40px !important;
-    
-    
+
+
     }
 .sidebar-form-header-text:after{
     content: "";
@@ -381,7 +381,7 @@ input:not([type='checkbox']):focus, input:not([type='checkbox']):active, select:
     -o-transition: all .3s ease;
     -moz-transition: all .3s ease;
     transition: all .3s ease;
-    
+
     }
 .form-submit-violet{
     background-color: #372b7d !important;
@@ -400,7 +400,7 @@ input:not([type='checkbox']):focus, input:not([type='checkbox']):active, select:
     box-shadow: none;
     color:#372b7d  !important;
     cursor: pointer;
-    
+
     }
 .form-submit:hover{
     background-color: white !important;
@@ -409,7 +409,7 @@ input:not([type='checkbox']):focus, input:not([type='checkbox']):active, select:
     box-shadow: none;
     color:#fca80f  !important;
     cursor: pointer;
-    
+
     }
 .sidebar-form-footer{
     background-color: #372b7d;
@@ -539,7 +539,7 @@ input:not([type='checkbox']):focus, input:not([type='checkbox']):active, select:
     max-height: 134px;
     min-height: 134px;
     width: auto;
-    
+
     }
 .tab-content.last-pack-content>.active {
     display: flex;
@@ -621,7 +621,7 @@ input:not([type='checkbox']):focus, input:not([type='checkbox']):active, select:
     }
 .Committee-violet{
     background-color:#372b7d ;
-    
+
     }
 .bl-1{
     border-left: 1px solid rgba(255, 255, 255, 0.45);
@@ -645,7 +645,7 @@ input:not([type='checkbox']):focus, input:not([type='checkbox']):active, select:
     }
 .Committee-icons-text:hover{
     color: #fca80f !important;
-    
+
     }
 /* ==========================================================================
                                news
@@ -660,7 +660,7 @@ input:not([type='checkbox']):focus, input:not([type='checkbox']):active, select:
     -webkit-box-shadow: 0 15px 38px 0 rgba(0,0,0,0.1);
     -moz-box-shadow: 0 15px 38px 0 rgba(0,0,0,0.1);
     box-shadow: 0 15px 38px 0 rgba(0,0,0,0.1);
-    
+
     }
 .card-news img{
     max-height: 200px;
@@ -972,12 +972,12 @@ ul.social li a {
     display: none;
     }
 footer.footer-pages {
-    
+
     padding-top: 50px;
     }
 .breadcrumb-item+.breadcrumb-item::before {
     color: #ffffff;
-    
+
     }
 /* ==========================================================================
                           modal
@@ -1228,7 +1228,7 @@ click-wave { 0% {
     transition: all .3s ease;
     box-shadow: none;
     margin-top: 20px;
-    
+
     }
 .more-link-in{
     text-align: center;
@@ -1354,7 +1354,7 @@ click-wave { 0% {
     -webkit-border-bottom-right-radius: 50px;
     -moz-border-radius-bottomright: 50px;
     border-bottom-right-radius: 50px;
-    
+
     }
 .qr-profile{
     max-width: 150px;
@@ -1489,7 +1489,7 @@ click-wave { 0% {
     overflow: hidden;
     position: relative;
     background-attachment: fixed;
-    
+
     }
 .ceo-img {
     border-radius: 50% !important;
@@ -1538,7 +1538,7 @@ click-wave { 0% {
 .ceo-out{
     position: relative;
     z-index: 1;
-    
+
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;

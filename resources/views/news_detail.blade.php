@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card img-top-detail">
-                            <img class="card-img-top" style="max-height: 460px" height="auto"
+                            <img class="card-img-top" style="width:auto; height: auto;"
                                  src="{{asset("img/news/$news->photo")}}" alt="Card image">
                             <div class="card-body">
                                 <h4 class="card-title text-white m-0">{{$news->title}}</h4>

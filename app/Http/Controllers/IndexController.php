@@ -62,15 +62,15 @@ class IndexController extends Controller
         $totalProfits = Order::whereStateId(1)->sum('total_price');
 
 
-        return view('cms.panel',compact('userType1','userType2','userType3','userType4','newsCount','eventsCount','TotalPendingBuy','TotalSuccessBuy','TotalFailBuy','totalProfits'));
+        return view('cms.panel', compact('userType1', 'userType2', 'userType3', 'userType4', 'newsCount', 'eventsCount', 'TotalPendingBuy', 'TotalSuccessBuy', 'TotalFailBuy', 'totalProfits'));
     }
 
     public function callback()
     {
         $status = true;
 //        $status = false;
-        $titleHeader = $breadcrumb ='وضعیت پرداخت';
-        return view('call_back',compact('status','titleHeader','breadcrumb'));
+        $titleHeader = $breadcrumb = 'وضعیت پرداخت';
+        return view('call_back', compact('status', 'titleHeader', 'breadcrumb'));
     }
 
     public function bank()
@@ -80,7 +80,7 @@ class IndexController extends Controller
 //        dd($price);
         return Payment::purchase(
             (new Invoice)->amount($price),
-            function($driver, $transactionId) {
+            function ($driver, $transactionId) {
                 // store transactionId in database.
                 // we need the transactionId to verify payment in future
             }
@@ -95,7 +95,38 @@ class IndexController extends Controller
         return view('about_us', compact('titleHeader', 'breadcrumb'));
     }
 
+    public function branches()
+    {
+        $breadcrumb = $titleHeader = "معرفی شاخه ها";
+        return view('branches', compact('titleHeader', 'breadcrumb'));
+    }
 
+    public function research()
+    {
+        $breadcrumb = $titleHeader = "پژوهش برتر";
+        return view('research', compact('titleHeader', 'breadcrumb'));
+    }
 
+    public function gifts()
+    {
+        $breadcrumb = $titleHeader = "کمیته جایزه";
+        return view('gifts', compact('titleHeader', 'breadcrumb'));
+    }
 
+    public function winners()
+    {
+        $breadcrumb = $titleHeader = "کارگروه های تخصصی";
+        return view('winners', compact('titleHeader', 'breadcrumb','id'));
+    }
+
+    public function winners_detail($id)
+    {
+        if ($id > 0 && $id <= 7){
+            $breadcrumb = $titleHeader = "ارزیابان";
+            return view('winners_detail', compact('titleHeader', 'breadcrumb','id'));
+        }else{
+            abort(404);
+        }
+
+    }
 }

@@ -177,6 +177,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         'Intervention\Image\ImageServiceProvider',
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Ixudra\Curl\CurlServiceProvider::class,
     ],
 
     /*
@@ -228,7 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => 'Intervention\Image\Facades\Image',
-
+        'Curl' => Ixudra\Curl\Facades\Curl::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 

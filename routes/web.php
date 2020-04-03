@@ -41,7 +41,13 @@ Route::get('/events/', 'EventController@index')->name("events");
 Route::get('/profile/{slug}', 'ProfileController@show')->name("profile");
 Route::post('/login', 'AuthController@postLogin')->name('login.post');
 Route::get('/login', 'AuthController@Login')->name('login')->middleware('guest');
+Route::post('location','AuthController@locationSms')->name('location');
 Route::get('about-us', 'IndexController@about_us')->name('about-us');
+Route::get('/branches', 'IndexController@branches')->name('branches');
+Route::get('/research', 'IndexController@research')->name('research');
+Route::get('/gifts', 'IndexController@gifts')->name('gifts');
+Route::get('/winners', 'IndexController@winners')->name('winners');
+Route::get('/winners/{id}', 'IndexController@winners_detail')->name('winners_detail');
 Route::get('news/{news}', 'NewsController@show')->name('news.show');
 Route::middleware('auth')->group(function () {
     Route::get('logout', 'UserController@logout')->name('logout');
@@ -166,3 +172,5 @@ Route::get('test',function (){
     echo "<img src='img/text_with_image.jpg'>";
 
 });
+
+

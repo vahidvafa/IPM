@@ -9,6 +9,7 @@ use App\User;
 use App\WorkExperience;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Ixudra\Curl\Facades\Curl;
 use Morilog\Jalali\Jalalian;
 use App\Membership;
 use App\MembershipType;
@@ -33,6 +34,7 @@ class AuthController extends Controller
 
     public function postRegister(Request $request)
     {
+//        dd($request->all());
 //        dd($request->get('experience'));
         $messages = [
             '*.required' => 'وارد کردن این فیلد الزامی است',
@@ -243,5 +245,20 @@ class AuthController extends Controller
     public function login()
     {
         return view('login');
+    }
+
+    public function locationSms(Request $request)
+    {
+        $this->validate($request,
+            ['mobile' => ' required | numeric ']
+        );
+        Curl::to('https://panel.asanak.com/webservice/v1rest/sendsms')
+            ->withData(['username' => 'ipmairan',
+                'password' => 'ipma!@#$%^',
+                'source' => '982188229406',
+                'destination' => $request->get('mobile'),
+                'message' => 'سلام کاربر عزیر آدرس انجمن مدیریت پروژه ایران به شرح زیر است ! https://goo.gl/maps/dK2g7juXjzcpddDa8'])
+            ->post();
+        return back();
     }
 }

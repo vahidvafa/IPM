@@ -79,12 +79,14 @@
                             <input type="hidden" name="type" value="{{$memberships[0]->id}}">
                             <div class="input-form col-md-12 py-2 px-4">
                                 <label>مدت زمان : </label>
+                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="1" checked>عضویت یکساله</label>
+                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="3">عضویت سه ساله</label>
                                 {{--../icon/chevron-down--}}
-                                <i class="fa fa-chevron-down"></i>
-                                <select name="year" required >
-                                    <option value="1" selected>عضویت یکساله</option>
-                                    <option value="3">عضویت سه ساله</option>
-                                </select>
+                                {{--            <i class="fa fa-chevron-down"></i>--}}
+                                {{--            <select name="year" required >--}}
+                                {{--                <option value="1" selected>عضویت یکساله</option>--}}
+                                {{--                <option value="3">عضویت سه ساله</option>--}}
+                                {{--            </select>--}}
                                 @if (Session::get('type') == 1 && $errors->has('year'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
@@ -598,7 +600,7 @@
                         </form>
                     </div>
                     <div class="tab-pane {{(Session::get('type') == 2) ? 'active':'fade'}}" id="menu1">
-                        <h2 class=" font-22 text-medium text-black mt-5 mb-4" onclick="setInputs()">
+                        <h2 class=" font-22 text-medium text-black mt-5 mb-4">
                             فرم {{$memberships[1]->title}}
                         </h2>
                         <form class="sidebar-form-body row" action="{{route('register.store')}}" method="POST"
@@ -607,10 +609,12 @@
                             <input type="hidden" name="type" value="{{$memberships[1]->id}}">
                             <div class="input-form col-md-12 py-2 px-4">
                                 <label>مدت زمان : </label>
-                                <select name="year" required>
-                                    <option value="1" selected>عضویت یکساله</option>
-                                    <option value="3">عضویت سه ساله</option>
-                                </select>
+                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="1" checked>عضویت یکساله</label>
+                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="3">عضویت سه ساله</label>
+                                {{--            <select name="year" required>--}}
+                                {{--                <option value="1" selected>عضویت یکساله</option>--}}
+                                {{--                <option value="3">عضویت سه ساله</option>--}}
+                                {{--            </select>--}}
                                 @if (Session::get('type') == 2 && $errors->has('year'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
@@ -1282,10 +1286,10 @@
                             <input type="hidden" name="type" value="{{$memberships[2]->id}}">
                             <div class="input-form col-md-12 py-2 px-4">
                                 <label>مدت زمان : </label>
-                                <select name="year" required>
-                                    <option value="1" selected>عضویت یکساله</option>
-                                    <option value="3">عضویت سه ساله</option>
-                                </select>
+                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="1" checked>عضویت یکساله</label>
+                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="3">عضویت سه ساله</label>
+                                {{--            <input type="radio" id="year_3" name="year" value="3" style="all: unset;">--}}
+                                {{--            <label for="year_3">عضویت سه ساله</label>--}}
                                 @if (Session::get('type') == 3 && $errors->has('year'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
@@ -2125,13 +2129,6 @@
     </main>
     {{--<script src="{{ asset('material/js/core/jquery.min.js') }}"></script>--}}
     <script>
-        function setInputs() {
-            $(':text').val('1000');
-            $('#email-input').val('vahid.izadyar@gmail.com');
-            $('#password').val('12345678');
-            $('#password_confirmation').val('12345678');
-        }
-
         $(document).ready(function () {
             $(".datePickerInput").pDatepicker(
                 {
@@ -2196,6 +2193,13 @@
     function deleteRow(id) {
         $("#" + id).remove();
     }
-
-
 </script>
+<style>
+    .radio-year {
+        height: auto !important;
+        width: auto !important;
+        display: inline !important;
+        -webkit-appearance: radio !important;
+        margin-left: 5px !important;
+    }
+</style>
