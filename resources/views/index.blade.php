@@ -684,7 +684,7 @@
                     <div class="col-12 col-md-4 mb-3 mb-md-0">
                         <div class="card card-news">
                             <div class="card-news-img">
-                                <img src="{{asset('img/events/'.$singleNews->photo)}}" class=""
+                                <img src="{{asset('img/news/'.$singleNews->photo)}}" class=""
                                      style="width: 100% !important;">
                             </div>
                             <div class="card-body">
