@@ -65,7 +65,7 @@
 
             <div class="input-form col-md-6 mb-5 ">
                 <label class="col-12">دسته بندی
-                    <select name="jobsCategory_id">
+                    <select name="jobs_category_id">
                         @foreach($cats as $cat)
                             <option value="{{$cat->id}}"
                                     @if((old("cats")) == $cat->title) selected @endif >{{$cat->title}}</option>

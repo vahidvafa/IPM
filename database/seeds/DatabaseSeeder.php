@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ProvinceSeeder::class);
         $this->call(PassedCoursesCategorySeeder::class);
         $this->call(BranchSeeder::class);
+        $this->call(EventCategorySeeder::class);
         factory(\App\User::class,10)->create();
-        factory(\App\EventCategory::class,18)->create();
         factory(\App\Event::class,20)->create();
         factory(\App\Profile::class,10)->create();
         factory(\App\Company::class,5)->create();

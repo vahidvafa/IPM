@@ -33,7 +33,7 @@ class JobController extends Controller
 //            return $request->get("cats");
 
             if ($request->get("cats") != "-100")
-                $jobs->where("jobsCategory_id", "=", $request->get("cats"));
+                $jobs->where("jobs_category_id", "=", $request->get("cats"));
 
             if ($request->get("contract_type") != $contract_type[0])
                 $jobs->where("contract_type", "=", $request->get("contract_type"));
@@ -101,12 +101,12 @@ class JobController extends Controller
             'title' => 'bail |required||min:4',
             'content' => 'bail |required|min:10',
             'province_id' => 'bail |required|integer',
-            'jobsCategory_id' => 'bail |required|integer',
+            'jobs_category_id' => 'bail |required|integer',
         ], [
             "title.*" => "فیلد عنوان نمی تواند خالی باشدو باید بیش از ۴ حرف باشد",
             'content.*' => "توضیحات نمی تواند خالی باشد و باید بیش از ۱۰ حرف باشد",
             'province_id.*' => 'لطفا یک شهر را انتخاب کنید',
-            'jobsCategory_id.*' => 'لطفا یک دسته بندی را انتخاب کنید',
+            'jobs_category_id.*' => 'لطفا یک دسته بندی را انتخاب کنید',
         ]);
         if (auth()->check()) {
             if (!$validate->fails()) {
@@ -158,7 +158,7 @@ class JobController extends Controller
             if ($job->state == 1)
                 $job->save(["visibility_count " => $job->visibility_count++]);
             $titleHeader = $job->title;
-            $similar = Job::whereState(1)->with('province')->where('jobsCategory_id', '=', $job->jobsCategory_id)->get(['id', 'province_id', "title", 'work_experience', 'education', 'company_logo'])->take(10);
+            $similar = Job::whereState(1)->with('province')->where('jobs_category_id', '=', $job->jobs_category_id)->get(['id', 'province_id', "title", 'work_experience', 'education', 'company_logo'])->take(10);
         }
 
         return view('job.job_detail', compact("job", "titleHeader", "breadcrumb", 'similar'));
@@ -185,7 +185,7 @@ class JobController extends Controller
 
             if (auth()->check() && auth()->id() == $job->user_id) {
                 $titleHeader = $job->title;
-                $similar = Job::with('province')->where('jobsCategory_id', '=', $job->jobsCategory_id)->get(['id', 'province_id', "title", 'work_experience', 'education', 'company_logo'])->take(5);
+                $similar = Job::with('province')->where('jobs_category_id', '=', $job->jobs_category_id)->get(['id', 'province_id', "title", 'work_experience', 'education', 'company_logo'])->take(5);
             } else {
                 $job = null;
 
@@ -216,12 +216,12 @@ class JobController extends Controller
             'title' => 'bail |required||min:4',
             'content' => 'bail |required|min:10',
             'province_id' => 'bail |required|integer',
-            'jobsCategory_id' => 'bail |required|integer',
+            'jobs_category_id' => 'bail |required|integer',
         ], [
             "title.*" => "فیلد عنوان نمی تواند خالی باشدو باید بیش از ۴ حرف باشد",
             'content.*' => "توضیحات نمی تواند خالی باشد و باید بیش از ۱۰ حرف باشد",
             'province_id.*' => 'لطفا یک شهر را انتخاب کنید',
-            'jobsCategory_id.*' => 'لطفا یک دسته بندی را انتخاب کنید',
+            'jobs_category_id.*' => 'لطفا یک دسته بندی را انتخاب کنید',
         ]);
 
         $res[2] = [];
@@ -275,7 +275,7 @@ class JobController extends Controller
 //            return $request->get("cats");
 
             if ($request->get("cats") != "-100")
-                $jobs->where("jobsCategory_id", "=", $request->get("cats"));
+                $jobs->where("jobs_category_id", "=", $request->get("cats"));
 
             if ($request->get("contract_type") != $contract_type[0])
                 $jobs->where("contract_type", "=", $request->get("contract_type"));

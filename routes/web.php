@@ -63,6 +63,15 @@ Route::middleware('auth')->group(function () {
             Route::post('news/store', 'NewsController@store')->name('news.store');
             Route::post('news/{news}/delete', 'NewsController@destroy')->name('news.delete');
             Route::post('news/{news}/update', 'NewsController@update')->name('news.update');
+
+            // add edit del update english news
+            Route::get('news/en', 'NewsController@indexCmsEn')->name('news.en.index');
+            Route::get('news/en/create', 'NewsController@createEn')->name('news.en.create');
+            Route::get('news/en/{news}/edit', 'NewsController@editEn')->name('news.en.edit');
+            Route::post('news/en/store', 'NewsController@storeEn')->name('news.en.store');
+            Route::post('news/en/{news}/update', 'NewsController@updateEn')->name('news.en.update');
+
+
             Route::post('picture/{picture}/delete', 'PictureController@destroy')->name('picture.delete');
             //------
             Route::get('events/', 'EventController@indexCms')->name('event.index');
@@ -74,6 +83,10 @@ Route::middleware('auth')->group(function () {
             Route::post('events/store', 'EventController@store')->name('event.store');
             Route::post('events/{event}/delete', 'EventController@destroy')->name('event.delete');
             Route::post('events/{event}/update', 'EventController@update')->name('event.update');
+            Route::get('goldenEvent', 'EventController@goldenEvent')->name('goldenEvent');
+            Route::post('goldenEvent/update', 'EventController@goldenEventUpdate')->name('goldenEvent.update');
+            Route::post('goldenEvent/search', 'EventController@goldenEventSearch')->name('cms.event.search');
+
             //------
             Route::get('messages/', 'MessageController@index')->name('message.index');
             Route::post('messages/{message}/delete', 'MessageController@destroy')->name('message.delete');
@@ -143,7 +156,7 @@ Route::get('callback','IndexController@callback')->name('callback');
 Route::get('bank','IndexController@bank')->name('bank');
 
 Route::get('test',function (){
-    DB::table("i_p_m_a_s")->update([
+/*    DB::table("i_p_m_a_s")->update([
         'head_title'=>' چهاردهمین کنفرانس بین المللی مدیریت پروژه',
         'head_subtitle'=>' ثبت نام پیش از تاریخ ۹۸/۵/۲۰ دارای ۱۰ درصد تخفیف است',
         'head_description'=>'ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و',
@@ -154,8 +167,8 @@ Route::get('test',function (){
         'membership_email'=>'membership@ipma.ir',
     ]);
 
-    exit();
-    $name = word2uni("محمد رضا وفایی ");
+    exit();*/
+    $name = word2uni("محمد رضا وفایی");
 
     $img = Image::make(public_path('img/BO1-blue.jpg'));
     $img->text($name, 620, 300, function(\Intervention\Image\Gd\Font $font) {

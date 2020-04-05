@@ -34,5 +34,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class IPMA extends Model
 {
-    //
+//    protected $fillable = ['head_subtitle','head_description','head_title','event_id'];
+protected $fillable = ['*'];
+
+protected $guarded = ['id'];
+
 }

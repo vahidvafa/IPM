@@ -26,7 +26,7 @@ class CreateJobsTable extends Migration
             $table->string('work_experience')->nullable();
 //            $table->bigInteger('expire');
             $table->bigInteger('province_id');
-            $table->bigInteger('jobsCategory_id');
+            $table->bigInteger('jobs_category_id');
             $table->tinyInteger('sex')->default(-1);
             $table->tinyInteger('state')->default(0);
             $table->tinyInteger('lang_id',false,true)->default(1);

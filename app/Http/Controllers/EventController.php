@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\IPMA;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -197,4 +198,54 @@ return;*/
         $orders = $event->orders()->where('state_id',1)->with(['user'])->paginate(10);
         return view('cms.events.orders',compact('event','orders'));
     }
+
+
+
+    public function goldenEvent(){
+        $ipma = IPMA::get(['head_title','head_subtitle','head_description','event_id'])[0];
+
+        return view('cms.events.golden_event',compact('ipma'));
+    }
+
+    public function goldenEventUpdate(){
+        $request = \Request::except(['_token']);
+
+        $valid = validator($request,[
+            'head_title'=>'required | min:3',
+            'head_subtitle'=>'required | min:6',
+            'head_description'=>'required | min:15 | max:255',
+            'events'=>'required | integer',
+        ],[
+            'head_title.*'=>'سرتیتر رویداد نمی تواند خالی باشد و باید بیش از ۳ حرف باشد',
+            'head_subtitle.*'=>'عنوان رویداد نمی تواند خالی باشد و باید بیش از ۶ حرف باشد',
+            'head_description.*'=>'توضیحات رویداد نمی تواند خالی باشد و باید بین ۱۵ تا ۲۵۵ حرف باشد',
+            'events.*'=>'لطفا یک رویداد را انتخاب کنید',
+        ]);
+
+        if ($valid->fails())
+        return back()->withErrors($valid)->withInput();
+
+
+
+        $ipma = IPMA::query();
+        $request = \Request::except(['_token']);
+        $request['event_id'] = $request['events'];
+        unset($request['events']);
+        flash_message("error","");
+        if ($ipma->update($request))
+            flash_message("success","تغییرات با موفقیت ذخیره شد");
+            else
+                flash_message("error","متاسفانه خظایی رخ داده است مجددا تلاش کنید");
+
+
+            return back()->withInput();
+
+    }
+    public function goldenEventSearch(Request $request){
+        $request = $request->get('eventInput');
+        $event = Event::where('title','like',"%$request%")->orWhere('detail','like',"%$request%")->take(20)->get(['id','title']);
+
+        return $event;
+    }
+
 }

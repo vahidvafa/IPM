@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\EventCategory;
 use App\IPMA;
 use App\MembershipType;
 use App\News;
@@ -24,7 +25,19 @@ class IndexController extends Controller
         $events = Event::latest()->limit(4)->get(['id', 'photo', 'title', 'description', 'from_date']);
         $news = News::latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
         $ipma = IPMA::latest()->first();
-        return view('index', compact('events', 'news', 'ipma'));
+        $eventsWithCats = EventCategory::withCount(["event"])->get();
+        $eventsWithCats->transform(function($category) {
+            $category->event = Event::whereHas('category', function($q) use($category) {
+                $q->where('id', $category->id);
+            })
+                ->take(3)
+                ->get();
+            return $category;
+        });
+
+//        return $eventsWithCats;
+
+        return view('index', compact('events', 'news', 'ipma','eventsWithCats'));
     }
 
     public function search()

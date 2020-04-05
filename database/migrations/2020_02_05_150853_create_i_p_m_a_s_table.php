@@ -17,6 +17,7 @@ class CreateIPMASTable extends Migration
             $table->text("head_title");
             $table->text("head_subtitle");
             $table->string("head_description");
+            $table->bigInteger("event_id");
             $table->text("address");
             $table->string("tel");
             $table->string("fax");

@@ -79,14 +79,14 @@ class ProfileController extends Controller
 
         $user = $user[0];
 
-        if ($user->active <= 1) {
+        /*if ($user->active <= 1) {
             if (!auth()->check()) {
                 abort(404, $user->active == 0 ? "نسبت به پرداخت اقدام کنید" : "منتطر تایید ادمین باشید");
             }else {
                 if (auth()->user()->roles == 2 )
                     abort(404, $user->active == 0 ? "نسبت به پرداخت اقدام کنید" : "منتطر تایید ادمین باشید");
             }
-        }
+        }*/
 
         /*--------------------- start work  ------------------*/
 
@@ -131,6 +131,7 @@ class ProfileController extends Controller
 
         $PassedCoursesCats = PassedCoursesCategory::get();
 
+//            return $PassedCoursesCats;
 
             return view('profile', compact("user", "titleHeader", "breadcrumb", 'memberships','PassedCoursesCats','pays'));
 

@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $max_salary
  * @property int $expire
  * @property int $province_id
- * @property int $category_id
+ * @property int $event_category_id
  * @property int $state
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -56,7 +56,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereType($value)
  * @property string|null $contract_type
  * @property string|null $work_experience
- * @property int $jobsCategory_id
+ * @property int $jobs_category_id
  * @property int $sex
  * @property string|null $benefits
  * @property int $visibility_count
@@ -103,7 +103,7 @@ protected $guarded = ['id','user_id'];
 
     public function jobCategory()
     {
-        return $this->belongsTo(JobsCategory::class,'jobsCategory_id',null);
+        return $this->belongsTo(JobsCategory::class,'jobs_category_id',null);
     }
 
 

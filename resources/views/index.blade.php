@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="shortcut icon" href=""/>
-    <title>انجمن مدیریت پروژه</title>
+    <title>انجم ن مدیریت پروژه</title>
     <link rel="stylesheet" href="{{asset('css/slick.css')}}">
     <link rel="stylesheet" href="{{asset('css/slick-theme.css')}}">
     <link rel='stylesheet' href="{{asset('css/bootstrap.min.css')}}" type='text/css' media='all'/>
@@ -34,6 +34,8 @@
         </a>
     </div>
 @endguest
+
+
 <header id="header">
     <div class="header-top-bar back-dark-violet pt-3 pb-3">
         <div class="container">
@@ -47,6 +49,7 @@
                 <div class="col-md-6 text-right">
                     <a href="{{route('main')}}">
                         <img src="{{asset('img/ipma-logo.png')}}" alt="انجمن مدیریت پروژه">
+
                     </a>
                 </div>
             </div>
@@ -62,7 +65,7 @@
                                 data-target="#collapsibleNavbar">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <ul class="navbar-nav nav-login-out ml-auto  order-lg-1">
+                        <ul class="navbar-nav nav-login-out ml-auto order-lg-1">
                             <li class="nav-item ">
                                 @auth()
                                     <a class="nav-link nav-login" href="{{route('profile',auth()->user()->slug)}}">
@@ -127,31 +130,32 @@
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#">كميته عضويت</a>
                                         <a class="dropdown-item" href="{{route('user.search')}}">يافتن اعضا</a>
-                                        <a class="dropdown-item" href="http://yc.ipma.ir/" target="_blank">شبكه اعضا جوان</a>
+                                        <a class="dropdown-item" href="http://yc.ipma.ir/" target="_blank">شبكه اعضا
+                                            جوان</a>
                                     </div>
                                 </li>
                                 <!-- Dropdown -->
-{{--                                <li class="nav-item dropdown">--}}
-{{--                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop2"--}}
-{{--                                       data-toggle="dropdown">--}}
-{{--                                        محصولات و خدمات </a>--}}
-{{--                                    <div class="dropdown-menu">--}}
-{{--                                        <a class="dropdown-item" href="#">Link 1</a>--}}
-{{--                                        <a class="dropdown-item" href="#">Link 2</a>--}}
-{{--                                        <a class="dropdown-item" href="#">Link 3</a>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-                                <!-- Dropdown -->
-{{--                                <li class="nav-item dropdown">--}}
-{{--                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop3"--}}
-{{--                                       data-toggle="dropdown">--}}
-{{--                                        ارکان انجمن </a>--}}
-{{--                                    --}}{{--                                    <div class="dropdown-menu">--}}
-{{--                                    --}}{{--                                        <a class="dropdown-item" href="#">Link 1</a>--}}
-{{--                                    --}}{{--                                        <a class="dropdown-item" href="#">Link 2</a>--}}
-{{--                                    --}}{{--                                        <a class="dropdown-item" href="#">Link 3</a>--}}
-{{--                                    --}}{{--                                    </div>--}}
-{{--                                </li>--}}
+                                {{--                                <li class="nav-item dropdown">--}}
+                                {{--                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop2"--}}
+                                {{--                                       data-toggle="dropdown">--}}
+                                {{--                                        محصولات و خدمات </a>--}}
+                                {{--                                    <div class="dropdown-menu">--}}
+                                {{--                                        <a class="dropdown-item" href="#">Link 1</a>--}}
+                                {{--                                        <a class="dropdown-item" href="#">Link 2</a>--}}
+                                {{--                                        <a class="dropdown-item" href="#">Link 3</a>--}}
+                                {{--                                    </div>--}}
+                                {{--                                </li>--}}
+                            <!-- Dropdown -->
+                                {{--                                <li class="nav-item dropdown">--}}
+                                {{--                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop3"--}}
+                                {{--                                       data-toggle="dropdown">--}}
+                                {{--                                        ارکان انجمن </a>--}}
+                                {{--                                    --}}{{--                                    <div class="dropdown-menu">--}}
+                                {{--                                    --}}{{--                                        <a class="dropdown-item" href="#">Link 1</a>--}}
+                                {{--                                    --}}{{--                                        <a class="dropdown-item" href="#">Link 2</a>--}}
+                                {{--                                    --}}{{--                                        <a class="dropdown-item" href="#">Link 3</a>--}}
+                                {{--                                    --}}{{--                                    </div>--}}
+                                {{--                                </li>--}}
                                 <li class="nav-item">
                                     <a class="nav-link " href="{{route('search')}}">جستجو</a>
                                 </li>
@@ -178,7 +182,8 @@
         </div>
         <div class="slider-text pt-5 pb-5">
             <div class="container">
-                <div class="row align-items-center justify-content-around pb-5 col-6 " style="margin-right: auto;margin-left: 0" >
+                <div class="row align-items-center justify-content-around pb-5 col-lg-6 col-md-6 "
+                     style="margin-right: auto;margin-left: 0">
                     <div class="col-12 order-1 order-md-2 pt-5 pb-5 ">
                         <h2 class="font-24 text-white mb-5">
                             <span class="text-yellow">
@@ -189,7 +194,7 @@
                             {{$ipma->head_subtitle}}
                         </h3>
                         <p class="font-16 text-white ">{{$ipma->head_description}}</p>
-                        <a class="btn btn-white font-16 text-black mt-5">در رویداد شرکت کنید</a>
+                        <a href="{{route('event',[$ipma->event_id])}}" class="btn btn-white font-16 text-black mt-5">در رویداد شرکت کنید</a>
                     </div>
                 </div>
             </div>
@@ -202,14 +207,14 @@
         <div class="container">
             <div class="row">
                 <h2 class="text-center font-24 text-medium text-black col-12 mb-4 mb-sm-5"><span
-                        class="text-yellow">پرطرفدارترین </span>رویدادها
+                            class="text-yellow">پرطرفدارترین </span>رویدادها
                 </h2>
                 @foreach($events as $event)
                     <div class="col-12 col-md-6 mb-4">
                         <div class="popular-pack-in  d-flex flex-column flex-sm-row  flex-md-column flex-lg-row">
 
                             <div
-                                class="popular-pack-in-info mt-xl-0 mt-4 mt-sm-0 mt-md-4 order-2 order-sm-1   order-md-2 order-lg-1">
+                                    class="popular-pack-in-info mt-xl-0 mt-4 mt-sm-0 mt-md-4 order-2 order-sm-1   order-md-2 order-lg-1">
                                 <div class="popular-pack-in-info-titles">
                                     <h4 class="popular-pack-in-info-title font-16 text-medium text-black mb-3 ">
                                         <a class="text-black hover-text-black"
@@ -237,7 +242,7 @@
                             <div class="popular-svg">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 361.1 62.7">
                                     <path
-                                        d="M59.2,19.4c91.2-28.9,166.6,27.1,224,33.9c37.7,4.5,67.8-9.4,77.9-53.3H0v62.4C11.5,45.7,30.5,29.4,59.2,19.4z"></path>
+                                            d="M59.2,19.4c91.2-28.9,166.6,27.1,224,33.9c37.7,4.5,67.8-9.4,77.9-53.3H0v62.4C11.5,45.7,30.5,29.4,59.2,19.4z"></path>
                                 </svg>
                             </div>
                         </div>
@@ -256,322 +261,56 @@
                 <div class="w-100"></div>
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs d-block d-md-flex nav-justified last-pack-tabs col-12 mt-4">
-                    <li class="nav-item">
-                        <a class="nav-link active font-22 text-black text-regular" data-toggle="tab" href="#home">آزمون
-                            ها
-
-                            <p class="font-14 text-black-light text-regular m-0 m-md-2">تعداد آزمون ها
-                                <span>۲۵</span></p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link  font-22 text-black-light text-regular" data-toggle="tab" href="#menu1">جوایز
-                            و مسابقات
-
-                            <p class="font-14 text-black-light text-regular m-0 m-md-2">تعداد آزمون ها
-                                <span>۲۵</span></p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link font-22 text-black-light text-regular" data-toggle="tab" href="#menu2">گواهینامه
-                            ها
-
-                            <p class="font-14 text-black-light text-regular m-0 m-md-2">تعداد آزمون ها
-                                <span>۲۵</span></p>
-                        </a>
-                    </li>
+                    @foreach($eventsWithCats as $eventCat)
+                        <li class="nav-item">
+                            <a class="nav-link @if($loop->first) active @endif font-22 text-black text-regular" data-toggle="tab" href="#m{{$eventCat->id}}">
+                                {{$eventCat->name}}
+                                <p class="font-14 text-black-light text-regular m-0 m-md-2">تعداد:
+                                    <span>{{$eventCat->event_count}}</span></p>
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content col-12 last-pack-content ">
-                    <div class="tab-pane row  active" id="home">
-                        <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                            <div class="row align-items-center">
-                                <div class="last-pack-content-in-time text-lg-left text-center col-12 col-lg-2">
-                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۹۸/۵/۲۶</span>
-                                    </p>
-                                    <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۹۸/۵/۲۶</span></p>
-                                </div>
-                                <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
-                                    <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
-                                        <div class="last-pack-content-in-img-in">
-                                            <img src="img/last1.jpg" alt="anjoman">
+
+                    @foreach($eventsWithCats as $eventCat)
+                        <div class="tab-pane row @if($loop->first) active @endif " id="m{{$eventCat->id}}">
+                        @foreach($eventCat->event as $event)
+                                <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
+                                    <div class="row align-items-center">
+                                        <div class="last-pack-content-in-time text-lg-left text-center col-12 col-lg-2">
+                                            <p class="text-medium font-14 mb-1 mb-lg-2 m-0">شروع ثبت نام : <span
+                                                        class="pl-1 " dir="rtl">{{tr_num(explode(" ",jdate($event->start_register_date))[0],"fa")}}</span></p>
+                                            <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
+                                                        class="pl-2" dir="rtl">{{tr_num(explode(" ",jdate($event->start_date))[0],"fa")}}</span></p>
+                                        </div>
+                                        <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
+                                            <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
+                                                <div class="last-pack-content-in-img-in">
+                                                    <img src="{{asset("img/events/$event->photo")}}" alt="غکس رویداد">
+                                                </div>
+
+                                            </div>
+                                            <div class="last-pack-content-in-description pl-3">
+                                                <h2 class="text-black font-16 text-medium mb-3">{{$event->title}}</h2>
+                                                <h3 class="text-light2 text-black-light font-14">{{substr($event->description,0,225)}}</h3>
+                                            </div>
                                         </div>
 
-                                    </div>
-                                    <div class="last-pack-content-in-description pl-3">
-                                        <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
-                                            سطوح </h2>
-                                        <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
-                                            تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                            برای شرایط</h3>
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="last-pack-content-in-more text-center col-12 col-lg-2 text-lg-left text-center">
-                                    <a href="/" class="btn btn-white-border">شرکت در رویداد</a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                            <div class="row align-items-center">
-                                <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                    <p class="text-medium font-14 mb-1 mb-lg-2">شروع ثبت نام :<span
-                                            class="pl-3">۹۸/۵/۲۶</span>
-                                    </p>
-                                    <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۹۸/۵/۲۶</span></p>
-                                </div>
-                                <div class="col-12 col-lg-8 d-lg-flex  align-items-center text-lg-left text-center">
-                                    <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
-                                        <div class="last-pack-content-in-img-in">
-                                            <img src="img/last2.jpg" alt="anjoman">
+                                        <div
+                                                class="last-pack-content-in-more text-center col-12 col-lg-2 text-lg-left text-center">
+                                            <a href="{{route("event",[$event->id])}}" class="btn btn-white-border">شرکت در رویداد</a>
                                         </div>
+                                    </div>
 
-                                    </div>
-                                    <div class="last-pack-content-in-description pl-3">
-                                        <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
-                                            سطوح </h2>
-                                        <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
-                                            تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                            برای شرایط</h3>
-                                    </div>
                                 </div>
 
-                                <div
-                                    class="last-pack-content-in-more text-center text-lg-left text-center col-12 col-lg-2">
-                                    <a href="/" class="btn btn-white-border">شرکت در رویداد</a>
-                                </div>
-                            </div>
+                        @endforeach
                         </div>
-                        <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                            <div class="row align-items-center">
-                                <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۹۸/۵/۲۶</span>
-                                    </p>
-                                    <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۹۸/۵/۲۶</span></p>
-                                </div>
-                                <div class="col-12 col-lg-8 d-lg-flex text-lg-left text-center  align-items-center">
-                                    <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
-                                        <div class="last-pack-content-in-img-in">
-                                            <img src="img/last3.jpg" alt="anjoman">
-                                        </div>
+                        @endforeach
 
-                                    </div>
-                                    <div class="last-pack-content-in-description pl-3">
-                                        <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
-                                            سطوح </h2>
-                                        <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
-                                            تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                            برای شرایط</h3>
-                                    </div>
-                                </div>
-
-                                <div class="last-pack-content-in-more text-lg-left text-center col-12 col-lg-2">
-                                    <a href="/" class="btn btn-white-border">شرکت در رویداد</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane row fade" id="menu1">
-                        <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                            <div class="row align-items-center">
-                                <div class="last-pack-content-in-time text-lg-left text-center col-12 col-lg-2">
-                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۹۸/۵/۲۶</span>
-                                    </p>
-                                    <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۹۸/۵/۲۶</span></p>
-                                </div>
-                                <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
-                                    <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
-                                        <div class="last-pack-content-in-img-in">
-                                            <img src="img/last1.jpg" alt="anjoman">
-                                        </div>
-
-                                    </div>
-                                    <div class="last-pack-content-in-description pl-3">
-                                        <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
-                                            سطوح </h2>
-                                        <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
-                                            تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                            برای شرایط</h3>
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="last-pack-content-in-more text-center col-12 col-lg-2 text-lg-left text-center">
-                                    <a href="/" class="btn btn-white-border">شرکت در رویداد</a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                            <div class="row align-items-center">
-                                <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                    <p class="text-medium font-14 mb-1 mb-lg-2">شروع ثبت نام :<span
-                                            class="pl-3">۹۸/۵/۲۶</span>
-                                    </p>
-                                    <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۹۸/۵/۲۶</span></p>
-                                </div>
-                                <div class="col-12 col-lg-8 d-lg-flex  align-items-center text-lg-left text-center">
-                                    <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
-                                        <div class="last-pack-content-in-img-in">
-                                            <img src="img/last2.jpg" alt="anjoman">
-                                        </div>
-
-                                    </div>
-                                    <div class="last-pack-content-in-description pl-3">
-                                        <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
-                                            سطوح </h2>
-                                        <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
-                                            تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                            برای شرایط</h3>
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="last-pack-content-in-more text-center text-lg-left text-center col-12 col-lg-2">
-                                    <a href="/" class="btn btn-white-border">شرکت در رویداد</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                            <div class="row align-items-center">
-                                <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۹۸/۵/۲۶</span>
-                                    </p>
-                                    <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۹۸/۵/۲۶</span></p>
-                                </div>
-                                <div class="col-12 col-lg-8 d-lg-flex text-lg-left text-center  align-items-center">
-                                    <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
-                                        <div class="last-pack-content-in-img-in">
-                                            <img src="img/last3.jpg" alt="anjoman">
-                                        </div>
-
-                                    </div>
-                                    <div class="last-pack-content-in-description pl-3">
-                                        <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
-                                            سطوح </h2>
-                                        <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
-                                            تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                            برای شرایط</h3>
-                                    </div>
-                                </div>
-
-                                <div class="last-pack-content-in-more text-lg-left text-center col-12 col-lg-2">
-                                    <a href="/" class="btn btn-white-border">شرکت در رویداد</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane row fade" id="menu2">
-                        <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                            <div class="row align-items-center">
-                                <div class="last-pack-content-in-time text-lg-left text-center col-12 col-lg-2">
-                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۹۸/۵/۲۶</span>
-                                    </p>
-                                    <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۹۸/۵/۲۶</span></p>
-                                </div>
-                                <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
-                                    <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
-                                        <div class="last-pack-content-in-img-in">
-                                            <img src="img/last1.jpg" alt="anjoman">
-                                        </div>
-
-                                    </div>
-                                    <div class="last-pack-content-in-description pl-3">
-                                        <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
-                                            سطوح </h2>
-                                        <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
-                                            تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                            برای شرایط</h3>
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="last-pack-content-in-more text-center col-12 col-lg-2 text-lg-left text-center">
-                                    <a href="/" class="btn btn-white-border">شرکت در رویداد</a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                            <div class="row align-items-center">
-                                <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                    <p class="text-medium font-14 mb-1 mb-lg-2">شروع ثبت نام :<span
-                                            class="pl-3">۹۸/۵/۲۶</span>
-                                    </p>
-                                    <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۹۸/۵/۲۶</span></p>
-                                </div>
-                                <div class="col-12 col-lg-8 d-lg-flex  align-items-center text-lg-left text-center">
-                                    <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
-                                        <div class="last-pack-content-in-img-in">
-                                            <img src="img/last2.jpg" alt="anjoman">
-                                        </div>
-
-                                    </div>
-                                    <div class="last-pack-content-in-description pl-3">
-                                        <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
-                                            سطوح </h2>
-                                        <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
-                                            تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                            برای شرایط</h3>
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="last-pack-content-in-more text-center text-lg-left text-center col-12 col-lg-2">
-                                    <a href="/" class="btn btn-white-border">شرکت در رویداد</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
-                            <div class="row align-items-center">
-                                <div class="last-pack-content-in-time col-12 col-lg-2 text-lg-left text-center">
-                                    <p class="text-medium font-14  mb-1 mb-lg-2">شروع ثبت نام :<span class="pl-3">۹۸/۵/۲۶</span>
-                                    </p>
-                                    <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                            class="pl-3">۹۸/۵/۲۶</span></p>
-                                </div>
-                                <div class="col-12 col-lg-8 d-lg-flex text-lg-left text-center  align-items-center">
-                                    <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
-                                        <div class="last-pack-content-in-img-in">
-                                            <img src="img/last3.jpg" alt="anjoman">
-                                        </div>
-
-                                    </div>
-                                    <div class="last-pack-content-in-description pl-3">
-                                        <h2 class="text-black font-16 text-medium mb-3">آزمون اخذ گواهینامه های
-                                            سطوح </h2>
-                                        <h3 class="text-light2 text-black-light font-14">لورم ایپسوم متن ساختگی با
-                                            تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                            برای شرایط</h3>
-                                    </div>
-                                </div>
-
-                                <div class="last-pack-content-in-more text-lg-left text-center col-12 col-lg-2">
-                                    <a href="/" class="btn btn-white-border">شرکت در رویداد</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-12 text-center last-pack-calender">
                     <a class="btn text-center last-pack-calender-btn" href="{{route('event.calender')}}">مشاهده تقویم
@@ -601,21 +340,28 @@
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
 
                                 <a class="Committee-icons-text d-block text-white text-medium" href="/">
-                                <img class="mb-3" src="img/003-patent-1.png" alt="anjoman"><p>گواهینامه ها</p></a>
+                                    <img class="mb-3" src="img/003-patent-1.png" alt="anjoman">
+                                    <p>گواهینامه ها</p></a>
                             </div>
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
 
-                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('gifts')}}">
-                                <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman"><p>کمیته جایزه</p></a>
+                                <a class="Committee-icons-text d-block text-white text-medium"
+                                   href="{{route('gifts')}}">
+                                    <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
+                                    <p>کمیته جایزه</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
 
-                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('research')}}">
-                                <img class="mb-3" src="img/001-user-group.png" alt="anjoman"><p>پژوهش</p></a>
+                                <a class="Committee-icons-text d-block text-white text-medium"
+                                   href="{{route('research')}}">
+                                    <img class="mb-3" src="img/001-user-group.png" alt="anjoman">
+                                    <p>پژوهش</p></a>
                             </div>
                             <div class="col-6 text-center   pt-5 pb-5">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('branches')}}">
-                                <img class="mb-3" src="img/009-exam.png" alt="anjoman"><p>شاخه ها</p></a>
+                                <a class="Committee-icons-text d-block text-white text-medium"
+                                   href="{{route('branches')}}">
+                                    <img class="mb-3" src="img/009-exam.png" alt="anjoman">
+                                    <p>شاخه ها</p></a>
                             </div>
                             <!--<div class="col-6 text-center bl-1  pt-5 pb-5">-->
                             <!--<img class="mb-3" src="img/002-loupe.png" alt="anjoman">-->
@@ -631,22 +377,27 @@
                     <div class="col-12 col-lg-5 Committee-icons">
                         <div class="row">
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('winners')}}">
-                                <img class="mb-3" src="img/003-patent-1.png" alt="anjoman"><p>کارگروه های تخصصی</p></a>
+                                <a class="Committee-icons-text d-block text-white text-medium"
+                                   href="{{route('winners')}}">
+                                    <img class="mb-3" src="img/003-patent-1.png" alt="anjoman">
+                                    <p>کارگروه های تخصصی</p></a>
                             </div>
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('about-us')}}">
-                                <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
+                                <a class="Committee-icons-text d-block text-white text-medium"
+                                   href="{{route('about-us')}}">
+                                    <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
                                     <p>درباره ما</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('user.index')}}">
-                                <img class="mb-3" src="img/001-user-group.png" alt="anjoman">
-                                <p>معرفی اعضا</p></a>
+                                <a class="Committee-icons-text d-block text-white text-medium"
+                                   href="{{route('user.index')}}">
+                                    <img class="mb-3" src="img/001-user-group.png" alt="anjoman">
+                                    <p>معرفی اعضا</p></a>
                             </div>
                             <div class="col-6 text-center   pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium" href="/">
-                                <img class="mb-3" src="img/009-exam.png" alt="anjoman"><p>فروم های تخصصی</p></a>
+                                    <img class="mb-3" src="img/009-exam.png" alt="anjoman">
+                                    <p>فروم های تخصصی</p></a>
                             </div>
                             <!--<div class="col-6 text-center bl-1  pt-5 pb-5">-->
                             <!--<img class="mb-3" src="img/002-loupe.png" alt="anjoman">-->
@@ -756,22 +507,26 @@
                         <div class=" pt-4 pb-4 justify-content-around  row">
                             <div class="counter-in text-center col-6 col-md-3 mb-4 mb-md-0">
 
-                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="300" data-speed="1500"></h2>
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="300"
+                                    data-speed="1500"></h2>
                                 <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
                             </div>
                             <div class="counter-in text-center col-6  col-md-3 mb-4 mb-md-0">
 
-                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="60" data-speed="1500"></h2>
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="60"
+                                    data-speed="1500"></h2>
                                 <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
                             </div>
                             <div class="counter-in text-center col-6 col-md-3  mb-md-0">
 
-                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="100" data-speed="1500"></h2>
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="100"
+                                    data-speed="1500"></h2>
                                 <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
                             </div>
                             <div class="counter-in text-center col-6 col-md-3 ">
 
-                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="40" data-speed="1500"></h2>
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="40"
+                                    data-speed="1500"></h2>
                                 <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
                             </div>
                         </div>
@@ -785,23 +540,23 @@
                 <div class="row">
                     <div class="link-img col-12 col-sm p-0">
                         <img class="img-fluid" alt="..." src=" img/camera-lens.jpg">
-                        <div class="link-img-more"><a href="//" >
+                        <div class="link-img-more"><a href="//">
                                 <i class="fa fa-image fa-2x"></i>
                                 <p>گالری تصاویر</p>
                             </a></div>
                         <div class="overlay-img"></div>
                     </div>
                     <div class="link-img col-12 col-sm p-0">
-                        <img class="img-fluid"  alt="..." src=" img/film-camera.jpg">
-                        <div class="link-img-more"><a href="//" >
+                        <img class="img-fluid" alt="..." src=" img/film-camera.jpg">
+                        <div class="link-img-more"><a href="//">
                                 <i class="fas fa-video fa-2x"></i>
                                 <p>گالری ویدیو </p>
                             </a></div>
                         <div class="overlay-img"></div>
                     </div>
                     <div class="link-img col-12 col-sm p-0">
-                        <img class="img-fluid"  alt="..." src=" img/webinar-concept.jpg">
-                        <div class="link-img-more"><a href="//" >
+                        <img class="img-fluid" alt="..." src=" img/webinar-concept.jpg">
+                        <div class="link-img-more"><a href="//">
                                 <i class="fa fa-desktop fa-2x"></i>
                                 <p>وبینار ها</p>
                             </a></div>
@@ -816,14 +571,22 @@
             <div class="row">
                 <div class="col-12 mt-sm-5 pt-sm-5">
                     <div class="logo-slid ">
-                        <div><a href="https://mci.ir/" target="_blank"><img src="{{asset('img/b1.png')}}" style="zoom:1.3;"></a></div>
-                        <div><a href="https://www.iranianatlas.ir/" target="_blank"><img src="{{asset('img/b2.png')}}" style="zoom:1.3;"></a></div>
-                        <div><a href="http://www.farab.com/fa/" target="_blank"><img src="{{asset('img/b3.png')}}" style="zoom:1.3;"></a></div>
-                        <div><a href="https://www.mapnanyp.com/" target="_blank"><img src="{{asset('img/b4.png')}}" style="zoom:1.3;"></a></div>
-                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}" style="zoom:1.3;"></a></div>
-                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}" style="zoom:1.3;"></a></div>
-                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}" style="zoom:1.3;"></a></div>
-                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}" style="zoom:1.3;"></a></div>
+                        <div><a href="https://mci.ir/" target="_blank"><img src="{{asset('img/b1.png')}}"
+                                                                            style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.iranianatlas.ir/" target="_blank"><img src="{{asset('img/b2.png')}}"
+                                                                                         style="zoom:1.3;"></a></div>
+                        <div><a href="http://www.farab.com/fa/" target="_blank"><img src="{{asset('img/b3.png')}}"
+                                                                                     style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.mapnanyp.com/" target="_blank"><img src="{{asset('img/b4.png')}}"
+                                                                                      style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}"
+                                                                                 style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}"
+                                                                                 style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}"
+                                                                                 style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}"
+                                                                                 style="zoom:1.3;"></a></div>
                     </div>
                 </div>
 
@@ -886,45 +649,47 @@
 
                 </nav>
             </div>
-{{--            <div class="link-footer col-6 col-sm-6 col-md-3 col-lg-2">--}}
-{{--                <p class="text-regular text-white pt-2">خدمات انجمن</p>--}}
-{{--                <nav class="navbar p-0">--}}
+            {{--            <div class="link-footer col-6 col-sm-6 col-md-3 col-lg-2">--}}
+            {{--                <p class="text-regular text-white pt-2">خدمات انجمن</p>--}}
+            {{--                <nav class="navbar p-0">--}}
 
-{{--                    <!-- Links -->--}}
-{{--                    <ul class="navbar-nav">--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link text-gray font-14" href="#">دوره های آموزشی</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link text-gray font-14" href="#">کارگاه ها</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link text-gray font-14" href="{{route('events')}}">همایش ها</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link text-gray font-14" href="#">جوایز</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link text-gray font-14" href="#">گواهی نامه ها</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link text-gray font-14" href="#">مسابقات</a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
+            {{--                    <!-- Links -->--}}
+            {{--                    <ul class="navbar-nav">--}}
+            {{--                        <li class="nav-item">--}}
+            {{--                            <a class="nav-link text-gray font-14" href="#">دوره های آموزشی</a>--}}
+            {{--                        </li>--}}
+            {{--                        <li class="nav-item">--}}
+            {{--                            <a class="nav-link text-gray font-14" href="#">کارگاه ها</a>--}}
+            {{--                        </li>--}}
+            {{--                        <li class="nav-item">--}}
+            {{--                            <a class="nav-link text-gray font-14" href="{{route('events')}}">همایش ها</a>--}}
+            {{--                        </li>--}}
+            {{--                        <li class="nav-item">--}}
+            {{--                            <a class="nav-link text-gray font-14" href="#">جوایز</a>--}}
+            {{--                        </li>--}}
+            {{--                        <li class="nav-item">--}}
+            {{--                            <a class="nav-link text-gray font-14" href="#">گواهی نامه ها</a>--}}
+            {{--                        </li>--}}
+            {{--                        <li class="nav-item">--}}
+            {{--                            <a class="nav-link text-gray font-14" href="#">مسابقات</a>--}}
+            {{--                        </li>--}}
+            {{--                    </ul>--}}
 
-{{--                </nav>--}}
-{{--            </div>--}}
+            {{--                </nav>--}}
+            {{--            </div>--}}
             <div class="register-footer col-12 col-md-6 col-lg-5">
                 <p class="text-regular text-white pt-2">ارسال آدرس به موبایل شما</p>
                 <form action="{{route('location')}}" method="post" class="mb-3">
                     @csrf
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="شماره تماس" id="address" name="mobile" autocomplete="off">
+                        <input type="text" class="form-control" placeholder="شماره تماس" id="address" name="mobile"
+                               autocomplete="off">
                     </div>
-                    <button type="submit" class="btn">ارسال </button>
+                    <button type="submit" class="btn">ارسال</button>
                 </form>
                 <div class="map-footer">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12954.853719944527!2d51.379332384785705!3d35.73326570113224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0728f1286b91%3A0xf8a61ce1468a9dcd!2sKuy-e-Daneshgah%2C%20District%206%2C%20Tehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2sus!4v1579277414645!5m2!1sen!2sus" width="100%" height="150" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12954.853719944527!2d51.379332384785705!3d35.73326570113224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0728f1286b91%3A0xf8a61ce1468a9dcd!2sKuy-e-Daneshgah%2C%20District%206%2C%20Tehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2sus!4v1579277414645!5m2!1sen!2sus"
+                            width="100%" height="150" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 
                 </div>
             </div>
@@ -1011,7 +776,6 @@
             slidesToScroll: 1,
             rtl: true,
             centerMode: true,
-
 
 
             responsive: [

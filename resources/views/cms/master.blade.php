@@ -85,6 +85,12 @@
 {{--                    </a>--}}
 {{--                </li>--}}
                 <hr>
+                <li class="nav-item {{checkMenu("cms/goldenEvent",$title)}}">
+                    <a class="nav-link" href="{{route('goldenEvent')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>مهم ترین رویداد</p>
+                    </a>
+                </li>
                 <li class="nav-item {{checkMenu("cms/events",$title)}}">
                     <a class="nav-link" href="{{route('event.index')}}">
                         <i class="material-icons">library_books</i>
@@ -94,7 +100,13 @@
                 <li class="nav-item {{checkMenu("cms/news",$title)}}">
                     <a class="nav-link" href="{{route('news.index')}}">
                         <i class="material-icons">library_books</i>
-                        <p>اخبار</p>
+                        <p>اخبار فارسی</p>
+                    </a>
+                </li>
+                <li class="nav-item {{checkMenu("cms/en/news",$title)}}">
+                    <a class="nav-link" href="{{route('news.en.index')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>اخبار انگلیسی</p>
                     </a>
                 </li>
                 <li class="nav-item {{checkMenu("cms/messages",$title)}}">

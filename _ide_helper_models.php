@@ -133,7 +133,7 @@ namespace App{
  * @property string $address
  * @property float $latitude
  * @property float $longitude
- * @property int $category_id
+ * @property int $event_category_id
  * @property int $creator_uid
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -182,7 +182,7 @@ namespace App{
  * @property int $max_salary
  * @property int $expire
  * @property int $province_id
- * @property int $category_id
+ * @property int $event_category_id
  * @property int $state
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at

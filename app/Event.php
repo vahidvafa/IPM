@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $address
  * @property float $latitude
  * @property float $longitude
- * @property int $category_id
+ * @property int $event_category_id
  * @property int $creator_uid
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -63,7 +63,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $from_date
  * @property string $to_date
  * @property string $start_register_date
- * @property int $event_category_id
+
  * @property int $user_id
  * @property string $mobile
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereEventCategoryId($value)
@@ -85,7 +85,7 @@ class Event extends Model
 
     public function category()
     {
-        return $this->belongsTo(EventCategory::class);
+        return $this->belongsTo(EventCategory::class,"event_category_id");
     }
 
     public function orders()

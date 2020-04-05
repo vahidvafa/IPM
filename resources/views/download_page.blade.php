@@ -37,7 +37,7 @@
 
                                 </div>
                                 <h4 class="popular-pack-in-info-title font-16 text-medium text-black mb-3 "><a
-                                            class="text-black hover-text-black" href="{{url('files/certificate.pdf')}}">
+                                            class="text-black hover-text-black" href="{{url('files/reference_documents.docx')}}">
                                         اسناد مرجع
                                     </a></h4>
                                 <p class=" text-black-light font-14 text-light2 mb-0">
@@ -45,7 +45,7 @@
                                     گرافیک
                                     است. چاپگرها و متون بلکه روزنامه و مجله در
                                 </p>
-                                <a href="/" class="more-link-in">
+                                <a href="{{url('files/reference_documents.docx')}}" class="more-link-in">
                                     <i class="fas fa-arrow-left"></i>
                                 </a>
 

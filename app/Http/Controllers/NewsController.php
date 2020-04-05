@@ -19,6 +19,13 @@ class NewsController extends Controller
         return view('cms.news.index', compact('news'));
     }
 
+
+    public function indexCmsEn()
+    {
+        $news = News::latest()->paginate(10);
+        return view('cms.news.en.index', compact('news'));
+    }
+
     public function index()
     {
         $titleHeader = "تمام اخبار";
@@ -37,6 +44,11 @@ class NewsController extends Controller
         return view('cms.news.create');
     }
 
+    public function createEn()
+    {
+        return view('cms.news.en.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -44,6 +56,34 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+    {
+        $this->validate($request, [
+            "title" => "required",
+            "description" => "required",
+            "detail" => "required",
+            "image" => "required|image",
+        ], ['*.required' => 'وارد کردن این فیلد الزامی است']);
+        try {
+        $news = new News($request->all());
+        $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+        $request->file('image')->move(public_path('/img/news/'), $imageName);
+        $news->photo = $imageName;
+        $news->save();
+        for ($i = 0; $i < count($request->file('pictures')); $i++) {
+            $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
+            $request->file('pictures')[$i]->move(public_path('/img/news/'), $imageName);
+            $photo = new Picture(['url' => $imageName]);
+            $news->pictures()->save($photo);
+        }
+        flash_message('success', __('string.successful'));
+        return redirect()->route('news.index');
+        } catch (\Exception $exception) {
+        flash_message('error', __('string.unsuccessful'));
+        return back()->withInput($request->all());
+        }
+    }
+
+    public function storeEn(Request $request)
     {
         $this->validate($request, [
             "title" => "required",
@@ -95,6 +135,11 @@ class NewsController extends Controller
         return view('cms.news.edit', compact('news'));
     }
 
+    public function editEn(News $news)
+    {
+        return view('cms.news.en.edit', compact('news'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -103,6 +148,38 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, News $news)
+    {
+        $this->validate($request, [
+            "title" => "required",
+            "description" => "required",
+            "detail" => "required",
+            "image" => "image"
+        ], ['*.required' => 'وارد کردن این فیلد الزامی است']);
+        try {
+            $news->update($request->all());
+            if ($request->has('image')) {
+                $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+                $request->file('image')->move(public_path('/img/news/'), $imageName);
+                $news->photo = $imageName;
+                $news->save();
+            }
+            if ($request->hasFile('pictures')) {
+                for ($i = 0; $i < count($request->file('pictures')); $i++) {
+                    $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
+                    $request->file('pictures')[$i]->move(public_path('/img/news/'), $imageName);
+                    $photo = new Picture(['url' => $imageName]);
+                    $news->pictures()->save($photo);
+                }
+            }
+            flash_message('success', __('string.successful.edit'));
+            return redirect()->route('news.index');
+        } catch (\Exception $exception) {
+            flash_message('error', __('string.unsuccessful'));
+            return back();
+        }
+    }
+
+    public function updateEn(Request $request, News $news)
     {
         $this->validate($request, [
             "title" => "required",
