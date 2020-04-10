@@ -655,6 +655,7 @@ input:not([type='checkbox']):focus, input:not([type='checkbox']):active, select:
     }
 .card-news{
     border-radius: 10px;
+    height: 100%;
     }
 .card-news:hover{
     -webkit-box-shadow: 0 15px 38px 0 rgba(0,0,0,0.1);

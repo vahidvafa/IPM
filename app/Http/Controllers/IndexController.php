@@ -140,6 +140,11 @@ class IndexController extends Controller
         }else{
             abort(404);
         }
+    }
 
+    public function gov()
+    {
+        $breadcrumb = $titleHeader = "گواهینامه ها";
+        return view('gov', compact('titleHeader', 'breadcrumb'));
     }
 }

@@ -5,21 +5,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 ">
-                        <div class="history-about pt-5 pb-5">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-12 ">
-                                        <h3 class="font-20 text-yellow text-center text-light2 mb-4">برنامه زمانبندی دور نهم جایزه ملی مدیریت پروژه (99-98)</h3>
-                                        <img style="margin-right: auto;margin-left: auto;display: block;width: 100%;"
-                                             src="{{asset('img/gift99.jpg')}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <h2 class="font-24 text-medium text-black text-center  mb-5">معرفی جایزه ملی مدیریت پروژه ایران</h2>
                         <p class="text-black-light font-16 font-line-30">
-                            منتشر شده در 18 ارديبهشت 1397
-                            <br>
                             مقدمه:
                             <br>
                             در اواخر سده بیستم ، انجمن بین المللی مدیریت پروژه (IPMA) مدل تعالی پروژه(PEM) را برای ارزیابی پروژه های مدعی سرآمدی مطرح نمود و از سال2002 آنرا به عنوان معیاری برای ارزیابی این نوع پروژه ها به دنیای مدیریت پروژه ارائه داد. فرآیند ارزیابی و اعطاء جایزه بین المللی تعالی پروژه، از همان ابتدا به عنوان ابزاری بسیا موثر برای گسترش، نهادینه کردن و بالندگی دانش مدیریت پروژه وتشویق به التزام علمی به این دانش در اجرای پروژه ها مورد توجه کشورهای پیشرفته و در حال توسعه قرار گرفت فرآینده جایزه از یک سو به گسترش دانش مدیریت پروژه در جهان کمک کرد و از سوی دیگر در تعامل با جوامع مدیریتی کشورهای مختلف، باعث پویایی وتکامل مدل PEM گردید سپس با توجه به دریافت بازخوردها از جوایز ملی و دست اندکاران جایزه بین المللی در سال 2016 با در نظر گرفتن موضوعات مهم جدیدی نظیر پایداری و محیط زیست ، تغییراتی در نسخه قبلی اعمال و نسخه جدید تحت عنوان مدل مبنای تعالی پروژهPEB توسط این انجمن منتشر شد.
@@ -67,7 +54,7 @@
                             در نهایت هیأت داوران نتایج ارزیابی پروژه ها را مورد بررسی قرار داده و بر اساس ارزیابی های پایانی برندگان سطوح مختلف جایزه و برنده نهایی جایزه ملی مدیریت پروژه ایران را مشخص میکند.
                             <br>
                             سطوح مختلف جایزه ملی مدل مدیریت پروژه در شکل زیر ارائه شده اند.
-                            <img style="margin-right: auto;margin-left: auto;display: block"
+                            <img style="margin-right: auto;margin-left: auto;display: block;width: 100%"
                                  src="{{asset('img/giftchart.jpg')}}">
                         </p>
                         <div class="history-about pt-5 pb-5">
@@ -75,12 +62,52 @@
                                 <div class="row">
                                     <div class="col-12 ">
                                         <h3 class="font-20 text-yellow text-center text-light2 mb-4">معرفی مدل جایزه ملی مدیریت پروژه ایران (برمبنای PEB)</h3>
-                                        <img style="margin-right: auto;margin-left: auto;display: block"
+                                        <img style="margin-right: auto;margin-left: auto;display: block;width: 100%"
                                              src="{{asset('img/giftmodel.jpg')}}">
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="history-about pt-5 pb-5">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 ">
+                                        <h3 class="font-20 text-yellow text-center text-light2 mb-4">برنامه زمانبندی دور نهم جایزه ملی مدیریت پروژه (99-98)</h3>
+                                        <img style="margin-right: auto;margin-left: auto;display: block;width: 100%;"
+                                             src="{{asset('img/gift99.jpg')}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            <a href="{{route('winners_detail',[1])}}">
+                                سرارزیابان و ارزیابان دور اول جایزه
+                            </a>
+                            <br>
+                            <a href="{{route('winners_detail',[2])}}">
+                                سرارزیابان و ارزیابان دور دوم جایزه
+                            </a>
+                            <br>
+                            <a href="{{route('winners_detail',[3])}}">
+                                سرارزیابان و ارزیابان دور سوم جایزه
+                            </a>
+                            <br>
+                            <a href="{{route('winners_detail',[4])}}">
+                                سرارزیابان و ارزیابان دور چهارم جایزه
+                            </a>
+                            <br>
+                            <a href="{{route('winners_detail',[5])}}">
+                                سرارزیابان و ارزیابان دور پنجم جایزه
+                            </a>
+                            <br>
+                            <a href="{{route('winners_detail',[6])}}">
+                                سرارزیابان و ارزیابان دور ششم جایزه
+                            </a>
+                            <br>
+                            <a href="{{route('winners_detail',[7])}}">
+                                سرارزیابان و ارزیابان دور هفتم جایزه
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>

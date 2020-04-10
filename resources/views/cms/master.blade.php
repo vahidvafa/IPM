@@ -100,15 +100,15 @@
                 <li class="nav-item {{checkMenu("cms/news",$title)}}">
                     <a class="nav-link" href="{{route('news.index')}}">
                         <i class="material-icons">library_books</i>
-                        <p>اخبار فارسی</p>
+                        <p>اخبار</p>
                     </a>
                 </li>
-                <li class="nav-item {{checkMenu("cms/en/news",$title)}}">
-                    <a class="nav-link" href="{{route('news.en.index')}}">
-                        <i class="material-icons">library_books</i>
-                        <p>اخبار انگلیسی</p>
-                    </a>
-                </li>
+{{--                <li class="nav-item {{checkMenu("cms/en/news",$title)}}">--}}
+{{--                    <a class="nav-link" href="{{route('news.en.index')}}">--}}
+{{--                        <i class="material-icons">library_books</i>--}}
+{{--                        <p>اخبار انگلیسی</p>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li class="nav-item {{checkMenu("cms/messages",$title)}}">
                     <a class="nav-link" href="{{route('message.index')}}">
                         <i class="material-icons">library_books</i>

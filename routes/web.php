@@ -48,6 +48,7 @@ Route::get('/research', 'IndexController@research')->name('research');
 Route::get('/gifts', 'IndexController@gifts')->name('gifts');
 Route::get('/winners', 'IndexController@winners')->name('winners');
 Route::get('/winners/{id}', 'IndexController@winners_detail')->name('winners_detail');
+Route::get('/gov', 'IndexController@gov')->name('gov');
 Route::get('news/{news}', 'NewsController@show')->name('news.show');
 Route::middleware('auth')->group(function () {
     Route::get('logout', 'UserController@logout')->name('logout');

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="shortcut icon" href=""/>
-    <title>انجم ن مدیریت پروژه</title>
+    <title>انجمن مدیریت پروژه</title>
     <link rel="stylesheet" href="{{asset('css/slick.css')}}">
     <link rel="stylesheet" href="{{asset('css/slick-theme.css')}}">
     <link rel='stylesheet' href="{{asset('css/bootstrap.min.css')}}" type='text/css' media='all'/>
@@ -339,7 +339,7 @@
                         <div class="row">
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
 
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">
+                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('gov')}}">
                                     <img class="mb-3" src="img/003-patent-1.png" alt="anjoman">
                                     <p>گواهینامه ها</p></a>
                             </div>
@@ -378,7 +378,7 @@
                         <div class="row">
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   href="{{route('winners')}}">
+                                   href="#">
                                     <img class="mb-3" src="img/003-patent-1.png" alt="anjoman">
                                     <p>کارگروه های تخصصی</p></a>
                             </div>
