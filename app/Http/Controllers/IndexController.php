@@ -147,4 +147,73 @@ class IndexController extends Controller
         $breadcrumb = $titleHeader = "گواهینامه ها";
         return view('gov', compact('titleHeader', 'breadcrumb'));
     }
+
+    public function newsEventShow(){
+        $ipma = IPMA::get(['head_title','head_subtitle','head_description','event_id','news_id'])[0];
+
+        return view('cms.main_news_event',compact('ipma'));
+    }
+
+    public function newsEventUpdate(){
+        $request = \Request::except(['_token']);
+
+        $valid = validator($request,[
+            'head_title'=>'required | min:3',
+            'head_subtitle'=>'required | min:6',
+            'head_description'=>'required | min:15 | max:255',
+        ],[
+            'head_title.*'=>'سرتیتر رویداد نمی تواند خالی باشد و باید بیش از ۳ حرف باشد',
+            'head_subtitle.*'=>'عنوان رویداد نمی تواند خالی باشد و باید بیش از ۶ حرف باشد',
+            'head_description.*'=>'توضیحات رویداد نمی تواند خالی باشد و باید بین ۱۵ تا ۲۵۵ حرف باشد',
+            'event_id.*'=>'لطفا یک رویداد را انتخاب کنید',
+            'news_id.*'=>'لطفا یک اخبار را انتخاب کنید',
+        ]);
+
+        if ($valid->fails())
+            return back()->withErrors($valid)->withInput();
+
+
+
+        $ipma = IPMA::query();
+        $request = \Request::except(['_token']);
+
+        if ($request['newsOrEvent'] == 1) {
+            unset($request['news_id']);
+            if (is_numeric($request['event_id']) !=null ) {
+                flash_message("error","متاسفانه هیچ رویدادی انتخاب نشده است");
+                return back()->withInput();
+            }
+
+        } else{
+            unset($request['event_id']);
+            if (is_numeric($request['news_id']) !=null ) {
+                flash_message("error", "متاسفانه هیچ اخباری انتخاب نشده است");
+                return back()->withInput();
+            }
+        }
+
+//        return $request;
+
+        if ($ipma->update($request))
+            flash_message("success","تغییرات با موفقیت ذخیره شد");
+        else
+            flash_message("error","متاسفانه خظایی رخ داده است مجددا تلاش کنید");
+
+
+        return back()->withInput();
+
+    }
+
+    public function newsEventSearch(Request $request){
+        $str = $request->get('eventInput');
+        $isEvent = ($request->get('type') == 1);
+
+        if ($isEvent)
+        $event = Event::where('title','like',"%$str%")->orWhere('detail','like',"%$str%")->take(20)->get(['id','title']);
+        else
+        $event = News::where('title','like',"%$str%")->orWhere('detail','like',"%$str%")->take(20)->get(['id','title']);
+
+        return $event;
+    }
+
 }

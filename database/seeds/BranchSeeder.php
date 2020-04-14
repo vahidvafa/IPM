@@ -31,5 +31,10 @@ class BranchSeeder extends Seeder
             'created_at'=>now(),
             'updated_at'=>now(),
         ]);
+        DB::table("branches")->insert([
+            "title"=>"جنوب",
+            'created_at'=>now(),
+            'updated_at'=>now(),
+        ]);
     }
 }

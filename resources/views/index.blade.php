@@ -28,7 +28,7 @@
 @guest()
     <div class="register-fix">
         <a href="{{route('register')}}">
-            <span class="register-fix-in">
+            <span class="register-fix-in text">
                 همین الان عضو شو
             </span>
         </a>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-md-6 text-right">
                     <a href="{{route('main')}}">
-                        <img src="{{asset('img/ipma-logo.png')}}" alt="انجمن مدیریت پروژه">
+                        <img src="{{asset('img/ipma-logo.png')}}" style="height: 55px;" alt="انجمن مدیریت پروژه">
 
                     </a>
                 </div>
@@ -194,7 +194,7 @@
                             {{$ipma->head_subtitle}}
                         </h3>
                         <p class="font-16 text-white ">{{$ipma->head_description}}</p>
-                        <a href="{{route('event',[$ipma->event_id])}}" class="btn btn-white font-16 text-black mt-5">در رویداد شرکت کنید</a>
+                        <a href="{{route($ipma->event_id==null ? "news.show":"event",[$ipma->event_id==null?$ipma->news_id:$ipma->event_id])}}" class="btn btn-white font-16 text-black mt-5">ادامه مطلب</a>
                     </div>
                 </div>
             </div>
@@ -255,7 +255,9 @@
         <div class="container">
             <div class="row justify-content-center">
 
-                <h2 class="text-center font-24 text-medium text-black col-12 mb-4">آخرین رویدادها
+
+                <h2 class="text-center font-24 text-medium text-black col-12 mb-4"><span class="text-yellow"> آخرین</span>
+                    رویدادها
                 </h2>
 
                 <div class="w-100"></div>
@@ -419,7 +421,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-lg-3">
-                    <h3 class="font-20 text-yellow text-light2 mb-3">اخبارانجمن</h3>
+                    <h3 class="font-20 text-yellow text-light2 mb-3">آخرین خبرها</h3>
                     <h2 class="font-24 text-medium text-black  mb-4">از انجمن بیشتر بدانید
                     </h2>
                 </div>
@@ -624,16 +626,16 @@
                 </div>
             </div>
             <div class="link-footer col-6 col-sm-6 col-md-3 col-lg-2">
-                <p class="text-regular text-white pt-2">لینک انجمن</p>
+                <p class="text-regular text-white pt-2">لینک ها</p>
                 <nav class="navbar p-0">
 
                     <!-- Links -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#history">تاریخچه انجمن</a>
+                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#history">تاریخچه</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#chart">سازمان انجمن</a>
+                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#chart">چارت های سازمانی</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-gray font-14" href="{{route('download')}}">اساسنامه و مجوزها</a>
@@ -697,15 +699,14 @@
         <div class="footer-copy row align-items-center pt-4 pb-3">
 
             <div class="col-12 col-lg-6 text-center text-lg-left">
-                <p class="text-gray font-14 ">تمامی حقوق این سایت محفوظ و متعلق به انجمن پروژه ایران می باشد</p>
+                <p class="text-gray font-14 ">تمامی حقوق این سایت محفوظ و متعلق به انجمن مدیریت پروژه ایران می باشد</p>
             </div>
             <div class="col-12 col-lg-6 ">
                 <ul class="social m-0 text-center text-lg-right">
                     <li><a href="https://telegram.me/PMAIran"></a></li>
                     <li><a href="https://www.instagram.com/iranpma/"></a></li>
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
+                    {{--<li><a href="https://www.aparat.com/iranpma"></a></li>--}}
+
 
                 </ul>
             </div>

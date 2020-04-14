@@ -58,6 +58,13 @@ Route::middleware('auth')->group(function () {
 
             Route::get('/', 'IndexController@cms')->name('cms.index');
 
+
+            Route::get('newsEvent', 'IndexController@newsEventShow')->name('newsOrEvent');
+            Route::post('newsEvent/update', 'IndexController@newsEventUpdate')->name('newsOrEvent.update');
+            Route::post('newsEvent/search', 'IndexController@newsEventSearch')->name('cms.newsOrEvent.search');
+
+
+
             Route::get('news/', 'NewsController@indexCms')->name('news.index');
             Route::get('news/create', 'NewsController@create')->name('news.create');
             Route::get('news/{news}/edit', 'NewsController@edit')->name('news.edit');
@@ -84,9 +91,6 @@ Route::middleware('auth')->group(function () {
             Route::post('events/store', 'EventController@store')->name('event.store');
             Route::post('events/{event}/delete', 'EventController@destroy')->name('event.delete');
             Route::post('events/{event}/update', 'EventController@update')->name('event.update');
-            Route::get('goldenEvent', 'EventController@goldenEvent')->name('goldenEvent');
-            Route::post('goldenEvent/update', 'EventController@goldenEventUpdate')->name('goldenEvent.update');
-            Route::post('goldenEvent/search', 'EventController@goldenEventSearch')->name('cms.event.search');
 
             //------
             Route::get('messages/', 'MessageController@index')->name('message.index');
@@ -157,6 +161,14 @@ Route::get('callback','IndexController@callback')->name('callback');
 Route::get('bank','IndexController@bank')->name('bank');
 
 Route::get('test',function (){
+    /*DB::table("i_p_m_a_s")->update([
+        "event_id"=>2,
+        "news_id"=>null,
+        "address"=>"تهران، امیرآباد شمالی، بالاتر از بزرگراه جلال آل احمد، پردیس دانشکده های فنی دانشگاه تهران، ساختمان انستیتو مهندسی نفت، طبقه همکف / کدپستی: 1439956191",
+        "tel"=>"(5خط) 88229406 021",
+    ]);
+    exit();*/
+
 /*    DB::table("i_p_m_a_s")->update([
         'head_title'=>' چهاردهمین کنفرانس بین المللی مدیریت پروژه',
         'head_subtitle'=>' ثبت نام پیش از تاریخ ۹۸/۵/۲۰ دارای ۱۰ درصد تخفیف است',
@@ -188,3 +200,7 @@ Route::get('test',function (){
 });
 
 
+Route::get('statute',function (){
+    return view('statute');
+})
+    ->name("statute");

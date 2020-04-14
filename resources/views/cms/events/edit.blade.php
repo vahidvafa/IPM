@@ -164,7 +164,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        <button class="btn btn-success" type="submit">افزودن</button>
+                                        <button class="btn btn-success" type="submit">ویرایش</button>
                                     </div>
                                 </form>
                             </div>

@@ -5,13 +5,25 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 ">
-                        <h3 class="font-20 text-yellow text-center text-light2 mb-4">معرفی شاخه ها </h3>
-                        <h2 class="font-24 text-medium text-black text-center  mb-5">تاریخچه انجمن مدیریت پروژه ایران
-                        </h2>
+                        {{--<h1 class="font-23 text-yellow text-center text-light2 mb-4">معرفی شاخه ها </h1>--}}
+
+                        <div class="card img-top-detail">
+                            <div class="card-body">
+                                <h4 class="card-title text-white m-0 text-center ">تاریخچه انجمن مدیریت پروژه ایران
+                                </h4>
+                            </div>
+                        </div>
+
                         <p class="text-black-light font-16 font-line-30">
                             با عنایت به نقش مهم انجمن مدیریت پروژه ایران در رشد و بالندگی مدیریت پروژه در کشور، گسترش روزافزون اعضاء و فعالیتهای انجمن، ضرورت توسعه فعالیتهای علمی، صنفی و تخصصی مدیریت پروژه در تمامی مناطق/ استانهای کشور و همچنین به منظور برقراری ارتباط نزدیكتر با جامعه مدیریت پروژه که در مناطق/ استانهای کشور فعالیت مینمایند، ضرورت ایجاد شاخه  های انجمن در سایر مناطق/ استانهای محل فعالیت اعضاء به وضوح مشاهده شده و با هدف سازماندهی مناسب جهت دستیابی به شبکه گسترده تر و امکان توسعه بیشتر انجمن، برقراری ارتباطات مؤثرتر، تسهیل ارائه خدمات به اعضای انجمن درخارج از محدوده استان تهران و رفع مشکلات آنان و برقراری اتحاد مستحکم تر اعضا در سطح کشور  شاخه ها با نظارت نماینده و مسئول منتخب هیأت مدیره تأسیس و بر اساس آیین نامه مصوب هیأت مدیره به فعالیت خود ادامه می دهند.
                         </p>
-                        <h2 class="font-24 text-medium text-black text-center  mb-5">هیات موسس شاخه اصفهان</h2>
+
+
+                        <div class="card img-top-detail">
+                            <div class="card-body">
+                                <h4 class="card-title text-white m-0 text-center">هیات موسس شاخه اصفهان
+                                </h4></div>
+                            </div>
                         <p class="text-black-light font-16 font-line-30">
                             اطلاعات هیات موسس شاخه اصفهان
                             <br>
@@ -79,7 +91,14 @@
                             <br>
                             ایمیل : isfahan@ipma.ir
                         </p>
-                        <h2 class="font-24 text-medium text-black text-center  mb-5">هیات موسس شاخه شمالغرب</h2>
+                        <a class="btn btn-white-border" href=""></a>
+
+
+                        <div class="card img-top-detail mt-5">
+                            <div class="card-body">
+                        <h4 class="card-title text-white m-0 text-center">هیات موسس شاخه شمالغرب</h4>
+                            </div>
+                        </div>
                         <p class="text-black-light font-16 font-line-30">
                             اعضای هیات مدیره انجمن مدیریت پروژه ایران شاخه شمالغرب
                             <br>
@@ -122,7 +141,11 @@
                             تلفن: 33306044-041
                         </p>
 
-                        <h2 class="font-24 text-medium text-black text-center  mb-5">آشنایی با شاخه خراسان</h2>
+                        <div class="card img-top-detail mt-5">
+                            <div class="card-body">
+                        <h4 class="card-title text-white m-0 text-center">آشنایی با شاخه خراسان</h4>
+                            </div>
+                        </div>
                         <p class="text-black-light font-16 font-line-30">
                             مجوز راه­ اندازي اولين نمایندگی (شاخۀ) انجمن مديريت پروژه ايران در خراسان بزرگ توسط هيأت مديره انجمن صادرشد. اسامي هيأت مؤسس شاخه خراسان بزرگ به شرح ذيل مي باشد: (به ترتيب حروف الفبا)
                             آقايان دکتر حسين انصاري، مهندس مهران اميري، مهندس مجيد بردبار، مهندس آرش داور پناه، دکتر سيد مهدي درهمي، مهندس سيد مهرداد رئيس زاده، مهندس فرهاد شريف، مهندس علي کيوانلو شهرستانکي، مهندس عليرضا منصوريان.

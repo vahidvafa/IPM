@@ -121,7 +121,7 @@ body {
     background-color: white;
     border-radius: 33px;
     height: 65px;
-    min-width: 225px;
+    min-width: 185px;
     text-align: center;
     padding: 20px 0;
     -webkit-transition: all .3s ease;
@@ -796,13 +796,11 @@ ul.social li a {
     background: url(../img/social2.png);
     }
 .social li:nth-child(3) a {
-    background: url(../img/social3.png);
-    }
-.social li:nth-child(4) a {
-    background: url(../img/social4.png);
-    }
-.social li:nth-child(5) a {
-    background: url(../img/social5.png);
+    background: url(../img/aparat-logo.png);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: black solid 1px;
     }
 .footer-copy{
     border-top: 1px solid rgba(243, 243, 243, 0.31);

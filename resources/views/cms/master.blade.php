@@ -85,10 +85,10 @@
 {{--                    </a>--}}
 {{--                </li>--}}
                 <hr>
-                <li class="nav-item {{checkMenu("cms/goldenEvent",$title)}}">
-                    <a class="nav-link" href="{{route('goldenEvent')}}">
+                <li class="nav-item {{checkMenu("cms/newsEvent",$title)}}">
+                    <a class="nav-link" href="{{route('newsOrEvent')}}">
                         <i class="material-icons">library_books</i>
-                        <p>مهم ترین رویداد</p>
+                        <p>مهم ترین رویداد یا خبر</p>
                     </a>
                 </li>
                 <li class="nav-item {{checkMenu("cms/events",$title)}}">

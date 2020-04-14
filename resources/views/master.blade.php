@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-md-6 text-right">
                     <a href="{{route('main')}}">
-                        <img src="{{asset('img/ipma-logo.png')}}" alt="انجمن مدیریت پروژه">
+                        <img src="{{asset('img/ipma-logo.png')}}" style="height: 55px;" alt="انجمن مدیریت پروژه">
                     </a>
                 </div>
             </div>
@@ -95,9 +95,11 @@
                         <div class="collapse navbar-collapse order-lg-0" id="collapsibleNavbar">
                             <ul class="navbar-nav header-main">
                                 @guest
+                                    @if(Route::currentRouteName() != 'register')
                                     <li class="nav-item ">
                                         <a class="nav-link " href="{{route('register')}}">ثبت نام</a>
                                     </li>
+                                        @endif
                                 @endguest
                                 {{--<li class="nav-item active">
                                     <a class="nav-link " href="{{route('main')}}">صفحه اول</a>
