@@ -45,7 +45,7 @@
                                     گرافیک
                                     است. چاپگرها و متون بلکه روزنامه و مجله در
                                 </p>
-                                <a href="{{url('files/reference_documents.docx')}}" class="more-link-in">
+                                <a href="{{route('statute')}}" class="more-link-in">
                                     <i class="fas fa-arrow-left"></i>
                                 </a>
 

@@ -201,6 +201,7 @@ Route::get('test',function (){
 
 
 Route::get('statute',function (){
-    return view('statute');
+    $breadcrumb = $titleHeader = "اسناد مرجع";
+    return view('statute',compact('breadcrumb','titleHeader'));
 })
     ->name("statute");
