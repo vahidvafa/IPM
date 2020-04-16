@@ -598,7 +598,7 @@
     </div>
 </main>
 
-<footer id="footer">
+<footer id="footer"  >
     <div class="container">
         <div class="row mb-3">
             <div class="contact-footer col-12 col-lg-5">

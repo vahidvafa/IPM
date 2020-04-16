@@ -25,8 +25,7 @@ class AuthController extends Controller
     public function register()
     {
         $memberships = MembershipType::all();
-        $titleHeader = "ثبت نام ";
-        $breadcrumb = "عضویت";
+        $titleHeader = $breadcrumb = "عضویت";
         $type = 0;
         $branches = Branch::all();
         return view('register', compact('memberships', 'titleHeader', 'breadcrumb', 'type', 'branches'));

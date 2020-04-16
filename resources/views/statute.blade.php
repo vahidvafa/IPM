@@ -14,10 +14,10 @@
                 <div class="row">
                     <div class="col-12">
                         <h2 class="font-24 text-medium text-black text-center ">اساسنامه</h2>
-                        <h3 class="font-24 text-medium text-black text-center ">اساسنامه انجمن مدیریت پروژه ایران 1397</h3>
+                        <h3 class="font-24 text-medium text-black text-center ">اساسنامه انجمن مدیریت پروژه ایران ۱۳۹۷</h3>
                         <h2 class="font-24 text-medium text-black text-center ">بنام خدا</h2>
                         <h4 class="font-24 text-medium text-black text-center ">
-                            اساسنامه مصوب مجمع عمومی موسس10/05/1384– اصلاحیه های مصوب مجمع عمومی فوق العاده 11/04/ 1396
+                            اساسنامه مصوب مجمع عمومی موسس 10/05/1384– اصلاحیه های مصوب مجمع عمومی فوق العاده 11/04/ 1396
                         </h4>
                         <div class="card img-top-detail">
                             <div class="card-body">

@@ -215,96 +215,103 @@
 </header>
 <div class="alert p-4 @if(session('success')==null) hidden @elseif(session('success')[0]) alert-success @else alert-danger @endif">{{session('success')[1]}}</div>
 @yield('content')
-<footer id="footer" class="footer-pages">
+<footer id="footer" >
     <div class="container">
         <div class="row mb-3">
             <div class="contact-footer col-12 col-lg-5">
                 <div class="footer-logo mb-3">
-                    <img src="{{asset('img/logo-foo.png')}}" alt=".." style="width: 60px;">
+                    <img src="img/logo-foo.png" alt=".." style="width: 60px;">
                     <span class="text-regular text-white">تماس با انجمن</span>
                 </div>
+                @php
+                $ipma = \App\IPMA::latest()->first()
+@endphp
                 <div class="contact-footer-in">
-                    <p class="text-gray font-14 text-bold"><span>آدرس:</span><span>تهران، امیرآباد شمالی، بالاتر از بزرگراه جلال آل احمد، پردیس دانشکده های فنی دانشگاه تهران، ساختمان انستیتو مهندسی نفت، طبقه همکف</span>
+                    <p class="text-gray font-14 text-bold"><span>آدرس:</span><span>{{$ipma->address}}</span>
                     </p>
                 </div>
                 <div class="contact-footer-in">
-                    <p class="text-gray font-14"><span>تلفن:</span><span>(5خط) 88229406</span></p>
+                    <p class="text-gray font-14"><span>تلفن:</span><span>{{$ipma->tel}}</span></p>
                 </div>
                 <div class="contact-footer-in">
-                    <p class="text-gray font-14"><span>نمابر:</span><span>89784216</span></p>
+                    <p class="text-gray font-14"><span>نمابر:</span><span>{{$ipma->fax}}</span></p>
                 </div>
                 <div class="contact-footer-in">
-                    <p class="text-gray font-14"><span>پست الكترونيك دبیرخانه:</span><span>info@ipma.ir</span></p>
+                    <p class="text-gray font-14">
+                        <span>پست الكترونيك دبیرخانه:</span><span>{{$ipma->secretariat_email}}</span></p>
                 </div>
                 <div class="contact-footer-in">
-                    <p class="text-gray font-14"><span>پست الکترونیک عضویت: </span><span>membership@ipma.ir</span></p>
+                    <p class="text-gray font-14">
+                        <span>پست الکترونیک عضویت: </span><span>{{$ipma->membership_email  }}</span></p>
                 </div>
             </div>
             <div class="link-footer col-6 col-sm-6 col-md-3 col-lg-2">
-                <p class="text-regular text-white pt-2">لینک انجمن</p>
+                <p class="text-regular text-white pt-2">لینک ها</p>
                 <nav class="navbar p-0">
 
                     <!-- Links -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#history">تاریخچه انجمن</a>
+                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#history">تاریخچه</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#chart">سازمان انجمن</a>
+                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#chart">چارت های سازمانی</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-gray font-14" href="{{route('download')}}">اساسنامه و مجوزها</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#board-of-directors">اعضای هیات مدیره</a>
+                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#board-of-directors">اعضای
+                                هیات مدیره</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-gray font-14" href="{{route('about-us')}}#creator">موسسین انجمن</a>
                         </li>
-
                     </ul>
 
                 </nav>
             </div>
-{{--            <div class="link-footer col-6 col-sm-6 col-md-3 col-lg-2">--}}
-{{--                <p class="text-regular text-white pt-2">خدمات انجمن</p>--}}
-{{--                <nav class="navbar p-0">--}}
+            {{--            <div class="link-footer col-6 col-sm-6 col-md-3 col-lg-2">--}}
+            {{--                <p class="text-regular text-white pt-2">خدمات انجمن</p>--}}
+            {{--                <nav class="navbar p-0">--}}
 
-{{--                    <!-- Links -->--}}
-{{--                    <ul class="navbar-nav">--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link text-gray font-14" href="#">دوره های آموزشی</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link text-gray font-14" href="#">کارگاه ها</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link text-gray font-14" href="{{route('events')}}">همایش ها</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link text-gray font-14" href="#">جوایز</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link text-gray font-14" href="#">گواهی نامه ها</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link text-gray font-14" href="#">مسابقات</a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
+            {{--                    <!-- Links -->--}}
+            {{--                    <ul class="navbar-nav">--}}
+            {{--                        <li class="nav-item">--}}
+            {{--                            <a class="nav-link text-gray font-14" href="#">دوره های آموزشی</a>--}}
+            {{--                        </li>--}}
+            {{--                        <li class="nav-item">--}}
+            {{--                            <a class="nav-link text-gray font-14" href="#">کارگاه ها</a>--}}
+            {{--                        </li>--}}
+            {{--                        <li class="nav-item">--}}
+            {{--                            <a class="nav-link text-gray font-14" href="{{route('events')}}">همایش ها</a>--}}
+            {{--                        </li>--}}
+            {{--                        <li class="nav-item">--}}
+            {{--                            <a class="nav-link text-gray font-14" href="#">جوایز</a>--}}
+            {{--                        </li>--}}
+            {{--                        <li class="nav-item">--}}
+            {{--                            <a class="nav-link text-gray font-14" href="#">گواهی نامه ها</a>--}}
+            {{--                        </li>--}}
+            {{--                        <li class="nav-item">--}}
+            {{--                            <a class="nav-link text-gray font-14" href="#">مسابقات</a>--}}
+            {{--                        </li>--}}
+            {{--                    </ul>--}}
 
-{{--                </nav>--}}
-{{--            </div>--}}
+            {{--                </nav>--}}
+            {{--            </div>--}}
             <div class="register-footer col-12 col-md-6 col-lg-5">
                 <p class="text-regular text-white pt-2">ارسال آدرس به موبایل شما</p>
                 <form action="{{route('location')}}" method="post" class="mb-3">
                     @csrf
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="شماره تماس" id="address" name="mobile"m>
+                        <input type="text" class="form-control" placeholder="شماره تماس" id="address" name="mobile"
+                               autocomplete="off">
                     </div>
-                    <button type="submit" class="btn">ارسال </button>
+                    <button type="submit" class="btn">ارسال</button>
                 </form>
                 <div class="map-footer">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12954.853719944527!2d51.379332384785705!3d35.73326570113224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0728f1286b91%3A0xf8a61ce1468a9dcd!2sKuy-e-Daneshgah%2C%20District%206%2C%20Tehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2sus!4v1579277414645!5m2!1sen!2sus" width="100%" height="150" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12954.853719944527!2d51.379332384785705!3d35.73326570113224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0728f1286b91%3A0xf8a61ce1468a9dcd!2sKuy-e-Daneshgah%2C%20District%206%2C%20Tehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2sus!4v1579277414645!5m2!1sen!2sus"
+                            width="100%" height="150" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 
                 </div>
             </div>
@@ -312,15 +319,14 @@
         <div class="footer-copy row align-items-center pt-4 pb-3">
 
             <div class="col-12 col-lg-6 text-center text-lg-left">
-                <p class="text-gray font-14 ">تمامی حقوق این سایت محفوظ و متعلق به انجمن پروژه ایران می باشد</p>
+                <p class="text-gray font-14 ">تمامی حقوق این سایت محفوظ و متعلق به انجمن مدیریت پروژه ایران می باشد</p>
             </div>
             <div class="col-12 col-lg-6 ">
                 <ul class="social m-0 text-center text-lg-right">
                     <li><a href="https://telegram.me/PMAIran"></a></li>
                     <li><a href="https://www.instagram.com/iranpma/"></a></li>
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
+                    {{--<li><a href="https://www.aparat.com/iranpma"></a></li>--}}
+
 
                 </ul>
             </div>

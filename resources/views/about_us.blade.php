@@ -445,7 +445,7 @@
                     <div class="col-12 ">
                         <h3 class="font-20 text-yellow text-center text-light2 mb-4">چارت سازمانی</h3>
                         <h2 class="font-24 text-medium text-black text-center  mb-5">ساختار سازمانی این انجمن از
-                            1396/08/01 به شرح زیر تصویب و برقرار می باشد
+                            ۱۳۹۶/۰۸/۰۱ به شرح زیر تصویب و برقرار می باشد
                         </h2>
                         <img style="margin-right: auto;margin-left: auto;display: block"
                              src="{{asset('img/chart.png')}}">
