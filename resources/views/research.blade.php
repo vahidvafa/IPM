@@ -130,8 +130,8 @@
                             <br>
                             www.ipma.ir
                         </p>
-                        <iframe src="https://docs.google.com/gview?url=http://ipma.vahidizadyar.ir/files/IPMA-Research-award-Brochure.pdf&embedded=true"style="width:100%;max-height: 1200px;min-height: 500px;"  frameborder="0"></iframe>
-                        <iframe src="https://docs.google.com/gview?url=http://ipma.vahidizadyar.ir/files/IPMA-Research-award-Poster.pdf&embedded=true"style="width:100%;max-height: 1200px;min-height: 500px;"  frameborder="0"></iframe>
+                        <iframe src="https://docs.google.com/gview?url=http://new.ipma.ir/files/IPMA-Research-award-Brochure.pdf&embedded=true"style="width:100%;max-height: 1200px;min-height: 500px;"  frameborder="0"></iframe>
+                        <iframe src="https://docs.google.com/gview?url=http://new.ipma.ir/files/IPMA-Research-award-Poster.pdf&embedded=true"style="width:100%;max-height: 1200px;min-height: 500px;"  frameborder="0"></iframe>
                     </div>
                 </div>
             </div>
