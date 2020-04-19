@@ -51,6 +51,8 @@ Route::get('/winners/{id}', 'IndexController@winners_detail')->name('winners_det
 Route::get('/gov', 'IndexController@gov')->name('gov');
 Route::get('news/{news}', 'NewsController@show')->name('news.show');
 Route::middleware('auth')->group(function () {
+    Route::get('/event/{event}/reserve', 'EventController@reserve')->name("event.reserve");
+    Route::post('/event/{event}/reserve/store', 'OrderController@store')->name("order.store");
     Route::get('logout', 'UserController@logout')->name('logout');
     Route::post('/logout', 'UserController@logout')->name('logout.post');
     Route::middleware('checkAdmin')->group(function (){

@@ -60,8 +60,8 @@ return [
             'apiPaymentUrl' => 'https://ikc.shaparak.ir/TPayment/Payment/index/',
             'apiVerificationUrl' => 'https://ikc.shaparak.ir/XVerify/Verify.xml',
             'merchantId' => '11175778',
-            'sha1Key' => '',
-            'callbackUrl' => 'http://ipma.vahidizadyar.ir',
+            'sha1Key' => '3269443',
+            'callbackUrl' => 'http://new.ipma.ir',
             'description' => 'payment in '.config('app.name'),
         ],
         'nextpay' => [

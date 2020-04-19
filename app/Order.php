@@ -43,6 +43,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Order extends Model
 {
+
+    protected $fillable = ['user_id','event_id','state_id','total_price','reference_id'];
+
     use SoftDeletes;
 
     public function user()

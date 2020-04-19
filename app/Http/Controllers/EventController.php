@@ -199,5 +199,10 @@ return;*/
         return view('cms.events.orders',compact('event','orders'));
     }
 
-
+    public function reserve(Event $event)
+    {
+        $titleHeader = $event->title;
+        $breadcrumb = "ثبت نام در رویداد";
+        return view('reserve',compact('titleHeader','breadcrumb','event'));
+    }
 }

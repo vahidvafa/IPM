@@ -163,7 +163,6 @@
         });
 
         $('#newsInput').on('input', function (e) {
-
             if (this.value.length >= 4) {
                 $.post("{{route('cms.newsOrEvent.search')}}",
                     {

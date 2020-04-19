@@ -178,6 +178,7 @@ return [
         'Intervention\Image\ImageServiceProvider',
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Ixudra\Curl\CurlServiceProvider::class,
+        Shetabit\Payment\Provider\PaymentServiceProvider::class,
     ],
 
     /*
@@ -231,6 +232,7 @@ return [
         'Image' => 'Intervention\Image\Facades\Image',
         'Curl' => Ixudra\Curl\Facades\Curl::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Payment' => Shetabit\Payment\Facade\Payment::class,
     ],
 
 ];

@@ -75,7 +75,7 @@
                             <li ><span class="text-black pr-1 text-regular">سرمایه گذاری : </span><span class="text-black-light">3,000 تومان</span></li>
                         </ul>
 
-                        <a href="/" class="btn btn-bar-detail mt-3 mb-4">ثبت نام</a>
+                        <a href="{{route('event.reserve',[$event->id])}}" class="btn btn-bar-detail mt-3 mb-4">ثبت نام</a>
 
                     </div>
                     <div class="bar-detail pt-4 pb-4 pr-3 pl-3 mt-4">
