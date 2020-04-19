@@ -116,7 +116,7 @@
         </div>
 
         <div class="logo-about pt-5 pb-5">
-            <div class="container">
+            {{--<div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="logo-slid  ">
@@ -128,7 +128,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--}}
         </div>
         <div class="backImg-about pt-5 pb-5" id="creator">
             <div class="container">

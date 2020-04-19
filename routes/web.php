@@ -205,3 +205,23 @@ Route::get('statute',function (){
     return view('statute',compact('breadcrumb','titleHeader'));
 })
     ->name("statute");
+
+
+Route::get('ImageArchive',function (){
+
+    return view('image_archive');
+
+})->name('ImageArchive');
+
+
+Route::get('ImageArchiveGallery',function (){
+
+    return view('image_archive_gallery');
+
+})->name('ImageArchiveGallery');
+
+Route::get('VideoArchive',function (){
+
+    return view('video_archive');
+
+})->name('VideoArchive');

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{asset('css/style-main.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/style-main2.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type='text/css' media='all'>
-{{--    <link rel="stylesheet" href="{{asset('css/persianDatepicker-default.css')}}" type='text/css' media='all'>--}}
+    {{--    <link rel="stylesheet" href="{{asset('css/persianDatepicker-default.css')}}" type='text/css' media='all'>--}}
     <link rel="stylesheet" href="{{asset('css/persian-datepicker.min.css')}}" type='text/css' media='all'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -44,9 +44,9 @@
                         <h1 class="text-white d-inline-block font-18 text-regular ml-2">انجمن مدیریت پروژه ایران</h1>
                     </a>
                 </div>
-                <div class="col-md-6 text-right">
+                <div class="col-md-6 text-right" style="margin-top: -6px;margin-bottom: -10px;">
                     <a href="{{route('main')}}">
-                        <img src="{{asset('img/ipma-logo.png')}}" style="height: 55px;" alt="انجمن مدیریت پروژه">
+                        <img src="{{asset('img/ipma-logo.png')}}" style="height: 69px;" alt="انجمن مدیریت پروژه">
                     </a>
                 </div>
             </div>
@@ -94,19 +94,17 @@
                         <!-- Navbar links -->
                         <div class="collapse navbar-collapse order-lg-0" id="collapsibleNavbar">
                             <ul class="navbar-nav header-main">
-                                @guest
+                                {{--@guest
                                     @if(Route::currentRouteName() != 'register')
-                                    <li class="nav-item ">
-                                        <a class="nav-link " href="{{route('register')}}">ثبت نام</a>
-                                    </li>
-                                        @endif
-                                @endguest
+                                        <li class="nav-item ">
+                                            <a class="nav-link " href="{{route('register')}}">ثبت نام</a>
+                                        </li>
+                                    @endif
+                                @endguest--}}
                                 {{--<li class="nav-item active">
                                     <a class="nav-link " href="{{route('main')}}">صفحه اول</a>
                                 </li>--}}
-                                <li class="nav-item ">
-                                    <a class="nav-link " href="{{route('message.create')}}">تماس با ما</a>
-                                </li>
+
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
                                     >درباره انجمن</a>
@@ -125,45 +123,38 @@
                                         <a class="dropdown-item" href="{{route('download')}}">گزارش ها</a>
                                     </div>
                                 </li>
-                                <!-- Dropdown -->
+                                <li class="nav-item">
+                                    <a class="nav-link " href="{{route('job.index')}}">کمیته ها و شاخه ها</a>
+                                </li>
+
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                        شبکه اعضا </a>
+                                        درباره اعضا </a>
                                     <div class="dropdown-menu">
+                                        @guest
+                                            <a class="dropdown-item" href="{{route('register')}}">ثبت عضویت</a>
+                                        @endguest
                                         <a class="dropdown-item" href="#">كميته عضويت</a>
                                         <a class="dropdown-item" href="{{route('user.search')}}">يافتن اعضا</a>
-                                        <a class="dropdown-item" href="http://yc.ipma.ir/" target="_blank">شبكه اعضا جوان</a>
+                                        <a class="dropdown-item" href="http://yc.ipma.ir/" target="_blank">شبكه اعضا
+                                            جوان</a>
                                     </div>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="{{route('job.index')}}">فرصت های شغلی</a>
+                                </li>
+
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="{{route('message.create')}}">تماس با ما</a>
+                                </li>
+
                                 <!-- Dropdown -->
-{{--                                <li class="nav-item dropdown">--}}
-{{--                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop2"--}}
-{{--                                       data-toggle="dropdown">--}}
-{{--                                        محصولات و خدمات </a>--}}
-{{--                                    <div class="dropdown-menu">--}}
-{{--                                        <a class="dropdown-item" href="#">Link 1</a>--}}
-{{--                                        <a class="dropdown-item" href="#">Link 2</a>--}}
-{{--                                        <a class="dropdown-item" href="#">Link 3</a>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-                                <!-- Dropdown -->
-{{--                                <li class="nav-item dropdown">--}}
-{{--                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop3"--}}
-{{--                                       data-toggle="dropdown">--}}
-{{--                                        ارکان انجمن </a>--}}
-{{--                                    <div class="dropdown-menu">--}}
-{{--                                        <a class="dropdown-item" href="#">Link 1</a>--}}
-{{--                                        <a class="dropdown-item" href="#">Link 2</a>--}}
-{{--                                        <a class="dropdown-item" href="#">Link 3</a>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
+
                                 <li class="nav-item">
                                     <a class="nav-link " href="{{route('search')}}">جستجو</a>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link " href="{{route('job.index')}}">فرصت های شغلی</a>
-                                </li>
+
                                 @auth()
                                     @if(auth()->user()->roles == 0 || auth()->user()->roles == 1)
                                         <li class="nav-item ">
@@ -187,12 +178,13 @@
         <div class="slider-text-page pt-2 pt-lg-2 mt-lg-2">
             <div class="container">
                 <div class="row justify-content-end">
-                    <div class="col-12"  >
+                    <div class="col-12">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item font-20"><a href="/">خانه</a></li>
                             <li class="breadcrumb-item font-20 active">{{$breadcrumb??''}}</li>
                         </ul>
-                        <h1 class="title-page font-40 text-white" style="display: block;text-overflow: ellipsis;word-wrap: break-word;overflow: hidden;max-height: 1.3em;line-height: 1.3em;">{{$titleHeader ?? ''}}</h1>
+                        <h1 class="title-page font-40 text-white"
+                            style="display: block;text-overflow: ellipsis;word-wrap: break-word;overflow: hidden;max-height: 1.3em;line-height: 1.3em;">{{$titleHeader ?? ''}}</h1>
                         {{--@if( Route::currentRouteName() == "profile" && auth()->check() )
                         <h5 class="title-page font-40 text-white" style="display: block;text-overflow: ellipsis;word-wrap: break-word;overflow: hidden;max-height: 1.3em;line-height: 1.3em;">
                             <a class="text-white" href="{{route("job.index")}}">فرصت های شغلی</a> |
@@ -215,7 +207,7 @@
 </header>
 <div class="alert p-4 @if(session('success')==null) hidden @elseif(session('success')[0]) alert-success @else alert-danger @endif">{{session('success')[1]}}</div>
 @yield('content')
-<footer id="footer" >
+<footer id="footer">
     <div class="container">
         <div class="row mb-3">
             <div class="contact-footer col-12 col-lg-5">
@@ -224,8 +216,8 @@
                     <span class="text-regular text-white">تماس با انجمن</span>
                 </div>
                 @php
-                $ipma = \App\IPMA::latest()->first()
-@endphp
+                    $ipma = \App\IPMA::latest()->first()
+                @endphp
                 <div class="contact-footer-in">
                     <p class="text-gray font-14 text-bold"><span>آدرس:</span><span>{{$ipma->address}}</span>
                     </p>
@@ -252,21 +244,24 @@
                     <!-- Links -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#history">تاریخچه</a>
+                            <a class="nav-link text-gray font-14" href="http://yc.ipma.ir/">شبکه اعضای جوان</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#chart">چارت های سازمانی</a>
+                            <a class="nav-link text-gray font-14" href="https://isac.msrt.ir/fa">كميسيون انجمن هاي علمي</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('download')}}">اساسنامه و مجوزها</a>
+                            <a class="nav-link text-gray font-14" href="https://www.ipma.world/">ipma جهانی</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#board-of-directors">اعضای
-                                هیات مدیره</a>
+                            <a class="nav-link text-gray font-14" href="https://www.become.pm/">become.pm</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#creator">موسسین انجمن</a>
-                        </li>
+                        {{--    <li class="nav-item">
+                                <a class="nav-link text-gray font-14" href="{{route('about-us')}}#board-of-directors">اعضای
+                                    هیات مدیره</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-gray font-14" href="{{route('about-us')}}#creator">موسسین انجمن</a>
+                            </li>--}}
                     </ul>
 
                 </nav>

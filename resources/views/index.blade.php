@@ -46,9 +46,9 @@
                         <h1 class="text-white d-inline-block font-18 text-regular ml-2">انجمن مدیریت پروژه ایران</h1>
                     </a>
                 </div>
-                <div class="col-md-6 text-right">
+                <div class="col-md-6 text-right" style="margin-top: -6px;margin-bottom: -10px;">
                     <a href="{{route('main')}}">
-                        <img src="{{asset('img/ipma-logo.png')}}" style="height: 55px;" alt="انجمن مدیریت پروژه">
+                        <img src="{{asset('img/ipma-logo.png')}}" style="height: 69px;" alt="انجمن مدیریت پروژه">
 
                     </a>
                 </div>
@@ -94,20 +94,20 @@
                         <!-- Navbar links -->
                         <div class="collapse navbar-collapse order-lg-0" id="collapsibleNavbar">
                             <ul class="navbar-nav header-main">
-                                @guest
-                                    <li class="nav-item ">
-                                        <a class="nav-link " href="{{route('register')}}">ثبت نام</a>
-                                    </li>
-                                @endguest
+                               {{-- @guest
+                                    @if(Route::currentRouteName() != 'register')
+                                        <li class="nav-item ">
+                                            <a class="nav-link " href="{{route('register')}}">ثبت نام</a>
+                                        </li>
+                                    @endif
+                                @endguest--}}
                                 {{--<li class="nav-item active">
-                                    <a class="nav-link " href="{{route("main")}}">صفحه اول</a>
+                                    <a class="nav-link " href="{{route('main')}}">صفحه اول</a>
                                 </li>--}}
-                                <li class="nav-item ">
-                                    <a class="nav-link " href="{{route('message.create')}}">تماس با ما</a>
-                                </li>
+
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">درباره
-                                        انجمن</a>
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
+                                    >درباره انجمن</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{{route('about-us')}}#history">تاریخچه</a>
                                         <a class="dropdown-item" href="{{route('about-us')}}#target">اهداف و نقشه
@@ -123,48 +123,39 @@
                                         <a class="dropdown-item" href="{{route('download')}}">گزارش ها</a>
                                     </div>
                                 </li>
-                                <!-- Dropdown -->
+                                <li class="nav-item">
+                                    <a class="nav-link " href="{{route('job.index')}}">کمیته ها و شاخه ها</a>
+                                </li>
+
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                        شبکه اعضا </a>
+                                        درباره اعضا </a>
                                     <div class="dropdown-menu">
+                                        @guest
+                                            <a class="dropdown-item" href="{{route('register')}}">ثبت عضویت</a>
+                                        @endguest
                                         <a class="dropdown-item" href="#">كميته عضويت</a>
                                         <a class="dropdown-item" href="{{route('user.search')}}">يافتن اعضا</a>
                                         <a class="dropdown-item" href="http://yc.ipma.ir/" target="_blank">شبكه اعضا
                                             جوان</a>
                                     </div>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="{{route('job.index')}}">فرصت های شغلی</a>
+                                </li>
+
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="{{route('message.create')}}">تماس با ما</a>
+                                </li>
+
                                 <!-- Dropdown -->
-                                {{--                                <li class="nav-item dropdown">--}}
-                                {{--                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop2"--}}
-                                {{--                                       data-toggle="dropdown">--}}
-                                {{--                                        محصولات و خدمات </a>--}}
-                                {{--                                    <div class="dropdown-menu">--}}
-                                {{--                                        <a class="dropdown-item" href="#">Link 1</a>--}}
-                                {{--                                        <a class="dropdown-item" href="#">Link 2</a>--}}
-                                {{--                                        <a class="dropdown-item" href="#">Link 3</a>--}}
-                                {{--                                    </div>--}}
-                                {{--                                </li>--}}
-                            <!-- Dropdown -->
-                                {{--                                <li class="nav-item dropdown">--}}
-                                {{--                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop3"--}}
-                                {{--                                       data-toggle="dropdown">--}}
-                                {{--                                        ارکان انجمن </a>--}}
-                                {{--                                    --}}{{--                                    <div class="dropdown-menu">--}}
-                                {{--                                    --}}{{--                                        <a class="dropdown-item" href="#">Link 1</a>--}}
-                                {{--                                    --}}{{--                                        <a class="dropdown-item" href="#">Link 2</a>--}}
-                                {{--                                    --}}{{--                                        <a class="dropdown-item" href="#">Link 3</a>--}}
-                                {{--                                    --}}{{--                                    </div>--}}
-                                {{--                                </li>--}}
+
                                 <li class="nav-item">
                                     <a class="nav-link " href="{{route('search')}}">جستجو</a>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link " href="{{route('job.index')}}">فرصت های شغلی</a>
-                                </li>
+
                                 @auth()
-                                <!-- Dropdown -->
                                     @if(auth()->user()->roles == 0 || auth()->user()->roles == 1)
                                         <li class="nav-item ">
                                             <a class="nav-link" href="{{route('cms.index')}}">پنل مدیریت</a>
@@ -174,6 +165,7 @@
                                         <a class="nav-link" href="{{route('logout')}}">خروج</a>
                                     </li>
                                 @endauth
+
                             </ul>
                         </div>
                     </nav>
@@ -194,7 +186,8 @@
                             {{$ipma->head_subtitle}}
                         </h3>
                         <p class="font-16 text-white ">{{$ipma->head_description}}</p>
-                        <a href="{{route($ipma->event_id==null ? "news.show":"event",[$ipma->event_id==null?$ipma->news_id:$ipma->event_id])}}" class="btn btn-white font-16 text-black mt-5">ادامه مطلب</a>
+                        <a href="{{route($ipma->event_id==null ? "news.show":"event",[$ipma->event_id==null?$ipma->news_id:$ipma->event_id])}}"
+                           class="btn btn-white font-16 text-black mt-5">ادامه مطلب</a>
                     </div>
                 </div>
             </div>
@@ -256,7 +249,8 @@
             <div class="row justify-content-center">
 
 
-                <h2 class="text-center font-24 text-medium text-black col-12 mb-4"><span class="text-yellow"> آخرین</span>
+                <h2 class="text-center font-24 text-medium text-black col-12 mb-4"><span
+                            class="text-yellow"> آخرین</span>
                     رویدادها
                 </h2>
 
@@ -265,10 +259,11 @@
                 <ul class="nav nav-tabs d-block d-md-flex nav-justified last-pack-tabs col-12 mt-4">
                     @foreach($eventsWithCats as $eventCat)
                         <li class="nav-item">
-                            <a class="nav-link @if($loop->first) active @endif font-22 text-black text-regular" data-toggle="tab" href="#m{{$eventCat->id}}">
+                            <a class="nav-link @if($loop->first) active @endif font-22 text-black text-regular"
+                               data-toggle="tab" href="#m{{$eventCat->id}}">
                                 {{$eventCat->name}}
-                                <p class="font-14 text-black-light text-regular m-0 m-md-2">تعداد:
-                                    <span>{{$eventCat->event_count}}</span></p>
+                                <p class="font-14 text-black-light text-regular m-0 m-md-2"> تعداد {{str_replace(" و گواهینامه ها","",$eventCat->name)}}:
+                                    <span>{{tr_num($eventCat->event_count,'fa')}}</span></p>
                             </a>
                         </li>
                     @endforeach
@@ -279,14 +274,18 @@
 
                     @foreach($eventsWithCats as $eventCat)
                         <div class="tab-pane row @if($loop->first) active @endif " id="m{{$eventCat->id}}">
-                        @foreach($eventCat->event as $event)
+                            @foreach($eventCat->event as $event)
                                 <div class="last-pack-content-in col-12 col-md-6 col-lg-12  mb-3 mt-3 pt-4 pb-4">
                                     <div class="row align-items-center">
                                         <div class="last-pack-content-in-time text-lg-left text-center col-12 col-lg-2">
                                             <p class="text-medium font-14 mb-1 mb-lg-2 m-0">شروع ثبت نام : <span
-                                                        class="pl-1 " dir="rtl">{{tr_num(explode(" ",jdate($event->start_register_date))[0],"fa")}}</span></p>
+                                                        class="pl-1 "
+                                                        dir="rtl">{{tr_num(explode(" ",jdate($event->start_register_date))[0],"fa")}}</span>
+                                            </p>
                                             <p class="text-medium font-14 m-0">تاریخ برگزاری : <span
-                                                        class="pl-2" dir="rtl">{{tr_num(explode(" ",jdate($event->start_date))[0],"fa")}}</span></p>
+                                                        class="pl-2"
+                                                        dir="rtl">{{tr_num(explode(" ",jdate($event->start_date))[0],"fa")}}</span>
+                                            </p>
                                         </div>
                                         <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
                                             <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
@@ -303,15 +302,16 @@
 
                                         <div
                                                 class="last-pack-content-in-more text-center col-12 col-lg-2 text-lg-left text-center">
-                                            <a href="{{route("event",[$event->id])}}" class="btn btn-white-border">شرکت در رویداد</a>
+                                            <a href="{{route("event",[$event->id])}}" class="btn btn-white-border">شرکت
+                                                در رویداد</a>
                                         </div>
                                     </div>
 
                                 </div>
 
-                        @endforeach
+                            @endforeach
                         </div>
-                        @endforeach
+                    @endforeach
 
                 </div>
                 <div class="col-12 text-center last-pack-calender">
@@ -542,17 +542,17 @@
                 <div class="row">
                     <div class="link-img col-12 col-sm p-0">
                         <img class="img-fluid" alt="..." src=" img/camera-lens.jpg">
-                        <div class="link-img-more"><a href="//">
+                        <div class="link-img-more"><a href="{{route('ImageArchive')}}">
                                 <i class="fa fa-image fa-2x"></i>
-                                <p>گالری تصاویر</p>
+                                <p>آرشیو تصاویر</p>
                             </a></div>
                         <div class="overlay-img"></div>
                     </div>
                     <div class="link-img col-12 col-sm p-0">
                         <img class="img-fluid" alt="..." src=" img/film-camera.jpg">
-                        <div class="link-img-more"><a href="//">
+                        <div class="link-img-more"><a href="{{route('VideoArchive')}}">
                                 <i class="fas fa-video fa-2x"></i>
-                                <p>گالری ویدیو </p>
+                                <p>آرشیو ویدیو </p>
                             </a></div>
                         <div class="overlay-img"></div>
                     </div>
@@ -598,7 +598,7 @@
     </div>
 </main>
 
-<footer id="footer"  >
+<footer id="footer">
     <div class="container">
         <div class="row mb-3">
             <div class="contact-footer col-12 col-lg-5">
@@ -632,21 +632,24 @@
                     <!-- Links -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#history">تاریخچه</a>
+                            <a class="nav-link text-gray font-14" href="http://yc.ipma.ir/">شبکه اعضای جوان</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#chart">چارت های سازمانی</a>
+                            <a class="nav-link text-gray font-14" href="https://isac.msrt.ir/fa">كميسيون انجمن هاي علمي</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('download')}}">اساسنامه و مجوزها</a>
+                            <a class="nav-link text-gray font-14" href="https://www.ipma.world/">ipma جهانی</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#board-of-directors">اعضای
-                                هیات مدیره</a>
+                            <a class="nav-link text-gray font-14" href="https://www.become.pm/">become.pm</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="{{route('about-us')}}#creator">موسسین انجمن</a>
-                        </li>
+                        {{--    <li class="nav-item">
+                                <a class="nav-link text-gray font-14" href="{{route('about-us')}}#board-of-directors">اعضای
+                                    هیات مدیره</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-gray font-14" href="{{route('about-us')}}#creator">موسسین انجمن</a>
+                            </li>--}}
                     </ul>
 
                 </nav>

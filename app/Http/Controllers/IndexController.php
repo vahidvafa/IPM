@@ -22,7 +22,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $events = Event::latest()->limit(4)->get(['id', 'photo', 'title', 'description', 'from_date']);
+        $events = Event::latest()->limit(2)->get(['id', 'photo', 'title', 'description', 'from_date']);
         $news = News::latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
         $ipma = IPMA::latest()->first();
         $eventsWithCats = EventCategory::withCount(["event"])->get();

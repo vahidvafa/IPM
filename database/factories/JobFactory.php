@@ -19,7 +19,7 @@ $factory->define(Job::class, function (Faker $faker) {
         "contract_type"=>$contract_type[random_int(0,sizeof($contract_type)-1)],
         "work_experience"=>$work_experience[random_int(0,sizeof($work_experience)-1)],
         "province_id"=>\App\Province::all('id')->random()->id,
-        "jobs_category_id"=>\App\JobsCategory::all('id')->random()->id,
+        "jobsCategory_id"=>\App\JobsCategory::all('id')->random()->id,
         "sex"=>random_int(0,1),
         "benefits"=>"تسهیلات و مزایا || تسهیلات و مزایا || تسهیلات و مزایا || تسهیلات و مزایا || تسهیلات و مزایا || تسهیلات و مزایا || تسهیلات و مزایا || تسهیلات و مزایا",
         "content"=>"متن تصادفی برای توضیحات فرصت شغلی || متن تصادفی برای توضیحات فرصت شغلی || متن تصادفی برای توضیحات فرصت شغلی || متن تصادفی برای توضیحات فرصت شغلی || متن تصادفی برای توضیحات فرصت شغلی || متن تصادفی برای توضیحات فرصت شغلی || متن تصادفی برای توضیحات فرصت شغلی || متن تصادفی برای توضیحات فرصت شغلی",

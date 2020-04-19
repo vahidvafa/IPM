@@ -12,13 +12,13 @@ class EventCategorySeeder extends Seeder
     public function run()
     {
         DB::table("event_categories")->insert([
-            "name" => "آزمون ها"
+            "name" => "اموزش ها"
         ]);
         DB::table("event_categories")->insert([
             "name" => "جوایز و مسابقات"
         ]);
         DB::table("event_categories")->insert([
-            "name" => "گواهینامه ها"
+            "name" => "آزمون و گواهینامه ها"
         ]);
     }
 }

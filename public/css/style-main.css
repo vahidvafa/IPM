@@ -716,7 +716,7 @@ input:not([type='checkbox']):focus, input:not([type='checkbox']):active, select:
 footer{
     background-color:#372b7d ;
     position: relative;
-    padding-top: 150px;
+    padding-top: 139px;
     }
 footer:before{
     content: "";

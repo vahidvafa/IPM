@@ -103,7 +103,7 @@ protected $guarded = ['id','user_id'];
 
     public function jobCategory()
     {
-        return $this->belongsTo(JobsCategory::class,'jobs_category_id',null);
+        return $this->belongsTo(JobsCategory::class,'jobsCategory_id',null);
     }
 
 
