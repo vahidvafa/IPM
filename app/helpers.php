@@ -16,7 +16,7 @@ function yearToUnix($year)
     return dayToUnix($year * 365);
 }
 
-function tr_num($str, $mod = 'en', $mf = '٫')
+function tr_num($str, $mod = 'fa', $mf = '٫')
 {
     $num_a = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.');
     $key_a = array('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', $mf);
@@ -77,6 +77,104 @@ function j_to_timestamp($date, $time = null)
         $gregorian .= $time;
     return strtotime($gregorian);
 }
+
+function DateDifference($firstDate, $secondDate, $ok)
+{
+//    echo $firstDate." , ".$secondDate;
+//    exit();
+    $month = $day = 0;
+    list($fdY, $fdM, $fdD) = explode('/', $firstDate);
+    list($sdY, $sdM, $sdD) = explode('/', $secondDate);
+
+    if (strlen($fdM) == 1)
+        $fdM = "0" . $fdM;
+
+    if (strlen($fdD) == 1)
+        $fdD = "0" . $fdD;
+
+    if (strlen($sdM) == 1)
+        $sdM = "0" . $sdM;
+
+    if (strlen($sdD) == 1)
+        $sdD = "0" . $sdD;
+
+    $fd = $fdY . "/" . $fdM . "/" . $fdD;
+
+    $sd = $sdY . "/" . $sdM . "/" . $sdD;
+
+
+    while (true) {
+        $fdY++;
+        $temp = $fdY . "/" . $fdM . "/" . $fdD;
+        if ($temp <= $sd) {
+            $month += 12;
+            $fd = $temp;
+        } else {
+            break;
+        }
+
+    }
+    $fdY--;
+    while (true) {
+        $fdM++;
+        if ($fdM > 12) {
+            $fdM = 1;
+            $fdY++;
+        }
+        if (strlen($fdM) == 1) {
+            $fdM = "0" . $fdM;
+        }
+
+        $temp = $fdY . "/" . $fdM . "/" . $fdD;
+        // echo"<br>";
+        if ($temp <= $sd) {
+            $month++;
+            $fd = $temp;
+        } else {
+            break;
+        }
+    }
+
+    if ($fdM == "01") {
+        $fdM = 12;
+    } else $fdM--;
+    if ($fdM > 0 && $fdM < 7) {
+        if ($fdM != $sdM)
+            $day = (31 - $fdD) + $sdD;
+        else
+            $day = $sdD - $fdD;
+    } else if ($fdM > 6 && $fdM < 12) {
+        if ($fdM != $sdM)
+            $day = (30 - $fdD) + $sdD;
+        else
+            $day = $sdD - $fdD;
+    } else if ($fdM == 12) {
+        if ($fdM != $sdM)
+            $day = (29 - $fdD) + $sdD;
+        else
+            $day = $sdD - $fdD;
+    }
+    if ($ok == true) {
+        $day = $day . " روز ";
+        $month = $month . " ماه ";
+        $va = " و ";
+        if ($day == 0) {
+            $day = "";
+            $va = "";
+        }
+
+        if ($month == 0) {
+            $month = "";
+            $va = "";
+        }
+        $date = $month . $va . $day;
+    } else if ($ok == false)
+        $date = $month . "/" . $day;
+
+    return $date;
+}
+
+
 
 function word2uniTmp($word)
 {

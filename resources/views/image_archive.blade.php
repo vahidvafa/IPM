@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <div class="container my-5">
+    <div class="container my-5" dir="ltr" >
 
         <div class="row my-5">
             @for($i=1 ; $i<=10 ; $i++)

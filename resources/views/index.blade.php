@@ -215,7 +215,7 @@
                                             {{$event->title}}
                                         </a></h4>
                                     <div class="popular-pack-in-info-title-sub text-yellow font-16 text-light2 mb-2">
-                                        {{explode(" ",jdate($event->from_date))[0]}}
+                                        {{tr_num(explode(" ",jdate($event->from_date))[0],'fa')}}
                                     </div>
                                 </div>
                                 <div class="popular-pack-in-info-title-excerpt text-black-light font-14 text-light2">
@@ -509,27 +509,27 @@
                         <div class=" pt-4 pb-4 justify-content-around  row">
                             <div class="counter-in text-center col-6 col-md-3 mb-4 mb-md-0">
 
-                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="300"
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="6"
                                     data-speed="1500"></h2>
-                                <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
+                                <p class="count-text text-yellow font-18 text-regular m-0">گواهینامه سطح A</p>
                             </div>
                             <div class="counter-in text-center col-6  col-md-3 mb-4 mb-md-0">
 
-                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="60"
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="14"
                                     data-speed="1500"></h2>
-                                <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
+                                <p class="count-text text-yellow font-18 text-regular m-0">گواهینامه سطح B</p>
                             </div>
                             <div class="counter-in text-center col-6 col-md-3  mb-md-0">
 
-                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="100"
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="34"
                                     data-speed="1500"></h2>
-                                <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
+                                <p class="count-text text-yellow font-18 text-regular m-0">گواهینامه سطح C</p>
                             </div>
                             <div class="counter-in text-center col-6 col-md-3 ">
 
-                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="40"
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="576"
                                     data-speed="1500"></h2>
-                                <p class="count-text text-yellow font-18 text-regular m-0">شمارش پروژه ها</p>
+                                <p class="count-text text-yellow font-18 text-regular m-0">گواهینامه سطح D</p>
                             </div>
                         </div>
 

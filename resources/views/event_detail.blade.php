@@ -62,9 +62,10 @@
                             {{--$table->string('from_date');
             $table->string('to_date');
             $table->string('start_register_date');--}}
-                            <li><span class="text-black pr-1 text-regular "  >شروع ثبت نام : </span><span dir="ltr" class="text-red">{{explode(" ",jdate($event->start_register_date))[0]}}</span></li>
-                            <li><span class="text-black pr-1 text-regular" style="margin-top: -20px;margin-bottom: -20px" > شروع دوره : </span><span dir="ltr" class="text-black-light">{{explode(" ",jdate($event->from_date))[0]}}</span></li>
-                            <li ><span class="text-black pr-1 text-regular">مدت دوره: </span><span  class="text-black-light">۶ ساعت - ۲ روز </span></li>
+                            <li><span class="text-black pr-1 text-regular "  >شروع ثبت نام : </span><span dir="ltr" class="text-red">{{tr_num(jdate($event->start_register_date))}}</span></li>
+                            <li><span class="text-black pr-1 text-regular" style="margin-top: -20px;margin-bottom: -20px" > شروع دوره : </span><span dir="ltr" class="text-black-light">{{tr_num(jdate($event->from_date))}}</span></li>
+                            <li ><span class="text-black pr-1 text-regular">مدت دوره: </span><span  class="text-black-light">
+                                    {{DateDifference(str_replace("-","/",explode(" ",jdate($event->to_date))[0]),str_replace("-","/",explode(" ",jdate($event->from_date))[0]),true)}}</span></li>
 
                         </ul>
                         <h2 class="title-bar-detail text-white font-18 text-medium mb-4">اطلاعات ثبت نام</h2>
@@ -72,7 +73,7 @@
                         <ul class="list-detail-in">
                             <li ><span class="text-black pr-1 text-regular">مخاطبین  : </span><span class="text-black-light">متن تصادفی</span></li>
                             <li ><span class="text-black pr-1 text-regular">مدرس : </span><span class="text-black-light">متن تصادفی</span></li>
-                            <li ><span class="text-black pr-1 text-regular">سرمایه گذاری : </span><span class="text-black-light">3,000 تومان</span></li>
+                            <li ><span class="text-black pr-1 text-regular">سرمایه گذاری : </span><span class="text-black-light">{{tr_num($event->price)}} تومان </span></li>
                         </ul>
 
                         <a href="{{route('event.reserve',[$event->id])}}" class="btn btn-bar-detail mt-3 mb-4">ثبت نام</a>

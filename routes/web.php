@@ -210,20 +210,23 @@ Route::get('statute',function (){
 
 
 Route::get('ImageArchive',function (){
-
-    return view('image_archive');
+    $breadcrumb = "آرشیوه تصاویر";
+    $titleHeader = "آلبوم ها";
+    return view('image_archive',compact('breadcrumb','titleHeader'));
 
 })->name('ImageArchive');
 
 
 Route::get('ImageArchiveGallery',function (){
-
-    return view('image_archive_gallery');
+    $breadcrumb = "آلبوم";
+    $titleHeader = "تصاویر آلبوم";
+    return view('image_archive_gallery',compact('breadcrumb','titleHeader'));
 
 })->name('ImageArchiveGallery');
 
 Route::get('VideoArchive',function (){
-
-    return view('video_archive');
+    $breadcrumb = "آرشیو ویدیو ها";
+    $titleHeader = "ویدیو ها";
+    return view('video_archive',compact('breadcrumb','titleHeader'));
 
 })->name('VideoArchive');

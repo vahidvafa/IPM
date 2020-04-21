@@ -73,7 +73,7 @@
 
 @section('content')
 
-    <div class="container mb-5 mt-5">
+    <div class="container mb-5 mt-5 ltr"  >
 
         <div class="feature" >
             <figure class="featured-item image-holder r-3-2 transition"></figure>
@@ -90,8 +90,8 @@
         </div>
 
         <div class="controls">
-            <button class="move-btn right col-5 ">&rarr;</button>
             <button class="move-btn left col-5">&larr;</button>
+            <button class="move-btn right col-5 ">&rarr;</button>
         </div>
 
     </div>
