@@ -11,70 +11,50 @@
             <div class="profile-main mt-5 mb-5">
                 <div class="row pb-5">
                     <div class="col-12">
-                        <div class="row profile-top pt-5 pb-5 mb-3">
+                        <div class="row profile-top pt-5 pb-5">
                             <div class="col-12 col-lg-4 mb-5 mb-lg-0">
                                 <div class="row justify-content-center">
                                     <div class="profile-top-image col-10 col-sm-8 col-md-6 col-lg-10 ">
-                                        <img class="img-fluid img-profile"
-                                             src="@if(file_exists("img/profile/".($user->profile_picture==null?"$.$":$user->profile_picture))) {{asset("img/profile/".$user->profile_picture)}} @else {{asset('img/nasrollahpour.jpg')}} @endif" alt="">
-                                        <div class="profile-top-icons fix-profile-icon ">
-                                            <p class="font-18 text-medium m-0">
-                                                فرهاد نصرالله پور
+                                        <img class="img-fluid" src="@if(file_exists("img/profile/".($user->profile_picture==null?"$.$":$user->profile_picture))) {{asset("img/profile/".$user->profile_picture)}} @else {{asset('img/nasrollahpour.jpg')}} @endif" alt="">
+                                        <div class="profile-top-icons" style="background-color: @if($user->membership_type_id == 1) @if($user->reagent_id == 0) grey @else #372b7d @endif @endif">
+                                            <p class="text-white font-18 text-medium m-0">
+                                                <span >کد عضویت :</span>
+                                                <span>{{$user->user_code}}</span>
                                             </p>
 
                                         </div>
-                                        <p class="font-16 text-regular text-black">
-                                            <span>کد عضویت: </span>
-                                            <span class="text-black-light ">۴۶۷۸۹</span>
-                                        </p>
                                     </div>
                                 </div>
 
                             </div>
                             <div class="col-md-6 col-lg-4 mb-4 mb-md-0">
-                                <!--<p class="text-danger font-26 text-bold">اشتراک شما به پایان رسیده</p>-->
-
+                                @if(time() >= $user->expire)
+                                    <p class="text-danger font-26 text-bold">اشتراک شما به پایان رسیده</p>
+                                @endif
 
                                 <p class="font-16 text-regular text-black">
-                                    <span>رشته تحصیلی :</span>
-                                    <span class="text-black-light">کامپیوتر نرم افزار</span>
-                                </p>
-                                <p class="font-16 text-regular text-black">
-                                    <span>مقطع تحصیلی :</span>
-                                    <span class="text-black-light">فوق لیسانس</span>
-                                </p>
-                                <p class="font-16 text-regular text-black">
-                                    <span>حوزه های تخصصی :</span>
-                                    <span class="text-black-light">طراحی سایت</span>
-                                </p>
-                                <p class="font-16 text-regular text-black">
-                                    <span>موبایل :</span>
-                                    <span class="text-black-light">0912456784</span>
-                                </p>
-                                <p class="font-16 text-regular text-black">
-                                    <span>ایمیل :</span>
-                                    <span class="text-black-light">example@gmail.com</span>
-                                </p>
-                                <p class="font-16 text-regular text-black">
-                                    <a href="/" class=" text-black">
-                                        <i class="fas fa-save"></i>
-                                        <span>دانلود رزومه </span>
-                                    </a>
-
-
+                                    <span>نام: </span>
+                                    <span class="text-black-light">{{$user->first_name}} {{$user->last_name}}</span>
                                 </p>
 
+                                    @if($user->membership_type_id == 2 )
+                                        <p class="font-16 text-regular text-black">
+                                            <span>نام شرکت: </span>
+                                            {{$user->companies[0]->name}}
+                                        </p>
 
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <!--<div class="row col-6 mb-3 "  >-->
-                                <!--<img class="img-fluid" src="http://new.ipma.ir/img/YC1.jpeg" alt="..">-->
-                                <!--</div>-->
+                                        <p class="font-16 text-regular text-black">
+                                            <span>محل شرکت: </span>
+                                            {{$user->companies[0]->established_place}}
+                                        </p>
+                                        @endif
+
+                                    <p class="font-16 text-regular text-black">
+                                        <span>درباره من :</span>
+                                        <span class="text-black-light">{{$user->about_me}}</span>
+                                    </p>
 
 
-                                <div class="qr-profile">
-                                    {!! (new \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator())->size(250)->generate(route('profile',$user->slug)); !!}
-                                </div>
                                 <div class="social-profile mt-3">
                                     <a href="{{$user->profile[0]->telegram}}"><img src="{{asset('img/social11.png')}}" alt="..."></a>
                                     <a href="{{$user->profile[0]->instagram}}"><img src="{{asset('img/social22.png')}}" alt="..."></a>
@@ -83,129 +63,28 @@
                                     <a href="{{$user->profile[0]->youTube}}"><img src="{{asset('img/social55.png')}}" alt="..."></a>
                                 </div>
 
-                                <div class="mt-4">
-                                    <!-- Button trigger modal -->
-                                    <a href="/" class="btn btn-white-border " data-toggle="modal"
-                                       data-target="#exampleModalCenter">
-                                        ویرایش پروفایل </a>
-                                    <!--<a href="/" class="btn btn-yellow-border ">-->
-                                    <!--دانلود رزومه-->
-                                    <!--</a>-->
-                                </div>
-
 
                             </div>
+                            <div class="col-md-6 col-lg-4">
+                                @if((jdate()->getYear() - (int)explode('/',$user->profile[0]->birth_date)[0]) <= 35)
+                                <div class="row col-6 mb-3 "  >
+                                    <img class="img-fluid" src="{{asset('img/YC1.jpeg')}}" alt="..">
+                                </div>
 
+                                @endif
+
+                                <div class="qr-profile">
+                                    <img class="img-fluid" src="{{asset('img/googleQRcodes.png')}}" alt="..">
+                                </div>
+
+                            </div>
                             <div class="profile-top-svg">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 223.5 607.6">
                                     <path d="M5.1,0c28.2,19.8,54.2,48.1,71.6,86.8C140.3,242.3,17,370.8,2,468.5c-12.7,83.3,42.1,144.6,221.2,138.7V0H5.1z"></path>
                                 </svg>
                             </div>
                         </div>
-                        <div class="row align-items-center profile-top pt-4 pb-4 p-3 mb-3">
-                            <div class="col-12 ">
-                                <p class="font-18  mb-3 mb-lg-0 text-medium text-dark-violet ">افتخارات حضور در انجمن :
-                                    <span class="font-16 text-light2 text-black">موسس انجمن - دیبر - عضو هیات مدیره - رییس شبکه اعضا جوان - رییس کمیته عضویت</span>
-                                </p>
-                            </div>
-                            <div class="col-12 list-diamond align-items-center d-flex flex-wrap">
-
-                                <div class="avatar-group mb-3 mb-lg-0">
-                                    <a href="#" class="avatar diamond avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Ryan Tompson">
-                                        <img alt="Image placeholder" src="{{asset('img/Diamond.png')}}" class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar diamond avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Romina Hadid">
-                                        <img alt="Image placeholder" src="{{asset('img/Diamond.png')}} " class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar diamond avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Alexander Smith">
-                                        <img alt="Image placeholder" src="{{asset('img/Diamond.png')}}" class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar diamond avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Jessica Doe">
-                                        <img alt="Image placeholder" src="{{asset('img/Diamond.png')}}" class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar diamond avatar-text avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Jessica Doe">
-                                        <span>4</span>
-                                    </a>
-                                </div>
-                                <div class="avatar-group ml-3 mb-3 mb-lg-0">
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Ryan Tompson">
-                                        <img alt="Image placeholder" src="{{asset('img/Gold.png')}}" class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Ryan Tompson">
-                                        <img alt="Image placeholder" src="{{asset('img/Gold.png')}}" class="rounded-circle">
-                                    </a>
-
-                                    <a href="#" class="avatar diamond avatar-text avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Jessica Doe">
-                                        <span>2</span>
-                                    </a>
-                                </div>
-                                <div class="avatar-group ml-3 mb-3 mb-lg-0">
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Romina Hadid">
-                                        <img alt="Image placeholder" src="{{asset('img/Silver.png')}}" class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Romina Hadid">
-                                        <img alt="Image placeholder" src="{{asset('img/Silver.png')}}" class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Romina Hadid">
-                                        <img alt="Image placeholder" src="{{asset('img/Silver.png')}}" class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar diamond avatar-text avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Jessica Doe">
-                                        <span>3</span>
-                                    </a>
-                                </div>
-                                <div class="avatar-group ml-3 mb-3 mb-lg-0">
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Alexander Smith">
-                                        <img alt="Image placeholder" src="{{asset('img/Borenze.png')}}" class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Alexander Smith">
-                                        <img alt="Image placeholder" src="{{asset('img/Borenze.png')}}" class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Alexander Smith">
-                                        <img alt="Image placeholder" src="{{asset('img/Borenze.png')}}" class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Alexander Smith">
-                                        <img alt="Image placeholder" src="{{asset('img/Borenze.png')}}" class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar diamond avatar-text avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Jessica Doe">
-                                        <span>4</span>
-                                    </a>
-                                </div>
-                                <div class="ml-lg-auto ">
-                                    <img alt="YC-Member" src="{{asset('img/YC-Member.png')}}" class="YC-Member">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row align-items-center profile-top p-3 ">
-                            <div class="col-12">
-                                <h3 class="text-right">
-                                    <span>IPMA CB Certificate Level “C” - 2019-08-23</span>
-                                    <img src="{{asset('img/level.jpg')}}" class="lebel-img" alt="level">
-                                </h3>
-                            </div>
-
-                        </div>
                     </div>
-
-
-
-
 
                     @auth()
                         @if(auth()->id() == $user->id )
@@ -218,6 +97,16 @@
                                         <p class="font-14 text-black-light text-regular m-0 m-md-2">همان طور ببنید که
                                             دیگران می بینند
                                         </p>
+                                    </a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link font-22 text-black-light text-regular " data-toggle="tab"
+                                       href="#edit">
+                                        ویرایش اطلاعات
+                                        <p class="font-14 text-black-light text-regular m-0 m-md-2">ویرایش اطلاعات بیشتر
+                                            تنها توسط مدیران انجمن صورت میگیرد</p>
                                     </a>
                                 </li>
 
@@ -245,93 +134,231 @@
                                                 تمامی دوره های گذرانده شده مورد تایید انجمن مدیریت پروژه ایران می باشد
                                             </p>
 
+                                            @foreach($PassedCoursesCats as $courseCat)
 
-                                            <h2 class=" font-20 text-medium text-black  mb-4">گواهی نامه ها : </h2>
+                                                @if(count($courseCat->PassedCourses) != 0)
+                                                    <h2 class=" font-20 text-medium text-black  mb-4">{{$courseCat->name}}
+                                                        : </h2>
 
-                                            <ul class="list-profile row">
-                                                <li class="col-12 col-lg-6 mb-3 mb-lg-5">
-                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
-                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
-                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
-                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
-                                                </li>
-                                                <li class="col-12 col-lg-6 mb-3 mb-lg-5">
-                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
-                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
-                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
-                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
-                                                </li>
-                                                <li class="col-12 col-lg-6 mb-3 mb-lg-5">
-                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
-                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
-                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
-                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
-                                                </li>
-                                                <li class="col-12 col-lg-6 mb-3 mb-lg-5">
-                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
-                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
-                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
-                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
-                                                </li>
-                                                <li class="col-12 col-lg-6 mb-3 mb-lg-5">
-                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
-                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
-                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
-                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
-                                                </li>
-                                                <li class="col-12 col-lg-6 mb-3 mb-lg-5">
-                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
-                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
-                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
-                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
-                                                </li>
-                                                <li class="col-12 col-lg-6 mb-3 mb-lg-5">
-                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
-                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
-                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
-                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
-                                                </li>
-                                                <li class="col-12 col-lg-6 mb-3 mb-lg-5">
-                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
-                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
-                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
-                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
-                                                </li>
+                                                @endif
+                                                    <ul class="list-profile">
+                                                @foreach($user->passedCourse as $course)
+                                                    @if($courseCat->id == $course->passed_courses_category_id)
 
-                                            </ul>
+                                                            <li><p class="font-16"><span
+                                                                            class="text-black text-medium">{{$course->title}}: </span>
+                                                            {!! $course->content !!}
+                                                                </p>
+                                                            </li>
 
-                                            <h2 class=" font-20 text-medium text-black  mb-4">جوایز
-                                                : </h2>
+                                                    @endif
 
-                                            <ul class="list-profile">
-                                            </ul>
-
-                                            <h2 class=" font-20 text-medium text-black  mb-4">مدارک
-                                                : </h2>
-
-                                            <ul class="list-profile">
-                                            </ul>
+                                                @endforeach
+                                                    </ul>
+                                            @endforeach
                                         </div>
 
 
                                         <h2 class=" font-24 text-medium text-black mt-5 mb-4 text-dark-violet">
                                             اطلاعات بیشتر
                                         </h2>
+                                        @if( auth()->check() && $user->id == auth()->id() && $user->shortcomings != null )
+
+                                            <p class=" text-danger text-bold">
+                                                نواقصی مدارک:
+                                                {{--ادرس: {{$document->address}} ||--}}
+                                                {{$user->shortcomings}}
+                                            </p>
+
+                                        @endif
 
                                         <p class="font-16 text-regular text-black">
                                             <span>سابقه :</span>
                                             <br>
+                                            @foreach($user->workExperience as $word_experience)
+                                                <span class="text-black-light">{{$word_experience->company_name}} ({{substr($word_experience->from_date,0,4)}} تا {{substr($word_experience->to_date,0,4)}})</span>
+                                                <br>
+                                            @endforeach
                                         </p>
                                         <p class="font-16 text-regular text-black">
                                             <span>مدرک تحصیلی :</span><br>
+                                            @foreach($user->education as $education)
+                                                <span class="text-black-light">دانشگاه: {{$education->education_place}}, معدل: {{$education->gpa}}</span>
+                                                <br>
+                                            @endforeach
                                         </p>
 
+
+
+
+
+                                        {{--
+
+                                                                                <div class="form-profile">
+
+                                                                                    @if(auth()->id() != $user->id)
+                                                                                        --}}{{--<h2 class=" font-24 text-medium text-black mb-4 mt-5 hide ">اطلاعات بیشتر
+                                                                                            قابل مشاهده
+                                                                                        </h2>--}}{{--
+                                                                                        <div class="sidebar-form-body row hide"  >
+                                                                                            @foreach($profileVisible as $key=>$value)
+                                                                                                <div class="input-form col-md-12 ">
+                                                                                                    <img src="{{asset('img/002-telephone.png')}}"
+                                                                                                         class="form-icon">
+                                                                                                    <p>{{$value}}</p>
+                                                                                                </div>
+                                                                                            @endforeach
+
+                                                                                        </div>
+                                                                                    @endif
+
+                                                                                </div>--}}
 
                                     </div>
 
                                     @auth()
                                         @if(auth()->id() == $user->id )
                                 </div>
+                                {{--<div class="tab-pane row form-profile " id="edit">
+                                    <form class="sidebar-form-body row" action="{{route("user.update")}}" method="POST"
+                                          enctype="multipart/form-data">
+                                        @csrf
+                                        --}}{{--@method('post')--}}{{--
+
+                                        <div class="input-form col-md-4">
+                                            <label for="profile[birth_date]">تاریخ تولد*</label>
+                                            <input type="text" name="profile[birth_date]" size="40" aria-invalid="false"
+                                                   placeholder="تاریخ تولد*"
+                                                   value="{{old('profile.birth_date',$user->profile[0]->birth_date)}}"
+                                                   required>
+                                            --}}{{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}{{--
+                                        </div>
+
+                                        <div class="input-form col-md-4">
+                                            <label for="profile[birth_place]">محل تولد*</label>
+                                            <input type="text" name="profile[birth_place]" size="40"
+                                                   aria-invalid="false"
+                                                   placeholder="محل تولد*"
+                                                   value="{{old('profile.birth_place',$user->profile[0]->birth_place)}}"
+                                                   required>
+                                            --}}{{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}{{--
+                                        </div>
+                                        <div class="col-4"></div>
+
+                                        <div class="col-md-4 mt-4">
+                                            <div class="input-upload ">
+                                                <label class="custom-file-label" for="customFile">انتخاب عکس
+                                                    پروفایل</label>
+                                                <input type="file" name="profile_pic" class="custom-file-input"
+                                                       id="customFile">
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 mt-4 mb-3">
+                                            <div class="input-upload ">
+                                                <label class="custom-file-label" id="resumeLbl" for="resume">انتخاب فایل رزومه
+                                                    </label>
+                                                <input type="file" name="resume" class="custom-file-input"
+                                                       id="resume">
+
+                                            </div>
+                                        </div>
+
+                                        @if( auth()->check() && $user->id == auth()->id() && $user->shortcomings != null )
+
+                                            <p class=" text-danger text-bold col-12">
+                                                نواقصی مدارک:
+                                                --}}{{--ادرس: {{$document->address}} ||--}}{{--
+                                                {{$user->shortcomings}}
+                                            </p>
+
+                                        @endif
+
+                                        <div class="row ">
+                                            <div class="input-form col-md-2 " >
+                                                <input type="file" name="files[]" aria-invalid="false"
+                                                       placeholder="آپلود مدارک"
+
+                                                >
+                                            </div>
+                                            <div class="input-form col-md-8">
+                                                <input type="text" name="files_explain[]" value="" size="40"
+                                                       aria-invalid="false" placeholder="توضیحات مدارک *" >
+                                            </div>
+                                            <div class="col-md-2 py-2">
+                                                <button type="button" class="btn btn-success"
+                                                        onclick="addRow('documentDefect')">+
+                                                </button>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-9" id="documentDefect" >
+
+                                        </div>
+
+
+                                        <div class="input-form col-md-12">
+                                            <textarea type="text" name="about_me" aria-invalid="false"
+                                                      placeholder="درباره من">{{old('about_me',$user->about_me)}}</textarea>
+
+                                        </div>
+
+                                        <div class="input-form col-md-5">
+                                            <label for="profile[youTube]">لینک یوتویوپ</label>
+                                            <input type="text" name="profile[youTube]" size="40" aria-invalid="false"
+                                                   placeholder="لینک یوتویوپ"
+                                                   value="{{old('profile.birth_date',$user->profile[0]->youTube)}}"
+                                                   required>
+                                            --}}{{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}{{--
+                                        </div>
+
+                                        <div class="input-form col-md-5">
+                                            <label for="profile[facebook]">لینک فیسبوک</label>
+                                            <input type="text" name="profile[facebook]" size="40" aria-invalid="false"
+                                                   placeholder="لینک فیسبوک"
+                                                   value="{{old('profile.birth_place',$user->profile[0]->facebook)}}"
+                                                   required>
+                                            --}}{{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}{{--
+                                        </div>
+
+                                        <div class="input-form col-md-5">
+                                            <label for="profile[instagram]">لینک اینستاگرام</label>
+                                            <input type="text" name="profile[instagram]" size="40" aria-invalid="false"
+                                                   placeholder="لینک اینستاگرام"
+                                                   value="{{old('profile.birth_place',$user->profile[0]->instagram)}}"
+                                                   required>
+                                            --}}{{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}{{--
+                                        </div>
+
+                                        <div class="input-form col-md-5">
+                                            <label for="profile[telegram]">لینک تلگرام</label>
+                                            <input type="text" name="profile[telegram]" size="40" aria-invalid="false"
+                                                   placeholder="لینک تلگرام"
+                                                   value="{{old('profile.birth_date',$user->profile[0]->telegram)}}"
+                                                   required>
+                                            --}}{{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}{{--
+                                        </div>
+
+                                        <div class="input-form col-md-5">
+                                            <label for="profile[twitter]">لینک تویتر</label>
+                                            <input type="text" name="profile[twitter]" size="40" aria-invalid="false"
+                                                   placeholder="لینک تویتر"
+                                                   value="{{old('profile.birth_place',$user->profile[0]->twitter)}}"
+                                                   required>
+                                            --}}{{--                                            <img src="{{asset('img/003-envelope.png')}}" class="form-icon">--}}{{--
+                                        </div>
+
+                                        <div class="col-6"></div>
+
+                                        <div class="col-sm-6 col-md-4 col-lg-3 mt-4 center-y">
+                                            <input type="submit" value="ذخیره تغییرات"
+                                                   class="form-submit-violet text-white font-16 text-medium">
+
+                                        </div>
+                                    </form>
+                                </div>--}}
 
                                 <div class="tab-pane row " id="pay">
 

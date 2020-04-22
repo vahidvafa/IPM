@@ -155,3 +155,151 @@
     color: #fff;
 
     }
+
+
+
+.img-profile{
+    height: 200px;
+    width: 200px;
+}
+.back-tag{
+    background-color: gainsboro;
+    padding: 0 20px;
+    border-radius: 3px;
+}
+
+.avatar {
+    font-size: 1rem;
+    display: inline-flex;
+    width: 48px;
+    height: 48px;
+    color: #616161;
+    border-radius: 50%;
+    /* background-color: #adb5bd; */
+    align-items: center;
+    justify-content: center;
+}
+.avatar-group{
+
+    display: flex;
+}
+.avatar img {
+
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.avatar-sm {
+    font-size: .875rem;
+    width: 50px;
+    height: 50px;
+}
+
+.avatar-group .avatar {
+    position: relative;
+    z-index: 2;
+    border: 2px solid #fff;
+}
+.avatar-group .avatar.diamond {
+    position: relative;
+    z-index: 2;
+    border: none;
+    /* display: flex; */
+}
+.avatar-group .avatar.avatar-text {
+    background-color: gainsboro;
+}
+.avatar-group .avatar:hover {
+    z-index: 3;
+}
+
+.avatar-group .avatar + .avatar {
+    margin-right: -1rem;
+}
+.YC-Member{
+    max-height: 100px;
+}
+.lebel-img{
+    max-height: 70px;
+}
+.list-diamond{
+
+    min-height: 100px;
+
+}
+.table-responsive.table-result{
+    display: table;
+}
+.profile-top-icons.fix-profile-icon{
+    -webkit-border-top-right-radius: 50px;
+    -moz-border-radius-topright: 50px;
+    border-top-right-radius: 50px;
+    -webkit-border-bottom-right-radius: 50px;
+    -moz-border-radius-bottomright: 50px;
+    border-bottom-right-radius: 50px;
+    width: auto;
+    margin-right: 0;
+    position: relative;
+    padding: 8px 40px;
+    text-align: center;
+    line-height: 2;
+    color: #616161;
+    background-color: #dcdcdc;
+    top: -10px;
+}
+.profile-top-icons.fix-profile-icon p{
+    text-align: center;
+}
+.profile-top:hover .profile-top-icons.fix-profile-icon {
+    width:auto;
+    width: -moz-calc(100% );
+    width: calc(100% );
+    margin-right: 0;
+    -webkit-border-top-right-radius: 50px;
+    -moz-border-radius-topright: 50px;
+    border-top-right-radius: 50px;
+    -webkit-border-bottom-right-radius: 50px;
+    -moz-border-radius-bottomright: 50px;
+    border-bottom-right-radius: 50px;
+}
+.table-responsive.table-result th{
+    border-top: none;
+}
+.btn-yellow-border {
+    background-color: #fca80f !important;
+    border: none !important;
+    color: white;
+    border-radius: 33px;
+    height: 40px;
+    min-width: 130px;
+    padding: 9px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    -webkit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.submin-modal{
+    width: 140px;
+}
+.profile-top-image {
+    padding: 0 !important;
+    position: relative;
+    text-align: center;
+}
+.list-profile {
+    list-style: none;
+    padding: 0;
+}
+.list-img{
+    max-height: 50px;
+}
+.form-profile .custom-file-label::after{
+
+    content: 'انتخاب کنید';
+
+}

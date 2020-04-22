@@ -12,7 +12,7 @@
 */
 
 use Illuminate\Support\Facades\Route;
-use Intervention\Image\Facades\Image;
+
 
 
 Route::get('/', 'IndexController@index')->name('main');
@@ -230,3 +230,15 @@ Route::get('VideoArchive',function (){
     return view('video_archive',compact('breadcrumb','titleHeader'));
 
 })->name('VideoArchive');
+
+
+
+/*Route::get("qr",function (){
+    (new \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator())->size(1000)
+        ->format('png')
+        ->generate('ItSolutionStuff.com', public_path('img/qrcode.png'));
+
+    echo "<img src='img/qrcode.png'>";
+
+});*/
+

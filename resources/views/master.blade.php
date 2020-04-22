@@ -38,15 +38,16 @@
     <div class="header-top-bar back-dark-violet pt-3 pb-3">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 col-9">
                     <a href="{{route('main')}}">
                         <img src="{{asset('img/logo.png')}}" alt="انجمن مدیریت پروژه">
                         <h1 class="text-white d-inline-block font-18 text-regular ml-2">انجمن مدیریت پروژه ایران</h1>
                     </a>
                 </div>
-                <div class="col-md-6 text-right" style="margin-top: -6px;margin-bottom: -10px;">
+                <div class="col-md-6 col-3 text-right" style="margin-top: -6px;margin-bottom: -10px;">
                     <a href="{{route('main')}}">
                         <img src="{{asset('img/ipma-logo.png')}}" style="height: 69px;" alt="انجمن مدیریت پروژه">
+
                     </a>
                 </div>
             </div>

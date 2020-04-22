@@ -179,6 +179,8 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Ixudra\Curl\CurlServiceProvider::class,
         Shetabit\Payment\Provider\PaymentServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
     ],
 
     /*
@@ -233,6 +235,7 @@ return [
         'Curl' => Ixudra\Curl\Facades\Curl::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Payment' => Shetabit\Payment\Facade\Payment::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
     ],
 
 ];
