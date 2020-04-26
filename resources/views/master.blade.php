@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="{{asset('css/fontiran.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/all.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/style-main.css')}}" type='text/css' media='all'>
-    <link rel="stylesheet" href="{{asset('css/style-main2.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type='text/css' media='all'>
     {{--    <link rel="stylesheet" href="{{asset('css/persianDatepicker-default.css')}}" type='text/css' media='all'>--}}
     <link rel="stylesheet" href="{{asset('css/persian-datepicker.min.css')}}" type='text/css' media='all'>
@@ -124,8 +123,14 @@
                                         <a class="dropdown-item" href="{{route('download')}}">گزارش ها</a>
                                     </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " href="{{route('job.index')}}">کمیته ها و شاخه ها</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                        کمیته ها و شاخه ها و کارگروه ها</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{route('committees')}}">کمیته ها</a>
+                                        <a class="dropdown-item" href="{{route('branches')}}">شاخه ها</a>
+                                        <a class="dropdown-item" href="{{route('WorkingGroups')}}">کارگروه ها</a>
+                                    </div>
                                 </li>
 
                                 <li class="nav-item dropdown">

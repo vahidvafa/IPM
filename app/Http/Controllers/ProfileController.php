@@ -55,7 +55,6 @@ class ProfileController extends Controller
     public function show($slug)
     {
 
-        $profileVisible = [];
         $memberships = [];
 
         $pays=[];

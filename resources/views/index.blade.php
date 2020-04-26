@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="{{asset('css/fontiran.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/all.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/style-main.css')}}" type='text/css' media='all'>
-    <link rel="stylesheet" href="{{asset('css/style-main2.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type='text/css' media='all'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -94,13 +93,13 @@
                         <!-- Navbar links -->
                         <div class="collapse navbar-collapse order-lg-0" id="collapsibleNavbar">
                             <ul class="navbar-nav header-main">
-                               {{-- @guest
-                                    @if(Route::currentRouteName() != 'register')
-                                        <li class="nav-item ">
-                                            <a class="nav-link " href="{{route('register')}}">ثبت نام</a>
-                                        </li>
-                                    @endif
-                                @endguest--}}
+                                {{-- @guest
+                                     @if(Route::currentRouteName() != 'register')
+                                         <li class="nav-item ">
+                                             <a class="nav-link " href="{{route('register')}}">ثبت نام</a>
+                                         </li>
+                                     @endif
+                                 @endguest--}}
                                 {{--<li class="nav-item active">
                                     <a class="nav-link " href="{{route('main')}}">صفحه اول</a>
                                 </li>--}}
@@ -123,8 +122,14 @@
                                         <a class="dropdown-item" href="{{route('download')}}">گزارش ها</a>
                                     </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " href="{{route('job.index')}}">کمیته ها و شاخه ها</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                        کمیته ها و شاخه ها و کارگروه ها</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{route('committees')}}">کمیته ها</a>
+                                        <a class="dropdown-item" href="{{route('branches')}}">شاخه ها</a>
+                                        <a class="dropdown-item" href="{{route('WorkingGroups')}}">کارگروه ها</a>
+                                    </div>
                                 </li>
 
                                 <li class="nav-item dropdown">
@@ -262,7 +267,8 @@
                             <a class="nav-link @if($loop->first) active @endif font-22 text-black text-regular"
                                data-toggle="tab" href="#m{{$eventCat->id}}">
                                 {{$eventCat->name}}
-                                <p class="font-14 text-black-light text-regular m-0 m-md-2"> تعداد {{str_replace(" و گواهینامه ها","",$eventCat->name)}}:
+                                <p class="font-14 text-black-light text-regular m-0 m-md-2">
+                                    تعداد {{str_replace(" و گواهینامه ها","",$eventCat->name)}}:
                                     <span>{{tr_num($eventCat->event_count,'fa')}}</span></p>
                             </a>
                         </li>
@@ -635,7 +641,8 @@
                             <a class="nav-link text-gray font-14" href="http://yc.ipma.ir/">شبکه اعضای جوان</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="https://isac.msrt.ir/fa">كميسيون انجمن هاي علمي</a>
+                            <a class="nav-link text-gray font-14" href="https://isac.msrt.ir/fa">كميسيون انجمن هاي
+                                علمي</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-gray font-14" href="https://www.ipma.world/">ipma جهانی</a>

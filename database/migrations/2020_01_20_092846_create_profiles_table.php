@@ -30,11 +30,13 @@ class CreateProfilesTable extends Migration
             $table->string('work_tel')->nullable();
             $table->string('home_tel')->nullable();
             $table->tinyInteger('receive_place')->nullable();
-            $table->text("youTube")->nullable();
-            $table->text("facebook")->nullable();
-            $table->text("instagram")->nullable();
-            $table->text("telegram")->nullable();
-            $table->text("twitter")->nullable();
+            $table->string("youTube")->nullable();
+            $table->string("facebook")->nullable();
+            $table->string("instagram")->nullable();
+            $table->string("telegram")->nullable();
+            $table->string("twitter")->nullable();
+            $table->text("honors")->nullable();
+            $table->text("certificate")->nullable();
             //-------------------------------------
             $table->tinyInteger('lang_id',false,true)->default(1);
             $table->timestamps();

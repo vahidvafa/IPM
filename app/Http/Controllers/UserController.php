@@ -135,7 +135,7 @@ class UserController extends Controller
         if ($request->hasFile('resume')) {
 
             $resumeAddress = $user->resume_address??(time() .$user->id. '.' . $request->file('resume')->getClientOriginalExtension());
-            $request->file('resume')->move(public_path('img/resume'),$resumeAddress);
+            $request->file('resume')->move(public_path('files/resume'),$resumeAddress);
             if ($user->resume_address == null){
                 $user->resume_address = $resumeAddress;
                 $user->save();

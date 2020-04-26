@@ -17,53 +17,56 @@
                                     <div class="profile-top-image col-10 col-sm-8 col-md-6 col-lg-10 ">
                                         <img class="img-fluid img-profile"
                                              src="@if(file_exists("img/profile/".($user->profile_picture==null?"$.$":$user->profile_picture))) {{asset("img/profile/".$user->profile_picture)}} @else {{asset('img/nasrollahpour.jpg')}} @endif" alt="">
-                                        <div class="profile-top-icons fix-profile-icon ">
-                                            <p class="font-18 text-medium m-0">
-                                                فرهاد نصرالله پور
+                                        <div class="profile-top-icons fix-profile-icon " style="background-color: @if($user->membership_type_id == 1) @if($user->reagent_id == 0) grey @else #372b7d @endif @else #372b7d @endif" >
+                                            <p class="font-18 text-medium m-0"  >
+                                                {{$user->first_name." ".$user->last_name}}
                                             </p>
 
                                         </div>
                                         <p class="font-16 text-regular text-black">
                                             <span>کد عضویت: </span>
-                                            <span class="text-black-light ">۴۶۷۸۹</span>
+                                            <span class="text-black-light ">{{tr_num($user->user_code)}}</span>
                                         </p>
                                     </div>
                                 </div>
 
                             </div>
                             <div class="col-md-6 col-lg-4 mb-4 mb-md-0">
-                                <!--<p class="text-danger font-26 text-bold">اشتراک شما به پایان رسیده</p>-->
-
+                                @if(time() >= $user->expire)
+                                    <p class="text-danger font-26 text-bold">اشتراک شما به پایان رسیده</p>
+                                @endif
 
                                 <p class="font-16 text-regular text-black">
                                     <span>رشته تحصیلی :</span>
-                                    <span class="text-black-light">کامپیوتر نرم افزار</span>
+                                    <span class="text-black-light">{{$user->education[0]->field_of_study}}</span>
                                 </p>
                                 <p class="font-16 text-regular text-black">
                                     <span>مقطع تحصیلی :</span>
-                                    <span class="text-black-light">فوق لیسانس</span>
+                                    <span class="text-black-light">{{$user->education[0]->grade}}</span>
                                 </p>
                                 <p class="font-16 text-regular text-black">
                                     <span>حوزه های تخصصی :</span>
-                                    <span class="text-black-light">طراحی سایت</span>
+                                    <span class="text-black-light">{{$user->workExperience[0]->specialized_basins}}</span>
                                 </p>
+                                @if($user->isShowMyPhone == 1)
                                 <p class="font-16 text-regular text-black">
                                     <span>موبایل :</span>
-                                    <span class="text-black-light">0912456784</span>
+                                    <span class="text-black-light">{{$user->mobile}}</span>
                                 </p>
+                                @endif
                                 <p class="font-16 text-regular text-black">
                                     <span>ایمیل :</span>
-                                    <span class="text-black-light">example@gmail.com</span>
+                                    <span class="text-black-light">{{$user->email}}</span>
                                 </p>
-                                <p class="font-16 text-regular text-black">
-                                    <a href="/" class=" text-black">
+
+                                @if(File::exists(asset("files/resume/$user->resume_address")))
+                                <p class="font-16 text-regular text-black ">
+                                    <a href="{{asset("files/resume/$user->resume_address")}}" class=" text-black">
                                         <i class="fas fa-save"></i>
                                         <span>دانلود رزومه </span>
                                     </a>
-
-
                                 </p>
-
+                                    @endif
 
                             </div>
                             <div class="col-md-6 col-lg-4">
@@ -187,22 +190,23 @@
                                         <span>4</span>
                                     </a>
                                 </div>
+                                @if((jdate()->getYear() - (int)explode('/',$user->profile[0]->birth_date)[0]) <= 35)
                                 <div class="ml-lg-auto ">
                                     <img alt="YC-Member" src="{{asset('img/YC-Member.png')}}" class="YC-Member">
                                 </div>
+                                    @endif
                             </div>
                         </div>
                         <div class="row align-items-center profile-top p-3 ">
                             <div class="col-12">
                                 <h3 class="text-right">
-                                    <span>IPMA CB Certificate Level “C” - 2019-08-23</span>
-                                    <img src="{{asset('img/level.jpg')}}" class="lebel-img" alt="level">
+                                    <span>{{$user->profile[0]->certificate}}</span>
+                                    <img src="{{asset('img/level-a.jpg')}}" class="lebel-img" alt="level">
                                 </h3>
                             </div>
 
                         </div>
                     </div>
-
 
 
 

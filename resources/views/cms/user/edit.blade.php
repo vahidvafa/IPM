@@ -723,7 +723,7 @@
                                     <td data-th="ردیف" class="text-right">{{++$i}}</td>
                                     <td data-th="عنوان خبر" class="text-right">{{$doc->explain}}</td>
                                     <td data-th="عکس مدرک" class="text-right">
-                                        <img src="{{asset('files/documents/'.$doc->address)}}" class="col-8" style="height: 150px;" >
+                                        <img src="{{asset('img/documents/'.$doc->address)}}" class="col-8" style="height: 150px;" >
                                     </td>
                                     <td data-th="تایید" class="text-right">
                                         <input type="checkbox" class="option-input"

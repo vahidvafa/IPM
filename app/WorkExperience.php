@@ -45,7 +45,7 @@ class WorkExperience extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['company_name', 'job_title', 'from_date', 'to_date', 'optional_description'];
+    protected $fillable = ['company_name', 'job_title', 'from_date', 'to_date', 'optional_description','specialized_basins'];
 
     public function user()
     {

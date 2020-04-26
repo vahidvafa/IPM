@@ -12,6 +12,7 @@ $factory->define(WorkExperience::class, function (Faker $faker) {
         'job_title'=>$faker->jobTitle,
         'from_date'=>$faker->date("Y/m/d"),
         'to_date'=>$faker->date("Y/m/d"),
+        'specialized_basins' => "حوضه های تخصصی",
 //        'optional_description'=>"",
         'lang_id'=>\App\Lang::all('id')->random()->id,
         'created_at'=>now(),

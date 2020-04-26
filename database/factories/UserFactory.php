@@ -40,6 +40,7 @@ $factory->define(User::class, function (Faker $faker) {
         'resume_address' => $faker->name."resume",
         'about_me' => str_repeat('about me text ',10),
         'shortcomings' => str_repeat("shortcomings ",4),
+        'isShowMyPhone' =>random_int(0,1),
         'created_at' => now(),
     ];
 });

@@ -30,6 +30,8 @@ $factory->define(Profile::class, function (Faker $faker) {
         "instagram" => "https://instagram.com/" . $user->slug,
         "telegram" => "https://telegram.com/" . $user->slug,
         "twitter" => "https://twitter.com/" . $user->slug,
+        'honors' => "موسس انجمن - دیبر - عضو هیات مدیره - رییس شبکه اعضا جوان - رییس کمیته عضویت",
+        'certificate' => "IPMA CB Certificate Level “A” - 2019-08-23",
         'lang_id' => mt_rand(0, 1),
         'created_at' => now(),
     ];

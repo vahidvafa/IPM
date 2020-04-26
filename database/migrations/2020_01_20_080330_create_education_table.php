@@ -21,6 +21,7 @@ class CreateEducationTable extends Migration
             $table->string('from_date','10');
             $table->string('to_date','10')->nullable();
             $table->string('gpa','10');
+            $table->string('field_of_study');
 //            $table->tinyInteger('state',false,true)->comment("0=>reject(reject_text not null ) | 1=> accept");
 //            $table->text('reject_text')->comment("0=>reject()");
             $table->tinyInteger('lang_id',false,true)->default(1);

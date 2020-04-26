@@ -10,10 +10,11 @@ $factory->define(Education::class, function (Faker $faker) {
     return [
         'user_id'=>\App\User::all('id')->random()->id,
         'education_place'=>$education_place[mt_rand(0,3)],
-        'grade'=>"کاردانی",
+        'grade'=>"کارشناسی",
     'from_date'=>$faker->date("Y/m/d"),
     'to_date'=>$faker->date("Y/m/d"),
     'gpa'=>mt_rand(0,20),
+    'field_of_study'=>"مهندسی نرم افزار",
     'lang_id'=>\App\Lang::all('id')->random()->id,
         'created_at' => now(),
     ];

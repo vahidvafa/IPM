@@ -39,6 +39,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('gold')->default(0);
             $table->tinyInteger('silver')->default(0);
             $table->tinyInteger('bronze')->default(0);
+            $table->tinyInteger('isShowMyPhone')->default(0)->comment('0=> false | 1=> true');
             $table->rememberToken();
             $table->timestamps();
         });
