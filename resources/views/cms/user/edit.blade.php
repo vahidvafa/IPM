@@ -1,4 +1,5 @@
 @extends('cms.master')
+
 @section('content')
     <div class="col-12">
         <div class="card">
@@ -334,6 +335,23 @@
 
                     </div>
 
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="profile[specialized_basins]" class="col-12">حوضه فعالیت</label>
+                        <input type="text" name="profile[specialized_basins]"
+                               value="{{old('profile[specialized_basins]')??$user->profile[0]->specialized_basins}}"
+                               class="form-control" aria-invalid="false"
+                        >
+
+                        @if ($errors->has('profile[specialized_basins]'))
+                            <div id="name-error" class="error text-danger pl-3"
+                                 for="specialized_basins"
+                                 style="display: block;">
+                                <strong>{{ $errors->first('profile[specialized_basins]') }}</strong>
+                            </div>
+                        @endif
+
+                    </div>
+
                     @if($user->membership_type_id == 2)
 
                         <div class="col-md-12 my-4">
@@ -585,7 +603,7 @@
 
 
                     @elseif($user->membership_type_id == 3)
-                        @if(count($user->education) >0)
+                        @if(count($user->education) > 0 )
                             <div class="col-md-12 my-4">
                                 <h2 class="font-22 text-medium text-black">مشخصات تحصیلی
                                     :</h2>
@@ -654,7 +672,7 @@
                                 @endif
                             </div>
 
-                            <div class="form-group col-md-6 mb-3">
+                            <div class="form-group col-md-3 mb-3">
                                 <label for="education[gpa]" class="col-12">معدل</label>
                                 <input type="text" name="education[gpa]" id="education[gpa]"
                                        value="{{old('education.gpa')??$user->education[0]->gpa}}"
@@ -669,12 +687,30 @@
                                     </div>
                                 @endif
                             </div>
+
+
+                            <div class="form-group col-md-3 mb-3">
+                                <label for="education[field_of_study]" class="col-12">رشته تحصیلی</label>
+                                <input type="text" name="education[field_of_study]" id="education[field_of_study]"
+                                       value="{{old('education.field_of_study')??$user->education[0]->field_of_study}}"
+                                       class="form-control" aria-invalid="false"
+                                       required>
+
+                                @if ($errors->has('education.field_of_study'))
+                                    <div id="name-error" class="error text-danger pl-3"
+                                         for="education[gpa]"
+                                         style="display: block;">
+                                        <strong>{{ $errors->first('education.field_of_study') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+
                         @endif
 
                     @endif
 
 
-                    <div class="form-group col-md-6 mb-3 mt-3 py-2 px-4">
+                    <div class="form-group col-md-3 mb-3 mt-3 py-2 px-4">
                         <label for="active">تایید کاربر: </label>
                         <input type="checkbox" class="option-input"
                                name="active"
@@ -688,6 +724,57 @@
                                 <strong>{{ $errors->first('active') }}</strong>
                             </div>
                         @endif
+                    </div>
+
+                    <div class="form-group col-md-3 mb-3 mt-3 py-2 px-4">
+                        <label for="isShowMyPhone">نمایش شماره تلفن برای همه: </label>
+                        <input type="checkbox" class="option-input"
+                               name="isShowMyPhone"
+                               value="0"
+                               id="isShowMyPhone"
+                               aria-invalid="false" @if($user->isShowMyPhone == 1) checked @endif>
+
+                        @if ($errors->has('isShowMyPhone'))
+                            <div id="name-error" class="error text-danger pl-3"
+                                 for="active"
+                                 style="display: block;">
+                                <strong>{{ $errors->first('isShowMyPhone') }}</strong>
+                            </div>
+                        @endif
+                    </div>
+
+
+
+
+                    <div class="col-md-12 mb-3 mt-3 py-2 px-4 row">
+                        <div class="form-group col-md-5 mb-3">
+                        <label for="certificate-level">سطح مدرک</label>
+                        <select class="form-control" name="certificate-level" id="certificate-level">
+                            <option value="A">IPMA CB Certificate Level A</option>
+                            <option value="B">IPMA CB Certificate Level B</option>
+                            <option value="C">IPMA CB Certificate Level C</option>
+                            <option value="D">IPMA CB Certificate Level d</option>
+                        </select>
+                        </div>
+
+                        <div class="form-group col-md-6 mb-3 mt-4">
+                            <label for="certificate-date" class="col-12">از تاریخ*</label>
+                            <input type="text" name="certificate-date" id="certificate-date"
+                                   value="{{old('certificate-date')??explode(" - ",$user->profile[0]->certificate)[1]}}"
+                                   class="form-control datePickerInput" aria-invalid="false"
+                                   style="margin-top: 19px"
+                                   required>
+
+                            @if ($errors->has('certificate-date'))
+                                <div id="name-error" class="error text-danger pl-3"
+                                     for="certificate-date"
+                                     style="display: block;">
+                                    <strong>{{ $errors->first('certificate-date') }}</strong>
+                                </div>
+                            @endif
+                        </div>
+
+
                     </div>
 
                     {{-- ------------ document ------------------}}
@@ -766,3 +853,23 @@
         </div>
     </div>
 @endsection
+{{--<script src="{{ asset('material/js/core/jquery.min.js') }}"></script>--}}
+<script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+<script>
+    $(document).ready(function () {
+        $(".datePickerInput").pDatepicker(
+            {
+                initialValue: false,
+                responsive: true,
+                format: 'L',
+                calendarType: 'persian',
+                timePicker: {
+                    enabled: false,
+                },
+                toolbox: {
+                    enabled: false,
+                }
+            }
+        );
+    });
+</script>

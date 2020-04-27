@@ -230,7 +230,37 @@ Route::get('WorkingGroups',function (){
 })->name('WorkingGroups');
 
 
+Route::prefix('Committees')->group(function (){
 
+    Route::get('register',function (){
+        $breadcrumb = $titleHeader = "کمیته عضویت";
+        return view('committees.register',compact('titleHeader','breadcrumb'));
+    })->name('committees.register');
+
+    Route::get('awards',function (){
+        $breadcrumb = $titleHeader = "کمیته جایزه ملی";
+        return view('committees.awards',compact('titleHeader','breadcrumb'));
+    })->name('committees.awards');
+
+    Route::get('education',function (){
+        $breadcrumb = $titleHeader = "کمیته آموزش";
+        return view('committees.education',compact('titleHeader','breadcrumb'));
+    })->name('committees.education');
+
+    Route::get('researches',function (){
+        $breadcrumb = $titleHeader = "کمیته پژوهش و انتشارات";
+        return view('committees.researches',compact('titleHeader','breadcrumb'));
+    })->name('committees.register');
+
+    Route::get('certificate',function (){
+        $breadcrumb = $titleHeader = "کمیته گواهینامه ها";
+        return view('committees.certificate',compact('titleHeader','breadcrumb'));
+    })->name('committees.certificate');
+
+
+
+
+});
 
 
 /*Route::get("qr",function (){

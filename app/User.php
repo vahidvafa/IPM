@@ -114,6 +114,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'first_name', 'last_name', 'name_en', 'email', 'mobile', 'password', 'slug', 'user_code', 'roles', 'reagent_id', 'branch', 'membership_type_id', 'about_me', 'shortcomings', 'profile_picture', 'diamond', 'gold', 'silver', 'bronze'
+        ,"isShowMyPhone"
     ];
 
     /**

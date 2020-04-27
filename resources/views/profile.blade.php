@@ -46,7 +46,7 @@
                                 </p>
                                 <p class="font-16 text-regular text-black">
                                     <span>حوزه های تخصصی :</span>
-                                    <span class="text-black-light">{{$user->workExperience[0]->specialized_basins}}</span>
+                                    <span class="text-black-light">{{$user->profile[0]->specialized_basins}}</span>
                                 </p>
                                 @if($user->isShowMyPhone == 1)
                                 <p class="font-16 text-regular text-black">
@@ -108,86 +108,62 @@
                         <div class="row align-items-center profile-top pt-4 pb-4 p-3 mb-3">
                             <div class="col-12 ">
                                 <p class="font-18  mb-3 mb-lg-0 text-medium text-dark-violet ">افتخارات حضور در انجمن :
-                                    <span class="font-16 text-light2 text-black">موسس انجمن - دیبر - عضو هیات مدیره - رییس شبکه اعضا جوان - رییس کمیته عضویت</span>
+                                    <span class="font-16 text-light2 text-black">{{$user->profile[0]->honors}}</span>
                                 </p>
                             </div>
                             <div class="col-12 list-diamond align-items-center d-flex flex-wrap">
 
                                 <div class="avatar-group mb-3 mb-lg-0">
-                                    <a href="#" class="avatar diamond avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Ryan Tompson">
-                                        <img alt="Image placeholder" src="{{asset('img/Diamond.png')}}" class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar diamond avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Romina Hadid">
-                                        <img alt="Image placeholder" src="{{asset('img/Diamond.png')}} " class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar diamond avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Alexander Smith">
-                                        <img alt="Image placeholder" src="{{asset('img/Diamond.png')}}" class="rounded-circle">
-                                    </a>
+
+                                    @for($i = 0; $i < $user->diamond; $i++)
                                     <a href="#" class="avatar diamond avatar-sm" data-toggle="tooltip"
                                        data-original-title="Jessica Doe">
                                         <img alt="Image placeholder" src="{{asset('img/Diamond.png')}}" class="rounded-circle">
                                     </a>
+                                    @endfor
                                     <a href="#" class="avatar diamond avatar-text avatar-sm" data-toggle="tooltip"
                                        data-original-title="Jessica Doe">
-                                        <span>4</span>
+                                        <span>{{tr_num($user->diamond)}}</span>
                                     </a>
                                 </div>
                                 <div class="avatar-group ml-3 mb-3 mb-lg-0">
+                                    @for($i = 0; $i < $user->gold; $i++)
+
                                     <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
                                        data-original-title="Ryan Tompson">
                                         <img alt="Image placeholder" src="{{asset('img/Gold.png')}}" class="rounded-circle">
                                     </a>
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Ryan Tompson">
-                                        <img alt="Image placeholder" src="{{asset('img/Gold.png')}}" class="rounded-circle">
-                                    </a>
+                                    @endfor
 
                                     <a href="#" class="avatar diamond avatar-text avatar-sm" data-toggle="tooltip"
                                        data-original-title="Jessica Doe">
-                                        <span>2</span>
+                                        <span>{{tr_num($user->gold)}}</span>
                                     </a>
                                 </div>
                                 <div class="avatar-group ml-3 mb-3 mb-lg-0">
+
+                                    @for($i = 0; $i < $user->silver; $i++)
+
                                     <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
                                        data-original-title="Romina Hadid">
                                         <img alt="Image placeholder" src="{{asset('img/Silver.png')}}" class="rounded-circle">
                                     </a>
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Romina Hadid">
-                                        <img alt="Image placeholder" src="{{asset('img/Silver.png')}}" class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Romina Hadid">
-                                        <img alt="Image placeholder" src="{{asset('img/Silver.png')}}" class="rounded-circle">
-                                    </a>
+                              @endfor
                                     <a href="#" class="avatar diamond avatar-text avatar-sm" data-toggle="tooltip"
                                        data-original-title="Jessica Doe">
-                                        <span>3</span>
+                                        <span>{{tr_num($user->silver)}}</span>
                                     </a>
                                 </div>
                                 <div class="avatar-group ml-3 mb-3 mb-lg-0">
+                                    @for($i = 0; $i < $user->bronze; $i++)
                                     <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
                                        data-original-title="Alexander Smith">
                                         <img alt="Image placeholder" src="{{asset('img/Borenze.png')}}" class="rounded-circle">
                                     </a>
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Alexander Smith">
-                                        <img alt="Image placeholder" src="{{asset('img/Borenze.png')}}" class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Alexander Smith">
-                                        <img alt="Image placeholder" src="{{asset('img/Borenze.png')}}" class="rounded-circle">
-                                    </a>
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                       data-original-title="Alexander Smith">
-                                        <img alt="Image placeholder" src="{{asset('img/Borenze.png')}}" class="rounded-circle">
-                                    </a>
+                                    @endfor
                                     <a href="#" class="avatar diamond avatar-text avatar-sm" data-toggle="tooltip"
                                        data-original-title="Jessica Doe">
-                                        <span>4</span>
+                                        <span>{{tr_num($user->bronze)}}</span>
                                     </a>
                                 </div>
                                 @if((jdate()->getYear() - (int)explode('/',$user->profile[0]->birth_date)[0]) <= 35)
@@ -424,8 +400,8 @@
                         <div class="row">
 
 
-                            <div class="input-form col-lg-6">
-                                <label for="profile[birth_date]">تاریخ تولد*</label>
+                            <div class="input-form col-lg-12">
+                                <label for="profile[birth_date]">حوضه های تخصصی*</label>
                                 <input type="text" id="profile[birth_date]" name="profile[birth_date]" size="40" aria-invalid="false"
                                        placeholder="محل تولد*"
                                        value="2012/06/27"
@@ -433,34 +409,19 @@
 
                             </div>
 
-                            <div class="input-form col-lg-6">
-                                <label for="profile[birth_place]">محل تولد*</label>
-                                <input type="text" id="profile[birth_place]" name="profile[birth_place]" size="40"
-                                       aria-invalid="false"
-                                       placeholder="آدرس ایمیل*"
-                                       value="Harrisburgh"
-                                       required>
-
-                            </div>
-
-
-                            <div class="col-lg-6 mt-4">
+                            <div class="input-form col-lg-6 mt-4 mb-3 " >
                                 <div class="input-upload ">
-                                    <div class="input-upload ">
-                                        <input type="file" class="custom-file-input" id="customFile">
-                                        <label class="custom-file-label" for="customFile">انتخاب عکس</label>
-                                    </div>
-                                    <!--<label class="custom-file-label" for="customFile">انتخاب عکس-->
-                                    <!--پروفایل</label>-->
-                                    <!--<input type="file" name="profile_pic" class="custom-file-input"-->
-                                    <!--id="customFile">-->
+                                    <label class="custom-file-label" id="resumeLbl" for="resume">انتخاب عکس پروفایل
+                                    </label>
+                                    <input type="file" name="profile_pic" class="custom-file-input"
+                                           id="profile_pic">
 
                                 </div>
                             </div>
 
                             <div class="col-lg-6 mt-4 mb-3">
                                 <div class="input-upload ">
-                                    <label class="custom-file-label" id="resumeLbl" for="resume">انتخاب فایل رزومه
+                                    <label class="custom-file-label" id="resumeLbl" for="resume"> فایل رزومه
                                     </label>
                                     <input type="file" name="resume" class="custom-file-input"
                                            id="resume">
@@ -468,23 +429,10 @@
                                 </div>
                             </div>
 
-
-
-                            <div class="col-12">
-                                <p>حوزه های تخصصی</p>
-                            </div>
-
-                            <div class="input-form col-12 " >
-                                <div class="input-upload ">
-                                    <label class="custom-file-label" id="resumeLbl" for="resume">انتخاب فایل رزومه
-                                    </label>
-                                    <input type="file" name="resume" class="custom-file-input"
-                                           id="resume2">
-
-                                </div>
-                            </div>
                             <div class="input-form col-lg-11">
+                                <input type="file" class='custom-file-input  col-3 '  name="files[]" value="" size="40" aria-invalid="false" placeholder="آپلود مدارک" required>
                                 <input type="text" name="files_explain[]" value="" size="40"
+                                       class="col-6  custom-file-input"
                                        aria-invalid="false" placeholder="توضیحات مدارک *" >
                             </div>
                             <div class="col-lg-1 py-2">
@@ -495,7 +443,7 @@
 
 
 
-                            <div class="col-md-9" id="documentDefect" >
+                            <div class="col-md-12" id="documentDefect" >
 
                             </div>
 
@@ -586,13 +534,14 @@ $("#resume").on("input", function () {
         function addRow(id) {
             var row_id = Date.now();
             var new_row = "                                <div class=\"row\" id=" + row_id + ">\n" +
-                "                                    <div class=\"input-form col-md-2\">\n" +
-                "                                        <input type=\"file\" name=\"files[]\" value=\"\" size=\"40\" aria-invalid=\"false\" placeholder=\"آپلود مدارک\" required>\n" +
+                "                                    <div class=\"input-form col-md-3\">\n" +
+                    "<label class=\"custom-file-label\" style='width: 166px;margin-right: 30px;'  >اسناد</label>"+
+                "                                        <input type=\"file\" class='custom-file-input'  name=\"files[]\" value=\"\" size=\"40\" aria-invalid=\"false\" placeholder=\"آپلود مدارک\" required>\n" +
                 "                                    </div>\n" +
                 "                                    <div class=\"input-form col-md-8\">\n" +
                 "                                        <input type=\"text\" name=\"files_explain[]\" value=\"\" size=\"40\" aria-invalid=\"false\" placeholder=\"توضیحات مدارک *\" required>\n" +
                 "                                    </div>\n" +
-                "                                    <div class=\"col-md-2 py-2\">\n" +
+                "                                    <div class=\"col-md-1 py-2\">\n" +
                 "                                        <button type=\"button\" class=\"btn btn-danger\" onclick=\"deleteRow(" + row_id + ")\">-</button>\n" +
                 "                                    </div>\n" +
                 "                                </div>";

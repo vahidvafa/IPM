@@ -32,6 +32,7 @@ $factory->define(Profile::class, function (Faker $faker) {
         "twitter" => "https://twitter.com/" . $user->slug,
         'honors' => "موسس انجمن - دیبر - عضو هیات مدیره - رییس شبکه اعضا جوان - رییس کمیته عضویت",
         'certificate' => "IPMA CB Certificate Level “A” - 2019-08-23",
+        'specialized_basins' => "حوضه های تخصصی",
         'lang_id' => mt_rand(0, 1),
         'created_at' => now(),
     ];

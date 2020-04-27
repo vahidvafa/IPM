@@ -21,7 +21,6 @@ class CreateWorkExperiencesTable extends Migration
             $table->string('from_date', '10')->nullable();
             $table->string('to_date', '10')->nullable();
             $table->string('optional_description')->nullable();
-            $table->text("specialized_basins")->nullable();
             $table->tinyInteger('lang_id', false, true)->default(1);
             $table->timestamps();
             $table->softDeletes();

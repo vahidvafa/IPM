@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use phpDocumentor\Reflection\Types\Integer;
 use Validator;
 
 class UserController extends Controller
@@ -153,6 +154,9 @@ class UserController extends Controller
             }
         }
 
+
+
+
         return redirect()->back();
     }
 
@@ -287,6 +291,8 @@ class UserController extends Controller
                     }
                 }*/
 
+
+
         $pass = $rq->get('password');
 
         if ($pass != null)
@@ -294,8 +300,11 @@ class UserController extends Controller
 
         $rq = $rq->except('password');
 
+        $rq['isShowMyPhone'] = (int)$request->has('isShowMyPhone');
+
 
         $user->update($rq);
+
 
         if ($request->has('active') && $user->active == 1) {
             if ($request->get('active')) {
@@ -304,6 +313,9 @@ class UserController extends Controller
                 $user->active = 2;
                 $user->save();
             }
+        }else {
+            $user->active = 1;
+            $user->save();
         }
 
         if ($pass != null) {
@@ -316,7 +328,12 @@ class UserController extends Controller
             $user->save(['slug' => $slug]);
         }*/
 
-        $user->profile()->update($request->all('profile')['profile']);
+        $profile = $request->all('profile')['profile'];
+
+        $profile['certificate'] = "IPMA CB Certificate Level “".$request['certificate-level']."” - ".tr_num($request['certificate-date'],"en");
+
+
+        $user->profile()->update($profile);
 
         switch ($request->get('type')) {
             case 2:

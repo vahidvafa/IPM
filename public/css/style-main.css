@@ -1424,6 +1424,20 @@ click-wave { 0% {
 .input-upload{
     position: relative;
     }
+
+.custom-file-label::after{
+    height: 100%;
+    padding: .8rem 3rem;
+    color: white;
+    background-color: #fca80f;
+    content: 'انتخاب فایل';
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+
 .form-profile .custom-file-label::after{
     height: 100%;
     padding: .8rem 3rem;
