@@ -16,12 +16,12 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <form action="{{route('newsOrEvent.update')}}" method="post">
+                                <form action="{{route('cms.mainPage.update')}}" method="post">
                                     @csrf
 
                                     <div class="row">
                                         <div class="form-group col-lg-12 mb-4">
-                                            <label>سرتیتر</label>
+                                            <label class="col-12">سرتیتر</label>
                                             <input class="form-control" name="head_title" type="text" required
                                                    placeholder="سرتیتر"
                                                    value="{{old('head_title')?:$ipma->head_title}}">
@@ -34,7 +34,7 @@
                                             @endif
                                         </div>
                                         <div class="form-group col-lg-12 mb-4">
-                                            <label>عنوان</label>
+                                            <label class="col-12">عنوان</label>
                                             <input class="form-control" name="head_subtitle" type="text" required
                                                    placeholder="عنوان"
                                                    value="{{old('head_subtitle')?:$ipma->head_subtitle}}">
@@ -47,7 +47,7 @@
                                             @endif
                                         </div>
                                         <div class="form-group col-lg-12 mb-4">
-                                            <label>توضیحات بیشتر(۲۵۵ حرف)</label>
+                                            <label class="col-12">توضیحات بیشتر(۲۵۵ حرف)</label>
                                             <div class="editor">
                                                 <textarea id="head_description" name="head_description" required
                                                           class="form-control ckeditor cke_rtl">{{ old('head_description')?:$ipma->head_description }}</textarea>
@@ -70,14 +70,14 @@
                                         </div>
 
                                         <div class="col-lg-5 mt-3">
-                                            <label for="eventInput" class=" col-12">رویداد مورد نظر برای باز شدن صفحه
-                                                جزیات</label>
-                                            <input type="text" id="eventInput" class="form-control"
+                                            <label for="eventInput" class=" col-12">مهم ترین رویداد
+                                                </label>
+                                            <input type="text" id="eventInput" name="eventInput" class="form-control"
                                                    placeholder="عنوان و یا توضیحات رویداد مورد نظر را انتخاب کنید"
-                                                   style="margin-top: -3px">
+                                                   style="margin-top: -3px" value="@if($ipma->event_id !=null) {{$event->title}} @endif">
                                             <div style="background-color: #fff" class="col-12">
                                                 <select class="col-12 form-control hide" id="events" name="event_id"
-                                                        required>
+                                                        >
                                                 </select>
                                             </div>
                                             @if ($errors->has('events'))
@@ -90,13 +90,13 @@
                                         </div>
 
                                         <div class="col-lg-5 mt-3">
-                                            <label for="newsInput" class=" col-12">اخبار مورد نظر برای باز شدن صفحه
-                                                جزیات</label>
-                                            <input type="text" id="newsInput" class="form-control"
+                                            <label for="newsInput" class=" col-12">مهم ترین خبر
+                                                    </label>
+                                            <input type="text" id="newsInput" name="newsInput" class="form-control"
                                                    placeholder="عنوان و یا توضیحات اخبار مورد نظر را انتخاب کنید"
-                                                   style="margin-top: -3px">
+                                                   style="margin-top: -3px" value="@if($ipma->news_id !=null) {{$news->title}} @endif">
                                             <div style="background-color: #fff" class="col-12">
-                                                <select class="col-12 form-control hide" id="newss" name="news_id" required>
+                                                <select class="col-12 form-control hide" id="newss" name="news_id">
                                                 </select>
                                             </div>
                                             @if ($errors->has('news'))
@@ -107,6 +107,84 @@
                                                 </div>
                                             @endif
                                         </div>
+
+                                        <h3 class="col-12 mt-5  mb-4">پاورقی (footer): </h3>
+
+                                        <div class="form-group col-lg-12 mb-4">
+                                            <label class="col-12">آدرس انحمن و کد پستی</label>
+
+                                                <textarea id="address" name="address" required
+                                                          class="form-control ">{{ old('address')?:$ipma->address }}</textarea>
+
+                                            @if ($errors->has('address'))
+                                                <div id="title-error"
+                                                     class="error text-danger pl-3" for="title"
+                                                     style="display: block;">
+                                                    <strong>{{ $errors->first('address') }}</strong>
+                                                </div>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group col-lg-6 mb-4">
+                                            <label class="col-12">تلفن</label>
+
+                                                <input id="tel" name="tel" required type="text"
+                                                          class="form-control " value="{{ old('tel')?:$ipma->tel }}" >
+
+                                            @if ($errors->has('tel'))
+                                                <div id="title-error"
+                                                     class="error text-danger pl-3" for="title"
+                                                     style="display: block;">
+                                                    <strong>{{ $errors->first('tel') }}</strong>
+                                                </div>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group col-lg-6 mb-4">
+                                            <label class="col-12">فکس</label>
+
+                                                <input id="fax" name="fax" required type="text"
+                                                          class="form-control " value="{{ old('fax')?:$ipma->fax }}" >
+
+                                            @if ($errors->has('fax'))
+                                                <div id="title-error"
+                                                     class="error text-danger pl-3" for="title"
+                                                     style="display: block;">
+                                                    <strong>{{ $errors->first('fax') }}</strong>
+                                                </div>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group col-lg-6 mb-4">
+                                            <label class="col-12">پست الكترونيك دبیرخانه</label>
+
+                                                <input id="secretariat_email" name="secretariat_email" required type="text"
+                                                          class="form-control " value="{{ old('secretariat_email')?:$ipma->secretariat_email }}" >
+
+                                            @if ($errors->has('secretariat_email'))
+                                                <div id="title-error"
+                                                     class="error text-danger pl-3" for="title"
+                                                     style="display: block;">
+                                                    <strong>{{ $errors->first('secretariat_email') }}</strong>
+                                                </div>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group col-lg-6 mb-4">
+                                            <label class="col-12">پست الکترونیک عضویت</label>
+
+                                                <input id="membership_email" name="membership_email" required type="text"
+                                                          class="form-control " value="{{ old('membership_email')?:$ipma->membership_email }}" >
+
+                                            @if ($errors->has('membership_email'))
+                                                <div id="title-error"
+                                                     class="error text-danger pl-3" for="title"
+                                                     style="display: block;">
+                                                    <strong>{{ $errors->first('membership_email') }}</strong>
+                                                </div>
+                                            @endif
+                                        </div>
+
 
                                     </div>
 
@@ -133,7 +211,7 @@
         $('#eventInput').on('input', function (e) {
             if (this.value.length >= 4) {
 
-                $.post("{{route('cms.newsOrEvent.search')}}",
+                $.post("{{route('cms.mainPage.search')}}",
                     {
                         '_token': $('meta[name=csrf-token]').attr('content'),
                         str: this.value,
@@ -149,6 +227,7 @@
                         if (opt == "") {
                             $('#events').addClass('hide');
                             alert("متاسفانه کاربی با این مشخصات پیدا نشد");
+
                         } else
                             $('#events').removeClass('hide');
 
@@ -164,7 +243,7 @@
 
         $('#newsInput').on('input', function (e) {
             if (this.value.length >= 4) {
-                $.post("{{route('cms.newsOrEvent.search')}}",
+                $.post("{{route('cms.mainPage.search')}}",
                     {
                         '_token': $('meta[name=csrf-token]').attr('content'),
                         str: this.value,
@@ -180,6 +259,7 @@
                         if (opt == "") {
                             $('#newss').addClass('hide');
                             alert("متاسفانه کاربی با این مشخصات پیدا نشد");
+
                         } else
                             $('#newss').removeClass('hide');
 
@@ -192,5 +272,17 @@
 
             }
         });
+
+        $('#events').on('change', function() {
+            $('#eventInput').val($('#events option:selected').text())
+                $(this).addClass('hide');
+
+        });
+
+        $('#newss').on('change', function() {
+            $('#newsInput').val($('#newss option:selected').text())
+                $(this).addClass('hide');
+        });
+
     </script>
 @endsection

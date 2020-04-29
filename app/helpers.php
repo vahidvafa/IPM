@@ -238,6 +238,12 @@ function word2uniTmp($word)
             'end'			=>   '&#xFE9A;',
             'isolated'		=>   '&#xFE99;'
         ),
+        'پ' => array(
+            'beginning'		=>   '&#xFB58;',
+            'middle'		=>   '&#xFB59;',
+            'end'			=>   '&#xfb57;',
+            'isolated'		=>   '&#xfb56;'
+        ),
         'ج' => array(
             'beginning'		=>   '&#xFE9F;',
             'middle'		=>   '&#xFEA0;',
@@ -367,16 +373,16 @@ function word2uniTmp($word)
             'isolated'		=>   '&#xFEED;'
         ),
         'ی' => array(
-            'beginning'		=>   '&#xFEF3;',
-            'middle'		=>   '&#xFEF4;',
-            'end'			=>   '&#xFEF2;',
-            'isolated'		=>   '&#xFEF1;'
+            'beginning'		=>   '&#xFBFE;',
+            'middle'		=>   '&#xFBFF;',
+            'end'			=>   '&#xFBFD;',
+            'isolated'		=>   '&#xFBFC;'
         ),
         'ئ' => array(
-            'beginning'		=>   '&#xFE8B;',
-            'middle'		=>   '&#xFE8C;',
-            'end'			=>   '&#xFE8A;',
-            'isolated'		=>   '&#xFE89;'
+            'beginning'		=>   '&#xFBFE;',
+            'middle'		=>   '&#xFBFF;',
+            'end'			=>   '&#xFBFD;',
+            'isolated'		=>   '&#xFBFC;'
         ),
         'ة' => array(
             'middle'		=>   '&#xFE94;',

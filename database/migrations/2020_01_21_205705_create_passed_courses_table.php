@@ -15,9 +15,10 @@ class CreatePassedCoursesTable extends Migration
     {
         Schema::create('passed_courses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('passed_courses_category_id');
-            $table->string('title');
+            $table->bigInteger('passed_courses_category_id')->nullable();
+            $table->string('title')->nullable();
             $table->text('content');
+            $table->bigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
         });

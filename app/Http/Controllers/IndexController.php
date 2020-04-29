@@ -148,13 +148,16 @@ class IndexController extends Controller
         return view('gov', compact('titleHeader', 'breadcrumb'));
     }
 
-    public function newsEventShow(){
-        $ipma = IPMA::get(['head_title','head_subtitle','head_description','event_id','news_id'])[0];
+    public function mainPageShow(){
+        $ipma = IPMA::get()[0];
 
-        return view('cms.main_news_event',compact('ipma'));
+        $news = News::find($ipma->news_id);
+        $event = Event::find($ipma->event_id);
+
+        return view('cms.main_page',compact('ipma','news','event'));
     }
 
-    public function newsEventUpdate(){
+    public function mainPageUpdate(){
         $request = \Request::except(['_token']);
 
         $valid = validator($request,[
@@ -169,6 +172,9 @@ class IndexController extends Controller
             'news_id.*'=>'لطفا یک اخبار را انتخاب کنید',
         ]);
 
+
+
+
         if ($valid->fails())
             return back()->withErrors($valid)->withInput();
 
@@ -178,21 +184,22 @@ class IndexController extends Controller
         $request = \Request::except(['_token']);
 
         if ($request['newsOrEvent'] == 1) {
-            unset($request['news_id']);
-            if (is_numeric($request['event_id']) !=null ) {
+            $request['news_id'] = null;
+            if (!\request()->has('event_id') ) {
                 flash_message("error","متاسفانه هیچ رویدادی انتخاب نشده است");
                 return back()->withInput();
             }
 
         } else{
-            unset($request['event_id']);
-            if (is_numeric($request['news_id']) !=null ) {
+            $request['event_id'] = null;
+            if (!\request()->has('news_id')) {
                 flash_message("error", "متاسفانه هیچ اخباری انتخاب نشده است");
                 return back()->withInput();
             }
         }
 
-//        return $request;
+        unset($request['newsOrEvent'],$request['eventInput'],$request['newsInput']);
+
 
         if ($ipma->update($request))
             flash_message("success","تغییرات با موفقیت ذخیره شد");
@@ -204,9 +211,10 @@ class IndexController extends Controller
 
     }
 
-    public function newsEventSearch(Request $request){
-        $str = $request->get('eventInput');
+    public function mainPageSearch(Request $request){
+        $str = $request->get('str');
         $isEvent = ($request->get('type') == 1);
+
 
         if ($isEvent)
         $event = Event::where('title','like',"%$str%")->orWhere('detail','like',"%$str%")->take(20)->get(['id','title']);

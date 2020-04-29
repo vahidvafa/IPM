@@ -32,8 +32,8 @@ Route::get('/contact_us/', 'MessageController@create')->name('message.create');
 Route::post('/contact_us/', 'MessageController@store')->name('message.store');
 Route::get('/users', 'UserController@usersIndex')->name('user.index');
 Route::post('/users', 'UserController@usersIndex')->name('user.search');
-Route::get('/search/', 'IndexController@search')->name('search');
-Route::post('/search', 'IndexController@search')->name('search.post');
+Route::get('/searchResult/', 'IndexController@search')->name('search');
+Route::post('/searchResult', 'IndexController@search')->name('search.post');
 Route::get('/register', 'AuthController@register')->name('register')->middleware('guest');
 Route::post('/register/store', 'AuthController@postRegister')->name('register.store')->middleware('guest');
 Route::get('/event/{id}', 'EventController@show')->name("event");
@@ -61,9 +61,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/', 'IndexController@cms')->name('cms.index');
 
 
-            Route::get('newsEvent', 'IndexController@newsEventShow')->name('newsOrEvent');
-            Route::post('newsEvent/update', 'IndexController@newsEventUpdate')->name('newsOrEvent.update');
-            Route::post('newsEvent/search', 'IndexController@newsEventSearch')->name('cms.newsOrEvent.search');
+            Route::get('mainPage', 'IndexController@mainPageShow')->name('mainPage');
+            Route::post('mainPage/update', 'IndexController@mainPageUpdate')->name('cms.mainPage.update');
+            Route::post('mainPage/search', 'IndexController@mainPageSearch')->name('cms.mainPage.search');
 
 
 
@@ -123,11 +123,13 @@ Route::middleware('auth')->group(function () {
             Route::post('passedCourse/{id}/del','PassedCoursesController@destroy')->name('PassedCourses.del');
             Route::get('passedCourse/create','PassedCoursesController@create')->name('PassedCourses.create');
             Route::post('passedCourse/store','PassedCoursesController@store')->name('PassedCourses.store');
+            Route::post('passedCourseSk/store','PassedCoursesController@storeSk')->name('PassedCourses.store.sk');
             Route::post('userPassedCourse/store','PassedCoursesController@storeCourseForUser')->name('UserPassedCourses.store');
             Route::post('passedCourse/{id}/update','PassedCoursesController@update')->name('PassedCourses.update');
             Route::post('passedCourse/bycat','PassedCoursesController@getCouseByCat')->name('PassedCourses.bycats');
             Route::get('ManageCourses','PassedCoursesController@relationUserCourse')->name('ManageCourses');
             Route::get('userPassedCourse/{id}','PassedCoursesController@PassedCoursesByUser')->name('PassedCourses.byUser');
+            Route::get('userPassedCourseSk/{id}','PassedCoursesController@PassedCoursesByUserSk')->name('PassedCourses.byUser.sk');
             Route::post('userPassedCourse/del','PassedCoursesController@destroyCourseForUser')->name('PassedCourses.byUser.del');
             //------
             Route::post('document/del','DocumentController@destroy')->name('document.del');
@@ -164,7 +166,7 @@ Route::get('bank','IndexController@bank')->name('bank');
 
 Route::get('test',function (){
 
-    $name = word2uni("محمد رضا وفایی");
+    $name = word2uni("سیشیشسی پشپسیپ");
 
     $img = Image::make(public_path('img/BO1-blue.jpg'));
     $img->text($name, 620, 300, function(\Intervention\Image\Gd\Font $font) {
@@ -228,6 +230,13 @@ Route::get('WorkingGroups',function (){
     return view('working_groups',compact('breadcrumb','titleHeader'));
 
 })->name('WorkingGroups');
+
+
+/* new.ipma.ir/Committees/register
+ new.ipma.ir/Committees/awards
+ new.ipma.ir/Committees/education
+ new.ipma.ir/Committees/researches
+ new.ipma.ir/Committees/certificate*/
 
 
 Route::prefix('Committees')->group(function (){

@@ -192,7 +192,7 @@ class User extends Authenticatable
 
     public function passedCourse()
     {
-        return $this->belongsToMany(PassedCourses::class);
+        return $this->hasMany(PassedCourses::class);
     }
 
     public function orders()

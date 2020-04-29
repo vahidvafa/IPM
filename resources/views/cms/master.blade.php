@@ -85,10 +85,10 @@
 {{--                    </a>--}}
 {{--                </li>--}}
                 <hr>
-                <li class="nav-item {{checkMenu("cms/newsEvent",$title)}}">
-                    <a class="nav-link" href="{{route('newsOrEvent')}}">
+                <li class="nav-item {{checkMenu("cms/mainPage",$title)}}">
+                    <a class="nav-link" href="{{route('mainPage')}}">
                         <i class="material-icons">library_books</i>
-                        <p>مهم ترین رویداد یا خبر</p>
+                        <p>ویرایش صفحه اصلی</p>
                     </a>
                 </li>
                 <li class="nav-item {{checkMenu("cms/events",$title)}}">
@@ -127,12 +127,12 @@
                         <p>کاربران</p>
                     </a>
                 </li>
-                <li class="nav-item {{checkMenu("cms/passedCourses",$title)}}">
+               {{-- <li class="nav-item {{checkMenu("cms/passedCourses",$title)}}">
                     <a class="nav-link" href="{{route('PassedCourses')}}">
                         <i class="material-icons">library_books</i>
                         <p>دوره ها</p>
                     </a>
-                </li>
+                </li>--}}
 
                 <li class="nav-item {{checkMenu("cms/gifts",$title)}}">
                     <a class="nav-link" href="{{route('gift.index')}}">
@@ -141,12 +141,12 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{checkMenu("cms/ManageCourses",$title)}}">
+            {{--    <li class="nav-item {{checkMenu("cms/ManageCourses",$title)}}">
                     <a class="nav-link" href="{{route('ManageCourses')}}">
                         <i class="material-icons">library_books</i>
                         <p>اضاقه دوره به کاربر</p>
                     </a>
-                </li>
+                </li>--}}
 
                 <li class="nav-item {{checkMenu("cms/buyReport",$title)}}">
                     <a class="nav-link" href="{{route('buyReport')}}">

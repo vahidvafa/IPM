@@ -177,7 +177,30 @@
                             <div class="col-12">
                                 <h3 class="text-right">
                                     <span>{{$user->profile[0]->certificate}}</span>
-                                    <img src="{{asset('img/level-a.jpg')}}" class="lebel-img" alt="level">
+                                    <img src="{{asset('img/level-'.substr(explode("“",$user->profile[0]->certificate)[1],0,1).'.jpg')}}" class="lebel-img" alt="level">
+                                </h3>
+                            </div>
+
+                        </div>
+                    </div>
+
+                        <div class="row align-items-center profile-top p-3 ">
+                            <div class="col-12">
+                                <h3 class="text-right">
+                                    <span>{{$user->profile[0]->certificate}}</span>
+                                    <img src="{{asset('img/level-'.substr(explode("“",$user->profile[0]->certificate)[1],0,1).'.jpg')}}" class="lebel-img" alt="level">
+                                </h3>
+                            </div>
+                            <div class="col-12">
+                                <h3 class="text-right">
+                                    <span>{{$user->profile[0]->certificate}}</span>
+                                    <img src="{{asset('img/level-'.substr(explode("“",$user->profile[0]->certificate)[1],0,1).'.jpg')}}" class="lebel-img" alt="level">
+                                </h3>
+                            </div>
+                            <div class="col-12">
+                                <h3 class="text-right">
+                                    <span>{{$user->profile[0]->certificate}}</span>
+                                    <img src="{{asset('img/level-'.substr(explode("“",$user->profile[0]->certificate)[1],0,1).'.jpg')}}" class="lebel-img" alt="level">
                                 </h3>
                             </div>
 
@@ -194,9 +217,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link font-22 text-black-light text-regular show active"
                                        data-toggle="tab" href="#preview">
-                                        پیش نمایش
-                                        <p class="font-14 text-black-light text-regular m-0 m-md-2">همان طور ببنید که
-                                            دیگران می بینند
+                                        مدارک و گواهینامه ها
+                                        <p class="font-14 text-black-light text-regular m-0 m-md-2">
+                                            مورد تایید انجمن مدیریت پروژه ایران
                                         </p>
                                     </a>
                                 </li>
@@ -218,94 +241,70 @@
                                     @endauth
                                     <div class="col-12">
                                         <div class="detail-profile mb-4">
-                                            <h2 class=" font-24 text-medium text-black mb-4 text-dark-violet">مدارک و
-                                                دوره های گذرانده شده
+                                            @if(auth()->id() != $user->id)
+                                            <h2 class=" font-24 text-medium text-black mb-4 text-dark-violet mb-5">
+                                                مدارک و گواهینامه های مورد تایید انجمن مدیریت پروژه ایران
                                             </h2>
-                                            <p class=" text-black-light font-16 mb-4">
-                                                تمامی دوره های گذرانده شده مورد تایید انجمن مدیریت پروژه ایران می باشد
-                                            </p>
-
-
-                                            <h2 class=" font-20 text-medium text-black  mb-4">گواهی نامه ها : </h2>
-
+                                            @endif
+                                            {{--sk editor
+                                            <li class="col-12 mb-3 mb-lg-5">
+                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
+                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
+                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
+                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
+                                                </li>
+                                                <li class="col-12 mb-3 mb-lg-5">
+                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
+                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
+                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
+                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
+                                                </li>
+                                                <li class="col-12 mb-3 mb-lg-5">
+                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
+                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
+                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
+                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
+                                                </li>
+                                                <li class="col-12 mb-3 mb-lg-5">
+                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
+                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
+                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
+                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
+                                                </li>
+                                                <li class="col-12 mb-3 mb-lg-5">
+                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
+                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
+                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
+                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
+                                                </li>
+                                                <li class="col-12 mb-3 mb-lg-5">
+                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
+                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
+                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
+                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
+                                                </li>
+                                                <li class="col-12 mb-3 mb-lg-5">
+                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
+                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
+                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
+                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
+                                                </li>
+                                                <li class="col-12 mb-3 mb-lg-5">
+                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
+                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
+                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
+                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
+                                                </li>
+                                            --}}
                                             <ul class="list-profile row">
-                                                <li class="col-12 col-lg-6 mb-3 mb-lg-5">
-                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
-                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
-                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
-                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
-                                                </li>
-                                                <li class="col-12 col-lg-6 mb-3 mb-lg-5">
-                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
-                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
-                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
-                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
-                                                </li>
-                                                <li class="col-12 col-lg-6 mb-3 mb-lg-5">
-                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
-                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
-                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
-                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
-                                                </li>
-                                                <li class="col-12 col-lg-6 mb-3 mb-lg-5">
-                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
-                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
-                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
-                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
-                                                </li>
-                                                <li class="col-12 col-lg-6 mb-3 mb-lg-5">
-                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
-                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
-                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
-                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
-                                                </li>
-                                                <li class="col-12 col-lg-6 mb-3 mb-lg-5">
-                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
-                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
-                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
-                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
-                                                </li>
-                                                <li class="col-12 col-lg-6 mb-3 mb-lg-5">
-                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
-                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
-                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
-                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
-                                                </li>
-                                                <li class="col-12 col-lg-6 mb-3 mb-lg-5">
-                                                    <img src="{{asset('img/Silver.png')}}" class="list-img" alt="level">
-                                                    <span class="text-black text-medium">عنوان دوره گذرانده شده : </span><span
-                                                            class="text-black-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </span><span
-                                                            class="text-dark-violet text-medium">[ از 89 تا 95 ]</span>
-                                                </li>
+                                                @if(count($user->passedCourse) != 0)
+                                                {!! $user->passedCourse[0]->content !!}
+                                                    @else
+                                                    <p>مدارکی یافت نشد</p>
+                                                    @endif
 
-                                            </ul>
-
-                                            <h2 class=" font-20 text-medium text-black  mb-4">جوایز
-                                                : </h2>
-
-                                            <ul class="list-profile">
-                                            </ul>
-
-                                            <h2 class=" font-20 text-medium text-black  mb-4">مدارک
-                                                : </h2>
-
-                                            <ul class="list-profile">
                                             </ul>
                                         </div>
-
-
-                                        <h2 class=" font-24 text-medium text-black mt-5 mb-4 text-dark-violet">
-                                            اطلاعات بیشتر
-                                        </h2>
-
-                                        <p class="font-16 text-regular text-black">
-                                            <span>سابقه :</span>
-                                            <br>
-                                        </p>
-                                        <p class="font-16 text-regular text-black">
-                                            <span>مدرک تحصیلی :</span><br>
-                                        </p>
-
 
                                     </div>
 
@@ -394,7 +393,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="sidebar-form-body" action="http://ipma.vahidizadyar.ir/user/update" method="POST"
+                <form class="sidebar-form-body" action="{{route('user.update')}}" method="POST"
                       enctype="multipart/form-data">
                     <div class="modal-body form-profile">
                         <div class="row">

@@ -6,6 +6,7 @@ use App\PassedCourses;
 use App\PassedCoursesCategory;
 use App\User;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Test\Constraint\RequestAttributeValueSame;
 use test\Mockery\Adapter\Phpunit\BaseClassStub;
 
 class PassedCoursesController extends Controller
@@ -43,7 +44,8 @@ class PassedCoursesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function storeCourseForUser(Request $request){
+    public function storeCourseForUser(Request $request)
+    {
         $validate = validator($request->all(), [
             'selectedUser' => "bail | required | min:1",
             'course' => "bail | required | array"
@@ -74,12 +76,40 @@ class PassedCoursesController extends Controller
             'content.*' => "محتوا باید بیش از ۶ حرف باشد"
         ]);
 
-        if (!$validate->fails()){
+        if (!$validate->fails()) {
             $passCourse = new PassedCourses($request->all());
             $passCourse->save();
         }
 
-        flash_message(isset($passCourse)? "success" : "error", isset($passCourse)? "باموفقیت ثبت شد" : "خطا متاسفانه عملیات درج با مشکل مواجه شد");
+        flash_message(isset($passCourse) ? "success" : "error", isset($passCourse) ? "باموفقیت ثبت شد" : "خطا متاسفانه عملیات درج با مشکل مواجه شد");
+        return back()->withErrors($validate)->withInput();
+
+    }
+
+
+    public function storeSk(Request $request)
+    {
+        $validate = validator($request->all(), [
+            'content' => "bail | required | min:6"
+        ], [
+            'content.*' => "محتوا باید بیش از ۶ حرف باشد"
+        ]);
+
+        if (!$validate->fails()) {
+
+            $passCourse = PassedCourses::whereUserId($request->get('user_id'))->get();
+            if (count($passCourse) == 0) {
+                $passCourse = new PassedCourses($request->except('_token'));
+                $passCourse = $passCourse->save();
+            }
+            else {
+                $passCourse = PassedCourses::find($passCourse[0]->id)->update($request->except('_token'));
+            }
+        }
+
+//        return PassedCourses::whereUserId($request->get('user_id'))->get();
+
+        flash_message(isset($passCourse) ? "success" : "error", isset($passCourse) ? "باموفقیت ثبت شد" : "خطا متاسفانه عملیات درج با مشکل مواجه شد");
         return back()->withErrors($validate)->withInput();
 
     }
@@ -159,34 +189,47 @@ class PassedCoursesController extends Controller
 
         $PassedCourse = PassedCourses::wherePassedCoursesCategoryId($PassedCoursesCategory->first->get()->id)->get();
 
-        return view('cms.PassedCourses.user_course_relation', compact('PassedCoursesCategory','PassedCourse'));
+        return view('cms.PassedCourses.user_course_relation', compact('PassedCoursesCategory', 'PassedCourse'));
     }
 
-    public function getCouseByCat(Request $request){
+    public function getCouseByCat(Request $request)
+    {
 
         if ($request->get('cat_id') == null)
             return makeMsgCode(false, "دیتای ارسالی نادرست", 500);
 
 
-        return PassedCourses::wherePassedCoursesCategoryId($request->get('cat_id'))->get(['id','title']);
+        return PassedCourses::wherePassedCoursesCategoryId($request->get('cat_id'))->get(['id', 'title']);
 
     }
 
-    public function PassedCoursesByUser($id){
 
-       $user = User::findOrFail($id);
-       $name = $user->first_name." ".$user->last_name;
-       $user = $user->passedCourse()->get();
+    public function PassedCoursesByUserSk($id)
+    {
+        $passedCourses = PassedCourses::whereUserId($id)->first();
+
+        return view('cms.PassedCourses.create_edit_skeditor', compact('passedCourses'));
+
+    }
+
+
+    public function PassedCoursesByUser($id)
+    {
+
+        $user = User::findOrFail($id);
+        $name = $user->first_name . " " . $user->last_name;
+        $user = $user->passedCourse()->get();
 
         $PassedCoursesCategory = PassedCoursesCategory::get();
 
         $PassedCourse = PassedCourses::wherePassedCoursesCategoryId($PassedCoursesCategory->first->get()->id)->get();
 
-        return view('cms.PassedCourses.user_passedCourse',compact('user','name','PassedCoursesCategory','PassedCourse','id'));
+        return view('cms.PassedCourses.user_passedCourse', compact('user', 'name', 'PassedCoursesCategory', 'PassedCourse', 'id'));
     }
 
 
-    public function destroyCourseForUser(Request $request){
+    public function destroyCourseForUser(Request $request)
+    {
 
 
         User::find($request->get('user'))->passedCourse()->detach($request->get('course'));

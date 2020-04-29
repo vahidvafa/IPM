@@ -156,7 +156,11 @@
                                 <!-- Dropdown -->
 
                                 <li class="nav-item">
-                                    <a class="nav-link " href="{{route('search')}}">جستجو</a>
+                                    <form method="post" action="{{route('search.post')}}" class="nav-item">
+                                        @csrf
+                                        <input name="search" value="اکسل" type="hidden" />
+                                    <a class="nav-link" onclick="this.parentElement.submit()">جستجو</a>
+                                    </form>
                                 </li>
 
 
@@ -547,27 +551,28 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="link-img col-12 col-sm p-0">
-                        <img class="img-fluid" alt="..." src=" img/camera-lens.jpg">
-                        <div class="link-img-more"><a href="{{route('ImageArchive')}}">
+                        <img class="img-fluid" alt="..." src="{{asset('img/camera-lens.jpg')}}">
+                        <a href="{{route('ImageArchive')}}" class="link-img-more" >
                                 <i class="fa fa-image fa-2x"></i>
                                 <p>آرشیو تصاویر</p>
-                            </a></div>
+                            </a>
                         <div class="overlay-img"></div>
                     </div>
                     <div class="link-img col-12 col-sm p-0">
-                        <img class="img-fluid" alt="..." src=" img/film-camera.jpg">
-                        <div class="link-img-more"><a href="{{route('VideoArchive')}}">
+                        <img class="img-fluid" alt="..." src="{{asset('img/film-camera.jpg')}}">
+                            <a class="link-img-more" href="{{route('VideoArchive')}}">
                                 <i class="fas fa-video fa-2x"></i>
                                 <p>آرشیو ویدیو </p>
-                            </a></div>
+                            </a>
+
                         <div class="overlay-img"></div>
                     </div>
                     <div class="link-img col-12 col-sm p-0">
-                        <img class="img-fluid" alt="..." src=" img/webinar-concept.jpg">
-                        <div class="link-img-more"><a href="//">
+                        <img class="img-fluid" alt="..." src="{{asset('img/webinar-concept.jpg')}}">
+                        <a href="//" class="link-img-more" >
                                 <i class="fa fa-desktop fa-2x"></i>
                                 <p>وبینار ها</p>
-                            </a></div>
+                            </a>
                         <div class="overlay-img"></div>
                     </div>
                 </div>

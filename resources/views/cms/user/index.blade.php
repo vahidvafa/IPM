@@ -77,7 +77,7 @@
                                 </a>
                             </td>
                             <td class="text-center">
-                                <a href="{{route('PassedCourses.byUser',[$user->id])}}">
+                                <a href="{{route('PassedCourses.byUser.sk',[$user->id])}}">
                                 <button class="btn btn-success" type="submit">نمایش دوره</button>
                                 </a>
                             </td>

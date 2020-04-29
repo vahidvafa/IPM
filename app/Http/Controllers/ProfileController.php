@@ -38,7 +38,7 @@ class ProfileController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -49,7 +49,7 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Profile  $profile
+     * @param  \App\Profile $profile
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
@@ -57,17 +57,17 @@ class ProfileController extends Controller
 
         $memberships = [];
 
-        $pays=[];
+        $pays = [];
 
         /*$FieldsInClass = new UserProFields();
 
         $FieldsInClass = $FieldsInClass->asArray();*/
 
-        $user = User::with(['workExperience', 'education', 'profile','companies','orders'=>function(HasMany $query){
+        $user = User::with(['workExperience', 'education', 'profile', 'companies', 'orders' => function (HasMany $query) {
             $query->with('orderCodes');
-        },'passedCourse'=>function(BelongsToMany $query){
+        }, 'passedCourse'/* => function (BelongsToMany $query) {
             $query->with(['PassedCoursesCat'])->orderBy('passed_courses_category_id')->get();
-        }/*,'documents' => function (HasMany $doc) {
+        }*//*,'documents' => function (HasMany $doc) {
             $doc->where('state', '=', 0);
         }*/])->where('slug', '=', $slug)->get();
 
@@ -88,8 +88,6 @@ class ProfileController extends Controller
         }*/
 
         /*--------------------- start work  ------------------*/
-
-
 
 
         /*$others_visibles = visibiliy::where("user_id", '=', "$user->id")->get();
@@ -116,30 +114,28 @@ class ProfileController extends Controller
 
             }*/
 
-            $titleHeader = $user->name;
+        $titleHeader = $user->name;
 
 
-            if (auth()->check()) {
+        if (auth()->check()) {
 
 
-                if (auth()->user()->roles == 0 || auth()->user()->roles == 1)
+            if (auth()->user()->roles == 0 || auth()->user()->roles == 1)
                 $memberships = MembershipType::all();
-            }
+        }
 
 //            $name_en = str_replace(str_split('1234567890'),'',$name_en);
 
-        $PassedCoursesCats = PassedCoursesCategory::get();
+//        return $user;
 
-//            return $PassedCoursesCats;
-
-            return view('profile', compact("user", "titleHeader", "breadcrumb", 'memberships','PassedCoursesCats','pays'));
+        return view('profile', compact("user", "titleHeader", "breadcrumb", 'memberships', 'pays'));
 
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Profile  $profile
+     * @param  \App\Profile $profile
      * @return \Illuminate\Http\Response
      */
     public function edit(Profile $profile)
@@ -150,8 +146,8 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Profile  $profile
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Profile $profile
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Profile $profile)
@@ -162,7 +158,7 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Profile  $profile
+     * @param  \App\Profile $profile
      * @return \Illuminate\Http\Response
      */
     public function destroy(Profile $profile)
