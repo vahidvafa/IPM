@@ -68,6 +68,8 @@
                                            onclick="confirm('{{ __("آیا مطمئن به تایید و فعال کردن کاربر جاری هستید؟") }}') ? this.parentElement.submit() : ''">
                                             <i class="material-icons text-success">check</i>
                                         </a>
+                                        @elseif($user->active == 0)
+                                        <p class="text-danger">منتطر پرداخت</p>
                                     @endif
                                 </form>
                             </td>

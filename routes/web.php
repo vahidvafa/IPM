@@ -166,7 +166,7 @@ Route::get('bank','IndexController@bank')->name('bank');
 
 Route::get('test',function (){
 
-    $name = word2uni("سیشیشسی پشپسیپ");
+    $name = word2uni("ژپسسیپژپ ژگسگیشگ");
 
     $img = Image::make(public_path('img/BO1-blue.jpg'));
     $img->text($name, 620, 300, function(\Intervention\Image\Gd\Font $font) {

@@ -118,10 +118,19 @@ class UserController extends Controller
     {
         $user = User::find(auth()->id());
 
-        $user->update($request->all());
+        $rq = $request->except('_token');
+        $rq['isShowMyPhone'] = (int)($request->has('isShowMyPhone'));
+        $rq['active'] = 4;
+        $tmRq = json_encode($rq);
+        $rq = [];
+        $rq['upgrade_update_data'] = $tmRq;
 
+//        $user->profile()->update($rq);
+
+//        $user->active = 4;
+        $user->isShowMyPhone = (int)($request->has('isShowMyPhone'));
+        $user->save();
         $user->profile()->update($request->all('profile')['profile']);
-
 
         if ($request->hasFile('profile_pic')) {
 
@@ -142,20 +151,20 @@ class UserController extends Controller
                 $user->save();
                 }
         }
-
-
-
+        $document = [];
         if ($request->hasFile('files')) {
             for ($i = 0; $i < count($request->file('files')); $i++) {
                 $documentName = time() . $i . '.' . $request->file('files')[$i]->getClientOriginalExtension();
                 $request->file('files')[$i]->move(public_path('/files/documents'), $documentName);
-                $document = new Document(['address' => $documentName, 'explain' => $request->get('files_explain')[$i]]);
-                $user->documents()->save($document);
+//                 $document['documents'] += ;
+                $user->documents()->save(new Document(['address' => $documentName, 'explain' => $request->get('files_explain')[$i]]));
             }
         }
 
+//        $rq['']
 
 
+//        return var_dump($user->profile);
 
         return redirect()->back();
     }

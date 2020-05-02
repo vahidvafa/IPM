@@ -45,7 +45,10 @@
     <script type="text/javascript">
         CKEDITOR.replace('content', {
             contentsLangDirection: "rtl",
+
         });
+        CKEDITOR.config.autoParagraph = false;
+
     </script>
 
     {{--

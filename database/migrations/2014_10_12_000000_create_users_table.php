@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->tinyInteger('roles')->default(2)->comment("0=> admin | 1=> manager | 2=>user");
-            $table->tinyInteger('active')->default(0)->comment("0=> payment pending ( payment again , dont show , dont edit profile )| 1=>admin pending( dont show profile ) || 2=>active ( all success) || 3=>expire ( offer member )");
+            $table->tinyInteger('active')->default(0)->comment("0=> payment pending ( payment again , dont show , dont edit profile )| 1=>admin pending( dont show profile ) || 2=>active ( all success) || 3=>expire ( offer member ) || 4=> user update ( pending admin accept ) ");
             $table->bigInteger('reagent_id')->default(0);
             $table->bigInteger('branch_id')->default(0);
             $table->bigInteger('main')->default(0)->unsigned()->comment("0=> Dependent || 1=>main");

@@ -97,13 +97,16 @@ class PassedCoursesController extends Controller
 
         if (!$validate->fails()) {
 
-            $passCourse = PassedCourses::whereUserId($request->get('user_id'))->get();
+            $rq = $request->except('_token');
+//            $rq['content'] = str_replace("<p>&nbsp;</p>","<br>",$rq['content']);
+
+            $passCourse = PassedCourses::whereUserId($rq['user_id'])->get();
             if (count($passCourse) == 0) {
-                $passCourse = new PassedCourses($request->except('_token'));
+                $passCourse = new PassedCourses($rq);
                 $passCourse = $passCourse->save();
             }
             else {
-                $passCourse = PassedCourses::find($passCourse[0]->id)->update($request->except('_token'));
+                $passCourse = PassedCourses::find($passCourse[0]->id)->update($rq);
             }
         }
 

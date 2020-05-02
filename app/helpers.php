@@ -181,7 +181,7 @@ function word2uniTmp($word)
 
     $new_word = array();
     $char_type = array();
-    $isolated_chars = array('ا', 'د', 'ذ', 'أ', 'آ', 'ر', 'ؤ', 'ء', 'ز', 'و', 'ى', 'ة');
+    $isolated_chars = array('ا', 'د', 'ذ', 'أ', 'آ', 'ر', 'ؤ', 'ء', 'ز', 'ژ', 'و','ة');
 
     $all_chars = array
     (
@@ -213,12 +213,6 @@ function word2uniTmp($word)
             'middle'		=>   '&#xFE82;',
 
             'isolated'		=>   '&#xFE81;'
-        ),
-        'ى' => array(
-
-            'middle'		=>   '&#xFEF0;',
-
-            'isolated'		=>   '&#xFEEF;'
         ),
         'ب' => array(
             'beginning'		=>   '&#xFE91;',
@@ -277,6 +271,10 @@ function word2uniTmp($word)
         'ز' => array(
             'middle'		=>   '&#xFEB0;',
             'isolated'		=>   '&#xFEAF;'
+        ),
+        'ژ' => array(
+            'middle'		=>   '&#xfb8b;',
+            'isolated'		=>   '&#xfb8a;'
         ),
         'س' => array(
             'beginning'		=>   '&#xFEB3;',
@@ -338,18 +336,20 @@ function word2uniTmp($word)
             'end'			=>   '&#xFED6;',
             'isolated'		=>   '&#xFED5;'
         ),
-        'ك' => array(
-            'beginning'		=>   '&#xFEDB;',
-            'middle'		=>   '&#xFEDC;',
-            'end'			=>   '&#xFEDA;',
-            'isolated'		=>   '&#xFED9;'
-        ),
         'ل' => array(
             'beginning'		=>   '&#xFEDF;',
             'middle'		=>   '&#xFEE0;',
             'end'			=>   '&#xFEDE;',
             'isolated'		=>   '&#xFEDD;'
         ),
+
+        'گ' => array(
+            'beginning'		=>   '&#xfb94;',
+            'middle'		=>   '&#xfb95;',
+            'end'			=>   '&#xfb93;',
+            'isolated'		=>   '&#xfb92;'
+        ),
+
         'م' => array(
             'beginning'		=>   '&#xFEE3;',
             'middle'		=>   '&#xFEE4;',
@@ -387,7 +387,8 @@ function word2uniTmp($word)
         'ة' => array(
             'middle'		=>   '&#xFE94;',
             'isolated'		=>   '&#xFE93;'
-        )
+        ),
+
     );
 
     if(in_array($word[0].$word[1], $isolated_chars))

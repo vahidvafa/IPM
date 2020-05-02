@@ -38,6 +38,7 @@ class CreateProfilesTable extends Migration
             $table->text("honors")->nullable();
             $table->text("certificate")->nullable();
             $table->text("specialized_basins")->nullable();
+            $table->text("upgrade_update_data")->nullable();
             //-------------------------------------
             $table->tinyInteger('lang_id',false,true)->default(1);
             $table->timestamps();

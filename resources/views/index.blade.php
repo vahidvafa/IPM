@@ -366,13 +366,13 @@
 
                                 <a class="Committee-icons-text d-block text-white text-medium"
                                    href="{{route('research')}}">
-                                    <img class="mb-3" src="img/001-user-group.png" alt="anjoman">
+                                    <img class="mb-3" src="{{asset('img/analytics.png')}}" alt="anjoman">
                                     <p>پژوهش</p></a>
                             </div>
                             <div class="col-6 text-center   pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
                                    href="{{route('branches')}}">
-                                    <img class="mb-3" src="img/009-exam.png" alt="anjoman">
+                                    <img class="mb-3" src="{{asset('img/link.png')}}" alt="anjoman">
                                     <p>شاخه ها</p></a>
                             </div>
                             <!--<div class="col-6 text-center bl-1  pt-5 pb-5">-->
@@ -391,13 +391,13 @@
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
                                    href="#">
-                                    <img class="mb-3" src="img/003-patent-1.png" alt="anjoman">
+                                    <img class="mb-3" src="{{asset('img/teamwork.png')}}" alt="anjoman">
                                     <p>کارگروه های تخصصی</p></a>
                             </div>
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
                                    href="{{route('about-us')}}">
-                                    <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
+                                    <img class="mb-3" src="{{asset('img/content.png')}}" alt="anjoman">
                                     <p>درباره ما</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
