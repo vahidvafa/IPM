@@ -196,28 +196,17 @@
                         </div>
                     </div>
 
-                    <div class="row align-items-center profile-top p-3 ">
-                        <div class="col-12">
-                            <h3 class="text-right">
-                                <span>{{$user->profile[0]->certificate}}</span>
-                                <img src="{{asset('img/level-'.substr(explode("“",$user->profile[0]->certificate)[1],0,1).'.jpg')}}"
-                                     class="lebel-img" alt="level">
-                            </h3>
-                        </div>
-                        <div class="col-12">
-                            <h3 class="text-right">
-                                <span>{{$user->profile[0]->certificate}}</span>
-                                <img src="{{asset('img/level-'.substr(explode("“",$user->profile[0]->certificate)[1],0,1).'.jpg')}}"
-                                     class="lebel-img" alt="level">
-                            </h3>
-                        </div>
-                        <div class="col-12">
-                            <h3 class="text-right">
-                                <span>{{$user->profile[0]->certificate}}</span>
-                                <img src="{{asset('img/level-'.substr(explode("“",$user->profile[0]->certificate)[1],0,1).'.jpg')}}"
-                                     class="lebel-img" alt="level">
-                            </h3>
-                        </div>
+                    <div class="row align-items-center profile-top p-3 col-12 ml-1">
+
+                        @foreach(explode("?!?",$user->profile[0]->awards) as $val)
+                            <div class="col-12">
+                                <h3 class="text-right">
+                                    <span>{{$val}}</span>
+                                    <img src="{{asset('img/award_baje.png')}}"
+                                         class="lebel-img" alt="level">
+                                </h3>
+                            </div>
+                        @endforeach
 
                     </div>
                 </div>

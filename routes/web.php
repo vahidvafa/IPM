@@ -32,15 +32,30 @@ Route::get('/contact_us/', 'MessageController@create')->name('message.create');
 Route::post('/contact_us/', 'MessageController@store')->name('message.store');
 Route::get('/users', 'UserController@usersIndex')->name('user.index');
 Route::post('/users', 'UserController@usersIndex')->name('user.search');
+
 Route::get('/searchResult/', 'IndexController@search')->name('search');
 Route::post('/searchResult', 'IndexController@search')->name('search.post');
+
 Route::get('/register', 'AuthController@register')->name('register')->middleware('guest');
 Route::post('/register/store', 'AuthController@postRegister')->name('register.store')->middleware('guest');
+
 Route::get('/event/{id}', 'EventController@show')->name("event");
 Route::get('/events/', 'EventController@index')->name("events");
+
 Route::get('/profile/{slug}', 'ProfileController@show')->name("profile");
+Route::get('profile/upgrade/show', 'ProfileController@upgrade')->name("profile.upgrade.show");
+Route::post('/profile/upgrade/store', 'ProfileController@postUpgradeRq')->name("profile.upgrade.store");
+Route::post('profile/preUpgrade', 'ProfileController@preUpgradeCheckPass')->name("profile.preUpgrade");
+Route::get('profile/preUpgrade/{code}',function ($code){
+
+    return view('pre_upgrade',compact('code'));
+});
+Route::get('profile/upgrade_result', 'ProfileController@banckCallBack')->name("profile.upgradeResult");
+
+
 Route::post('/login', 'AuthController@postLogin')->name('login.post');
 Route::get('/login', 'AuthController@Login')->name('login')->middleware('guest');
+
 Route::post('location','AuthController@locationSms')->name('location');
 Route::get('about-us', 'IndexController@about_us')->name('about-us');
 Route::get('/branches', 'IndexController@branches')->name('branches');
@@ -266,18 +281,12 @@ Route::prefix('Committees')->group(function (){
         return view('committees.certificate',compact('titleHeader','breadcrumb'));
     })->name('committees.certificate');
 
-
-
-
 });
 
-
-/*Route::get("qr",function (){
-    (new \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator())->size(1000)
-        ->format('png')
-        ->generate('ItSolutionStuff.com', public_path('img/qrcode.png'));
-
-    echo "<img src='img/qrcode.png'>";
-
-});*/
-
+Route::get("hashMake/{id}",function ($id){
+    $user = \App\User::find($id);
+    var_dump($enc = encrypt($user->email));
+        $dec = decrypt($enc);
+        echo "<br>";
+    return $dec;
+});

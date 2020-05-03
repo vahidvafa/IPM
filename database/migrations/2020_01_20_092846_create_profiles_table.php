@@ -37,6 +37,7 @@ class CreateProfilesTable extends Migration
             $table->string("twitter")->nullable();
             $table->text("honors")->nullable();
             $table->text("certificate")->nullable();
+            $table->text("awards")->nullable();
             $table->text("specialized_basins")->nullable();
             $table->text("upgrade_update_data")->nullable();
             //-------------------------------------

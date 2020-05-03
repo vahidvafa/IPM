@@ -129,7 +129,7 @@ class UserController extends Controller
 
 //        $user->active = 4;
         $user->isShowMyPhone = (int)($request->has('isShowMyPhone'));
-        $user->save();
+
         $user->profile()->update($request->all('profile')['profile']);
 
         if ($request->hasFile('profile_pic')) {
@@ -138,7 +138,7 @@ class UserController extends Controller
             $request->file('profile_pic')->move(public_path('img/profile'),$picname);
             if ($user->profile_picture == null){
                 $user->profile_picture = $picname;
-                $user->save();
+
                 }
         }
 
@@ -148,7 +148,6 @@ class UserController extends Controller
             $request->file('resume')->move(public_path('files/resume'),$resumeAddress);
             if ($user->resume_address == null){
                 $user->resume_address = $resumeAddress;
-                $user->save();
                 }
         }
         $document = [];
@@ -163,7 +162,7 @@ class UserController extends Controller
 
 //        $rq['']
 
-
+        $user->save();
 //        return var_dump($user->profile);
 
         return redirect()->back();
@@ -240,8 +239,8 @@ class UserController extends Controller
             }
         }
 
-        if ($user->profile[0]->certificate_number != $request->get('profile')['certificate_number']) {
-            if (Profile::whereCertificateNumber($request->get('profile')['certificate_number']))
+        if ($user->profile[0]->certificate_number != $request->get('profile')['profile']['certificate_number']) {
+            if (Profile::whereCertificateNumber($request->get('profile')['profile']['certificate_number']))
                 flash_message("error", "متاسفانه این کد ملی قبلا ثبت شده است.");
             return redirect()->back();
         }
@@ -249,19 +248,19 @@ class UserController extends Controller
 
         if ($request->get('type') == 2) {
 
-            if ($user->companies[0]->established_number != $request->get('company')['established_number']) {
-                if (Company::whereEstablishedNumber($request->get('profile')['certificate_number']))
+            if ($user->companies[0]->established_number != $request->get('company')['company']['established_number']) {
+                if (Company::whereEstablishedNumber($request->get('company')['company']['certificate_number']))
                     flash_message("error", "متاسفانه این شماره ثبت قبلا ثبت شده است.");
                 return redirect()->back();
             }
-            if ($user->companies[0]->economy_number != $request->get('company')['economy_number']) {
-                if (Company::whereEconomyNumber($request->get('profile')['certificate_number']))
+            if ($user->companies[0]->economy_number != $request->get('company')['company']['economy_number']) {
+                if (Company::whereEconomyNumber($request->get('company')['company']['certificate_number']))
                     flash_message("error", "متاسفانه این شماره اقتصادی قبلا ثبت شده است.");
                 return redirect()->back();
             }
 
-            if ($user->companies[0]->national_number != $request->get('company')['national_number']) {
-                if (Company::whereNationalNumber($request->get('profile')['certificate_number']))
+            if ($user->companies[0]->national_number != $request->get('company')['company']['national_number']) {
+                if (Company::whereNationalNumber($request->get('company')['company']['certificate_number']))
                     flash_message("error", "متاسفانه این شناسه ملی قبلا ثبت شده است.");
                 return redirect()->back();
             }
@@ -304,8 +303,10 @@ class UserController extends Controller
 
         $pass = $rq->get('password');
 
-        if ($pass != null)
-            $pass = Hash::make($pass);
+        if ($pass != null) {
+            $user->password = Hash::make($pass);
+            $user->save();
+        }
 
         $rq = $rq->except('password');
 
@@ -327,19 +328,15 @@ class UserController extends Controller
             $user->save();
         }
 
-        if ($pass != null) {
-            $user->password = $pass;
-            $user->save();
-        }
-
-        /*if (isset($slug)) {
-            $user->slug = $slug;
-            $user->save(['slug' => $slug]);
-        }*/
-
         $profile = $request->all('profile')['profile'];
 
         $profile['certificate'] = "IPMA CB Certificate Level “".$request['certificate-level']."” - ".tr_num($request['certificate-date'],"en");
+
+
+        $profile['awards'] =
+            $request->all('awards')['awards']['1'].
+            "?!?".$request->all('awards')['awards']['2'].
+            "?!?".$request->all('awards')['awards']['3'];
 
 
         $user->profile()->update($profile);

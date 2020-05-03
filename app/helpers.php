@@ -349,7 +349,6 @@ function word2uniTmp($word)
             'end'			=>   '&#xfb93;',
             'isolated'		=>   '&#xfb92;'
         ),
-
         'م' => array(
             'beginning'		=>   '&#xFEE3;',
             'middle'		=>   '&#xFEE4;',

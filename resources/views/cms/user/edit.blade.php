@@ -458,6 +458,31 @@
                             @endif
                         </div>
 
+                        <h3 class="font-22 text-medium text-black col-12">جوایز و مدارک: </h3>
+                        <div class="form-group col-md-6 mb-3 mt-4">
+                            <label for="awards[1]" class="col-12">ردیف اول*</label>
+                            <input type="text" name="awards[1]" id="awards[1]"
+                                   value="{{old('awards[1]')??explode("?!?",$user->profile[0]->awards)[0]}}"
+                                   class="form-control " aria-invalid="false"
+                                   required>
+
+                        </div>
+                        <div class="form-group col-md-6 mb-3 mt-4">
+                            <label for="awards[2]" class="col-12">ردیف دوم*</label>
+                            <input type="text" name="awards[2]" id="awards[2]"
+                                   value="{{old('awards[2]')??explode("?!?",$user->profile[0]->awards)[1]}}"
+                                   class="form-control " aria-invalid="false"
+                                   required>
+
+                        </div>
+                        <div class="form-group col-md-6 mb-3 mt-4">
+                            <label for="awards[3]" class="col-12">ردیف سوم*</label>
+                            <input type="text" name="awards[3]" id="awards[3]"
+                                   value="{{old('awards[3]')??explode("?!?",$user->profile[0]->awards)[2]}}"
+                                   class="form-control" aria-invalid="false"
+                                   required>
+                        </div>
+
 
                     </div>
 

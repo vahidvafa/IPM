@@ -72,7 +72,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12 ">
-                                        <h3 class="font-20 text-yellow text-center text-light2 mb-4">برنامه زمانبندی دور نهم جایزه ملی مدیریت پروژه (99-98)</h3>
+                                        <h3 class="font-20 text-yellow text-center text-light2 mb-4">برنامه زمانبندی دوره نهم جایزه ملی مدیریت پروژه (99-98)</h3>
                                         <img style="margin-right: auto;margin-left: auto;display: block;width: 100%;"
                                              src="{{asset('img/gift99.jpg')}}">
                                     </div>
@@ -81,31 +81,35 @@
                         </div>
                         <p>
                             <a href="{{route('winners_detail',[1])}}">
-                                سرارزیابان و ارزیابان دور اول جایزه
+                                سرارزیابان و ارزیابان دوره اول جایزه
                             </a>
                             <br>
                             <a href="{{route('winners_detail',[2])}}">
-                                سرارزیابان و ارزیابان دور دوم جایزه
+                                سرارزیابان و ارزیابان دوره دوم جایزه
                             </a>
                             <br>
                             <a href="{{route('winners_detail',[3])}}">
-                                سرارزیابان و ارزیابان دور سوم جایزه
+                                سرارزیابان و ارزیابان دوره سوم جایزه
                             </a>
                             <br>
                             <a href="{{route('winners_detail',[4])}}">
-                                سرارزیابان و ارزیابان دور چهارم جایزه
+                                سرارزیابان و ارزیابان دوره چهارم جایزه
                             </a>
                             <br>
                             <a href="{{route('winners_detail',[5])}}">
-                                سرارزیابان و ارزیابان دور پنجم جایزه
+                                سرارزیابان و ارزیابان دوره پنجم جایزه
                             </a>
                             <br>
                             <a href="{{route('winners_detail',[6])}}">
-                                سرارزیابان و ارزیابان دور ششم جایزه
+                                سرارزیابان و ارزیابان دوره ششم جایزه
                             </a>
                             <br>
                             <a href="{{route('winners_detail',[7])}}">
-                                سرارزیابان و ارزیابان دور هفتم جایزه
+                                سرارزیابان و ارزیابان دوره هفتم جایزه
+                            </a>
+                            <br>
+                            <a href="{{route('winners_detail',[8])}}">
+                                سرارزیابان و ارزیابان دوره هشتم جایزه
                             </a>
                         </p>
                     </div>
