@@ -18,8 +18,11 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('event_id');
             $table->tinyInteger('state_id')->default(0)->comment('0 => payment pending , 1 => successful , 2=> failed');
+            $table->tinyInteger('type_id')->default(0)->comment('0 => event , 1 => register , 2 => upgrade');
+            $table->text('comment')->nullable()->comment('explain about order');
             $table->integer('total_price');
-            $table->string('reference_id')->nullable();
+            $table->string('reference_id')->nullable()->comment('website reference number');
+            $table->string('reference_number')->nullable()->comment('bank reference number');
             $table->timestamps();
             $table->softDeletes();
         });

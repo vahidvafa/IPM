@@ -36,8 +36,9 @@ class EventCategory extends Model
 {
     use SoftDeletes;
 
-    public function event(){
-        return $this->hasMany(Event::class);
+    public function event()
+    {
+        return $this->hasMany(Event::class, 'event_category_id','id');
     }
 
 }

@@ -7,14 +7,9 @@
                 <form action="/" method="post" class="row">
                     @csrf
                     <div class="row w-100">
-{{--                        <div class="col-12 col-md-8">--}}
-{{--                            <input class="form-control w-100" type="text" name="gift" placeholder="کد تخفیف">--}}
-{{--                        </div>--}}
-{{--                        <div class="col-12 col-md-2">--}}
-{{--                            <input type="submit" value="کد تخفیف" class="form-submit-violet text-white font-16 text-medium w-100">--}}
-{{--                        </div>--}}
                         <div class="col-12 col-md-4">
-                            <h5 id="total_price" class="text-success"> مبلغ قابل پرداخت :                                 {{tr_num(number_format($event->price),'fa')}}  تومان
+                            <h5 id="total_price" class="text-success">
+مبلغ قابل پرداخت :                                 {{tr_num(number_format($event->price),'fa')}}  ریال
                             </h5>
                         </div>
                     </div>
@@ -154,21 +149,34 @@
                                     </div>
                                 </div>
                             @endforeach
+                                <script>
+                                    calculatePrice();
+                                </script>
                         @endif
                     </div>
                     <hr>
                     <div class="row">
                         <button type="button" onclick="addRow()" class="col-3 btn btn-white-border center-y" style="background-color: #4CBB17;border: #4CBB17;color: white;">اضافه کردن +</button>
                     </div>
-                    <button type="submit" class="col-3 btn btn-white-border centr-ey ">خرید</button>
+                    <div class="row mt-5">
+                        <div class="col-12 col-md-8">
+                            <input class="form-control w-100" type="text" name="gift" placeholder="کد هدیه ( در صورت داشتن کد هدیه وارد کنید )" value="{{old('gift')}}">
+                                <div id="gift-error" class="error text-danger pl-3" for="gift"
+                                     style="display: block;">
+                                    <strong>{{ old('gift_error') }}</strong>
+                                </div>
+                        </div>
+                        <div class="col-12 col-md-2">
+                            <button type="submit" class="col-3 btn btn-white-border centr-ey ">ادامه</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
     </main>
 @endsection
 <script>
-    var price = "{{$event->price}}";
-
+    const price = "{{$event->price}}";
     function toEnglishNum( num, dontTrim ) {
         var i = 0,
             j = 0,

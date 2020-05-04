@@ -50,7 +50,7 @@ Route::get('profile/preUpgrade/{code}',function ($code){
 
     return view('pre_upgrade',compact('code'));
 });
-Route::get('profile/upgrade_result', 'ProfileController@banckCallBack')->name("profile.upgradeResult");
+Route::post('profile/upgrade_result', 'ProfileController@banckCallBack')->name("profile.upgradeResult");
 
 
 Route::post('/login', 'AuthController@postLogin')->name('login.post');
@@ -66,6 +66,7 @@ Route::get('/winners/{id}', 'IndexController@winners_detail')->name('winners_det
 Route::get('/gov', 'IndexController@gov')->name('gov');
 Route::get('news/{news}', 'NewsController@show')->name('news.show');
 Route::middleware('auth')->group(function () {
+    Route::post('/verifyRegister', 'AuthController@reserve')->name("verifyRegister");
     Route::get('/event/{event}/reserve', 'EventController@reserve')->name("event.reserve");
     Route::post('/event/{event}/reserve/store', 'OrderController@store')->name("order.store");
     Route::get('logout', 'UserController@logout')->name('logout');
@@ -178,6 +179,8 @@ Route::resource("job","JobController");
 Route::post('/event/list','EventController@indexJs')->name('event.list');
 Route::get('callback','IndexController@callback')->name('callback');
 Route::get('bank','IndexController@bank')->name('bank');
+Route::get('verifyBank','IndexController@verify')->name('verifyBank');
+Route::get('orderCode/{orderCode}','OrderCodeController@show')->name('orderCode.show');
 
 Route::get('test',function (){
 
@@ -289,4 +292,8 @@ Route::get("hashMake/{id}",function ($id){
         $dec = decrypt($enc);
         echo "<br>";
     return $dec;
+});
+Route::get('card','UserController@showCard');
+Route::get("testCode",function (){
+    return createUserCode(5);
 });

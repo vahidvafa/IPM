@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use Intervention\Image\Facades\Image;
 use phpDocumentor\Reflection\Types\Integer;
 use Validator;
 
@@ -101,7 +102,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::with(['education', 'companies','documents'])->findOrFail($id);
+        $user = User::with(['education', 'companies', 'documents'])->findOrFail($id);
         $membership = MembershipType::findOrFail($user->membership_type_id);
 
         return view('cms.user.edit', compact('user', 'membership'));
@@ -134,21 +135,21 @@ class UserController extends Controller
 
         if ($request->hasFile('profile_pic')) {
 
-            $picname = $user->profile_picture??(time() .$user->id. '.' . $request->file('profile_pic')->getClientOriginalExtension());
-            $request->file('profile_pic')->move(public_path('img/profile'),$picname);
-            if ($user->profile_picture == null){
+            $picname = $user->profile_picture ?? (time() . $user->id . '.' . $request->file('profile_pic')->getClientOriginalExtension());
+            $request->file('profile_pic')->move(public_path('img/profile'), $picname);
+            if ($user->profile_picture == null) {
                 $user->profile_picture = $picname;
 
-                }
+            }
         }
 
         if ($request->hasFile('resume')) {
 
-            $resumeAddress = $user->resume_address??(time() .$user->id. '.' . $request->file('resume')->getClientOriginalExtension());
-            $request->file('resume')->move(public_path('files/resume'),$resumeAddress);
-            if ($user->resume_address == null){
+            $resumeAddress = $user->resume_address ?? (time() . $user->id . '.' . $request->file('resume')->getClientOriginalExtension());
+            $request->file('resume')->move(public_path('files/resume'), $resumeAddress);
+            if ($user->resume_address == null) {
                 $user->resume_address = $resumeAddress;
-                }
+            }
         }
         $document = [];
         if ($request->hasFile('files')) {
@@ -300,7 +301,6 @@ class UserController extends Controller
                 }*/
 
 
-
         $pass = $rq->get('password');
 
         if ($pass != null) {
@@ -323,20 +323,20 @@ class UserController extends Controller
                 $user->active = 2;
                 $user->save();
             }
-        }else {
+        } else {
             $user->active = 1;
             $user->save();
         }
 
         $profile = $request->all('profile')['profile'];
 
-        $profile['certificate'] = "IPMA CB Certificate Level “".$request['certificate-level']."” - ".tr_num($request['certificate-date'],"en");
+        $profile['certificate'] = "IPMA CB Certificate Level “" . $request['certificate-level'] . "” - " . tr_num($request['certificate-date'], "en");
 
 
         $profile['awards'] =
-            $request->all('awards')['awards']['1'].
-            "?!?".$request->all('awards')['awards']['2'].
-            "?!?".$request->all('awards')['awards']['3'];
+            $request->all('awards')['awards']['1'] .
+            "?!?" . $request->all('awards')['awards']['2'] .
+            "?!?" . $request->all('awards')['awards']['3'];
 
 
         $user->profile()->update($profile);
@@ -404,83 +404,182 @@ class UserController extends Controller
             ->orWhere('user_code', 'like', "%" . $request->get('str') . "%")
             ->orWhere('email', 'like', "%" . $request->get('str') . "%")
             ->orWhere('name_en', 'like', "%" . $request->get('str') . "%")
-            ->orWhere('email', 'like', "%" . $request->get('str') . "%")->get(['id', 'first_name', 'last_name','roles']);
+            ->orWhere('email', 'like', "%" . $request->get('str') . "%")->get(['id', 'first_name', 'last_name', 'roles']);
 
     }
 
     public function badge(User $user)
     {
-        return view('cms.user.badge',compact('user'));
+        return view('cms.user.badge', compact('user'));
     }
 
-    public function badgeUpdate (User $user , Request $request)
+    public function badgeUpdate(User $user, Request $request)
     {
-        try{
-            $user->update($request->only('diamond','gold','silver','bronze'));
+        try {
+            $user->update($request->only('diamond', 'gold', 'silver', 'bronze'));
             flash_message('success', __('string.successful.edit'));
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             flash_message('error', __('string.unsuccessful'));
         }
         return back();
     }
 
 
-    public function admins ( Request $request){
+    public function admins(Request $request)
+    {
 
         $users = User::whereRoles(1)->paginate(14);
 
-        return view('cms.user.admins',compact('users'));
+        return view('cms.user.admins', compact('users'));
 
     }
 
 
-    public function adminDel ( Request $request){
+    public function adminDel(Request $request)
+    {
 
-        if (auth()->check()){
+        if (auth()->check()) {
 
-            if (auth()->user()->roles == 0){
+            if (auth()->user()->roles == 0) {
                 $user = User::find($request->get('user'));
-                $user->roles=2;
+                $user->roles = 2;
                 $user->save();
-                flash_message("info","مدیر با موفقیت حذف شد");
+                flash_message("info", "مدیر با موفقیت حذف شد");
                 return redirect()->back();
-            }else {
-                flash_message("error","متاسفانه شما مجاز به انجام این کار نیستید");
+            } else {
+                flash_message("error", "متاسفانه شما مجاز به انجام این کار نیستید");
                 return redirect()->back();
             }
 
-        }else {
-            flash_message("error","اجراز حویت لازم است");
+        } else {
+            flash_message("error", "اجراز حویت لازم است");
             return redirect()->back();
         }
 
     }
 
 
-    public function adminAdd ( Request $request){
+    public function adminAdd(Request $request)
+    {
 
-        if (auth()->check()){
+        if (auth()->check()) {
 
-            if (auth()->user()->roles == 0){
+            if (auth()->user()->roles == 0) {
                 $user = User::find($request->get('selectedUser'));
-                if ($user == null ){
-                    flash_message("error","متاسفانه کاربر مورد نظر پیدا نشد");
+                if ($user == null) {
+                    flash_message("error", "متاسفانه کاربر مورد نظر پیدا نشد");
                     return redirect()->back();
                 }
-                $user->roles=1;
+                $user->roles = 1;
                 $user->save();
-                flash_message("success","مدیر با موفقیت ثبت شد");
+                flash_message("success", "مدیر با موفقیت ثبت شد");
                 return redirect()->back();
-            }else {
-                flash_message("error","متاسفانه شما مجاز به انجام این کار نیستید");
+            } else {
+                flash_message("error", "متاسفانه شما مجاز به انجام این کار نیستید");
                 return redirect()->back();
             }
 
-        }else {
-            flash_message("error","اجراز حویت لازم است");
+        } else {
+            flash_message("error", "اجراز حویت لازم است");
             return redirect()->back();
         }
 
+    }
+
+    public function showCard()
+    {
+        auth()->loginUsingId(1);
+        $user = auth()->user();
+        $name = persianText($user->first_name . ' ' . $user->last_name);
+        $nameEn = persianText($user->name_en);
+        $imageName = $user->id . time();
+        if ($user->membership_type_id == 2){
+            $img = Image::make(public_path('img/register/C.png'));
+        }else{
+            if ((jdate()->getYear() - (int)explode('/',$user->profile[0]->birth_date)[0]) > 35){
+                switch ($user->membership_type_id){
+                    case 1:
+                        if ($user->main == 1)
+                            $img = Image::make(public_path('img/register/M.png'));
+                        else
+                            $img = Image::make(public_path('img/register/A.png'));
+                        break;
+                    case 3:
+                        $img = Image::make(public_path('img/register/S.png'));
+                        break;
+                    default:
+                        $img = Image::make(public_path('img/register/S.png'));
+                }
+            }else{
+                switch ($user->membership_type_id){
+                    case 1:
+                        if ($user->main == 1)
+                            $img = Image::make(public_path('img/register/YC-M.png'));
+                        else
+                            $img = Image::make(public_path('img/register/YC-A.png'));
+                        break;
+                    case 3:
+                        $img = Image::make(public_path('img/register/YC-S.png'));
+                        break;
+                    default:
+                        $img = Image::make(public_path('img/register/YC-S.png'));
+                }
+            }
+        }
+        $img->text($name, 950, 90, function (\Intervention\Image\Gd\Font $font) {
+            $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+            $font->size(28);
+            $font->color('#000000');
+            $font->align('right');
+            $font->valign('bottom');
+            $font->angle(0);
+        });
+        $img->text($nameEn, 590, 553, function (\Intervention\Image\Gd\Font $font) {
+            $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+            $font->size(28);
+            $font->color('#000000');
+            $font->align('left');
+            $font->valign('bottom');
+            $font->angle(0);
+        });
+        if ($user->membership_type_id != 2){
+            $img->text(persianText(tr_num($user->user_code)), 220, 340, function (\Intervention\Image\Gd\Font $font) {
+                $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+                $font->size(28);
+                $font->color('#000000');
+                $font->align('center');
+                $font->valign('bottom');
+                $font->angle(0);
+            });
+        }else{
+            $img->text(persianText(tr_num($user->user_code)), 220, 290, function (\Intervention\Image\Gd\Font $font) {
+                $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+                $font->size(28);
+                $font->color('#000000');
+                $font->align('center');
+                $font->valign('bottom');
+                $font->angle(0);
+            });
+            $img->text(persianText(tr_num($user->companies[0]->name)), 220, 380, function (\Intervention\Image\Gd\Font $font) {
+                $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+                $font->size(28);
+                $font->color('#000000');
+                $font->align('center');
+                $font->valign('bottom');
+                $font->angle(0);
+            });
+        }
+        $img->text(persianText(tr_num(jdate($user->expire)->format('Y/m/d'))), 220, 470, function (\Intervention\Image\Gd\Font $font) {
+            $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+            $font->size(28);
+            $font->color('#000000');
+            $font->align('center');
+            $font->valign('bottom');
+            $font->angle(0);
+        });
+        $img->insert(asset('img/emam.jpg'), 'right', 70, 0);
+        $img->save(public_path("img/userCards/$imageName.jpg"));
+        echo "<img src='" . asset("img/userCards/$imageName.jpg") . "'>";
     }
 
 }

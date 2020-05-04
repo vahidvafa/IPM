@@ -14,7 +14,8 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function indexJs(){
+    public function indexJs()
+    {
 
         return Event::get();
     }
@@ -23,7 +24,7 @@ class EventController extends Controller
     {
         $events = Event::latest()->paginate(15);
         $titleHeader = $breadcrumb = "لیست تمام رویداد ها";
-        return view('events',compact('events','titleHeader','breadcrumb'));
+        return view('events', compact('events', 'titleHeader', 'breadcrumb'));
     }
 
     public function indexCms()
@@ -137,7 +138,6 @@ return;*/
      */
     public function update(Request $request, Event $event)
     {
-//        dd($request->all());
         $this->validate($request, [
             "title" => "required",
             "description" => "required",
@@ -168,10 +168,10 @@ return;*/
             }
             $event->user_id = (auth()->check()) ? auth()->id() : 0;
             $event->save();
-            flash_message('success',  __('string.successful.edit'));
+            flash_message('success', __('string.successful.edit'));
             return redirect()->route('event.index');
         } catch (\Exception $exception) {
-            flash_message('error',  __('string.unsuccessful'));
+            flash_message('error', __('string.unsuccessful'));
             return back()->withInput($request->all());
         }
     }
@@ -195,14 +195,17 @@ return;*/
 
     public function orders(Event $event)
     {
-        $orders = $event->orders()->where('state_id',1)->with(['user'])->paginate(10);
-        return view('cms.events.orders',compact('event','orders'));
+        $orders = $event->orders()->where('state_id', 1)->with(['user'])->paginate(10);
+        return view('cms.events.orders', compact('event', 'orders'));
     }
 
     public function reserve(Event $event)
     {
         $titleHeader = $event->title;
         $breadcrumb = "ثبت نام در رویداد";
-        return view('reserve',compact('titleHeader','breadcrumb','event'));
+        if (time() >= $event->start_register_date && time() <= $event->to_date)
+            return view('reserve', compact('titleHeader', 'breadcrumb', 'event'));
+        else
+            abort(404);
     }
 }

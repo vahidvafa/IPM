@@ -24,7 +24,7 @@
                     <li class="nav-item col-12 col-sm-6 col-lg-3">
 
                         <a class="nav-link {{(Session::get('type') == 1) ? 'active':(!Session::get('type')?'active':'')}} p-4"
-                           data-toggle="pill" href="#menu0">
+                           data-toggle="pill" href="#menu0" style="white-space: nowrap;">
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[0]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
@@ -36,7 +36,7 @@
                     </li>
                     <li class="nav-item  col-12 col-sm-6 col-lg-3 mt-4 mt-sm-0">
                         <a class="nav-link {{(Session::get('type') == 2) ? 'active':''}} p-4" data-toggle="pill"
-                           href="#menu1">
+                           href="#menu1" style="white-space: nowrap;">
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[1]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
@@ -47,7 +47,7 @@
                     </li>
                     <li class="nav-item  col-12 col-sm-6 col-lg-3 mt-4 mt-lg-0">
                         <a class="nav-link {{(Session::get('type') == 3) ? 'active':''}} p-4" data-toggle="pill"
-                           href="#menu2">
+                           href="#menu2" style="white-space: nowrap;">
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[2]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
@@ -58,7 +58,7 @@
                     </li>
                     <li class="nav-item  col-12 col-sm-6 col-lg-3  mt-4 mt-lg-0">
                         <a class="nav-link {{(Session::get('type') == 4) ? 'active':''}} p-4" data-toggle="pill"
-                           href="#menu3">
+                           href="#menu3" style="white-space: nowrap;">
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[3]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
@@ -536,6 +536,26 @@
                                             <div id="name-error" class="error text-danger pl-3" for="name"
                                                  style="display: block;">
                                                 <strong>{{ $errors->first('experience.to_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-12">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>حوزه های تخصصی :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="specialized_basins"
+                                               value="{{(Session::get('type') == 1) ?request()->old('specialized_basins'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="حوزه های تخصصی *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('specialized_basins'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('specialized_basins') }}</strong>
                                             </div>
                                         @endif
                                     </div>
@@ -1219,6 +1239,26 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="input-form col-md-12">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>حوزه های تخصصی :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="specialized_basins"
+                                               value="{{(Session::get('type') == 2) ?request()->old('specialized_basins'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="حوزه های تخصصی *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('specialized_basins'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('specialized_basins') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                             <div class="input-form col-md-12 py-2 px-4">
                                 <label for="branch">شاخه : </label>
                                 <select name="branch_id" required>
@@ -1745,6 +1785,27 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="input-form col-md-12">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>حوزه های تخصصی :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="specialized_basins"
+                                               value="{{(Session::get('type') == 3) ?request()->old('specialized_basins'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="حوزه های تخصصی *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('specialized_basins'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('specialized_basins') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="input-form col-md-12 py-2 px-4">
                                 <label for="branch">شاخه : </label>
                                 <select name="branch_id" required>
@@ -2060,6 +2121,26 @@
                                             <div id="name-error" class="error text-danger pl-3" for="name"
                                                  style="display: block;">
                                                 <strong>{{ $errors->first('home_post') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-12">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>حوزه های تخصصی :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="specialized_basins"
+                                               value="{{(Session::get('type') == 4) ?request()->old('specialized_basins'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="حوزه های تخصصی *" required>
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 4 && $errors->has('specialized_basins'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('specialized_basins') }}</strong>
                                             </div>
                                         @endif
                                     </div>

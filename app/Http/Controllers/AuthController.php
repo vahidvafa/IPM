@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Branch;
 use App\Company;
 use App\Document;
+use App\Order;
 use App\User;
 use App\WorkExperience;
 use Illuminate\Support\Facades\Auth;
@@ -156,9 +157,10 @@ class AuthController extends Controller
                 'branch_id' => $request->get('branch_id'),
             ]
         );
-        $user->active = ($memberShipType->price == 0) ? 2 : 1;
+        $user->active = ($memberShipType->price == 0) ? 2 : 0;
         $profile = new Profile($request->all());
         $profile->lang_id = 1;
+
         $isSuccessful = \DB::transaction(function () use ($user, $profile, $request) {
             $user->save();
             $user->profile()->save($profile);
@@ -183,10 +185,12 @@ class AuthController extends Controller
                 $company = new Company($request->all('company')['company']);
                 $user->companies()->save($company);
             }
+            $year = ($request->get('year') == 3) ? 3 : 1;
             $membership = new Membership(
                 [
                     'membership_type_id' => $request->get('type'),
                     'user_id' => $user->id,
+                    'year' => $year,
                     'lang_id' => 1
                 ]
             );
@@ -195,7 +199,28 @@ class AuthController extends Controller
         });
         if ($isSuccessful) {
             auth()->loginUsingId($user->id);
-            return redirect()->to(route('main'));
+            if ($user->active == 0) {
+                $commentTitle = $memberShipType->title;
+                $price = ($request->get('year') == 3) ? $memberShipType->price * 2 : $memberShipType->price;
+                //premium user
+                $order = new Order([
+                    'user_id' => $user->id,
+                    'event_id' => 0,
+                    'type_id' => 1,
+                    'comment' => " پرداخت جهت $commentTitle در انجمن ",
+                    'total_price' => $price,
+                    'reference_id' => $user->id . time(),
+                ]);
+                $order->save();
+                $breadcrumb = $titleHeader = "در حال انتقال به بانک";
+                $resNum = $order->reference_id;
+                $comment = $order->comment;
+                $merchantCode = '11175778';
+                $redirectURL = route('verifyRegister');
+                return view('bank', compact('titleHeader', 'breadcrumb', 'price', 'resNum', 'merchantCode', 'redirectURL', 'comment'));
+            } else
+                return redirect()->to(route('main'));
+            //free user
         }
         return back();
     }
@@ -259,5 +284,40 @@ class AuthController extends Controller
                 'message' => 'سلام کاربر عزیر آدرس انجمن مدیریت پروژه ایران به شرح زیر است ! https://goo.gl/maps/dK2g7juXjzcpddDa8'])
             ->post();
         return back();
+    }
+
+    public function verifyRegisterBank(Request $request)
+    {
+        $MerchantCode = "11175778";
+        $date = Jalalian::now()->format('Y/m/d H:i');
+        $titleHeader = $breadcrumb = 'وضعیت پرداخت';
+        $status = false;
+        $type_id = 1;
+        $referenceId = "----";
+        $user = User::find(\auth()->id());
+        if ($request->has('State') && $request->get('State') == "OK") {
+            $referenceId = $request->get('ResNum');
+            $referenceNumber = $request->get('RefNum');
+            $order = Order::whereReferenceId($referenceId)->whereStateId(0);
+            if ($order->exists()) {
+                if (($order->total_price) == $request->get('Amount')) {
+                    $soapClient = new soapclient('https://verify.sep.ir/Payments/ReferencePayment.asmx?WSDL');
+                    $verify = $soapClient->VerifyTransaction($referenceNumber, $MerchantCode);
+                    if ($verify > 0) {
+                        $order->update([
+                            'state_id' => '1',
+                            'reference_number' => $referenceNumber,
+                        ]);
+                        $user->active = 1;
+                        $user->save();
+                        $status = true;
+                        $date = Jalalian::fromCarbon($order->created_at)->format('Y/m/d H:i');
+                        return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'type_id'));
+                    }
+                }
+                $order->update(['state_id' => 2]);
+            }
+        }
+        return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'type_id'));
     }
 }

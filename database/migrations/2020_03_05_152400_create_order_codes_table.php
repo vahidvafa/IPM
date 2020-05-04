@@ -21,6 +21,7 @@ class CreateOrderCodesTable extends Migration
             $table->string('mobile')->nullable();
             $table->string('email')->nullable();
             $table->string('code');
+            $table->text('picture')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

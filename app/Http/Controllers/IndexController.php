@@ -8,10 +8,16 @@ use App\IPMA;
 use App\MembershipType;
 use App\News;
 use App\Order;
+use App\OrderCode;
 use App\User;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+use Ixudra\Curl\Facades\Curl;
+use Morilog\Jalali\Jalalian;
+use Shetabit\Payment\Drivers\Irankish\Irankish;
 use Shetabit\Payment\Facade\Payment;
 use Shetabit\Payment\Invoice;
+use SoapClient;
 
 class IndexController extends Controller
 {
@@ -26,8 +32,8 @@ class IndexController extends Controller
         $news = News::latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
         $ipma = IPMA::latest()->first();
         $eventsWithCats = EventCategory::withCount(["event"])->get();
-        $eventsWithCats->transform(function($category) {
-            $category->event = Event::whereHas('category', function($q) use($category) {
+        $eventsWithCats->transform(function ($category) {
+            $category->event = Event::whereHas('category', function ($q) use ($category) {
                 $q->where('id', $category->id);
             })
                 ->take(3)
@@ -37,7 +43,7 @@ class IndexController extends Controller
 
 //        return $eventsWithCats;
 
-        return view('index', compact('events', 'news', 'ipma','eventsWithCats'));
+        return view('index', compact('events', 'news', 'ipma', 'eventsWithCats'));
     }
 
     public function search()
@@ -80,7 +86,7 @@ class IndexController extends Controller
 
     public function callback()
     {
-        $status = true;
+//        $status = true;
 //        $status = false;
         $titleHeader = $breadcrumb = 'وضعیت پرداخت';
         return view('call_back', compact('status', 'titleHeader', 'breadcrumb'));
@@ -88,16 +94,167 @@ class IndexController extends Controller
 
     public function bank()
     {
-        dd(response(auth()->user()->profile()->get()->first()));
-        $price = (int)MembershipType::whereId(auth()->user()->membership_type_id)->get('price')->first()->price;
-//        dd($price);
-        return Payment::purchase(
-            (new Invoice)->amount($price),
-            function ($driver, $transactionId) {
-                // store transactionId in database.
-                // we need the transactionId to verify payment in future
+        return view('bank');
+    }
+
+    public function verify(Request $request)
+    {
+        $MerchantCode = "11175778";
+        $date = Jalalian::now()->format('Y/m/d H:i');
+        $titleHeader = $breadcrumb = 'وضعیت پرداخت';
+        $status = false;
+        $type_id = 0;
+        if ($request->has('State') && $request->get('State') == "OK") {
+            $referenceId = $request->get('ResNum');
+            $referenceNumber = $request->get('RefNum');
+            $order = Order::whereReferenceId($referenceId)->whereStateId(0);
+            if ($order->exists()) {
+                if (($order->total_price) == $request->get('Amount')) {
+                    $soapClient = new soapclient('https://verify.sep.ir/Payments/ReferencePayment.asmx?WSDL');
+                    $verify = $soapClient->VerifyTransaction($referenceNumber, $MerchantCode);
+                    if ($verify > 0) {
+                        $order->update([
+                            'state_id' => '1',
+                            'reference_number' => $referenceNumber,
+                        ]);
+                        $event = $order->event()->first();
+                        $category = persianText($event->category()->get('name')->first()->name);
+                        $date = $event->from_date;
+                        $address = $event->address;
+                        $latitude = $event->latitude;
+                        $longitude = $event->longitude;
+                        $year = jdate($date)->format('%Y');
+                        $month = persianText(jdate($date)->format('%d %B'));
+                        $day = persianText(jdate($date)->format('%A'));
+                        $time = jdate($date)->format('H:i') . persianText(" ساعت ");
+                        $lines = explode("\n", wordwrap(" محل برگزاری : $address ", 69));
+                        switch ($event->event_category_id) {
+                            case 1:
+                                $type = public_path('img/BO1-red.jpg');
+                                break;
+                            case 2:
+                                $type = public_path('img/BO1-ornge.jpg');
+                                break;
+                            case 3:
+                                $type = public_path('img/BO1-blue.jpg');
+                                break;
+                            default:
+                                $type = public_path('img/BO1-blue.jpg');
+                        }
+                        foreach ($order->orderCodes()->get() as $orderCode) {
+                            $img = Image::make($type);
+                            foreach ($lines as $index => $line) {
+                                if ($index == 0) {
+                                    $y = 950;
+                                } else {
+                                    $y = 950 + ($index * 30);
+                                }
+                                $img->text(persianText($line), 650, $y, function (\Intervention\Image\Gd\Font $font) {
+                                    $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+                                    $font->size(25);
+                                    $font->color('#424B54');
+                                    $font->align('right');
+                                    $font->valign('center');
+                                    $font->angle(0);
+                                });
+                            }
+                            $img->text($year, 190, 690, function (\Intervention\Image\Gd\Font $font) {
+                                $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+                                $font->size(42);
+                                $font->color('#424B54');
+                                $font->align('right');
+                                $font->valign('bottom');
+                                $font->angle(0);
+                            });
+                            $img->text($month, 420, 700, function (\Intervention\Image\Gd\Font $font) {
+                                $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+                                $font->size(28);
+                                $font->color('#424B54');
+                                $font->align('right');
+                                $font->valign('bottom');
+                                $font->angle(0);
+                            });
+                            $img->text($time, 420, 870, function (\Intervention\Image\Gd\Font $font) {
+                                $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+                                $font->size(28);
+                                $font->color('#424B54');
+                                $font->align('right');
+                                $font->valign('bottom');
+                                $font->angle(0);
+                            });
+                            $img->text($category, 500, 1200, function (\Intervention\Image\Gd\Font $font) {
+                                $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+                                $font->size(35);
+                                $font->color('#424B54');
+                                $font->align('right');
+                                $font->valign('bottom');
+                                $font->angle(0);
+                            });
+                            $img->text($day, 610, 700, function (\Intervention\Image\Gd\Font $font) {
+                                $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+                                $font->size(38);
+                                $font->color('#424B54');
+                                $font->align('right');
+                                $font->valign('bottom');
+                                $font->angle(0);
+                            });
+                            $img->text(persianText($event->title), 340, 510, function (\Intervention\Image\Gd\Font $font) {
+                                $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+                                $font->size(28);
+                                $font->color('#424B54');
+                                $font->align('center');
+                                $font->valign('bottom');
+                                $font->angle(0);
+                            });
+                            $img->text(persianText('مجوز حضور'), 320, 100, function (\Intervention\Image\Gd\Font $font) {
+                                $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+                                $font->size(40);
+                                $font->color('#ffffff');
+                                $font->align('right');
+                                $font->valign('bottom');
+                                $font->angle(0);
+                            });
+                            $img->insert("https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maps.google.com/?q=$latitude,$longitude", 'bottom-left', 50, 175);
+                            $img->text(persianText($orderCode->name), 340, 250, function (\Intervention\Image\Gd\Font $font) {
+                                $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+                                $font->size(30);
+                                $font->color('#424B54');
+                                $font->align('center');
+                                $font->valign('bottom');
+                                $font->angle(0);
+                            });
+                            $img->text($orderCode->code . persianText("کد :"), 340, 350, function (\Intervention\Image\Gd\Font $font) {
+                                $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+                                $font->size(30);
+                                $font->color('#424B54');
+                                $font->align('center');
+                                $font->valign('bottom');
+                                $font->angle(0);
+                            });
+                            $imageName = $orderCode->id . $order->id . time();
+                            $img->save(public_path("img/codes/$imageName.jpg"));
+                            OrderCode::find($orderCode->id)->update(['picture' => "$imageName.jpg"]);
+                        }
+                        $eventName = $event->title;
+                        $count = tr_num($order->orderCodes()->count());
+                        Curl::to('https://panel.asanak.com/webservice/v1rest/sendsms')
+                            ->withData(['username' => 'ipmairan',
+                                'password' => 'ipma!@#$%^',
+                                'source' => '982188229406',
+                                'destination' => auth()->user()->mobile,
+                                'message' => "کاربر عزیز بلیت شما برای رویداد $eventName به تعداد $count صادر و به ایمیل شما ارسال شد !"])
+                            ->post();
+                        $status = true;
+                        $date = Jalalian::fromCarbon($order->created_at)->format('Y/m/d H:i');
+                        $tickets = $order->orderCodes()->get();
+                        return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'tickets', 'type_id'));
+                    }
+                }
+                $order->update(['state_id' => 2]);
+                $order->orderCodes()->delete();
             }
-        )->pay();
+        }
+        return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'type_id'));
     }
 
 
@@ -129,15 +286,15 @@ class IndexController extends Controller
     public function winners()
     {
         $breadcrumb = $titleHeader = "کارگروه های تخصصی";
-        return view('winners', compact('titleHeader', 'breadcrumb','id'));
+        return view('winners', compact('titleHeader', 'breadcrumb', 'id'));
     }
 
     public function winners_detail($id)
     {
-        if ($id > 0 && $id <= 7){
+        if ($id > 0 && $id <= 7) {
             $breadcrumb = $titleHeader = "ارزیابان";
-            return view('winners_detail', compact('titleHeader', 'breadcrumb','id'));
-        }else{
+            return view('winners_detail', compact('titleHeader', 'breadcrumb', 'id'));
+        } else {
             abort(404);
         }
     }
@@ -148,36 +305,35 @@ class IndexController extends Controller
         return view('gov', compact('titleHeader', 'breadcrumb'));
     }
 
-    public function mainPageShow(){
+    public function mainPageShow()
+    {
         $ipma = IPMA::get()[0];
 
         $news = News::find($ipma->news_id);
         $event = Event::find($ipma->event_id);
 
-        return view('cms.main_page',compact('ipma','news','event'));
+        return view('cms.main_page', compact('ipma', 'news', 'event'));
     }
 
-    public function mainPageUpdate(){
+    public function mainPageUpdate()
+    {
         $request = \Request::except(['_token']);
 
-        $valid = validator($request,[
-            'head_title'=>'required | min:3',
-            'head_subtitle'=>'required | min:6',
-            'head_description'=>'required | min:15 | max:255',
-        ],[
-            'head_title.*'=>'سرتیتر رویداد نمی تواند خالی باشد و باید بیش از ۳ حرف باشد',
-            'head_subtitle.*'=>'عنوان رویداد نمی تواند خالی باشد و باید بیش از ۶ حرف باشد',
-            'head_description.*'=>'توضیحات رویداد نمی تواند خالی باشد و باید بین ۱۵ تا ۲۵۵ حرف باشد',
-            'event_id.*'=>'لطفا یک رویداد را انتخاب کنید',
-            'news_id.*'=>'لطفا یک اخبار را انتخاب کنید',
+        $valid = validator($request, [
+            'head_title' => 'required | min:3',
+            'head_subtitle' => 'required | min:6',
+            'head_description' => 'required | min:15 | max:255',
+        ], [
+            'head_title.*' => 'سرتیتر رویداد نمی تواند خالی باشد و باید بیش از ۳ حرف باشد',
+            'head_subtitle.*' => 'عنوان رویداد نمی تواند خالی باشد و باید بیش از ۶ حرف باشد',
+            'head_description.*' => 'توضیحات رویداد نمی تواند خالی باشد و باید بین ۱۵ تا ۲۵۵ حرف باشد',
+            'event_id.*' => 'لطفا یک رویداد را انتخاب کنید',
+            'news_id.*' => 'لطفا یک اخبار را انتخاب کنید',
         ]);
-
-
 
 
         if ($valid->fails())
             return back()->withErrors($valid)->withInput();
-
 
 
         $ipma = IPMA::query();
@@ -185,12 +341,12 @@ class IndexController extends Controller
 
         if ($request['newsOrEvent'] == 1) {
             $request['news_id'] = null;
-            if (!\request()->has('event_id') ) {
-                flash_message("error","متاسفانه هیچ رویدادی انتخاب نشده است");
+            if (!\request()->has('event_id')) {
+                flash_message("error", "متاسفانه هیچ رویدادی انتخاب نشده است");
                 return back()->withInput();
             }
 
-        } else{
+        } else {
             $request['event_id'] = null;
             if (!\request()->has('news_id')) {
                 flash_message("error", "متاسفانه هیچ اخباری انتخاب نشده است");
@@ -198,28 +354,29 @@ class IndexController extends Controller
             }
         }
 
-        unset($request['newsOrEvent'],$request['eventInput'],$request['newsInput']);
+        unset($request['newsOrEvent'], $request['eventInput'], $request['newsInput']);
 
 
         if ($ipma->update($request))
-            flash_message("success","تغییرات با موفقیت ذخیره شد");
+            flash_message("success", "تغییرات با موفقیت ذخیره شد");
         else
-            flash_message("error","متاسفانه خظایی رخ داده است مجددا تلاش کنید");
+            flash_message("error", "متاسفانه خظایی رخ داده است مجددا تلاش کنید");
 
 
         return back()->withInput();
 
     }
 
-    public function mainPageSearch(Request $request){
+    public function mainPageSearch(Request $request)
+    {
         $str = $request->get('str');
         $isEvent = ($request->get('type') == 1);
 
 
         if ($isEvent)
-        $event = Event::where('title','like',"%$str%")->orWhere('detail','like',"%$str%")->take(20)->get(['id','title']);
+            $event = Event::where('title', 'like', "%$str%")->orWhere('detail', 'like', "%$str%")->take(20)->get(['id', 'title']);
         else
-        $event = News::where('title','like',"%$str%")->orWhere('detail','like',"%$str%")->take(20)->get(['id','title']);
+            $event = News::where('title', 'like', "%$str%")->orWhere('detail', 'like', "%$str%")->take(20)->get(['id', 'title']);
 
         return $event;
     }

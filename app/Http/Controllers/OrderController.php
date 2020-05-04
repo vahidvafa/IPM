@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\Exports\OrdersExport;
+use App\Gift;
 use App\Order;
 use App\OrderCode;
+use App\UsedGift;
 use App\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -72,14 +74,13 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
+     * @param Event $event
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Event $event)
     {
-//        $date = "۱۳۹۹/۰۲/۰۱ ۰۲:۳۶";
-//        $referenceId = "132";
-//        $status = false;
-//        return view('call_back',compact('status','date','referenceId'));
+        if (time() <= $event->start_register_date && time() >= $event->to_date)
+            abort(404);
         $validator = \Validator::make($request->all(), [
             'users.*.name' => 'required',
             'users.*.mobile' => 'required',
@@ -93,19 +94,21 @@ class OrderController extends Controller
         }
         $users = $request->get('users');
         $totalPrice = count($users) * $event->price;
-        $referenceId = mt_rand(1000, 100000);
+        $referenceId = $event->id . time();
+        $eventName = $event->title;
         $order = new Order([
             'user_id' => auth()->id(),
             'event_id' => $event->id,
             'total_price' => $totalPrice,
             'reference_id' => $referenceId,
+            'comment' => " تهیه بلیت برای رویداد $eventName"
         ]);
-        $status = \DB::transaction(function () use ($users, $order,$event) {
+        $status = \DB::transaction(function () use ($users, $order, $event, $request) {
             $order->save();
             foreach ($users as $user) {
-                $code = $event->event_category_id.'-'.mt_rand(1000, 100000);
+                $code = $event->event_category_id . '-' . mt_rand(1000, 100000);
                 while (OrderCode::whereCode($code)->exists()) {
-                    $code = $event->event_category_id.'-'.mt_rand(1000, 100000);
+                    $code = $event->event_category_id . '-' . mt_rand(1000, 100000);
                 }
                 $orderCode = new OrderCode([
                     'name' => $user['name'],
@@ -115,19 +118,66 @@ class OrderController extends Controller
                 ]);
                 $order->orderCodes()->save($orderCode);
             }
-            return true;
+            if (!is_null($request->get('gift'))) {
+                $giftCode = Gift::whereCode($request->get('gift'));
+                if ($giftCode->exists()) {
+                    $giftCode = $giftCode->get();
+                    if ($giftCode->from_date == 0 || $giftCode->from_date <= time()) {
+                        if ($giftCode->to_date == 0 || $giftCode->to_date >= time()) {
+                            if ($giftCode->minimum_price == 0 || $giftCode->minimum_price <= $order->total_price) {
+                                if ($giftCode->maximum_price == 0 || $giftCode->maximum_price >= $order->total_price) {
+                                    if ($giftCode->maximum_count == 0 || $giftCode->maximum_count > UsedGift::whereGiftId($giftCode->id)->count()) {
+                                        if ($giftCode->members_usage == 0 || auth()->user()->active == 2) {
+                                            if ($giftCode->type_id == 1) {
+                                                $finalPrice = $order->total_price * (1 - $giftCode->price);
+                                            } else {
+                                                $finalPrice = $order->total_price - $giftCode->price;
+                                            }
+                                            $usedGift = new UsedGift([
+                                                'gift_id' => $giftCode->id,
+                                                'order_id' => $order->id,
+                                                'total_order_price' => $order->total_price
+                                            ]);
+                                            $usedGift->save();
+                                            $order->update([
+                                                'total_price' => $finalPrice
+                                            ]);
+                                            return true;
+                                        } else
+                                            $msg = __('string.gift.error.maximum_count');
+                                    } else
+                                        $msg = __('string.gift.error.maximum_count');
+                                } else
+                                    $msg = __('string.gift.error.maximum_price');
+                            } else
+                                $msg = __('string.gift.error.minimum_price');
+                        } else
+                            $msg = __('string.gift.error.to_date');
+                    } else
+                        $msg = __('string.gift.error.from_date');
+                } else
+                    $msg = __('string.gift.error.exist');
+
+                $order->delete();
+                $request->request->add(['gift_error' => $msg]);
+                return false;
+            } else {
+                return true;
+            }
         });
-        $titleHeader = $event->title;
-        $breadcrumb = "دریافت بلیط رویداد";
+
         if ($status) {
-            $date = Jalalian::fromCarbon($order->created_at)->format('Y/m/d H:i');
-            $tickets = $order->orderCodes()->get();
-            return view('call_back',compact('status','date','referenceId','tickets','titleHeader','breadcrumb'));
+            $titleHeader = $event->title;
+            $breadcrumb = "دریافت بلیت رویداد";
+            $price = $order->total_price;
+            $resNum = $order->reference_id;
+            $comment = $order->comment;
+            $merchantCode = '11175778';
+            $redirectURL = route('verifyBank');
+            return view('bank', compact('titleHeader', 'breadcrumb', 'price', 'resNum', 'merchantCode', 'redirectURL', 'comment'));
+        } else {
+            return back()->withInput($request->all());
         }
-        $date = jdate()->format('Y/m/d H:i');
-        $status = false;
-        $referenceId = "----";
-        return view('call_back',compact('status','date','referenceId','titleHeader','breadcrumb'));
     }
 
     /**

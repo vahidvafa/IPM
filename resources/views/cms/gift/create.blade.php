@@ -200,7 +200,7 @@
         $('#type_id').change(function () {
             if ($('#type_id').val() == 2){
                 $('#price_label').text('قیمت');
-                $('#price').attr('placeholder','مبلغ به صورت عدد');
+                $('#price').attr('placeholder','ریال به صورت عدد');
             }else{
                 $('#price_label').text('درصد');
                 $('#price').attr('placeholder','درصد به صورت اعشار');

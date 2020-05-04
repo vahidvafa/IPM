@@ -18,7 +18,7 @@
                             <h4 class="{{($status) ? 'text-success' : 'text-danger'}}">{{ ($status) ? __('string.successful.pay') : __('string.unsuccessful.pay') }}</h4>
                         </div>
                         <div class="col-12 py-3">
-                            <h5> کد رهگیری : {{ tr_num($referenceId,'fa') }}</h5>
+                            <h5> کد پیگری : {{ tr_num($referenceId,'fa') }}</h5>
                         </div>
                         <div class="col-12 py-3" dir="rtl">
                             <h5> تاریخ و زمان : {{tr_num($date,'fa')}}</h5>
@@ -32,9 +32,9 @@
                     </svg>
                 </div>
             </div>
-            @if($status)
+            @if($status && $type_id == 0)
                 <div class="col-sm-12 shadow my-3 p-5">
-                    <h5 class="text-left">بلیط ها</h5>
+                    <h5 class="text-left">بلیت ها</h5>
                     <table class="rwd-table table">
                         <thead>
                         <tr>
@@ -43,18 +43,21 @@
                             <th scope="col">شماره موبایل</th>
                             <th scope="col">ایمیل</th>
                             <th scope="col">کد</th>
+                            <th scope="col">چاپ</th>
                         </tr>
                         </thead>
                         <tbody>
-                       @foreach($tickets as $i => $ticket)
-                           <tr>
-                               <td data-th="ردیف">{{++$i}}</td>
-                               <td data-th="نام">{{$ticket->name}}</td>
-                               <td data-th="شماره موبایل">{{tr_num($ticket->mobile,'fa')}}</td>
-                               <td data-th="ایمیل">{{$ticket->email}}</td>
-                               <td data-th="کد">{{tr_num($ticket->code,'fa')}}</td>
-                           </tr>
-                       @endforeach
+                        @foreach($tickets as $i => $ticket)
+                            <tr>
+                                <td data-th="ردیف">{{++$i}}</td>
+                                <td data-th="نام">{{$ticket->name}}</td>
+                                <td data-th="شماره موبایل">{{tr_num($ticket->mobile,'fa')}}</td>
+                                <td data-th="ایمیل">{{$ticket->email}}</td>
+                                <td data-th="کد">{{tr_num($ticket->code,'fa')}}</td>
+                                <td data-th="چاپ">
+                                    <a href="{{route('orderCode.show',[$ticket->id])}}" target="_blank">چاپ</a></td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -272,19 +272,68 @@ class ProfileController extends Controller
             \Session::flash('type', $request->get('type'));
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
-
-        // redirect bank
-
-        return back();
+        $year = ($request->get('year') == 3) ? 3 : 1;
+        $membership = new Membership(
+            [
+                'membership_type_id' => $request->get('type'),
+                'user_id' => auth()->id(),
+                'year' => $year,
+                'lang_id' => 1
+            ]
+        );
+        $membership->save();
+        $memberShipType = MembershipType::find($request->get('type'));
+        $price = ($request->get('year') == 3) ? $memberShipType->price * 2 : $memberShipType->price;
+        $order = new Order([
+            'user_id' => auth()->id(),
+            'event_id' => 0,
+            'type_id' => 2,
+            'comment' => "پرداخت جهت تمدید",
+            'total_price' => $price,
+            'reference_id' => auth()->id() . time(),
+        ]);
+        $order->save();
+        $breadcrumb = $titleHeader = "در حال انتقال به بانک";
+        $resNum = $order->reference_id;
+        $comment = $order->comment;
+        $merchantCode = '11175778';
+        $redirectURL = route('verifyUpgrade');
+        return view('bank', compact('titleHeader', 'breadcrumb', 'price', 'resNum', 'merchantCode', 'redirectURL', 'comment'));
     }
 
-    public function banckCallBack(){
+    public function bankCallBack(Request $request){
 
-        $status = true;
-        $referenceId = "121231232";
+        $MerchantCode = "11175778";
+        $date = Jalalian::now()->format('Y/m/d H:i');
+        $titleHeader = $breadcrumb = 'وضعیت پرداخت';
+        $status = false;
+        $referenceId = "----";
+        $user = User::find(\auth()->id());
+        if ($request->has('State') && $request->get('State') == "OK") {
+            $referenceId = $request->get('ResNum');
+            $referenceNumber = $request->get('RefNum');
+            $order = Order::whereReferenceId($referenceId)->whereStateId(0);
+            if ($order->exists()) {
+                if (($order->total_price) == $request->get('Amount')) {
+                    $soapClient = new soapclient('https://verify.sep.ir/Payments/ReferencePayment.asmx?WSDL');
+                    $verify = $soapClient->VerifyTransaction($referenceNumber, $MerchantCode);
+                    if ($verify > 0) {
+                        $order->update([
+                            'state_id' => 1,
+                            'reference_number' => $referenceNumber,
+                        ]);
+                        $user->active = 5;
+                        $user->save();
+                        $status = true;
+                        $date = Jalalian::fromCarbon($order->created_at)->format('Y/m/d H:i');
+                        return view('upgrade_call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date'));
+                    }
+                }
+                $order->update(['state_id' => 2]);
+            }
+        }
+        return view('upgrade_call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date'));
 
-        return view('upgrade_call_back',compact('status','referenceId'));
     }
 
 
