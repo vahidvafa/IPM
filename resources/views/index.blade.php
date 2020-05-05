@@ -139,7 +139,7 @@
                                         @guest
                                             <a class="dropdown-item" href="{{route('register')}}">ثبت عضویت</a>
                                         @endguest
-                                        <a class="dropdown-item" href="#">كميته عضويت</a>
+
                                         <a class="dropdown-item" href="{{route('user.search')}}">يافتن اعضا</a>
                                         <a class="dropdown-item" href="http://yc.ipma.ir/" target="_blank">شبكه اعضا
                                             جوان</a>

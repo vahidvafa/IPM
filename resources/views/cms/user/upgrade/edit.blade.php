@@ -8,9 +8,18 @@
                     {{--<a href="{{route('cms.user.create')}}">--}}
                     {{--<i class="material-icons" style="float: left;font-size: 32px;color: white">add_box</i>--}}
                     {{--</a>--}}
-                    <h4 class="card-title">ویرایش اطلاعات کاربر</h4>
+                    <h4 class="card-title"> ارتقا کاربر (
+                         @if($user->active == 4)
+                             منتطر پرداخت یا مشکل در پرداخت
+                         @else
+                             پرداخت شده
+                         @endif
+                         {{")"}}
+                    </h4>
+
                 </div>
             </div>
+
             <div id="menu0" class="card-body">
                 <h2 class=" font-22 text-medium text-black mt-5 mb-4">
                     فرم {{$membership->title}}
@@ -23,9 +32,8 @@
                     <input type="hidden" name="type"
                            value="{{$membership->id}}">
                     <input type="hidden" name="tmp"
-                           value="{{$user->id}}">
-                    <input type="hidden" name="slug"
-                           value="{{$user->slug}}">
+                           value="{{request('id')}}">
+
                     <div class="form-group col-md-6 mb-3 ">
                         <label for="first_name" class="col-12">نام *</label>
                         <input type="text" name="first_name" id="first_name" class="form-control"
@@ -60,7 +68,7 @@
 
                     </div>
 
-                    {{--<div class="form-group col-md-6 mb-3 ">
+                    <div class="form-group col-md-6 mb-3 ">
                         <label for="name_en" class="col-12">نام و نام خانوادگی انگلیسی*</label>
                         <input type="text" name="name_en"
                                value="{{old('name_en')??$user->name_en}}"
@@ -76,11 +84,12 @@
                             </div>
                         @endif
 
-                    </div>--}}
+                    </div>
+
                     <div class="form-group col-md-6 mb-3 ">
                         <label for="profile[father_name]" class="col-12">نام پدر*</label>
                         <input type="text" name="profile[father_name]" id="profile[father_name]"
-                               value="{{old('profile.father_name')??$user->profile[0]->father_name}}"
+                               value="{{old('profile.father_name')??$user->profile->father_name}}"
                                class="form-control" aria-invalid="false"
                                required>
 
@@ -97,7 +106,7 @@
                     <div class="form-group col-md-6 mb-3 ">
                         <label for="profile[national_code]" class="col-12">کد ملی*</label>
                         <input type="text" name="profile[national_code]" id="profile[national_code]"
-                               value="{{old('profile.national_code')??$user->profile[0]->national_code}}"
+                               value="{{old('profile.national_code')??$user->profile->national_code}}"
                                class="form-control" aria-invalid="false"
                                required>
 
@@ -114,7 +123,7 @@
                     <div class="form-group col-md-6 mb-3 ">
                         <label for="profile[certificate_number]" class="col-12">شماره شناسنامه*</label>
                         <input type="text" name="profile[certificate_number]" id="profile[certificate_number]"
-                               value="{{old('profile.certificate_number')??$user->profile[0]->certificate_number}}"
+                               value="{{old('profile.certificate_number')??$user->profile->certificate_number}}"
                                class="form-control" aria-invalid="false"
                                required>
 
@@ -131,7 +140,7 @@
                     <div class="form-group col-md-6 mb-3">
                         <label for="birth_date" class="col-12">تاریخ تولد*</label>
                         <input type="text" name="profile[birth_date]" id="birth_date"
-                               value="{{old('profile.birth_date')??$user->profile[0]->birth_date}}"
+                               value="{{old('profile.birth_date')??$user->profile->birth_date}}"
                                class="form-control" aria-invalid="false"
                                required>
 
@@ -148,7 +157,7 @@
                     <div class="form-group col-md-6 mb-3">
                         <label for="profile[birth_place]" class="col-12">محل تولد*</label>
                         <input type="text" name="profile[birth_place]" id="profile[birth_place]"
-                               value="{{old('profile.birth_place')??$user->profile[0]->birth_place}}"
+                               value="{{old('profile.birth_place')??$user->profile->birth_place}}"
                                class="form-control" aria-invalid="false"
                                required>
 
@@ -167,11 +176,11 @@
                         <input type="radio" class="option-input"
                                name="profile[sex]"
                                value="1"
-                               aria-invalid="false" required @if($user->profile[0]->sex == 1) checked @endif>
+                               aria-invalid="false" required @if($user->profile->sex == 1) checked @endif>
                         مرد
                         <input type="radio" class="option-input"
                                name="profile[sex]" value="0"
-                               aria-invalid="false" required @if($user->profile[0]->sex == 0) checked @endif>
+                               aria-invalid="false" required @if($user->profile->sex == 0) checked @endif>
                         زن
                         @if ($errors->has('profile.sex'))
                             <div id="name-error" class="error text-danger pl-3"
@@ -182,10 +191,10 @@
                         @endif
                     </div>
 
-                    <div class="form-group col-md-6 mb-3 mt-3">
+     {{--               <div class="form-group col-md-6 mb-3 mt-3">
                         <label for="profile[work_address]" class="col-12">نشانی محل کار *</label>
                         <input type="text" name="profile[work_address]" id="profile[work_address]"
-                               value="{{old('profile.work_address')??$user->profile[0]->work_address}}"
+                               value="{{old('profile.work_address')??$user->profile->work_address}}"
                                class="form-control" aria-invalid="false"
                                required>
 
@@ -197,12 +206,12 @@
                             </div>
                         @endif
 
-                    </div>
+                    </div>--}}
 
-                    <div class="form-group col-md-6 mb-3">
+                    {{--<div class="form-group col-md-6 mb-3">
                         <label for="profile[work_post]" class="col-12">کد پستی محل کار *</label>
                         <input type="text" name="profile[work_post]" id="profile[work_post]"
-                               value="{{old('profile.work_post')??$user->profile[0]->work_post}}"
+                               value="{{old('profile.work_post')??$user->profile->work_post}}"
                                class="form-control" aria-invalid="false"
                                required>
 
@@ -214,12 +223,12 @@
                             </div>
                         @endif
 
-                    </div>
+                    </div>--}}
 
-                    <div class="form-group col-md-6 mb-3">
+                    {{--<div class="form-group col-md-6 mb-3">
                         <label for="profile[home_address]" class="col-12">نشانی منزل *</label>
                         <input type="text" name="profile[home_address]" id="profile[home_address]"
-                               value="{{old('profile.home_address')??$user->profile[0]->home_address}}"
+                               value="{{old('profile.home_address')??$user->profile->home_address}}"
                                class="form-control" aria-invalid="false"
                                required>
 
@@ -236,7 +245,7 @@
                     <div class="form-group col-md-6 mb-3">
                         <label for="profile[home_post]" class="col-12">کد پستی منزل *</label>
                         <input type="text" name="profile[home_post]" id="profile[home_post]"
-                               value="{{old('profile.home_post')??$user->profile[0]->home_post}}"
+                               value="{{old('profile.home_post')??$user->profile->home_post}}"
                                class="form-control" aria-invalid="false"
                                required>
 
@@ -248,12 +257,12 @@
                             </div>
                         @endif
 
-                    </div>
+                    </div>--}}
 
-                    <div class="form-group col-md-6 mb-3">
+                    {{--<div class="form-group col-md-6 mb-3">
                         <label for="profile[work_name]" class="col-12">محل کار *</label>
                         <input type="text" name="profile[work_name]" id="profile[work_name]"
-                               value="{{old('profile.work_name')??$user->profile[0]->work_name}}"
+                               value="{{old('profile.work_name')??$user->profile->work_name}}"
                                class="form-control" aria-invalid="false"
                                required>
 
@@ -265,17 +274,17 @@
                             </div>
                         @endif
 
-                    </div>
+                    </div>--}}
 
-                    <div class="form-group col-md-6 mb-3 py-2 px-4">
+                    {{--<div class="form-group col-md-6 mb-3 py-2 px-4">
                         <label for="">انتخاب نشانی ارسال مراسلات : </label>
                         <input type="radio" class="option-input"
                                name="profile[receive_place]" value="0"
-                               aria-invalid="false" required @if($user->profile[0]->receive_place == 0) checked @endif >
+                               aria-invalid="false" required @if($user->profile->receive_place == 0) checked @endif >
                         منزل
                         <input type="radio" class="option-input"
                                name="profile[receive_place]" value="1"
-                               aria-invalid="false" required @if($user->profile[0]->receive_place == 1) checked @endif >
+                               aria-invalid="false" required @if($user->profile->receive_place == 1) checked @endif >
                         محل کار
                         @if ($errors->has('receive_place'))
                             <div id="name-error" class="error text-danger pl-3"
@@ -284,7 +293,7 @@
                                 <strong>{{ $errors->first('receive_place') }}</strong>
                             </div>
                         @endif
-                    </div>
+                    </div>--}}
 
                     <div class="form-group col-md-6 mb-3">
                         <label for="password" class="col-12">رمز عبور*</label>
@@ -335,41 +344,6 @@
 
                     </div>
 
-                    <div class="form-group col-md-6 mb-3">
-                        <label for="profile[specialized_basins]" class="col-12">حوضه فعالیت</label>
-                        <input type="text" name="profile[specialized_basins]"
-                               value="{{old('profile[specialized_basins]')??$user->profile[0]->specialized_basins}}"
-                               class="form-control" aria-invalid="false"
-                        >
-
-                        @if ($errors->has('profile[specialized_basins]'))
-                            <div id="name-error" class="error text-danger pl-3"
-                                 for="specialized_basins"
-                                 style="display: block;">
-                                <strong>{{ $errors->first('profile[specialized_basins]') }}</strong>
-                            </div>
-                        @endif
-
-                    </div>
-
-
-                    <div class="form-group col-md-12 mb-3">
-                        <label for="profile[honors]" class="col-12">افتخارات حضور در انجمن</label>
-                        <input type="text" name="profile[honors]"
-                               value="{{old('profile.honors')??$user->profile[0]->honors}}"
-                               class="form-control" aria-invalid="false"
-                        >
-
-                        @if ($errors->has('profile.honors'))
-                            <div id="name-error" class="error text-danger pl-3"
-                                 for="specialized_basins"
-                                 style="display: block;">
-                                <strong>{{ $errors->first('profile.honors') }}</strong>
-                            </div>
-                        @endif
-
-                    </div>
-
 
                     <div class="form-group col-md-3 mb-3 mt-3 py-2 px-4">
                         <label for="active">تایید کاربر: </label>
@@ -383,23 +357,6 @@
                                  for="active"
                                  style="display: block;">
                                 <strong>{{ $errors->first('active') }}</strong>
-                            </div>
-                        @endif
-                    </div>
-
-                    <div class="form-group col-md-3 mb-3 mt-3 py-2 px-4">
-                        <label for="isShowMyPhone">نمایش شماره تلفن برای همه: </label>
-                        <input type="checkbox" class="option-input"
-                               name="isShowMyPhone"
-                               value="0"
-                               id="isShowMyPhone"
-                               aria-invalid="false" @if($user->isShowMyPhone == 1) checked @endif>
-
-                        @if ($errors->has('isShowMyPhone'))
-                            <div id="name-error" class="error text-danger pl-3"
-                                 for="active"
-                                 style="display: block;">
-                                <strong>{{ $errors->first('isShowMyPhone') }}</strong>
                             </div>
                         @endif
                     </div>
@@ -430,65 +387,6 @@
                         @endif
                     </div>
 
-                    <div class="col-md-12 mb-3 mt-3 py-2 px-4 row">
-                        <div class="form-group col-md-5 mb-3">
-                            <label for="certificate-level">سطح مدرک</label>
-                            <select class="form-control" name="certificate-level" id="certificate-level">
-                                <option value="A" @if(substr(explode("“",$user->profile[0]->certificate)[1],0,1) == "A") selected @endif >IPMA CB Certificate Level A</option>
-                                <option value="B" @if(substr(explode("“",$user->profile[0]->certificate)[1],0,1) == "B") selected @endif >IPMA CB Certificate Level B</option>
-                                <option value="C" @if(substr(explode("“",$user->profile[0]->certificate)[1],0,1) == "C") selected @endif >IPMA CB Certificate Level C</option>
-                                <option value="D" @if(substr(explode("“",$user->profile[0]->certificate)[1],0,1) == "D") selected @endif >IPMA CB Certificate Level D</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group col-md-6 mb-3 mt-4">
-                            <label for="certificate-date" class="col-12">تاریخ*</label>
-                            <input type="text" name="certificate-date" id="certificate-date"
-                                   value="{{old('certificate-date')??explode(" - ",$user->profile[0]->certificate)[1]}}"
-                                   class="form-control datePickerInput" aria-invalid="false"
-                                   style="margin-top: 19px"
-                                   required>
-
-                            @if ($errors->has('certificate-date'))
-                                <div id="name-error" class="error text-danger pl-3"
-                                     for="certificate-date"
-                                     style="display: block;">
-                                    <strong>{{ $errors->first('certificate-date') }}</strong>
-                                </div>
-                            @endif
-                        </div>
-
-                        <h3 class="font-22 text-medium text-black col-12">جوایز و مدارک: </h3>
-                        <div class="form-group col-md-6 mb-3 mt-4">
-                            <label for="awards[1]" class="col-12">ردیف اول*</label>
-                            <input type="text" name="awards[1]" id="awards[1]"
-                                   value="{{old('awards[1]')??explode("?!?",$user->profile[0]->awards)[0]}}"
-                                   class="form-control " aria-invalid="false"
-                                   required>
-
-                        </div>
-                        <div class="form-group col-md-6 mb-3 mt-4">
-                            <label for="awards[2]" class="col-12">ردیف دوم*</label>
-                            <input type="text" name="awards[2]" id="awards[2]"
-                                   value="{{old('awards[2]')??explode("?!?",$user->profile[0]->awards)[1]}}"
-                                   class="form-control " aria-invalid="false"
-                                   required>
-
-                        </div>
-                        <div class="form-group col-md-6 mb-3 mt-4">
-                            <label for="awards[3]" class="col-12">ردیف سوم*</label>
-                            <input type="text" name="awards[3]" id="awards[3]"
-                                   value="{{old('awards[3]')??explode("?!?",$user->profile[0]->awards)[2]}}"
-                                   class="form-control" aria-invalid="false"
-                                   required>
-                        </div>
-
-
-                    </div>
-
-
-
-
                     @if($user->membership_type_id == 2)
 
                         <div class="col-md-12 my-4">
@@ -496,17 +394,17 @@
                                 :</h2>
                         </div>
                         <div class="form-group col-md-6 mb-3">
-                            <label for="company[name]" class="col-12">نام سازمان *</label>
-                            <input type="text" name="company[name]"
-                                   value="{{old('company.name')??$user->companies[0]->name}}"
+                            <label for="companies[name]" class="col-12">نام سازمان *</label>
+                            <input type="text" name="companies[name]"
+                                   value="{{old('companies.name')??$user->companies->name}}"
                                    class="form-control" aria-invalid="false"
                             >
 
-                            @if ($errors->has('company.name'))
+                            @if ($errors->has('companies.name'))
                                 <div id="name-error" class="error text-danger pl-3"
                                      for="name"
                                      style="display: block;">
-                                    <strong>{{ $errors->first('company.name') }}</strong>
+                                    <strong>{{ $errors->first('companies.name') }}</strong>
                                 </div>
                             @endif
 
@@ -514,233 +412,233 @@
                         </div>
 
                         <div class="form-group col-md-6 mb-3">
-                            <label for="company[established_date]" class="col-12">سال تاسیس*</label>
-                            <input type="text" name="company[established_date]"
-                                   value="{{old('company.established_date')??$user->companies[0]->established_date}}"
+                            <label for="companies[established_date]" class="col-12">سال تاسیس*</label>
+                            <input type="text" name="companies[established_date]"
+                                   value="{{old('companies.established_date')??$user->companies->established_date}}"
                                    class="form-control" aria-invalid="false"
                                    required>
 
-                            @if ($errors->has('company.established_date'))
+                            @if ($errors->has('companies.established_date'))
                                 <div id="name-error" class="error text-danger pl-3"
                                      for="name"
                                      style="display: block;">
-                                    <strong>{{ $errors->first('company.established_date') }}</strong>
+                                    <strong>{{ $errors->first('companies.established_date') }}</strong>
                                 </div>
                             @endif
 
                         </div>
 
                         <div class="form-group col-md-6 mb-3">
-                            <label for="company[established_number]" class="col-12">شماره ثبت*</label>
-                            <input type="text" name="company[established_number]"
-                                   value="{{old('company.established_number')??$user->companies[0]->established_number}}"
+                            <label for="companies[established_number]" class="col-12">شماره ثبت*</label>
+                            <input type="text" name="companies[established_number]"
+                                   value="{{old('companies.established_number')??$user->companies->established_number}}"
                                    class="form-control" aria-invalid="false"
                                    required>
 
-                            @if ($errors->has('company.established_number'))
+                            @if ($errors->has('companies.established_number'))
                                 <div id="name-error" class="error text-danger pl-3"
                                      for="name"
                                      style="display: block;">
-                                    <strong> {{ $errors->first('company.established_number') }} </strong>
+                                    <strong> {{ $errors->first('companies.established_number') }} </strong>
                                 </div>
                             @endif
 
                         </div>
 
                         <div class="form-group col-md-6 mb-3">
-                            <label for="company[economy_number]" class="col-12">شماره اقتصادی*</label>
-                            <input type="text" name="company[economy_number]"
-                                   value="{{old('company.economy_number')??$user->companies[0]->economy_number}}"
+                            <label for="companies[economy_number]" class="col-12">شماره اقتصادی*</label>
+                            <input type="text" name="companies[economy_number]"
+                                   value="{{old('companies.economy_number')??$user->companies->economy_number}}"
                                    class="form-control" aria-invalid="false"
                                    required>
 
-                            @if ($errors->has('company.economy_number'))
+                            @if ($errors->has('companies.economy_number'))
                                 <div id="name-error" class="error text-danger pl-3"
                                      for="name"
                                      style="display: block;">
-                                    <strong>{{ $errors->first('company.economy_number') }}</strong>
+                                    <strong>{{ $errors->first('companies.economy_number') }}</strong>
                                 </div>
                             @endif
 
                         </div>
 
                         <div class="form-group col-md-6 mb-3">
-                            <label for="company[national_number]" class="col-12">شناسه ملی *</label>
-                            <input type="text" name="company[national_number]"
-                                   value="{{old('company.national_number')??$user->companies[0]->national_number}}"
+                            <label for="companies[national_number]" class="col-12">شناسه ملی *</label>
+                            <input type="text" name="companies[national_number]"
+                                   value="{{old('companies.national_number')??$user->companies->national_number}}"
                                    class="form-control" aria-invalid="false"
                                    required>
 
-                            @if ($errors->has('company.national_number'))
+                            @if ($errors->has('companies.national_number'))
                                 <div id="name-error" class="error text-danger pl-3"
                                      for="name"
                                      style="display: block;">
-                                    <strong>{{ $errors->first('company.national_number') }}</strong>
+                                    <strong>{{ $errors->first('companies.national_number') }}</strong>
                                 </div>
                             @endif
 
                         </div>
 
                         <div class="form-group col-md-6 mb-3">
-                            <label for="company[post_number]" class="col-12">کد پستی*</label>
-                            <input type="text" name="company[post_number]"
-                                   value="{{old('company.post_number')??$user->companies[0]->post_number}}"
+                            <label for="companies[post_number]" class="col-12">کد پستی*</label>
+                            <input type="text" name="companies[post_number]"
+                                   value="{{old('companies.post_number')??$user->companies->post_number}}"
                                    class="form-control" aria-invalid="false"
                                    required>
-                            @if ($errors->has('company.post_number'))
+                            @if ($errors->has('companies.post_number'))
                                 <div id="name-error" class="error text-danger pl-3"
                                      for="name"
                                      style="display: block;">
-                                    <strong>{{ $errors->first('company.post_number') }}</strong>
+                                    <strong>{{ $errors->first('companies.post_number') }}</strong>
                                 </div>
                             @endif
 
                         </div>
 
                         <div class="form-group col-md-6 mb-3 py-2 px-4">
-                            <label for="company[ownership_type]">نوع مالکیت شرکت : </label>
+                            <label for="companies[ownership_type]">نوع مالکیت شرکت : </label>
                             <input type="radio" class="option-input"
-                                   name="company[ownership_type]" value="دولتی"
+                                   name="companies[ownership_type]" value="دولتی"
                                    aria-invalid="false"
-                                   required @if($user->companies[0]->ownership_type == "دولتی") checked @endif >
+                                   required @if($user->companies->ownership_type == "دولتی") checked @endif >
                             دولتی
                             <input type="radio" class="option-input"
-                                   name="company[ownership_type]" value="خصوصی"
+                                   name="companies[ownership_type]" value="خصوصی"
                                    aria-invalid="false"
-                                   required @if($user->companies[0]->ownership_type == "خصوصی") checked @endif>
+                                   required @if($user->companies->ownership_type == "خصوصی") checked @endif>
                             خصوصی
                             <input type="radio" class="option-input"
-                                   name="company[ownership_type]" value="عمومی"
+                                   name="companies[ownership_type]" value="عمومی"
 
                                    aria-invalid="false"
-                                   required @if($user->companies[0]->ownership_type == "عمومی") checked @endif>
+                                   required @if($user->companies->ownership_type == "عمومی") checked @endif>
                             عمومی
                             <input type="radio" class="option-input"
-                                   name="company[ownership_type]"
+                                   name="companies[ownership_type]"
                                    value="دولتی / خصوصی"
                                    aria-invalid="false"
-                                   required @if($user->companies[0]->ownership_type == "دولتی / خصوصی") checked @endif>
+                                   required @if($user->companies->ownership_type == "دولتی / خصوصی") checked @endif>
                             دولتی / خصوصی
                             <input type="radio" class="option-input"
-                                   name="company[ownership_type]"
+                                   name="companies[ownership_type]"
                                    value="خصوصی / دولتی"
                                    aria-invalid="false"
-                                   required @if($user->companies[0]->ownership_type == "خصوصی / دولتی") checked @endif>
+                                   required @if($user->companies->ownership_type == "خصوصی / دولتی") checked @endif>
                             خصوصی / دولتی
                             <input type="radio" class="option-input"
-                                   name="company[ownership_type]" value="سایر"
+                                   name="companies[ownership_type]" value="سایر"
                                    aria-invalid="false" required
-                                   @if($user->companies[0]->ownership_type == "سایر") checked @endif
+                                   @if($user->companies->ownership_type == "سایر") checked @endif
                             >
                             سایر
-                            @if ($errors->has('company.ownership_type'))
+                            @if ($errors->has('companies.ownership_type'))
                                 <div id="name-error" class="error text-danger pl-3"
                                      for="name"
                                      style="display: block;">
-                                    <strong>{{ $errors->first('company.ownership_type') }}</strong>
+                                    <strong>{{ $errors->first('companies.ownership_type') }}</strong>
                                 </div>
                             @endif
                         </div>
 
                         <div class="form-group col-md-6 mb-3 py-2 px-4">
-                            <label for="company[legal_type]">نوع حقوقی شرکت : </label>
+                            <label for="companies[legal_type]">نوع حقوقی شرکت : </label>
                             <input type="radio" class="option-input"
-                                   name="company[legal_type]" value="سهامی خاص"
+                                   name="companies[legal_type]" value="سهامی خاص"
                                    aria-invalid="false"
                                    required
-                                   @if($user->companies[0]->legal_type == "سهامی خاص") checked @endif
+                                   @if($user->companies->legal_type == "سهامی خاص") checked @endif
                             >
                             سهامی خاص
                             <input type="radio" class="option-input"
-                                   name="company[legal_type]" value="سهامی عام"
+                                   name="companies[legal_type]" value="سهامی عام"
                                    aria-invalid="false"
                                    required
-                                   @if($user->companies[0]->legal_type == "سهامی عام") checked @endif
+                                   @if($user->companies->legal_type == "سهامی عام") checked @endif
                             >
                             سهامی عام
                             <input type="radio" class="option-input"
-                                   name="company[legal_type]"
+                                   name="companies[legal_type]"
                                    value="با مسئولیت محدود"
                                    aria-invalid="false"
                                    required
-                                   @if($user->companies[0]->legal_type == "با مسئولیت محدود") checked @endif
+                                   @if($user->companies->legal_type == "با مسئولیت محدود") checked @endif
                             >
                             با مسئولیت محدود
                             <input type="radio" class="option-input"
-                                   name="company[legal_type]" value="تضامنی"
+                                   name="companies[legal_type]" value="تضامنی"
 
                                    aria-invalid="false"
                                    required
-                                   @if($user->companies[0]->legal_type == "تضامنی") checked @endif
+                                   @if($user->companies->legal_type == "تضامنی") checked @endif
                             >
                             تضامنی
                             <input type="radio" class="option-input"
-                                   name="company[legal_type]" value="سایر"
+                                   name="companies[legal_type]" value="سایر"
                                    aria-invalid="false"
                                    required
-                                   @if($user->companies[0]->legal_type == "سایر") checked @endif
+                                   @if($user->companies->legal_type == "سایر") checked @endif
                             >
                             سایر
-                            @if ($errors->has('company.legal_type'))
+                            @if ($errors->has('companies.legal_type'))
                                 <div id="name-error" class="error text-danger pl-3"
                                      for="name"
                                      style="display: block;">
-                                    <strong>{{ $errors->first('company.legal_type') }}</strong>
+                                    <strong>{{ $errors->first('companies.legal_type') }}</strong>
                                 </div>
                             @endif
                         </div>
 
                         <div class="form-group col-md-12 mb-3">
-                            <label for="company[address]" class="col-12">نشانی دفتر مرکزی *</label>
-                            <input type="text" name="company[address]"
-                                   value="{{old('company.address')??$user->companies[0]->address}}"
+                            <label for="companies[address]" class="col-12">نشانی دفتر مرکزی *</label>
+                            <input type="text" name="companies[address]"
+                                   value="{{old('companies.address')??$user->companies->address}}"
                                    class="form-control" aria-invalid="false"
                                    required>
 
-                            @if ($errors->has('company.address'))
+                            @if ($errors->has('companies.address'))
                                 <div id="name-error" class="error text-danger pl-3"
                                      for="name"
                                      style="display: block;">
-                                    <strong>{{ $errors->first('company.address') }}</strong>
+                                    <strong>{{ $errors->first('companies.address') }}</strong>
                                 </div>
                             @endif
                         </div>
 
                         <div class="form-group col-md-6 mb-3">
-                            <label for="company[ceo_name]" class="col-12">نام مدیر عامل شرکت*</label>
-                            <input type="text" name="company[ceo_name]"
-                                   value="{{old('company.ceo_name')??$user->companies[0]->ceo_name}}"
+                            <label for="companies[ceo_name]" class="col-12">نام مدیر عامل شرکت*</label>
+                            <input type="text" name="companies[ceo_name]"
+                                   value="{{old('companies.ceo_name')??$user->companies->ceo_name}}"
                                    class="form-control" aria-invalid="false"
                                    required>
 
-                            @if ($errors->has('company.ceo_name'))
+                            @if ($errors->has('companies.ceo_name'))
                                 <div id="name-error" class="error text-danger pl-3"
                                      for="name"
                                      style="display: block;">
-                                    <strong>{{ $errors->first('company.ceo_name') }}</strong>
+                                    <strong>{{ $errors->first('companies.ceo_name') }}</strong>
                                 </div>
                             @endif
                         </div>
 
                         <div class="form-group col-md-6 mb-3">
-                            <label for="company[ceo_name_en]" class="col-12">نام مدیر عامل شرکت انگلیسی*</label>
-                            <input type="text" name="company[ceo_name_en]" id="company[ceo_name_en]"
-                                   value="{{old('company.ceo_name_en')??$user->name_en}}"
+                            <label for="companies[ceo_name_en]" class="col-12">نام مدیر عامل شرکت انگلیسی*</label>
+                            <input type="text" name="companies[ceo_name_en]" id="companies[ceo_name_en]"
+                                   value="{{old('companies.ceo_name_en')??$user->name_en}}"
                                    class="form-control" aria-invalid="false"
                                    required>
 
-                            @if ($errors->has('company.ceo_name_en'))
+                            @if ($errors->has('companies.ceo_name_en'))
                                 <div id="name-error" class="error text-danger pl-3"
                                      for="name"
                                      style="display: block;">
-                                    <strong>{{ $errors->first('company.ceo_name_en') }}</strong>
+                                    <strong>{{ $errors->first('companies.ceo_name_en') }}</strong>
                                 </div>
                             @endif
                         </div>
 
 
                     @elseif($user->membership_type_id == 3)
-                        @if(count($user->education) > 0 )
+
                             <div class="col-md-12 my-4">
                                 <h2 class="font-22 text-medium text-black">مشخصات تحصیلی
                                     :</h2>
@@ -748,7 +646,7 @@
                             <div class="form-group col-md-6 mb-3">
                                 <label for="education[education_place]" class="col-12">نام مجل تحصیل*</label>
                                 <input type="text" name="education[education_place]" id="education[education_place]"
-                                       value="{{old('education.education_place')??$user->education[0]->education_place}}"
+                                       value="{{old('education.education_place')??$user->education->education_place}}"
                                        class="form-control" aria-invalid="false"
                                        required>
 
@@ -764,7 +662,7 @@
                             <div class="form-group col-md-6 mb-3">
                                 <label for="education[grade]" class="col-12">سطح*</label>
                                 <input type="text" name="education[grade]" id="education[grade]"
-                                       value="{{old('education.grade')??$user->education[0]->grade}}"
+                                       value="{{old('education.grade')??$user->education->grade}}"
                                        class="form-control" aria-invalid="false"
                                        required>
 
@@ -780,7 +678,7 @@
                             <div class="form-group col-md-6 mb-3">
                                 <label for="from_date" class="col-12">از تاریخ*</label>
                                 <input type="text" name="education[from_date]" id="from_date"
-                                       value="{{old('education.from_date')??$user->education[0]->from_date}}"
+                                       value="{{old('education.from_date')??$user->education->from_date}}"
                                        class="form-control" aria-invalid="false"
                                        required>
 
@@ -796,7 +694,7 @@
                             <div class="form-group col-md-6 mb-3">
                                 <label for="to_date" class="col-12">تا تاریخ</label>
                                 <input type="text" name="education[to_date]" id="to_date"
-                                       value="{{old('education.to_date')??$user->education[0]->to_date}}"
+                                       value="{{old('education.to_date')??$user->education->to_date}}"
                                        class="form-control" aria-invalid="false"
                                 >
 
@@ -812,7 +710,7 @@
                             <div class="form-group col-md-3 mb-3">
                                 <label for="education[gpa]" class="col-12">معدل</label>
                                 <input type="text" name="education[gpa]" id="education[gpa]"
-                                       value="{{old('education.gpa')??$user->education[0]->gpa}}"
+                                       value="{{old('education.gpa')??$user->education->gpa}}"
                                        class="form-control" aria-invalid="false"
                                        required>
 
@@ -829,7 +727,7 @@
                             <div class="form-group col-md-3 mb-3">
                                 <label for="education[field_of_study]" class="col-12">رشته تحصیلی</label>
                                 <input type="text" name="education[field_of_study]" id="education[field_of_study]"
-                                       value="{{old('education.field_of_study')??$user->education[0]->field_of_study}}"
+                                       value="{{old('education.field_of_study')??$user->education->field_of_study}}"
                                        class="form-control" aria-invalid="false"
                                        required>
 
@@ -843,8 +741,6 @@
                             </div>
 
                         @endif
-
-                    @endif
 
 
                     {{-- ------------ document ------------------}}
@@ -866,47 +762,45 @@
                             </thead>
                             <tbody>
 
-                            @php
 
-                                $i = 0;
-                            @endphp
+                            @if(property_exists($user,'documents'))
+                                @foreach($user->documents as $doc)
+                                    <input type="hidden" name="isUpgrade" value="{{!property_exists($doc ,'id')}}" >
+                                    <tr>
+                                        <td data-th="ردیف" class="text-right">{{$loop->index}}</td>
+                                        <td data-th="عنوان خبر" class="text-right">{{$doc->explain}}</td>
+                                        <td data-th="عکس مدرک" class="text-right">
+                                            <img src="{{asset('img/documents/'.$doc->address)}}" class="col-8"
+                                                 style="height: 150px;">
+                                        </td>
+                                        <td data-th="تایید" class="text-right">
+                                            <input type="checkbox" class="option-input"
+                                                   name="documents[]"
+                                                   value="{{$doc->id??$doc->address}}"
+                                                   aria-invalid="false" @if(property_exists($doc ,'id') && $doc->state == 1 ) checked @endif>
+                                        </td>
+                                        {{--<td data-th="حذف" class="text-right">
+                                            <form action="{{route('document.del')}}" method="post" id="form{{$doc->id}}" >
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{$doc->id}}" >
+                                                <input type="submit" class="btn btn-danger" value="حذف" >
 
+                                            </form>
 
-                            @foreach($user->documents as $doc)
-                                @php
-                                    $i++;
-                                @endphp
-                                <tr>
-                                    <td data-th="ردیف" class="text-right">{{++$i}}</td>
-                                    <td data-th="عنوان خبر" class="text-right">{{$doc->explain}}</td>
-                                    <td data-th="عکس مدرک" class="text-right">
-                                        <img src="{{asset('img/documents/'.$doc->address)}}" class="col-8" style="height: 150px;" >
-                                    </td>
-                                    <td data-th="تایید" class="text-right">
-                                        <input type="checkbox" class="option-input"
-                                               name="documents[]"
-                                               value="{{$doc->id}}"
-                                               aria-invalid="false" @if($doc->state == 1 ) checked @endif>
-                                    </td>
-                                    {{--<td data-th="حذف" class="text-right">
-                                        <form action="{{route('document.del')}}" method="post" id="form{{$doc->id}}" >
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{$doc->id}}" >
-                                            <input type="submit" class="btn btn-danger" value="حذف" >
-
-                                        </form>
-
-                                    </td>--}}
-                                </tr>
-                            @endforeach
+                                        </td>--}}
+                                    </tr>
+                                @endforeach
+                            @endif
                             </tbody>
                         </table>
 
                     </div>
 
                     <div class="form-group col-12">
-                        <label for="shortcomings" class="col-12"  >نقص مدارک</label>
-                    <textarea placeholder="لطفا مدارکی که مجدد کاربر جاری لازم دارد که اپلود کند را بنویسید" name="shortcomings" id="shortcomings" class="form-control"  >{{$user->shortcomings}}</textarea>
+                        <label for="shortcomings" class="col-12">نقص مدارک</label>
+                        <textarea placeholder="لطفا مدارکی که مجدد کاربر جاری لازم دارد که اپلود کند را بنویسید"
+                                  name="shortcomings" id="shortcomings"
+                                  class="form-control">{{$user->shortcomings??''}}</textarea>
                     </div>
 
 

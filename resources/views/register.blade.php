@@ -2253,7 +2253,7 @@
                 e.target.setCustomValidity("");
             };
         }
-    })
+    });
 
     function addRow(id) {
         var row_id = Date.now();

@@ -101,7 +101,7 @@ class Profile extends Model
         return $this->belongsTo(User::class);
     }
 
-    protected $appends = ['young'];
+/*    protected $appends = ['young'];
 
     public function getYoungAttribute()
     {
@@ -110,5 +110,5 @@ class Profile extends Model
             if ($membershipType->price > 0)
                 return checkYoung($this->birth_date);
         return false;
-    }
+    }*/
 }

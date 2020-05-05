@@ -127,6 +127,12 @@
                         <p>کاربران</p>
                     </a>
                 </li>
+                <li class="nav-item {{checkMenu("cms/users/upgrade",$title)}}">
+                    <a class="nav-link" href="{{route('cms.user.upgrade')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>کاربران در حال ارتقا</p>
+                    </a>
+                </li>
                {{-- <li class="nav-item {{checkMenu("cms/passedCourses",$title)}}">
                     <a class="nav-link" href="{{route('PassedCourses')}}">
                         <i class="material-icons">library_books</i>

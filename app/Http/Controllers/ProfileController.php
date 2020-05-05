@@ -2,65 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Branch;
-use App\Company;
-use App\Document;
-use App\Membership;
-use App\MembershipType;
-use App\Order;
-use App\PassedCoursesCategory;
-use App\Profile;
-use App\User;
-use App\Utils\UserProFields;
-use App\visibiliy;
-use App\WorkExperience;
+use App\{Branch, Company, Document, Membership, MembershipType, Order, Profile, User, WorkExperience};
 use Hash;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Morilog\Jalali\Jalalian;
-use PhpParser\Node\Stmt\Return_;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Profile $profile
-     * @return \Illuminate\Http\Response
-     */
     public function show($slug)
     {
 
@@ -83,18 +34,26 @@ class ProfileController extends Controller
         $breadcrumb = "پروفایل";
 
         if (count($user) == 0)
-            return abort(404);
+            return abort(404, "متاسفانه کاربری با این مشخصات یافت نشد");
 
         $user = $user[0];
 
-        /*if ($user->active <= 1) {
-            if (!auth()->check()) {
-                abort(404, $user->active == 0 ? "نسبت به پرداخت اقدام کنید" : "منتطر تایید ادمین باشید");
-            }else {
-                if (auth()->user()->roles == 2 )
-                    abort(404, $user->active == 0 ? "نسبت به پرداخت اقدام کنید" : "منتطر تایید ادمین باشید");
-            }
-        }*/
+        if ($user->active != 2 && $user->active != 4 && $user->active != 5 ) {
+            if (auth()->check()) {
+                if (auth()->user()->roles == 2)
+                    abort(404, "متاسفانه صفحه مورد نظر در دسترس نمی باشد(1001)");
+            } else
+                abort(404, "متاسفانه صفحه مورد نظر در دسترس نمی باشد(1002)");
+
+        }
+
+        if (time() >= $user->expire) {
+            if (auth()->check()) {
+                if (auth()->user()->roles == 2)
+                    abort(404, (auth()->id() == $user->id) ? "متاسفانه مدت اعتبار شنا به اتمام رسیده" : "متاسفانه صفحه مورد نظر در دسترس نمی باشد(1003)");
+            } else
+                abort(404, "متاسفانه صفحه مورد نظر در دسترس نمی باشد(1004)");
+        }
 
         /*--------------------- start work  ------------------*/
 
@@ -128,7 +87,6 @@ class ProfileController extends Controller
 
         if (auth()->check()) {
 
-
             if (auth()->user()->roles == 0 || auth()->user()->roles == 1)
                 $memberships = MembershipType::all();
         }
@@ -147,16 +105,16 @@ class ProfileController extends Controller
         $user = User::whereEmail(decrypt($request->get('encode')))->get();
 
         if (count($user) == 0)
-            return redirect()->back()->with("errorField","متاسفانه همچین کاربری یافت نشد! لطفا با پشتیبانی تمایس بگیرید");
+            return redirect()->back()->with("errorField", "متاسفانه همچین کاربری یافت نشد! لطفا با پشتیبانی تمایس بگیرید");
 
 
-        if (!Hash::check($request->get('pass'),$user[0]->password))
-            return redirect()->back()->with("errorField","رمز عبور اشتباه");
+        if (!Hash::check($request->get('pass'), $user[0]->password))
+            return redirect()->back()->with("errorField", "رمز عبور اشتباه");
 
 
         auth()->loginUsingId($user[0]->id);
 
-        return $this->upgrade();
+        return redirect()->route("profile.upgrade.show");
     }
 
 
@@ -167,46 +125,48 @@ class ProfileController extends Controller
 
         $memberships = MembershipType::all();
         $titleHeader = $breadcrumb = "ارتقا";
-        $type = 0;
+        $membership_type_id = User::find(auth()->id())->membership_type_id;
         $branches = Branch::all();
 
-        return view('upgrade', compact('memberships', 'titleHeader', 'breadcrumb', 'type', 'branches'));
+        return view('upgrade', compact('memberships', 'titleHeader', 'breadcrumb', 'membership_type_id', 'branches'));
     }
 
     public function postUpgradeRq(Request $request)
     {
 //        dd($request->all());
-//        dd($request->get('experience'));
+//        dd($request->get('workExperience'));
+//        return $request->all();
         $messages = [
             '*.required' => 'وارد کردن این فیلد الزامی است',
             'password.min' => 'رمز عبور باید حداقل 8 کاراکتر باشد',
             'password.confirmed' => 'تایید رمز عبور اشتباه است',
             'email.unique' => 'این ایمیل قبلا ثبت شده است',
             'mobile.unique' => 'این شماره موبایل قبلا ثبت شده است',
-            'company.established_number.unique' => 'این شماره ثبت قبلا ثبت شده است',
-            'company.economy_number.unique' => 'این شماره اقتصادی قبلا ثبت شده است',
-            'company.national_number.unique' => 'این شناسه ملی قبلا ثبت شده است',
+            'companies.established_number.unique' => 'این شماره ثبت قبلا ثبت شده است',
+            'companies.economy_number.unique' => 'این شماره اقتصادی قبلا ثبت شده است',
+            'companies.national_number.unique' => 'این شناسه ملی قبلا ثبت شده است',
             'files.*.mimes' => 'فرمت فایل های ارسالی صحیح نمی باشد',
+
         ];
-        switch ($request->get('type')) {
+        switch ($request->get('membership_type_id')) {
             case (1):
             case (3):
                 $validator = Validator::make($request->all(), [
                     'first_name' => 'bail | required | string | max:255',
                     'last_name' => 'bail | required | string | max:255',
                     'name_en' => 'bail | required | string | max:255',
-                    'father_name' => 'bail | required | string | max:255',
-                    'national_code' => 'bail | required | numeric ',
+                    'profile.father_name' => 'bail | required | string | max:255',
+                    'profile.national_code' => 'bail | required | numeric ',
                     'mobile' => 'bail | required | string |unique:users',
-                    'certificate_number' => 'bail | required | numeric',
-                    'birth_date' => 'bail | required | string',
-                    'birth_place' => 'bail | required | string',
-                    'sex' => 'bail | required',
-                    'work_address' => 'bail | required | string',
-                    'home_address' => 'bail | required | string',
-                    'home_post' => 'bail | required | string',
-                    'work_name' => 'bail | required | string',
-                    'receive_place' => 'bail | required | string',
+                    'profile.certificate_number' => 'bail | required | numeric',
+                    'profile.birth_date' => 'bail | required | string',
+                    'profile.birth_place' => 'bail | required | string',
+                    'profile.sex' => 'bail | required',
+                    'profile.work_address' => 'bail | required | string',
+                    'profile.home_address' => 'bail | required | string',
+                    'profile.home_post' => 'bail | required | string',
+                    'profile.work_name' => 'bail | required | string',
+                    'profile.receive_place' => 'bail | required | string',
                     'email' => 'bail | required | string | email | max:255 | unique:users',
                     'password' => 'bail | required | string | min:8 | confirmed',
                     'branch_id' => 'bail | required | numeric',
@@ -220,27 +180,27 @@ class ProfileController extends Controller
                     'first_name' => 'bail | required | string | max:255',
                     'last_name' => 'bail | required | string | max:255',
                     'name_en' => 'bail | required | string | max:255',
-                    'father_name' => 'bail | required | string | max:255',
-                    'national_code' => 'bail | required | numeric',
+                    'profile.father_name' => 'bail | required | string | max:255',
+                    'profile.national_code' => 'bail | required | numeric',
                     'mobile' => 'bail | required | string |unique:users',
-                    'certificate_number' => 'bail | required | numeric',
-                    'birth_date' => 'bail | required | string',
-                    'birth_place' => 'bail | required | string',
-                    'sex' => 'bail | required',
-                    'home_address' => 'bail | required | string',
-                    'home_post' => 'bail | required | string',
+                    'profile.certificate_number' => 'bail | required | numeric',
+                    'profile.birth_date' => 'bail | required | string',
+                    'profile.birth_place' => 'bail | required | string',
+                    'profile.sex' => 'bail | required',
+                    'profile.home_address' => 'bail | required | string',
+                    'profile.home_post' => 'bail | required | string',
                     'email' => 'bail | required | string | email | max:255 | unique:users',
-                    'company.name' => 'bail | required | string | max:255',
-                    'company.established_date' => 'bail | required | string | max:255',
-                    'company.established_number' => 'bail | required | string | max:255 | unique:companies,established_number',
-                    'company.economy_number' => 'bail | required | string | unique:companies,economy_number',
-                    'company.national_number' => 'bail | required | string | unique:companies,national_number',
-                    'company.post_number' => 'bail | required | string',
-                    'company.ownership_type' => 'bail | required | string',
-                    'company.legal_type' => 'bail | required | string',
-                    'company.address' => 'bail | required | string',
-                    'company.ceo_name' => 'bail | required | string',
-                    'company.ceo_name_en' => 'bail | required | string',
+                    'companies.name' => 'bail | required | string | max:255',
+                    'companies.established_date' => 'bail | required | string | max:255',
+                    'companies.established_number' => 'bail | required | string | max:255 | unique:companies,established_number',
+                    'companies.economy_number' => 'bail | required | string | unique:companies,economy_number',
+                    'companies.national_number' => 'bail | required | string | unique:companies,national_number',
+                    'companies.post_number' => 'bail | required | string',
+                    'companies.ownership_type' => 'bail | required | string',
+                    'companies.legal_type' => 'bail | required | string',
+                    'companies.address' => 'bail | required | string',
+                    'companies.ceo_name' => 'bail | required | string',
+                    'companies.ceo_name_en' => 'bail | required | string',
                     'password' => 'bail | required | string | min:8 | confirmed',
                     'branch_id' => 'bail | required | numeric',
                     'files.*' => 'bail | required | mimes:jpeg,bmp,png,jpg,pdf ',
@@ -252,15 +212,15 @@ class ProfileController extends Controller
                     'first_name' => 'bail | required | string | max:255',
                     'last_name' => 'bail | required | string | max:255',
                     'name_en' => 'bail | required | string | max:255',
-                    'father_name' => 'bail | required | string | max:255',
-                    'national_code' => 'bail | required | numeric ',
+                    'profile.father_name' => 'bail | required | string | max:255',
+                    'profile.national_code' => 'bail | required | numeric ',
                     'mobile' => 'bail | required | string |unique:users',
-                    'certificate_number' => 'bail | required | numeric',
-                    'birth_date' => 'bail | required | string',
-                    'birth_place' => 'bail | required | string',
-                    'sex' => 'bail | required',
-                    'home_address' => 'bail | required | string',
-                    'home_post' => 'bail | required | string',
+                    'profile.certificate_number' => 'bail | required | numeric',
+                    'profile.birth_date' => 'bail | required | string',
+                    'profile.birth_place' => 'bail | required | string',
+                    'profile.sex' => 'bail | required',
+                    'profile.home_address' => 'bail | required | string',
+                    'profile.home_post' => 'bail | required | string',
                     'email' => 'bail | required | string | email | max:255 | unique:users',
                     'password' => 'bail | required | string | min:8 | confirmed',
                     'branch_id' => 'bail | required | numeric',
@@ -269,20 +229,43 @@ class ProfileController extends Controller
         }
 //
         if ($validator->fails()) {
-            \Session::flash('type', $request->get('type'));
+            \Session::flash('membership_type_id', $request->get('membership_type_id'));
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
+
+        $user = User::find(auth()->id());
+//        return var_dump($request->file('files'));
+        $document = [];
+        if ($request->hasFile('files')) {
+            for ($i = 0; $i < count($request->file('files')); $i++) {
+                $documentName = time() . $i . '.' . $request->file('files')[$i]->getClientOriginalExtension();
+                $request->file('files')[$i]->move(public_path('img/documents'), $documentName);
+                $document[] = new Document(['address' => $documentName, 'explain' => $request->get('files_explain')[$i]]);
+            }
+        }
+
+
+        $tmp_request = $request->all();
+        $tmp_request['documents'] = $document;
+//        return $request['document'] ;
+        $user->update(["active"=>4]);
+
+        $user->profile()->update(['upgrade_update_data'=>$tmp_request]);
+
+
+
         $year = ($request->get('year') == 3) ? 3 : 1;
         $membership = new Membership(
             [
-                'membership_type_id' => $request->get('type'),
+                'membership_type_id' => $request->get('membership_type_id'),
                 'user_id' => auth()->id(),
                 'year' => $year,
                 'lang_id' => 1
             ]
         );
         $membership->save();
-        $memberShipType = MembershipType::find($request->get('type'));
+        $memberShipType = MembershipType::find($request->get('membership_type_id'));
         $price = ($request->get('year') == 3) ? $memberShipType->price * 2 : $memberShipType->price;
         $order = new Order([
             'user_id' => auth()->id(),
@@ -297,7 +280,8 @@ class ProfileController extends Controller
         $resNum = $order->reference_id;
         $comment = $order->comment;
         $merchantCode = '11175778';
-        $redirectURL = route('verifyUpgrade');
+        $redirectURL = route('profile.upgradeResult');
+//        return $request;
         return view('bank', compact('titleHeader', 'breadcrumb', 'price', 'resNum', 'merchantCode', 'redirectURL', 'comment'));
     }
 
@@ -346,10 +330,12 @@ class ProfileController extends Controller
             'password.confirmed' => 'تایید رمز عبور اشتباه است',
             'email.unique' => 'این ایمیل قبلا ثبت شده است',
             'mobile.unique' => 'این شماره موبایل قبلا ثبت شده است',
-            'company.established_number.unique' => 'این شماره ثبت قبلا ثبت شده است',
-            'company.economy_number.unique' => 'این شماره اقتصادی قبلا ثبت شده است',
-            'company.national_number.unique' => 'این شناسه ملی قبلا ثبت شده است',
+            'companies.established_number.unique' => 'این شماره ثبت قبلا ثبت شده است',
+            'companies.economy_number.unique' => 'این شماره اقتصادی قبلا ثبت شده است',
+            'companies.national_number.unique' => 'این شناسه ملی قبلا ثبت شده است',
             'files.*.mimes' => 'فرمت فایل های ارسالی صحیح نمی باشد',
+            '*.numeric' => 'این فیلد باید عدد باشد',
+
         ];
         switch ($request->get('type')) {
             case (1):
@@ -358,18 +344,18 @@ class ProfileController extends Controller
                     'first_name' => 'bail | required | string | max:255',
                     'last_name' => 'bail | required | string | max:255',
                     'name_en' => 'bail | required | string | max:255',
-                    'father_name' => 'bail | required | string | max:255',
-                    'national_code' => 'bail | required | numeric ',
+                    'profile.father_name' => 'bail | required | string | max:255',
+                    'profile.national_code' => 'bail | required | numeric ',
                     'mobile' => 'bail | required | string |unique:users',
-                    'certificate_number' => 'bail | required | numeric',
-                    'birth_date' => 'bail | required | string',
-                    'birth_place' => 'bail | required | string',
-                    'sex' => 'bail | required',
-                    'work_address' => 'bail | required | string',
-                    'home_address' => 'bail | required | string',
-                    'home_post' => 'bail | required | string',
-                    'work_name' => 'bail | required | string',
-                    'receive_place' => 'bail | required | string',
+                    'profile.certificate_number' => 'bail | required | numeric',
+                    'profile.birth_date' => 'bail | required | string',
+                    'profile.birth_place' => 'bail | required | string',
+                    'profile.sex' => 'bail | required',
+                    'profile.work_address' => 'bail | required | string',
+                    'profile.home_address' => 'bail | required | string',
+                    'profile.home_post' => 'bail | required | string',
+                    'profile.work_name' => 'bail | required | string',
+                    'profile.receive_place' => 'bail | required | string',
                     'email' => 'bail | required | string | email | max:255 | unique:users',
                     'password' => 'bail | required | string | min:8 | confirmed',
                     'branch_id' => 'bail | required | numeric',
@@ -383,27 +369,27 @@ class ProfileController extends Controller
                     'first_name' => 'bail | required | string | max:255',
                     'last_name' => 'bail | required | string | max:255',
                     'name_en' => 'bail | required | string | max:255',
-                    'father_name' => 'bail | required | string | max:255',
-                    'national_code' => 'bail | required | numeric',
+                    'profile.father_name' => 'bail | required | string | max:255',
+                    'profile.national_code' => 'bail | required | numeric',
                     'mobile' => 'bail | required | string |unique:users',
-                    'certificate_number' => 'bail | required | numeric',
-                    'birth_date' => 'bail | required | string',
-                    'birth_place' => 'bail | required | string',
-                    'sex' => 'bail | required',
-                    'home_address' => 'bail | required | string',
-                    'home_post' => 'bail | required | string',
+                    'profile.certificate_number' => 'bail | required | numeric',
+                    'profile.birth_date' => 'bail | required | string',
+                    'profile.birth_place' => 'bail | required | string',
+                    'profile.sex' => 'bail | required',
+                    'profile.home_address' => 'bail | required | string',
+                    'profile.home_post' => 'bail | required | string',
                     'email' => 'bail | required | string | email | max:255 | unique:users',
-                    'company.name' => 'bail | required | string | max:255',
-                    'company.established_date' => 'bail | required | string | max:255',
-                    'company.established_number' => 'bail | required | string | max:255 | unique:companies,established_number',
-                    'company.economy_number' => 'bail | required | string | unique:companies,economy_number',
-                    'company.national_number' => 'bail | required | string | unique:companies,national_number',
-                    'company.post_number' => 'bail | required | string',
-                    'company.ownership_type' => 'bail | required | string',
-                    'company.legal_type' => 'bail | required | string',
-                    'company.address' => 'bail | required | string',
-                    'company.ceo_name' => 'bail | required | string',
-                    'company.ceo_name_en' => 'bail | required | string',
+                    'companies.name' => 'bail | required | string | max:255',
+                    'companies.established_date' => 'bail | required | string | max:255',
+                    'companies.established_number' => 'bail | required | string | max:255 | unique:companies,established_number',
+                    'companies.economy_number' => 'bail | required | string | unique:companies,economy_number',
+                    'companies.national_number' => 'bail | required | string | unique:companies,national_number',
+                    'companies.post_number' => 'bail | required | string',
+                    'companies.ownership_type' => 'bail | required | string',
+                    'companies.legal_type' => 'bail | required | string',
+                    'companies.address' => 'bail | required | string',
+                    'companies.ceo_name' => 'bail | required | string',
+                    'companies.ceo_name_en' => 'bail | required | string',
                     'password' => 'bail | required | string | min:8 | confirmed',
                     'branch_id' => 'bail | required | numeric',
                     'files.*' => 'bail | required | mimes:jpeg,bmp,png,jpg,pdf ',
@@ -415,15 +401,15 @@ class ProfileController extends Controller
                     'first_name' => 'bail | required | string | max:255',
                     'last_name' => 'bail | required | string | max:255',
                     'name_en' => 'bail | required | string | max:255',
-                    'father_name' => 'bail | required | string | max:255',
-                    'national_code' => 'bail | required | numeric ',
+                    'profile.father_name' => 'bail | required | string | max:255',
+                    'profile.national_code' => 'bail | required | numeric ',
                     'mobile' => 'bail | required | string |unique:users',
-                    'certificate_number' => 'bail | required | numeric',
-                    'birth_date' => 'bail | required | string',
-                    'birth_place' => 'bail | required | string',
-                    'sex' => 'bail | required',
-                    'home_address' => 'bail | required | string',
-                    'home_post' => 'bail | required | string',
+                    'profile.certificate_number' => 'bail | required | numeric',
+                    'profile.birth_date' => 'bail | required | string',
+                    'profile.birth_place' => 'bail | required | string',
+                    'profile.sex' => 'bail | required',
+                    'profile.home_address' => 'bail | required | string',
+                    'profile.home_post' => 'bail | required | string',
                     'email' => 'bail | required | string | email | max:255 | unique:users',
                     'password' => 'bail | required | string | min:8 | confirmed',
                     'branch_id' => 'bail | required | numeric',
@@ -468,23 +454,23 @@ class ProfileController extends Controller
             if ($request->hasFile('files')) {
                 for ($i = 0; $i < count($request->file('files')); $i++) {
                     $documentName = time() . $i . '.' . $request->file('files')[$i]->getClientOriginalExtension();
-                    $request->file('files')[$i]->move(public_path('/files/documents'), $documentName);
+                    $request->file('files')[$i]->move(public_path('/img/documents'), $documentName);
                     $document = new Document(['address' => $documentName, 'explain' => $request->get('files_explain')[$i]]);
                     $user->education()->save($document);
                 }
             }
-            if ($request->has('experience')) {
+            if ($request->has('workExperience')) {
                 $experience = new WorkExperience([
-                    'company_name' => ((isset($request->get('experience')['company_name'])) ? $request->get('experience')['company_name'] : null),
-                    'job_title' => ((isset($request->get('experience')['job_title'])) ? $request->get('experience')['job_title'] : null),
-                    'from_date' => ((isset($request->get('experience')['from_date'])) ? $request->get('experience')['from_date'] : null),
-                    'to_date' => ((isset($request->get('experience')['to_date'])) ? $request->get('experience')['to_date'] : null),
+                    'companies_name' => ((isset($request->get('workExperience')['companies_name'])) ? $request->get('workExperience')['companies_name'] : null),
+                    'job_title' => ((isset($request->get('workExperience')['job_title'])) ? $request->get('workExperience')['job_title'] : null),
+                    'from_date' => ((isset($request->get('workExperience')['from_date'])) ? $request->get('workExperience')['from_date'] : null),
+                    'to_date' => ((isset($request->get('workExperience')['to_date'])) ? $request->get('workExperience')['to_date'] : null),
                 ]);
                 $user->workExperience()->save($experience);
             }
-            if ($request->has('company')) {
-                $company = new Company($request->all('company')['company']);
-                $user->companies()->save($company);
+            if ($request->has('companies')) {
+                $companies = new Company($request->all('companies')['companies']);
+                $user->companies()->save($companies);
             }
             $membership = new Membership(
                 [
@@ -501,5 +487,56 @@ class ProfileController extends Controller
             return redirect()->to(route('main'));
         }
     }
+
+    public function upgradeIndex(){
+
+        $users = User::whereActive(5)->orWhere("active",'=','4')->paginate(15);
+
+        return view('cms.user.upgrade.index',compact('users'));
+    }
+
+public function upgradeEdit($id){
+        $user = User::with('profile','companies','workExperience','education','documents')->find($id);
+
+        if ($user->profile[0]->upgrade_update_data!=null) {
+            $active = $user->active;
+            $reagent_id = $user->reagent_id;
+
+            $user = json_decode($user->profile[0]->upgrade_update_data);
+            $user->active = $active;
+            $user->reagent_id = $reagent_id;
+        }
+    else{
+
+        if ($user->profile !=null )
+            $user->profile = $user->profile[0];
+
+        if (count($user->companies) !=0)
+            $user->companies = $user->companies[0];
+
+        if ($user->workExperience != null)
+            $user->workExperience = $user->workExperience[0];
+
+        if (count($user->education) !=0 )
+            $user->education = $user->education[0];
+
+        if (count($user->documents) !=0 )
+            $user->documents = $user->documents[0];
+
+        /*if (count($user->workExperience) != 0 )
+            $user->workExperience = $user->workExperience[0];*/
+
+    }
+
+    $membership = MembershipType::find($user->membership_type_id);
+
+//    return json_encode($user->education);
+
+        return view('cms.user.upgrade.edit',compact('user','membership'));
+}
+
+public function cmsUpgrade(){
+
+}
 
 }

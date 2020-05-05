@@ -381,4 +381,8 @@ class IndexController extends Controller
         return $event;
     }
 
+
+    public function test(){
+        return "asdhasjdhaskh dkashdajshdkash dahs dasjd kdasd";
+    }
 }

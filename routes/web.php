@@ -50,7 +50,7 @@ Route::get('profile/preUpgrade/{code}',function ($code){
 
     return view('pre_upgrade',compact('code'));
 });
-Route::post('profile/upgrade_result', 'ProfileController@banckCallBack')->name("profile.upgradeResult");
+Route::post('profile/upgrade_result', 'ProfileController@bankCallBack')->name("profile.upgradeResult");
 
 
 Route::post('/login', 'AuthController@postLogin')->name('login.post');
@@ -133,6 +133,12 @@ Route::middleware('auth')->group(function () {
             Route::post('admin/add','UserController@adminAdd')->name('admin.add');
             Route::post('admin/del','UserController@adminDel')->name('admin.del');
 //            Route::post('user/{id}/destroy','UserController@destroy')->name('cms.user.del');
+            Route::get('users/upgrade',"ProfileController@upgradeIndex")->name('cms.user.upgrade');
+            Route::post('users/upgrade',"ProfileController@upgradeIndex")->name('cms.user.upgrade');
+            Route::get('users/upgrade/{id}',"ProfileController@upgradeEdit")->name('cms.user.upgrade.edit');
+            Route::post('users/upgrade/edit',"ProfileController@cmsUpgrade")->name('cms.user.upgrade.update');
+
+
             //------
             Route::get('passedCourse/{id}/edit','PassedCoursesController@edit')->name('PassedCourses.edit');
             Route::get('passedCourses','PassedCoursesController@index')->name('PassedCourses');
@@ -248,13 +254,6 @@ Route::get('WorkingGroups',function (){
     return view('working_groups',compact('breadcrumb','titleHeader'));
 
 })->name('WorkingGroups');
-
-
-/* new.ipma.ir/Committees/register
- new.ipma.ir/Committees/awards
- new.ipma.ir/Committees/education
- new.ipma.ir/Committees/researches
- new.ipma.ir/Committees/certificate*/
 
 
 Route::prefix('Committees')->group(function (){
