@@ -299,8 +299,8 @@
                                 <label>جنسیت : </label>
                                 <select name="sex" required>
                                     <option disabled selected value>جنسیت مورد نظر را انتخاب کنید *</option>
-                                    <option value="1">مرد</option>
-                                    <option value="0">زن</option>
+                                    <option value="1" {{((Session::get('type') == 1) && request()->old('sex') == 1 ) ?'selected':''}}>مرد</option>
+                                    <option value="0" {{((Session::get('type') == 1) && request()->old('sex') == 0 ) ?'selected':''}}>زن</option>
                                 </select>
                                 @if (Session::get('type') == 1 && $errors->has('sex'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
@@ -414,6 +414,8 @@
                                 <label for="">انتخاب نشانی ارسال مراسلات : </label>
                                 <select name="receive_place" required>
                                     <option disabled selected value>نشانی مورد نظر را انتخاب کنید *</option>
+                                    <option value="0" {{((Session::get('type') == 1) && request()->old('receive_place') == 0 ) ?'selected':''}}>منزل</option>
+                                    <option value="1" {{((Session::get('type') == 1) && request()->old('receive_place') == 1 ) ?'selected':''}}>محل کار</option>
                                     <option value="0">منزل</option>
                                     <option value="1">محل کار</option>
                                 </select>
@@ -566,7 +568,7 @@
                                 <select name="branch_id" required>
                                     <option disabled selected value>شاخه مورد نظر را انتخاب کنید *</option>
                                     @foreach($branches as $branch)
-                                        <option value="{{$branch->id}}">{{ $branch->title }}</option>
+                                        <option value="{{$branch->id}}" {{((Session::get('type') == 1) && request()->old('branch_id') == $branch->id ) ?'selected':''}}>{{ $branch->title }}</option>
                                     @endforeach
                                 </select>
                                 @if (Session::get('type') == 1 && $errors->has('branch_id'))
@@ -850,8 +852,8 @@
                                 <label>جنسیت : </label>
                                 <select name="sex" required>
                                     <option disabled selected value>جنسیت مورد نظر را انتخاب کنید *</option>
-                                    <option value="1">مرد</option>
-                                    <option value="0">زن</option>
+                                    <option value="1" {{((Session::get('type') == 2) && request()->old('sex') == 1 ) ?'selected':''}}>مرد</option>
+                                    <option value="0" {{((Session::get('type') == 2) && request()->old('sex') == 0 ) ?'selected':''}}>زن</option>
                                 </select>
                                 @if (Session::get('type') == 2 && $errors->has('sex'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
@@ -1113,12 +1115,12 @@
                                 <label for="">نوع مالکیت شرکت : </label>
                                 <select name="company[ownership_type]" required>
                                     <option disabled selected value>نوع مالکیت را انتخاب کنید *</option>
-                                    <option value="دولتی">دولتی</option>
-                                    <option value="خصوصی">خصوصی</option>
-                                    <option value="عمومی">عمومی</option>
-                                    <option value="دولتی / خصوصی">دولتی / خصوصی</option>
-                                    <option value="خصوصی / دولتی">خصوصی / دولتی</option>
-                                    <option value="سایر">سایر</option>
+                                    <option value="دولتی" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'دولتی' ) ?'selected':''}}>دولتی</option>
+                                    <option value="خصوصی" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'خصوصی' ) ?'selected':''}}>خصوصی</option>
+                                    <option value="عمومی" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'عمومی' ) ?'selected':''}}>عمومی</option>
+                                    <option value="دولتی / خصوصی" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'دولتی / خصوصی' ) ?'selected':''}}>دولتی / خصوصی</option>
+                                    <option value="خصوصی / دولتی" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'خصوصی / دولتی' ) ?'selected':''}}>خصوصی / دولتی</option>
+                                    <option value="سایر" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'سایر' ) ?'selected':''}}>سایر</option>
                                 </select>
                                 @if (Session::get('type') == 2 && $errors->has('company.ownership_type'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
@@ -1131,11 +1133,11 @@
                                 <label for="">نوع حقوقی شرکت : </label>
                                 <select name="company[legal_type]" required>
                                     <option disabled selected value>نوع حقوقی را انتخاب کنید *</option>
-                                    <option value="سهامی خاص">سهامی خاص</option>
-                                    <option value="سهامی عام">سهامی عام</option>
-                                    <option value="با مسئولیت محدود">با مسئولیت محدود</option>
-                                    <option value="تضامنیی">تضامنی</option>
-                                    <option value="سایر">سایر</option>
+                                    <option value="سهامی خاص" {{((Session::get('type') == 2) && request()->old('company.legal_type') == 'سهامی خاص' ) ?'selected':''}}>سهامی خاص</option>
+                                    <option value="سهامی عام" {{((Session::get('type') == 2) && request()->old('company.legal_type') == 'سهامی عام' ) ?'selected':''}}>سهامی عام</option>
+                                    <option value="با مسئولیت محدود" {{((Session::get('type') == 2) && request()->old('company.legal_type') == 'با مسئولیت محدود' ) ?'selected':''}}>با مسئولیت محدود</option>
+                                    <option value="تضامنیی" {{((Session::get('type') == 2) && request()->old('company.legal_type') == 'تضامنیی' ) ?'selected':''}}>تضامنی</option>
+                                    <option value="سایر" {{((Session::get('type') == 2) && request()->old('company.legal_type') == 'سایر' ) ?'selected':''}}>سایر</option>
                                 </select>
                                 @if (Session::get('type') == 2 && $errors->has('company.legal_type'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
@@ -1264,7 +1266,7 @@
                                 <select name="branch_id" required>
                                     <option disabled selected value>شاخه مورد نظر را انتخاب کنید *</option>
                                     @foreach($branches as $branch)
-                                        <option value="{{$branch->id}}">{{ $branch->title }}</option>
+                                        <option value="{{$branch->id}}" {{((Session::get('type') == 2) && request()->old('branch_id') == $branch->id ) ?'selected':''}}>{{ $branch->title }}</option>
                                     @endforeach
                                 </select>
                                 @if (Session::get('type') == 2 && $errors->has('branch_id'))
@@ -1543,8 +1545,8 @@
                                 <label>جنسیت : </label>
                                 <select name="sex" required>
                                     <option disabled selected value>جنسیت مورد نظر را انتخاب کنید *</option>
-                                    <option value="1">مرد</option>
-                                    <option value="0">زن</option>
+                                    <option value="1" {{((Session::get('type') == 3) && request()->old('sex') == 1 ) ?'selected':''}}>مرد</option>
+                                    <option value="0" {{((Session::get('type') == 3) && request()->old('sex') == 0 ) ?'selected':''}}>زن</option>
                                 </select>
                                 @if (Session::get('type') == 3 && $errors->has('sex'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
@@ -1658,7 +1660,7 @@
                                 <label for="">انتخاب نشانی ارسال مراسلات : </label>
                                 <select name="receive_place" required>
                                     <option disabled selected value>نشانی مورد نظر را انتخاب کنید *</option>
-                                    <option value="0">منزل</option>
+                                    <option value="0" {{((Session::get('type') == 3) && request()->old('receive_place') == 1 ) ?'selected':''}}>منزل</option>
                                     <option value="1">محل کار</option>
                                 </select>
                                 @if (Session::get('type') == 3 && $errors->has('receive_place'))
@@ -1811,7 +1813,7 @@
                                 <select name="branch_id" required>
                                     <option disabled selected value>شاخه مورد نظر را انتخاب کنید *</option>
                                     @foreach($branches as $branch)
-                                        <option value="{{$branch->id}}">{{ $branch->title }}</option>
+                                        <option value="{{$branch->id}}" {{((Session::get('type') == 3) && request()->old('branch_id') == $branch->id ) ?'selected':''}}>{{ $branch->title }}</option>
                                     @endforeach
                                 </select>
                                 @if (Session::get('type') == 3 && $errors->has('branch_id'))
@@ -2076,8 +2078,8 @@
                                 <label>جنسیت : </label>
                                 <select name="sex" required>
                                     <option disabled selected value>جنسیت مورد نظر را انتخاب کنید *</option>
-                                    <option value="1">مرد</option>
-                                    <option value="0">زن</option>
+                                    <option value="1" {{((Session::get('type') == 4) && request()->old('sex') == 1 ) ?'selected':''}}>مرد</option>
+                                    <option value="0" {{((Session::get('type') == 4) && request()->old('sex') == 0 ) ?'selected':''}}>زن</option>
                                 </select>
                                 @if (Session::get('type') == 4 && $errors->has('sex'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
@@ -2151,7 +2153,7 @@
                                 <select name="branch_id" required>
                                     <option disabled selected value>شاخه مورد نظر را انتخاب کنید *</option>
                                     @foreach($branches as $branch)
-                                        <option value="{{$branch->id}}">{{ $branch->title }}</option>
+                                        <option value="{{$branch->id}}" {{((Session::get('type') == 4) && request()->old('branch_id') == $branch->id ) ?'selected':''}}>{{ $branch->title }}</option>
                                     @endforeach
                                 </select>
                                 @if (Session::get('type') == 4 && $errors->has('branch_id'))

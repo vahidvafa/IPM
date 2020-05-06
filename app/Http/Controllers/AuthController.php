@@ -169,7 +169,7 @@ class AuthController extends Controller
                     $documentName = time() . $i . '.' . $request->file('files')[$i]->getClientOriginalExtension();
                     $request->file('files')[$i]->move(public_path('/img/documents'), $documentName);
                     $document = new Document(['address' => $documentName, 'explain' => $request->get('files_explain')[$i]]);
-                    $user->education()->save($document);
+                    $user->documents()->save($document);
                 }
             }
             if ($request->has('experience')) {
