@@ -416,8 +416,6 @@
                                     <option disabled selected value>نشانی مورد نظر را انتخاب کنید *</option>
                                     <option value="0" {{((Session::get('type') == 1) && request()->old('receive_place') == 0 ) ?'selected':''}}>منزل</option>
                                     <option value="1" {{((Session::get('type') == 1) && request()->old('receive_place') == 1 ) ?'selected':''}}>محل کار</option>
-                                    <option value="0">منزل</option>
-                                    <option value="1">محل کار</option>
                                 </select>
                                 @if (Session::get('type') == 1 && $errors->has('receive_place'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"

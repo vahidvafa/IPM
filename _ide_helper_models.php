@@ -12,31 +12,87 @@
 
 namespace App{
 /**
- * App\Category
+ * App\Branch
  *
  * @property int $id
  * @property string $title
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Event[] $events
- * @property-read int|null $events_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
+ * @property-read int|null $users_count
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category newQuery()
- * @method static \Illuminate\Database\Query\Builder|\App\Category onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Branch newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Branch newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Branch onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Branch query()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Category withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Category withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Branch whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Branch whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Branch whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Branch whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Branch whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Branch withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Branch withoutTrashed()
  * @mixin \Eloquent
  */
-	class Category extends \Eloquent {}
+	class Branch extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Company
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string|null $name
+ * @property string|null $established_date
+ * @property string|null $established_place
+ * @property string|null $established_number
+ * @property string|null $economy_number
+ * @property string|null $national_number
+ * @property string|null $post_number
+ * @property string|null $ownership_type
+ * @property string|null $legal_type
+ * @property string|null $address
+ * @property string|null $ceo_name
+ * @property string|null $ceo_name_en
+ * @property string|null $ceo_picture
+ * @property int $lang_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Company onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereCeoName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereCeoNameEn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereCeoPicture($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereEconomyNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereEstablishedDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereEstablishedNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereEstablishedPlace($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereLangId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereLegalType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereNationalNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereOwnershipType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company wherePostNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Company whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Company withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Company withoutTrashed()
+ * @mixin \Eloquent
+ * @property-read \App\User $user
+ */
+	class Company extends \Eloquent {}
 }
 
 namespace App{
@@ -69,6 +125,9 @@ namespace App{
  * @method static \Illuminate\Database\Query\Builder|\App\Document withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Document withoutTrashed()
  * @mixin \Eloquent
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Document whereLangId($value)
+ * @property-read \App\User $user
  */
 	class Document extends \Eloquent {}
 }
@@ -111,8 +170,14 @@ namespace App{
  * @method static \Illuminate\Database\Query\Builder|\App\education withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\education withoutTrashed()
  * @mixin \Eloquent
+ * @property int $user_id
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\education whereLangId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\education whereUserId($value)
+ * @property string $field_of_study
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Education whereFieldOfStudy($value)
  */
-	class education extends \Eloquent {}
+	class Education extends \Eloquent {}
 }
 
 namespace App{
@@ -167,8 +232,143 @@ namespace App{
  * @method static \Illuminate\Database\Query\Builder|\App\Event withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Event withoutTrashed()
  * @mixin \Eloquent
+ * @property string $date
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereLangId($value)
+ * @property string $from_date
+ * @property string $to_date
+ * @property string $start_register_date
+ * @property int $user_id
+ * @property string $mobile
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereEventCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereFromDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereMobile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereStartRegisterDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereToDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereUserId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Gift[] $gifts
+ * @property-read int|null $gifts_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Order[] $orders
+ * @property-read int|null $orders_count
  */
 	class Event extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\EventCategory
+ *
+ * @property int $id
+ * @property string $name
+ * @property int $lang_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Event[] $event
+ * @property-read int|null $event_count
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\EventCategory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\EventCategory newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\EventCategory onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\EventCategory query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\EventCategory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\EventCategory whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\EventCategory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\EventCategory whereLangId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\EventCategory whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\EventCategory whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\EventCategory withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\EventCategory withoutTrashed()
+ * @mixin \Eloquent
+ */
+	class EventCategory extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Gift
+ *
+ * @property int $id
+ * @property string $code
+ * @property float $price
+ * @property int $type_id 1 => %  ,  2 => price
+ * @property int $maximum_count 0 => unlimited ,  != 0 => limited usage
+ * @property int $minimum_price 0 => unlimited ,  != 0 => limited price
+ * @property int $maximum_price 0 => unlimited ,  != 0 => limited price
+ * @property int $members_usage 0 => only forum users ,  1 => all of users
+ * @property int $from_date 0 => unlimited ,  != 0 => limited time
+ * @property int $to_date 0 => unlimited ,  != 0 => limited time
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Event $event
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\UsedGift[] $usedGifts
+ * @property-read int|null $used_gifts_count
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Gift onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift whereFromDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift whereMaximumCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift whereMaximumPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift whereMembersUsage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift whereMinimumPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift whereToDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift whereTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Gift withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Gift withoutTrashed()
+ * @mixin \Eloquent
+ * @property int $event_id
+ * @property-read mixed $used_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Gift whereEventId($value)
+ */
+	class Gift extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\IPMA
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IPMA newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IPMA newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IPMA query()
+ * @mixin \Eloquent
+ * @property string $head_title
+ * @property string $head_subtitle
+ * @property string $head_description
+ * @property string $address
+ * @property string $tel
+ * @property string $fax
+ * @property string $secretariat_email
+ * @property string $membership_email
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IPMA whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IPMA whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IPMA whereFax($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IPMA whereHeadDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IPMA whereHeadSubtitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IPMA whereHeadTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IPMA whereMembershipEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IPMA whereSecretariatEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IPMA whereTel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IPMA whereUpdatedAt($value)
+ * @property int|null $event_id
+ * @property int|null $news_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IPMA whereEventId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\IPMA whereNewsId($value)
+ */
+	class IPMA extends \Eloquent {}
 }
 
 namespace App{
@@ -207,6 +407,39 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereUserId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Job withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Job withoutTrashed()
+ * @mixin \Eloquent
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereLangId($value)
+ * @property string $title
+ * @property string|null $education
+ * @property string|null $location
+ * @property string|null $type
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Request[] $requests
+ * @property-read int|null $requests_count
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereEducation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereLocation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereType($value)
+ * @property string|null $contract_type
+ * @property string|null $work_experience
+ * @property int $jobs_category_id
+ * @property int $sex
+ * @property string|null $benefits
+ * @property int $visibility_count
+ * @property string|null $company_logo
+ * @property string|null $skills
+ * @property-read \App\JobsCategory $jobCategory
+ * @property-read \App\Province $province
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereBenefits($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereCompanyLogo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereContractType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereJobsCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereSex($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereSkills($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereVisibilityCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Job whereWorkExperience($value)
+ * @property int $jobsCategory_id
  */
 	class Job extends \Eloquent {}
 }
@@ -233,8 +466,35 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\JobsCategory whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\JobsCategory withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\JobsCategory withoutTrashed()
+ * @mixin \Eloquent
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\JobsCategory whereLangId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Job[] $job
+ * @property-read int|null $job_count
  */
 	class JobsCategory extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Lang
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $photo
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Lang newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Lang newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Lang query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Lang whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Lang whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Lang whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Lang wherePhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Lang whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
+	class Lang extends \Eloquent {}
 }
 
 namespace App{
@@ -267,6 +527,13 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership whereUserId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Membership withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Membership withoutTrashed()
+ * @mixin \Eloquent
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership whereLangId($value)
+ * @property int $state_id
+ * @property int $year
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership whereStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership whereYear($value)
  */
 	class Membership extends \Eloquent {}
 }
@@ -294,6 +561,9 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\MembershipType whereRequiredDocuments($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\MembershipType whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\MembershipType whereUpdatedAt($value)
+ * @mixin \Eloquent
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MembershipType whereLangId($value)
  */
 	class MembershipType extends \Eloquent {}
 }
@@ -321,8 +591,269 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\MembershipTypesLog whereOldPrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\MembershipTypesLog whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\MembershipTypesLog whereUserId($value)
+ * @mixin \Eloquent
+ * @property string $old_title
+ * @property string $new_title
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MembershipTypesLog whereNewTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MembershipTypesLog whereOldTitle($value)
  */
 	class MembershipTypesLog extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Message
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string|null $detail
+ * @property int $lang_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Message onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereDetail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereLangId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Message withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Message withoutTrashed()
+ * @mixin \Eloquent
+ */
+	class Message extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\News
+ *
+ * @property int $id
+ * @property string $title
+ * @property string|null $description
+ * @property string|null $detail
+ * @property string|null $photo
+ * @property int $lang_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\News newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\News newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\News onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\News query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\News whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\News whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\News whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\News whereDetail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\News whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\News whereLangId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\News wherePhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\News whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\News whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\News withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\News withoutTrashed()
+ * @mixin \Eloquent
+ * @property int $state
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Picture[] $pictures
+ * @property-read int|null $pictures_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\News whereState($value)
+ */
+	class News extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Order
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $event_id
+ * @property int $state_id 0 => payment pending , 1 => successful , 2=> failed
+ * @property int $total_price
+ * @property string|null $reference_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\UsedGift $Gift
+ * @property-read \App\Event $event
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\OrderCode[] $orderCodes
+ * @property-read int|null $order_codes_count
+ * @property-read \App\User $user
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Order newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Order newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Order onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Order query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Order whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Order whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Order whereEventId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Order whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Order whereReferenceId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Order whereStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Order whereTotalPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Order whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Order whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Order withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Order withoutTrashed()
+ * @mixin \Eloquent
+ * @property int $type_id 0 => event , 1 => register , 2 => upgrade
+ * @property string|null $comment explain about order
+ * @property string|null $reference_number bank reference number
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Order whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Order whereReferenceNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Order whereTypeId($value)
+ */
+	class Order extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\OrderCode
+ *
+ * @property int $id
+ * @property int $order_id
+ * @property int $state_id
+ * @property string|null $name
+ * @property string|null $mobile
+ * @property string|null $email
+ * @property string $code
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Order $order
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\OrderCode newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\OrderCode newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\OrderCode onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\OrderCode query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\OrderCode whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\OrderCode whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\OrderCode whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\OrderCode whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\OrderCode whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\OrderCode whereMobile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\OrderCode whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\OrderCode whereOrderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\OrderCode whereStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\OrderCode whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\OrderCode withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\OrderCode withoutTrashed()
+ * @mixin \Eloquent
+ * @property string|null $picture
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\OrderCode wherePicture($value)
+ */
+	class OrderCode extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\PassedCourses
+ *
+ * @property int $id
+ * @property int $passed_courses_category_id
+ * @property string $title
+ * @property string $content
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\PassedCoursesCategory $PassedCoursesCat
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCourses newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCourses newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\PassedCourses onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCourses query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCourses whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCourses whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCourses whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCourses whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCourses wherePassedCoursesCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCourses whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCourses whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\PassedCourses withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\PassedCourses withoutTrashed()
+ * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $user
+ * @property-read int|null $user_count
+ */
+	class PassedCourses extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\PassedCoursesCategory
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $name
+ * @property int $lang_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\PassedCourses[] $PassedCourses
+ * @property-read int|null $passed_courses_count
+ * @property-read \App\User $user
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCoursesCategory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCoursesCategory newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\PassedCoursesCategory onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCoursesCategory query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCoursesCategory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCoursesCategory whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCoursesCategory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCoursesCategory whereLangId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCoursesCategory whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCoursesCategory whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PassedCoursesCategory whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\PassedCoursesCategory withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\PassedCoursesCategory withoutTrashed()
+ * @mixin \Eloquent
+ */
+	class PassedCoursesCategory extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Picture
+ *
+ * @property int $id
+ * @property int $news_id
+ * @property string $url
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\News $news
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Picture newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Picture newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Picture onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Picture query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Picture whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Picture whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Picture whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Picture whereNewsId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Picture whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Picture whereUrl($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Picture withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Picture withoutTrashed()
+ * @mixin \Eloquent
+ */
+	class Picture extends \Eloquent {}
 }
 
 namespace App{
@@ -331,76 +862,105 @@ namespace App{
  *
  * @property int $id
  * @property int $user_id
- * @property int|null $sex
- * @property string|null $father_name
- * @property string|null $certificate_number
- * @property string|null $birth_date
- * @property string|null $birth_place
- * @property string|null $national_code
- * @property string|null $work_name
- * @property string|null $work_address
- * @property string|null $home_address
- * @property string|null $work_post
- * @property string|null $home_post
- * @property string|null $work_tel
- * @property string|null $home_tel
- * @property int|null $receive_place
- * @property string|null $established_date
- * @property string|null $established_place
- * @property string|null $established_number
- * @property string|null $economy_number
- * @property string|null $national_number
- * @property string|null $post_number
- * @property string|null $ownership_type
- * @property string|null $legal_type
- * @property string|null $address
- * @property string|null $ceo_name
- * @property string|null $ceo_name_en
- * @property string|null $ceo_picture
- * @property string|null $agent_name
- * @property string|null $agent_name_en
- * @property string|null $agent_picture
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $sex
+ * @property string $father_name
+ * @property string $certificate_number
+ * @property string $birth_date
+ * @property string $birth_place
+ * @property string $national_code
+ * @property string $work_name
+ * @property string $work_address
+ * @property string $home_address
+ * @property string $work_post
+ * @property string $home_post
+ * @property string $work_tel
+ * @property string $home_tel
+ * @property int $receive_place
+ * @property string $established_date
+ * @property string $established_place
+ * @property string $established_number
+ * @property string $economy_number
+ * @property string $national_number
+ * @property string $post_number
+ * @property string $ownership_type
+ * @property string $legal_type
+ * @property string $address
+ * @property string $ceo_name
+ * @property string $ceo_name_en
+ * @property string $ceo_picture
+ * @property string $agent_name
+ * @property string $agent_name_en
+ * @property string $agent_picture
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
  * @property-read \App\User $user
+ * @property string|null $youTube
+ * @property string|null $facebook
+ * @property string|null $instagram
+ * @property string|null $telegram
+ * @property string|null $twitter
+ * @property int $lang_id
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Profile onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereAgentName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereAgentNameEn($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereAgentPicture($value)
+ * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereBirthDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereBirthPlace($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereCeoName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereCeoNameEn($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereCeoPicture($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereCertificateNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereEconomyNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereEstablishedDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereEstablishedNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereEstablishedPlace($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereFacebook($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereFatherName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereHomeAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereHomePost($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereHomeTel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereLegalType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereInstagram($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereLangId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereNationalCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereNationalNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereOwnershipType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile wherePostNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereReceivePlace($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereSex($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereTelegram($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereTwitter($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereWorkAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereWorkName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereWorkPost($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereWorkTel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereYouTube($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Profile withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Profile withoutTrashed()
+ * @mixin \Eloquent
+ * @property-read mixed $young
+ * @property string|null $honors
+ * @property string|null $certificate
+ * @property string|null $specialized_basins
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereCertificate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereHonors($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Profile whereSpecializedBasins($value)
  */
 	class Profile extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Province
+ *
+ * @property int $id
+ * @property string $title
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Province newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Province newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Province query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Province whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Province whereTitle($value)
+ * @mixin \Eloquent
+ * @property-read \App\Job $job
+ */
+	class Province extends \Eloquent {}
 }
 
 namespace App{
@@ -431,6 +991,8 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Request whereUserId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Request withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Request withoutTrashed()
+ * @mixin \Eloquent
+ * @property-read \App\Job $job
  */
 	class Request extends \Eloquent {}
 }
@@ -455,8 +1017,42 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Reservation whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Reservation withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Reservation withoutTrashed()
+ * @mixin \Eloquent
  */
 	class Reservation extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\UsedGift
+ *
+ * @property int $id
+ * @property int $gift_id
+ * @property int $order_id
+ * @property int $total_order_price
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Gift $gift
+ * @property-read \App\Order $order
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UsedGift newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UsedGift newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\UsedGift onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UsedGift query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UsedGift whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UsedGift whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UsedGift whereGiftId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UsedGift whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UsedGift whereOrderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UsedGift whereTotalOrderPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UsedGift whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\UsedGift withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\UsedGift withoutTrashed()
+ * @mixin \Eloquent
+ */
+	class UsedGift extends \Eloquent {}
 }
 
 namespace App{
@@ -522,6 +1118,47 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUserCode($value)
+ * @mixin \Eloquent
+ * @property string $first_name
+ * @property string $last_name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\PassedCoursesCategory[] $PassedCoursesCat
+ * @property-read int|null $passed_courses_cat_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Job[] $jobs
+ * @property-read int|null $jobs_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\visibiliy[] $visibilities
+ * @property-read int|null $visibilities_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\WorkExperience[] $wordExperience
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User like($field, $value)
+ * @property string $name_en
+ * @property int $branch_id
+ * @property int $main
+ * @property int $diamond
+ * @property int $gold
+ * @property int $silver
+ * @property int $bronze
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Company[] $companies
+ * @property-read int|null $companies_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Order[] $orders
+ * @property-read int|null $orders_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\PassedCourses[] $passedCourse
+ * @property-read int|null $passed_course_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\WorkExperience[] $workExperience
+ * @property-read int|null $work_experience_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereBranchId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereBronze($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereDiamond($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereGold($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereMain($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereNameEn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereSilver($value)
+ * @property int $isShowMyPhone 0=> false | 1=> true
+ * @property string|null $userCard
+ * @property int $reminder
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereIsShowMyPhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereReminder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUserCard($value)
  */
 	class User extends \Eloquent {}
 }
@@ -554,8 +1191,36 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UsersState whereUserId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\UsersState withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\UsersState withoutTrashed()
+ * @mixin \Eloquent
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UsersState whereLangId($value)
  */
 	class UsersState extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\visibiliy
+ *
+ * @property-read \App\User $users
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\visibiliy newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\visibiliy newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\visibiliy query()
+ * @mixin \Eloquent
+ * @property int $id
+ * @property int $user_id
+ * @property string $profile_fields
+ * @property int $status 0=>deactive | 1=>active
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\visibiliy whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\visibiliy whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\visibiliy whereProfileFields($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\visibiliy whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\visibiliy whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\visibiliy whereUserId($value)
+ */
+	class visibiliy extends \Eloquent {}
 }
 
 namespace App{
@@ -589,6 +1254,11 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\WorkExperience whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\WorkExperience withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\WorkExperience withoutTrashed()
+ * @mixin \Eloquent
+ * @property int $user_id
+ * @property int $lang_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\workExperience whereLangId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\workExperience whereUserId($value)
  */
 	class WorkExperience extends \Eloquent {}
 }

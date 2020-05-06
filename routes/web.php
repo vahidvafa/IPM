@@ -290,6 +290,9 @@ Route::get("hashMake/{id}", function ($id) {
     return $dec;
 });
 Route::get('card', 'UserController@showCard');
-Route::get("testCode", function () {
-    return createUserCode(3);
+Route::get("testMail", function () {
+    $order = \App\Order::find(41);
+    Mail::to('drvafaiee@gmail.com')->send(new \App\Mail\OrderEmail($order));
+    dd(1);
 });
+Route::get("createOrder/{order}", 'OrderCodeController@show');
