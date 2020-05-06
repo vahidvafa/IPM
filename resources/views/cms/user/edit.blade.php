@@ -434,17 +434,17 @@
                         <div class="form-group col-md-5 mb-3">
                             <label for="certificate-level">سطح مدرک</label>
                             <select class="form-control" name="certificate-level" id="certificate-level">
-                                <option value="A" @if(substr(explode("“",$user->profile[0]->certificate)[1],0,1) == "A") selected @endif >IPMA CB Certificate Level A</option>
-                                <option value="B" @if(substr(explode("“",$user->profile[0]->certificate)[1],0,1) == "B") selected @endif >IPMA CB Certificate Level B</option>
-                                <option value="C" @if(substr(explode("“",$user->profile[0]->certificate)[1],0,1) == "C") selected @endif >IPMA CB Certificate Level C</option>
-                                <option value="D" @if(substr(explode("“",$user->profile[0]->certificate)[1],0,1) == "D") selected @endif >IPMA CB Certificate Level D</option>
+                                <option value="A" @if(substr(explode("“",$user->profile[0]->certificate??"?“?")[1],0,1) == "A") selected @endif >IPMA CB Certificate Level A</option>
+                                <option value="B" @if(substr(explode("“",$user->profile[0]->certificate??"?“?")[1],0,1) == "B") selected @endif >IPMA CB Certificate Level B</option>
+                                <option value="C" @if(substr(explode("“",$user->profile[0]->certificate??"?“?")[1],0,1) == "C") selected @endif >IPMA CB Certificate Level C</option>
+                                <option value="D" @if(substr(explode("“",$user->profile[0]->certificate??"?“?")[1],0,1) == "D") selected @endif >IPMA CB Certificate Level D</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-6 mb-3 mt-4">
                             <label for="certificate-date" class="col-12">تاریخ*</label>
                             <input type="text" name="certificate-date" id="certificate-date"
-                                   value="{{old('certificate-date')??explode(" - ",$user->profile[0]->certificate)[1]}}"
+                                   value="{{old('certificate-date')??explode(" - ",$user->profile[0]->certificate??" - ")[1]}}"
                                    class="form-control datePickerInput" aria-invalid="false"
                                    style="margin-top: 19px"
                                    required>
@@ -462,7 +462,7 @@
                         <div class="form-group col-md-6 mb-3 mt-4">
                             <label for="awards[1]" class="col-12">ردیف اول*</label>
                             <input type="text" name="awards[1]" id="awards[1]"
-                                   value="{{old('awards[1]')??explode("?!?",$user->profile[0]->awards)[0]}}"
+                                   value="{{old('awards[1]')??explode("?!?",$user->profile[0]->awards??" ?!? ")[0]}}"
                                    class="form-control " aria-invalid="false"
                                    required>
 
@@ -470,7 +470,7 @@
                         <div class="form-group col-md-6 mb-3 mt-4">
                             <label for="awards[2]" class="col-12">ردیف دوم*</label>
                             <input type="text" name="awards[2]" id="awards[2]"
-                                   value="{{old('awards[2]')??explode("?!?",$user->profile[0]->awards)[1]}}"
+                                   value="{{old('awards[2]')??explode("?!?",$user->profile[0]->awards??" ?!? ")[1]}}"
                                    class="form-control " aria-invalid="false"
                                    required>
 
@@ -478,7 +478,7 @@
                         <div class="form-group col-md-6 mb-3 mt-4">
                             <label for="awards[3]" class="col-12">ردیف سوم*</label>
                             <input type="text" name="awards[3]" id="awards[3]"
-                                   value="{{old('awards[3]')??explode("?!?",$user->profile[0]->awards)[2]}}"
+                                   value="{{old('awards[3]')??explode("?!?",$user->profile[0]->awards??" ?!? ?!? ")[2]}}"
                                    class="form-control" aria-invalid="false"
                                    required>
                         </div>
