@@ -181,11 +181,16 @@ function persianText($text)
 
 function createUserCode($membershipType, $main = 0)
 {
+    $array = ['','A','C','S'];
     $year = jdate()->format('y');
     $year = (strlen($year) == 1) ? 0 . $year : $year;
     $lastCode = \App\User::whereMembershipTypeId($membershipType)->whereMain($main)->orderByDesc('user_code')->get(['user_code'])->first()->user_code;
     $lastCode = explode('-', $lastCode);
-    $type = $lastCode[2];
+    if ($main == 0)
+        $type = $array[$membershipType];
+    else
+        $type = 'M';
+//    $type = $lastCode[2];
     if ($year == $lastCode[0]) {
         $counter = $lastCode[1] + 1;
         $diff = 3 - strlen($counter);
