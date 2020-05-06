@@ -272,8 +272,8 @@ Route::prefix('Committees')->group(function () {
 
     Route::get('researches', function () {
         $breadcrumb = $titleHeader = "کمیته پژوهش و انتشارات";
-        return view('committees.researches', compact('titleHeader', 'breadcrumb'));
-    })->name('committees.register');
+        return view('committees.researches',compact('titleHeader','breadcrumb'));
+    })->name('committees.researches');
 
     Route::get('certificate', function () {
         $breadcrumb = $titleHeader = "کمیته گواهینامه ها";
@@ -291,5 +291,5 @@ Route::get("hashMake/{id}", function ($id) {
 });
 Route::get('card', 'UserController@showCard');
 Route::get("testCode", function () {
-    return createUserCode(5);
+    return createUserCode(3);
 });

@@ -22,6 +22,38 @@
     <script src="{{asset('js/all.js')}}"></script>
     <script src="{{asset('js/slick.min.js')}}"></script>
 
+
+    <script type="text/javascript">
+        /// some script
+
+        // jquery ready start
+        $(document).ready(function() {
+            // jQuery code
+            $('.has-sub').click(function (e) {
+                $('.submenu-left').css('display','block')
+            });
+            //////////////////////// Prevent closing from click inside dropdown
+            $(document).on('click', '.dropdown-menu', function (e) {
+                e.stopPropagation();
+            });
+
+            // make it as accordion for smaller screens
+            if ($(window).width() < 992) {
+                $('.dropdown-menu a').click(function(e){
+                    e.preventDefault();
+                    if($(this).next('.submenu').length){
+                        $(this).next('.submenu').toggle();
+                    }
+                    $('.dropdown').on('hide.bs.dropdown', function () {
+                        $(this).find('.submenu').hide();
+                    })
+                });
+            }
+
+        }); // jquery end
+    </script>
+
+
 </head>
 <body style="overflow-x: hidden">
 @guest()
@@ -34,50 +66,66 @@
     </div>
 @endguest
 
-
 <header id="header">
     <div class="header-top-bar back-dark-violet pt-3 pb-3">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-9">
-                    <a href="{{route('main')}}">
-                        <img src="{{asset('img/logo.png')}}" alt="انجمن مدیریت پروژه">
-                        <h1 class="text-white d-inline-block font-18 text-regular ml-2">انجمن مدیریت پروژه ایران</h1>
-                    </a>
+                <div class="col-8 col-md-8 d-lg-flex align-items-center pr-0">
+                    <img class="img-fluid" src="{{asset('img/logo.png')}}" alt="انجمن مدیریت پروژه">
+                    <h1 class="text-white d-inline-block font-18 text-regular text-logo ml-2">انجمن مدیریت پروژه ایران</h1>
+                    <form method="post" action="{{route('search.post')}}" class="form-top">
+                        @csrf
+                        <input name="search" type="search" placeholder="جستوجو" />
+                    </form>
                 </div>
-                <div class="col-md-6 col-3 text-right" style="margin-top: -6px;margin-bottom: -10px;">
-                    <a href="{{route('main')}}">
-                        <img src="{{asset('img/ipma-logo.png')}}" style="height: 69px;" alt="انجمن مدیریت پروژه">
-
-                    </a>
+                <div class="col-4 col-md-4 text-right">
+                    <img class="img-fluid logo-ipma" src="{{asset('img/ipma-logo.png')}}" alt="انجمن مدیریت پروژه">
                 </div>
             </div>
         </div>
     </div>
-    <div class="sidebar">
+
+    <div class="sidebar ">
         <div class="header-menu pt-2 pb-2">
             <div class="container">
                 <div class="row">
+
                     <nav class="navbar navbar-expand-lg  navbar-dark col-12">
+
+
                         <!-- Toggler/collapsibe Button -->
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#collapsibleNavbar">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <ul class="navbar-nav nav-login-out ml-auto order-lg-1">
-                            <li class="nav-item ">
+                        <ul class="navbar-nav nav-login-out ml-auto  order-lg-1">
+                            <!-- Dropdown -->
+                            <li class="nav-item dropdown nav-lang">
                                 @auth()
-                                    <a class="nav-link nav-login" href="{{route('profile',auth()->user()->slug)}}">
-                                        <i class="fa fa-user mr-1"></i>
-                                        <span>پروفایل</span>
-                                    </a>
+                                <div class="nav-link dropdown-toggle nav-login" id="navbardrop6"
+                                     data-toggle="dropdown">
+                                    <i class="fa fa-user mr-1"></i>
+                                    <span>پروفایل</span>
+                                </div>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item profile-dropdown"  href="{{route('profile',auth()->user()->slug)}}" ><i class="fa fa-user mr-1"></i><span>مشاهده پروفایل</span></a>
+                                    <hr class="m-0">
+                                    <a class="dropdown-item profile-dropdown " href="{{route('logout')}}"><i class="fa fa-sign-out-alt mr-1"></i><span>خروج</span></a>
+                                </div>
                                 @else
                                     <a class="nav-link nav-login" data-toggle="modal" data-target="#ModalLogin">
                                         <i class="fa fa-user mr-1"></i>
-                                        <span href="/res">   ورود کاربران</span>
+                                        <span href="/res">ورود کاربران</span>
                                     </a>
                                 @endauth
                             </li>
+                            <!--<li class="nav-item ">-->
+                            <!--<a class="nav-link nav-login" data-toggle="modal" data-target="#ModalLogin">-->
+                            <!--<i class="fa fa-user mr-1"></i>-->
+                            <!--<span>   ورود کاربران</span>-->
+                            <!--</a>-->
+
+                            <!--</li>-->
                             <!-- Dropdown -->
                             <li class="nav-item dropdown nav-lang">
                                 <a class="nav-link dropdown-toggle nav-lang-persian" href="#" id="navbardrop5"
@@ -93,16 +141,6 @@
                         <!-- Navbar links -->
                         <div class="collapse navbar-collapse order-lg-0" id="collapsibleNavbar">
                             <ul class="navbar-nav header-main">
-                                {{-- @guest
-                                     @if(Route::currentRouteName() != 'register')
-                                         <li class="nav-item ">
-                                             <a class="nav-link " href="{{route('register')}}">ثبت نام</a>
-                                         </li>
-                                     @endif
-                                 @endguest--}}
-                                {{--<li class="nav-item active">
-                                    <a class="nav-link " href="{{route('main')}}">صفحه اول</a>
-                                </li>--}}
 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
@@ -126,12 +164,28 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                         کمیته ها و شاخه ها و کارگروه ها</a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{route('committees')}}">کمیته ها</a>
+                                        <a class="dropdown-item has-sub dropdown-toggle" >کمیته ها</a>
+                                        <div class="submenu submenu-left dropdown-menu">
+                                            <a class="dropdown-item" href="{{route('committees.register')}}">کمیته عضویت</a>
+                                            <a class="dropdown-item" href="{{route('committees.awards')}}">کمیته جایزه ملی</a>
+                                            <a class="dropdown-item" href="{{route('committees.education')}}">کمیته آموزش</a>
+                                            <a class="dropdown-item" href="{{route('committees.researches')}}">کمیته پژوهش و انتشارات</a>
+                                            <a class="dropdown-item" href="{{route('committees.certificate')}}">کمیته گواهینامه ها</a>
+                                        </div>
+                                        {{--<li class="nav-item dropdown">
+                                        <a class="dropdown-item has-sub dropdown-toggle" href="#" > Dropdown item 3 </a>
+                                            <div class="submenu submenu-left dropdown-menu">
+                                                <a class="dropdown-item" href="">Submenu item 1</a>
+                                                <a class="dropdown-item" href="">Submenu item 2</a>
+                                                <a class="dropdown-item" href="">Submenu item 3</a>
+                                                <a class="dropdown-item" href="">Submenu item 4</a>
+                                            </div>
+                                        </li>--}}
+
                                         <a class="dropdown-item" href="{{route('branches')}}">شاخه ها</a>
                                         <a class="dropdown-item" href="{{route('WorkingGroups')}}">کارگروه ها</a>
                                     </div>
                                 </li>
-
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                         درباره اعضا </a>
@@ -153,30 +207,18 @@
                                     <a class="nav-link " href="{{route('message.create')}}">تماس با ما</a>
                                 </li>
 
-                                <!-- Dropdown -->
-
-                                <li class="nav-item">
-                                    <form method="post" action="{{route('search.post')}}" class="nav-item">
-                                        @csrf
-                                        <input name="search" value="اکسل" type="hidden" />
-                                    <a class="nav-link" onclick="this.parentElement.submit()">جستجو</a>
-                                    </form>
-                                </li>
-
-
                                 @auth()
                                     @if(auth()->user()->roles == 0 || auth()->user()->roles == 1)
                                         <li class="nav-item ">
                                             <a class="nav-link" href="{{route('cms.index')}}">پنل مدیریت</a>
                                         </li>
                                     @endif
-                                    <li class="nav-item ">
-                                        <a class="nav-link" href="{{route('logout')}}">خروج</a>
-                                    </li>
+
                                 @endauth
 
                             </ul>
                         </div>
+
                     </nav>
                 </div>
             </div>
@@ -202,7 +244,11 @@
             </div>
         </div>
     </div>
+
+
 </header>
+
+
 
 <main id="content" role="main">
     <div class="popular-pack pt-lg-5  pb-5 ">
