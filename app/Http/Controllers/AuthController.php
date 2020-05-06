@@ -293,10 +293,9 @@ class AuthController extends Controller
         $titleHeader = $breadcrumb = 'وضعیت پرداخت';
         $status = false;
         $type_id = 1;
-        $referenceId = "----";
+        $referenceId = ($request->has('ResNum')) ? $request->get('ResNum') : '----';
         $user = User::find(\auth()->id());
         if ($request->has('State') && $request->get('State') == "OK") {
-            $referenceId = $request->get('ResNum');
             $referenceNumber = $request->get('RefNum');
             $order = Order::whereReferenceId($referenceId)->whereStateId(0);
             if ($order->exists()) {

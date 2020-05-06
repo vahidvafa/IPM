@@ -104,8 +104,8 @@ class IndexController extends Controller
         $titleHeader = $breadcrumb = 'وضعیت پرداخت';
         $status = false;
         $type_id = 0;
+        $referenceId = ($request->has('ResNum')) ? $request->get('ResNum') : '----';
         if ($request->has('State') && $request->get('State') == "OK") {
-            $referenceId = $request->get('ResNum');
             $referenceNumber = $request->get('RefNum');
             $order = Order::whereReferenceId($referenceId)->whereStateId(0);
             if ($order->exists()) {
