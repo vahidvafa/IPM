@@ -76,7 +76,7 @@ class EventController extends Controller
         try {
             $event = new Event($request->all());
             $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('/img/events'), $imageName);
+            $request->file('image')->move(public_path('/img/posts'), $imageName);
             $event->photo = $imageName;
             $event->user_id = (auth()->check()) ? auth()->id() : 0;
             $event->save();
@@ -163,7 +163,7 @@ return;*/
             $event->update($request->all());
             if ($request->has('image')) {
                 $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $request->file('image')->move(public_path('/img/events'), $imageName);
+                $request->file('image')->move(public_path('/img/posts'), $imageName);
                 $event->photo = $imageName;
             }
             $event->user_id = (auth()->check()) ? auth()->id() : 0;

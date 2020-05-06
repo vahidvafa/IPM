@@ -233,7 +233,7 @@
                             </div>
                             <div class="popular-pack-in-images mt-4 mt-sm-0 order-1 order-sm-2  order-md-1 order-lg-2">
                                 <div class="popular-pack-in-img">
-                                    <img class="rounded" src="img/events/{{$event->photo}}" alt="انجمن مدیریت پروژه">
+                                    <img class="rounded" src="img/posts/{{$event->photo}}" alt="انجمن مدیریت پروژه">
                                 </div>
                                 <div class="popular-pack-in-img-mores">
                                     <a href="{{route('event',[$event->id])}}" class="popular-pack-in-img-more font-16">شرکت
@@ -300,7 +300,7 @@
                                         <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
                                             <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
                                                 <div class="last-pack-content-in-img-in">
-                                                    <img src="{{asset("img/events/$event->photo")}}" alt="غکس رویداد">
+                                                    <img src="{{asset("img/posts/$event->photo")}}" alt="غکس رویداد">
                                                 </div>
 
                                             </div>
@@ -447,7 +447,7 @@
                     <div class="col-12 col-md-4 mb-3 mb-md-0">
                         <div class="card card-news">
                             <div class="card-news-img">
-                                <img src="{{asset('img/news/'.$singleNews->photo)}}" class=""
+                                <img src="{{asset('img/posts/'.$singleNews->photo)}}" class=""
                                      style="width: 100% !important;">
                             </div>
                             <div class="card-body">

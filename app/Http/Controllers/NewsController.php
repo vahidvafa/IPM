@@ -71,7 +71,7 @@ class NewsController extends Controller
         $news->save();
         for ($i = 0; $i < count($request->file('pictures')); $i++) {
             $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
-            $request->file('pictures')[$i]->move(public_path('/img/news/'), $imageName);
+            $request->file('pictures')[$i]->move(public_path('/img/posts/'), $imageName);
             $photo = new Picture(['url' => $imageName]);
             $news->pictures()->save($photo);
         }
@@ -99,7 +99,7 @@ class NewsController extends Controller
         $news->save();
         for ($i = 0; $i < count($request->file('pictures')); $i++) {
             $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
-            $request->file('pictures')[$i]->move(public_path('/img/news/'), $imageName);
+            $request->file('pictures')[$i]->move(public_path('/img/posts/'), $imageName);
             $photo = new Picture(['url' => $imageName]);
             $news->pictures()->save($photo);
         }

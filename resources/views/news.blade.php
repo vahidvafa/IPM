@@ -84,7 +84,7 @@
                 <div class="col-12 col-md-4 my-2">
                     <div class="card card-news">
                         <div class="card-news-img">
-                            <img src="{{asset("/img/news/$singleNews->photo")}}" class="w-100">
+                            <img src="{{asset("/img/posts/$singleNews->photo")}}" class="w-100">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title font-14 text-black">
