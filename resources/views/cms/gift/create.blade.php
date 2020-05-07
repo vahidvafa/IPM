@@ -26,9 +26,9 @@
                                                     <option value="{{$event->id}}">{{$event->title}}</option>
                                                 @endforeach
                                             </select>
-                                            @error('event_id')
-                                            <div class="error text-danger">{{ $message }}</div>
-                                            @enderror
+                                            @if($errors->has('event_id'))
+                                                <div class="error text-danger">{{ $errors->first('event_id') }}</div>
+                                            @endif
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
                                             <label class="col-12">انتخاب افراد مجاز</label>
@@ -37,9 +37,9 @@
                                                 <option value="0">فقط اعضای انجمن</option>
                                                 <option value="1">همه ی اعضا</option>
                                             </select>
-                                            @error('members_usage')
-                                            <div class="error text-danger">{{ $message }}</div>
-                                            @enderror
+                                            @if($errors->has('members_usage'))
+                                                <div class="error text-danger">{{ $errors->first('members_usage') }}</div>
+                                            @endif
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
                                             <label class="col-12">انتخاب نوع</label>
@@ -48,16 +48,16 @@
                                                 <option value="1">درصدی</option>
                                                 <option value="2">مبلغی</option>
                                             </select>
-                                            @error('type_id')
-                                            <div class="error text-danger">{{ $message }}</div>
-                                            @enderror
+                                            @if($errors->has('type_id'))
+                                                <div class="error text-danger">{{ $errors->first('type_id') }}</div>
+                                            @endif
                                         </div>
                                         <div class="col-lg-6 mb-4 mt-3">
                                             <label class="col-12">حداکثر تعداد استفاده</label>
                                             <input type="text" name="maximum_count" class="form-control" placeholder="اگر کد به صورت نامحدود است 0 وارد کنید">
-                                            @error('maximum_count')
-                                            <div class="error text-danger">{{ $message }}</div>
-                                            @enderror
+                                            @if($errors->has('maximum_count'))
+                                                <div class="error text-danger">{{ $errors->first('maximum_count') }}</div>
+                                            @endif
                                         </div>
                                         <div class="col-lg-12 mb-4 border-bottom border-dark">
                                             <h4>مهلت استفاده</h4>
@@ -73,9 +73,9 @@
                                             <input class="form-control datePickerInputs" name="from_date" id="from_date"
                                                    type="hidden"
                                                    value="{{old('from_date')}}">
-                                            @error('from_date')
-                                            <div class="error text-danger">{{ $message }}</div>
-                                            @enderror
+                                            @if($errors->has('from_date'))
+                                                <div class="error text-danger">{{ $errors->first('from_date') }}</div>
+                                            @endif
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
                                             <label class="col-12">تا تاریخ</label>
@@ -88,9 +88,9 @@
                                             <input class="form-control datePickerInputs" name="to_date" id="to_date"
                                                    type="hidden"
                                                    value="{{old('to_date')}}">
-                                            @error('to_date')
-                                            <div class="error text-danger">{{ $message }}</div>
-                                            @enderror
+                                            @if($errors->has('to_date'))
+                                                <div class="error text-danger">{{ $errors->first('to_date') }}</div>
+                                            @endif
                                         </div>
                                         <div class="col-lg-12 mb-4 border-bottom border-dark">
                                             <h4>مبلغ</h4>
@@ -99,23 +99,23 @@
                                             <label class="col-12" id="price_label">مبلغ</label>
                                             <input class="form-control" name="price" id="price" type="text"
                                                    value="{{old('price')}}">
-                                            @error('price')
-                                            <div class="error text-danger">{{ $message }}</div>
-                                            @enderror
+                                            @if($errors->has('price'))
+                                                <div class="error text-danger">{{ $errors->first('price') }}</div>
+                                            @endif
                                         </div>
                                         <div class="col-lg-6 mb-4">
                                             <label class="col-12">حداقل قیمت ( به ریال )</label>
                                             <input type="text" name="minimum_price" class="form-control" placeholder="اگر محدودیتی نیست 0 وارد کنید">
-                                            @error('minimum_price')
-                                            <div class="error text-danger">{{ $message }}</div>
-                                            @enderror
+                                            @if($errors->has('minimum_price'))
+                                                <div class="error text-danger">{{ $errors->first('minimum_price') }}</div>
+                                            @endif
                                         </div>
                                         <div class="col-lg-6 mb-4">
                                             <label class="col-12">حداکثر قیمت ( به ریال )</label>
                                             <input type="text" name="maximum_price" class="form-control" placeholder="اگر محدودیتی نیست 0 وارد کنید">
-                                            @error('maximum_price')
-                                            <div class="error text-danger">{{ $message }}</div>
-                                            @enderror
+                                            @if($errors->has('maximum_price'))
+                                                <div class="error text-danger">{{ $errors->first('maximum_price') }}</div>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="card-footer">

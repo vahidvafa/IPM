@@ -183,7 +183,7 @@ Route::resource("job", "JobController");
 Route::post('/event/list', 'EventController@indexJs')->name('event.list');
 Route::get('callback', 'IndexController@callback')->name('callback');
 Route::get('bank', 'IndexController@bank')->name('bank');
-Route::get('verifyBank', 'IndexController@verify')->name('verifyBank');
+Route::post('verifyBank', 'IndexController@verify')->name('verifyBank');
 Route::get('orderCode/{orderCode}', 'OrderCodeController@show')->name('orderCode.show');
 
 Route::get('test', function () {
@@ -290,9 +290,10 @@ Route::get("hashMake/{id}", function ($id) {
     return $dec;
 });
 Route::get('card', 'UserController@showCard');
-Route::get("testMail", function () {
-    $order = \App\Order::find(41);
-    Mail::to('drvafaiee@gmail.com')->send(new \App\Mail\OrderEmail($order));
-    dd(1);
-});
-Route::get("createOrder/{order}", 'OrderCodeController@show');
+//Route::get("testMail", function () {
+//    Jalalian::forge('today')->format('%A, %d %B %y')
+//    $order = \App\Order::find(41);
+//    Mail::to('drvafaiee@gmail.com')->send(new \App\Mail\OrderEmail($order));
+//    dd(1);
+//});
+//Route::get("createOrder/{order}", 'OrderCodeController@show');

@@ -43,7 +43,7 @@
                             <th scope="col">شماره موبایل</th>
                             <th scope="col">ایمیل</th>
                             <th scope="col">کد</th>
-                            <th scope="col">چاپ</th>
+{{--                            <th scope="col">چاپ</th>--}}
                         </tr>
                         </thead>
                         <tbody>
@@ -54,8 +54,8 @@
                                 <td data-th="شماره موبایل">{{tr_num($ticket->mobile,'fa')}}</td>
                                 <td data-th="ایمیل">{{$ticket->email}}</td>
                                 <td data-th="کد">{{tr_num($ticket->code,'fa')}}</td>
-                                <td data-th="چاپ">
-                                    <a href="{{route('orderCode.show',[$ticket->id])}}" target="_blank">چاپ</a></td>
+{{--                                <td data-th="چاپ">--}}
+{{--                                    <a href="{{route('orderCode.show',[$ticket->id])}}" target="_blank">چاپ</a></td>--}}
                             </tr>
                         @endforeach
                         </tbody>

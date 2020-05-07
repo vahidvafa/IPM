@@ -32,12 +32,17 @@ class OrderEmail extends Mailable
      */
     public function build()
     {
-        $eventName = $this->order->event()->first()->title;
+        $event = $this->order->event()->first();
+        $eventName = $event->title;
+        $longitude = $event->longitude;
+        $latitude = $event->latitude;
+        $link = "https://maps.google.com/?q=$latitude,$longitude";
         $orderCodes = $this->order->orderCodes();
         $count = tr_num($orderCodes->count());
         $text = "کاربر عزیز بلیت های شما برای رویداد $eventName به تعداد $count عدد صادر شد ";
         $mail = $this->view('email.order')->with([
             'text' => $text,
+            'link' => $link,
         ])->subject('بلیت های صادر شده !');
         foreach ($orderCodes->get() as $orderCode) {
             $fileName = $orderCode->picture;

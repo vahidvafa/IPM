@@ -73,7 +73,7 @@
                         <ul class="list-detail-in">
                             <li ><span class="text-black pr-1 text-regular">مخاطبین  : </span><span class="text-black-light">متن تصادفی</span></li>
                             <li ><span class="text-black pr-1 text-regular">مدرس : </span><span class="text-black-light">متن تصادفی</span></li>
-                            <li ><span class="text-black pr-1 text-regular">سرمایه گذاری : </span><span class="text-black-light">{{tr_num(number_format($event->price))}} تومان </span></li>
+                            <li ><span class="text-black pr-1 text-regular">سرمایه گذاری : </span><span class="text-black-light">{{tr_num(number_format($event->price))}} ریال </span></li>
                         </ul>
                         @if(time() >= $event->start_register_date && time() <= $event->to_date)
                             <a href="{{route('event.reserve',[$event->id])}}" class="btn btn-bar-detail mt-3 mb-4">ثبت نام</a>

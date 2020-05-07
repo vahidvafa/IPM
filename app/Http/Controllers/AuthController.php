@@ -16,9 +16,7 @@ use App\Membership;
 use App\MembershipType;
 use App\Profile;
 use Illuminate\Support\Facades\Hash;
-use Shetabit\Payment\Facade\Payment;
-use Shetabit\Payment\Invoice;
-use Symfony\Component\Console\Input\Input;
+use SoapClient;
 use Validator;
 
 class AuthController extends Controller
@@ -299,7 +297,8 @@ class AuthController extends Controller
             $referenceNumber = $request->get('RefNum');
             $order = Order::whereReferenceId($referenceId)->whereStateId(0);
             if ($order->exists()) {
-                if (($order->total_price) == $request->get('Amount')) {
+                $showOrder = $order->get()->first();
+                if ($showOrder->total_price == $request->get('Amount')) {
                     $soapClient = new soapclient('https://verify.sep.ir/Payments/ReferencePayment.asmx?WSDL');
                     $verify = $soapClient->VerifyTransaction($referenceNumber, $MerchantCode);
                     if ($verify > 0) {
@@ -310,7 +309,7 @@ class AuthController extends Controller
                         $user->active = 1;
                         $user->save();
                         $status = true;
-                        $date = Jalalian::fromCarbon($order->created_at)->format('Y/m/d H:i');
+                        $date = Jalalian::fromCarbon($showOrder->created_at)->format('Y/m/d H:i');
                         return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'type_id'));
                     }
                 }
@@ -319,4 +318,5 @@ class AuthController extends Controller
         }
         return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'type_id'));
     }
+
 }

@@ -13,10 +13,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Ixudra\Curl\Facades\Curl;
+use Mail;
 use Morilog\Jalali\Jalalian;
-use Shetabit\Payment\Drivers\Irankish\Irankish;
-use Shetabit\Payment\Facade\Payment;
-use Shetabit\Payment\Invoice;
 use SoapClient;
 
 class IndexController extends Controller
@@ -107,9 +105,10 @@ class IndexController extends Controller
         $referenceId = ($request->has('ResNum')) ? $request->get('ResNum') : '----';
         if ($request->has('State') && $request->get('State') == "OK") {
             $referenceNumber = $request->get('RefNum');
-            $order = Order::whereReferenceId($referenceId)->whereStateId(0);
+            $order = Order::whereReferenceId($referenceId);
             if ($order->exists()) {
-                if (($order->total_price) == $request->get('Amount')) {
+                $order = $order->first();
+                if (($order->get()->first()->total_price) == $request->get('Amount')) {
                     $soapClient = new soapclient('https://verify.sep.ir/Payments/ReferencePayment.asmx?WSDL');
                     $verify = $soapClient->VerifyTransaction($referenceNumber, $MerchantCode);
                     if ($verify > 0) {
@@ -117,14 +116,14 @@ class IndexController extends Controller
                             'state_id' => '1',
                             'reference_number' => $referenceNumber,
                         ]);
-                        $event = $order->event()->first();
+                        $event = $order->event()->get()->first();
                         $category = persianText($event->category()->get('name')->first()->name);
                         $date = $event->from_date;
                         $address = $event->address;
                         $latitude = $event->latitude;
                         $longitude = $event->longitude;
                         $year = jdate($date)->format('%Y');
-                        $month = persianText(jdate($date)->format('%d %B'));
+                        $month = persianText(jdate($date)->format('%B')) . ' ' . jdate($date)->format('%d');
                         $day = persianText(jdate($date)->format('%A'));
                         $time = jdate($date)->format('H:i') . persianText(" ساعت ");
                         $lines = explode("\n", wordwrap(" محل برگزاری : $address ", 69));
@@ -242,10 +241,11 @@ class IndexController extends Controller
                                 'password' => 'ipma!@#$%^',
                                 'source' => '982188229406',
                                 'destination' => auth()->user()->mobile,
-                                'message' => "کاربر عزیز بلیت شما برای رویداد $eventName به تعداد $count صادر و به ایمیل شما ارسال شد !"])
+                                'message' => "کاربر عزیز بلیت شما برای رویداد $eventName به تعداد $count عدد صادر و به ایمیل شما ارسال شد !"])
                             ->post();
+//                        Mail::to(auth()->user()->email)->send(new \App\Mail\OrderEmail($order));
                         $status = true;
-                        $date = Jalalian::fromCarbon($order->created_at)->format('Y/m/d H:i');
+                        $date = Jalalian::fromCarbon($order->get()->first()->created_at)->format('Y/m/d H:i');
                         $tickets = $order->orderCodes()->get();
                         return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'tickets', 'type_id'));
                     }
@@ -382,7 +382,8 @@ class IndexController extends Controller
     }
 
 
-    public function test(){
+    public function test()
+    {
         return "asdhasjdhaskh dkashdajshdkash dahs dasjd kdasd";
     }
 }

@@ -24,18 +24,18 @@
                                             <label class="col-12">عنوان خبر</label>
                                             <input class="form-control" name="title" type="text" placeholder="عنوان خبر"
                                                    value="{{$news->title}}">
-                                            @error('title')
-                                                <div class="error text-danger">{{ $message }}</div>
-                                            @enderror
+                                            @if($errors->has('title'))
+                                                <div class="error text-danger">{{ $errors->first('title') }}</div>
+                                            @endif
                                         </div>
                                         <div class="form-group col-lg-12 mb-4">
                                             <label class="col-12">خلاصه خبر</label>
                                             <input class="form-control" name="description" type="text"
                                                    placeholder="خلاصه خبر"
                                                    value="{{$news->description}}">
-                                            @error('description')
-                                                <div class="error text-danger">{{ $message }}</div>
-                                            @enderror
+                                            @if($errors->has('description'))
+                                                <div class="error text-danger">{{ $errors->first('description') }}</div>
+                                            @endif
                                         </div>
                                         <div class="form-group col-lg-12 mb-4">
                                             <label class="col-12">متن خبر</label>
@@ -43,24 +43,24 @@
                                                 <textarea id="detail" name="detail"
                                                           class="form-control ckeditor cke_rtl">{{ $news->detail }}</textarea>
                                             </div>
-                                            @error('detail')
-                                                <div class="error text-danger">{{ $message }}</div>
-                                            @enderror
+                                            @if($errors->has('detail'))
+                                                <div class="error text-danger">{{ $errors->first('detail') }}</div>
+                                            @endif
                                         </div>
                                         <div class="col-lg-12 mb-4">
                                             <label class="col-12">عکس خبر ( برای تغییر عکس ، عکس جدید را بارگذاری کنید )</label>
                                             <input class="form-control-file my-2" type="file" name="image" id="image">
-                                            @error('image')
-                                                <div class="error text-danger">{{ $message }}</div>
-                                            @enderror
+                                            @if($errors->has('image'))
+                                                <div class="error text-danger">{{ $errors->first('image') }}</div>
+                                            @endif
                                         </div>
                                         <div class="col-lg-12 mb-4">
                                             <label class="col-12">گالری ( همه ی عکس ها را انتخاب کنید )</label>
                                             <input class="form-control"
                                                    name="pictures[]" id="input-content" type="file" multiple>
-                                            @error('pictures')
-                                            <div class="error text-danger">{{ $message }}</div>
-                                            @enderror
+                                            @if($errors->has('pictures'))
+                                                <div class="error text-danger">{{ $errors->first('pictures') }}</div>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="card-footer">
