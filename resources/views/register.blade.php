@@ -81,12 +81,6 @@
                                 <label>مدت زمان : </label>
                                 <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="1" checked>عضویت یکساله</label>
                                 <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="3">عضویت سه ساله</label>
-                                {{--../icon/chevron-down--}}
-                                {{--            <i class="fa fa-chevron-down"></i>--}}
-                                {{--            <select name="year" required >--}}
-                                {{--                <option value="1" selected>عضویت یکساله</option>--}}
-                                {{--                <option value="3">عضویت سه ساله</option>--}}
-                                {{--            </select>--}}
                                 @if (Session::get('type') == 1 && $errors->has('year'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">

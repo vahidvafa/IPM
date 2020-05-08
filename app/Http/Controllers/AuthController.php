@@ -319,4 +319,87 @@ class AuthController extends Controller
         return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'type_id'));
     }
 
+    public function preRepeatCheckPass(Request $request)
+    {
+//        dd(decrypt($request->get('encode')));
+        $user = User::whereEmail(decrypt($request->get('encode')));
+        if (!$user->exists())
+            return redirect()->back()->with("errorField", "متاسفانه همچین کاربری یافت نشد! لطفا با پشتیبانی تمایس بگیرید");
+        $user = $user->get()->first();
+        if (!\Hash::check($request->get('pass'), $user->password))
+            return redirect()->back()->with("errorField", "رمز عبور اشتباه");
+        auth()->loginUsingId($user->id);
+        if ($user->active == 2 || $user->active == 3) {
+            $year = ($request->has('year')) ? $request->get('year') : 1;
+            $memberShipType = MembershipType::find($user->membership_type_id);
+            $memberShip = new Membership([
+                'user_id' => $user->id,
+                'membership_type_id' => $user->membership_type_id,
+                'year' => $year,
+            ]);
+            $price = ($year == 3) ? 2 * $memberShipType->price : $year * $memberShipType->price;
+            $memberShipTypeTitle = $memberShipType->title;
+            $year = tr_num($year);
+            $comment = "پرداخت جهت تمدید $memberShipTypeTitle به مدت $year سال";
+            $order = new Order([
+                'user_id' => $user->id,
+                'event_id' => 0,
+                'type_id' => 3,
+                'comment' => $comment,
+                'total_price' => $price,
+                'reference_id' => $user->id . time(),
+            ]);
+            $memberShip->save();
+            $order->save();
+            $breadcrumb = $titleHeader = "در حال انتقال به بانک";
+            $resNum = $order->reference_id;
+            $merchantCode = '11175778';
+            $redirectURL = route('user.verifyRepeat');
+            return view('bank', compact('titleHeader', 'breadcrumb', 'price', 'resNum', 'merchantCode', 'redirectURL', 'comment'));
+        }
+        return redirect()->back()->with("errorField", "شما نمیتوانید عضویت خود را تمدید کنید ! لطفا با پشتیبانی تمایس بگیرید");
+    }
+
+    public function verifyRepeat(Request $request)
+    {
+        $MerchantCode = "11175778";
+        $date = Jalalian::now()->format('Y/m/d H:i');
+        $titleHeader = $breadcrumb = 'وضعیت پرداخت';
+        $status = false;
+        $type_id = 1;
+        $referenceId = ($request->has('ResNum')) ? $request->get('ResNum') : '----';
+        $user = User::find(\auth()->id());
+        if ($request->has('State') && $request->get('State') == "OK") {
+            $referenceNumber = $request->get('RefNum');
+            $order = Order::whereReferenceId($referenceId)->whereStateId(0);
+            if ($order->exists()) {
+                $showOrder = $order->get()->first();
+                if ($showOrder->total_price == $request->get('Amount')) {
+                    $soapClient = new soapclient('https://verify.sep.ir/Payments/ReferencePayment.asmx?WSDL');
+                    $verify = $soapClient->VerifyTransaction($referenceNumber, $MerchantCode);
+                    if ($verify > 0) {
+                        $order->update([
+                            'state_id' => 1,
+                            'reference_number' => $referenceNumber,
+                        ]);
+                        $memberShip = $user->memberships()->latest()->first();
+                        $memberShipType = MembershipType::find($memberShip->membership_type_id);
+                        $expire = $memberShipType->period * $memberShip->year;
+                        $memberShip->start = time();
+                        $memberShip->end = $expire;
+                        $memberShip->state_id = 1;
+                        $memberShip->save();
+                        $user->active = 2;
+                        $user->expire = 2;
+                        $user->save();
+                        $status = true;
+                        $date = Jalalian::fromCarbon($showOrder->created_at)->format('Y/m/d H:i');
+                        return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'type_id'));
+                    }
+                }
+                $order->update(['state_id' => 2]);
+            }
+        }
+        return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'type_id'));
+    }
 }

@@ -22,6 +22,7 @@ class VerifyCsrfToken extends Middleware
         'verifyBank',
         'verifyRegister',
         'profile/upgrade_result',
+        'user/verifyRepeat',
         'products'
     ];
 }

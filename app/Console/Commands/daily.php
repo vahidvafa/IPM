@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Event;
+use App\Mail\ReminderMail;
 use App\News;
 use App\User;
 use Illuminate\Console\Command;
@@ -63,5 +64,19 @@ class daily extends Command
             ->update(['active' => 3]);
 
         // reminder
+        $users = User::whereActive(2)->where('reminder', '<', 2);
+        foreach ($users as $user) {
+            if ($user->reminder == 0) {
+                $time = 7;
+            } elseif ($user->reminder == 1) {
+                $time = 3;
+            }
+            if ((time() - $user->expire) <= ($time * 86400)) {
+                $time = tr_num($time);
+                $text = "عضویت شما تا $time روز دیگر به اتمام میرسد لطفا حهت ارتثا و یا تمدید عضویت خود اقدام فرمایید!";
+                \Mail::to($user->email)->send(new ReminderMail($user, $text));
+                $user->increment('reminder', 1);
+            }
+        }
     }
 }
