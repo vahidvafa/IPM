@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\Document;
+use App\Membership;
 use App\MembershipType;
 use App\Profile;
 use App\User;
@@ -11,7 +12,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 use Intervention\Image\Facades\Image;
-use phpDocumentor\Reflection\Types\Integer;
 use Validator;
 
 class UserController extends Controller
@@ -119,13 +119,14 @@ class UserController extends Controller
         if ($request->hasFile('files')) {
             for ($i = 0; $i < count($request->file('files')); $i++) {
                 $documentName = time() . $i . '.' . $request->file('files')[$i]->getClientOriginalExtension();
-                $request->file('files')[$i]->move(public_path('/files/documents'), $documentName);
+                $request->file('files')[$i]->move(public_path('/img/documents'), $documentName);
 //                 $document['documents'] += ;
                 $user->documents()->save(new Document(['address' => $documentName, 'explain' => $request->get('files_explain')[$i]]));
             }
         }
 
-//        $rq['']
+        Membership::insert(['user_id'=>$user->id,'membership_type_id'=>$rq['membership_type_id'],
+            'year'=>$rq['year'],'start'=>0,'end'=>0,'state_id'=>0]);
 
         $user->save();
 //        return var_dump($user->profile);
@@ -194,7 +195,7 @@ class UserController extends Controller
         $rq = $request;
 
 
-        $user = User::with("education", "companies", 'documents')->find($request->get("tmp"));
+        $user = User::with("education", "companies", 'documents','profile')->find($request->get("tmp"));
 
 
         Document::whereUserId($user->id)->update(['state' => 0]);
@@ -204,8 +205,8 @@ class UserController extends Controller
             }
         }
 
-        if ($user->profile[0]->certificate_number != $request->get('profile')['profile']['certificate_number']) {
-            if (Profile::whereCertificateNumber($request->get('profile')['profile']['certificate_number']))
+        if ($user->profile[0]->certificate_number != $request->get('profile')['certificate_number']) {
+            if (Profile::whereCertificateNumber($request->get('profile')['certificate_number']))
                 flash_message("error", "متاسفانه این کد ملی قبلا ثبت شده است.");
             return redirect()->back();
         }
@@ -213,19 +214,19 @@ class UserController extends Controller
 
         if ($request->get('type') == 2) {
 
-            if ($user->companies[0]->established_number != $request->get('company')['company']['established_number']) {
-                if (Company::whereEstablishedNumber($request->get('company')['company']['certificate_number']))
+            if ($user->companies[0]->established_number != $request->get('company')['established_number']) {
+                if (Company::whereEstablishedNumber($request->get('company')['certificate_number']))
                     flash_message("error", "متاسفانه این شماره ثبت قبلا ثبت شده است.");
                 return redirect()->back();
             }
-            if ($user->companies[0]->economy_number != $request->get('company')['company']['economy_number']) {
-                if (Company::whereEconomyNumber($request->get('company')['company']['certificate_number']))
+            if ($user->companies[0]->economy_number != $request->get('company')['economy_number']) {
+                if (Company::whereEconomyNumber($request->get('company')['certificate_number']))
                     flash_message("error", "متاسفانه این شماره اقتصادی قبلا ثبت شده است.");
                 return redirect()->back();
             }
 
-            if ($user->companies[0]->national_number != $request->get('company')['company']['national_number']) {
-                if (Company::whereNationalNumber($request->get('company')['company']['certificate_number']))
+            if ($user->companies[0]->national_number != $request->get('company')['national_number']) {
+                if (Company::whereNationalNumber($request->get('company')['certificate_number']))
                     flash_message("error", "متاسفانه این شناسه ملی قبلا ثبت شده است.");
                 return redirect()->back();
             }
@@ -276,20 +277,12 @@ class UserController extends Controller
 
         $rq['isShowMyPhone'] = (int)$request->has('isShowMyPhone');
 
-
+        unset($rq['active']);
         $user->update($rq);
 
 
-        if ($request->has('active') && $user->active == 1) {
-            if ($request->get('active')) {
-                $membershipType = MembershipType::find($user->membership_type_id);
-                $user->expire = time() + $membershipType->period;
-                $user->active = 2;
-                $user->save();
-            }
-        } else {
-            $user->active = 1;
-            $user->save();
+        if ($request->has('active')) {
+         $this->activeUser($user->id);
         }
 
         $profile = $request->all('profile')['profile'];
@@ -320,18 +313,29 @@ class UserController extends Controller
         return back();
     }
 
-    public function active($id)
+
+
+    public function activeUser($id, User $user = null)
     {
+        if ($user == null)
         $user = User::find($id);
-        if ($user->active == 1) {
+
+//        if ($user->active == 1) {
             $membershipType = MembershipType::find($user->membership_type_id);
-            $user->expire = time() + $membershipType->period;
+            $memberShip = $user->memberships()->get('year')->last();
+            $user->expire = time() + ($membershipType->period * $memberShip->year );
             $user->active = 2;
-            $user->save();
-            flash_message('success', __('string.successful'));
-            return back();
-        }
-        return back();
+            $user->user_code = createUserCode($user->membership_type_id,$user->main);
+            $user->userCard = $this->showCard($user);
+            $user->profile()->update(['upgrade_update_data'=>null]);
+        $user->save();
+
+            $user->memberships()->update(['membership_type_id'=>$user->membership_type_id,
+                'start'=>time(),'end'=>$user->expire,'state_id'=>1,'year'=>$memberShip->year]);
+
+            if ($id != null ){
+                return back();
+            }
     }
 
     /**
@@ -450,10 +454,10 @@ class UserController extends Controller
 
     }
 
-    public function showCard()
+    public function showCard(User $user)
     {
-        auth()->loginUsingId(1);
-        $user = auth()->user();
+//        auth()->loginUsingId(1);
+
         $name = persianText($user->first_name . ' ' . $user->last_name);
         $nameEn = persianText($user->name_en);
         $imageName = $user->id . time();
@@ -526,7 +530,7 @@ class UserController extends Controller
             });
             $img->text(persianText(tr_num($user->companies[0]->name)), 220, 380, function (\Intervention\Image\Gd\Font $font) {
                 $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
-                $font->size(28);
+                $font->size(24);
                 $font->color('#000000');
                 $font->align('center');
                 $font->valign('bottom');
@@ -541,9 +545,12 @@ class UserController extends Controller
             $font->valign('bottom');
             $font->angle(0);
         });
-        $img->insert(asset('img/emam.jpg'), 'right', 70, 0);
+
+        $img->insert(asset('img/profile/'.($user->profile_picture??'profile-default.png')), 'right', 70, 0);
         $img->save(public_path("img/userCards/$imageName.jpg"));
-        echo "<img src='" . asset("img/userCards/$imageName.jpg") . "'>";
+//        return "<img src='" . asset("img/userCards/$imageName.jpg") . "'>";
+        return $imageName.'.jpg';
+
     }
 
 }

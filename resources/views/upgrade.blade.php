@@ -2138,14 +2138,14 @@
             );
 
 
-            $(':text').val("jasdhaksdasd  ashd");
+           /* $(':text').val("jasdhaksdasd  ashd");
             $('input[name=mobile]').val("09198167422");
             $('input[name=email]').val("dr@g.com");
             $('input[name=national_code]').val("71371234");
             $('input[name=certificate_number]').val("71371234");
             $('input[name=password_confirmation]').val("12345678");
             $('input[name=password]').val("12345678");
-            $('.datePickerInput').val("1397/10/23");
+            $('.datePickerInput').val("1397/10/23");*/
         });
 
 

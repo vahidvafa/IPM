@@ -44,15 +44,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @php
-                        if (request('page'))
-                            $i = 10 * (request('page'));
-                        else
-                            $i = 0;
-                    @endphp
+
                     @foreach($users as $user)
                         <tr>
-                            <td data-th="ردیف" class="text-right">{{++$i}}</td>
+                            <td data-th="ردیف" class="text-right">{{$loop->index+1  }}</td>
                             <td data-th="نام و نام خانوادگی"
                                 class="text-right">{{$user->first_name}} {{$user->last_name}}</td>
                             <td data-th="نمایش اطلاعات" class="text-right">

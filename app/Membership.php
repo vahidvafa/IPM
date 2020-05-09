@@ -42,7 +42,7 @@ class Membership extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['user_id', 'membership_type_id','lang_id','year'];
+    protected $fillable = ['user_id', 'membership_type_id','lang_id','year','start','end','state_id'];
 
     public function user()
     {

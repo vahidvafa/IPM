@@ -375,7 +375,7 @@
                         <label for="active">تایید کاربر: </label>
                         <input type="checkbox" class="option-input"
                                name="active"
-                               value="true"
+                               value="0"
                                aria-invalid="false" @if($user->active == 2) checked @endif>
 
                         @if ($errors->has('active'))

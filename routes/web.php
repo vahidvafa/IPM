@@ -130,7 +130,7 @@ Route::middleware('auth')->group(function () {
             //------
             Route::get('users', 'UserController@indexCms')->name('cms.user.index');
             Route::post('users', 'UserController@indexCms')->name('cms.user.index');
-            Route::post('user/{id}/confirm', 'UserController@active')->name('cms.user.active');
+            Route::post('user/{id}/confirm', 'UserController@activeUser')->name('cms.user.active');
             Route::get('user/{id}/edit', 'UserController@edit')->name('cms.user.edit');
             Route::get('user/{user}/badge', 'UserController@badge')->name('cms.user.badge.edit');
             Route::post('user/{user}/badge/update', 'UserController@badgeUpdate')->name('cms.user.badge.update');
@@ -144,7 +144,7 @@ Route::middleware('auth')->group(function () {
             Route::get('users/upgrade', "ProfileController@upgradeIndex")->name('cms.user.upgrade');
             Route::post('users/upgrade', "ProfileController@upgradeIndex")->name('cms.user.upgrade');
             Route::get('users/upgrade/{id}', "ProfileController@upgradeEdit")->name('cms.user.upgrade.edit');
-            Route::post('users/upgrade/edit', "ProfileController@cmsUpgrade")->name('cms.user.upgrade.update');
+            Route::post('users/upgrade/edit', "ProfileController@doUpgradeAdmin")->name('cms.user.upgrade.update');
 
 
             //------
@@ -300,10 +300,19 @@ Route::get("hashMake/{id}", function ($id) {
     return $dec;
 });
 Route::get('card', 'UserController@showCard');
-Route::get("testMail", function () {
-    $user = \App\User::find(1);
-    $time = tr_num(7);
-    $text = "عضویت شما تا $time روز دیگر به اتمام میرسد لطفا حهت ارتثا و یا تمدید عضویت خود اقدام فرمایید!";
-    Mail::to('vahid.izadyar@gmail.com')->send(new \App\Mail\ReminderMail($user, $text));
-    dd(true);
+//Route::get("testMail", function () {
+//    Jalalian::forge('today')->format('%A, %d %B %y')
+//    $order = \App\Order::find(41);
+//    Mail::to('drvafaiee@gmail.com')->send(new \App\Mail\OrderEmail($order));
+//    dd(1);
+//});
+//Route::get("createOrder/{order}", 'OrderCodeController@show');
+
+Route::get('test',function (){
+    $userController = new \App\Http\Controllers\UserController();
+
+    return $userController->activeUser(4);
 });
+
+
+#{"_token":"rGi0QW9D7Z1UzaX5K1XE51jBZlrkSsCPRHastdAd","membership_type_id":"1","year":"1","first_name":"jasdhaksdasd  ashd","last_name":"jasdhaksdasd  ashd","name_en":"jasdhaksdasd  ashd","profile":{"father_name":"jasdhaksdasd  ashd","national_code":"1321323","certificate_number":"123123123","birth_date":"1397\/10\/23","birth_place":"jasdhaksdasd  ashd","sex":"1","work_address":"jasdhaksdasd  ashd","work_post":"23213213232","home_address":"jasdhaksdasd  ashd","home_post":"213212132","work_name":"jasdhaksdasd  ashd","receive_place":"0"},"mobile":"09198167422","email":"dr@g.com","files_explain":["jasdhaksdasd  ashd"],"workExperience":{"company_name":"jasdhaksdasd  ashd","job_title":"jasdhaksdasd  ashd","from_date":"1397\/10\/23","to_date":"1397\/10\/23"},"branch_id":"1","password":"12345678","password_confirmation":"12345678","files":[{}],"documents":[{"address":"15888794110.png","explain":"jasdhaksdasd  1"},{"address":"15888794110.png","explain":"jasdhaksdasd  2"},{"address":"15888794110.png","explain":"jasdhaksdasd  3"},{"id":50,"state":0,"address":"15888794110.png","explain":"jasdhaksdasd  4"}]}

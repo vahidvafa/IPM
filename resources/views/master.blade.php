@@ -61,7 +61,6 @@
         }); // jquery end
     </script>
 
-
     @yield('header')
 
 </head>
@@ -70,7 +69,6 @@
     <div class="header-top-bar back-dark-violet pt-3 pb-3">
         <div class="container">
             <div class="row">
-
 
                 <div class="col-8 col-md-8 d-lg-flex align-items-center pr-0"  >
                     <img class="img-fluid" src="{{asset('img/logo.png')}}" alt="انجمن مدیریت پروژه">
@@ -95,7 +93,6 @@
             <div class="container">
                 <div class="row">
                     <nav class="navbar navbar-expand-lg  navbar-dark col-12" >
-
 
                         <!-- Toggler/collapsibe Button -->
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
