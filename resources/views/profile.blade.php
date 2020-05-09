@@ -16,7 +16,7 @@
                                 <div class="row justify-content-center">
                                     <div class="profile-top-image col-10 col-sm-8 col-md-6 col-lg-10 ">
                                         <img class="img-fluid img-profile"
-                                             src="@if(file_exists("img/profile/".($user->profile_picture==null?"$.$":$user->profile_picture))) {{asset("img/profile/".$user->profile_picture)}} @else {{asset('img/nasrollahpour.jpg')}} @endif"
+                                             src="@if($user->profile_picture != null ) {{asset("img/profile/".$user->profile_picture)}} @else {{asset('img/profile/profile-default.png')}} @endif"
                                              alt="">
                                         <div class="profile-top-icons fix-profile-icon "
                                              style="background-color: @if($user->membership_type_id == 1) @if($user->main == 0) grey @else #372b7d @endif @else #372b7d @endif">

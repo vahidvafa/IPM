@@ -42,7 +42,7 @@ class Document extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['address', 'explain'];
+    protected $fillable = ['address', 'explain','state'];
 
     public function user()
     {

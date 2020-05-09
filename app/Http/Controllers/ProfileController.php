@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\{Branch, Company, Document, Membership, MembershipType, Order, Profile, User, WorkExperience};
+use App\{Branch, Document, Membership, MembershipType, Order, User};
 use Hash;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Morilog\Jalali\Jalalian;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -337,7 +338,7 @@ class ProfileController extends Controller
             '*.numeric' => 'این فیلد باید عدد باشد',
 
         ];
-        switch ($request->get('type')) {
+        switch ($request->get('membership_type_id')) {
             case (1):
             case (3):
                 $validator = Validator::make($request->all(), [
@@ -346,7 +347,7 @@ class ProfileController extends Controller
                     'name_en' => 'bail | required | string | max:255',
                     'profile.father_name' => 'bail | required | string | max:255',
                     'profile.national_code' => 'bail | required | numeric ',
-                    'mobile' => 'bail | required | string |unique:users',
+                    'mobile' => 'bail | required | string ',
                     'profile.certificate_number' => 'bail | required | numeric',
                     'profile.birth_date' => 'bail | required | string',
                     'profile.birth_place' => 'bail | required | string',
@@ -356,29 +357,27 @@ class ProfileController extends Controller
                     'profile.home_post' => 'bail | required | string',
                     'profile.work_name' => 'bail | required | string',
                     'profile.receive_place' => 'bail | required | string',
-                    'email' => 'bail | required | string | email | max:255 | unique:users',
-                    'password' => 'bail | required | string | min:8 | confirmed',
+                    'email' => 'bail | required | string | email | max:255 ',
                     'branch_id' => 'bail | required | numeric',
                     'files.*' => 'bail | required | mimes:jpeg,bmp,png,jpg,pdf',
                     'files_explain.*' => 'bail | required | string',
                 ], $messages);
                 break;
             case 2:
-
                 $validator = Validator::make($request->all(), [
                     'first_name' => 'bail | required | string | max:255',
                     'last_name' => 'bail | required | string | max:255',
                     'name_en' => 'bail | required | string | max:255',
                     'profile.father_name' => 'bail | required | string | max:255',
                     'profile.national_code' => 'bail | required | numeric',
-                    'mobile' => 'bail | required | string |unique:users',
+                    'mobile' => 'bail | required | string ',
                     'profile.certificate_number' => 'bail | required | numeric',
                     'profile.birth_date' => 'bail | required | string',
                     'profile.birth_place' => 'bail | required | string',
                     'profile.sex' => 'bail | required',
                     'profile.home_address' => 'bail | required | string',
                     'profile.home_post' => 'bail | required | string',
-                    'email' => 'bail | required | string | email | max:255 | unique:users',
+                    'email' => 'bail | required | string | email | max:255',
                     'companies.name' => 'bail | required | string | max:255',
                     'companies.established_date' => 'bail | required | string | max:255',
                     'companies.established_number' => 'bail | required | string | max:255 | unique:companies,established_number',
@@ -390,7 +389,6 @@ class ProfileController extends Controller
                     'companies.address' => 'bail | required | string',
                     'companies.ceo_name' => 'bail | required | string',
                     'companies.ceo_name_en' => 'bail | required | string',
-                    'password' => 'bail | required | string | min:8 | confirmed',
                     'branch_id' => 'bail | required | numeric',
                     'files.*' => 'bail | required | mimes:jpeg,bmp,png,jpg,pdf ',
                     'files_explain.*' => 'bail | required | string ',
@@ -403,89 +401,98 @@ class ProfileController extends Controller
                     'name_en' => 'bail | required | string | max:255',
                     'profile.father_name' => 'bail | required | string | max:255',
                     'profile.national_code' => 'bail | required | numeric ',
-                    'mobile' => 'bail | required | string |unique:users',
+                    'mobile' => 'bail | required | string ',
                     'profile.certificate_number' => 'bail | required | numeric',
                     'profile.birth_date' => 'bail | required | string',
                     'profile.birth_place' => 'bail | required | string',
                     'profile.sex' => 'bail | required',
                     'profile.home_address' => 'bail | required | string',
                     'profile.home_post' => 'bail | required | string',
-                    'email' => 'bail | required | string | email | max:255 | unique:users',
-                    'password' => 'bail | required | string | min:8 | confirmed',
+                    'email' => 'bail | required | string | email | max:255',
                     'branch_id' => 'bail | required | numeric',
                 ], $messages);
                 break;
         }
 
-        $slug = str_replace(' ', '-', $request->get('name_en'));
-        $number = 1;
-        while (User::whereSlug($slug)->exists()) {
-            $slug .= '-' . ++$number;
+        $tmp_user = User::whereEmail($request->get('email'))->get();
+
+        if (count($tmp_user) != 0){
+            if ($tmp_user[0]->id != $request->get('tmp') ) {
+                flash_message("error", "ایمیل تکراری");
+                return back();
+            }
         }
-        $date = Jalalian::now()->format('Ym');
-        $userCode = mt_rand(1000, 100000);
-        while (User::whereUserCode($date . '-' . $userCode)->exists()) {
-            $userCode = mt_rand(1000, 100000);
+
+        $tmp_user = User::whereMobile($request->get('mobile'))->get();
+
+        if (count($tmp_user) != 0){
+            if ($tmp_user[0]->id != $request->get('tmp') ) {
+                flash_message("error", "موبایل تکراری");
+                return back();
+            }
         }
-        $userCode = $date . '-' . $userCode;
-        $memberShipType = MembershipType::find($request->get('type'));
-        $user = new User(
-            [
-                'first_name' => $request->get('first_name'),
-                'last_name' => $request->get('last_name'),
-                'name_en' => $request->get('name_en'),
-                'mobile' => $request->get('mobile'),
-                'email' => $request->get('email'),
-                'password' => Hash::make($request->get('password')),
-                'slug' => $slug,
-                'user_code' => $userCode,
-                'membership_type_id' => $request->get('type'),
-                'branch_id' => $request->get('branch_id'),
-            ]
-        );
 
 
-        $user->active = ($memberShipType->price == 0) ? 2 : 1;
-        $profile = new Profile($request->all());
-        $profile->lang_id = 1;
-        $isSuccessful = \DB::transaction(function () use ($user, $profile, $request) {
-            $user->save();
-            $user->profile()->save($profile);
-            if ($request->hasFile('files')) {
-                for ($i = 0; $i < count($request->file('files')); $i++) {
-                    $documentName = time() . $i . '.' . $request->file('files')[$i]->getClientOriginalExtension();
-                    $request->file('files')[$i]->move(public_path('/img/documents'), $documentName);
-                    $document = new Document(['address' => $documentName, 'explain' => $request->get('files_explain')[$i]]);
-                    $user->education()->save($document);
+        if ($validator->fails()){
+            flash_message("error","لطفا فیلد ها رو به درستی پر کنید");
+            return back()->withErrors($validator->messages());
+        }
+
+        $user = User::findOrFail($request->get('tmp'));
+
+        if ($request->get('name_en') != $user->name_en ) {
+            $slug = str_replace(' ', '-', $request->get('name_en'));
+            $number = 1;
+            while (User::whereSlug($slug)->exists()) {
+                $slug .= '-' . ++$number;
+            }
+        }
+
+
+        $isSuccessful = \DB::transaction(function () use ($user, $request) {
+
+            $user->update($request->all());
+
+            $this->activeUser(null,$user);
+
+            $user->profile()->update($request->get('profile'));
+
+            if ( $request->has('documents') )
+                foreach ( $request->get('documents') as $doc ) {
+                    $doc = json_decode($doc);
+                    /** if true => this doc not on database and doc is file name  ,  if false => return doc id , and exist on db **/
+                    if( !isset($doc->id) )
+                        $user->documents()->save(new Document(['address'=>$doc->address,'state'=>1,'explain'=>$doc->explain ]));
+                    else
+                        $user->documents()->whereId($doc->id)->update(['address'=>$doc->address,'state'=>1,'explain'=>$doc->explain ]);
+
                 }
-            }
-            if ($request->has('workExperience')) {
-                $experience = new WorkExperience([
-                    'companies_name' => ((isset($request->get('workExperience')['companies_name'])) ? $request->get('workExperience')['companies_name'] : null),
-                    'job_title' => ((isset($request->get('workExperience')['job_title'])) ? $request->get('workExperience')['job_title'] : null),
-                    'from_date' => ((isset($request->get('workExperience')['from_date'])) ? $request->get('workExperience')['from_date'] : null),
-                    'to_date' => ((isset($request->get('workExperience')['to_date'])) ? $request->get('workExperience')['to_date'] : null),
-                ]);
-                $user->workExperience()->save($experience);
-            }
-            if ($request->has('companies')) {
-                $companies = new Company($request->all('companies')['companies']);
-                $user->companies()->save($companies);
-            }
-            $membership = new Membership(
-                [
-                    'membership_type_id' => $request->get('type'),
-                    'user_id' => $user->id,
-                    'lang_id' => 1
-                ]
-            );
-            $membership->save();
+
+            if ($request->has('companies'))
+                $user->companies()->update($request->get('companies'));
+
+            if ($request->has('workExperience'))
+                $user->workExperience()->update($request->get('workExperience'));
+
+            if ($request->has('education') )
+                $user->education()->update($request->get('education'));
+
             return true;
         });
+
+
         if ($isSuccessful) {
-            auth()->loginUsingId($user->id);
-            return redirect()->to(route('main'));
+
+            flash_message('success', "کاربر با موفقت ارتفا یافت");
+            return redirect()->route('cms.user.upgrade');
         }
+        else {
+
+            flash_message('error', "لطفا یک بار دیگر تلاش کنید و بعد از آن در صورت شکست عملیات با پشتیبانی تماس بگیرید");
+            return back();
+        }
+
+
     }
 
     public function upgradeIndex(){
@@ -503,8 +510,10 @@ public function upgradeEdit($id){
             $reagent_id = $user->reagent_id;
 
             $user = json_decode($user->profile[0]->upgrade_update_data);
+
             $user->active = $active;
-            $user->reagent_id = $reagent_id;
+            $user->reagent_id= $reagent_id;
+
         }
     else{
 
@@ -531,12 +540,132 @@ public function upgradeEdit($id){
     $membership = MembershipType::find($user->membership_type_id);
 
 //    return json_encode($user->education);
+    $branches = Branch::all('id','title');
 
-        return view('cms.user.upgrade.edit',compact('user','membership'));
+        return view('cms.user.upgrade.edit',compact('user','membership','branches'));
 }
 
-public function cmsUpgrade(){
 
-}
+    public function activeUser($id, User $user = null)
+    {
+        if ($user == null)
+            $user = User::find($id);
 
+//        if ($user->active == 1) {
+        $membershipType = MembershipType::find($user->membership_type_id);
+        $memberShip = $user->memberships()->get('year')->last();
+        $user->expire = time() + ($membershipType->period * $memberShip->year );
+        $user->active = 2;
+        $user->user_code = createUserCode($user->membership_type_id,$user->main);
+        $user->userCard = $this->showCard($user);
+        $user->profile()->update(['upgrade_update_data'=>null]);
+        $user->save();
+
+        $user->memberships()->latest('id')->update(['membership_type_id'=>$user->membership_type_id,
+            'start'=>time(),'end'=>$user->expire,'state_id'=>1,'year'=>$memberShip->year]);
+
+        if ($id != null ){
+            return back();
+        }
+    }
+
+
+    public function showCard(User $user)
+    {
+//        auth()->loginUsingId(1);
+
+        $name = persianText($user->first_name . ' ' . $user->last_name);
+        $nameEn = persianText($user->name_en);
+        $imageName = $user->id . time();
+        if ($user->membership_type_id == 2){
+            $img = Image::make(public_path('img/register/C.png'));
+        }else{
+            if ((jdate()->getYear() - (int)explode('/',$user->profile[0]->birth_date)[0]) > 35){
+                switch ($user->membership_type_id){
+                    case 1:
+                        if ($user->main == 1)
+                            $img = Image::make(public_path('img/register/M.png'));
+                        else
+                            $img = Image::make(public_path('img/register/A.png'));
+                        break;
+                    case 3:
+                        $img = Image::make(public_path('img/register/S.png'));
+                        break;
+                    default:
+                        $img = Image::make(public_path('img/register/S.png'));
+                }
+            }else{
+                switch ($user->membership_type_id){
+                    case 1:
+                        if ($user->main == 1)
+                            $img = Image::make(public_path('img/register/YC-M.png'));
+                        else
+                            $img = Image::make(public_path('img/register/YC-A.png'));
+                        break;
+                    case 3:
+                        $img = Image::make(public_path('img/register/YC-S.png'));
+                        break;
+                    default:
+                        $img = Image::make(public_path('img/register/YC-S.png'));
+                }
+            }
+        }
+        $img->text($name, 950, 90, function (\Intervention\Image\Gd\Font $font) {
+            $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+            $font->size(28);
+            $font->color('#000000');
+            $font->align('right');
+            $font->valign('bottom');
+            $font->angle(0);
+        });
+        $img->text($nameEn, 590, 553, function (\Intervention\Image\Gd\Font $font) {
+            $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+            $font->size(28);
+            $font->color('#000000');
+            $font->align('left');
+            $font->valign('bottom');
+            $font->angle(0);
+        });
+        if ($user->membership_type_id != 2){
+            $img->text(persianText(tr_num($user->user_code)), 220, 340, function (\Intervention\Image\Gd\Font $font) {
+                $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+                $font->size(28);
+                $font->color('#000000');
+                $font->align('center');
+                $font->valign('bottom');
+                $font->angle(0);
+            });
+        }else{
+            $img->text(persianText(tr_num($user->user_code)), 220, 290, function (\Intervention\Image\Gd\Font $font) {
+                $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+                $font->size(28);
+                $font->color('#000000');
+                $font->align('center');
+                $font->valign('bottom');
+                $font->angle(0);
+            });
+            $img->text(persianText(tr_num($user->companies[0]->name)), 220, 380, function (\Intervention\Image\Gd\Font $font) {
+                $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+                $font->size(24);
+                $font->color('#000000');
+                $font->align('center');
+                $font->valign('bottom');
+                $font->angle(0);
+            });
+        }
+        $img->text(persianText(tr_num(jdate($user->expire)->format('Y/m/d'))), 220, 470, function (\Intervention\Image\Gd\Font $font) {
+            $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
+            $font->size(28);
+            $font->color('#000000');
+            $font->align('center');
+            $font->valign('bottom');
+            $font->angle(0);
+        });
+
+        $img->insert(asset('img/profile/'.($user->profile_picture??'profile-default.png')), 'right', 70, 0);
+        $img->save(public_path("img/userCards/$imageName.jpg"));
+//        return "<img src='" . asset("img/userCards/$imageName.jpg") . "'>";
+        return $imageName.'.jpg';
+
+    }
 }

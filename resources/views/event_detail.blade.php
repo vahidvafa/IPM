@@ -75,10 +75,14 @@
                             <li ><span class="text-black pr-1 text-regular">مدرس : </span><span class="text-black-light">متن تصادفی</span></li>
                             <li ><span class="text-black pr-1 text-regular">سرمایه گذاری : </span><span class="text-black-light">{{tr_num(number_format($event->price))}} ریال </span></li>
                         </ul>
+                        @if(auth()->check())
                         @if(time() >= $event->start_register_date && time() <= $event->to_date)
                             <a href="{{route('event.reserve',[$event->id])}}" class="btn btn-bar-detail mt-3 mb-4">ثبت نام</a>
                             @else
                             <a href="#" class="btn btn-bar-detail mt-3 mb-4 btn-info">ثبت نام</a>
+                        @endif
+                            @else
+                            <a href="/res" class="btn btn-bar-detail mt-3 mb-4 btn-info" data-toggle="modal" data-target="#ModalLogin" >ورود</a>
                         @endif
 
                     </div>

@@ -179,7 +179,8 @@ function persianText($text)
     return (new \App\Utils\FarsiGD())->persianText($text);
 }
 
-function createUserCode($membershipType, $main = 0)
+
+function createUserCode($membershipType, $main = 0):string
 {
     $array = ['','A','C','S'];
     $year = jdate()->format('y');

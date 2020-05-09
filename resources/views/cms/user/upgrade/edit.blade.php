@@ -8,13 +8,13 @@
                     {{--<a href="{{route('cms.user.create')}}">--}}
                     {{--<i class="material-icons" style="float: left;font-size: 32px;color: white">add_box</i>--}}
                     {{--</a>--}}
-                    <h4 class="card-title"> ارتقا کاربر (
-                         @if($user->active == 4)
-                             منتطر پرداخت یا مشکل در پرداخت
-                         @else
-                             پرداخت شده
-                         @endif
-                         {{")"}}
+                    <h4 class="card-title"> ارتقا (
+                        @if($user->active == 4)
+                            منتطر پرداخت یا مشکل در پرداخت
+                        @else
+                            پرداخت شده
+                        @endif
+                        {{")"}}
                     </h4>
 
                 </div>
@@ -25,11 +25,11 @@
                     فرم {{$membership->title}}
                 </h2>
                 <form class="sidebar-form-body row"
-                      action="{{route('user.updateAdm')}}" method="POST"
+                      action="{{route('cms.user.upgrade.update')}}" method="POST"
                       enctype="multipart/form-data">
 
                     @csrf
-                    <input type="hidden" name="type"
+                    <input type="hidden" name="membership_type_id"
                            value="{{$membership->id}}">
                     <input type="hidden" name="tmp"
                            value="{{request('id')}}">
@@ -191,7 +191,7 @@
                         @endif
                     </div>
 
-     {{--               <div class="form-group col-md-6 mb-3 mt-3">
+                    <div class="form-group col-md-6 mb-3 mt-3">
                         <label for="profile[work_address]" class="col-12">نشانی محل کار *</label>
                         <input type="text" name="profile[work_address]" id="profile[work_address]"
                                value="{{old('profile.work_address')??$user->profile->work_address}}"
@@ -206,9 +206,9 @@
                             </div>
                         @endif
 
-                    </div>--}}
+                    </div>
 
-                    {{--<div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 mb-3">
                         <label for="profile[work_post]" class="col-12">کد پستی محل کار *</label>
                         <input type="text" name="profile[work_post]" id="profile[work_post]"
                                value="{{old('profile.work_post')??$user->profile->work_post}}"
@@ -223,9 +223,9 @@
                             </div>
                         @endif
 
-                    </div>--}}
+                    </div>
 
-                    {{--<div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 mb-3">
                         <label for="profile[home_address]" class="col-12">نشانی منزل *</label>
                         <input type="text" name="profile[home_address]" id="profile[home_address]"
                                value="{{old('profile.home_address')??$user->profile->home_address}}"
@@ -257,9 +257,9 @@
                             </div>
                         @endif
 
-                    </div>--}}
+                    </div>
 
-                    {{--<div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 mb-3">
                         <label for="profile[work_name]" class="col-12">محل کار *</label>
                         <input type="text" name="profile[work_name]" id="profile[work_name]"
                                value="{{old('profile.work_name')??$user->profile->work_name}}"
@@ -274,9 +274,9 @@
                             </div>
                         @endif
 
-                    </div>--}}
+                    </div>
 
-                    {{--<div class="form-group col-md-6 mb-3 py-2 px-4">
+                    <div class="form-group col-md-6 mb-3 py-2 px-4">
                         <label for="">انتخاب نشانی ارسال مراسلات : </label>
                         <input type="radio" class="option-input"
                                name="profile[receive_place]" value="0"
@@ -293,22 +293,6 @@
                                 <strong>{{ $errors->first('receive_place') }}</strong>
                             </div>
                         @endif
-                    </div>--}}
-
-                    <div class="form-group col-md-6 mb-3">
-                        <label for="password" class="col-12">رمز عبور*</label>
-                        <input type="password" name="password" value=""
-                               class="form-control" aria-invalid="false"
-                        >
-
-                        @if ($errors->has('password'))
-                            <div id="name-error" class="error text-danger pl-3"
-                                 for="name"
-                                 style="display: block;">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </div>
-                        @endif
-
                     </div>
 
                     <div class="form-group col-md-6 mb-3">
@@ -345,7 +329,7 @@
                     </div>
 
 
-                    <div class="form-group col-md-3 mb-3 mt-3 py-2 px-4">
+               {{--     <div class="form-group col-md-3 mb-3 mt-3 py-2 px-4">
                         <label for="active">تایید کاربر: </label>
                         <input type="checkbox" class="option-input"
                                name="active"
@@ -360,7 +344,7 @@
                             </div>
                         @endif
                     </div>
-
+--}}
                     <div class="form-group col-md-3 mb-3 mt-3 py-2 px-4">
                         <span for="reagent_id" class="text-black mr-3">نوع عضویت:</span>
 
@@ -383,6 +367,21 @@
                                  for="reagent_id"
                                  style="display: block;">
                                 <strong>{{ $errors->first('reagent_id') }}</strong>
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="input-form col-md-12 py-2 px-4">
+                        <label for="branch">شاخه : </label>
+                        <select name="branch_id"  class="form-control"  required>
+                            @foreach($branches as $branch)
+                                <option value="{{$branch->id}}" {{($user->branch_id == $branch->id ) ?'selected':''}}>{{ $branch->title }}</option>
+                            @endforeach
+                        </select>
+                        @if (Session::get('type') == 3 && $errors->has('branch_id'))
+                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                 style="display: block;">
+                                <strong>{{ $errors->first('branch_id') }}</strong>
                             </div>
                         @endif
                     </div>
@@ -639,108 +638,109 @@
 
                     @elseif($user->membership_type_id == 3)
 
-                            <div class="col-md-12 my-4">
-                                <h2 class="font-22 text-medium text-black">مشخصات تحصیلی
-                                    :</h2>
-                            </div>
-                            <div class="form-group col-md-6 mb-3">
-                                <label for="education[education_place]" class="col-12">نام مجل تحصیل*</label>
-                                <input type="text" name="education[education_place]" id="education[education_place]"
-                                       value="{{old('education.education_place')??$user->education->education_place}}"
-                                       class="form-control" aria-invalid="false"
-                                       required>
+                        <div class="col-md-12 my-4">
+                            <h2 class="font-22 text-medium text-black">مشخصات تحصیلی
+                                :</h2>
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="education[education_place]" class="col-12">نام مجل تحصیل*</label>
+                            <input type="text" name="education[education_place]" id="education[education_place]"
+                                   value="{{old('education.education_place')??$user->education->education_place}}"
+                                   class="form-control" aria-invalid="false"
+                                   required>
 
-                                @if ($errors->has('education.education_place'))
-                                    <div id="name-error" class="error text-danger pl-3"
-                                         for="education[education_place]"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('education.education_place') }}</strong>
-                                    </div>
-                                @endif
-                            </div>
+                            @if ($errors->has('education.education_place'))
+                                <div id="name-error" class="error text-danger pl-3"
+                                     for="education[education_place]"
+                                     style="display: block;">
+                                    <strong>{{ $errors->first('education.education_place') }}</strong>
+                                </div>
+                            @endif
+                        </div>
 
-                            <div class="form-group col-md-6 mb-3">
-                                <label for="education[grade]" class="col-12">سطح*</label>
-                                <input type="text" name="education[grade]" id="education[grade]"
-                                       value="{{old('education.grade')??$user->education->grade}}"
-                                       class="form-control" aria-invalid="false"
-                                       required>
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="education[grade]" class="col-12">سطح*</label>
+                            <input type="text" name="education[grade]" id="education[grade]"
+                                   value="{{old('education.grade')??$user->education->grade}}"
+                                   class="form-control" aria-invalid="false"
+                                   required>
 
-                                @if ($errors->has('education.grade'))
-                                    <div id="name-error" class="error text-danger pl-3"
-                                         for="education[grade]"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('education.grade') }}</strong>
-                                    </div>
-                                @endif
-                            </div>
+                            @if ($errors->has('education.grade'))
+                                <div id="name-error" class="error text-danger pl-3"
+                                     for="education[grade]"
+                                     style="display: block;">
+                                    <strong>{{ $errors->first('education.grade') }}</strong>
+                                </div>
+                            @endif
+                        </div>
 
-                            <div class="form-group col-md-6 mb-3">
-                                <label for="from_date" class="col-12">از تاریخ*</label>
-                                <input type="text" name="education[from_date]" id="from_date"
-                                       value="{{old('education.from_date')??$user->education->from_date}}"
-                                       class="form-control" aria-invalid="false"
-                                       required>
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="from_date" class="col-12">از تاریخ*</label>
+                            <input type="text" name="education[from_date]" id="from_date"
+                                   value="{{old('education.from_date')??$user->education->from_date}}"
+                                   class="form-control" aria-invalid="false"
+                                   required>
 
-                                @if ($errors->has('education.from_date'))
-                                    <div id="name-error" class="error text-danger pl-3"
-                                         for="education[from_date]"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('education.from_date') }}</strong>
-                                    </div>
-                                @endif
-                            </div>
+                            @if ($errors->has('education.from_date'))
+                                <div id="name-error" class="error text-danger pl-3"
+                                     for="education[from_date]"
+                                     style="display: block;">
+                                    <strong>{{ $errors->first('education.from_date') }}</strong>
+                                </div>
+                            @endif
+                        </div>
 
-                            <div class="form-group col-md-6 mb-3">
-                                <label for="to_date" class="col-12">تا تاریخ</label>
-                                <input type="text" name="education[to_date]" id="to_date"
-                                       value="{{old('education.to_date')??$user->education->to_date}}"
-                                       class="form-control" aria-invalid="false"
-                                >
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="to_date" class="col-12">تا تاریخ</label>
+                            <input type="text" name="education[to_date]" id="to_date"
+                                   value="{{old('education.to_date')??$user->education->to_date}}"
+                                   class="form-control" aria-invalid="false"
+                            >
 
-                                @if ($errors->has('education.to_date'))
-                                    <div id="name-error" class="error text-danger pl-3"
-                                         for="education[to_date]"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('education.to_date') }}</strong>
-                                    </div>
-                                @endif
-                            </div>
+                            @if ($errors->has('education.to_date'))
+                                <div id="name-error" class="error text-danger pl-3"
+                                     for="education[to_date]"
+                                     style="display: block;">
+                                    <strong>{{ $errors->first('education.to_date') }}</strong>
+                                </div>
+                            @endif
+                        </div>
 
-                            <div class="form-group col-md-3 mb-3">
-                                <label for="education[gpa]" class="col-12">معدل</label>
-                                <input type="text" name="education[gpa]" id="education[gpa]"
-                                       value="{{old('education.gpa')??$user->education->gpa}}"
-                                       class="form-control" aria-invalid="false"
-                                       required>
+                        <div class="form-group col-md-3 mb-3">
+                            <label for="education[gpa]" class="col-12">معدل</label>
+                            <input type="text" name="education[gpa]" id="education[gpa]"
+                                   value="{{old('education.gpa')??$user->education->gpa}}"
+                                   class="form-control" aria-invalid="false"
+                                   required>
 
-                                @if ($errors->has('education.gpa'))
-                                    <div id="name-error" class="error text-danger pl-3"
-                                         for="education[gpa]"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('education.gpa') }}</strong>
-                                    </div>
-                                @endif
-                            </div>
+                            @if ($errors->has('education.gpa'))
+                                <div id="name-error" class="error text-danger pl-3"
+                                     for="education[gpa]"
+                                     style="display: block;">
+                                    <strong>{{ $errors->first('education.gpa') }}</strong>
+                                </div>
+                            @endif
+                        </div>
 
 
-                            <div class="form-group col-md-3 mb-3">
-                                <label for="education[field_of_study]" class="col-12">رشته تحصیلی</label>
-                                <input type="text" name="education[field_of_study]" id="education[field_of_study]"
-                                       value="{{old('education.field_of_study')??$user->education->field_of_study}}"
-                                       class="form-control" aria-invalid="false"
-                                       required>
+                        <div class="form-group col-md-3 mb-3">
+                            <label for="education[field_of_study]" class="col-12">رشته تحصیلی</label>
+                            <input type="text" name="education[field_of_study]" id="education[field_of_study]"
+                                   value="{{old('education.field_of_study')??$user->education->field_of_study}}"
+                                   class="form-control" aria-invalid="false"
+                                   required>
 
-                                @if ($errors->has('education.field_of_study'))
-                                    <div id="name-error" class="error text-danger pl-3"
-                                         for="education[gpa]"
-                                         style="display: block;">
-                                        <strong>{{ $errors->first('education.field_of_study') }}</strong>
-                                    </div>
-                                @endif
-                            </div>
+                            @if ($errors->has('education.field_of_study'))
+                                <div id="name-error" class="error text-danger pl-3"
+                                     for="education[gpa]"
+                                     style="display: block;">
+                                    <strong>{{ $errors->first('education.field_of_study') }}</strong>
+                                </div>
+                            @endif
+                        </div>
 
-                        @endif
+                    @endif
+
 
 
                     {{-- ------------ document ------------------}}
@@ -765,7 +765,7 @@
 
                             @if(property_exists($user,'documents'))
                                 @foreach($user->documents as $doc)
-                                    <input type="hidden" name="isUpgrade" value="{{!property_exists($doc ,'id')}}" >
+                                    <input type="hidden" name="isUpgrade" value="{{!property_exists($doc ,'id')}}">
                                     <tr>
                                         <td data-th="ردیف" class="text-right">{{$loop->index}}</td>
                                         <td data-th="عنوان خبر" class="text-right">{{$doc->explain}}</td>
@@ -776,8 +776,9 @@
                                         <td data-th="تایید" class="text-right">
                                             <input type="checkbox" class="option-input"
                                                    name="documents[]"
-                                                   value="{{$doc->id??$doc->address}}"
-                                                   aria-invalid="false" @if(property_exists($doc ,'id') && $doc->state == 1 ) checked @endif>
+                                                   value="{{json_encode($doc)}}"
+                                                   aria-invalid="false"
+                                                   @if(property_exists($doc ,'id') && $doc->state == 1 ) checked @endif>
                                         </td>
                                         {{--<td data-th="حذف" class="text-right">
                                             <form action="{{route('document.del')}}" method="post" id="form{{$doc->id}}" >
@@ -806,7 +807,7 @@
 
                     <div class="col-md-12 card-footer">
                         <div class="col-md-4 col-sm-8">
-                            <input type="submit" value="ثبت اطلاعات"
+                            <input type="submit" value="ثبت و تایید "
                                    class=" btn btn-success form-submit-violet text-white font-16 text-medium">
                         </div>
 
