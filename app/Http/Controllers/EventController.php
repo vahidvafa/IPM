@@ -62,6 +62,9 @@ class EventController extends Controller
             "price" => "required | integer",
             "province_id" => "required | integer",
             "event_category_id" => "required | integer",
+            "branch_id" => "required | integer",
+            "committee_id" => "required | integer",
+            "group_id" => "required | integer",
             "tel" => "required | numeric",
             "address" => "required",
             "latitude" => "required | numeric",
@@ -148,6 +151,9 @@ return;*/
             "price" => "required | integer",
             "province_id" => "required | integer",
             "event_category_id" => "required | integer",
+            "branch_id" => "required | integer",
+            "committee_id" => "required | integer",
+            "group_id" => "required | integer",
             "tel" => "required | numeric",
             "address" => "required",
             "latitude" => "required | numeric",
@@ -160,7 +166,7 @@ return;*/
             'to_date.*' => 'فرمت تاریخ انتخابی صحیح نمی باشد',
             'start_register_date.*' => 'فرمت تاریخ انتخابی صحیح نمی باشد'
         ]);
-//        try {
+        try {
             $event->update($request->all());
             if ($request->has('image')) {
                 $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
@@ -171,10 +177,10 @@ return;*/
             $event->save();
             flash_message('success', __('string.successful.edit'));
             return redirect()->route('event.index');
-//        } catch (\Exception $exception) {
-//            flash_message('error', __('string.unsuccessful'));
-//            return back()->withInput($request->all());
-//        }
+        } catch (\Exception $exception) {
+            flash_message('error', __('string.unsuccessful'));
+            return back()->withInput($request->all());
+        }
     }
 
     /**

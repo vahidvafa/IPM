@@ -81,7 +81,7 @@ class Event extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title', 'description', 'detail', 'course_headings', 'from_date', 'to_date', 'start_register_date', 'price', 'province_id', 'tel', 'address', 'latitude', 'longitude', 'event_category_id', ''];
+    protected $fillable = ['title', 'description', 'detail', 'course_headings', 'from_date', 'to_date', 'start_register_date', 'price', 'province_id', 'tel', 'address', 'latitude', 'longitude', 'event_category_id', 'branch_id','branch_id','committee_id','group_id'];
 
     public function category()
     {
@@ -96,5 +96,20 @@ class Event extends Model
     public function gifts()
     {
         return $this->hasMany(Gift::class);
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
+
+    public function committee()
+    {
+        return $this->belongsTo(Committee::class);
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
     }
 }

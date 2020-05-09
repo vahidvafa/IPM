@@ -155,6 +155,39 @@
                                                 <div class="error text-danger">{{ $errors->first('province_id') }}</div>
                                             @endif
                                         </div>
+                                        <div class="form-group col-lg-6 mb-4">
+                                            <lable>شاخه</lable>
+                                            <select class="form-control" name="branch_id">
+                                                @foreach(\App\Branch::all() as $branch)
+                                                    <option value="{{$branch->id}}" {{ ($branch->id == $event->province_id) ? 'selected' : '' }} > {{$branch->title}} </option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('branch_id'))
+                                                <div class="error text-danger">{{ $errors->first('branch_id') }}</div>
+                                            @endif
+                                        </div>
+                                        <div class="form-group col-lg-6 mb-4">
+                                            <lable>کمیته</lable>
+                                            <select class="form-control" name="committee_id">
+                                                @foreach(\App\Committee::all() as $committee)
+                                                    <option value="{{$committee->id}}" {{ ($committee->id == $event->province_id) ? 'selected' : '' }} > {{$committee->title}} </option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('committee_id'))
+                                                <div class="error text-danger">{{ $errors->first('committee_id') }}</div>
+                                            @endif
+                                        </div>
+                                        <div class="form-group col-lg-6 mb-4">
+                                            <lable>کارگروه</lable>
+                                            <select class="form-control" name="group_id">
+                                                @foreach(\App\Group::all() as $group)
+                                                    <option value="{{$group->id}}" {{ ($group->id == $event->province_id) ? 'selected' : '' }} > {{$group->title}} </option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('group_id'))
+                                                <div class="error text-danger">{{ $errors->first('group_id') }}</div>
+                                            @endif
+                                        </div>
                                         <div class="col-lg-12 mb-4">
                                             <lable>عکس رویداد</lable>
                                             <input class="form-control-file my-2" type="file" name="image" id="image">
