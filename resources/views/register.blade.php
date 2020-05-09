@@ -197,7 +197,7 @@
                                         <input type="text" name="mobile"
                                                value="{{(Session::get('type') == 1) ?request()->old('mobile'):''}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="شماره تماس*" required>
+                                               placeholder="شماره تماس*" required pattern="\d*">
                                         <img src="img/002-telephone.png" class="form-icon">
                                         @if (Session::get('type') == 1 && $errors->has('mobile'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"
@@ -555,6 +555,141 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-12 my-4">
+                                <h2 class="font-22 text-medium text-black">مدرک تحصیلی :</h2>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>دانشگاه :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="education[education_place]"
+                                               value="{{(Session::get('type') == 1) ?request()->old('education.education_place'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="دانشگاه">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('education.education_place'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.education_place') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>رشته تحصیلی :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="education[field_of_study]"
+                                               value="{{(Session::get('type') == 1) ?request()->old('education.field_of_study'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="دانشگاه">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('education.field_of_study'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.field_of_study') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="branch">مقطع تحصیلی : </label>
+                                        <select name="education[grade]" required>
+                                            <option disabled selected value>مقطع تحصیلی مورد نظر را انتخاب کنید *</option>
+                                            <option
+                                                value="کاردانی" {{((Session::get('type') == 1) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                کاردانی
+                                            </option>
+                                            <option
+                                                value="کارشناسی" {{((Session::get('type') == 1) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                کارشناسی
+                                            </option>
+                                            <option
+                                                value="کارشناسی ارشد" {{((Session::get('type') == 1) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                کارشناسی ارشد
+                                            </option>
+                                            <option
+                                                value="دکتری" {{((Session::get('type') == 1) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                دکتری
+                                            </option>
+                                        </select>
+                                        @if (Session::get('type') == 1 && $errors->has('education.grade'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.grade') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>معدل :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="education[gpa]"
+                                               value="{{(Session::get('type') == 1) ?request()->old('education.gpa'):0}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="دانشگاه">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('education.gpa'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.gpa') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ شروع به تحصیل :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input class="datePickerInput" type="text" name="education[from_date]"
+                                               value="{{(Session::get('type') == 1) ?request()->old('education.from_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ شروع به کار">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('education.from_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.from_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ اتمام تحصیل : (در صورت ادامه تحصیل فیلد را خالی بگذارید)</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input class="datePickerInput" type="text" name="education[to_date]"
+                                               value="{{(Session::get('type') == 1) ?request()->old('education.to_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ اتمام کار">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 1 && $errors->has('education.to_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.to_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                             <div class="input-form col-md-12 py-2 px-4">
                                 <label for="branch">شاخه : </label>
                                 <select name="branch_id" required>
@@ -748,7 +883,7 @@
                                         <input type="text" name="mobile"
                                                value="{{(Session::get('type') == 2) ?request()->old('mobile'):''}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="شماره تماس*" required>
+                                               placeholder="شماره تماس*" required pattern="\d*">
                                         <img src="img/002-telephone.png" class="form-icon">
                                         @if (Session::get('type') == 2 && $errors->has('mobile'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"
@@ -972,6 +1107,141 @@
                                             <div id="name-error" class="error text-danger pl-3" for="name"
                                                  style="display: block;">
                                                 <strong>{{ $errors->first('experience.to_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 my-4">
+                                <h2 class="font-22 text-medium text-black">مدرک تحصیلی :</h2>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>دانشگاه :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="education[education_place]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('education.education_place'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="دانشگاه">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('education.education_place'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.education_place') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>رشته تحصیلی :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="education[field_of_study]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('education.field_of_study'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="دانشگاه">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('education.field_of_study'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.field_of_study') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="branch">مقطع تحصیلی : </label>
+                                        <select name="education[grade]" required>
+                                            <option disabled selected value>مقطع تحصیلی مورد نظر را انتخاب کنید *</option>
+                                            <option
+                                                value="کاردانی" {{((Session::get('type') == 2) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                کاردانی
+                                            </option>
+                                            <option
+                                                value="کارشناسی" {{((Session::get('type') == 2) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                کارشناسی
+                                            </option>
+                                            <option
+                                                value="کارشناسی ارشد" {{((Session::get('type') == 2) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                کارشناسی ارشد
+                                            </option>
+                                            <option
+                                                value="دکتری" {{((Session::get('type') == 2) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                دکتری
+                                            </option>
+                                        </select>
+                                        @if (Session::get('type') == 2 && $errors->has('education.grade'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.grade') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>معدل :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="education[gpa]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('education.gpa'):0}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="دانشگاه">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('education.gpa'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.gpa') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ شروع به تحصیل :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input class="datePickerInput" type="text" name="education[from_date]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('education.from_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ شروع به کار">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('education.from_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.from_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ اتمام تحصیل : (در صورت ادامه تحصیل فیلد را خالی بگذارید)</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input class="datePickerInput" type="text" name="education[to_date]"
+                                               value="{{(Session::get('type') == 2) ?request()->old('education.to_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ اتمام کار">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 2 && $errors->has('education.to_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.to_date') }}</strong>
                                             </div>
                                         @endif
                                     </div>
@@ -1320,8 +1590,10 @@
                             <input type="hidden" name="type" value="{{$memberships[2]->id}}">
                             <div class="input-form col-md-12 py-2 px-4">
                                 <label>مدت زمان : </label>
-                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="1" checked>عضویت یکساله</label>
-                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="3">عضویت سه ساله</label>
+                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="1" checked>عضویت
+                                    یکساله</label>
+                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="3">عضویت سه
+                                    ساله</label>
                                 {{--            <input type="radio" id="year_3" name="year" value="3" style="all: unset;">--}}
                                 {{--            <label for="year_3">عضویت سه ساله</label>--}}
                                 @if (Session::get('type') == 3 && $errors->has('year'))
@@ -1441,7 +1713,7 @@
                                         <input type="text" name="mobile"
                                                value="{{(Session::get('type') == 3) ?request()->old('mobile'):''}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="شماره تماس*" required>
+                                               placeholder="شماره تماس*" required pattern="\d*">
                                         <img src="img/002-telephone.png" class="form-icon">
                                         @if (Session::get('type') == 3 && $errors->has('mobile'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"
@@ -1537,8 +1809,10 @@
                                 <label>جنسیت : </label>
                                 <select name="sex" required>
                                     <option disabled selected value>جنسیت مورد نظر را انتخاب کنید *</option>
-                                    <option value="1" {{((Session::get('type') == 3) && request()->old('sex') == 1 ) ?'selected':''}}>مرد</option>
-                                    <option value="0" {{((Session::get('type') == 3) && request()->old('sex') == 0 ) ?'selected':''}}>زن</option>
+                                    <option value="1" {{((Session::get('type') == 3) && request()->old('sex') == 1 ) ?'selected':''}}>مرد
+                                    </option>
+                                    <option value="0" {{((Session::get('type') == 3) && request()->old('sex') == 0 ) ?'selected':''}}>زن
+                                    </option>
                                 </select>
                                 @if (Session::get('type') == 3 && $errors->has('sex'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
@@ -1652,7 +1926,10 @@
                                 <label for="">انتخاب نشانی ارسال مراسلات : </label>
                                 <select name="receive_place" required>
                                     <option disabled selected value>نشانی مورد نظر را انتخاب کنید *</option>
-                                    <option value="0" {{((Session::get('type') == 3) && request()->old('receive_place') == 1 ) ?'selected':''}}>منزل</option>
+                                    <option
+                                        value="0" {{((Session::get('type') == 3) && request()->old('receive_place') == 1 ) ?'selected':''}}>
+                                        منزل
+                                    </option>
                                     <option value="1">محل کار</option>
                                 </select>
                                 @if (Session::get('type') == 3 && $errors->has('receive_place'))
@@ -1799,13 +2076,150 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-md-12 my-4">
+                                <h2 class="font-22 text-medium text-black">مدرک تحصیلی :</h2>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>دانشگاه :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="education[education_place]"
+                                               value="{{(Session::get('type') == 3) ?request()->old('education.education_place'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="دانشگاه">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('education.education_place'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.education_place') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>رشته تحصیلی :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="education[field_of_study]"
+                                               value="{{(Session::get('type') == 3) ?request()->old('education.field_of_study'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="دانشگاه">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('education.field_of_study'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.field_of_study') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="branch">مقطع تحصیلی : </label>
+                                        <select name="education[grade]" required>
+                                            <option disabled selected value>مقطع تحصیلی مورد نظر را انتخاب کنید *</option>
+                                            <option
+                                                value="کاردانی" {{((Session::get('type') == 3) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                کاردانی
+                                            </option>
+                                            <option
+                                                value="کارشناسی" {{((Session::get('type') == 3) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                کارشناسی
+                                            </option>
+                                            <option
+                                                value="کارشناسی ارشد" {{((Session::get('type') == 3) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                کارشناسی ارشد
+                                            </option>
+                                            <option
+                                                value="دکتری" {{((Session::get('type') == 3) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                دکتری
+                                            </option>
+                                        </select>
+                                        @if (Session::get('type') == 3 && $errors->has('education.grade'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.grade') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>معدل :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="education[gpa]"
+                                               value="{{(Session::get('type') == 3) ?request()->old('education.gpa'):0}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="دانشگاه">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('education.gpa'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.gpa') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ شروع به تحصیل :</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input class="datePickerInput" type="text" name="education[from_date]"
+                                               value="{{(Session::get('type') == 3) ?request()->old('education.from_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ شروع به کار">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('education.from_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.from_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-form col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>تاریخ اتمام تحصیل : (در صورت ادامه تحصیل فیلد را خالی بگذارید)</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input class="datePickerInput" type="text" name="education[to_date]"
+                                               value="{{(Session::get('type') == 3) ?request()->old('education.to_date'):''}}"
+                                               size="40" aria-invalid="false"
+                                               placeholder="تاریخ اتمام کار">
+                                        <img src="img/003-envelope.png" class="form-icon">
+                                        @if (Session::get('type') == 3 && $errors->has('education.to_date'))
+                                            <div id="name-error" class="error text-danger pl-3" for="name"
+                                                 style="display: block;">
+                                                <strong>{{ $errors->first('education.to_date') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                             <div class="input-form col-md-12 py-2 px-4">
                                 <label for="branch">شاخه : </label>
                                 <select name="branch_id" required>
                                     <option disabled selected value>شاخه مورد نظر را انتخاب کنید *</option>
                                     @foreach($branches as $branch)
-                                        <option value="{{$branch->id}}" {{((Session::get('type') == 3) && request()->old('branch_id') == $branch->id ) ?'selected':''}}>{{ $branch->title }}</option>
+                                        <option
+                                            value="{{$branch->id}}" {{((Session::get('type') == 3) && request()->old('branch_id') == $branch->id ) ?'selected':''}}>
+                                            {{ $branch->title }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @if (Session::get('type') == 3 && $errors->has('branch_id'))
@@ -1974,7 +2388,7 @@
                                         <input type="text" name="mobile"
                                                value="{{(Session::get('type') == 4) ?request()->old('mobile'):''}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="شماره تماس*" required>
+                                               placeholder="شماره تماس*" required pattern="\d*">
                                         <img src="img/002-telephone.png" class="form-icon">
                                         @if (Session::get('type') == 4 && $errors->has('mobile'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"

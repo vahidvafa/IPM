@@ -73,7 +73,7 @@ class daily extends Command
             }
             if ((time() - $user->expire) <= ($time * 86400)) {
                 $time = tr_num($time);
-                $text = "عضویت شما تا $time روز دیگر به اتمام میرسد لطفا حهت ارتثا و یا تمدید عضویت خود اقدام فرمایید!";
+                $text = "عضویت شما تا $time روز دیگر به اتمام میرسد لطفا حهت ارتقا و یا تمدید عضویت خود اقدام فرمایید!";
                 \Mail::to($user->email)->send(new ReminderMail($user, $text));
                 $user->increment('reminder', 1);
             }

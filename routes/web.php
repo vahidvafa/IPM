@@ -11,6 +11,7 @@
 |
 */
 
+use App\MembershipType;
 use Illuminate\Support\Facades\Route;
 
 
@@ -46,9 +47,17 @@ Route::get('profile/upgrade/show', 'ProfileController@upgrade')->name("profile.u
 Route::post('/profile/upgrade/store', 'ProfileController@postUpgradeRq')->name("profile.upgrade.store");
 Route::post('profile/preUpgrade', 'ProfileController@preUpgradeCheckPass')->name("profile.preUpgrade");
 Route::get('profile/preUpgrade/{code}', function ($code) {
-
     return view('pre_upgrade', compact('code'));
-});
+})->name('preUpgrade.code');
+
+
+Route::get('user/preRepeat/{code}', function ($code) {
+    return view('pre_repeat', compact('code'));
+})->name('preRepeat.code');
+
+Route::post('user/preRepeat', 'AuthController@preRepeatCheckPass')->name("user.preRepeat");
+
+
 Route::post('profile/upgrade_result', 'ProfileController@bankCallBack')->name("profile.upgradeResult");
 
 
@@ -65,6 +74,7 @@ Route::get('/winners/{id}', 'IndexController@winners_detail')->name('winners_det
 Route::get('/gov', 'IndexController@gov')->name('gov');
 Route::get('news/{news}', 'NewsController@show')->name('news.show');
 Route::middleware('auth')->group(function () {
+    Route::post('user/verifyRepeat', 'AuthController@verifyRepeat')->name("user.verifyRepeat");
     Route::post('/verifyRegister', 'AuthController@verifyRegisterBank')->name("verifyRegister");
     Route::get('/event/{event}/reserve', 'EventController@reserve')->name("event.reserve");
     Route::post('/event/{event}/reserve/store', 'OrderController@store')->name("order.store");
@@ -272,7 +282,7 @@ Route::prefix('Committees')->group(function () {
 
     Route::get('researches', function () {
         $breadcrumb = $titleHeader = "کمیته پژوهش و انتشارات";
-        return view('committees.researches',compact('titleHeader','breadcrumb'));
+        return view('committees.researches', compact('titleHeader', 'breadcrumb'));
     })->name('committees.researches');
 
     Route::get('certificate', function () {
@@ -290,10 +300,10 @@ Route::get("hashMake/{id}", function ($id) {
     return $dec;
 });
 Route::get('card', 'UserController@showCard');
-//Route::get("testMail", function () {
-//    Jalalian::forge('today')->format('%A, %d %B %y')
-//    $order = \App\Order::find(41);
-//    Mail::to('drvafaiee@gmail.com')->send(new \App\Mail\OrderEmail($order));
-//    dd(1);
-//});
-//Route::get("createOrder/{order}", 'OrderCodeController@show');
+Route::get("testMail", function () {
+    $user = \App\User::find(1);
+    $time = tr_num(7);
+    $text = "عضویت شما تا $time روز دیگر به اتمام میرسد لطفا حهت ارتثا و یا تمدید عضویت خود اقدام فرمایید!";
+    Mail::to('vahid.izadyar@gmail.com')->send(new \App\Mail\ReminderMail($user, $text));
+    dd(true);
+});

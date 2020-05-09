@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Branch;
 use App\Company;
 use App\Document;
+use App\Education;
 use App\Order;
 use App\User;
 use App\WorkExperience;
@@ -32,10 +33,9 @@ class AuthController extends Controller
 
     public function postRegister(Request $request)
     {
-//        dd($request->all());
-//        dd($request->get('experience'));
         $messages = [
             '*.required' => 'وارد کردن این فیلد الزامی است',
+            '*.numeric' => 'این فیلد باید عدد باشد',
             'password.min' => 'رمز عبور باید حداقل 8 کاراکتر باشد',
             'password.confirmed' => 'تایید رمز عبور اشتباه است',
             'email.unique' => 'این ایمیل قبلا ثبت شده است',
@@ -69,6 +69,12 @@ class AuthController extends Controller
                     'branch_id' => 'bail | required | numeric',
                     'files.*' => 'bail | required | mimes:jpeg,bmp,png,jpg,pdf',
                     'files_explain.*' => 'bail | required | string',
+                    'education.education_place' => 'bail | required | string | max:255',
+                    'education.grade' => 'bail | required | string',
+                    'education.from_date' => 'bail | required | string',
+                    'education.to_date' => 'bail | required | string',
+                    'education.gpa' => 'bail | required | numeric',
+                    'education.field_of_study' => 'bail | required | string',
                 ], $messages);
                 break;
             case 2:
@@ -87,6 +93,12 @@ class AuthController extends Controller
                     'home_address' => 'bail | required | string',
                     'home_post' => 'bail | required | string',
                     'email' => 'bail | required | string | email | max:255 | unique:users',
+                    'education.education_place' => 'bail | required | string | max:255',
+                    'education.grade' => 'bail | required | string',
+                    'education.from_date' => 'bail | required | string',
+                    'education.to_date' => 'bail | required | string',
+                    'education.gpa' => 'bail | required | numeric',
+                    'education.field_of_study' => 'bail | required | string',
                     'company.name' => 'bail | required | string | max:255',
                     'company.established_date' => 'bail | required | string | max:255',
                     'company.established_number' => 'bail | required | string | max:255 | unique:companies,established_number',
@@ -124,7 +136,6 @@ class AuthController extends Controller
                 ], $messages);
                 break;
         }
-//
         if ($validator->fails()) {
             \Session::flash('type', $request->get('type'));
             return redirect()->route('register')->withErrors($validator)->withInput();
@@ -178,6 +189,17 @@ class AuthController extends Controller
                     'to_date' => ((isset($request->get('experience')['to_date'])) ? $request->get('experience')['to_date'] : null),
                 ]);
                 $user->workExperience()->save($experience);
+            }
+            if ($request->has('education')){
+                $education = new Education([
+                    'education_place' =>$request->get('experience')['education_place'],
+                    'grade' =>$request->get('experience')['grade'],
+                    'from_date' =>$request->get('experience')['from_date'],
+                    'to_date' =>$request->get('experience')['to_date'],
+                    'gpa' =>$request->get('experience')['gpa'],
+                    'field_of_study' =>$request->get('experience')['field_of_study'],
+                ]);
+                $user->education()->save($education);
             }
             if ($request->has('company')) {
                 $company = new Company($request->all('company')['company']);
@@ -329,7 +351,7 @@ class AuthController extends Controller
         if (!\Hash::check($request->get('pass'), $user->password))
             return redirect()->back()->with("errorField", "رمز عبور اشتباه");
         auth()->loginUsingId($user->id);
-        if ($user->active == 2 || $user->active == 3) {
+        if (($user->active == 2 || $user->active == 3) && $user->membership_type_id != 4) {
             $year = ($request->has('year')) ? $request->get('year') : 1;
             $memberShipType = MembershipType::find($user->membership_type_id);
             $memberShip = new Membership([
