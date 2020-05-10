@@ -165,7 +165,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> target="_blank"
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                         کمیته ها و شاخه ها و کارگروه ها</a>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li class="nav-item dropdown">
