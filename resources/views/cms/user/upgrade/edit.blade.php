@@ -350,10 +350,10 @@
 
                         <label for="reagent_id0">وابسته</label>
                         <input type="radio" class="option-input mr-2"
-                               name="reagent_id"
+                               name="main"
                                value="0"
                                id="reagent_id0"
-                               aria-invalid="false" @if($user->reagent_id == 0) checked @endif>
+                               aria-invalid="false" @if($user->main == 0) checked @endif>
 
                         <label for="reagent_id1">اصلی</label>
                         <input type="radio" class="option-input"
@@ -763,9 +763,9 @@
                             <tbody>
 
 
-                            @if(property_exists($user,'documents'))
+                            @if(property_exists($user,'documents') || isset($user->documents) )
                                 @foreach($user->documents as $doc)
-                                    <input type="hidden" name="isUpgrade" value="{{!property_exists($doc ,'id')}}">
+{{--                                    {{dd($doc->state)}}--}}
                                     <tr>
                                         <td data-th="ردیف" class="text-right">{{$loop->index}}</td>
                                         <td data-th="عنوان خبر" class="text-right">{{$doc->explain}}</td>
@@ -778,7 +778,7 @@
                                                    name="documents[]"
                                                    value="{{json_encode($doc)}}"
                                                    aria-invalid="false"
-                                                   @if(property_exists($doc ,'id') && $doc->state == 1 ) checked @endif>
+                                                   @if(( property_exists($doc ,'state') || isset($doc->state ) )&& $doc->state == 1 ) checked @endif>
                                         </td>
                                         {{--<td data-th="حذف" class="text-right">
                                             <form action="{{route('document.del')}}" method="post" id="form{{$doc->id}}" >

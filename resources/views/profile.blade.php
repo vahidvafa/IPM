@@ -20,8 +20,11 @@
                                              alt="">
                                         <div class="profile-top-icons fix-profile-icon "
                                              style="background-color: @if($user->membership_type_id == 1) @if($user->main == 0) grey @else #372b7d @endif @else #372b7d @endif">
-                                            <p class="font-18 text-medium m-0">
-                                                {{$user->first_name." ".$user->last_name}}
+                                            <p class="font-16 text-medium m-0">
+                                                <span class="d-block">
+                                                     {{$user->first_name." ".$user->last_name}}
+                                                </span>
+                                                <span class="d-block">{{$user->name_en}}</span>
                                             </p>
 
                                         </div>
@@ -413,7 +416,8 @@
                         <div class="row">
                             <div class="input-form col-lg-12">
                                 <label for="profile[specialized_basins]">حوضه های تخصصی*</label>
-                                <input type="text" id="profile[specialized_basins]" name="profile[specialized_basins]" size="40"
+                                <input type="text" id="profile[specialized_basins]" name="profile[specialized_basins]"
+                                       size="40"
                                        aria-invalid="false"
                                        placeholder="حوضه های تخصصی"
                                        value="{{$user->profile[0]->specialized_basins}}"
@@ -442,7 +446,7 @@
                             </div>
 
                             <div class="input-form col-lg-11">
-                            <p >نقص مدارک: {{$user->shortcomings}}</p>
+                                <p>نقص مدارک: {{$user->shortcomings}}</p>
                             </div>
                             <div class="col-lg-1 py-2">
                                 <button type="button" class="btn btn-success"
@@ -516,8 +520,8 @@
                                 <label for="isShowMyPhone">نمایش شماره موبایل برای همه </label>
                                 <input type="checkbox" id="isShowMyPhone" name="isShowMyPhone" size="40"
                                        @if($user->isShowMyPhone) checked @endif
-                                        value="1"
-                                       />
+                                       value="1"
+                                />
                             </div>
 
 

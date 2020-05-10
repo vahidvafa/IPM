@@ -449,6 +449,8 @@ class ProfileController extends Controller
         }
 
 
+
+
         $isSuccessful = \DB::transaction(function () use ($user, $request) {
 
             $user->update($request->all());
@@ -529,13 +531,8 @@ public function upgradeEdit($id){
         if (count($user->education) !=0 )
             $user->education = $user->education[0];
 
-        if (count($user->documents) !=0 )
-            $user->documents = $user->documents[0];
-
-        /*if (count($user->workExperience) != 0 )
-            $user->workExperience = $user->workExperience[0];*/
-
     }
+
 
     $membership = MembershipType::find($user->membership_type_id);
 

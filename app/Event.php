@@ -63,7 +63,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $from_date
  * @property string $to_date
  * @property string $start_register_date
-
  * @property int $user_id
  * @property string $mobile
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereEventCategoryId($value)
@@ -81,11 +80,11 @@ class Event extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title', 'description', 'detail', 'course_headings', 'from_date', 'to_date', 'start_register_date', 'price', 'province_id', 'tel', 'address', 'latitude', 'longitude', 'event_category_id', 'branch_id','branch_id','committee_id','group_id'];
+    protected $fillable = ['title', 'description', 'detail', 'course_headings', 'from_date', 'to_date', 'start_register_date', 'price', 'province_id', 'tel', 'address', 'latitude', 'longitude', 'event_category_id', 'branch_id', 'branch_id', 'committee_id', 'working-group_id'];
 
     public function category()
     {
-        return $this->belongsTo(EventCategory::class,"event_category_id",'id');
+        return $this->belongsTo(EventCategory::class, "event_category_id", 'id');
     }
 
     public function orders()
@@ -100,7 +99,7 @@ class Event extends Model
 
     public function group()
     {
-        return $this->belongsTo(Group::class);
+        return $this->belongsTo(WorkingGroup::class);
     }
 
     public function committee()
@@ -111,5 +110,10 @@ class Event extends Model
     public function branch()
     {
         return $this->belongsTo(Branch::class);
+    }
+
+    public static function whereCommitteeId($id, $limit = 6)
+    {
+        return Event::where('committee_id','=',$id)->latest()->limit($limit)->get(['id','title','created_at','photo']);
     }
 }

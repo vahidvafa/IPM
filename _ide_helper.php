@@ -2,8 +2,8 @@
 // @formatter:off
 
 /**
- * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.11.0 on 2020-01-19 12:32:14.
+ * A helper file for Laravel, to provide autocomplete information to your IDE
+ * Generated for Laravel 6.18.13 on 2020-05-10 22:49:34.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -333,10 +333,10 @@ namespace Illuminate\Support\Facades {
          * @return string|bool 
          * @static 
          */ 
-        public static function environment($environments = null)
+        public static function environment(...$environments)
         {
                         /** @var \Illuminate\Foundation\Application $instance */
-                        return $instance->environment($environments);
+                        return $instance->environment(...$environments);
         }
         
         /**
@@ -506,8 +506,6 @@ namespace Illuminate\Support\Facades {
         
         /**
          * Resolve the given type from the container.
-         * 
-         * (Overriding Container::make)
          *
          * @param string $abstract
          * @param array $parameters
@@ -522,8 +520,6 @@ namespace Illuminate\Support\Facades {
         
         /**
          * Determine if the given abstract type has been bound.
-         * 
-         * (Overriding Container::bound)
          *
          * @param string $abstract
          * @return bool 
@@ -2413,10 +2409,10 @@ namespace Illuminate\Support\Facades {
          * @return bool 
          * @static 
          */ 
-        public static function check($name, $parameters = null)
+        public static function check($name, ...$parameters)
         {
                         /** @var \Illuminate\View\Compilers\BladeCompiler $instance */
-                        return $instance->check($name, $parameters);
+                        return $instance->check($name, ...$parameters);
         }
         
         /**
@@ -2734,13 +2730,26 @@ namespace Illuminate\Support\Facades {
          *
          * @param mixed $command
          * @return mixed 
-         * @throws \RuntimeException
          * @static 
          */ 
         public static function dispatchToQueue($command)
         {
                         /** @var \Illuminate\Bus\Dispatcher $instance */
                         return $instance->dispatchToQueue($command);
+        }
+        
+        /**
+         * Dispatch a command to its appropriate handler after the current process.
+         *
+         * @param mixed $command
+         * @param mixed $handler
+         * @return void 
+         * @static 
+         */ 
+        public static function dispatchAfterResponse($command, $handler = null)
+        {
+                        /** @var \Illuminate\Bus\Dispatcher $instance */
+                        $instance->dispatchAfterResponse($command, $handler);
         }
         
         /**
@@ -2812,6 +2821,48 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Assert if a job was dispatched after the response was sent based on a truth-test callback.
+         *
+         * @param string $command
+         * @param callable|int|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertDispatchedAfterResponse($command, $callback = null)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
+                        $instance->assertDispatchedAfterResponse($command, $callback);
+        }
+        
+        /**
+         * Assert if a job was pushed after the response was sent a number of times.
+         *
+         * @param string $command
+         * @param int $times
+         * @return void 
+         * @static 
+         */ 
+        public static function assertDispatchedAfterResponseTimes($command, $times = 1)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
+                        $instance->assertDispatchedAfterResponseTimes($command, $times);
+        }
+        
+        /**
+         * Determine if a job was dispatched based on a truth-test callback.
+         *
+         * @param string $command
+         * @param callable|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertNotDispatchedAfterResponse($command, $callback = null)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
+                        $instance->assertNotDispatchedAfterResponse($command, $callback);
+        }
+        
+        /**
          * Get all of the jobs matching a truth-test callback.
          *
          * @param string $command
@@ -2826,6 +2877,20 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Get all of the jobs dispatched after the response was sent matching a truth-test callback.
+         *
+         * @param string $command
+         * @param callable|null $callback
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function dispatchedAfterResponse($command, $callback = null)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
+                        return $instance->dispatchedAfterResponse($command, $callback);
+        }
+        
+        /**
          * Determine if there are any stored commands for a given class.
          *
          * @param string $command
@@ -2836,6 +2901,19 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
                         return $instance->hasDispatched($command);
+        }
+        
+        /**
+         * Determine if there are any stored commands for a given class.
+         *
+         * @param string $command
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasDispatchedAfterResponse($command)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
+                        return $instance->hasDispatchedAfterResponse($command);
         }
          
     }
@@ -2885,6 +2963,18 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Cache\CacheManager $instance */
                         return $instance->repository($store);
+        }
+        
+        /**
+         * Re-set the event dispatcher on all resolved cache repositories.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function refreshEventDispatcher()
+        {
+                        /** @var \Illuminate\Cache\CacheManager $instance */
+                        $instance->refreshEventDispatcher();
         }
         
         /**
@@ -3300,6 +3390,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Get the event dispatcher instance.
+         *
+         * @return \Illuminate\Contracts\Events\Dispatcher 
+         * @static 
+         */ 
+        public static function getEventDispatcher()
+        {
+                        /** @var \Illuminate\Cache\Repository $instance */
+                        return $instance->getEventDispatcher();
+        }
+        
+        /**
          * Set the event dispatcher instance.
          *
          * @param \Illuminate\Contracts\Events\Dispatcher $events
@@ -3707,7 +3809,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $key
          * @param mixed $default
-         * @param string $path
+         * @param string|null $path
          * @return \Symfony\Component\HttpFoundation\Cookie 
          * @static 
          */ 
@@ -3724,10 +3826,10 @@ namespace Illuminate\Support\Facades {
          * @return void 
          * @static 
          */ 
-        public static function queue($parameters = null)
+        public static function queue(...$parameters)
         {
                         /** @var \Illuminate\Cookie\CookieJar $instance */
-                        $instance->queue($parameters);
+                        $instance->queue(...$parameters);
         }
         
         /**
@@ -4949,7 +5051,7 @@ namespace Illuminate\Support\Facades {
          * Register an event listener with the dispatcher.
          *
          * @param string|array $events
-         * @param mixed $listener
+         * @param \Closure|string $listener
          * @return void 
          * @static 
          */ 
@@ -4970,6 +5072,19 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Events\Dispatcher $instance */
                         return $instance->hasListeners($eventName);
+        }
+        
+        /**
+         * Determine if the given event has any wildcard listeners.
+         *
+         * @param string $eventName
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasWildcardListeners($eventName)
+        {
+                        /** @var \Illuminate\Events\Dispatcher $instance */
+                        return $instance->hasWildcardListeners($eventName);
         }
         
         /**
@@ -5118,6 +5233,45 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Events\Dispatcher $instance */
                         return $instance->setQueueResolver($resolver);
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+                        \Illuminate\Events\Dispatcher::macro($name, $macro);
+        }
+        
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @param bool $replace
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin, $replace = true)
+        {
+                        \Illuminate\Events\Dispatcher::mixin($mixin, $replace);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+                        return \Illuminate\Events\Dispatcher::hasMacro($name);
         }
         
         /**
@@ -5405,7 +5559,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a hard link to the target file or directory.
+         * Create a symlink to the target file or directory. On Windows, a hard link is created if the target is a file.
          *
          * @param string $target
          * @param string $link
@@ -5627,6 +5781,21 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Filesystem\Filesystem $instance */
                         return $instance->directories($directory);
+        }
+        
+        /**
+         * Ensure a directory exists.
+         *
+         * @param string $path
+         * @param int $mode
+         * @param bool $recursive
+         * @return void 
+         * @static 
+         */ 
+        public static function ensureDirectoryExists($path, $mode = 493, $recursive = true)
+        {
+                        /** @var \Illuminate\Filesystem\Filesystem $instance */
+                        $instance->ensureDirectoryExists($path, $mode, $recursive);
         }
         
         /**
@@ -6528,7 +6697,7 @@ namespace Illuminate\Support\Facades {
          * Get a log channel instance.
          *
          * @param string|null $channel
-         * @return mixed 
+         * @return \Psr\Log\LoggerInterface 
          * @static 
          */ 
         public static function channel($channel = null)
@@ -6541,7 +6710,7 @@ namespace Illuminate\Support\Facades {
          * Get a log driver instance.
          *
          * @param string|null $driver
-         * @return mixed 
+         * @return \Psr\Log\LoggerInterface 
          * @static 
          */ 
         public static function driver($driver = null)
@@ -7377,6 +7546,7 @@ namespace Illuminate\Support\Facades {
          * @param string $notification
          * @param callable|null $callback
          * @return void 
+         * @throws \Exception
          * @static 
          */ 
         public static function assertSentTo($notifiable, $notification, $callback = null)
@@ -7407,6 +7577,7 @@ namespace Illuminate\Support\Facades {
          * @param string $notification
          * @param callable|null $callback
          * @return void 
+         * @throws \Exception
          * @static 
          */ 
         public static function assertNotSentTo($notifiable, $notification, $callback = null)
@@ -7780,6 +7951,20 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Support\Testing\Fakes\QueueFake $instance */
                         $instance->assertPushedWithChain($job, $expectedChain, $callback);
+        }
+        
+        /**
+         * Assert if a job was pushed with an empty chain based on a truth-test callback.
+         *
+         * @param string $job
+         * @param callable|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertPushedWithoutChain($job, $callback = null)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\QueueFake $instance */
+                        $instance->assertPushedWithoutChain($job, $callback);
         }
         
         /**
@@ -8434,10 +8619,10 @@ namespace Illuminate\Support\Facades {
          * @return bool 
          * @static 
          */ 
-        public static function is($patterns = null)
+        public static function is(...$patterns)
         {
                         /** @var \Illuminate\Http\Request $instance */
-                        return $instance->is($patterns);
+                        return $instance->is(...$patterns);
         }
         
         /**
@@ -8447,10 +8632,10 @@ namespace Illuminate\Support\Facades {
          * @return bool 
          * @static 
          */ 
-        public static function routeIs($patterns = null)
+        public static function routeIs(...$patterns)
         {
                         /** @var \Illuminate\Http\Request $instance */
-                        return $instance->routeIs($patterns);
+                        return $instance->routeIs(...$patterns);
         }
         
         /**
@@ -8460,10 +8645,10 @@ namespace Illuminate\Support\Facades {
          * @return bool 
          * @static 
          */ 
-        public static function fullUrlIs($patterns = null)
+        public static function fullUrlIs(...$patterns)
         {
                         /** @var \Illuminate\Http\Request $instance */
-                        return $instance->fullUrlIs($patterns);
+                        return $instance->fullUrlIs(...$patterns);
         }
         
         /**
@@ -8541,7 +8726,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the client user agent.
          *
-         * @return string 
+         * @return string|null 
          * @static 
          */ 
         public static function userAgent()
@@ -9771,7 +9956,9 @@ namespace Illuminate\Support\Facades {
          * Gets the preferred format for the response by inspecting, in the following order:
          *   * the request format set using setRequestFormat
          *   * the values of the Accept HTTP header
-         *   * the content type of the body of the request.
+         * 
+         * Note that if you use this method, you should send the "Vary: Accept" header
+         * in the response to prevent any issues with intermediary HTTP caches.
          *
          * @static 
          */ 
@@ -10240,6 +10427,22 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Retrieve input as a boolean value.
+         * 
+         * Returns true when value is "1", "true", "on", and "yes". Otherwise, returns false.
+         *
+         * @param string|null $key
+         * @param bool $default
+         * @return bool 
+         * @static 
+         */ 
+        public static function boolean($key = null, $default = false)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->boolean($key, $default);
+        }
+        
+        /**
          * Get a subset containing the provided keys with values from the input data.
          *
          * @param array|mixed $keys
@@ -10403,9 +10606,9 @@ namespace Illuminate\Support\Facades {
          *
          * @static 
          */ 
-        public static function validate($rules, $params = null)
+        public static function validate($rules, ...$params)
         {
-                        return \Illuminate\Http\Request::validate($rules, $params);
+                        return \Illuminate\Http\Request::validate($rules, ...$params);
         }
         
         /**
@@ -10413,9 +10616,9 @@ namespace Illuminate\Support\Facades {
          *
          * @static 
          */ 
-        public static function validateWithBag($errorBag, $rules, $params = null)
+        public static function validateWithBag($errorBag, $rules, ...$params)
         {
-                        return \Illuminate\Http\Request::validateWithBag($errorBag, $rules, $params);
+                        return \Illuminate\Http\Request::validateWithBag($errorBag, $rules, ...$params);
         }
         
         /**
@@ -11397,10 +11600,10 @@ namespace Illuminate\Support\Facades {
          * @return bool 
          * @static 
          */ 
-        public static function is($patterns = null)
+        public static function is(...$patterns)
         {
                         /** @var \Illuminate\Routing\Router $instance */
-                        return $instance->is($patterns);
+                        return $instance->is(...$patterns);
         }
         
         /**
@@ -11410,10 +11613,10 @@ namespace Illuminate\Support\Facades {
          * @return bool 
          * @static 
          */ 
-        public static function currentRouteNamed($patterns = null)
+        public static function currentRouteNamed(...$patterns)
         {
                         /** @var \Illuminate\Routing\Router $instance */
-                        return $instance->currentRouteNamed($patterns);
+                        return $instance->currentRouteNamed(...$patterns);
         }
         
         /**
@@ -11435,10 +11638,10 @@ namespace Illuminate\Support\Facades {
          * @return bool 
          * @static 
          */ 
-        public static function uses($patterns = null)
+        public static function uses(...$patterns)
         {
                         /** @var \Illuminate\Routing\Router $instance */
-                        return $instance->uses($patterns);
+                        return $instance->uses(...$patterns);
         }
         
         /**
@@ -12921,7 +13124,8 @@ namespace Illuminate\Support\Facades {
          * @return bool 
          * @static 
          */ 
-        public static function prepend($path, $data, $separator = '')
+        public static function prepend($path, $data, $separator = '
+')
         {
                         /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
                         return $instance->prepend($path, $data, $separator);
@@ -12936,7 +13140,8 @@ namespace Illuminate\Support\Facades {
          * @return bool 
          * @static 
          */ 
-        public static function append($path, $data, $separator = '')
+        public static function append($path, $data, $separator = '
+')
         {
                         /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
                         return $instance->append($path, $data, $separator);
@@ -14767,6 +14972,641 @@ namespace Illuminate\Support {
  
 }
 
+namespace Intervention\Image\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Image {
+        
+        /**
+         * Overrides configuration settings
+         *
+         * @param array $config
+         * @return self 
+         * @static 
+         */ 
+        public static function configure($config = [])
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->configure($config);
+        }
+        
+        /**
+         * Initiates an Image instance from different input types
+         *
+         * @param mixed $data
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function make($data)
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->make($data);
+        }
+        
+        /**
+         * Creates an empty image canvas
+         *
+         * @param int $width
+         * @param int $height
+         * @param mixed $background
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function canvas($width, $height, $background = null)
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->canvas($width, $height, $background);
+        }
+        
+        /**
+         * Create new cached image and run callback
+         * (requires additional package intervention/imagecache)
+         *
+         * @param \Closure $callback
+         * @param int $lifetime
+         * @param boolean $returnObj
+         * @return \Image 
+         * @static 
+         */ 
+        public static function cache($callback, $lifetime = null, $returnObj = false)
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->cache($callback, $lifetime, $returnObj);
+        }
+         
+    }
+ 
+}
+
+namespace Ixudra\Curl\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Curl {
+        
+        /**
+         * 
+         *
+         * @param $url string   The URL to which the request is to be sent
+         * @return \Ixudra\Curl\Builder 
+         * @static 
+         */ 
+        public static function to($url)
+        {
+                        /** @var \Ixudra\Curl\CurlService $instance */
+                        return $instance->to($url);
+        }
+         
+    }
+ 
+}
+
+namespace Maatwebsite\Excel\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Excel {
+        
+        /**
+         * 
+         *
+         * @param object $export
+         * @param string|null $fileName
+         * @param string $writerType
+         * @param array $headers
+         * @throws \PhpOffice\PhpSpreadsheet\Exception
+         * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+         * @return \Maatwebsite\Excel\BinaryFileResponse 
+         * @static 
+         */ 
+        public static function download($export, $fileName, $writerType = null, $headers = [])
+        {
+                        /** @var \Maatwebsite\Excel\Excel $instance */
+                        return $instance->download($export, $fileName, $writerType, $headers);
+        }
+        
+        /**
+         * 
+         *
+         * @param object $export
+         * @param string $filePath
+         * @param string|null $disk
+         * @param string $writerType
+         * @param mixed $diskOptions
+         * @throws \PhpOffice\PhpSpreadsheet\Exception
+         * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+         * @return bool 
+         * @static 
+         */ 
+        public static function store($export, $filePath, $diskName = null, $writerType = null, $diskOptions = [])
+        {
+                        /** @var \Maatwebsite\Excel\Excel $instance */
+                        return $instance->store($export, $filePath, $diskName, $writerType, $diskOptions);
+        }
+        
+        /**
+         * 
+         *
+         * @param object $export
+         * @param string $filePath
+         * @param string|null $disk
+         * @param string $writerType
+         * @param mixed $diskOptions
+         * @return \Maatwebsite\Excel\PendingDispatch 
+         * @static 
+         */ 
+        public static function queue($export, $filePath, $disk = null, $writerType = null, $diskOptions = [])
+        {
+                        /** @var \Maatwebsite\Excel\Excel $instance */
+                        return $instance->queue($export, $filePath, $disk, $writerType, $diskOptions);
+        }
+        
+        /**
+         * 
+         *
+         * @param object $export
+         * @param string $writerType
+         * @return string 
+         * @static 
+         */ 
+        public static function raw($export, $writerType)
+        {
+                        /** @var \Maatwebsite\Excel\Excel $instance */
+                        return $instance->raw($export, $writerType);
+        }
+        
+        /**
+         * 
+         *
+         * @param object $import
+         * @param string|\Maatwebsite\Excel\UploadedFile $filePath
+         * @param string|null $disk
+         * @param string|null $readerType
+         * @return \Maatwebsite\Excel\Reader|\Maatwebsite\Excel\PendingDispatch 
+         * @static 
+         */ 
+        public static function import($import, $filePath, $disk = null, $readerType = null)
+        {
+                        /** @var \Maatwebsite\Excel\Excel $instance */
+                        return $instance->import($import, $filePath, $disk, $readerType);
+        }
+        
+        /**
+         * 
+         *
+         * @param object $import
+         * @param string|\Maatwebsite\Excel\UploadedFile $filePath
+         * @param string|null $disk
+         * @param string|null $readerType
+         * @return array 
+         * @static 
+         */ 
+        public static function toArray($import, $filePath, $disk = null, $readerType = null)
+        {
+                        /** @var \Maatwebsite\Excel\Excel $instance */
+                        return $instance->toArray($import, $filePath, $disk, $readerType);
+        }
+        
+        /**
+         * 
+         *
+         * @param object $import
+         * @param string|\Maatwebsite\Excel\UploadedFile $filePath
+         * @param string|null $disk
+         * @param string|null $readerType
+         * @return \Maatwebsite\Excel\Collection 
+         * @static 
+         */ 
+        public static function toCollection($import, $filePath, $disk = null, $readerType = null)
+        {
+                        /** @var \Maatwebsite\Excel\Excel $instance */
+                        return $instance->toCollection($import, $filePath, $disk, $readerType);
+        }
+        
+        /**
+         * 
+         *
+         * @param \Maatwebsite\Excel\ShouldQueue $import
+         * @param string|\Maatwebsite\Excel\UploadedFile $filePath
+         * @param string|null $disk
+         * @param string $readerType
+         * @return \Maatwebsite\Excel\PendingDispatch 
+         * @static 
+         */ 
+        public static function queueImport($import, $filePath, $disk = null, $readerType = null)
+        {
+                        /** @var \Maatwebsite\Excel\Excel $instance */
+                        return $instance->queueImport($import, $filePath, $disk, $readerType);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $concern
+         * @param callable $handler
+         * @param string $event
+         * @static 
+         */ 
+        public static function extend($concern, $handler, $event = 'Maatwebsite\\Excel\\Events\\BeforeWriting')
+        {
+                        return \Maatwebsite\Excel\Excel::extend($concern, $handler, $event);
+        }
+        
+        /**
+         * When asserting downloaded, stored, queued or imported, use regular expression
+         * to look for a matching file path.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function matchByRegex()
+        {
+                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+                        $instance->matchByRegex();
+        }
+        
+        /**
+         * When asserting downloaded, stored, queued or imported, use regular string
+         * comparison for matching file path.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function doNotMatchByRegex()
+        {
+                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+                        $instance->doNotMatchByRegex();
+        }
+        
+        /**
+         * 
+         *
+         * @param string $fileName
+         * @param callable|null $callback
+         * @static 
+         */ 
+        public static function assertDownloaded($fileName, $callback = null)
+        {
+                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+                        return $instance->assertDownloaded($fileName, $callback);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $filePath
+         * @param string|callable|null $disk
+         * @param callable|null $callback
+         * @static 
+         */ 
+        public static function assertStored($filePath, $disk = null, $callback = null)
+        {
+                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+                        return $instance->assertStored($filePath, $disk, $callback);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $filePath
+         * @param string|callable|null $disk
+         * @param callable|null $callback
+         * @static 
+         */ 
+        public static function assertQueued($filePath, $disk = null, $callback = null)
+        {
+                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+                        return $instance->assertQueued($filePath, $disk, $callback);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $filePath
+         * @param string|callable|null $disk
+         * @param callable|null $callback
+         * @static 
+         */ 
+        public static function assertImported($filePath, $disk = null, $callback = null)
+        {
+                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+                        return $instance->assertImported($filePath, $disk, $callback);
+        }
+         
+    }
+ 
+}
+
+namespace Shetabit\Payment\Facade { 
+
+    /**
+     * Class Sms
+     *
+     * @package Shetabit\Payment\Facade
+     * @see \Shetabit\Payment\PaymentManager
+     */ 
+    class Payment {
+        
+        /**
+         * Set custom configs
+         * we can use this method when we want to use dynamic configs
+         *
+         * @param $key
+         * @param $value|null
+         * @return \Shetabit\Payment\PaymentManager 
+         * @static 
+         */ 
+        public static function config($key, $value = null)
+        {
+                        /** @var \Shetabit\Payment\PaymentManager $instance */
+                        return $instance->config($key, $value);
+        }
+        
+        /**
+         * Set callbackUrl.
+         *
+         * @param $url|null
+         * @return \Shetabit\Payment\PaymentManager 
+         * @static 
+         */ 
+        public static function callbackUrl($url = null)
+        {
+                        /** @var \Shetabit\Payment\PaymentManager $instance */
+                        return $instance->callbackUrl($url);
+        }
+        
+        /**
+         * Reset the callbackUrl to its original that exists in configs.
+         *
+         * @return \Shetabit\Payment\PaymentManager 
+         * @static 
+         */ 
+        public static function resetCallbackUrl()
+        {
+                        /** @var \Shetabit\Payment\PaymentManager $instance */
+                        return $instance->resetCallbackUrl();
+        }
+        
+        /**
+         * Set payment amount.
+         *
+         * @param $amount
+         * @return \Shetabit\Payment\PaymentManager 
+         * @throws \Exception
+         * @static 
+         */ 
+        public static function amount($amount)
+        {
+                        /** @var \Shetabit\Payment\PaymentManager $instance */
+                        return $instance->amount($amount);
+        }
+        
+        /**
+         * Set a piece of data to the details.
+         *
+         * @param $key
+         * @param $value|null
+         * @return \Shetabit\Payment\PaymentManager 
+         * @static 
+         */ 
+        public static function detail($key, $value = null)
+        {
+                        /** @var \Shetabit\Payment\PaymentManager $instance */
+                        return $instance->detail($key, $value);
+        }
+        
+        /**
+         * Set transaction's id
+         *
+         * @param $id
+         * @return \Shetabit\Payment\PaymentManager 
+         * @static 
+         */ 
+        public static function transactionId($id)
+        {
+                        /** @var \Shetabit\Payment\PaymentManager $instance */
+                        return $instance->transactionId($id);
+        }
+        
+        /**
+         * Change the driver on the fly.
+         *
+         * @param $driver
+         * @return \Shetabit\Payment\PaymentManager 
+         * @throws \Exception
+         * @static 
+         */ 
+        public static function via($driver)
+        {
+                        /** @var \Shetabit\Payment\PaymentManager $instance */
+                        return $instance->via($driver);
+        }
+        
+        /**
+         * Purchase the invoice
+         *
+         * @param \Shetabit\Payment\Invoice $invoice|null
+         * @param $finalizeCallback|null
+         * @return \Shetabit\Payment\PaymentManager 
+         * @throws \Exception
+         * @static 
+         */ 
+        public static function purchase($invoice = null, $finalizeCallback = null)
+        {
+                        /** @var \Shetabit\Payment\PaymentManager $instance */
+                        return $instance->purchase($invoice, $finalizeCallback);
+        }
+        
+        /**
+         * Pay the purchased invoice.
+         *
+         * @param $initializeCallback|null
+         * @return mixed 
+         * @throws \Exception
+         * @static 
+         */ 
+        public static function pay($initializeCallback = null)
+        {
+                        /** @var \Shetabit\Payment\PaymentManager $instance */
+                        return $instance->pay($initializeCallback);
+        }
+        
+        /**
+         * Verifies the payment
+         *
+         * @param $finalizeCallback|null
+         * @return \Shetabit\Payment\ReceiptInterface 
+         * @throws InvoiceNotFoundException
+         * @static 
+         */ 
+        public static function verify($finalizeCallback = null)
+        {
+                        /** @var \Shetabit\Payment\PaymentManager $instance */
+                        return $instance->verify($finalizeCallback);
+        }
+         
+    }
+ 
+}
+
+namespace SimpleSoftwareIO\QrCode\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class QrCode {
+        
+        /**
+         * Generates a QrCode.
+         *
+         * @param string $text The text to be converted into a QrCode
+         * @param null|string $filename The filename and path to save the QrCode file
+         * @return string|void Returns a QrCode string depending on the format, or saves to a file.
+         * @static 
+         */ 
+        public static function generate($text, $filename = null)
+        {
+                        /** @var \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator $instance */
+                        return $instance->generate($text, $filename);
+        }
+        
+        /**
+         * Merges an image with the center of the QrCode.
+         *
+         * @param $filepath string The filepath to an image
+         * @param $percentage float The amount that the merged image should be placed over the qrcode.
+         * @param $absolute boolean Whether to use an absolute filepath or not.
+         * @return \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator 
+         * @static 
+         */ 
+        public static function merge($filepath, $percentage = 0.2, $absolute = false)
+        {
+                        /** @var \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator $instance */
+                        return $instance->merge($filepath, $percentage, $absolute);
+        }
+        
+        /**
+         * Merges an image string with the center of the QrCode, does not check for correct format.
+         *
+         * @param $content string The string contents of an image.
+         * @param $percentage float The amount that the merged image should be placed over the qrcode.
+         * @return \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator 
+         * @static 
+         */ 
+        public static function mergeString($content, $percentage = 0.2)
+        {
+                        /** @var \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator $instance */
+                        return $instance->mergeString($content, $percentage);
+        }
+        
+        /**
+         * Switches the format of the outputted QrCode or defaults to SVG.
+         *
+         * @param string $format The desired format.
+         * @throws \InvalidArgumentException
+         * @return \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator 
+         * @static 
+         */ 
+        public static function format($format)
+        {
+                        /** @var \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator $instance */
+                        return $instance->format($format);
+        }
+        
+        /**
+         * Changes the size of the QrCode.
+         *
+         * @param int $pixels The size of the QrCode in pixels
+         * @return \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator 
+         * @static 
+         */ 
+        public static function size($pixels)
+        {
+                        /** @var \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator $instance */
+                        return $instance->size($pixels);
+        }
+        
+        /**
+         * Changes the foreground color of a QrCode.
+         *
+         * @param int $red
+         * @param int $green
+         * @param int $blue
+         * @return \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator 
+         * @static 
+         */ 
+        public static function color($red, $green, $blue)
+        {
+                        /** @var \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator $instance */
+                        return $instance->color($red, $green, $blue);
+        }
+        
+        /**
+         * Changes the background color of a QrCode.
+         *
+         * @param int $red
+         * @param int $green
+         * @param int $blue
+         * @return \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator 
+         * @static 
+         */ 
+        public static function backgroundColor($red, $green, $blue)
+        {
+                        /** @var \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator $instance */
+                        return $instance->backgroundColor($red, $green, $blue);
+        }
+        
+        /**
+         * Changes the error correction level of a QrCode.
+         *
+         * @param string $level Desired error correction level.  L = 7% M = 15% Q = 25% H = 30%
+         * @return \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator 
+         * @static 
+         */ 
+        public static function errorCorrection($level)
+        {
+                        /** @var \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator $instance */
+                        return $instance->errorCorrection($level);
+        }
+        
+        /**
+         * Creates a margin around the QrCode.
+         *
+         * @param int $margin The desired margin in pixels around the QrCode
+         * @return \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator 
+         * @static 
+         */ 
+        public static function margin($margin)
+        {
+                        /** @var \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator $instance */
+                        return $instance->margin($margin);
+        }
+        
+        /**
+         * Sets the Encoding mode.
+         *
+         * @param string $encoding
+         * @return \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator 
+         * @static 
+         */ 
+        public static function encoding($encoding)
+        {
+                        /** @var \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator $instance */
+                        return $instance->encoding($encoding);
+        }
+         
+    }
+ 
+}
+
 namespace Facade\Ignition\Facades { 
 
     /**
@@ -15026,6 +15866,599 @@ namespace Facade\Ignition\Facades {
         {
                         /** @var \Facade\FlareClient\Flare $instance */
                         return $instance->group($groupName, $properties);
+        }
+         
+    }
+ 
+}
+
+namespace Jenssegers\Agent\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Agent {
+        
+        /**
+         * Get all detection rules. These rules include the additional
+         * platforms and browsers and utilities.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getDetectionRulesExtended()
+        {
+                        return \Jenssegers\Agent\Agent::getDetectionRulesExtended();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getRules()
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getRules();
+        }
+        
+        /**
+         * 
+         *
+         * @return \Jenssegers\Agent\CrawlerDetect 
+         * @static 
+         */ 
+        public static function getCrawlerDetect()
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getCrawlerDetect();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getBrowsers()
+        {
+                        return \Jenssegers\Agent\Agent::getBrowsers();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getOperatingSystems()
+        {
+                        return \Jenssegers\Agent\Agent::getOperatingSystems();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getPlatforms()
+        {
+                        return \Jenssegers\Agent\Agent::getPlatforms();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getDesktopDevices()
+        {
+                        return \Jenssegers\Agent\Agent::getDesktopDevices();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getProperties()
+        {
+                        return \Jenssegers\Agent\Agent::getProperties();
+        }
+        
+        /**
+         * Get accept languages.
+         *
+         * @param string $acceptLanguage
+         * @return array 
+         * @static 
+         */ 
+        public static function languages($acceptLanguage = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->languages($acceptLanguage);
+        }
+        
+        /**
+         * Get the browser name.
+         *
+         * @param string|null $userAgent
+         * @return string 
+         * @static 
+         */ 
+        public static function browser($userAgent = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->browser($userAgent);
+        }
+        
+        /**
+         * Get the platform name.
+         *
+         * @param string|null $userAgent
+         * @return string 
+         * @static 
+         */ 
+        public static function platform($userAgent = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->platform($userAgent);
+        }
+        
+        /**
+         * Get the device name.
+         *
+         * @param string|null $userAgent
+         * @return string 
+         * @static 
+         */ 
+        public static function device($userAgent = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->device($userAgent);
+        }
+        
+        /**
+         * Check if the device is a desktop computer.
+         *
+         * @param string|null $userAgent deprecated
+         * @param array $httpHeaders deprecated
+         * @return bool 
+         * @static 
+         */ 
+        public static function isDesktop($userAgent = null, $httpHeaders = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->isDesktop($userAgent, $httpHeaders);
+        }
+        
+        /**
+         * Check if the device is a mobile phone.
+         *
+         * @param string|null $userAgent deprecated
+         * @param array $httpHeaders deprecated
+         * @return bool 
+         * @static 
+         */ 
+        public static function isPhone($userAgent = null, $httpHeaders = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->isPhone($userAgent, $httpHeaders);
+        }
+        
+        /**
+         * Get the robot name.
+         *
+         * @param string|null $userAgent
+         * @return string|bool 
+         * @static 
+         */ 
+        public static function robot($userAgent = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->robot($userAgent);
+        }
+        
+        /**
+         * Check if device is a robot.
+         *
+         * @param string|null $userAgent
+         * @return bool 
+         * @static 
+         */ 
+        public static function isRobot($userAgent = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->isRobot($userAgent);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function version($propertyName, $type = 'text')
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->version($propertyName, $type);
+        }
+        
+        /**
+         * Get the current script version.
+         * 
+         * This is useful for the demo.php file,
+         * so people can check on what version they are testing
+         * for mobile devices.
+         *
+         * @return string The version number in semantic version format.
+         * @static 
+         */ 
+        public static function getScriptVersion()
+        {
+            //Method inherited from \Mobile_Detect            
+                        return \Jenssegers\Agent\Agent::getScriptVersion();
+        }
+        
+        /**
+         * Set the HTTP Headers. Must be PHP-flavored. This method will reset existing headers.
+         *
+         * @param array $httpHeaders The headers to set. If null, then using PHP's _SERVER to extract
+         *                           the headers. The default null is left for backwards compatibility.
+         * @static 
+         */ 
+        public static function setHttpHeaders($httpHeaders = null)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->setHttpHeaders($httpHeaders);
+        }
+        
+        /**
+         * Retrieves the HTTP headers.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getHttpHeaders()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getHttpHeaders();
+        }
+        
+        /**
+         * Retrieves a particular header. If it doesn't exist, no exception/error is caused.
+         * 
+         * Simply null is returned.
+         *
+         * @param string $header The name of the header to retrieve. Can be HTTP compliant such as
+         *                       "User-Agent" or "X-Device-User-Agent" or can be php-esque with the
+         *                       all-caps, HTTP_ prefixed, underscore seperated awesomeness.
+         * @return string|null The value of the header.
+         * @static 
+         */ 
+        public static function getHttpHeader($header)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getHttpHeader($header);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMobileHeaders()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getMobileHeaders();
+        }
+        
+        /**
+         * Get all possible HTTP headers that
+         * can contain the User-Agent string.
+         *
+         * @return array List of HTTP headers.
+         * @static 
+         */ 
+        public static function getUaHttpHeaders()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getUaHttpHeaders();
+        }
+        
+        /**
+         * Set CloudFront headers
+         * http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/header-caching.html#header-caching-web-device
+         *
+         * @param array $cfHeaders List of HTTP headers
+         * @return boolean If there were CloudFront headers to be set
+         * @static 
+         */ 
+        public static function setCfHeaders($cfHeaders = null)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->setCfHeaders($cfHeaders);
+        }
+        
+        /**
+         * Retrieves the cloudfront headers.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getCfHeaders()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getCfHeaders();
+        }
+        
+        /**
+         * Set the User-Agent to be used.
+         *
+         * @param string $userAgent The user agent string to set.
+         * @return string|null 
+         * @static 
+         */ 
+        public static function setUserAgent($userAgent = null)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->setUserAgent($userAgent);
+        }
+        
+        /**
+         * Retrieve the User-Agent.
+         *
+         * @return string|null The user agent if it's set.
+         * @static 
+         */ 
+        public static function getUserAgent()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getUserAgent();
+        }
+        
+        /**
+         * Set the detection type. Must be one of self::DETECTION_TYPE_MOBILE or
+         * self::DETECTION_TYPE_EXTENDED. Otherwise, nothing is set.
+         *
+         * @deprecated since version 2.6.9
+         * @param string $type The type. Must be a self::DETECTION_TYPE_* constant. The default
+         *                     parameter is null which will default to self::DETECTION_TYPE_MOBILE.
+         * @static 
+         */ 
+        public static function setDetectionType($type = null)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->setDetectionType($type);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMatchingRegex()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getMatchingRegex();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMatchesArray()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getMatchesArray();
+        }
+        
+        /**
+         * Retrieve the list of known phone devices.
+         *
+         * @return array List of phone devices.
+         * @static 
+         */ 
+        public static function getPhoneDevices()
+        {
+            //Method inherited from \Mobile_Detect            
+                        return \Jenssegers\Agent\Agent::getPhoneDevices();
+        }
+        
+        /**
+         * Retrieve the list of known tablet devices.
+         *
+         * @return array List of tablet devices.
+         * @static 
+         */ 
+        public static function getTabletDevices()
+        {
+            //Method inherited from \Mobile_Detect            
+                        return \Jenssegers\Agent\Agent::getTabletDevices();
+        }
+        
+        /**
+         * Alias for getBrowsers() method.
+         *
+         * @return array List of user agents.
+         * @static 
+         */ 
+        public static function getUserAgents()
+        {
+            //Method inherited from \Mobile_Detect            
+                        return \Jenssegers\Agent\Agent::getUserAgents();
+        }
+        
+        /**
+         * Retrieve the list of known utilities.
+         *
+         * @return array List of utilities.
+         * @static 
+         */ 
+        public static function getUtilities()
+        {
+            //Method inherited from \Mobile_Detect            
+                        return \Jenssegers\Agent\Agent::getUtilities();
+        }
+        
+        /**
+         * Method gets the mobile detection rules. This method is used for the magic methods $detect->is*().
+         *
+         * @deprecated since version 2.6.9
+         * @return array All the rules (but not extended).
+         * @static 
+         */ 
+        public static function getMobileDetectionRules()
+        {
+            //Method inherited from \Mobile_Detect            
+                        return \Jenssegers\Agent\Agent::getMobileDetectionRules();
+        }
+        
+        /**
+         * Method gets the mobile detection rules + utilities.
+         * 
+         * The reason this is separate is because utilities rules
+         * don't necessary imply mobile. This method is used inside
+         * the new $detect->is('stuff') method.
+         *
+         * @deprecated since version 2.6.9
+         * @return array All the rules + extended.
+         * @static 
+         */ 
+        public static function getMobileDetectionRulesExtended()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getMobileDetectionRulesExtended();
+        }
+        
+        /**
+         * Check the HTTP headers for signs of mobile.
+         * 
+         * This is the fastest mobile check possible; it's used
+         * inside isMobile() method.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkHttpHeadersForMobile()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->checkHttpHeadersForMobile();
+        }
+        
+        /**
+         * Check if the device is mobile.
+         * 
+         * Returns true if any type of mobile device detected, including special ones
+         *
+         * @param null $userAgent deprecated
+         * @param null $httpHeaders deprecated
+         * @return bool 
+         * @static 
+         */ 
+        public static function isMobile($userAgent = null, $httpHeaders = null)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->isMobile($userAgent, $httpHeaders);
+        }
+        
+        /**
+         * Check if the device is a tablet.
+         * 
+         * Return true if any type of tablet device is detected.
+         *
+         * @param string $userAgent deprecated
+         * @param array $httpHeaders deprecated
+         * @return bool 
+         * @static 
+         */ 
+        public static function isTablet($userAgent = null, $httpHeaders = null)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->isTablet($userAgent, $httpHeaders);
+        }
+        
+        /**
+         * This method checks for a certain property in the
+         * userAgent.
+         *
+         * @todo : The httpHeaders part is not yet used.
+         * @param string $key
+         * @param string $userAgent deprecated
+         * @param string $httpHeaders deprecated
+         * @return bool|int|null 
+         * @static 
+         */ 
+        public static function is($key, $userAgent = null, $httpHeaders = null)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->is($key, $userAgent, $httpHeaders);
+        }
+        
+        /**
+         * Some detection rules are relative (not standard),
+         * because of the diversity of devices, vendors and
+         * their conventions in representing the User-Agent or
+         * the HTTP headers.
+         * 
+         * This method will be used to check custom regexes against
+         * the User-Agent string.
+         *
+         * @param $regex
+         * @param string $userAgent
+         * @return bool 
+         * @todo : search in the HTTP headers too.
+         * @static 
+         */ 
+        public static function match($regex, $userAgent = null)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->match($regex, $userAgent);
+        }
+        
+        /**
+         * Prepare the version number.
+         *
+         * @todo Remove the error supression from str_replace() call.
+         * @param string $ver The string version, like "2.6.21.2152";
+         * @return float 
+         * @static 
+         */ 
+        public static function prepareVersionNo($ver)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->prepareVersionNo($ver);
+        }
+        
+        /**
+         * Retrieve the mobile grading, using self::MOBILE_GRADE_* constants.
+         *
+         * @return string One of the self::MOBILE_GRADE_* constants.
+         * @static 
+         */ 
+        public static function mobileGrade()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->mobileGrade();
         }
          
     }
@@ -15459,7 +16892,7 @@ namespace  {
             /**
              * Paginate the given query.
              *
-             * @param int $perPage
+             * @param int|null $perPage
              * @param array $columns
              * @param string $pageName
              * @param int|null $page
@@ -15476,7 +16909,7 @@ namespace  {
             /**
              * Paginate the given query into a simple paginator.
              *
-             * @param int $perPage
+             * @param int|null $perPage
              * @param array $columns
              * @param string $pageName
              * @param int|null $page
@@ -15765,8 +17198,8 @@ namespace  {
              *
              * @param callable $callback
              * @param int $count
-             * @param string $column
-             * @param string $alias
+             * @param string|null $column
+             * @param string|null $alias
              * @return bool 
              * @static 
              */ 
@@ -17089,10 +18522,24 @@ namespace  {
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
-            public static function groupBy($groups = null)
+            public static function groupBy(...$groups)
             {
                                 /** @var \Illuminate\Database\Query\Builder $instance */
-                                return $instance->groupBy($groups);
+                                return $instance->groupBy(...$groups);
+            }
+         
+            /**
+             * Add a raw groupBy clause to the query.
+             *
+             * @param string $sql
+             * @param array $bindings
+             * @return \Illuminate\Database\Query\Builder 
+             * @static 
+             */ 
+            public static function groupByRaw($sql, $bindings = [])
+            {
+                                /** @var \Illuminate\Database\Query\Builder $instance */
+                                return $instance->groupByRaw($sql, $bindings);
             }
          
             /**
@@ -17174,7 +18621,7 @@ namespace  {
             /**
              * Add an "order by" clause to the query.
              *
-             * @param \Closure|\Illuminate\Database\Query\Builder|string $column
+             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string $column
              * @param string $direction
              * @return \Illuminate\Database\Query\Builder 
              * @throws \InvalidArgumentException
@@ -17912,7 +19359,19 @@ namespace  {
 
     class View extends \Illuminate\Support\Facades\View {}
 
+    class Image extends \Intervention\Image\Facades\Image {}
+
+    class Curl extends \Ixudra\Curl\Facades\Curl {}
+
+    class Excel extends \Maatwebsite\Excel\Facades\Excel {}
+
+    class Payment extends \Shetabit\Payment\Facade\Payment {}
+
+    class QrCode extends \SimpleSoftwareIO\QrCode\Facades\QrCode {}
+
     class Flare extends \Facade\Ignition\Facades\Flare {}
+
+    class Agent extends \Jenssegers\Agent\Facades\Agent {}
  
 }
 

@@ -37,9 +37,9 @@
         // jquery ready start
         $(document).ready(function() {
             // jQuery code
-            $('.has-sub').click(function (e) {
+            /*$('.has-sub').click(function (e) {
                 $('.submenu-left').css('display','block')
-            });
+            });*/
             //////////////////////// Prevent closing from click inside dropdown
             $(document).on('click', '.dropdown-menu', function (e) {
                 e.stopPropagation();
@@ -164,28 +164,62 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                         کمیته ها و شاخه ها و کارگروه ها</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item has-sub dropdown-toggle" >کمیته ها</a>
-                                        <div class="submenu submenu-left dropdown-menu">
-                                            <a class="dropdown-item" href="{{route('committees.register')}}">کمیته عضویت</a>
-                                            <a class="dropdown-item" href="{{route('committees.awards')}}">کمیته جایزه ملی</a>
-                                            <a class="dropdown-item" href="{{route('committees.education')}}">کمیته آموزش</a>
-                                            <a class="dropdown-item" href="{{route('committees.researches')}}">کمیته پژوهش و انتشارات</a>
-                                            <a class="dropdown-item" href="{{route('committees.certificate')}}">کمیته گواهینامه ها</a>
-                                        </div>
-                                        {{--<li class="nav-item dropdown">
-                                        <a class="dropdown-item has-sub dropdown-toggle" href="#" > Dropdown item 3 </a>
-                                            <div class="submenu submenu-left dropdown-menu">
-                                                <a class="dropdown-item" href="">Submenu item 1</a>
-                                                <a class="dropdown-item" href="">Submenu item 2</a>
-                                                <a class="dropdown-item" href="">Submenu item 3</a>
-                                                <a class="dropdown-item" href="">Submenu item 4</a>
-                                            </div>
-                                        </li>--}}
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li class="nav-item dropdown">
+                                            <a class="dropdown-item has-sub dropdown-toggle">کمیته ها</a>
 
-                                        <a class="dropdown-item" href="{{route('branches')}}">شاخه ها</a>
-                                        <a class="dropdown-item" href="{{route('WorkingGroups')}}">کارگروه ها</a>
-                                    </div>
+                                            <div class="submenu submenu-left dropdown-menu">
+                                                <a class="dropdown-item" href="{{route('committees.register')}}">کمیته
+                                                    عضویت</a>
+                                                <a class="dropdown-item" href="{{route('committees.awards')}}">کمیته
+                                                    جایزه
+                                                    ملی</a>
+                                                <a class="dropdown-item" href="{{route('committees.education')}}">کمیته
+                                                    آموزش</a>
+                                                <a class="dropdown-item" href="{{route('committees.researches')}}">کمیته
+                                                    پژوهش و انتشارات</a>
+                                                <a class="dropdown-item" href="{{route('committees.certificate')}}">کمیته
+                                                    گواهینامه ها</a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="dropdown-item has-sub dropdown-toggle">شاخه ها</a>
+
+                                            <div class="submenu submenu-left dropdown-menu">
+                                                <a class="dropdown-item" href="{{route('branches.northWest')}}">شاخه
+                                                    شمال
+                                                    غرب</a>
+                                                <a class="dropdown-item" href="{{route('branches.khozestan')}}">شاخه
+                                                    خوزستان</a>
+                                                <a class="dropdown-item" href="{{route('branches.esfehan')}}">شاخه
+                                                    اصفهان</a>
+                                                <a class="dropdown-item" href="{{route('branches.khorasan')}}">شاخه
+                                                    خراسان</a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="dropdown-item has-sub dropdown-toggle">کارگروه ها</a>
+                                            <div class="submenu submenu-left dropdown-menu">
+                                                <a class="dropdown-item" href="{{route('WorkingGroups.women')}}">کار
+                                                    گروه
+                                                    زنان</a>
+                                                <a class="dropdown-item" href="{{route('WorkingGroups.PMIS')}}">کار
+                                                    گروه
+                                                    PMIS</a>
+                                                <a class="dropdown-item"
+                                                   href="{{route('WorkingGroups.knowledgeManagement')}}">کار گروه
+                                                    مدیریت
+                                                    دانش</a>
+                                                <a class="dropdown-item"
+                                                   href="{{route('WorkingGroups.startup')}}">کار گروه
+                                                    استارت آپ</a>
+                                                <a class="dropdown-item"
+                                                   href="{{route('WorkingGroups.ProjectAndProgram')}}">کار گروه سید
+                                                    و برنامه
+                                                    پروژه</a>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">

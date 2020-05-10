@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PassedCoursesCategorySeeder::class);
         $this->call(BranchSeeder::class);
         $this->call(EventCategorySeeder::class);
+        $this->call(CommitteeSeeder::class);
+        $this->call(WorkingGroupSeeder::class);
         factory(\App\User::class,10)->create();
         factory(\App\Event::class,20)->create();
         factory(\App\Profile::class,10)->create();

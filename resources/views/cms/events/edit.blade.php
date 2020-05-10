@@ -99,6 +99,7 @@
                                                 <div class="error text-danger">{{ $errors->first('price') }}</div>
                                             @endif
                                         </div>
+
                                         <div class="form-group col-lg-6 mb-4">
                                             <lable>شماره تلفن</lable>
                                             <input class="form-control" name="tel" type="text" placeholder="شماره تلفن"
@@ -155,7 +156,7 @@
                                                 <div class="error text-danger">{{ $errors->first('province_id') }}</div>
                                             @endif
                                         </div>
-                                        <div class="form-group col-lg-6 mb-4">
+                           {{--             <div class="form-group col-lg-6 mb-4">
                                             <lable>شاخه</lable>
                                             <select class="form-control" name="branch_id">
                                                 @foreach(\App\Branch::all() as $branch)
@@ -165,8 +166,8 @@
                                             @if($errors->has('branch_id'))
                                                 <div class="error text-danger">{{ $errors->first('branch_id') }}</div>
                                             @endif
-                                        </div>
-                                        <div class="form-group col-lg-6 mb-4">
+                                        </div>--}}
+                                 {{--       <div class="form-group col-lg-6 mb-4">
                                             <lable>کمیته</lable>
                                             <select class="form-control" name="committee_id">
                                                 @foreach(\App\Committee::all() as $committee)
@@ -177,24 +178,41 @@
                                                 <div class="error text-danger">{{ $errors->first('committee_id') }}</div>
                                             @endif
                                         </div>
-                                        <div class="form-group col-lg-6 mb-4">
+--}}                                        {{--<div class="form-group col-lg-6 mb-4">
                                             <lable>کارگروه</lable>
-                                            <select class="form-control" name="group_id">
-                                                @foreach(\App\Group::all() as $group)
+                                            <select class="form-control" name="working-group_id">
+                                                @foreach(\App\WorkingGroup::all() as $group)
                                                     <option value="{{$group->id}}" {{ ($group->id == $event->province_id) ? 'selected' : '' }} > {{$group->title}} </option>
                                                 @endforeach
                                             </select>
                                             @if($errors->has('group_id'))
                                                 <div class="error text-danger">{{ $errors->first('group_id') }}</div>
                                             @endif
+                                        </div>--}}
+
+                                        <div class="form-group col-lg-6 mb-4">
+                                            <lable>کمیته</lable>
+                                            <select class="form-control" name="committee_id">
+                                                <option value="0">هیچ کدام</option>
+                                                @foreach($committee as $committe)
+                                                    <option value="{{$committe->id}}" {{ ($committe->id == $event->committee_id) ? 'selected' : '' }} > {{$committe->title}} </option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('committee_id'))
+                                                <div class="error text-danger">{{ $errors->first('committee_id') }}</div>
+                                            @endif
                                         </div>
-                                        <div class="col-lg-12 mb-4">
+
+
+                                        <div class="col-lg-6 mb-4 mt-3">
                                             <lable>عکس رویداد</lable>
                                             <input class="form-control-file my-2" type="file" name="image" id="image">
                                             @if($errors->has('image'))
                                                 <div class="error text-danger">{{ $errors->first('image') }}</div>
                                             @endif
                                         </div>
+
+
                                     </div>
                                     <div class="card-footer">
                                         <button class="btn btn-success" type="submit">ویرایش</button>

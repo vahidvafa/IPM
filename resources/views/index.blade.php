@@ -27,11 +27,11 @@
         /// some script
 
         // jquery ready start
-        $(document).ready(function() {
+        $(document).ready(function () {
             // jQuery code
-            $('.has-sub').click(function (e) {
-                $('.submenu-left').css('display','block')
-            });
+            /*$('.has-sub').click(function (e) {
+                $('.submenu-left').css('display', 'block')
+            });*/
             //////////////////////// Prevent closing from click inside dropdown
             $(document).on('click', '.dropdown-menu', function (e) {
                 e.stopPropagation();
@@ -39,9 +39,9 @@
 
             // make it as accordion for smaller screens
             if ($(window).width() < 992) {
-                $('.dropdown-menu a').click(function(e){
+                $('.dropdown-menu a').click(function (e) {
                     e.preventDefault();
-                    if($(this).next('.submenu').length){
+                    if ($(this).next('.submenu').length) {
                         $(this).next('.submenu').toggle();
                     }
                     $('.dropdown').on('hide.bs.dropdown', function () {
@@ -58,7 +58,7 @@
 <body style="overflow-x: hidden">
 @guest()
     <div class="register-fix">
-        <a href="{{route('register')}}">
+        <a href="{{route('register')}}" target="_blank">
             <span class="register-fix-in text">
                 همین الان عضو شو
             </span>
@@ -72,10 +72,11 @@
             <div class="row">
                 <div class="col-8 col-md-8 d-lg-flex align-items-center pr-0">
                     <img class="img-fluid" src="{{asset('img/logo.png')}}" alt="انجمن مدیریت پروژه">
-                    <h1 class="text-white d-inline-block font-18 text-regular text-logo ml-2">انجمن مدیریت پروژه ایران</h1>
+                    <h1 class="text-white d-inline-block font-18 text-regular text-logo ml-2">انجمن مدیریت پروژه
+                        ایران</h1>
                     <form method="post" action="{{route('search.post')}}" class="form-top">
                         @csrf
-                        <input name="search" type="search" placeholder="جستوجو" />
+                        <input name="search" type="search" placeholder="جستوجو"/>
                     </form>
                 </div>
                 <div class="col-4 col-md-4 text-right">
@@ -102,16 +103,19 @@
                             <!-- Dropdown -->
                             <li class="nav-item dropdown nav-lang">
                                 @auth()
-                                <div class="nav-link dropdown-toggle nav-login" id="navbardrop6"
-                                     data-toggle="dropdown">
-                                    <i class="fa fa-user mr-1"></i>
-                                    <span>پروفایل</span>
-                                </div>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item profile-dropdown"  href="{{route('profile',auth()->user()->slug)}}" ><i class="fa fa-user mr-1"></i><span>مشاهده پروفایل</span></a>
-                                    <hr class="m-0">
-                                    <a class="dropdown-item profile-dropdown " href="{{route('logout')}}"><i class="fa fa-sign-out-alt mr-1"></i><span>خروج</span></a>
-                                </div>
+                                    <div class="nav-link dropdown-toggle nav-login" id="navbardrop6"
+                                         data-toggle="dropdown">
+                                        <i class="fa fa-user mr-1"></i>
+                                        <span>پروفایل</span>
+                                    </div>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item profile-dropdown"
+                                           href="{{route('profile',auth()->user()->slug)}}" target="_blank" ><i
+                                                    class="fa fa-user mr-1"></i><span>مشاهده پروفایل</span></a>
+                                        <hr class="m-0">
+                                        <a class="dropdown-item profile-dropdown " href="{{route('logout')}}"><i
+                                                    class="fa fa-sign-out-alt mr-1"></i><span>خروج</span></a>
+                                    </div>
                                 @else
                                     <a class="nav-link nav-login" data-toggle="modal" data-target="#ModalLogin">
                                         <i class="fa fa-user mr-1"></i>
@@ -143,74 +147,108 @@
                             <ul class="navbar-nav header-main">
 
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" target="_blank"
                                     >درباره انجمن</a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{route('about-us')}}#history">تاریخچه</a>
-                                        <a class="dropdown-item" href="{{route('about-us')}}#target">اهداف و نقشه
+                                        <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#history">تاریخچه</a>
+                                        <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#target">اهداف و نقشه
                                             راهبردی</a>
-                                        <a class="dropdown-item" href="{{route('about-us')}}#creator">موسسین</a>
-                                        <a class="dropdown-item" href="{{route('about-us')}}#board-of-directors">هیات
+                                        <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#creator">موسسین</a>
+                                        <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#board-of-directors">هیات
                                             مدیره</a>
-                                        <a class="dropdown-item" href="{{route('about-us')}}#chart">چارت سازمانی</a>
+                                        <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#chart">چارت سازمانی</a>
                                         <div class="dropdown-divider">برای دانلود</div>
-                                        <a class="dropdown-item" href="{{route('download')}}">اسناد مرجع</a>
+                                        <a class="dropdown-item" target="_blank" href="{{route('download')}}">اسناد مرجع</a>
                                         <a class="dropdown-item" href="{{route('download')}}"
                                            target="_blank">مجوزها</a>
-                                        <a class="dropdown-item" href="{{route('download')}}">گزارش ها</a>
+                                        <a class="dropdown-item"  target="_blank" href="{{route('download')}}">گزارش ها</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> target="_blank"
                                         کمیته ها و شاخه ها و کارگروه ها</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item has-sub dropdown-toggle" >کمیته ها</a>
-                                        <div class="submenu submenu-left dropdown-menu">
-                                            <a class="dropdown-item" href="{{route('committees.register')}}">کمیته عضویت</a>
-                                            <a class="dropdown-item" href="{{route('committees.awards')}}">کمیته جایزه ملی</a>
-                                            <a class="dropdown-item" href="{{route('committees.education')}}">کمیته آموزش</a>
-                                            <a class="dropdown-item" href="{{route('committees.researches')}}">کمیته پژوهش و انتشارات</a>
-                                            <a class="dropdown-item" href="{{route('committees.certificate')}}">کمیته گواهینامه ها</a>
-                                        </div>
-                                        {{--<li class="nav-item dropdown">
-                                        <a class="dropdown-item has-sub dropdown-toggle" href="#" > Dropdown item 3 </a>
-                                            <div class="submenu submenu-left dropdown-menu">
-                                                <a class="dropdown-item" href="">Submenu item 1</a>
-                                                <a class="dropdown-item" href="">Submenu item 2</a>
-                                                <a class="dropdown-item" href="">Submenu item 3</a>
-                                                <a class="dropdown-item" href="">Submenu item 4</a>
-                                            </div>
-                                        </li>--}}
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li class="nav-item dropdown">
+                                            <a class="dropdown-item has-sub dropdown-toggle">کمیته ها</a>
 
-                                        <a class="dropdown-item" href="{{route('branches')}}">شاخه ها</a>
-                                        <a class="dropdown-item" href="{{route('WorkingGroups')}}">کارگروه ها</a>
-                                    </div>
+                                                <div class="submenu submenu-left dropdown-menu">
+                                                    <a class="dropdown-item" target="_blank" href="{{route('committees.register')}}">کمیته
+                                                        عضویت</a>
+                                                    <a class="dropdown-item" target="_blank" href="{{route('committees.awards')}}">کمیته
+                                                        جایزه
+                                                        ملی</a>
+                                                    <a class="dropdown-item" target="_blank" href="{{route('committees.education')}}">کمیته
+                                                        آموزش</a>
+                                                    <a class="dropdown-item" target="_blank" href="{{route('committees.researches')}}">کمیته
+                                                        پژوهش و انتشارات</a>
+                                                    <a class="dropdown-item" target="_blank" href="{{route('committees.certificate')}}">کمیته
+                                                        گواهینامه ها</a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="dropdown-item has-sub dropdown-toggle">شاخه ها</a>
+
+                                                <div class="submenu submenu-left dropdown-menu">
+                                                    <a class="dropdown-item" target="_blank" href="{{route('branches.northWest')}}">شاخه
+                                                        شمال
+                                                        غرب</a>
+                                                    <a class="dropdown-item" target="_blank" href="{{route('branches.khozestan')}}">شاخه
+                                                        خوزستان</a>
+                                                    <a class="dropdown-item" target="_blank" href="{{route('branches.esfehan')}}">شاخه
+                                                        اصفهان</a>
+                                                    <a class="dropdown-item" target="_blank" href="{{route('branches.khorasan')}}">شاخه
+                                                        خراسان</a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="dropdown-item has-sub dropdown-toggle">کارگروه ها</a>
+                                                <div class="submenu submenu-left dropdown-menu">
+                                                    <a class="dropdown-item" target="_blank" href="{{route('WorkingGroups.women')}}">کار
+                                                        گروه
+                                                        زنان</a>
+                                                    <a class="dropdown-item" target="_blank" href="{{route('WorkingGroups.PMIS')}}">کار
+                                                        گروه
+                                                        PMIS</a>
+                                                    <a class="dropdown-item" target="_blank"
+                                                       href="{{route('WorkingGroups.knowledgeManagement')}}">کار گروه
+                                                        مدیریت
+                                                        دانش</a>
+                                                    <a class="dropdown-item" target="_blank"
+                                                       href="{{route('WorkingGroups.startup')}}">کار گروه
+                                                        استارت آپ</a>
+                                                    <a class="dropdown-item" target="_blank"
+                                                       href="{{route('WorkingGroups.ProjectAndProgram')}}">کار گروه سید
+                                                        و برنامه
+                                                        پروژه</a>
+                                                </div>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" target="_blank" >
                                         درباره اعضا </a>
                                     <div class="dropdown-menu">
                                         @guest
-                                            <a class="dropdown-item" href="{{route('register')}}">ثبت عضویت</a>
+                                            <a class="dropdown-item" target="_blank" href="{{route('register')}}">ثبت عضویت</a>
                                         @endguest
 
-                                        <a class="dropdown-item" href="{{route('user.search')}}">يافتن اعضا</a>
+                                        <a class="dropdown-item" target="_blank" href="{{route('user.search')}}">يافتن اعضا</a>
                                         <a class="dropdown-item" href="http://yc.ipma.ir/" target="_blank">شبكه اعضا
                                             جوان</a>
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link " href="{{route('job.index')}}">فرصت های شغلی</a>
+                                    <a class="nav-link " target="_blank" href="{{route('job.index')}}">فرصت های شغلی</a>
                                 </li>
 
                                 <li class="nav-item ">
-                                    <a class="nav-link " href="{{route('message.create')}}">تماس با ما</a>
+                                    <a class="nav-link " target="_blank" href="{{route('message.create')}}">تماس با ما</a>
                                 </li>
 
                                 @auth()
                                     @if(auth()->user()->roles == 0 || auth()->user()->roles == 1)
                                         <li class="nav-item ">
-                                            <a class="nav-link" href="{{route('cms.index')}}">پنل مدیریت</a>
+                                            <a class="nav-link" target="_blank" href="{{route('cms.index')}}">پنل مدیریت</a>
                                         </li>
                                     @endif
 
@@ -237,7 +275,7 @@
                             {{$ipma->head_subtitle}}
                         </h3>
                         <p class="font-16 text-white ">{{$ipma->head_description}}</p>
-                        <a href="{{route($ipma->event_id==null ? "news.show":"event",[$ipma->event_id==null?$ipma->news_id:$ipma->event_id])}}"
+                        <a target="_blank" href="{{route($ipma->event_id==null ? "news.show":"event",[$ipma->event_id==null?$ipma->news_id:$ipma->event_id])}}"
                            class="btn btn-white font-16 text-black mt-5">ادامه مطلب</a>
                     </div>
                 </div>
@@ -247,7 +285,6 @@
 
 
 </header>
-
 
 
 <main id="content" role="main">
@@ -265,7 +302,7 @@
                                     class="popular-pack-in-info mt-xl-0 mt-4 mt-sm-0 mt-md-4 order-2 order-sm-1   order-md-2 order-lg-1">
                                 <div class="popular-pack-in-info-titles">
                                     <h4 class="popular-pack-in-info-title font-16 text-medium text-black mb-3 ">
-                                        <a class="text-black hover-text-black"
+                                        <a class="text-black hover-text-black" target="_blank"
                                            href="{{route('event',[$event->id])}}">
                                             {{$event->title}}
                                         </a></h4>
@@ -282,7 +319,7 @@
                                     <img class="rounded" src="img/posts/{{$event->photo}}" alt="انجمن مدیریت پروژه">
                                 </div>
                                 <div class="popular-pack-in-img-mores">
-                                    <a href="{{route('event',[$event->id])}}" class="popular-pack-in-img-more font-16">شرکت
+                                    <a target="_blank" href="{{route('event',[$event->id])}}" class="popular-pack-in-img-more font-16">شرکت
                                         در رویداد</a>
 
                                 </div>
@@ -358,7 +395,7 @@
 
                                         <div
                                                 class="last-pack-content-in-more text-center col-12 col-lg-2 text-lg-left text-center">
-                                            <a href="{{route("event",[$event->id])}}" class="btn btn-white-border">شرکت
+                                            <a target="_blank" href="{{route("event",[$event->id])}}" class="btn btn-white-border">شرکت
                                                 در رویداد</a>
                                         </div>
                                     </div>
@@ -371,7 +408,7 @@
 
                 </div>
                 <div class="col-12 text-center last-pack-calender">
-                    <a class="btn text-center last-pack-calender-btn" href="{{route('event.calender')}}">مشاهده تقویم
+                    <a class="btn text-center last-pack-calender-btn" target="_blank" href="{{route('event.calender')}}">مشاهده تقویم
                         رویدادها</a>
                 </div>
             </div>
@@ -397,27 +434,27 @@
                         <div class="row">
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
 
-                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('gov')}}">
+                                <a class="Committee-icons-text d-block text-white text-medium" target="_blank" href="{{route('gov')}}">
                                     <img class="mb-3" src="img/003-patent-1.png" alt="anjoman">
                                     <p>گواهینامه ها</p></a>
                             </div>
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
 
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   href="{{route('gifts')}}">
+                                   target="_blank" href="{{route('gifts')}}">
                                     <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
                                     <p>کمیته جایزه</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
 
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   href="{{route('research')}}">
+                                   target="_blank"  href="{{route('research')}}">
                                     <img class="mb-3" src="{{asset('img/analytics.png')}}" alt="anjoman">
                                     <p>پژوهش</p></a>
                             </div>
                             <div class="col-6 text-center   pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   href="{{route('branches')}}">
+                                   target="_blank" href="{{route('main')}}">
                                     <img class="mb-3" src="{{asset('img/link.png')}}" alt="anjoman">
                                     <p>شاخه ها</p></a>
                             </div>
@@ -436,24 +473,24 @@
                         <div class="row">
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   href="#">
+                                   target="_blank" href="#">
                                     <img class="mb-3" src="{{asset('img/teamwork.png')}}" alt="anjoman">
                                     <p>کارگروه های تخصصی</p></a>
                             </div>
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   href="{{route('about-us')}}">
+                                   target="_blank" href="{{route('about-us')}}">
                                     <img class="mb-3" src="{{asset('img/content.png')}}" alt="anjoman">
                                     <p>درباره ما</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   href="{{route('user.index')}}">
+                                   target="_blank" href="{{route('user.index')}}">
                                     <img class="mb-3" src="img/001-user-group.png" alt="anjoman">
                                     <p>معرفی اعضا</p></a>
                             </div>
                             <div class="col-6 text-center   pt-5 pb-5">
-                                <a class="Committee-icons-text d-block text-white text-medium" href="/">
+                                <a class="Committee-icons-text d-block text-white text-medium" target="_blank" href="/">
                                     <img class="mb-3" src="img/009-exam.png" alt="anjoman">
                                     <p>فروم های تخصصی</p></a>
                             </div>
@@ -485,7 +522,7 @@
                     <p class="text-black-light font-16">
                 </div>
                 <div class="col-12 col-lg-2">
-                    <a href="{{route("news")}}" class="btn btn-white-border">آرشیو خبر</a>
+                    <a target="_blank" href="{{route("news")}}" class="btn btn-white-border">آرشیو خبر</a>
                 </div>
             </div>
             <div class="row mt-5">
@@ -502,7 +539,7 @@
                                     <span>]</span>
                                 </h5>
                                 <p class="card-text font-14">{{$singleNews->title}}</p>
-                                <a href="{{route('news.show',[$singleNews->id])}}"
+                                <a href="{{route('news.show',[$singleNews->id])}}" target="_blank"
                                    class="btn btn-news text-yellow text-medium">ادامه مطلب</a>
                             </div>
                         </div>
@@ -562,29 +599,25 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-10">
-                        <div class=" pt-4 pb-4 justify-content-around  row">
+                        <div class="section4 pt-4 pb-4 justify-content-around  row">
                             <div class="counter-in text-center col-6 col-md-3 mb-4 mb-md-0">
 
-                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="6"
-                                    data-speed="1500"></h2>
+                                <h2 class="c-section4 text-white font-42 text-bold">6</h2>
                                 <p class="count-text text-yellow font-18 text-regular m-0">گواهینامه سطح A</p>
                             </div>
                             <div class="counter-in text-center col-6  col-md-3 mb-4 mb-md-0">
 
-                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="14"
-                                    data-speed="1500"></h2>
+                                <h2 class="c-section4 text-white font-42 text-bold">14</h2>
                                 <p class="count-text text-yellow font-18 text-regular m-0">گواهینامه سطح B</p>
                             </div>
                             <div class="counter-in text-center col-6 col-md-3  mb-md-0">
 
-                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="34"
-                                    data-speed="1500"></h2>
+                                <h2 class="c-section4 text-white font-42 text-bold">34</h2>
                                 <p class="count-text text-yellow font-18 text-regular m-0">گواهینامه سطح C</p>
                             </div>
                             <div class="counter-in text-center col-6 col-md-3 ">
 
-                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="576"
-                                    data-speed="1500"></h2>
+                                <h2 class="c-section4 text-white font-42 text-bold">576</h2>
                                 <p class="count-text text-yellow font-18 text-regular m-0">گواهینامه سطح D</p>
                             </div>
                         </div>
@@ -598,27 +631,27 @@
                 <div class="row">
                     <div class="link-img col-12 col-sm p-0">
                         <img class="img-fluid" alt="..." src="{{asset('img/camera-lens.jpg')}}">
-                        <a href="{{route('ImageArchive')}}" class="link-img-more" >
-                                <i class="fa fa-image fa-2x"></i>
-                                <p>آرشیو تصاویر</p>
-                            </a>
+                        <a href="{{route('ImageArchive')}}" class="link-img-more" target="_blank" >
+                            <i class="fa fa-image fa-2x"></i>
+                            <p>آرشیو تصاویر</p>
+                        </a>
                         <div class="overlay-img"></div>
                     </div>
                     <div class="link-img col-12 col-sm p-0">
                         <img class="img-fluid" alt="..." src="{{asset('img/film-camera.jpg')}}">
-                            <a class="link-img-more" href="{{route('VideoArchive')}}">
-                                <i class="fas fa-video fa-2x"></i>
-                                <p>آرشیو ویدیو </p>
-                            </a>
+                        <a class="link-img-more" href="{{route('VideoArchive')}}" target="_blank" >
+                            <i class="fas fa-video fa-2x"></i>
+                            <p>آرشیو ویدیو </p>
+                        </a>
 
                         <div class="overlay-img"></div>
                     </div>
                     <div class="link-img col-12 col-sm p-0">
                         <img class="img-fluid" alt="..." src="{{asset('img/webinar-concept.jpg')}}">
-                        <a href="//" class="link-img-more" >
-                                <i class="fa fa-desktop fa-2x"></i>
-                                <p>وبینار ها</p>
-                            </a>
+                        <a href="//" class="link-img-more">
+                            <i class="fa fa-desktop fa-2x"></i>
+                            <p>وبینار ها</p>
+                        </a>
                         <div class="overlay-img"></div>
                     </div>
                 </div>
@@ -689,17 +722,17 @@
                     <!-- Links -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="http://yc.ipma.ir/">شبکه اعضای جوان</a>
+                            <a class="nav-link text-gray font-14" href="http://yc.ipma.ir/" target="_blank" >شبکه اعضای جوان</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="https://isac.msrt.ir/fa">كميسيون انجمن هاي
+                            <a class="nav-link text-gray font-14" href="https://isac.msrt.ir/fa" target="_blank" >كميسيون انجمن هاي
                                 علمي</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="https://www.ipma.world/">ipma جهانی</a>
+                            <a class="nav-link text-gray font-14" href="https://www.ipma.world/" target="_blank" >ipma جهانی</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="https://www.become.pm/">become.pm</a>
+                            <a class="nav-link text-gray font-14" href="https://www.become.pm/" target="_blank" >become.pm</a>
                         </li>
                         {{--    <li class="nav-item">
                                 <a class="nav-link text-gray font-14" href="{{route('about-us')}}#board-of-directors">اعضای
@@ -764,8 +797,8 @@
             </div>
             <div class="col-12 col-lg-6 ">
                 <ul class="social m-0 text-center text-lg-right">
-                    <li><a href="https://telegram.me/PMAIran"></a></li>
-                    <li><a href="https://www.instagram.com/iranpma/"></a></li>
+                    <li><a href="https://telegram.me/PMAIran" target="_blank" ></a></li>
+                    <li><a href="https://www.instagram.com/iranpma/" target="_blank" ></a></li>
                     {{--<li><a href="https://www.aparat.com/iranpma"></a></li>--}}
 
 
@@ -827,6 +860,7 @@
 </div>
 
 <script>
+    // start slider
     $(document).ready(function () {
         $('.logo-slid').slick({
             dots: false,
@@ -872,105 +906,46 @@
 
     });
 
-</script>
-<script>
-    (function ($) {
-        $.fn.countTo = function (options) {
-            options = options || {};
 
-            return $(this).each(function () {
-                // set options for current element
-                var settings = $.extend({}, $.fn.countTo.defaults, {
-                    from: $(this).data('from'),
-                    to: $(this).data('to'),
-                    speed: $(this).data('speed'),
-                    refreshInterval: $(this).data('refresh-interval'),
-                    decimals: $(this).data('decimals')
-                }, options);
+    // start timer
+    $(function () {
+        function isScrolledIntoView($elem) {
+            var docViewTop = $(window).scrollTop();
+            var docViewBottom = docViewTop + $(window).height();
+            var elemTop = $elem.offset().top;
+            var elemBottom = elemTop + $elem.height();
+            return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+        }
 
-                // how many times to update the value, and how much to increment the value on each update
-                var loops = Math.ceil(settings.speed / settings.refreshInterval),
-                    increment = (settings.to - settings.from) / loops;
+        function count($this) {
+            var current = parseInt($this.html(), 10);
+            if (isScrolledIntoView($this) && !$this.data("isCounting") && current < $this.data('count')) {
+                $this.html(++current);
+                $this.data("isCounting", true);
+                setTimeout(function () {
+                    $this.data("isCounting", false);
+                    count($this);
+                }, 50);
+            }
+        }
 
-                // references & variables that will change with each update
-                var self = this,
-                    $self = $(this),
-                    loopCount = 0,
-                    value = settings.from,
-                    data = $self.data('countTo') || {};
+        $(".c-section4").each(function () {
+            $(this).data('count', parseInt($(this).html(), 10));
+            $(this).html('0');
+            $(this).data("isCounting", false);
+        });
 
-                $self.data('countTo', data);
-
-                // if an existing interval can be found, clear it first
-                if (data.interval) {
-                    clearInterval(data.interval);
-                }
-                data.interval = setInterval(updateTimer, settings.refreshInterval);
-
-                // initialize the element with the starting value
-                render(value);
-
-                function updateTimer() {
-                    value += increment;
-                    loopCount++;
-
-                    render(value);
-
-                    if (typeof (settings.onUpdate) == 'function') {
-                        settings.onUpdate.call(self, value);
-                    }
-
-                    if (loopCount >= loops) {
-                        // remove the interval
-                        $self.removeData('countTo');
-                        clearInterval(data.interval);
-                        value = settings.to;
-
-                        if (typeof (settings.onComplete) == 'function') {
-                            settings.onComplete.call(self, value);
-                        }
-                    }
-                }
-
-                function render(value) {
-                    var formattedValue = settings.formatter.call(self, value, settings);
-                    $self.html(formattedValue);
-                }
+        function startCount() {
+            $(".c-section4").each(function () {
+                count($(this));
             });
         };
 
-        $.fn.countTo.defaults = {
-            from: 0,               // the number the element should start at
-            to: 0,                 // the number the element should end at
-            speed: 1000,           // how long it should take to count between the target numbers
-            refreshInterval: 100,  // how often the element should be updated
-            decimals: 0,           // the number of decimal places to show
-            formatter: formatter,  // handler for formatting the value before rendering
-            onUpdate: null,        // callback method for every time the element is updated
-            onComplete: null       // callback method for when the element finishes updating
-        };
-
-        function formatter(value, settings) {
-            return value.toFixed(settings.decimals);
-        }
-    }(jQuery));
-
-    jQuery(function ($) {
-        // custom formatting example
-        $('.count-number').data('countToOptions', {
-            formatter: function (value, options) {
-                return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
-            }
+        $(window).scroll(function () {
+            startCount();
         });
 
-        // start all the timers
-        $('.timer').each(count);
-
-        function count(options) {
-            var $this = $(this);
-            options = $.extend({}, options || {}, $this.data('countToOptions') || {});
-            $this.countTo(options);
-        }
+        startCount();
     });
 </script>
 <script>

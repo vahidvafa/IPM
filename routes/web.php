@@ -10,8 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-use App\MembershipType;
 use Illuminate\Support\Facades\Route;
 
 
@@ -66,7 +64,6 @@ Route::get('/login', 'AuthController@Login')->name('login')->middleware('guest')
 
 Route::post('location', 'AuthController@locationSms')->name('location');
 Route::get('about-us', 'IndexController@about_us')->name('about-us');
-Route::get('/branches', 'IndexController@branches')->name('branches');
 Route::get('/research', 'IndexController@research')->name('research');
 Route::get('/gifts', 'IndexController@gifts')->name('gifts');
 Route::get('/winners', 'IndexController@winners')->name('winners');
@@ -267,30 +264,108 @@ Route::prefix('Committees')->group(function () {
 
     Route::get('register', function () {
         $breadcrumb = $titleHeader = "کمیته عضویت";
-        return view('committees.register', compact('titleHeader', 'breadcrumb'));
+        $events = \App\Event::whereCommitteeId(1);
+
+        return view('committees.register', compact('titleHeader', 'breadcrumb','events'));
     })->name('committees.register');
 
     Route::get('awards', function () {
         $breadcrumb = $titleHeader = "کمیته جایزه ملی";
-        return view('committees.awards', compact('titleHeader', 'breadcrumb'));
+        $events = \App\Event::whereCommitteeId(2);
+
+        return view('committees.awards', compact('titleHeader', 'breadcrumb','events'));
     })->name('committees.awards');
 
     Route::get('education', function () {
         $breadcrumb = $titleHeader = "کمیته آموزش";
-        return view('committees.education', compact('titleHeader', 'breadcrumb'));
+        $events = \App\Event::whereCommitteeId(3);
+        return view('committees.education', compact('titleHeader', 'breadcrumb','events'));
     })->name('committees.education');
 
     Route::get('researches', function () {
         $breadcrumb = $titleHeader = "کمیته پژوهش و انتشارات";
-        return view('committees.researches', compact('titleHeader', 'breadcrumb'));
+        $events = \App\Event::whereCommitteeId(4);
+        return view('committees.researches', compact('titleHeader', 'breadcrumb','events'));
     })->name('committees.researches');
 
     Route::get('certificate', function () {
         $breadcrumb = $titleHeader = "کمیته گواهینامه ها";
-        return view('committees.certificate', compact('titleHeader', 'breadcrumb'));
+        $events = \App\Event::whereCommitteeId(5);
+        return view('committees.certificate', compact('titleHeader', 'breadcrumb','events'));
     })->name('committees.certificate');
 
 });
+
+/*Route::get('/branches', 'IndexController@branches')->name('branches');*/
+Route::prefix("branches")->group(function (){
+
+    Route::get('north-west',function (){
+        $breadcrumb ="شاخه ها ";
+        $titleHeader = "شاخه شمال غرب";
+        return view('branches.northWest', compact('titleHeader', 'breadcrumb'));
+    })->name('branches.northWest');
+
+
+    Route::get('khozestan',function (){
+        $breadcrumb ="شاخه ها ";
+        $titleHeader = "شاخه خوزستان";
+        return view('branches.khozestan', compact('titleHeader', 'breadcrumb'));
+    })->name('branches.khozestan');
+
+
+    Route::get('esfehan',function (){
+        $breadcrumb ="شاخه ها ";
+        $titleHeader = "شاخه اصفهان";
+        return view('branches.esfehan', compact('titleHeader', 'breadcrumb'));
+    })->name('branches.esfehan');
+
+
+    Route::get('khorasan',function (){
+        $breadcrumb ="شاخه ها ";
+        $titleHeader = "شاخه خراسان";
+        return view('branches.khorasan', compact('titleHeader', 'breadcrumb'));
+    })->name('branches.khorasan');
+
+});
+
+Route::prefix("working-groups")->group(function (){
+
+    Route::get('women',function (){
+        $breadcrumb = "کار گروه ها";
+          $titleHeader = "کار گروه ها زنان";
+        return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb'));
+    })->name('WorkingGroups.women');
+
+
+    Route::get('PMIS',function (){
+        $breadcrumb = "کار گروه ها";
+        $breadcrumb = $titleHeader = "PMIS کار گروه ";
+        return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb'));
+    })->name('WorkingGroups.PMIS');
+
+
+    Route::get('knowledgeManagement',function (){
+        $breadcrumb = "کار گروه ها";
+        $titleHeader = "کار گروه مدیریت دانش";
+        return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb'));
+    })->name('WorkingGroups.knowledgeManagement');
+
+
+    Route::get('startup',function (){
+        $breadcrumb = "کار گروه ها";
+        $titleHeader = "کار گروه استارت آپ";
+        return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb'));
+    })->name('WorkingGroups.startup');
+
+
+    Route::get('ProjectAndProgram',function (){
+        $breadcrumb = "کار گروه ها";
+        $titleHeader = "کار گروه سید و برنامه پروژه";
+        return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb'));
+    })->name('WorkingGroups.ProjectAndProgram');
+
+});
+
 
 Route::get("hashMake/{id}", function ($id) {
     $user = \App\User::find($id);

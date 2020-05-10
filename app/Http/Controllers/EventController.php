@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Committee;
 use App\Event;
 use App\IPMA;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Helper\QuestionHelper;
 
 class EventController extends Controller
 {
@@ -40,7 +42,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('cms.events.create');
+        $committee = Committee::all();
+        return view('cms.events.create',compact('committee'));
     }
 
     /**
@@ -62,9 +65,9 @@ class EventController extends Controller
             "price" => "required | integer",
             "province_id" => "required | integer",
             "event_category_id" => "required | integer",
-            "branch_id" => "required | integer",
+            /*"branch_id" => "required | integer",
             "committee_id" => "required | integer",
-            "group_id" => "required | integer",
+            "working-group_id" => "required | integer",*/
             "tel" => "required | numeric",
             "address" => "required",
             "latitude" => "required | numeric",
@@ -72,6 +75,7 @@ class EventController extends Controller
             "image" => "required | image",
         ], [
             '*.required' => 'وارد کردن این فیلد الزامی است',
+            '*.numeric' => 'این فیلد باید عدد باشد',
             'from_date.*' => 'فرمت تاریخ انتخابی صحیح نمی باشد',
             'to_date.*' => 'فرمت تاریخ انتخابی صحیح نمی باشد',
             'start_register_date.*' => 'فرمت تاریخ انتخابی صحیح نمی باشد'
@@ -79,13 +83,14 @@ class EventController extends Controller
         try {
             $event = new Event($request->all());
             $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('/img/posts'), $imageName);
+            $request->file('image')->move(public_path('img/posts'), $imageName);
             $event->photo = $imageName;
             $event->user_id = (auth()->check()) ? auth()->id() : 0;
             $event->save();
             flash_message('success', __('string.successful'));
             return redirect()->route('event.index');
         } catch (\Exception $exception) {
+
             flash_message('error', __('string.unsuccessful'));
             return back()->withInput($request->all());
         }
@@ -128,8 +133,8 @@ return;*/
      */
     public function edit(Event $event)
     {
-//        dd(jdate($event->from_date)->format('Y/m/d H:i'));
-        return view('cms.events.edit', compact('event'));
+        $committee = Committee::all();
+        return view('cms.events.edit', compact('event','committee'));
     }
 
     /**
@@ -141,6 +146,7 @@ return;*/
      */
     public function update(Request $request, Event $event)
     {
+
         $this->validate($request, [
             "title" => "required",
             "description" => "required",
@@ -151,9 +157,9 @@ return;*/
             "price" => "required | integer",
             "province_id" => "required | integer",
             "event_category_id" => "required | integer",
-            "branch_id" => "required | integer",
+            /*"branch_id" => "required | integer",
             "committee_id" => "required | integer",
-            "group_id" => "required | integer",
+            "working-group_id" => "required | integer",*/
             "tel" => "required | numeric",
             "address" => "required",
             "latitude" => "required | numeric",
@@ -166,7 +172,9 @@ return;*/
             'to_date.*' => 'فرمت تاریخ انتخابی صحیح نمی باشد',
             'start_register_date.*' => 'فرمت تاریخ انتخابی صحیح نمی باشد'
         ]);
-        try {
+
+
+        try{
             $event->update($request->all());
             if ($request->has('image')) {
                 $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
@@ -175,12 +183,15 @@ return;*/
             }
             $event->user_id = auth()->id();
             $event->save();
-            flash_message('success', __('string.successful.edit'));
+
+
+            flash_message('success', __('string.successful'));
             return redirect()->route('event.index');
         } catch (\Exception $exception) {
             flash_message('error', __('string.unsuccessful'));
             return back()->withInput($request->all());
         }
+
     }
 
     /**
