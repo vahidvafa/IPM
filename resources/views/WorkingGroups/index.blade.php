@@ -44,10 +44,10 @@
                                         </div>
                                         <div class="ceo-text text-center">
                                             <p class="text-black text-medium font-16 mb-0 mt-3">
-                                                مهندس محمد حسین صیقلی
+                                                نام
                                             </p>
                                             <p class="text-yellow font-16 m-0">
-                                                رئیس کمیته جایزه
+                                                سمت
                                             </p>
                                         </div>
                                     </div>
@@ -56,11 +56,11 @@
                             </div>
 
                     </div>
-
-
+                    </div>
+                </div>
                     <div class="row mt-5 @if(count($events) == 0)hidden @endif">
                         <div class="v-purple col-12 mt-5 mb-5 row">
-                            <h2 class="text-white font-24 text-medium col-10 ">رویداد های مرتبط با کمیته</h2>
+                            <h2 class="text-white font-24 text-medium col-10 ">رویداد های مرتبط با کارگره</h2>
                             <a href="{{route('events')}}" class="btn btn-white-border col-1">مشاهده تمامی رویداد</a>
                         </div>
                         @foreach($events as $event)
@@ -84,7 +84,6 @@
                         @endforeach
                     </div>
 
-                </div>
             </div>
         </div>
     </main>
