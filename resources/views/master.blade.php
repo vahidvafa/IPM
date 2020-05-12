@@ -178,7 +178,7 @@
                                                     آموزش</a>
                                                 <a class="dropdown-item" href="{{route('committees.researches')}}">کمیته
                                                     پژوهش و انتشارات</a>
-                                                <a class="dropdown-item" href="{{route('committees.certificate')}}">کمیته
+                                                <a class="dropdown-item" href="{{route('committees.certificate')}}">مرکز
                                                     گواهینامه ها</a>
                                             </div>
                                         </li>
@@ -269,21 +269,9 @@
                         </ul>
                         <h1 class="title-page font-40 text-white"
                             style="display: block;text-overflow: ellipsis;word-wrap: break-word;overflow: hidden;max-height: 1.3em;line-height: 1.3em;">{{$titleHeader ?? ''}}</h1>
-                        {{--@if( Route::currentRouteName() == "profile" && auth()->check() )
-                        <h5 class="title-page font-40 text-white" style="display: block;text-overflow: ellipsis;word-wrap: break-word;overflow: hidden;max-height: 1.3em;line-height: 1.3em;">
-                            <a class="text-white" href="{{route("job.index")}}">فرصت های شغلی</a> |
-                            <a class="text-white" href="{{route("job.create")}}" >ثبت فرصت شغلی</a> |
-                        </h5>
-                            @endif--}}
+
                     </div>
-                    {{--@if( Route::currentRouteName() == "profile" && auth()->check() )
-                    <div class="col-5 row " style="height: 50px;color: #fff; align-items: center;" dir="ltr"  >
-                        <img src="{{asset('img/Borenze.png')}}" class="col-lg-2 col-sm-3 mr-2" >2
-                        <img src="{{asset('img/Silver.png')}}" class="col-lg-2 col-sm-3 mr-2 ">2
-                        <img src="{{asset('img/Gold.png')}}" class="col-lg-2 col-sm-3 mr-2">2
-                        <img src="{{asset('img/Diamond.png')}}" class="col-lg-2 col-sm-3 mr-1 mt-sm-4 ">2
-                    </div>
-                        @endif--}}
+
                 </div>
             </div>
         </div>

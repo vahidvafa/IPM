@@ -72,7 +72,7 @@
                         </p>
 
 
-                        <h4 class="card-title text-white m-0 text-center ">
+                        <h4 class="v-purple text-white mt-4 mb-3 text-center">
                             اعضای کمیته پژوهش
                         </h4>
 

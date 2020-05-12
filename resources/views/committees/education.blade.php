@@ -38,7 +38,7 @@
 
                         </p>
 
-                        <h4 class="card-title text-white m-0 text-center ">
+                        <h4 class="card-title mt-4 mb-3 text-left ">
                             اركان كميته آموزش
                         </h4>
                         <img src="{{asset('img/committees/education/chart.jpg')}}" />

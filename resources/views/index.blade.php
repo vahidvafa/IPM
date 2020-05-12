@@ -181,7 +181,7 @@
                                                         آموزش</a>
                                                     <a class="dropdown-item" target="_blank" href="{{route('committees.researches')}}">کمیته
                                                         پژوهش و انتشارات</a>
-                                                    <a class="dropdown-item" target="_blank" href="{{route('committees.certificate')}}">کمیته
+                                                    <a class="dropdown-item" target="_blank" href="{{route('committees.certificate')}}">مرکز
                                                         گواهینامه ها</a>
                                             </div>
                                         </li>
