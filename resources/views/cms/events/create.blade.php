@@ -163,11 +163,12 @@
                                                 <div class="error text-danger">{{ $errors->first('province_id') }}</div>
                                             @endif
                                         </div>
-                                      {{--  <div class="form-group col-lg-6 mb-4">
+                                        <div class="form-group col-lg-6 mb-4">
                                             <label>شاخه</label>
                                             <select class="form-control" name="branch_id">
-                                                @foreach(\App\Branch::all() as $branch)
-                                                    <option value="{{$branch->id}}"> {{$branch->title}} </option>
+                                                <option value="0">هیچ کدام</option>
+                                                @foreach($branchs as $branch)
+                                                    <option value="{{$branch->id}}" > {{$branch->title}} </option>
                                                 @endforeach
                                             </select>
                                             @if($errors->has('branch_id'))
@@ -175,27 +176,17 @@
                                             @endif
                                         </div>
                                         <div class="form-group col-lg-6 mb-4">
-                                            <label>کمیته</label>
-                                            <select class="form-control" name="committee_id">
-                                                @foreach(\App\Committee::all() as $committee)
-                                                    <option value="{{$committee->id}}"> {{$committee->title}} </option>
+                                            <label>کارگروه</label>
+                                            <select class="form-control" name="working_group_id">
+                                                <option value="0">هیچ کدام</option>
+                                                @foreach($workGroups as $group)
+                                                    <option value="{{$group->id}}"  > {{$group->title}} </option>
                                                 @endforeach
                                             </select>
-                                            @if($errors->has('committee_id'))
-                                                <div class="error text-danger">{{ $errors->first('committee_id') }}</div>
+                                            @if($errors->has('working_group_id'))
+                                                <div class="error text-danger">{{ $errors->first('working_group_id') }}</div>
                                             @endif
                                         </div>
-                                        <div class="form-group col-lg-6 mb-4">
-                                            <label>کارگروه</label>
-                                            <select class="form-control" name="working-group_id">
-                                                @foreach(\App\WorkingGroup::all() as $group)
-                                                    <option value="{{$group->id}}"> {{$group->title}} </option>
-                                                @endforeach
-                                            </select>
-                                            @if($errors->has('group_id'))
-                                                <div class="error text-danger">{{ $errors->first('group_id') }}</div>
-                                            @endif
-                                        </div>--}}
 
                                         <div class="form-group col-lg-6 mb-4">
                                             <lable>کمیته</lable>

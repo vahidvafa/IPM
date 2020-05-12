@@ -80,7 +80,7 @@ class Event extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title', 'description', 'detail', 'course_headings', 'from_date', 'to_date', 'start_register_date', 'price', 'province_id', 'tel', 'address', 'latitude', 'longitude', 'event_category_id', 'branch_id', 'branch_id', 'committee_id', 'working-group_id'];
+    protected $fillable = ['title', 'description', 'detail', 'course_headings', 'from_date', 'to_date', 'start_register_date', 'price', 'province_id', 'tel', 'address', 'latitude', 'longitude', 'event_category_id', 'branch_id', 'branch_id', 'committee_id', 'working_group_id'];
 
     public function category()
     {
@@ -115,5 +115,14 @@ class Event extends Model
     public static function whereCommitteeId($id, $limit = 6)
     {
         return Event::where('committee_id','=',$id)->latest()->limit($limit)->get(['id','title','created_at','photo']);
+    }
+
+    public static function whereWorkGroupId($id, $limit = 6)
+    {
+        return Event::where('working_group_id','=',$id)->latest()->limit($limit)->get(['id','title','created_at','photo']);
+    }
+    public static function whereBranchId($id, $limit = 6)
+    {
+        return Event::where('branch_id','=',$id)->latest()->limit($limit)->get(['id','title','created_at','photo']);
     }
 }

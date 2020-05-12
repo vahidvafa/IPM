@@ -79,7 +79,7 @@
                         @if(time() >= $event->start_register_date && time() <= $event->to_date)
                             <a href="{{route('event.reserve',[$event->id])}}" class="btn btn-bar-detail mt-3 mb-4">ثبت نام</a>
                             @else
-                            <a href="#" class="btn btn-bar-detail mt-3 mb-4 btn-info">ثبت نام</a>
+                            <a href="#" class="btn btn-bar-detail mt-3 mb-4 btn-info">اتمام مهلت ثبت نام</a>
                         @endif
                             @else
                             <a href="/res" class="btn btn-bar-detail mt-3 mb-4 btn-info" data-toggle="modal" data-target="#ModalLogin" >ورود</a>

@@ -301,29 +301,42 @@ Route::prefix("branches")->group(function (){
 
     Route::get('north-west',function (){
         $breadcrumb ="شاخه ها ";
+        $titleHeader = "شاخه مرکز";
+        $events = \App\Event::whereBranchId(1);
+        return view('branches.center', compact('titleHeader', 'breadcrumb','events'));
+    })->name('branches.center');
+
+
+
+    Route::get('north-west',function (){
+        $breadcrumb ="شاخه ها ";
         $titleHeader = "شاخه شمال غرب";
-        return view('branches.northWest', compact('titleHeader', 'breadcrumb'));
+        $events = \App\Event::whereBranchId(4);
+        return view('branches.northWest', compact('titleHeader', 'breadcrumb','events'));
     })->name('branches.northWest');
 
 
     Route::get('khozestan',function (){
         $breadcrumb ="شاخه ها ";
         $titleHeader = "شاخه خوزستان";
-        return view('branches.khozestan', compact('titleHeader', 'breadcrumb'));
+        $events = \App\Event::whereBranchId(6);
+        return view('branches.khozestan', compact('titleHeader', 'breadcrumb','events'));
     })->name('branches.khozestan');
 
 
     Route::get('esfehan',function (){
         $breadcrumb ="شاخه ها ";
         $titleHeader = "شاخه اصفهان";
-        return view('branches.esfehan', compact('titleHeader', 'breadcrumb'));
+        $events = \App\Event::whereBranchId(2);
+        return view('branches.esfehan', compact('titleHeader', 'breadcrumb',"events"));
     })->name('branches.esfehan');
 
 
     Route::get('khorasan',function (){
         $breadcrumb ="شاخه ها ";
         $titleHeader = "شاخه خراسان";
-        return view('branches.khorasan', compact('titleHeader', 'breadcrumb'));
+        $events = \App\Event::whereBranchId(3);
+        return view('branches.khorasan', compact('titleHeader', 'breadcrumb','events'));
     })->name('branches.khorasan');
 
 });
@@ -332,7 +345,7 @@ Route::prefix("working-groups")->group(function (){
 
     Route::get('women',function (){
         $breadcrumb = "کار گروه ها";
-          $titleHeader = "کار گروه ها زنان";
+        $titleHeader = "کار گروه ها زنان";
         return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb'));
     })->name('WorkingGroups.women');
 
@@ -384,10 +397,25 @@ Route::get('card', 'UserController@showCard');
 //Route::get("createOrder/{order}", 'OrderCodeController@show');
 
 Route::get('test',function (){
-    $userController = new \App\Http\Controllers\UserController();
+    // branch 6 , committe 5 , work 5
+    DB::table('events')->where('id','<=','6')->update(['branch_id'=>1,'committee_id'=>1,'working_group_id'=>1]);
+    DB::table('events')->where('id','>=','7')
+        ->where('id','<=','12')->update(['branch_id'=>2,'committee_id'=>2,'working_group_id'=>2]);
 
-    return $userController->activeUser(4);
+    DB::table('events')->where('id','>=','13')
+        ->where('id','<=','19')->update(['branch_id'=>3,'committee_id'=>3,'working_group_id'=>3]);
+
+    DB::table('events')->where('id','>=','20')
+        ->where('id','<=','26')->update(['branch_id'=>4,'committee_id'=>4,'working_group_id'=>4]);
+
+    DB::table('events')->where('id','>=','27')
+        ->where('id','<=','33')->update(['branch_id'=>5,'committee_id'=>5,'working_group_id'=>5]);
+
+
+    DB::table('events')->where('id','>=','34')
+        ->where('id','<=','40')->update(['branch_id'=>6,'committee_id'=>6,'working_group_id'=>6]);
 });
+
 
 
 #{"_token":"rGi0QW9D7Z1UzaX5K1XE51jBZlrkSsCPRHastdAd","membership_type_id":"1","year":"1","first_name":"jasdhaksdasd  ashd","last_name":"jasdhaksdasd  ashd","name_en":"jasdhaksdasd  ashd","profile":{"father_name":"jasdhaksdasd  ashd","national_code":"1321323","certificate_number":"123123123","birth_date":"1397\/10\/23","birth_place":"jasdhaksdasd  ashd","sex":"1","work_address":"jasdhaksdasd  ashd","work_post":"23213213232","home_address":"jasdhaksdasd  ashd","home_post":"213212132","work_name":"jasdhaksdasd  ashd","receive_place":"0"},"mobile":"09198167422","email":"dr@g.com","files_explain":["jasdhaksdasd  ashd"],"workExperience":{"company_name":"jasdhaksdasd  ashd","job_title":"jasdhaksdasd  ashd","from_date":"1397\/10\/23","to_date":"1397\/10\/23"},"branch_id":"1","password":"12345678","password_confirmation":"12345678","files":[{}],"documents":[{"address":"15888794110.png","explain":"jasdhaksdasd  1"},{"address":"15888794110.png","explain":"jasdhaksdasd  2"},{"address":"15888794110.png","explain":"jasdhaksdasd  3"},{"id":50,"state":0,"address":"15888794110.png","explain":"jasdhaksdasd  4"}]}

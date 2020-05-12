@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CommitteeSeeder::class);
         $this->call(WorkingGroupSeeder::class);
         factory(\App\User::class,10)->create();
-        factory(\App\Event::class,20)->create();
+        factory(\App\Event::class,40)->create();
         factory(\App\Profile::class,10)->create();
         factory(\App\Company::class,5)->create();
         factory(\App\WorkExperience::class,12)->create();

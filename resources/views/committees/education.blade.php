@@ -7,9 +7,11 @@
                     <div class="col-12 ">
                         {{--<h1 class="font-23 text-yellow text-center text-light2 mb-4">معرفی شاخه ها </h1>--}}
 
-                        <div class="card img-top-detail mb-3">
+                        <div class="card img-top-detail mt-4 mb-3">
                             <div class="card-body">
-
+                                <h4 class="card-title text-white m-0 text-center ">
+                                کمیته آموزش
+                                </h4>
                             </div>
                         </div>
 
@@ -41,7 +43,7 @@
                         </h4>
                         <img src="{{asset('img/committees/education/chart.jpg')}}" />
 
-                        <h4 class="card-title text-white m-0 text-center ">
+                        <h4 class="card-title text-center v-purple text-white mt-5 mb-3">
                             اعضای کمیته آموزش
                         </h4>
 
@@ -175,11 +177,13 @@
                 </div>
 
                 <div class="row mt-5 @if(count($events) == 0)hidden @endif">
-                    <h2 class="font-24 text-medium text-black col-10 mt-5 mb-5">رویداد های مرتبط با کمیته</h2>
-                    <a href="{{route('events')}}" class="btn btn-white-border col-1 mt-5">مشاهده تمامی رویداد</a>
+                    <div class="v-purple col-12 mt-5 mb-5 row">
+                        <h2 class="text-white font-24 text-medium col-10 ">رویداد های مرتبط با کمیته</h2>
+                        <a href="{{route('events')}}" class="btn btn-white-border col-1">مشاهده تمامی رویداد</a>
+                    </div>
 
-                    @foreach($events as $event)
-                        <div class="col-12 col-md-4 mb-3 mb-md-0">
+                @foreach($events as $event)
+                        <div class="col-12 col-md-4 mb-3">
                             <div class="card card-news">
                                 <div class="card-news-img">
                                     <img src="{{asset('img/posts/'.$event->photo)}}" class=""

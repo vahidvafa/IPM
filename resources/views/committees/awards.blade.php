@@ -95,7 +95,7 @@
                             تصویب هیات مدیره انجمن رسیده است بوده و می­تواند در راستای اجرای وظایف خود گروه های کاری خاص تشکیل
                             داده یا افراد خاصی را برای تصدی وظایفی تعریف شده، منصوب نماید.
                         </p>
-                        <h4 class="card-title">
+                        <h4 class="card-title v-purple text-white mt-5 mb-3">
                             اعضای کمیته جایزه مدیریت پروژه
                         </h4>
 
@@ -249,11 +249,12 @@
                 </div>
 
                 <div class="row mt-5 @if(count($events) == 0)hidden @endif">
-                    <h2 class="font-24 text-medium text-black col-10 mt-5 mb-5">رویداد های مرتبط با کمیته</h2>
-                    <a href="{{route('events')}}" class="btn btn-white-border col-1 mt-5">مشاهده تمامی رویداد</a>
-
+                    <div class="v-purple col-12 mt-5 mb-5 row">
+                        <h2 class="text-white font-24 text-medium col-10 ">رویداد های مرتبط با کمیته</h2>
+                    <a href="{{route('events')}}" class="btn btn-white-border col-1">مشاهده تمامی رویداد</a>
+                    </div>
                     @foreach($events as $event)
-                        <div class="col-12 col-md-4 mb-3 mb-md-0">
+                        <div class="col-12 col-md-4 mb-3">
                             <div class="card card-news">
                                 <div class="card-news-img">
                                     <img src="{{asset('img/posts/'.$event->photo)}}" class=""

@@ -27,7 +27,8 @@
                             حقوقی و دانشجوئی فعالیت می­کند.
                         </p>
 
-                        <div class="row">
+                        <div class="row img-top-detail ">
+                            <h4 class="card-body text-white mt-5 mb-4 text-center  col-12">اعضای کمیته عضویت</h4>
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="ceo-out">
                                     <div class="ceo-in">
@@ -203,12 +204,17 @@
                 </div>
 
                 <div class="row mt-5 @if(count($events) == 0)hidden @endif">
-                    <h2 class="font-24 text-medium text-black col-10 mt-5 mb-5">رویداد های مرتبط با کمیته</h2>
-                    <a href="{{route('events')}}" class="btn btn-white-border col-1 mt-5">مشاهده تمامی رویداد</a>
+                    <div class="v-purple col-12 mt-5 mb-5 row">
+
+                        <h2 class="text-white font-24 text-medium col-10 ">رویداد های مرتبط با کمیته</h2>
+
+                        <a href="{{route('events')}}" class="btn btn-white-border col-1">مشاهده تمامی رویداد</a>
+                    </div>
+
 
 
                     @foreach($events as $event)
-                        <div class="col-12 col-md-4 mb-3 mb-md-0">
+                        <div class="col-12 col-md-4 mb-3">
                             <div class="card card-news">
                                 <div class="card-news-img">
                                     <img src="{{asset('img/posts/'.$event->photo)}}" class=""

@@ -156,39 +156,30 @@
                                                 <div class="error text-danger">{{ $errors->first('province_id') }}</div>
                                             @endif
                                         </div>
-                           {{--             <div class="form-group col-lg-6 mb-4">
+                                        <div class="form-group col-lg-6 mb-4">
                                             <lable>شاخه</lable>
                                             <select class="form-control" name="branch_id">
-                                                @foreach(\App\Branch::all() as $branch)
-                                                    <option value="{{$branch->id}}" {{ ($branch->id == $event->province_id) ? 'selected' : '' }} > {{$branch->title}} </option>
+                                                <option value="0">هیچ کدام</option>
+                                                @foreach($branchs as $branch)
+                                                    <option value="{{$branch->id}}" {{ ($branch->id == $event->branch_id) ? 'selected' : '' }} > {{$branch->title}} </option>
                                                 @endforeach
                                             </select>
                                             @if($errors->has('branch_id'))
                                                 <div class="error text-danger">{{ $errors->first('branch_id') }}</div>
                                             @endif
-                                        </div>--}}
-                                 {{--       <div class="form-group col-lg-6 mb-4">
-                                            <lable>کمیته</lable>
-                                            <select class="form-control" name="committee_id">
-                                                @foreach(\App\Committee::all() as $committee)
-                                                    <option value="{{$committee->id}}" {{ ($committee->id == $event->province_id) ? 'selected' : '' }} > {{$committee->title}} </option>
+                                        </div>
+                                        <div class="form-group col-lg-6 mb-4">
+                                            <lable>کارگروه</lable>
+                                            <select class="form-control" name="working_group_id">
+                                                <option value="0">هیچ کدام</option>
+                                                @foreach($workGroups as $group)
+                                                    <option value="{{$group->id}}" {{ ($group->id == $event->working_group_id) ? 'selected' : '' }} > {{$group->title}} </option>
                                                 @endforeach
                                             </select>
-                                            @if($errors->has('committee_id'))
-                                                <div class="error text-danger">{{ $errors->first('committee_id') }}</div>
+                                            @if($errors->has('working_group_id'))
+                                                <div class="error text-danger">{{ $errors->first('working_group_id') }}</div>
                                             @endif
                                         </div>
---}}                                        {{--<div class="form-group col-lg-6 mb-4">
-                                            <lable>کارگروه</lable>
-                                            <select class="form-control" name="working-group_id">
-                                                @foreach(\App\WorkingGroup::all() as $group)
-                                                    <option value="{{$group->id}}" {{ ($group->id == $event->province_id) ? 'selected' : '' }} > {{$group->title}} </option>
-                                                @endforeach
-                                            </select>
-                                            @if($errors->has('group_id'))
-                                                <div class="error text-danger">{{ $errors->first('group_id') }}</div>
-                                            @endif
-                                        </div>--}}
 
                                         <div class="form-group col-lg-6 mb-4">
                                             <lable>کمیته</lable>

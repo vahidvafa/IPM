@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Branch;
 use App\Committee;
 use App\Event;
 use App\IPMA;
+use App\WorkingGroup;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Helper\QuestionHelper;
 
@@ -42,8 +44,10 @@ class EventController extends Controller
      */
     public function create()
     {
+        $workGroups = WorkingGroup::all();
+        $branchs = Branch::all();
         $committee = Committee::all();
-        return view('cms.events.create',compact('committee'));
+        return view('cms.events.create', compact('committee','workGroups','branchs'));
     }
 
     /**
@@ -118,7 +122,7 @@ class EventController extends Controller
 return;*/
 
         $event = Event::findOrFail($id);
-        $similars = Event::where("event_category_id", '=', $event->event_category_id)->where('id', '!=', $id)->get();
+        $similars = Event::where("event_category_id", '=', $event->event_category_id)->where('id', '!=', $id)->limit(5)->get();
         $titleHeader = $event->title;
         $breadcrumb = "رویداد";
 //        return jdate($event->from_date);
@@ -133,8 +137,10 @@ return;*/
      */
     public function edit(Event $event)
     {
+        $workGroups = WorkingGroup::all();
+        $branchs = Branch::all();
         $committee = Committee::all();
-        return view('cms.events.edit', compact('event','committee'));
+        return view('cms.events.edit', compact('event', 'committee','workGroups','branchs'));
     }
 
     /**
@@ -174,7 +180,7 @@ return;*/
         ]);
 
 
-        try{
+        try {
             $event->update($request->all());
             if ($request->has('image')) {
                 $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();

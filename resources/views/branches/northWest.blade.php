@@ -50,17 +50,51 @@
                             خانم مهندس لیلا اورندی
                             <br>
                             آقای مهندس مهدی اسماعیلی بعنوان اعضای علی البدل
-                            <br>
+
+                        </p>
+
+                        <h4 class="card-title v-purple text-white text-center mt-5 mb-3">
                             تماس با شاخه شمالغرب
-                            <br>
+                        </h4>
+                        <p>
                             تبریز، بلوار 29 بهمن، دانشگاه تبریز، ساختمان مرکز رشد و نوآوری، دفتر انجمن مدیریت پروژه شاخه شمالغرب
                             <br>
-                            تلفن: 33306044-041
-                        </p>
+                            تلفن: 33306044-041</p>
+
                         <a class="btn btn-white-border" href="">لینک به سایت شاخه</a>
 
                     </div>
                 </div>
+
+
+                <div class="row mt-5 @if(count($events) == 0)hidden @endif">
+                    <div class="v-purple col-12 mt-5 mb-5 row">
+                        <h2 class="text-white font-24 text-medium col-10 ">رویداد های مرتبط با کمیته</h2>
+                        <a href="{{route('events')}}" class="btn btn-white-border col-1">مشاهده تمامی رویداد</a>
+                    </div>
+                    @foreach($events as $event)
+                        <div class="col-12 col-md-4 mb-3">
+                            <div class="card card-news">
+                                <div class="card-news-img">
+                                    <img src="{{asset('img/posts/'.$event->photo)}}" class=""
+                                         style="width: 100% !important;">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title font-14 text-black">
+                                        <span>[</span>{{\Morilog\Jalali\Jalalian::forge($event->created_at)->format('%A, %d %B %y')}}
+                                        <span>]</span>
+                                    </h5>
+                                    <p class="card-text font-14">{{$event->title}}</p>
+                                    <a href="{{route('news.show',[$event->id])}}"
+                                       class="btn btn-news text-yellow text-medium">ادامه مطلب</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+
+
             </div>
         </div>
     </main>

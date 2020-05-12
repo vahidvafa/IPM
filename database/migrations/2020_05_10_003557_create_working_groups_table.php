@@ -13,7 +13,7 @@ class CreateWorkingGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('working-groups', function (Blueprint $table) {
+        Schema::create('working_groups', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->timestamps();
@@ -28,6 +28,6 @@ class CreateWorkingGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('working-groups');
+        Schema::dropIfExists('working_groups');
     }
 }
