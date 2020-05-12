@@ -346,35 +346,40 @@ Route::prefix("working-groups")->group(function (){
     Route::get('women',function (){
         $breadcrumb = "کار گروه ها";
         $titleHeader = "کار گروه ها زنان";
-        return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb'));
+        $events = \App\Event::whereWorkGroupId(1);
+        return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb','events'));
     })->name('WorkingGroups.women');
 
 
     Route::get('PMIS',function (){
         $breadcrumb = "کار گروه ها";
-        $breadcrumb = $titleHeader = "PMIS کار گروه ";
-        return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb'));
+        $titleHeader = "PMIS کار گروه ";
+        $events = \App\Event::whereWorkGroupId(2);
+        return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb','events'));
     })->name('WorkingGroups.PMIS');
 
 
     Route::get('knowledgeManagement',function (){
         $breadcrumb = "کار گروه ها";
         $titleHeader = "کار گروه مدیریت دانش";
-        return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb'));
+        $events = \App\Event::whereWorkGroupId(3);
+        return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb','events'));
     })->name('WorkingGroups.knowledgeManagement');
 
 
     Route::get('startup',function (){
         $breadcrumb = "کار گروه ها";
         $titleHeader = "کار گروه استارت آپ";
-        return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb'));
+        $events = \App\Event::whereWorkGroupId(4);
+        return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb','events'));
     })->name('WorkingGroups.startup');
 
 
     Route::get('ProjectAndProgram',function (){
         $breadcrumb = "کار گروه ها";
         $titleHeader = "کار گروه سید و برنامه پروژه";
-        return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb'));
+        $events = \App\Event::whereWorkGroupId(5);
+        return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb','events'));
     })->name('WorkingGroups.ProjectAndProgram');
 
 });

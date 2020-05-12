@@ -175,11 +175,11 @@
                     </div>
 
                     <div class="input-form col-md-6 mb-5 ">
-                        <label class="col-12">ادرس
+                        <label class="col-12">آدرس
                             <input type="text" name="location" class="mb-0"
                                    value="{{old('location')??$job->location}}"
                                    aria-invalid="false"
-                                   placeholder="ادرس">
+                                   placeholder="آدرس">
                             {{--                        <img src="{{asset("img/001-user.png")}}" class="form-icon">--}}
                         </label>
                     </div>

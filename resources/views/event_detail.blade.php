@@ -44,7 +44,7 @@
                         <h2 class=" font-24 text-medium text-black  mb-4">اطلاعات برگزاری
                         </h2>
                         <p class=" text-black-light font-16 ">
-                            ادرس: {{$event->address}}
+                            آدرس: {{$event->address}}
                         </p>
                         <p class=" text-black-light font-16 ">
                             تلفن: {{$event->tel}}

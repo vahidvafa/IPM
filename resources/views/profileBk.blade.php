@@ -166,7 +166,7 @@
 
                                             <p class=" text-danger text-bold">
                                                 نواقصی مدارک:
-                                                {{--ادرس: {{$document->address}} ||--}}
+                                                {{--آدرس: {{$document->address}} ||--}}
                                                 {{$user->shortcomings}}
                                             </p>
 
@@ -269,7 +269,7 @@
 
                                             <p class=" text-danger text-bold col-12">
                                                 نواقصی مدارک:
-                                                --}}{{--ادرس: {{$document->address}} ||--}}{{--
+                                                --}}{{--آدرس: {{$document->address}} ||--}}{{--
                                                 {{$user->shortcomings}}
                                             </p>
 

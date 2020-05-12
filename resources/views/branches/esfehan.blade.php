@@ -10,6 +10,25 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 ">
+
+                        <h4 class="card-title v-purple text-white text-center mt-5 mb-3">
+                            تاریخچه و موسسین
+                        </h4>
+
+                        <p>متن ساختگی <br>
+                            متن ساختگی<br>
+                            متن ساختگی
+                        </p>
+
+                        <h4 class="card-title v-purple text-white text-center mt-5 mb-3">
+                            معرفی شاخه
+                        </h4>
+
+                        <p>متن ساختگی <br>
+                            متن ساختگی<br>
+                            متن ساختگی
+                        </p>
+
                         {{--<h1 class="font-23 text-yellow text-center text-light2 mb-4">معرفی شاخه ها </h1>--}}
 
                         <div class="card img-top-detail mb-3">
@@ -77,22 +96,6 @@
 
                         </p>
 
-                        <h4 class="card-title v-purple text-white text-center mt-5 mb-3">
-                            تماس با شاخه اصفهان
-                        </h4>
-
-                        <p>
-                            تلفن : 5001-031  داخلی  5148     همراه : 09301374204
-                            <br>
-                            آدرس : اصفهان – ورودی جنوب سپاهان شهر - مجموعه اصفهان سیتی سنتر – طبقه سوم – رو به روی کهکشان عجایب – دفتر انجمن مدیریت پروژه شاخه اصفهان
-                            <br>
-                            ایمیل : isfahan@ipma.ir
-                        </p>
-
-
-
-                        <a class="btn btn-white-border " href="">لینک به سایت شاخه</a>
-
                     </div>
                 </div>
 
@@ -121,6 +124,24 @@
                         </div>
                     @endforeach
                 </div>
+
+
+                <h4 class="card-title v-purple text-white text-center mb-3">
+                    آدرس شاخه
+                </h4>
+
+                <p>
+                    تلفن : 5001-031  داخلی  5148     همراه : 09301374204
+                    <br>
+                    آدرس : اصفهان – ورودی جنوب سپاهان شهر - مجموعه اصفهان سیتی سنتر – طبقه سوم – رو به روی کهکشان عجایب – دفتر انجمن مدیریت پروژه شاخه اصفهان
+                    <br>
+                    ایمیل : isfahan@ipma.ir
+                </p>
+
+
+
+                <a class="btn btn-white-border " href="">لینک به سایت شاخه</a>
+
             </div>
         </div>
     </main>

@@ -277,7 +277,7 @@
         </div>
     </div>
 </header>
-<div class="alert p-4 @if(session('success')==null) hidden @elseif(session('success')[0]) alert-success @else alert-danger @endif">@if(session('success')!=null) {{session('success')[1]}} @endif</div>
+<div class="alert p-4 @if(session('success') == null) hidden @elseif(session('success')[0]) alert-success @else alert-danger @endif">@if(session('success')!=null) {{session('success')[1]}} @endif</div>
 @yield('content')
 <footer id="footer">
     <div class="container">

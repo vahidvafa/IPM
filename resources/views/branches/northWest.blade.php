@@ -11,9 +11,29 @@
                 <div class="row">
                     <div class="col-12 ">
 
+
+                        <h4 class="card-title v-purple text-white text-center mt-5 mb-3">
+                            تاریخچه و موسسین
+                        </h4>
+
+                        <p>متن ساختگی <br>
+                            متن ساختگی<br>
+                            متن ساختگی
+                        </p>
+
+                        <h4 class="card-title v-purple text-white text-center mt-5 mb-3">
+                            معرفی شاخه
+                        </h4>
+
+
+                        <p>متن ساختگی <br>
+                            متن ساختگی<br>
+                            متن ساختگی
+                        </p>
+
                         <div class="card img-top-detail mt-5">
                             <div class="card-body">
-                                <h4 class="card-title text-white m-0 text-center">هیات موسس شاخه شمالغرب</h4>
+                                <h4 class="card-title text-white m-0 text-center">اعضاء هیأت رئیسه شاخه شمالغرب</h4>
                             </div>
                         </div>
                         <p class="text-black-light font-16 font-line-30">
@@ -53,15 +73,7 @@
 
                         </p>
 
-                        <h4 class="card-title v-purple text-white text-center mt-5 mb-3">
-                            تماس با شاخه شمالغرب
-                        </h4>
-                        <p>
-                            تبریز، بلوار 29 بهمن، دانشگاه تبریز، ساختمان مرکز رشد و نوآوری، دفتر انجمن مدیریت پروژه شاخه شمالغرب
-                            <br>
-                            تلفن: 33306044-041</p>
 
-                        <a class="btn btn-white-border" href="">لینک به سایت شاخه</a>
 
                     </div>
                 </div>
@@ -91,9 +103,17 @@
                             </div>
                         </div>
                     @endforeach
-
                 </div>
 
+                <h4 class="card-title v-purple text-white text-center mt-5 mb-3">
+                    تماس با شاخه شمالغرب
+                </h4>
+                <p>
+                    تبریز، بلوار 29 بهمن، دانشگاه تبریز، ساختمان مرکز رشد و نوآوری، دفتر انجمن مدیریت پروژه شاخه شمالغرب
+                    <br>
+                    تلفن: 33306044-041</p>
+
+                <a class="btn btn-white-border" href="">لینک به سایت شاخه</a>
 
             </div>
         </div>
