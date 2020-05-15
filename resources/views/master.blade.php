@@ -138,7 +138,7 @@
                                     <span>فارسی</span>
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item nav-lang-eng" href="#"><span>انگلیسی</span></a>
+                                    <a class="dropdown-item nav-lang-eng" href="{{route('mainEn')}}"><span>انگلیسی</span></a>
 
                                 </div>
                             </li>
