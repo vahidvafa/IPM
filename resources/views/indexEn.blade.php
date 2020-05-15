@@ -79,9 +79,7 @@
         <div class="header-menu pt-2 pb-2">
             <div class="container">
                 <div class="row">
-
                     <nav class="navbar navbar-expand-lg  navbar-dark col-12">
-
 
                         <!-- Toggler/collapsibe Button -->
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -98,9 +96,12 @@
                                         <span>پروفایل</span>
                                     </div>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item profile-dropdown"  href="{{route('profile',auth()->user()->slug)}}" ><i class="fa fa-user mr-1"></i><span>مشاهده پروفایل</span></a>
+                                        <a class="dropdown-item profile-dropdown"
+                                           href="{{route('profile',auth()->user()->slug)}}" target="_blank" ><i
+                                                    class="fa fa-user mr-1"></i><span>مشاهده پروفایل</span></a>
                                         <hr class="m-0">
-                                        <a class="dropdown-item profile-dropdown " href="{{route('logout')}}"><i class="fa fa-sign-out-alt mr-1"></i><span>خروج</span></a>
+                                        <a class="dropdown-item profile-dropdown " href="{{route('logout')}}"><i
+                                                    class="fa fa-sign-out-alt mr-1"></i><span>خروج</span></a>
                                     </div>
                                 @else
                                     <a class="nav-link nav-login" data-toggle="modal" data-target="#ModalLogin">
@@ -133,74 +134,108 @@
                             <ul class="navbar-nav header-main">
 
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" target="_blank"
                                     >درباره انجمن</a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{route('about-us')}}#history">تاریخچه</a>
-                                        <a class="dropdown-item" href="{{route('about-us')}}#target">اهداف و نقشه
+                                        <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#history">تاریخچه</a>
+                                        <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#target">اهداف و نقشه
                                             راهبردی</a>
-                                        <a class="dropdown-item" href="{{route('about-us')}}#creator">موسسین</a>
-                                        <a class="dropdown-item" href="{{route('about-us')}}#board-of-directors">هیات
+                                        <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#creator">موسسین</a>
+                                        <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#board-of-directors">هیات
                                             مدیره</a>
-                                        <a class="dropdown-item" href="{{route('about-us')}}#chart">چارت سازمانی</a>
+                                        <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#chart">چارت سازمانی</a>
                                         <div class="dropdown-divider">برای دانلود</div>
-                                        <a class="dropdown-item" href="{{route('download')}}">اسناد مرجع</a>
+                                        <a class="dropdown-item" target="_blank" href="{{route('download')}}">اسناد مرجع</a>
                                         <a class="dropdown-item" href="{{route('download')}}"
                                            target="_blank">مجوزها</a>
-                                        <a class="dropdown-item" href="{{route('download')}}">گزارش ها</a>
+                                        <a class="dropdown-item"  target="_blank" href="{{route('download')}}">گزارش ها</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                         کمیته ها و شاخه ها و کارگروه ها</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item has-sub dropdown-toggle" >کمیته ها</a>
-                                        <div class="submenu submenu-left dropdown-menu">
-                                            <a class="dropdown-item" href="{{route('committees.register')}}">کمیته عضویت</a>
-                                            <a class="dropdown-item" href="{{route('committees.awards')}}">کمیته جایزه ملی</a>
-                                            <a class="dropdown-item" href="{{route('committees.education')}}">کمیته آموزش</a>
-                                            <a class="dropdown-item" href="{{route('committees.researches')}}">کمیته پژوهش و انتشارات</a>
-                                            <a class="dropdown-item" href="{{route('committees.certificate')}}">کمیته گواهینامه ها</a>
-                                        </div>
-                                        {{--<li class="nav-item dropdown">
-                                        <a class="dropdown-item has-sub dropdown-toggle" href="#" > Dropdown item 3 </a>
-                                            <div class="submenu submenu-left dropdown-menu">
-                                                <a class="dropdown-item" href="">Submenu item 1</a>
-                                                <a class="dropdown-item" href="">Submenu item 2</a>
-                                                <a class="dropdown-item" href="">Submenu item 3</a>
-                                                <a class="dropdown-item" href="">Submenu item 4</a>
-                                            </div>
-                                        </li>--}}
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li class="nav-item dropdown">
+                                            <a class="dropdown-item has-sub dropdown-toggle">کمیته ها</a>
 
-                                        <a class="dropdown-item" href="{{route('branches')}}">شاخه ها</a>
-                                        <a class="dropdown-item" href="{{route('WorkingGroups')}}">کارگروه ها</a>
-                                    </div>
+                                            <div class="submenu submenu-left dropdown-menu">
+                                                <a class="dropdown-item" target="_blank" href="{{route('committees.register')}}">کمیته
+                                                    عضویت</a>
+                                                <a class="dropdown-item" target="_blank" href="{{route('committees.awards')}}">کمیته
+                                                    جایزه
+                                                    ملی</a>
+                                                <a class="dropdown-item" target="_blank" href="{{route('committees.education')}}">کمیته
+                                                    آموزش</a>
+                                                <a class="dropdown-item" target="_blank" href="{{route('committees.researches')}}">کمیته
+                                                    پژوهش و انتشارات</a>
+                                                <a class="dropdown-item" target="_blank" href="{{route('committees.certificate')}}">مرکز
+                                                    گواهینامه ها</a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="dropdown-item has-sub dropdown-toggle">شاخه ها</a>
+
+                                            <div class="submenu submenu-left dropdown-menu">
+                                                <a class="dropdown-item" target="_blank" href="{{route('branches.northWest')}}">شاخه
+                                                    شمال
+                                                    غرب</a>
+                                                <a class="dropdown-item" target="_blank" href="{{route('branches.khozestan')}}">شاخه
+                                                    خوزستان</a>
+                                                <a class="dropdown-item" target="_blank" href="{{route('branches.esfehan')}}">شاخه
+                                                    اصفهان</a>
+                                                <a class="dropdown-item" target="_blank" href="{{route('branches.khorasan')}}">شاخه
+                                                    خراسان</a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="dropdown-item has-sub dropdown-toggle">کارگروه ها</a>
+                                            <div class="submenu submenu-left dropdown-menu">
+                                                <a class="dropdown-item" target="_blank" href="{{route('WorkingGroups.women')}}">کار
+                                                    گروه
+                                                    زنان</a>
+                                                <a class="dropdown-item" target="_blank" href="{{route('WorkingGroups.PMIS')}}">کار
+                                                    گروه
+                                                    PMIS</a>
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('WorkingGroups.knowledgeManagement')}}">کار گروه
+                                                    مدیریت
+                                                    دانش</a>
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('WorkingGroups.startup')}}">کار گروه
+                                                    استارت آپ</a>
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('WorkingGroups.ProjectAndProgram')}}">کار گروه سید
+                                                    و برنامه
+                                                    پروژه</a>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" target="_blank" >
                                         درباره اعضا </a>
                                     <div class="dropdown-menu">
                                         @guest
-                                            <a class="dropdown-item" href="{{route('register')}}">ثبت عضویت</a>
+                                            <a class="dropdown-item" target="_blank" href="{{route('register')}}">ثبت عضویت</a>
                                         @endguest
 
-                                        <a class="dropdown-item" href="{{route('user.search')}}">يافتن اعضا</a>
+                                        <a class="dropdown-item" target="_blank" href="{{route('user.search')}}">يافتن اعضا</a>
                                         <a class="dropdown-item" href="http://yc.ipma.ir/" target="_blank">شبكه اعضا
                                             جوان</a>
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link " href="{{route('job.index')}}">فرصت های شغلی</a>
+                                    <a class="nav-link " target="_blank" href="{{route('job.index')}}">فرصت های شغلی</a>
                                 </li>
 
                                 <li class="nav-item ">
-                                    <a class="nav-link " href="{{route('message.create')}}">تماس با ما</a>
+                                    <a class="nav-link " target="_blank" href="{{route('message.create')}}">تماس با ما</a>
                                 </li>
 
                                 @auth()
                                     @if(auth()->user()->roles == 0 || auth()->user()->roles == 1)
                                         <li class="nav-item ">
-                                            <a class="nav-link" href="{{route('cms.index')}}">پنل مدیریت</a>
+                                            <a class="nav-link" target="_blank" href="{{route('cms.index')}}">پنل مدیریت</a>
                                         </li>
                                     @endif
 
@@ -298,7 +333,7 @@
                             </div>
                             <div class="col-6 text-center   pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   href="{{route('branches')}}">
+                                   href="{{route('mainEn')}}">
                                     <img class="mb-3" src="{{asset('img/link.png')}}" alt="anjoman">
                                     <p>branches</p></a>
                             </div>
@@ -339,7 +374,40 @@
         </div>
     </div>
     <div class="counter pt-0 pb-sm-5">
-        <div class="counters">
+
+        <div class="link-counters mt-5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="link-img col-12 col-sm p-0">
+                        <img class="img-fluid" alt="..." src="{{asset('img/camera-lens.jpg')}}">
+                        <a href="{{route('ImageArchive')}}" class="link-img-more" >
+                            <i class="fa fa-image fa-2x"></i>
+                            <p>Images Archive</p>
+                        </a>
+                        <div class="overlay-img"></div>
+                    </div>
+                    <div class="link-img col-12 col-sm p-0">
+                        <img class="img-fluid" alt="..." src="{{asset('img/film-camera.jpg')}}">
+                        <a class="link-img-more" href="{{route('VideoArchive')}}">
+                            <i class="fas fa-video fa-2x"></i>
+                            <p>Video Archive</p>
+                        </a>
+
+                        <div class="overlay-img"></div>
+                    </div>
+                    <div class="link-img col-12 col-sm p-0">
+                        <img class="img-fluid" alt="..." src="{{asset('img/webinar-concept.jpg')}}">
+                        <a href="//" class="link-img-more" >
+                            <i class="fa fa-desktop fa-2x"></i>
+                            <p>Webinar</p>
+                        </a>
+                        <div class="overlay-img"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="counters mt-5 mb-5">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-10">
@@ -370,37 +438,6 @@
                             </div>
                         </div>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="link-counters">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="link-img col-12 col-sm p-0">
-                        <img class="img-fluid" alt="..." src="{{asset('img/camera-lens.jpg')}}">
-                        <a href="{{route('ImageArchive')}}" class="link-img-more" >
-                            <i class="fa fa-image fa-2x"></i>
-                            <p>Images Archive</p>
-                        </a>
-                        <div class="overlay-img"></div>
-                    </div>
-                    <div class="link-img col-12 col-sm p-0">
-                        <img class="img-fluid" alt="..." src="{{asset('img/film-camera.jpg')}}">
-                        <a class="link-img-more" href="{{route('VideoArchive')}}">
-                            <i class="fas fa-video fa-2x"></i>
-                            <p>Video Archive</p>
-                        </a>
-
-                        <div class="overlay-img"></div>
-                    </div>
-                    <div class="link-img col-12 col-sm p-0">
-                        <img class="img-fluid" alt="..." src="{{asset('img/webinar-concept.jpg')}}">
-                        <a href="//" class="link-img-more" >
-                            <i class="fa fa-desktop fa-2x"></i>
-                            <p>Webinar</p>
-                        </a>
-                        <div class="overlay-img"></div>
                     </div>
                 </div>
             </div>
