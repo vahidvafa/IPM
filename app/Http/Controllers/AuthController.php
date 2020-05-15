@@ -190,14 +190,14 @@ class AuthController extends Controller
                 ]);
                 $user->workExperience()->save($experience);
             }
-            if ($request->has('education')){
+            if ($request->has('education')) {
                 $education = new Education([
-                    'education_place' =>$request->get('experience')['education_place'],
-                    'grade' =>$request->get('experience')['grade'],
-                    'from_date' =>$request->get('experience')['from_date'],
-                    'to_date' =>$request->get('experience')['to_date'],
-                    'gpa' =>$request->get('experience')['gpa'],
-                    'field_of_study' =>$request->get('experience')['field_of_study'],
+                    'education_place' => $request->get('experience')['education_place'],
+                    'grade' => $request->get('experience')['grade'],
+                    'from_date' => $request->get('experience')['from_date'],
+                    'to_date' => $request->get('experience')['to_date'],
+                    'gpa' => $request->get('experience')['gpa'],
+                    'field_of_study' => $request->get('experience')['field_of_study'],
                 ]);
                 $user->education()->save($education);
             }

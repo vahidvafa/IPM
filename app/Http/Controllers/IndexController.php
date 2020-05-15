@@ -44,6 +44,13 @@ class IndexController extends Controller
         return view('index', compact('events', 'news', 'ipma', 'eventsWithCats'));
     }
 
+    public function indexEn()
+    {
+        $news = News::whereLangId(1)->latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
+        $ipma = IPMA::latest()->first();
+        return view('indexEn', compact( 'news', 'ipma'));
+    }
+
     public function search()
     {
         $titleHeader = $breadcrumb = "جستجو";

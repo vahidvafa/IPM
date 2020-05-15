@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'IndexController@index')->name('main');
+Route::get('/en', 'IndexController@indexEn')->name('mainEn');
 Route::get('/downloads', function () {
     $breadcrumb = "دانلود";
     $titleHeader = "فایل های برای دانلود";

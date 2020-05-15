@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="shortcut icon" href=""/>
-    <title>
-        انجمن مدیریت پروژه - {{$titleHeader ?? ''}}
-    </title>
+    <title>انجمن مدیریت پروژه</title>
     <link rel="stylesheet" href="{{asset('css/slick.css')}}">
     <link rel="stylesheet" href="{{asset('css/slick-theme.css')}}">
     <link rel='stylesheet' href="{{asset('css/bootstrap.min.css')}}" type='text/css' media='all'/>
@@ -15,11 +13,7 @@
     <link rel="stylesheet" href="{{asset('css/all.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/style-main.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type='text/css' media='all'>
-    {{--    <link rel="stylesheet" href="{{asset('css/persianDatepicker-default.css')}}" type='text/css' media='all'>--}}
-    <link rel="stylesheet" href="{{asset('css/persian-datepicker.min.css')}}" type='text/css' media='all'>
-{{--    <link rel="stylesheet" href="{{asset('css/ltr.css')}}" type='text/css' media='all'>--}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
 
     <script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
@@ -27,9 +21,6 @@
     <script type='text/javascript' src='{{asset('js/bootstrap.min.js')}}'></script>
     <script src="{{asset('js/all.js')}}"></script>
     <script src="{{asset('js/slick.min.js')}}"></script>
-    <script src="{{asset('js/persian-date.min.js')}}"></script>
-    <script src="{{asset('js/persian-datepicker.min.js')}}"></script>
-
 
 
     <script type="text/javascript">
@@ -38,9 +29,9 @@
         // jquery ready start
         $(document).ready(function() {
             // jQuery code
-            /*$('.has-sub').click(function (e) {
+            $('.has-sub').click(function (e) {
                 $('.submenu-left').css('display','block')
-            });*/
+            });
             //////////////////////// Prevent closing from click inside dropdown
             $(document).on('click', '.dropdown-menu', function (e) {
                 e.stopPropagation();
@@ -62,38 +53,35 @@
         }); // jquery end
     </script>
 
-    @yield('header')
 
 </head>
-<body style="overflow-x: hidden;">
+<body style="overflow-x: hidden">
+
 <header id="header">
     <div class="header-top-bar back-dark-violet pt-3 pb-3">
         <div class="container">
             <div class="row">
-
-                <div class="col-8 col-md-8 d-lg-flex align-items-center pr-0"  >
+                <div class="col-8 col-md-8 d-lg-flex align-items-center pr-0">
                     <img class="img-fluid" src="{{asset('img/logo.png')}}" alt="انجمن مدیریت پروژه">
-                    <h1 class="text-white d-inline-block font-18 text-regular text-logo ml-2">انجمن مدیریت پروژه ایران</h1>
-
-                    @if(Route::currentRouteName() != 'search' && Route::currentRouteName() != 'search.post' )
+                    <h1 class="text-white d-inline-block font-18 text-regular text-logo ml-2">international project management association</h1>
                     <form method="post" action="{{route('search.post')}}" class="form-top">
                         @csrf
-                        <input name="search" type="search" placeholder="جست و جو" />
+                        <input name="search" type="search" placeholder="Search" />
                     </form>
-                        @endif
                 </div>
-
                 <div class="col-4 col-md-4 text-right">
                     <img class="img-fluid logo-ipma" src="{{asset('img/ipma-logo.png')}}" alt="انجمن مدیریت پروژه">
                 </div>
             </div>
         </div>
     </div>
-    <div class="sidebar-pages ">
+    <div class="sidebar" style="direction: ltr;">
         <div class="header-menu pt-2 pb-2">
             <div class="container">
                 <div class="row">
-                    <nav class="navbar navbar-expand-lg  navbar-dark col-12" >
+
+                    <nav class="navbar navbar-expand-lg  navbar-dark col-12">
+
 
                         <!-- Toggler/collapsibe Button -->
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -165,62 +153,28 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                         کمیته ها و شاخه ها و کارگروه ها</a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li class="nav-item dropdown">
-                                            <a class="dropdown-item has-sub dropdown-toggle">کمیته ها</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item has-sub dropdown-toggle" >کمیته ها</a>
+                                        <div class="submenu submenu-left dropdown-menu">
+                                            <a class="dropdown-item" href="{{route('committees.register')}}">کمیته عضویت</a>
+                                            <a class="dropdown-item" href="{{route('committees.awards')}}">کمیته جایزه ملی</a>
+                                            <a class="dropdown-item" href="{{route('committees.education')}}">کمیته آموزش</a>
+                                            <a class="dropdown-item" href="{{route('committees.researches')}}">کمیته پژوهش و انتشارات</a>
+                                            <a class="dropdown-item" href="{{route('committees.certificate')}}">کمیته گواهینامه ها</a>
+                                        </div>
+                                        {{--<li class="nav-item dropdown">
+                                        <a class="dropdown-item has-sub dropdown-toggle" href="#" > Dropdown item 3 </a>
+                                            <div class="submenu submenu-left dropdown-menu">
+                                                <a class="dropdown-item" href="">Submenu item 1</a>
+                                                <a class="dropdown-item" href="">Submenu item 2</a>
+                                                <a class="dropdown-item" href="">Submenu item 3</a>
+                                                <a class="dropdown-item" href="">Submenu item 4</a>
+                                            </div>
+                                        </li>--}}
 
-                                            <div class="submenu submenu-left dropdown-menu">
-                                                <a class="dropdown-item" href="{{route('committees.register')}}">کمیته
-                                                    عضویت</a>
-                                                <a class="dropdown-item" href="{{route('committees.awards')}}">کمیته
-                                                    جایزه
-                                                    ملی</a>
-                                                <a class="dropdown-item" href="{{route('committees.education')}}">کمیته
-                                                    آموزش</a>
-                                                <a class="dropdown-item" href="{{route('committees.researches')}}">کمیته
-                                                    پژوهش و انتشارات</a>
-                                                <a class="dropdown-item" href="{{route('committees.certificate')}}">مرکز
-                                                    گواهینامه ها</a>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                            <a class="dropdown-item has-sub dropdown-toggle">شاخه ها</a>
-
-                                            <div class="submenu submenu-left dropdown-menu">
-                                                <a class="dropdown-item" href="{{route('branches.northWest')}}">شاخه
-                                                    شمال
-                                                    غرب</a>
-                                                <a class="dropdown-item" href="{{route('branches.khozestan')}}">شاخه
-                                                    خوزستان</a>
-                                                <a class="dropdown-item" href="{{route('branches.esfehan')}}">شاخه
-                                                    اصفهان</a>
-                                                <a class="dropdown-item" href="{{route('branches.khorasan')}}">شاخه
-                                                    خراسان</a>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                            <a class="dropdown-item has-sub dropdown-toggle">کارگروه ها</a>
-                                            <div class="submenu submenu-left dropdown-menu">
-                                                <a class="dropdown-item" href="{{route('WorkingGroups.women')}}">کار
-                                                    گروه
-                                                    زنان</a>
-                                                <a class="dropdown-item" href="{{route('WorkingGroups.PMIS')}}">کار
-                                                    گروه
-                                                    PMIS</a>
-                                                <a class="dropdown-item"
-                                                   href="{{route('WorkingGroups.knowledgeManagement')}}">کار گروه
-                                                    مدیریت
-                                                    دانش</a>
-                                                <a class="dropdown-item"
-                                                   href="{{route('WorkingGroups.startup')}}">کار گروه
-                                                    استارت آپ</a>
-                                                <a class="dropdown-item"
-                                                   href="{{route('WorkingGroups.ProjectAndProgram')}}">کار گروه سید
-                                                    و برنامه
-                                                    پروژه</a>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                        <a class="dropdown-item" href="{{route('branches')}}">شاخه ها</a>
+                                        <a class="dropdown-item" href="{{route('WorkingGroups')}}">کارگروه ها</a>
+                                    </div>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -259,28 +213,288 @@
                 </div>
             </div>
         </div>
+    </div>
+</header>
 
-        <div class="slider-text-page pt-2 pt-lg-2 mt-lg-2">
+
+
+<main id="content" role="main">
+    <div class="news pt-5 pb-5" dir="ltr" style="text-align: left;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-3">
+                    <h3 class="font-20 text-yellow text-light2 mb-3">Last News</h3>
+                    <h2 class="font-18 text-medium text-black  mb-4">Learn more from the forum
+                    </h2>
+                </div>
+                <div class="col-12 col-lg-7 align-self-end">
+                    <p class="text-black-light font-16">
+                </div>
+                <div class="col-12 col-lg-2">
+                    <a href="{{route("news")}}" class="btn btn-white-border">News Archive</a>
+                </div>
+            </div>
+            <div class="row mt-5">
+                @foreach($news as $singleNews)
+                    <div class="col-12 col-md-4 mb-3 mb-md-0">
+                        <div class="card card-news">
+                            <div class="card-news-img">
+                                <img src="{{asset('img/posts/'.$singleNews->photo)}}" class=""
+                                     style="width: 100% !important;">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title font-14 text-black">
+                                    <span>[</span>
+                                    {{\Carbon\Carbon::parse($singleNews->created_at)->format('m/d/Y')}}
+                                    <span>]</span>
+                                </h5>
+                                <p class="card-text font-14">{{$singleNews->title}}</p>
+                                <a href="{{route('news.show',[$singleNews->id])}}"
+                                   class="btn btn-news text-yellow text-medium">ادامه مطلب</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <div class="Committee">
+        <div class="d-none d-lg-block container-fluid Committee-cont">
+            <div class="row Committee-cont">
+                <div class="col-12 col-lg-5 Committee-cont Committee-violet">
+
+
+                </div>
+                <div class="col-12 col-lg-7">
+
+                </div>
+            </div>
+
+        </div>
+        <div class=" Committee-content ">
             <div class="container">
-                <div class="row justify-content-end">
-                    <div class="col-12">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item font-20"><a href="/">خانه</a></li>
-                            <li class="breadcrumb-item font-20 active">{{$breadcrumb??''}}</li>
-                        </ul>
-                        <h1 class="title-page font-40 text-white"
-                            style="display: block;text-overflow: ellipsis;word-wrap: break-word;overflow: hidden;max-height: 1.3em;line-height: 1.3em;">{{$titleHeader ?? ''}}</h1>
+                <div class="row  align-items-center">
+                    <div class="col-12 col-lg-5 Committee-icons">
+                        <div class="row">
+                            <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
 
+                                <a class="Committee-icons-text d-block text-white text-medium" href="{{route('gov')}}">
+                                    <img class="mb-3" src="img/003-patent-1.png" alt="anjoman">
+                                    <p>Certificates</p></a>
+                            </div>
+                            <div class="col-6 text-center  bb-1 pt-5 pb-5">
+
+                                <a class="Committee-icons-text d-block text-white text-medium"
+                                   href="{{route('gifts')}}">
+                                    <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
+                                    <p>Awards Committee</p></a>
+                            </div>
+                            <div class="col-6 text-center bl-1  pt-5 pb-5">
+
+                                <a class="Committee-icons-text d-block text-white text-medium"
+                                   href="{{route('research')}}">
+                                    <img class="mb-3" src="{{asset('img/analytics.png')}}" alt="anjoman">
+                                    <p>Research</p></a>
+                            </div>
+                            <div class="col-6 text-center   pt-5 pb-5">
+                                <a class="Committee-icons-text d-block text-white text-medium"
+                                   href="{{route('branches')}}">
+                                    <img class="mb-3" src="{{asset('img/link.png')}}" alt="anjoman">
+                                    <p>branches</p></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-none d-lg-block col-lg-2"></div>
+                    <div class="col-12 col-lg-5 Committee-icons">
+                        <div class="row">
+                            <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
+                                <a class="Committee-icons-text d-block text-white text-medium"
+                                   href="#">
+                                    <img class="mb-3" src="{{asset('img/teamwork.png')}}" alt="anjoman">
+                                    <p>Specialized Groups</p></a>
+                            </div>
+                            <div class="col-6 text-center  bb-1 pt-5 pb-5">
+                                <a class="Committee-icons-text d-block text-white text-medium"
+                                   href="{{route('about-us')}}">
+                                    <img class="mb-3" src="{{asset('img/content.png')}}" alt="anjoman">
+                                    <p>About Us</p></a>
+                            </div>
+                            <div class="col-6 text-center bl-1  pt-5 pb-5">
+                                <a class="Committee-icons-text d-block text-white text-medium"
+                                   href="{{route('user.index')}}">
+                                    <img class="mb-3" src="img/001-user-group.png" alt="anjoman">
+                                    <p>Introducing Members</p></a>
+                            </div>
+                            <div class="col-6 text-center   pt-5 pb-5">
+                                <a class="Committee-icons-text d-block text-white text-medium" href="/">
+                                    <img class="mb-3" src="img/009-exam.png" alt="anjoman">
+                                    <p>Specialized Forums</p></a>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
             </div>
+
         </div>
     </div>
-</header>
-<div class="alert p-4 @if(session('success') == null) hidden @elseif(session('success')[0]) alert-success @else alert-danger @endif">@if(session('success')!=null) {{session('success')[1]}} @endif</div>
-@yield('content')
-<footer id="footer">
+    <div class="counter pt-0 pb-sm-5">
+        <div class="counters">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-10">
+                        <div class=" pt-4 pb-4 justify-content-around  row">
+                            <div class="counter-in text-center col-6 col-md-3 ">
+
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="576"
+                                    data-speed="1500"></h2>
+                                <p class="count-text text-yellow font-18 text-regular m-0">Certificate Level D</p>
+                            </div>
+                            <div class="counter-in text-center col-6 col-md-3  mb-md-0">
+
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="34"
+                                    data-speed="1500"></h2>
+                                <p class="count-text text-yellow font-18 text-regular m-0">Certificate Level C</p>
+                            </div>
+                            <div class="counter-in text-center col-6  col-md-3 mb-4 mb-md-0">
+
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="14"
+                                    data-speed="1500"></h2>
+                                <p class="count-text text-yellow font-18 text-regular m-0">Certificate Level B</p>
+                            </div>
+                            <div class="counter-in text-center col-6 col-md-3 mb-4 mb-md-0">
+
+                                <h2 class="timer count-title count-number text-white font-42 text-bold" data-to="6"
+                                    data-speed="1500"></h2>
+                                <p class="count-text text-yellow font-18 text-regular m-0">Certificate Level A</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="link-counters">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="link-img col-12 col-sm p-0">
+                        <img class="img-fluid" alt="..." src="{{asset('img/camera-lens.jpg')}}">
+                        <a href="{{route('ImageArchive')}}" class="link-img-more" >
+                            <i class="fa fa-image fa-2x"></i>
+                            <p>Images Archive</p>
+                        </a>
+                        <div class="overlay-img"></div>
+                    </div>
+                    <div class="link-img col-12 col-sm p-0">
+                        <img class="img-fluid" alt="..." src="{{asset('img/film-camera.jpg')}}">
+                        <a class="link-img-more" href="{{route('VideoArchive')}}">
+                            <i class="fas fa-video fa-2x"></i>
+                            <p>Video Archive</p>
+                        </a>
+
+                        <div class="overlay-img"></div>
+                    </div>
+                    <div class="link-img col-12 col-sm p-0">
+                        <img class="img-fluid" alt="..." src="{{asset('img/webinar-concept.jpg')}}">
+                        <a href="//" class="link-img-more" >
+                            <i class="fa fa-desktop fa-2x"></i>
+                            <p>Webinar</p>
+                        </a>
+                        <div class="overlay-img"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="profile-main mt-5 mb-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-contact pt-5 pb-5  pl-lg-4 pr-lg-4">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-lg-9">
+                                <h3 class="font-20 text-yellow text-light2 mb-4">Contact Form</h3>
+                                <h2 class="font-24 text-medium text-black  mb-3">
+                                    Contact To IPMA.ir
+                                </h2>
+                            </div>
+                            <div class="col-12 d-none d-lg-block col-lg-3 text-right">
+                                <img src="{{asset('img/send-1.png')}}">
+                            </div>
+                        </div>
+                        <form class="sidebar-form-body row mt-4" action="{{route('message.store')}}" method="post">
+                            @csrf
+                            <div class="input-form col-md-6 ">
+                                <input type="text" name="name" value="{{old('name')}}" size="40"
+                                       aria-invalid="false"
+                                       placeholder="Full Name *" required>
+                                <img src="{{asset('img/001-user.png')}}" class="form-icon">
+                                @error('name')
+                                <div class="error text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="input-form col-md-6">
+                                <input type="email" name="email" value="{{old('email')}}" size="40"
+                                       aria-invalid="false"
+                                       placeholder="Email *" required>
+                                <img src="{{asset('img/003-envelope.png')}}" class="form-icon">
+                                @error('email')
+                                <div class="error text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="input-form col-md-12">
+                                    <textarea rows="4" name="detail" aria-invalid="false" placeholder="Message *" required>
+                                    </textarea>
+                                @error('detail')
+                                <div class="error text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <input type="submit" value="Send Message"
+                                       class="form-submit-violet text-white font-16 text-medium">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="map-contact">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12954.853719944527!2d51.379332384785705!3d35.73326570113224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0728f1286b91%3A0xf8a61ce1468a9dcd!2sKuy-e-Daneshgah%2C%20District%206%2C%20Tehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2sus!4v1579277414645!5m2!1sen!2sus"
+            width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+    </div>
+    <div class="logo mt-5 pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mt-sm-5 pt-sm-5">
+                    <div class="logo-slid ">
+                        <div><a href="https://mci.ir/" target="_blank"><img src="{{asset('img/b1.png')}}"
+                                                                            style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.iranianatlas.ir/" target="_blank"><img src="{{asset('img/b2.png')}}"
+                                                                                         style="zoom:1.3;"></a></div>
+                        <div><a href="http://www.farab.com/fa/" target="_blank"><img src="{{asset('img/b3.png')}}"
+                                                                                     style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.mapnanyp.com/" target="_blank"><img src="{{asset('img/b4.png')}}"
+                                                                                      style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}"
+                                                                                 style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}"
+                                                                                 style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}"
+                                                                                 style="zoom:1.3;"></a></div>
+                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}"
+                                                                                 style="zoom:1.3;"></a></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer id="footer" style="text-align: left;direction: ltr;">
     <div class="container">
         <div class="row mb-3">
             <div class="contact-footer col-12 col-lg-5">
@@ -288,9 +502,6 @@
                     <img src="img/logo-foo.png" alt=".." style="width: 60px;">
                     <span class="text-regular text-white">تماس با انجمن</span>
                 </div>
-                @php
-                    $ipma = \App\IPMA::latest()->first()
-                @endphp
                 <div class="contact-footer-in">
                     <p class="text-gray font-14 text-bold"><span>آدرس:</span><span>{{$ipma->address}}</span>
                     </p>
@@ -320,7 +531,8 @@
                             <a class="nav-link text-gray font-14" href="http://yc.ipma.ir/">شبکه اعضای جوان</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="https://isac.msrt.ir/fa">كميسيون انجمن هاي علمي</a>
+                            <a class="nav-link text-gray font-14" href="https://isac.msrt.ir/fa">كميسيون انجمن هاي
+                                علمي</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-gray font-14" href="https://www.ipma.world/">ipma جهانی</a>
@@ -401,8 +613,6 @@
         </div>
     </div>
 </footer>
-
-<!-- The Modal -->
 <div class="modal fade " id="ModalLogin">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -454,16 +664,20 @@
         </div>
     </div>
 </div>
+
 <script>
-    // $(".datePickerInputs").persianDatepicker();
     $(document).ready(function () {
         $('.logo-slid').slick({
             dots: false,
-            infinite: false,
-            speed: 300,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 2500,
+            speed: 1200,
             slidesToShow: 5,
-            slidesToScroll: 5,
+            slidesToScroll: 1,
             rtl: true,
+            centerMode: true,
+
 
             responsive: [
                 {
@@ -494,7 +708,9 @@
                 // instead of a settings object
             ]
         });
+
     });
+
 </script>
 <script>
     (function ($) {
@@ -614,29 +830,22 @@
                 password: password
             },
             function (json) {
-                console.log(json);
                 if (!json.status) {
                     if (json.code == 100) {
                         $('#text-error').text(json.errors.username[0]);
-                        console.log(1);
                     } else {
                         if (typeof json.errors.username !== 'undefined') {
-                            console.log(2);
                             $('#username-error-text').text(json.errors.username[0]);
                         }
                         if (typeof json.errors.password !== 'undefined') {
-                            console.log(3);
                             $('#password-error-text').text(json.errors.password[0]);
                         }
-                        console.log(4);
                     }
                 } else {
-                    console.log('hooooraaa')
                     location.reload();
                 }
             });
     }
 </script>
-
 </body>
 </html>

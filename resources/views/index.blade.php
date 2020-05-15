@@ -76,7 +76,7 @@
                         ایران</h1>
                     <form method="post" action="{{route('search.post')}}" class="form-top">
                         @csrf
-                        <input name="search" type="search" placeholder="جستوجو"/>
+                        <input name="search" type="search" placeholder="جست و جو" />
                     </form>
                 </div>
                 <div class="col-4 col-md-4 text-right">
