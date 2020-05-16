@@ -691,7 +691,7 @@
         <div class="row mb-3">
             <div class="contact-footer col-12 col-lg-5">
                 <div class="footer-logo mb-3">
-                    <img src="img/logo-foo.png" alt=".." style="width: 60px;">
+                    <img src="{{asset('img/logo-foo.png')}}" alt=".." style="width: 60px;">
                     <span class="text-regular text-white">تماس با انجمن</span>
                 </div>
                 <div class="contact-footer-in">

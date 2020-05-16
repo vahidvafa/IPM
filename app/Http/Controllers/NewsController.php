@@ -34,6 +34,14 @@ class NewsController extends Controller
         return view('news', compact('news', 'titleHeader', "breadcrumb"));
     }
 
+    public function indexEn()
+    {
+        $titleHeader = "News Archive";
+        $breadcrumb = "News";
+        $news = News::whereState(1)->latest()->paginate(15);
+        return view('en.news', compact('news', 'titleHeader', "breadcrumb"));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -64,22 +72,22 @@ class NewsController extends Controller
             "image" => "required|image",
         ], ['*.required' => 'وارد کردن این فیلد الزامی است']);
         try {
-        $news = new News($request->all());
-        $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-        $request->file('image')->move(public_path('/img/news/'), $imageName);
-        $news->photo = $imageName;
-        $news->save();
-        for ($i = 0; $i < count($request->file('pictures')); $i++) {
-            $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
-            $request->file('pictures')[$i]->move(public_path('/img/posts/'), $imageName);
-            $photo = new Picture(['url' => $imageName]);
-            $news->pictures()->save($photo);
-        }
-        flash_message('success', __('string.successful'));
-        return redirect()->route('news.index');
+            $news = new News($request->all());
+            $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path('/img/news/'), $imageName);
+            $news->photo = $imageName;
+            $news->save();
+            for ($i = 0; $i < count($request->file('pictures')); $i++) {
+                $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
+                $request->file('pictures')[$i]->move(public_path('/img/posts/'), $imageName);
+                $photo = new Picture(['url' => $imageName]);
+                $news->pictures()->save($photo);
+            }
+            flash_message('success', __('string.successful'));
+            return redirect()->route('news.index');
         } catch (\Exception $exception) {
-        flash_message('error', __('string.unsuccessful'));
-        return back()->withInput($request->all());
+            flash_message('error', __('string.unsuccessful'));
+            return back()->withInput($request->all());
         }
     }
 
@@ -92,22 +100,22 @@ class NewsController extends Controller
             "image" => "required|image",
         ], ['*.required' => 'وارد کردن این فیلد الزامی است']);
         try {
-        $news = new News($request->all());
-        $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-        $request->file('image')->move(public_path('/img/news/'), $imageName);
-        $news->photo = $imageName;
-        $news->save();
-        for ($i = 0; $i < count($request->file('pictures')); $i++) {
-            $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
-            $request->file('pictures')[$i]->move(public_path('/img/posts/'), $imageName);
-            $photo = new Picture(['url' => $imageName]);
-            $news->pictures()->save($photo);
-        }
-        flash_message('success', __('string.successful'));
-        return redirect()->route('news.index');
+            $news = new News($request->all());
+            $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path('/img/news/'), $imageName);
+            $news->photo = $imageName;
+            $news->save();
+            for ($i = 0; $i < count($request->file('pictures')); $i++) {
+                $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
+                $request->file('pictures')[$i]->move(public_path('/img/posts/'), $imageName);
+                $photo = new Picture(['url' => $imageName]);
+                $news->pictures()->save($photo);
+            }
+            flash_message('success', __('string.successful'));
+            return redirect()->route('news.index');
         } catch (\Exception $exception) {
-        flash_message('error', __('string.unsuccessful'));
-        return back()->withInput($request->all());
+            flash_message('error', __('string.unsuccessful'));
+            return back()->withInput($request->all());
         }
     }
 
@@ -119,9 +127,28 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
+        if ($news->state != 1)
+            abort(404);
+
+        if ($news->lang_id != 1)
+            abort(404);
+
         $titleHeader = $news->title;
         $breadcrumb = "اخبار";
         return view('news_detail', compact('news', 'titleHeader', 'breadcrumb'));
+    }
+
+    public function showEn(News $news)
+    {
+        if ($news->state != 1)
+            abort(404);
+
+        if ($news->lang_id != 2)
+            abort(404);
+
+        $titleHeader = $news->title;
+        $breadcrumb = "News";
+        return view('en.newsDetailEn', compact('news', 'titleHeader', 'breadcrumb'));
     }
 
     /**

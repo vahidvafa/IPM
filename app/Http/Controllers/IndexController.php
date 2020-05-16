@@ -48,7 +48,7 @@ class IndexController extends Controller
     {
         $news = News::whereLangId(1)->latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
         $ipma = IPMA::latest()->first();
-        return view('indexEn', compact( 'news', 'ipma'));
+        return view('en.indexEn', compact( 'news', 'ipma'));
     }
 
     public function search()

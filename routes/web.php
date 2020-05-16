@@ -71,6 +71,7 @@ Route::get('/winners', 'IndexController@winners')->name('winners');
 Route::get('/winners/{id}', 'IndexController@winners_detail')->name('winners_detail');
 Route::get('/gov', 'IndexController@gov')->name('gov');
 Route::get('news/{news}', 'NewsController@show')->name('news.show');
+Route::get('en/news/{news}', 'NewsController@showEn')->name('news.show.en');
 Route::middleware('auth')->group(function () {
     Route::post('user/verifyRepeat', 'AuthController@verifyRepeat')->name("user.verifyRepeat");
     Route::post('/verifyRegister', 'AuthController@verifyRegisterBank')->name("verifyRegister");
@@ -185,6 +186,7 @@ Route::post('/user/update', 'UserController@Update')->name('user.update');
 
 Route::post("/applyJob", "RequestController@store")->name("applyJob");
 Route::get('news', 'NewsController@index')->name('news');
+Route::get('en/news', 'NewsController@indexEn')->name('news.en');
 
 Route::resource("job", "JobController");
 
