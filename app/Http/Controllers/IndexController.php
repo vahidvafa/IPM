@@ -112,17 +112,27 @@ class IndexController extends Controller
         $referenceId = ($request->has('ResNum')) ? $request->get('ResNum') : '----';
         if ($request->has('State') && $request->get('State') == "OK") {
             $referenceNumber = $request->get('RefNum');
-            $order = Order::whereReferenceId($referenceId);
-            if ($order->exists()) {
-                $order = $order->first();
-                if (($order->get()->first()->total_price) == $request->get('Amount')) {
+            try{
+                $order = Order::whereReferenceId($referenceId)->whereStateId(0)->firstOrFail();
+                $find = true;
+            }catch (ModelNotFoundException $exception){
+                $find = false;
+            }
+            if ($find) {
+                if (($order->total_price) == $request->get('Amount')) {
+//                    return "111";
                     $soapClient = new soapclient('https://verify.sep.ir/Payments/ReferencePayment.asmx?WSDL');
+
                     $verify = $soapClient->VerifyTransaction($referenceNumber, $MerchantCode);
+
                     if ($verify > 0) {
+//                        return ( "222222");
+
                         $order->update([
                             'state_id' => '1',
                             'reference_number' => $referenceNumber,
                         ]);
+
                         $event = $order->event()->get()->first();
                         $category = persianText($event->category()->get('name')->first()->name);
                         $date = $event->from_date;
@@ -248,11 +258,11 @@ class IndexController extends Controller
                                 'password' => 'ipma!@#$%^',
                                 'source' => '982188229406',
                                 'destination' => auth()->user()->mobile,
-                                'message' => "کاربر عزیز بلیت شما برای رویداد $eventName به تعداد $count عدد صادر و به ایمیل شما ارسال شد !"])
+                                'message' => "کاربر عزیز مجوز ورود شما برای رویداد $eventName به تعداد $count عدد صادر و به ایمیل شما ارسال شد !"])
                             ->post();
-//                        Mail::to(auth()->user()->email)->send(new \App\Mail\OrderEmail($order));
+                        Mail::to(auth()->user()->email)->send(new \App\Mail\OrderEmail($order));
                         $status = true;
-                        $date = Jalalian::fromCarbon($order->get()->first()->created_at)->format('Y/m/d H:i');
+                        $date = Jalalian::fromCarbon($order->created_at)->format('Y/m/d H:i');
                         $tickets = $order->orderCodes()->get();
                         return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'tickets', 'type_id'));
                     }
@@ -261,7 +271,10 @@ class IndexController extends Controller
                 $order->orderCodes()->delete();
             }
         }
-        return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'type_id'));
+
+        $msg = $request->get('State');
+
+        return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'type_id','msg'));
     }
 
 

@@ -317,10 +317,14 @@ class AuthController extends Controller
         $user = User::find(\auth()->id());
         if ($request->has('State') && $request->get('State') == "OK") {
             $referenceNumber = $request->get('RefNum');
-            $order = Order::whereReferenceId($referenceId)->whereStateId(0);
-            if ($order->exists()) {
-                $showOrder = $order->get()->first();
-                if ($showOrder->total_price == $request->get('Amount')) {
+            try{
+                $order = Order::whereReferenceId($referenceId)->whereStateId(0)->firstOrFail();
+                $find = true;
+            }catch (ModelNotFoundException $exception){
+                $find = false;
+            }
+            if ($find) {
+                if ($order->total_price == $request->get('Amount')) {
                     $soapClient = new soapclient('https://verify.sep.ir/Payments/ReferencePayment.asmx?WSDL');
                     $verify = $soapClient->VerifyTransaction($referenceNumber, $MerchantCode);
                     if ($verify > 0) {
@@ -331,7 +335,7 @@ class AuthController extends Controller
                         $user->active = 1;
                         $user->save();
                         $status = true;
-                        $date = Jalalian::fromCarbon($showOrder->created_at)->format('Y/m/d H:i');
+                        $date = Jalalian::fromCarbon($order->created_at)->format('Y/m/d H:i');
                         return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'type_id'));
                     }
                 }
@@ -393,10 +397,14 @@ class AuthController extends Controller
         $user = User::find(\auth()->id());
         if ($request->has('State') && $request->get('State') == "OK") {
             $referenceNumber = $request->get('RefNum');
-            $order = Order::whereReferenceId($referenceId)->whereStateId(0);
-            if ($order->exists()) {
-                $showOrder = $order->get()->first();
-                if ($showOrder->total_price == $request->get('Amount')) {
+            try{
+                $order = Order::whereReferenceId($referenceId)->whereStateId(0)->firstOrFail();
+                $find = true;
+            }catch (ModelNotFoundException $exception){
+                $find = false;
+            }
+            if ($find) {
+                if ($order->total_price == $request->get('Amount')) {
                     $soapClient = new soapclient('https://verify.sep.ir/Payments/ReferencePayment.asmx?WSDL');
                     $verify = $soapClient->VerifyTransaction($referenceNumber, $MerchantCode);
                     if ($verify > 0) {
@@ -415,7 +423,7 @@ class AuthController extends Controller
                         $user->expire = 2;
                         $user->save();
                         $status = true;
-                        $date = Jalalian::fromCarbon($showOrder->created_at)->format('Y/m/d H:i');
+                        $date = Jalalian::fromCarbon($order->created_at)->format('Y/m/d H:i');
                         return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'type_id'));
                     }
                 }

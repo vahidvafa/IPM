@@ -34,7 +34,7 @@
             </div>
             @if($status && $type_id == 0)
                 <div class="col-sm-12 shadow my-3 p-5">
-                    <h5 class="text-left">بلیت ها</h5>
+                    <h5 class="text-left">مجوز ها</h5>
                     <table class="rwd-table table">
                         <thead>
                         <tr>

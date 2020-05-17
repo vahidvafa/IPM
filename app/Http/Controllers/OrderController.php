@@ -101,7 +101,7 @@ class OrderController extends Controller
             'event_id' => $event->id,
             'total_price' => $totalPrice,
             'reference_id' => $referenceId,
-            'comment' => " تهیه بلیت برای رویداد $eventName"
+            'comment' => " تهیه مجوز ورود برای رویداد $eventName"
         ]);
         $status = \DB::transaction(function () use ($users, $order, $event, $request) {
             $order->save();
@@ -168,7 +168,7 @@ class OrderController extends Controller
 
         if ($status) {
             $titleHeader = $event->title;
-            $breadcrumb = "دریافت بلیت رویداد";
+            $breadcrumb = "دریافت مجوز رویداد";
             $price = $order->total_price;
             $resNum = $order->reference_id;
             $comment = $order->comment;

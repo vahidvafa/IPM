@@ -297,8 +297,13 @@ class ProfileController extends Controller
         if ($request->has('State') && $request->get('State') == "OK") {
             $referenceId = $request->get('ResNum');
             $referenceNumber = $request->get('RefNum');
-            $order = Order::whereReferenceId($referenceId)->whereStateId(0);
-            if ($order->exists()) {
+            try{
+                $order = Order::whereReferenceId($referenceId)->whereStateId(0)->firstOrFail();
+                $find = true;
+            }catch (ModelNotFoundException $exception){
+                $find = false;
+            }
+            if ($find) {
                 if (($order->total_price) == $request->get('Amount')) {
                     $soapClient = new soapclient('https://verify.sep.ir/Payments/ReferencePayment.asmx?WSDL');
                     $verify = $soapClient->VerifyTransaction($referenceNumber, $MerchantCode);
