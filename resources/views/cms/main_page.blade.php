@@ -76,8 +76,8 @@
                                                    placeholder="عنوان و یا توضیحات رویداد مورد نظر را انتخاب کنید"
                                                    style="margin-top: -3px" value="@if($ipma->event_id !=null) {{$event->title}} @endif">
                                             <div style="background-color: #fff" class="col-12">
-                                                <select class="col-12 form-control hide" id="events" name="event_id"
-                                                        >
+                                                <select class="col-12 form-control hide" id="events" name="event_id">
+                                                    <option value="{{$event->id??null}}" selected></option>
                                                 </select>
                                             </div>
                                             @if ($errors->has('events'))
@@ -97,6 +97,7 @@
                                                    style="margin-top: -3px" value="@if($ipma->news_id !=null) {{$news->title}} @endif">
                                             <div style="background-color: #fff" class="col-12">
                                                 <select class="col-12 form-control hide" id="newss" name="news_id">
+                                                    <option value="{{$news->id??null}}" selected></option>
                                                 </select>
                                             </div>
                                             @if ($errors->has('news'))
@@ -226,7 +227,7 @@
 
                         if (opt == "") {
                             $('#events').addClass('hide');
-                            alert("متاسفانه کاربی با این مشخصات پیدا نشد");
+                            alert("متاسفانه خبری با این مشخصات پیدا نشد");
 
                         } else
                             $('#events').removeClass('hide');

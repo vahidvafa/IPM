@@ -76,7 +76,7 @@
                         ایران</h1>
                     <form method="post" action="{{route('search.post')}}" class="form-top">
                         @csrf
-                        <input name="search" type="search" placeholder="جست و جو" />
+                        <input name="search" type="search" placeholder="جستجو"/>
                     </form>
                 </div>
                 <div class="col-4 col-md-4 text-right">
@@ -90,7 +90,9 @@
         <div class="header-menu pt-2 pb-2">
             <div class="container">
                 <div class="row">
+
                     <nav class="navbar navbar-expand-lg  navbar-dark col-12">
+
 
                         <!-- Toggler/collapsibe Button -->
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -135,7 +137,7 @@
                                     <span>فارسی</span>
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item nav-lang-eng" href="{{route('mainEn')}}"><span>انگلیسی</span></a>
+                                    <a class="dropdown-item nav-lang-eng" href="#"><span>انگلیسی</span></a>
 
                                 </div>
                             </li>
@@ -148,6 +150,7 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" target="_blank"
                                     >درباره انجمن</a>
                                     <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{route('about-us')}}#more">بیشتر بدانیم</a>
                                         <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#history">تاریخچه</a>
                                         <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#target">اهداف و نقشه
                                             راهبردی</a>
@@ -169,56 +172,56 @@
                                         <li class="nav-item dropdown">
                                             <a class="dropdown-item has-sub dropdown-toggle">کمیته ها</a>
 
-                                                <div class="submenu submenu-left dropdown-menu">
-                                                    <a class="dropdown-item" target="_blank" href="{{route('committees.register')}}">کمیته
-                                                        عضویت</a>
-                                                    <a class="dropdown-item" target="_blank" href="{{route('committees.awards')}}">کمیته
-                                                        جایزه
-                                                        ملی</a>
-                                                    <a class="dropdown-item" target="_blank" href="{{route('committees.education')}}">کمیته
-                                                        آموزش</a>
-                                                    <a class="dropdown-item" target="_blank" href="{{route('committees.researches')}}">کمیته
-                                                        پژوهش و انتشارات</a>
-                                                    <a class="dropdown-item" target="_blank" href="{{route('committees.certificate')}}">مرکز
-                                                        گواهینامه ها</a>
+                                            <div class="submenu submenu-left dropdown-menu">
+                                                <a class="dropdown-item" target="_blank" href="{{route('committees.register')}}">کمیته
+                                                    عضویت</a>
+                                                <a class="dropdown-item" target="_blank" href="{{route('committees.awards')}}">کمیته
+                                                    جایزه
+                                                    ملی</a>
+                                                <a class="dropdown-item" target="_blank" href="{{route('committees.education')}}">کمیته
+                                                    آموزش</a>
+                                                <a class="dropdown-item" target="_blank" href="{{route('committees.researches')}}">کمیته
+                                                    پژوهش و انتشارات</a>
+                                                <a class="dropdown-item" target="_blank" href="{{route('committees.certificate')}}">مرکز
+                                                    گواهینامه ها</a>
                                             </div>
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="dropdown-item has-sub dropdown-toggle">شاخه ها</a>
 
-                                                <div class="submenu submenu-left dropdown-menu">
-                                                    <a class="dropdown-item" target="_blank" href="{{route('branches.northWest')}}">شاخه
-                                                        شمال
-                                                        غرب</a>
-                                                    <a class="dropdown-item" target="_blank" href="{{route('branches.khozestan')}}">شاخه
-                                                        خوزستان</a>
-                                                    <a class="dropdown-item" target="_blank" href="{{route('branches.esfehan')}}">شاخه
-                                                        اصفهان</a>
-                                                    <a class="dropdown-item" target="_blank" href="{{route('branches.khorasan')}}">شاخه
-                                                        خراسان</a>
+                                            <div class="submenu submenu-left dropdown-menu">
+                                                <a class="dropdown-item" target="_blank" href="{{route('branches.northWest')}}">شاخه
+                                                    شمال
+                                                    غرب</a>
+                                                <a class="dropdown-item" target="_blank" href="{{route('branches.khozestan')}}">شاخه
+                                                    خوزستان</a>
+                                                <a class="dropdown-item" target="_blank" href="{{route('branches.esfehan')}}">شاخه
+                                                    اصفهان</a>
+                                                <a class="dropdown-item" target="_blank" href="{{route('branches.khorasan')}}">شاخه
+                                                    خراسان</a>
                                             </div>
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="dropdown-item has-sub dropdown-toggle">کارگروه ها</a>
-                                                <div class="submenu submenu-left dropdown-menu">
-                                                    <a class="dropdown-item" target="_blank" href="{{route('WorkingGroups.women')}}">کار
-                                                        گروه
-                                                        زنان</a>
-                                                    <a class="dropdown-item" target="_blank" href="{{route('WorkingGroups.PMIS')}}">کار
-                                                        گروه
-                                                        PMIS</a>
-                                                    <a class="dropdown-item" target="_blank"
-                                                       href="{{route('WorkingGroups.knowledgeManagement')}}">کار گروه
-                                                        مدیریت
-                                                        دانش</a>
-                                                    <a class="dropdown-item" target="_blank"
-                                                       href="{{route('WorkingGroups.startup')}}">کار گروه
-                                                        استارت آپ</a>
-                                                    <a class="dropdown-item" target="_blank"
-                                                       href="{{route('WorkingGroups.ProjectAndProgram')}}">کار گروه سید
-                                                        و برنامه
-                                                        پروژه</a>
-                                                </div>
+                                            <div class="submenu submenu-left dropdown-menu">
+                                                <a class="dropdown-item" target="_blank" href="{{route('WorkingGroups.women')}}">کار
+                                                    گروه
+                                                    زنان</a>
+                                                <a class="dropdown-item" target="_blank" href="{{route('WorkingGroups.PMIS')}}">کار
+                                                    گروه
+                                                    PMIS</a>
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('WorkingGroups.knowledgeManagement')}}">کار گروه
+                                                    مدیریت
+                                                    دانش</a>
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('WorkingGroups.startup')}}">کار گروه
+                                                    استارت آپ</a>
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('WorkingGroups.ProjectAndProgram')}}">کار گروه سید
+                                                    و برنامه
+                                                    پروژه</a>
+                                            </div>
                                         </li>
                                     </ul>
                                 </li>
@@ -434,14 +437,14 @@
 
                                 <a class="Committee-icons-text d-block text-white text-medium" target="_blank" href="{{route('gov')}}">
                                     <img class="mb-3" src="img/003-patent-1.png" alt="anjoman">
-                                    <p>گواهینامه ها</p></a>
+                                    <p>گواهینامه های چهار سطحی</p></a>
                             </div>
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
 
                                 <a class="Committee-icons-text d-block text-white text-medium"
                                    target="_blank" href="{{route('gifts')}}">
                                     <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
-                                    <p>کمیته جایزه</p></a>
+                                    <p>گواهینامه های مشاوران</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
 
@@ -451,10 +454,9 @@
                                     <p>پژوهش</p></a>
                             </div>
                             <div class="col-6 text-center   pt-5 pb-5">
-                                <a class="Committee-icons-text d-block text-white text-medium"
-                                   target="_blank" href="{{route('main')}}">
-                                    <img class="mb-3" src="{{asset('img/link.png')}}" alt="anjoman">
-                                    <p>شاخه ها</p></a>
+                                <a class="Committee-icons-text d-block text-white text-medium" target="_blank" href="/">
+                                    <img class="mb-3" src="img/009-exam.png" alt="anjoman">
+                                    <p>فروم های تخصصی</p></a>
                             </div>
                             <!--<div class="col-6 text-center bl-1  pt-5 pb-5">-->
                             <!--<img class="mb-3" src="img/002-loupe.png" alt="anjoman">-->
@@ -485,13 +487,16 @@
                                 <a class="Committee-icons-text d-block text-white text-medium"
                                    target="_blank" href="{{route('user.index')}}">
                                     <img class="mb-3" src="img/001-user-group.png" alt="anjoman">
-                                    <p>معرفی اعضا</p></a>
+                                    <p>جستجوی اعضا</p></a>
                             </div>
+
                             <div class="col-6 text-center   pt-5 pb-5">
-                                <a class="Committee-icons-text d-block text-white text-medium" target="_blank" href="/">
-                                    <img class="mb-3" src="img/009-exam.png" alt="anjoman">
-                                    <p>فروم های تخصصی</p></a>
+                                <a class="Committee-icons-text d-block text-white text-medium"
+                                   target="_blank" href="{{route('main')}}">
+                                    <img class="mb-3" src="{{asset('img/link.png')}}" alt="anjoman">
+                                    <p>شاخه ها</p></a>
                             </div>
+
                             <!--<div class="col-6 text-center bl-1  pt-5 pb-5">-->
                             <!--<img class="mb-3" src="img/002-loupe.png" alt="anjoman">-->
                             <!--<a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته پژوهش</a>-->
@@ -691,7 +696,7 @@
         <div class="row mb-3">
             <div class="contact-footer col-12 col-lg-5">
                 <div class="footer-logo mb-3">
-                    <img src="{{asset('img/logo-foo.png')}}" alt=".." style="width: 60px;">
+                    <img src="img/logo-foo.png" alt=".." style="width: 60px;">
                     <span class="text-regular text-white">تماس با انجمن</span>
                 </div>
                 <div class="contact-footer-in">

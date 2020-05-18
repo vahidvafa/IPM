@@ -359,22 +359,29 @@ class IndexController extends Controller
         $ipma = IPMA::query();
         $request = \Request::except(['_token']);
 
+
+
         if ($request['newsOrEvent'] == 1) {
             $request['news_id'] = null;
             if (!\request()->has('event_id')) {
+                dd("11");
                 flash_message("error", "متاسفانه هیچ رویدادی انتخاب نشده است");
                 return back()->withInput();
             }
 
         } else {
             $request['event_id'] = null;
-            if (!\request()->has('news_id')) {
+            if (!request()->has('news_id')) {
+
                 flash_message("error", "متاسفانه هیچ اخباری انتخاب نشده است");
                 return back()->withInput();
             }
         }
 
+
+
         unset($request['newsOrEvent'], $request['eventInput'], $request['newsInput']);
+
 
 
         if ($ipma->update($request))
