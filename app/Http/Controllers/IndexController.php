@@ -120,14 +120,9 @@ class IndexController extends Controller
             }
             if ($find) {
                 if (($order->total_price) == $request->get('Amount')) {
-//                    return "111";
                     $soapClient = new soapclient('https://verify.sep.ir/Payments/ReferencePayment.asmx?WSDL');
-
                     $verify = $soapClient->VerifyTransaction($referenceNumber, $MerchantCode);
-
                     if ($verify > 0) {
-//                        return ( "222222");
-
                         $order->update([
                             'state_id' => '1',
                             'reference_number' => $referenceNumber,
@@ -271,10 +266,7 @@ class IndexController extends Controller
                 $order->orderCodes()->delete();
             }
         }
-
-        $msg = $request->get('State');
-
-        return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'type_id','msg'));
+        return view('call_back', compact('titleHeader', 'breadcrumb', 'status', 'referenceId', 'date', 'type_id'));
     }
 
 

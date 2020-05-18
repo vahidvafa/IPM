@@ -30,7 +30,7 @@
                                             <input type="text" name="users[0][name]"
                                                    value=""
                                                    size="40" aria-invalid="false"
-                                                   placeholder="نام *" required1>
+                                                   placeholder="نام *" required>
                                             <img src="{{asset('img/001-user.png')}}" class="form-icon">
                                         </div>
                                     </div>
@@ -44,7 +44,7 @@
                                             <input type="text" name="users[0][mobile]"
                                                    value=""
                                                    size="40" aria-invalid="false"
-                                                   placeholder="تلفن همراه *" required1>
+                                                   placeholder="تلفن همراه *" required>
                                             <img src="{{asset('img/002-telephone.png')}}" class="form-icon">
                                         </div>
                                     </div>
@@ -58,7 +58,7 @@
                                             <input type="text" name="users[0][email]"
                                                    value=""
                                                    size="40" aria-invalid="false"
-                                                   placeholder="ایمیل *" required1>
+                                                   placeholder="ایمیل *" required>
                                             <img src="{{asset('img/003-envelope.png')}}" class="form-icon">
                                         </div>
                                     </div>
@@ -86,7 +86,7 @@
                                                 <input type="text" name="users[{{$i}}][name]"
                                                        value="{{old("users.$i.name")}}"
                                                        size="40" aria-invalid="false"
-                                                       placeholder="نام *" required1>
+                                                       placeholder="نام *" required>
                                                 <img src="{{asset('img/001-user.png')}}" class="form-icon">
                                                 @if ($errors->has("users.$i.name"))
                                                     <div id="name-error" class="error text-danger pl-3" for="name"
@@ -100,13 +100,13 @@
                                     <div class="input-form col-md-3">
                                         <div class="row">
                                             <div class="col-12">
-                                                <label>نام خانوادگی :</label>
+                                                <label>تلفن همراه :</label>
                                             </div>
                                             <div class="col-12">
                                                 <input type="text" name="users[{{$i}}][mobile]"
                                                        value="{{old("users.$i.mobile")}}"
                                                        size="40" aria-invalid="false"
-                                                       placeholder="نام خانوادگی *" required1>
+                                                       placeholder="تلفن همراه *" required>
                                                 <img src="{{asset('img/002-telephone.png')}}" class="form-icon">
                                                 @if ($errors->has("users.$i.mobile"))
                                                     <div id="mobile-error" class="error text-danger pl-3" for="mobile"
@@ -120,13 +120,13 @@
                                     <div class="input-form col-md-3">
                                         <div class="row">
                                             <div class="col-12">
-                                                <label>نام و نام خانوادگی انگلیسی :</label>
+                                                <label>ایمیل :</label>
                                             </div>
                                             <div class="col-12">
                                                 <input type="text" name="users[{{$i}}][email]"
                                                        value="{{old("users.$i.email")}}"
                                                        size="40" aria-invalid="false"
-                                                       placeholder="نام و نام خانوادگی انگلیسی*" required1>
+                                                       placeholder="ایمیل*" required>
                                                 <img src="{{asset('img/003-envelope.png')}}" class="form-icon">
                                                 @if ($errors->has("users.$i.email"))
                                                     <div id="email-error" class="error text-danger pl-3" for="email"
@@ -261,7 +261,7 @@
             "                                        <input type=\"text\" name=\"users["+index+"][name]\"\n" +
             "                                               value=\"\"\n" +
             "                                               size=\"40\" aria-invalid=\"false\"\n" +
-            "                                               placeholder=\"نام *\" required1>\n" +
+            "                                               placeholder=\"نام *\" required>\n" +
             "                                        <img src=\"{{asset('img/001-user.png')}}\" class=\"form-icon\">\n" +
             "                                    </div>\n" +
             "                                </div>\n" +
@@ -275,7 +275,7 @@
             "                                        <input type=\"text\" name=\"users["+index+"][mobile]\"\n" +
             "                                               value=\"\"\n" +
             "                                               size=\"40\" aria-invalid=\"false\"\n" +
-            "                                               placeholder=\"تلفن همراه *\" required1>\n" +
+            "                                               placeholder=\"تلفن همراه *\" required>\n" +
             "                                        <img src=\"{{asset('img/002-telephone.png')}}\" class=\"form-icon\">\n" +
             "                                    </div>\n" +
             "                                </div>\n" +
@@ -289,7 +289,7 @@
             "                                        <input type=\"text\" name=\"users["+index+"][email]\"\n" +
             "                                               value=\"\"\n" +
             "                                               size=\"40\" aria-invalid=\"false\"\n" +
-            "                                               placeholder=\"ایمیل *\" required1>\n" +
+            "                                               placeholder=\"ایمیل *\" required>\n" +
             "                                        <img src=\"{{asset('img/003-envelope.png')}}\" class=\"form-icon\">\n" +
             "                                    </div>\n" +
             "                                </div>\n" +
