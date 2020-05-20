@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="{{asset('css/style-main.css')}}" type='text/css' media='all'>
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type='text/css' media='all'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('js/popper.min.js')}}"></script>
@@ -442,30 +441,22 @@
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
 
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   target="_blank" href="{{route('gifts')}}">
+                                   target="_blank" href="{{route('gov')}}">
                                     <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
                                     <p>گواهینامه های مشاوران</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
 
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   target="_blank"  href="{{route('research')}}">
+                                   target="_blank"  href="{{route('gov')}}">
                                     <img class="mb-3" src="{{asset('img/analytics.png')}}" alt="anjoman">
-                                    <p>پژوهش</p></a>
+                                    <p>گواهینامه های دلتا</p></a>
                             </div>
-                            <div class="col-6 text-center   pt-5 pb-5">
-                                <a class="Committee-icons-text d-block text-white text-medium" target="_blank" href="/">
+                            <div class="col-6 text-center pt-5 pb-5">
+                                <a class="Committee-icons-text d-block text-white text-medium" target="_blank" href="//">
                                     <img class="mb-3" src="img/009-exam.png" alt="anjoman">
-                                    <p>فروم های تخصصی</p></a>
+                                    <p>شاخه ها</p></a>
                             </div>
-                            <!--<div class="col-6 text-center bl-1  pt-5 pb-5">-->
-                            <!--<img class="mb-3" src="img/002-loupe.png" alt="anjoman">-->
-                            <!--<a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته پژوهش</a>-->
-                            <!--</div>-->
-                            <!--<div class="col-6 text-center pt-5 pb-5">-->
-                            <!--<img class="mb-3" src="img/003-crowd-of-users.png" alt="anjoman">-->
-                            <!--<a class="Committee-icons-text d-block text-white text-medium" href="/">کمیته گردهمایی </a>-->
-                            <!--</div>-->
                         </div>
                     </div>
                     <div class="d-none d-lg-block col-lg-2"></div>
@@ -473,15 +464,15 @@
                         <div class="row">
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   target="_blank" href="#">
+                                   target="_blank" href="{{route('committees.awards')}}">
                                     <img class="mb-3" src="{{asset('img/teamwork.png')}}" alt="anjoman">
-                                    <p>کارگروه های تخصصی</p></a>
+                                    <p>جایزه ملی مدیریت پروژه</p></a>
                             </div>
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   target="_blank" href="{{route('about-us')}}">
+                                   target="_blank" href="{{route('committees.researches')}}">
                                     <img class="mb-3" src="{{asset('img/content.png')}}" alt="anjoman">
-                                    <p>درباره ما</p></a>
+                                    <p>جایزه پژوهش</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
@@ -494,7 +485,7 @@
                                 <a class="Committee-icons-text d-block text-white text-medium"
                                    target="_blank" href="{{route('main')}}">
                                     <img class="mb-3" src="{{asset('img/link.png')}}" alt="anjoman">
-                                    <p>شاخه ها</p></a>
+                                    <p>جایزه مدیریت پروژه برتر</p></a>
                             </div>
 
                             <!--<div class="col-6 text-center bl-1  pt-5 pb-5">-->
@@ -651,7 +642,7 @@
                     </div>
                     <div class="link-img col-12 col-sm p-0">
                         <img class="img-fluid" alt="..." src="{{asset('img/webinar-concept.jpg')}}">
-                        <a href="//" class="link-img-more">
+                        <a href="{{route('webinar')}}" class="link-img-more">
                             <i class="fa fa-desktop fa-2x"></i>
                             <p>وبینار ها</p>
                         </a>
@@ -851,6 +842,14 @@
                          style="display: block;">
                         <strong id="text-error"></strong>
                     </div>
+
+
+                    <div class="col-12 d-block mt-4 text-left">
+                        <label >مرا به خاظر بسپار</label>
+                        <input type="checkbox" name="rememberMe" id="rememberMe" value="remember" >
+                    </div>
+
+
                     <input type="button" value="وارد شوید" class="form-submit mt-5 text-white font-16 text-medium"
                            onclick="login()">
 
@@ -962,11 +961,13 @@
         clearLoginErrors();
         var username = $('#input_username').val();
         var password = $('#input_password').val();
+        var rememberMe =  $('#rememberMe').prop('checked');
         $.post("/login",
             {
                 '_token': $('meta[name=csrf-token]').attr('content'),
                 username: username,
-                password: password
+                password: password,
+                rememberMe:rememberMe
             },
             function (json) {
                 if (!json.status) {

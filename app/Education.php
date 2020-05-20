@@ -51,6 +51,7 @@ class Education extends Model
 {
     use SoftDeletes;
 
+    protected $fillable = ['user_id','education_place','grade','from_date','to_date','gpa','field_of_study'];
 
     public function user(){
         return $this->belongsTo(User::class);

@@ -36,8 +36,6 @@ $factory->define(User::class, function (Faker $faker) {
         'branch_id' => \App\Branch::all('id')->random()->id,
         'expire' => random_int(time(),time()+31568385),
         'membership_type_id' => random_int(0,4),
-        'profile_picture' => $faker->name.".png",
-        'resume_address' => $faker->name."resume",
         'about_me' => str_repeat('about me text ',10),
         'shortcomings' => str_repeat("shortcomings ",4),
         'isShowMyPhone' =>random_int(0,1),

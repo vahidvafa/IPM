@@ -125,8 +125,8 @@ class UserController extends Controller
             }
         }
 
-        Membership::insert(['user_id'=>$user->id,'membership_type_id'=>$rq['membership_type_id'],
-            'year'=>$rq['year'],'start'=>0,'end'=>0,'state_id'=>0]);
+        /*Membership::insert(['user_id'=>$user->id,'membership_type_id'=>$rq['membership_type_id'],
+            'year'=>$rq['year'],'start'=>0,'end'=>0,'state_id'=>0]);*/
 
         $user->save();
 //        return var_dump($user->profile);

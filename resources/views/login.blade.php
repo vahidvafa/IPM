@@ -29,9 +29,9 @@
                 <a href="/" class="col-12 d-block text-left text-dark-violet font-14 text-light2">رمز عبور خود را فراموش
                     کرده ام؟</a>
 
-                <div class="col-12 d-block mt-4">
+                <div class="col-12 d-block mt-4 ">
                     <label >مرا به خاظر بسپار</label>
-                    <input type="checkbox" name="remember" id="remember" value="remember" >
+                    <input type="checkbox" name="rememberMe" id="rememberMe" value="remember" >
                     </div>
                 <div class="row col-12">
                 <input type="button" value="وارد شوید" class="center-y col-5 form-submit mt-1 text-white font-16 text-medium"
@@ -41,7 +41,7 @@
             </form>
         </div>
     </main>
-    <script>
+    <script async>
 
         function clearLoginErrors() {
             $('#text-error').text('');
@@ -53,14 +53,13 @@
             clearLoginErrors();
             var username = $('#input_username').val();
             var password = $('#input_password').val();
-            var remember =  $('#remember').val();
-            // alert(remember);
+            var rememberMe =  $('#rememberMe').prop('checked');
             $.post("/login",
                 {
                     '_token': $('meta[name=csrf-token]').attr('content'),
                     username: username,
                     password: password,
-                    remember:remember
+                    rememberMe:rememberMe
                 },
                 function (json) {
                     if (!json.status) {

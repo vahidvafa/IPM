@@ -447,6 +447,13 @@
                          style="display: block;">
                         <strong id="text-error"></strong>
                     </div>
+
+
+                    <div class="col-12 d-block mt-4 text-left">
+                        <label >مرا به خاظر بسپار</label>
+                        <input type="checkbox" name="rememberMe" id="rememberMe" value="remember" >
+                    </div>
+
                     <input type="button" value="وارد شوید" class="form-submit mt-5 text-white font-16 text-medium"
                            onclick="login()">
 
@@ -610,11 +617,13 @@
         clearLoginErrors();
         var username = $('#input_username').val();
         var password = $('#input_password').val();
+        var rememberMe =  $('#rememberMe').prop('checked');
         $.post("/login",
             {
                 '_token': $('meta[name=csrf-token]').attr('content'),
                 username: username,
-                password: password
+                password: password,
+                rememberMe:rememberMe
             },
             function (json) {
                 console.log(json);

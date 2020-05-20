@@ -10,7 +10,7 @@
                         <div class="card img-top-detail mt-4 mb-3">
                             <div class="card-body">
                                 <h4 class="card-title text-white m-0 text-center ">
-                                    معرفی کمیته جایزه مدیریت پروژه
+                                    معرفی کمیته جایزه ملی مدیریت پروژه
                                 </h4>
                             </div>
                         </div>

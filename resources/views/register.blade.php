@@ -12,6 +12,9 @@
 @stop
 @section('content')
     <main id="content-page" role="main">
+
+        {{var_dump(session()->all())}}
+
         <!-- calender main -->
         <div class="container">
             <div class="register-main mt-5 mb-5">
@@ -197,7 +200,7 @@
                                         <input type="text" name="mobile"
                                                value="{{(Session::get('type') == 1) ?request()->old('mobile'):''}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="شماره تماس*" required pattern="\d*">
+                                               placeholder="شماره تماس*" required pattern="\d*" >
                                         <img src="img/002-telephone.png" class="form-icon">
                                         @if (Session::get('type') == 1 && $errors->has('mobile'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"
@@ -863,7 +866,7 @@
                                         <input type="text" name="national_code"
                                                value="{{(Session::get('type') == 2) ?request()->old('national_code'):''}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="کد ملی*" required>
+                                               placeholder="کد ملی*" required pattern="\d*" >
                                         <img src="img/004-key.png" class="form-icon">
                                         @if (Session::get('type') == 2 && $errors->has('national_code'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"
@@ -2160,7 +2163,7 @@
                                         <input type="text" name="education[gpa]"
                                                value="{{(Session::get('type') == 3) ?request()->old('education.gpa'):0}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="دانشگاه">
+                                               placeholder="دانشگاه" pattern="\d*" >
                                         <img src="img/003-envelope.png" class="form-icon">
                                         @if (Session::get('type') == 3 && $errors->has('education.gpa'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"
@@ -2619,17 +2622,38 @@
     {{--<script src="{{ asset('material/js/core/jquery.min.js') }}"></script>--}}
     <script>
         $(document).ready(function () {
+
+            // $("#national_code").val("31231213");
+
+            $("input[type=text]").val("aksj da sj");
+
+            $("input[name=national_code]").val("31231213");
+            $("input[name=certificate_number]").val("31231213");
+            $("input[type=password]").val("12345678");
+
+
             $(".datePickerInput").pDatepicker(
                 {
                     initialValue: false,
                     responsive: true,
                     format: 'L',
                     calendarType: 'persian',
+                    onlySelectOnDate:true,
+                    autoClose:true,
                     timePicker: {
                         enabled: false,
                     },
                     toolbox: {
-                        enabled: false,
+                        enabled: true,
+                        submitButton:{
+                            enabled:true,
+                            text:{
+                                fa:"تایید"
+                            }
+                        },
+                        calendarSwitch:{
+                            enabled:false
+                        }
                     }
                 }
             );

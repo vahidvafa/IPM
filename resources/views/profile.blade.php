@@ -64,7 +64,7 @@
                                     <span class="text-black-light">{{$user->email}}</span>
                                 </p>
 
-                                @if(File::exists("files/resume/$user->resume_address"))
+                                @if( $user->resume_address!=null && File::exists("files/resume/$user->resume_address"))
                                     <p class="font-16 text-regular text-black ">
                                         <a href="{{asset("files/resume/$user->resume_address")}}" class=" text-black">
                                             <i class="fas fa-save"></i>
@@ -187,31 +187,36 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="row align-items-center profile-top p-3 ">
-                            <div class="col-12">
-                                <h3 class="text-right">
-                                    <span>{{$user->profile[0]->certificate}}</span>
-                                    <img src="{{asset('img/level-'.substr(explode("“",$user->profile[0]->certificate)[1],0,1).'.jpg')}}"
-                                         class="lebel-img" alt="level">
-                                </h3>
+
+                        @if($user->profile[0]->certificate)
+                            <div class="row align-items-center profile-top p-3 ">
+                                <div class="col-12">
+                                    <h3 class="text-right">
+                                        <span>{{$user->profile[0]->certificate}}</span>
+                                        <img src="{{asset('img/level-'.substr(explode("“",$user->profile[0]->certificate)[1],0,1).'.jpg')}}"
+                                             class="lebel-img" alt="level">
+                                    </h3>
+                                </div>
+
                             </div>
+                        @endif
+                    </div>
+
+                    @if($user->profile[0]->awards !=null)
+                        <div class="row align-items-center profile-top p-3 col-12 ml-1">
+
+                            @foreach(explode("?!?",$user->profile[0]->awards) as $val)
+                                <div class="col-12">
+                                    <h3 class="text-right">
+                                        <span>{{$val}}</span>
+                                        <img src="{{asset('img/award_baje.png')}}"
+                                             class="lebel-img" alt="level">
+                                    </h3>
+                                </div>
+                            @endforeach
 
                         </div>
-                    </div>
-
-                    <div class="row align-items-center profile-top p-3 col-12 ml-1">
-
-                        @foreach(explode("?!?",$user->profile[0]->awards) as $val)
-                            <div class="col-12">
-                                <h3 class="text-right">
-                                    <span>{{$val}}</span>
-                                    <img src="{{asset('img/award_baje.png')}}"
-                                         class="lebel-img" alt="level">
-                                </h3>
-                            </div>
-                        @endforeach
-
-                    </div>
+                    @endif
                 </div>
 
 

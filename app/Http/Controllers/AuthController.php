@@ -136,10 +136,13 @@ class AuthController extends Controller
                 ], $messages);
                 break;
         }
+
+
         if ($validator->fails()) {
-            \Session::flash('type', $request->get('type'));
-            return redirect()->route('register')->withErrors($validator)->withInput();
+            session()->flash('type', $request->get('type'));
+            return back()->withErrors($validator)->withInput($request->all());
         }
+
         $slug = str_replace(' ', '-', $request->get('name_en'));
         $number = 1;
         while (User::whereSlug($slug)->exists()) {
@@ -217,6 +220,7 @@ class AuthController extends Controller
             $membership->save();
             return true;
         });
+        dd($isSuccessful);
         if ($isSuccessful) {
             auth()->loginUsingId($user->id);
             if ($user->active == 0) {
@@ -265,8 +269,8 @@ class AuthController extends Controller
         }
         $checkType = checkUserNameType($request->post('username'));
         if ($checkType->status) {
-            dd($request->all());
-            if (Auth::attempt([$checkType->type => $request->post('username'), 'password' => $request->post('password')],$request->has('remember'))) {
+
+            if (Auth::attempt([$checkType->type => $request->post('username'), 'password' => $request->post('password')],$request->get('rememberMe'))) {
                 return response()->json(array(
                     'status' => true,
                     'code' => 200,
