@@ -78,7 +78,7 @@
                     @if(Route::currentRouteName() != 'search' && Route::currentRouteName() != 'search.post' )
                     <form method="post" action="{{route('search.post')}}" class="form-top">
                         @csrf
-                        <input name="search" type="search" placeholder="جست و جو" />
+                        <input name="search" type="search" placeholder="جست و جو" autocomplete="off" />
                     </form>
                         @endif
                 </div>

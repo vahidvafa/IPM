@@ -56,7 +56,7 @@
 
         <button type="button" class="close" data-dismiss="alert">×</button>
 
-        Please check the form below for errors
+        به خطای به وجود آمده توجه کنید
 
     </div>
 

@@ -12,9 +12,6 @@
 @stop
 @section('content')
     <main id="content-page" role="main">
-
-        {{var_dump(session()->all())}}
-
         <!-- calender main -->
         <div class="container">
             <div class="register-main mt-5 mb-5">
@@ -608,19 +605,19 @@
                                         <select name="education[grade]" required>
                                             <option disabled selected value>مقطع تحصیلی مورد نظر را انتخاب کنید *</option>
                                             <option
-                                                value="کاردانی" {{((Session::get('type') == 1) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                value="کاردانی" {{((Session::get('type') == 1) && request()->old('education.grade') == 'کاردانی' ) ?'selected':''}}>
                                                 کاردانی
                                             </option>
                                             <option
-                                                value="کارشناسی" {{((Session::get('type') == 1) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                value="کارشناسی" {{((Session::get('type') == 1) && request()->old('education.grade') == 'کارشناسی' ) ?'selected':''}}>
                                                 کارشناسی
                                             </option>
                                             <option
-                                                value="کارشناسی ارشد" {{((Session::get('type') == 1) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                value="کارشناسی ارشد" {{((Session::get('type') == 1) && request()->old('education.grade') == 'کارشناسی ارشد' ) ?'selected':''}}>
                                                 کارشناسی ارشد
                                             </option>
                                             <option
-                                                value="دکتری" {{((Session::get('type') == 1) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                value="دکتری" {{((Session::get('type') == 1) && request()->old('education.grade') == 'دکتری' ) ?'selected':''}}>
                                                 دکتری
                                             </option>
                                         </select>
@@ -662,7 +659,7 @@
                                         <input class="datePickerInput" type="text" name="education[from_date]"
                                                value="{{(Session::get('type') == 1) ?request()->old('education.from_date'):''}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="تاریخ شروع به کار">
+                                               placeholder="تاریخ شروع به تحصیل">
                                         <img src="img/003-envelope.png" class="form-icon">
                                         @if (Session::get('type') == 1 && $errors->has('education.from_date'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"
@@ -682,7 +679,7 @@
                                         <input class="datePickerInput" type="text" name="education[to_date]"
                                                value="{{(Session::get('type') == 1) ?request()->old('education.to_date'):''}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="تاریخ اتمام کار">
+                                               placeholder="تاریخ اتمام تحصیل">
                                         <img src="img/003-envelope.png" class="form-icon">
                                         @if (Session::get('type') == 1 && $errors->has('education.to_date'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"
@@ -1165,19 +1162,19 @@
                                         <select name="education[grade]" required>
                                             <option disabled selected value>مقطع تحصیلی مورد نظر را انتخاب کنید *</option>
                                             <option
-                                                value="کاردانی" {{((Session::get('type') == 2) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                value="کاردانی" {{((Session::get('type') == 2) && request()->old('education.grade') == 'کاردانی' ) ?'selected':''}}>
                                                 کاردانی
                                             </option>
                                             <option
-                                                value="کارشناسی" {{((Session::get('type') == 2) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                value="کارشناسی" {{((Session::get('type') == 2) && request()->old('education.grade') == 'کارشناسی' ) ?'selected':''}}>
                                                 کارشناسی
                                             </option>
                                             <option
-                                                value="کارشناسی ارشد" {{((Session::get('type') == 2) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                value="کارشناسی ارشد" {{((Session::get('type') == 2) && request()->old('education.grade') == 'کارشناسی ارشد' ) ?'selected':''}}>
                                                 کارشناسی ارشد
                                             </option>
                                             <option
-                                                value="دکتری" {{((Session::get('type') == 2) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                value="دکتری" {{((Session::get('type') == 2) && request()->old('education.grade') == 'دکتری' ) ?'selected':''}}>
                                                 دکتری
                                             </option>
                                         </select>
@@ -1219,7 +1216,7 @@
                                         <input class="datePickerInput" type="text" name="education[from_date]"
                                                value="{{(Session::get('type') == 2) ?request()->old('education.from_date'):''}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="تاریخ شروع به کار">
+                                               placeholder="تاریخ شروع به تحصیل">
                                         <img src="img/003-envelope.png" class="form-icon">
                                         @if (Session::get('type') == 2 && $errors->has('education.from_date'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"
@@ -1239,7 +1236,7 @@
                                         <input class="datePickerInput" type="text" name="education[to_date]"
                                                value="{{(Session::get('type') == 2) ?request()->old('education.to_date'):''}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="تاریخ اتمام کار">
+                                               placeholder="تاریخ اتمام تحصیل">
                                         <img src="img/003-envelope.png" class="form-icon">
                                         @if (Session::get('type') == 2 && $errors->has('education.to_date'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"
@@ -2129,19 +2126,19 @@
                                         <select name="education[grade]" required>
                                             <option disabled selected value>مقطع تحصیلی مورد نظر را انتخاب کنید *</option>
                                             <option
-                                                value="کاردانی" {{((Session::get('type') == 3) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                value="کاردانی" {{((Session::get('type') == 3) && request()->old('education.grade') == 'کاردانی' ) ?'selected':''}}>
                                                 کاردانی
                                             </option>
                                             <option
-                                                value="کارشناسی" {{((Session::get('type') == 3) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                value="کارشناسی" {{((Session::get('type') == 3) && request()->old('education.grade') == 'کارشناسی' ) ?'selected':''}}>
                                                 کارشناسی
                                             </option>
                                             <option
-                                                value="کارشناسی ارشد" {{((Session::get('type') == 3) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                value="کارشناسی ارشد" {{((Session::get('type') == 3) && request()->old('education.grade') == 'کارشناسی ارشد' ) ?'selected':''}}>
                                                 کارشناسی ارشد
                                             </option>
                                             <option
-                                                value="دکتری" {{((Session::get('type') == 3) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                value="دکتری" {{((Session::get('type') == 3) && request()->old('education.grade') == 'دکتری' ) ?'selected':''}}>
                                                 دکتری
                                             </option>
                                         </select>
@@ -2163,7 +2160,7 @@
                                         <input type="text" name="education[gpa]"
                                                value="{{(Session::get('type') == 3) ?request()->old('education.gpa'):0}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="دانشگاه" pattern="\d*" >
+                                               placeholder="دانشگاه">
                                         <img src="img/003-envelope.png" class="form-icon">
                                         @if (Session::get('type') == 3 && $errors->has('education.gpa'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"
@@ -2183,7 +2180,7 @@
                                         <input class="datePickerInput" type="text" name="education[from_date]"
                                                value="{{(Session::get('type') == 3) ?request()->old('education.from_date'):''}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="تاریخ شروع به کار">
+                                               placeholder="تاریخ شروع به تحصیل">
                                         <img src="img/003-envelope.png" class="form-icon">
                                         @if (Session::get('type') == 3 && $errors->has('education.from_date'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"
@@ -2203,7 +2200,7 @@
                                         <input class="datePickerInput" type="text" name="education[to_date]"
                                                value="{{(Session::get('type') == 3) ?request()->old('education.to_date'):''}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="تاریخ اتمام کار">
+                                               placeholder="تاریخ اتمام تحصیل">
                                         <img src="img/003-envelope.png" class="form-icon">
                                         @if (Session::get('type') == 3 && $errors->has('education.to_date'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"
@@ -2622,15 +2619,6 @@
     {{--<script src="{{ asset('material/js/core/jquery.min.js') }}"></script>--}}
     <script>
         $(document).ready(function () {
-
-            // $("#national_code").val("31231213");
-
-            $("input[type=text]").val("aksj da sj");
-
-            $("input[name=national_code]").val("31231213");
-            $("input[name=certificate_number]").val("31231213");
-            $("input[type=password]").val("12345678");
-
 
             $(".datePickerInput").pDatepicker(
                 {

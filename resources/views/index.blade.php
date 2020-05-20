@@ -75,7 +75,7 @@
                         ایران</h1>
                     <form method="post" action="{{route('search.post')}}" class="form-top">
                         @csrf
-                        <input name="search" type="search" placeholder="جستجو"/>
+                        <input name="search" type="search" placeholder="جستجو" autocomplete="off"/>
                     </form>
                 </div>
                 <div class="col-4 col-md-4 text-right">
@@ -970,6 +970,7 @@
                 rememberMe:rememberMe
             },
             function (json) {
+                console.log(json);
                 if (!json.status) {
                     if (json.code == 100) {
                         $('#text-error').text(json.errors.username[0]);

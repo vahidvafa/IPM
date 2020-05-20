@@ -7,7 +7,7 @@
                 @csrf
                 <div class="row w-100">
                     <div class="col-12 col-md-8">
-                        <input class="form-control w-100" type="text" name="search" value="{{old('search')??request('search')}}" placeholder="جستجو">
+                        <input class="form-control w-100" type="text" name="search" value="{{old('search')??request('search')}}" placeholder="جستجو" autocomplete="off">
                     </div>
                     <div class="col-12 col-md-2">
                         <input type="submit" value="جستجو" class="form-submit-violet text-white font-16 text-medium w-100">

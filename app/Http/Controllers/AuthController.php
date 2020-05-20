@@ -31,6 +31,13 @@ class AuthController extends Controller
         return view('register', compact('memberships', 'titleHeader', 'breadcrumb', 'type', 'branches'));
     }
 
+    public function freeRegister()
+    {
+        $titleHeader = $breadcrumb = "عضویت هواداری";
+        $type = 0;
+        return view('free_register', compact('titleHeader', 'breadcrumb', 'type'));
+    }
+
     public function postRegister(Request $request)
     {
         $messages = [
@@ -136,13 +143,11 @@ class AuthController extends Controller
                 ], $messages);
                 break;
         }
-
-
         if ($validator->fails()) {
-            session()->flash('type', $request->get('type'));
-            return back()->withErrors($validator)->withInput($request->all());
+            \Session::flash('type', $request->get('type'));
+            return redirect()->route('register')->withErrors($validator)->withInput();
         }
-
+        $request->merge(['birth_date' => tr_num($request->get('birth_date'), 'en')]);
         $slug = str_replace(' ', '-', $request->get('name_en'));
         $number = 1;
         while (User::whereSlug($slug)->exists()) {
@@ -171,8 +176,6 @@ class AuthController extends Controller
         );
         $user->active = ($memberShipType->price == 0) ? 2 : 0;
         $profile = new Profile($request->all());
-        $profile->lang_id = 1;
-
         $isSuccessful = \DB::transaction(function () use ($user, $profile, $request) {
             $user->save();
             $user->profile()->save($profile);
@@ -220,7 +223,6 @@ class AuthController extends Controller
             $membership->save();
             return true;
         });
-        dd($isSuccessful);
         if ($isSuccessful) {
             auth()->loginUsingId($user->id);
             if ($user->active == 0) {
@@ -249,6 +251,67 @@ class AuthController extends Controller
         return back();
     }
 
+    public function postFreeRegister(Request $request)
+    {
+        $this->validate($request, [
+            'first_name' => 'bail | required | string | max:255',
+            'last_name' => 'bail | required | string | max:255',
+            'name_en' => 'bail | required | string | max:255',
+            'national_code' => 'bail | required | numeric ',
+            'mobile' => 'bail | required | string |unique:users',
+            'birth_date' => 'bail | required | string',
+            'sex' => 'bail | required',
+            'email' => 'bail | required | string | email | max:255 | unique:users',
+            'password' => 'bail | required | string | min:8 | confirmed',
+        ], [
+            '*.required' => 'وارد کردن این فیلد الزامی است',
+            '*.numeric' => 'این فیلد باید عدد باشد',
+            'password.min' => 'رمز عبور باید حداقل 8 کاراکتر باشد',
+            'password.confirmed' => 'تایید رمز عبور اشتباه است',
+            'email.unique' => 'این ایمیل قبلا ثبت شده است',
+            'mobile.unique' => 'این شماره موبایل قبلا ثبت شده است',
+        ]);
+        $slug = str_replace(' ', '-', $request->get('name_en'));
+        $number = 1;
+        while (User::whereSlug($slug)->exists()) {
+            $slug .= '-' . ++$number;
+        }
+        $date = Jalalian::now()->format('Ym');
+        $userCode = mt_rand(1000, 100000);
+        while (User::whereUserCode($date . '-' . $userCode)->exists()) {
+            $userCode = mt_rand(1000, 100000);
+        }
+        $userCode = $date . '-' . $userCode;
+        $user = new User(
+            [
+                'first_name' => $request->get('first_name'),
+                'last_name' => $request->get('last_name'),
+                'name_en' => $request->get('name_en'),
+                'mobile' => $request->get('mobile'),
+                'email' => $request->get('email'),
+                'password' => Hash::make($request->get('password')),
+                'slug' => $slug,
+                'user_code' => $userCode,
+                'membership_type_id' => 5,
+            ]
+        );
+        $profile = new Profile([
+            'national_code' => $request->get('national_code'),
+            'birth_date' => $request->get('birth_date'),
+            'sex' => $request->get('sex'),
+        ]);
+        $isSuccessful = \DB::transaction(function () use ($user, $profile, $request) {
+            $user->save();
+            $user->profile()->save($profile);
+            return true;
+        });
+        if ($isSuccessful) {
+            auth()->loginUsingId($user->id);
+            return redirect()->to(route('main'));
+        }
+        return back();
+    }
+
     public function postLogin(Request $request)
     {
         $validator = \Validator::make($request->all(),
@@ -269,8 +332,7 @@ class AuthController extends Controller
         }
         $checkType = checkUserNameType($request->post('username'));
         if ($checkType->status) {
-
-            if (Auth::attempt([$checkType->type => $request->post('username'), 'password' => $request->post('password')],$request->get('rememberMe'))) {
+            if (Auth::attempt([$checkType->type => $request->post('username'), 'password' => $request->post('password')], $request->has('remember'))) {
                 return response()->json(array(
                     'status' => true,
                     'code' => 200,
@@ -322,10 +384,10 @@ class AuthController extends Controller
         $user = User::find(\auth()->id());
         if ($request->has('State') && $request->get('State') == "OK") {
             $referenceNumber = $request->get('RefNum');
-            try{
+            try {
                 $order = Order::whereReferenceId($referenceId)->whereStateId(0)->firstOrFail();
                 $find = true;
-            }catch (ModelNotFoundException $exception){
+            } catch (ModelNotFoundException $exception) {
                 $find = false;
             }
             if ($find) {
@@ -402,10 +464,10 @@ class AuthController extends Controller
         $user = User::find(\auth()->id());
         if ($request->has('State') && $request->get('State') == "OK") {
             $referenceNumber = $request->get('RefNum');
-            try{
+            try {
                 $order = Order::whereReferenceId($referenceId)->whereStateId(0)->firstOrFail();
                 $find = true;
-            }catch (ModelNotFoundException $exception){
+            } catch (ModelNotFoundException $exception) {
                 $find = false;
             }
             if ($find) {
