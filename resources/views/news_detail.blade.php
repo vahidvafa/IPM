@@ -8,7 +8,7 @@
                     <div class="col-lg-12">
                         <div class="card img-top-detail">
                             <img class="card-img-top" style="width:auto; height: auto;"
-                                 src="{{asset("img/news/$news->photo")}}" alt="Card image">
+                                 src="{{asset("img/posts/$news->photo")}}" alt="Card image">
                             <div class="card-body">
                                 <h4 class="card-title text-white m-0">{{$news->title}}</h4>
                             </div>
@@ -32,7 +32,7 @@
                                 @for($i = 0 ; $i < count($news->pictures) ; $i++)
                                     <div class="carousel-item {{($i ==0 ) ? 'active' : ''}}">
                                         <img class="d-block w-100" style="max-height: 460px;"
-                                             src="{{asset("img/news/".$news->pictures[$i]->url)}}">
+                                             src="{{asset("img/posts/".$news->pictures[$i]->url)}}">
                                     </div>
                                 @endfor
                             </div>

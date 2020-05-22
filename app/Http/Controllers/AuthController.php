@@ -332,7 +332,7 @@ class AuthController extends Controller
         }
         $checkType = checkUserNameType($request->post('username'));
         if ($checkType->status) {
-            if (Auth::attempt([$checkType->type => $request->post('username'), 'password' => $request->post('password')], $request->has('remember'))) {
+            if (Auth::attempt([$checkType->type => $request->post('username'), 'password' => $request->post('password')], ['remember'=>$request->has('rememberMe')])) {
                 return response()->json(array(
                     'status' => true,
                     'code' => 200,

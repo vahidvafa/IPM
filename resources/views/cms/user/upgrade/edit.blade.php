@@ -329,22 +329,22 @@
                     </div>
 
 
-               {{--     <div class="form-group col-md-3 mb-3 mt-3 py-2 px-4">
-                        <label for="active">تایید کاربر: </label>
-                        <input type="checkbox" class="option-input"
-                               name="active"
-                               value="true"
-                               aria-invalid="false" @if($user->active == 2) checked @endif>
+                    {{--     <div class="form-group col-md-3 mb-3 mt-3 py-2 px-4">
+                             <label for="active">تایید کاربر: </label>
+                             <input type="checkbox" class="option-input"
+                                    name="active"
+                                    value="true"
+                                    aria-invalid="false" @if($user->active == 2) checked @endif>
 
-                        @if ($errors->has('active'))
-                            <div id="name-error" class="error text-danger pl-3"
-                                 for="active"
-                                 style="display: block;">
-                                <strong>{{ $errors->first('active') }}</strong>
-                            </div>
-                        @endif
-                    </div>
---}}
+                             @if ($errors->has('active'))
+                                 <div id="name-error" class="error text-danger pl-3"
+                                      for="active"
+                                      style="display: block;">
+                                     <strong>{{ $errors->first('active') }}</strong>
+                                 </div>
+                             @endif
+                         </div>
+     --}}
                     <div class="form-group col-md-3 mb-3 mt-3 py-2 px-4">
                         <span for="reagent_id" class="text-black mr-3">نوع عضویت:</span>
 
@@ -353,14 +353,14 @@
                                name="main"
                                value="0"
                                id="reagent_id0"
-                               aria-invalid="false" @if($user->main == 0) checked @endif>
+                               aria-invalid="false" @if($user->main ==null || $user->main == 0) checked @endif>
 
                         <label for="reagent_id1">اصلی</label>
                         <input type="radio" class="option-input"
                                name="reagent_id"
                                value="1"
                                id="reagent_id1"
-                               aria-invalid="false" @if($user->reagent_id == 1) checked @endif>
+                               aria-invalid="false" @if($user->main !=null && $user->main == 1) checked @endif>
 
                         @if ($errors->has('reagent_id'))
                             <div id="name-error" class="error text-danger pl-3"
@@ -765,7 +765,7 @@
 
                             @if(property_exists($user,'documents') || isset($user->documents) )
                                 @foreach($user->documents as $doc)
-{{--                                    {{dd($doc->state)}}--}}
+                                    {{--                                    {{dd($doc->state)}}--}}
                                     <tr>
                                         <td data-th="ردیف" class="text-right">{{$loop->index}}</td>
                                         <td data-th="عنوان خبر" class="text-right">{{$doc->explain}}</td>

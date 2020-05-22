@@ -92,7 +92,7 @@
                                                     <div class="card-body">
                                                         <form action="{{route('picture.delete',$picture->id)}}" method="post" class="my-2">
                                                             @csrf
-                                                            <img src="{{asset('img/news/'.$picture->url)}}" style="width: 150px;height: 150px">
+                                                            <img src="{{asset('img/posts/'.$picture->url)}}" style="width: 150px;height: 150px">
                                                             <button class="btn btn-danger btn-link" type="button" onclick="confirm('{{ __("string.delete.sure") }}') ? this.parentElement.submit() : ''">
                                                                 <i class="material-icons">close</i>
                                                             </button>

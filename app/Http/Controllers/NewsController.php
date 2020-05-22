@@ -74,7 +74,7 @@ class NewsController extends Controller
         try {
             $news = new News($request->all());
             $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('/img/news/'), $imageName);
+            $request->file('image')->move(public_path('/img/posts/'), $imageName);
             $news->photo = $imageName;
             $news->save();
             for ($i = 0; $i < count($request->file('pictures')); $i++) {
@@ -102,7 +102,7 @@ class NewsController extends Controller
         try {
             $news = new News($request->all());
             $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('/img/news/'), $imageName);
+            $request->file('image')->move(public_path('/img/posts/'), $imageName);
             $news->photo = $imageName;
             $news->save();
             for ($i = 0; $i < count($request->file('pictures')); $i++) {
@@ -186,14 +186,14 @@ class NewsController extends Controller
             $news->update($request->all());
             if ($request->has('image')) {
                 $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $request->file('image')->move(public_path('/img/news/'), $imageName);
+                $request->file('image')->move(public_path('/img/posts/'), $imageName);
                 $news->photo = $imageName;
                 $news->save();
             }
             if ($request->hasFile('pictures')) {
                 for ($i = 0; $i < count($request->file('pictures')); $i++) {
                     $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
-                    $request->file('pictures')[$i]->move(public_path('/img/news/'), $imageName);
+                    $request->file('pictures')[$i]->move(public_path('/img/posts/'), $imageName);
                     $photo = new Picture(['url' => $imageName]);
                     $news->pictures()->save($photo);
                 }
@@ -218,14 +218,14 @@ class NewsController extends Controller
             $news->update($request->all());
             if ($request->has('image')) {
                 $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $request->file('image')->move(public_path('/img/news/'), $imageName);
+                $request->file('image')->move(public_path('/img/posts/'), $imageName);
                 $news->photo = $imageName;
                 $news->save();
             }
             if ($request->hasFile('pictures')) {
                 for ($i = 0; $i < count($request->file('pictures')); $i++) {
                     $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
-                    $request->file('pictures')[$i]->move(public_path('/img/news/'), $imageName);
+                    $request->file('pictures')[$i]->move(public_path('/img/posts/'), $imageName);
                     $photo = new Picture(['url' => $imageName]);
                     $news->pictures()->save($photo);
                 }

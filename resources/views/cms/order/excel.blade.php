@@ -8,6 +8,7 @@
     </tr>
     </thead>
     <tbody>
+
     @foreach($orders as $order)
         <tr>
             <td>{{ ($loop->index + 1) }}</td>

@@ -40,7 +40,7 @@
                                     <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
                                         <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
                                             <div class="last-pack-content-in-img-in">
-                                                <img src="{{asset('img/news/' . $singleNews->photo)}}"
+                                                <img src="{{asset('img/posts/' . $singleNews->photo)}}"
                                                      alt="{{$singleNews->title}}">
                                             </div>
                                         </div>
@@ -72,7 +72,7 @@
                                     <div class="col-12 col-lg-8 d-lg-flex align-items-center text-lg-left text-center">
                                         <div class="last-pack-content-in-img mt-3 mt-lg-0 mb-3 mb-lg-0">
                                             <div class="last-pack-content-in-img-in">
-                                                <img src="{{asset('img/events/' . $event->photo)}}"
+                                                <img src="{{asset('img/posts/' . $event->photo)}}"
                                                      alt="{{$event->title}}">
                                             </div>
 

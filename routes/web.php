@@ -61,7 +61,6 @@ Route::post('user/preRepeat', 'AuthController@preRepeatCheckPass')->name("user.p
 
 Route::post('profile/upgrade_result', 'ProfileController@bankCallBack')->name("profile.upgradeResult");
 
-
 Route::post('/login', 'AuthController@postLogin')->name('login.post');
 Route::get('/login', 'AuthController@Login')->name('login')->middleware('guest');
 
@@ -85,7 +84,6 @@ Route::middleware('auth')->group(function () {
         Route::prefix('/cms/')->group(function () {
 
             Route::get('/', 'IndexController@cms')->name('cms.index');
-
 
             Route::get('mainPage', 'IndexController@mainPageShow')->name('mainPage');
             Route::post('mainPage/update', 'IndexController@mainPageUpdate')->name('cms.mainPage.update');
@@ -432,5 +430,14 @@ Route::get('test',function (){
         ->where('id','<=','40')->update(['branch_id'=>6,'committee_id'=>6,'working_group_id'=>6]);
 });
 
+Route::get('tst',function (){
+    auth()->loginUsingId(1,true);
+    return back();
+});
+
+Route::get('top-research-award',function (){
+    $breadcrumb = $titleHeader = "جایزه پژوهش برتر";
+    return view('top_research_award',compact('breadcrumb','titleHeader'));
+})->name("top-research-award");
 
 #{"_token":"rGi0QW9D7Z1UzaX5K1XE51jBZlrkSsCPRHastdAd","membership_type_id":"1","year":"1","first_name":"jasdhaksdasd  ashd","last_name":"jasdhaksdasd  ashd","name_en":"jasdhaksdasd  ashd","profile":{"father_name":"jasdhaksdasd  ashd","national_code":"1321323","certificate_number":"123123123","birth_date":"1397\/10\/23","birth_place":"jasdhaksdasd  ashd","sex":"1","work_address":"jasdhaksdasd  ashd","work_post":"23213213232","home_address":"jasdhaksdasd  ashd","home_post":"213212132","work_name":"jasdhaksdasd  ashd","receive_place":"0"},"mobile":"09198167422","email":"dr@g.com","files_explain":["jasdhaksdasd  ashd"],"workExperience":{"company_name":"jasdhaksdasd  ashd","job_title":"jasdhaksdasd  ashd","from_date":"1397\/10\/23","to_date":"1397\/10\/23"},"branch_id":"1","password":"12345678","password_confirmation":"12345678","files":[{}],"documents":[{"address":"15888794110.png","explain":"jasdhaksdasd  1"},{"address":"15888794110.png","explain":"jasdhaksdasd  2"},{"address":"15888794110.png","explain":"jasdhaksdasd  3"},{"id":50,"state":0,"address":"15888794110.png","explain":"jasdhaksdasd  4"}]}

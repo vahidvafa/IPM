@@ -137,7 +137,6 @@
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item nav-lang-eng" href="#"><span>انگلیسی</span></a>
-
                                 </div>
                             </li>
                         </ul>
@@ -441,14 +440,14 @@
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
 
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   target="_blank" href="{{route('gov')}}">
+                                   target="_blank" href="{{route('main')}}">
                                     <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
                                     <p>گواهینامه های مشاوران</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
 
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   target="_blank"  href="{{route('gov')}}">
+                                   target="_blank"  href="{{route('main')}}">
                                     <img class="mb-3" src="{{asset('img/analytics.png')}}" alt="anjoman">
                                     <p>گواهینامه های دلتا</p></a>
                             </div>
@@ -483,7 +482,7 @@
 
                             <div class="col-6 text-center   pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   target="_blank" href="{{route('main')}}">
+                                   target="_blank" href="{{route('top-research-award')}}">
                                     <img class="mb-3" src="{{asset('img/link.png')}}" alt="anjoman">
                                     <p>جایزه مدیریت پروژه برتر</p></a>
                             </div>

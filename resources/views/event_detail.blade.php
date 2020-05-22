@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="bar-detail pt-4 pb-4 pr-3 pl-3">
-                        <img class="card-img-top" src="{{asset("img/events/$event->photo")}}" alt="Card image"style="margin-bottom: 20px" >
+                        <img class="card-img-top" src="{{asset("img/posts/$event->photo")}}" alt="Card image"style="margin-bottom: 20px" >
                         <h2 class="title-bar-detail text-white font-18 text-medium mb-4">زمانبندی دوره</h2>
 
                         <ul class="list-detail-in">
@@ -92,7 +92,7 @@
                         <div class="Related-post row mb-4 pr-3 pr-lg-0 pl-3 pl-lg-0">
                             <div class="col-12 col-sm-3 col-md-2 col-lg-5 col-xl-4">
                                 <div class="Related-post-img ">
-                                     <img class="rounded" src="{{asset("img/events/$similar->photo")}}" alt="">
+                                     <img class="rounded" src="{{asset("img/posts/$similar->photo")}}" alt="">
                                 </div>
                             </div>
                             <div class="Related-post-titles pl-0 col-12 col-sm-9 col-md-10 col-lg-7 col-xl-8 mt-2 mt-sm-0">

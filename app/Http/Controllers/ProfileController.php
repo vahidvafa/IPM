@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Morilog\Jalali\Jalalian;
 use Intervention\Image\Facades\Image;
+use Excel;
+
 
 class ProfileController extends Controller
 {
@@ -39,7 +41,7 @@ class ProfileController extends Controller
 
         $user = $user[0];
 
-        if ($user->active != 2 && $user->active != 4 && $user->active != 5 ) {
+        if ($user->active != 2 && $user->active != 4 && $user->active != 5) {
             if (auth()->check()) {
                 if (auth()->user()->roles == 2)
                     abort(404, "متاسفانه صفحه مورد نظر در دسترس نمی باشد(1001)");
@@ -250,10 +252,9 @@ class ProfileController extends Controller
         $tmp_request = $request->all();
         $tmp_request['documents'] = $document;
 //        return $request['document'] ;
-        $user->update(["active"=>4]);
+        $user->update(["active" => 4]);
 
-        $user->profile()->update(['upgrade_update_data'=>$tmp_request]);
-
+        $user->profile()->update(['upgrade_update_data' => $tmp_request]);
 
 
         $year = ($request->get('year') == 3) ? 3 : 1;
@@ -286,7 +287,8 @@ class ProfileController extends Controller
         return view('bank', compact('titleHeader', 'breadcrumb', 'price', 'resNum', 'merchantCode', 'redirectURL', 'comment'));
     }
 
-    public function bankCallBack(Request $request){
+    public function bankCallBack(Request $request)
+    {
 
         $MerchantCode = "11175778";
         $date = Jalalian::now()->format('Y/m/d H:i');
@@ -297,10 +299,10 @@ class ProfileController extends Controller
         if ($request->has('State') && $request->get('State') == "OK") {
             $referenceId = $request->get('ResNum');
             $referenceNumber = $request->get('RefNum');
-            try{
+            try {
                 $order = Order::whereReferenceId($referenceId)->whereStateId(0)->firstOrFail();
                 $find = true;
-            }catch (ModelNotFoundException $exception){
+            } catch (ModelNotFoundException $exception) {
                 $find = false;
             }
             if ($find) {
@@ -421,8 +423,8 @@ class ProfileController extends Controller
 
         $tmp_user = User::whereEmail($request->get('email'))->get();
 
-        if (count($tmp_user) != 0){
-            if ($tmp_user[0]->id != $request->get('tmp') ) {
+        if (count($tmp_user) != 0) {
+            if ($tmp_user[0]->id != $request->get('tmp')) {
                 flash_message("error", "ایمیل تکراری");
                 return back();
             }
@@ -430,22 +432,22 @@ class ProfileController extends Controller
 
         $tmp_user = User::whereMobile($request->get('mobile'))->get();
 
-        if (count($tmp_user) != 0){
-            if ($tmp_user[0]->id != $request->get('tmp') ) {
+        if (count($tmp_user) != 0) {
+            if ($tmp_user[0]->id != $request->get('tmp')) {
                 flash_message("error", "موبایل تکراری");
                 return back();
             }
         }
 
 
-        if ($validator->fails()){
-            flash_message("error","لطفا فیلد ها رو به درستی پر کنید");
+        if ($validator->fails()) {
+            flash_message("error", "لطفا فیلد ها رو به درستی پر کنید");
             return back()->withErrors($validator->messages());
         }
 
         $user = User::findOrFail($request->get('tmp'));
 
-        if ($request->get('name_en') != $user->name_en ) {
+        if ($request->get('name_en') != $user->name_en) {
             $slug = str_replace(' ', '-', $request->get('name_en'));
             $number = 1;
             while (User::whereSlug($slug)->exists()) {
@@ -454,24 +456,22 @@ class ProfileController extends Controller
         }
 
 
-
-
         $isSuccessful = \DB::transaction(function () use ($user, $request) {
 
             $user->update($request->all());
 
-            $this->activeUser(null,$user);
+            $this->activeUser(null, $user);
 
             $user->profile()->update($request->get('profile'));
 
-            if ( $request->has('documents') )
-                foreach ( $request->get('documents') as $doc ) {
+            if ($request->has('documents'))
+                foreach ($request->get('documents') as $doc) {
                     $doc = json_decode($doc);
                     /** if true => this doc not on database and doc is file name  ,  if false => return doc id , and exist on db **/
-                    if( !isset($doc->id) )
-                        $user->documents()->save(new Document(['address'=>$doc->address,'state'=>1,'explain'=>$doc->explain ]));
+                    if (!isset($doc->id))
+                        $user->documents()->save(new Document(['address' => $doc->address, 'state' => 1, 'explain' => $doc->explain]));
                     else
-                        $user->documents()->whereId($doc->id)->update(['address'=>$doc->address,'state'=>1,'explain'=>$doc->explain ]);
+                        $user->documents()->whereId($doc->id)->update(['address' => $doc->address, 'state' => 1, 'explain' => $doc->explain]);
 
                 }
 
@@ -481,7 +481,7 @@ class ProfileController extends Controller
             if ($request->has('workExperience'))
                 $user->workExperience()->update($request->get('workExperience'));
 
-            if ($request->has('education') )
+            if ($request->has('education'))
                 $user->education()->update($request->get('education'));
 
             return true;
@@ -492,8 +492,7 @@ class ProfileController extends Controller
 
             flash_message('success', "کاربر با موفقت ارتفا یافت");
             return redirect()->route('cms.user.upgrade');
-        }
-        else {
+        } else {
 
             flash_message('error', "لطفا یک بار دیگر تلاش کنید و بعد از آن در صورت شکست عملیات با پشتیبانی تماس بگیرید");
             return back();
@@ -502,50 +501,51 @@ class ProfileController extends Controller
 
     }
 
-    public function upgradeIndex(){
+    public function upgradeIndex()
+    {
 
-        $users = User::whereActive(5)->orWhere("active",'=','4')->paginate(15);
+        $users = User::whereActive(5)->orWhere("active", '=', '4')->paginate(15);
 
-        return view('cms.user.upgrade.index',compact('users'));
+        return view('cms.user.upgrade.index', compact('users'));
     }
 
-public function upgradeEdit($id){
-        $user = User::with('profile','companies','workExperience','education','documents')->find($id);
+    public function upgradeEdit($id)
+    {
+        $user = User::with('profile', 'companies', 'workExperience', 'education', 'documents')->find($id);
 
-        if ($user->profile[0]->upgrade_update_data!=null) {
+        if ($user->profile[0]->upgrade_update_data != null) {
             $active = $user->active;
             $reagent_id = $user->reagent_id;
 
             $user = json_decode($user->profile[0]->upgrade_update_data);
 
             $user->active = $active;
-            $user->reagent_id= $reagent_id;
+            $user->reagent_id = $reagent_id;
+
+        } else {
+
+            if ($user->profile != null)
+                $user->profile = $user->profile[0];
+
+            if (count($user->companies) != 0)
+                $user->companies = $user->companies[0];
+
+            if ($user->workExperience != null)
+                $user->workExperience = $user->workExperience[0];
+
+            if (count($user->education) != 0)
+                $user->education = $user->education[0];
 
         }
-    else{
-
-        if ($user->profile !=null )
-            $user->profile = $user->profile[0];
-
-        if (count($user->companies) !=0)
-            $user->companies = $user->companies[0];
-
-        if ($user->workExperience != null)
-            $user->workExperience = $user->workExperience[0];
-
-        if (count($user->education) !=0 )
-            $user->education = $user->education[0];
-
-    }
 
 
-    $membership = MembershipType::find($user->membership_type_id);
+        $membership = MembershipType::find($user->membership_type_id);
 
 //    return json_encode($user->education);
-    $branches = Branch::all('id','title');
+        $branches = Branch::all('id', 'title');
 
-        return view('cms.user.upgrade.edit',compact('user','membership','branches'));
-}
+        return view('cms.user.upgrade.edit', compact('user', 'membership', 'branches'));
+    }
 
 
     public function activeUser($id, User $user = null)
@@ -556,17 +556,17 @@ public function upgradeEdit($id){
 //        if ($user->active == 1) {
         $membershipType = MembershipType::find($user->membership_type_id);
         $memberShip = $user->memberships()->get('year')->last();
-        $user->expire = time() + ($membershipType->period * $memberShip->year );
+        $user->expire = time() + ($membershipType->period * $memberShip->year);
         $user->active = 2;
-        $user->user_code = createUserCode($user->membership_type_id,$user->main);
+        $user->user_code = createUserCode($user->membership_type_id, $user->main);
         $user->userCard = $this->showCard($user);
-        $user->profile()->update(['upgrade_update_data'=>null]);
+        $user->profile()->update(['upgrade_update_data' => null]);
         $user->save();
 
-        $user->memberships()->latest('id')->update(['membership_type_id'=>$user->membership_type_id,
-            'start'=>time(),'end'=>$user->expire,'state_id'=>1,'year'=>$memberShip->year]);
+        $user->memberships()->latest('id')->update(['membership_type_id' => $user->membership_type_id,
+            'start' => time(), 'end' => $user->expire, 'state_id' => 1, 'year' => $memberShip->year]);
 
-        if ($id != null ){
+        if ($id != null) {
             return back();
         }
     }
@@ -579,11 +579,11 @@ public function upgradeEdit($id){
         $name = persianText($user->first_name . ' ' . $user->last_name);
         $nameEn = persianText($user->name_en);
         $imageName = $user->id . time();
-        if ($user->membership_type_id == 2){
+        if ($user->membership_type_id == 2) {
             $img = Image::make(public_path('img/register/C.png'));
-        }else{
-            if ((jdate()->getYear() - (int)explode('/',$user->profile[0]->birth_date)[0]) > 35){
-                switch ($user->membership_type_id){
+        } else {
+            if ((jdate()->getYear() - (int)explode('/', $user->profile[0]->birth_date)[0]) > 35) {
+                switch ($user->membership_type_id) {
                     case 1:
                         if ($user->main == 1)
                             $img = Image::make(public_path('img/register/M.png'));
@@ -596,8 +596,8 @@ public function upgradeEdit($id){
                     default:
                         $img = Image::make(public_path('img/register/S.png'));
                 }
-            }else{
-                switch ($user->membership_type_id){
+            } else {
+                switch ($user->membership_type_id) {
                     case 1:
                         if ($user->main == 1)
                             $img = Image::make(public_path('img/register/YC-M.png'));
@@ -628,7 +628,7 @@ public function upgradeEdit($id){
             $font->valign('bottom');
             $font->angle(0);
         });
-        if ($user->membership_type_id != 2){
+        if ($user->membership_type_id != 2) {
             $img->text(persianText(tr_num($user->user_code)), 220, 340, function (\Intervention\Image\Gd\Font $font) {
                 $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
                 $font->size(28);
@@ -637,7 +637,7 @@ public function upgradeEdit($id){
                 $font->valign('bottom');
                 $font->angle(0);
             });
-        }else{
+        } else {
             $img->text(persianText(tr_num($user->user_code)), 220, 290, function (\Intervention\Image\Gd\Font $font) {
                 $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
                 $font->size(28);
@@ -664,10 +664,12 @@ public function upgradeEdit($id){
             $font->angle(0);
         });
 
-        $img->insert(asset('img/profile/'.($user->profile_picture??'profile-default.png')), 'right', 70, 0);
+        $img->insert(asset('img/profile/' . ($user->profile_picture ?? 'profile-default.png')), 'right', 70, 0);
         $img->save(public_path("img/userCards/$imageName.jpg"));
 //        return "<img src='" . asset("img/userCards/$imageName.jpg") . "'>";
-        return $imageName.'.jpg';
+        return $imageName . '.jpg';
 
     }
+
+
 }

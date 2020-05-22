@@ -229,4 +229,5 @@ class OrderController extends Controller
     {
         return Excel::download(new OrdersExport($event_id), 'orders.xlsx');
     }
+
 }
