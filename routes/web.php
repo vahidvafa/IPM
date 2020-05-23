@@ -113,6 +113,7 @@ Route::middleware('auth')->group(function () {
             Route::get('events/{event}/orders', 'EventController@orders')->name('event.orders');
             Route::get('events/{event_id}/orders', 'EventController@orders')->name('event.orders');
             Route::get('events/{event_id}/orders/excel', 'OrderController@export')->name('event.orders.excel');
+            Route::get('orders/excel', 'OrderController@exportAll')->name('orders.excel');
             Route::post('events/store', 'EventController@store')->name('event.store');
             Route::post('events/{event}/delete', 'EventController@destroy')->name('event.delete');
             Route::post('events/{event}/update', 'EventController@update')->name('event.update');

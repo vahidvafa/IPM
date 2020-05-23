@@ -175,7 +175,8 @@ class AuthController extends Controller
             ]
         );
         $user->active = ($memberShipType->price == 0) ? 2 : 0;
-        $profile = new Profile($request->all());
+        $profile = new Profile();
+        $profile->fill($request->only($profile->getFillable()));
         $isSuccessful = \DB::transaction(function () use ($user, $profile, $request) {
             $user->save();
             $user->profile()->save($profile);
