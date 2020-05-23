@@ -440,14 +440,14 @@
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
 
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   target="_blank" href="{{route('main')}}">
+                                   target="_blank" href="{{route('consultants_gov')}}">
                                     <img class="mb-3" src="img/006-sports-and-competition-1.png" alt="anjoman">
                                     <p>گواهینامه های مشاوران</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
 
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   target="_blank"  href="{{route('main')}}">
+                                   target="_blank"  href="{{route('delta_gov')}}">
                                     <img class="mb-3" src="{{asset('img/analytics.png')}}" alt="anjoman">
                                     <p>گواهینامه های دلتا</p></a>
                             </div>
@@ -463,13 +463,13 @@
                         <div class="row">
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   target="_blank" href="{{route('committees.awards')}}">
+                                   target="_blank" href="{{route('gifts')}}">
                                     <img class="mb-3" src="{{asset('img/teamwork.png')}}" alt="anjoman">
                                     <p>جایزه ملی مدیریت پروژه</p></a>
                             </div>
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   target="_blank" href="{{route('committees.researches')}}">
+                                   target="_blank" href="{{route('research')}}">
                                     <img class="mb-3" src="{{asset('img/content.png')}}" alt="anjoman">
                                     <p>جایزه پژوهش</p></a>
                             </div>
