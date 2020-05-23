@@ -23,7 +23,11 @@ class OrdersExport implements FromView
      */
     public function view(): View
     {
-        $orders = Order::query()->whereEventId($this->event_id)->whereStateId(1)->with('user')->get();
+        if ($this->event_id != 0)
+            $orders = Order::query()->whereEventId($this->event_id)->whereStateId(1)->with('user')->get();
+        else
+            $orders = Order::query()->whereStateId(1)->with('user')->get();
+
         return view('cms.order.excel', compact('orders'));
     }
 }

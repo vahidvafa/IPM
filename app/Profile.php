@@ -88,17 +88,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Profile extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['*'];
+//    protected $fillable = ['*'];
 
     protected $guarded = ['id'];
 
-//    protected $fillable = ['sex', 'father_name', 'certificate_number', 'birth_date', 'birth_place', 'national_code', 'work_name', 'work_address', 'home_address', 'work_post', 'home_post', 'work_tel', 'home_tel', 'receive_place'
-//        , 'established_date', 'established_place', 'established_number', 'economy_number', 'national_number', 'post_number', 'ownership_type', 'legal_type', 'address', 'ceo_name', 'ceo_name_en', 'ceo_picture', 'agent_name', 'agent_name_en', 'agent_name_en', 'agent_picture', 'lang_id'
-//    ];
+    protected $fillable = ['sex', 'father_name', 'certificate_number', 'birth_date', 'birth_place', 'national_code', 'work_name', 'work_address', 'home_address', 'work_post', 'home_post', 'work_tel', 'home_tel', 'receive_place'
+        , 'youTube', 'facebook', 'instagram', 'telegram', 'twitter', 'honors', 'certificate', 'specialized_basins', 'lang_id'
+    ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getFillable()
+    {
+        return $this->fillable;
     }
 
 /*    protected $appends = ['young'];

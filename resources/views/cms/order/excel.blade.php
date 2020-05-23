@@ -5,6 +5,7 @@
         <th>کاربر</th>
         <th>قیمت خرید</th>
         <th>تاریخ خرید</th>
+        <th>توضیحات</th>
     </tr>
     </thead>
     <tbody>
@@ -15,6 +16,7 @@
             <td>{{ $order->user->first_name.' '.$order->user->last_name }}</td>
             <td>{{ number_format($order->total_price)}}</td>
             <td>{{ jdate($order->updated_at)->format('Y/m/d H:i') }}</td>
+            <td>{{ $order->comment }}</td>
         </tr>
     @endforeach
     </tbody>
