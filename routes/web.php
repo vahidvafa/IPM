@@ -432,8 +432,8 @@ Route::get('test',function (){
 });
 
 Route::get('tst',function (){
-    auth()->loginUsingId(1,true);
-    return back();
+//    auth()->loginUsingId(1,true);
+//    return back();
 });
 
 Route::get('top-research-award',function (){
@@ -452,6 +452,12 @@ Route::get('consultants-gov',function (){
     $breadcrumb = $titleHeader = "گواهینامه های مشاوران";
     return view('consultants-gov',compact('breadcrumb','titleHeader'));
 })->name('consultants_gov');
+
+
+Route::get('Periods-of-association',function (){
+    $breadcrumb = $titleHeader = "ادوار انجمن";
+    return view('Periods_of_association',compact('breadcrumb','titleHeader'));
+})->name('Periods_of_association');
 
 
 

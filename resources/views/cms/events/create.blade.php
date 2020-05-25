@@ -209,6 +209,16 @@
                                             @endif
                                         </div>
 
+                                        <div class="col-12 mb-4 mt-3 form-group">
+                                            <label>لینک</label>
+                                            <input class="form-control my-2" type="url" name="link"
+                                                   placeholder="مثلا http://www.example.com یا https://example.com "
+                                            >
+                                            @if($errors->has('link'))
+                                                <div class="error text-danger">{{ $errors->first('link') }}</div>
+                                            @endif
+                                        </div>
+
                                     </div>
                                     <div class="card-footer">
                                         <button class="btn btn-success" type="submit">افزودن</button>

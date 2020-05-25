@@ -137,6 +137,7 @@ return;*/
      */
     public function edit(Event $event)
     {
+
         $workGroups = WorkingGroup::all();
         $branchs = Branch::all();
         $committee = Committee::all();

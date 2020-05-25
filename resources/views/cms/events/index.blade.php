@@ -50,7 +50,7 @@
                                 </a>
                             </td>
                             <td data-th="حذف" class="text-right">
-                                <form action="{{route('news.delete',[$event->id])}}" method="post">
+                                <form action="{{route('event.delete',[$event->id])}}" method="post">
                                     @csrf
                                     <a href="#"
                                        onclick="confirm('{{ __("آیا مطمئن هستید؟") }}') ? this.parentElement.submit() : ''">

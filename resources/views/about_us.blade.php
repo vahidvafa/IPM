@@ -40,7 +40,7 @@
                     <div class="counter-in text-center col-6 col-md-3 mb-4 mb-md-0">
                         <div class="counter-about">
                             <img class="counter-about-img img-fluid" src="img/wave_2.png" alt="..">
-                            <h2 class="text-black font-42 text-bold"
+                               <h2 class="text-black font-42 text-bold"
                                 >{{tr_num(\App\User::whereMembershipTypeId(2)->count('id'))}}</h2>
                             <p class="count-text text-yellow font-18 text-regular m-0">تعداد اعضای حقوقی</p>
                         </div>
@@ -77,7 +77,6 @@
                         </div>
                     </div>
                 </div>
-
 
             </div>
 
@@ -455,6 +454,13 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-12 text-center mt-4 mb-5">
+            <a href="{{route('Periods_of_association')}}" class="btn text-center last-pack-calender-btn">ادوار انجمن</a>
+        </div>
+
+        </div>
+
         <div class="history-about pt-5 pb-5" id="chart">
             <div class="container">
                 <div class="row">

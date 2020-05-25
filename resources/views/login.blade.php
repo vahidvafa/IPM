@@ -7,7 +7,8 @@
             <h4 class="modal-title text-black">ورود به صفحه کاربری</h4>
             <p class="text-black-light font-18 text-light2 mt-4 mb-4">جهت ورود به صفحه کاربری اطلاعات زیر را تکمیل
                 نمایید</p>
-            <form class="sidebar-form-body row">
+            <form class="sidebar-form-body row" {{--action="{{route('login.post')}}" method="post"--}}>
+
                 <div class="input-form col-6">
                     <input type="text" name="username" id="input_username" value="" size="40" aria-invalid="false"
                            placeholder="ایمیل یا شماره موبایل*">

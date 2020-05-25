@@ -34,6 +34,7 @@ class CreateEventsTable extends Migration
             $table->bigInteger('committee_id')->nullable();
             $table->bigInteger('working_group_id')->nullable();
             $table->bigInteger('user_id');
+            $table->text('link')->nullable();
             $table->tinyInteger('lang_id',false,true)->default(1);
             $table->timestamps();
             $table->softDeletes();
