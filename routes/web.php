@@ -130,6 +130,7 @@ Route::middleware('auth')->group(function () {
             //------
             Route::get('users', 'UserController@indexCms')->name('cms.user.index');
             Route::post('users', 'UserController@indexCms')->name('cms.user.index');
+            Route::get('users/excel', 'UserController@export')->name('users.excel');
             Route::post('user/{id}/confirm', 'UserController@activeUser')->name('cms.user.active');
             Route::get('user/{id}/edit', 'UserController@edit')->name('cms.user.edit');
             Route::get('user/{user}/badge', 'UserController@badge')->name('cms.user.badge.edit');

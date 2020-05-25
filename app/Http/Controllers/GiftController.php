@@ -43,12 +43,12 @@ class GiftController extends Controller
            'event_id'=> ' required | numeric',
            'type_id'=> ' required | numeric',
            'price'=> ' required | numeric',
-           'maximum_count'=> ' required | numeric',
-           'minimum_price'=> ' required | numeric',
-           'maximum_price'=> ' required | numeric',
+           'maximum_count'=> ' nullable | numeric',
+           'minimum_price'=> ' nullable | numeric',
+           'maximum_price'=> ' nullable | numeric',
            'members_usage'=> ' required | numeric',
-           'from_date'=> ' required | numeric',
-           'to_date'=> ' required | numeric',
+           'from_date'=> ' nullable | numeric',
+           'to_date'=> ' nullable | numeric',
         ],[
             '*.required' =>'وارد کردن این فیلد الزامی است',
             '*.numeric' =>'فرمت این فیلد اشتباه است',
@@ -58,6 +58,13 @@ class GiftController extends Controller
             while (Gift::whereCode($code)->exists()){
                 $code = Str::random(7);
             }
+            $request->merge([
+                'maximum_count' => ($request->get('maximum_count') == null) ? 0 : $request->get('maximum_count'),
+                'minimum_price' => ($request->get('minimum_price') == null) ? 0 : $request->get('minimum_price'),
+                'maximum_price' => ($request->get('maximum_price') == null) ? 0 : $request->get('maximum_price'),
+                'from_date' => ($request->get('from_date_display') == null) ? 0 : $request->get('from_date'),
+                'to_date' => ($request->get('to_date_display') == null) ? 0 : $request->get('to_date'),
+            ]);
             $gift = new Gift($request->all());
             $gift->code = $code;
             $gift->save();

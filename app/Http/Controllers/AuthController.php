@@ -212,7 +212,11 @@ class AuthController extends Controller
                 $company = new Company($request->all('company')['company']);
                 $user->companies()->save($company);
             }
-            $year = ($request->get('year') == 3) ? 3 : 1;
+            if ($request->get('year') != 1) {
+                $year = ($request->get('type') == 3) ? 2 : 3;
+            } else {
+                $year = 1;
+            }
             $membership = new Membership(
                 [
                     'membership_type_id' => $request->get('type'),
@@ -228,7 +232,7 @@ class AuthController extends Controller
             auth()->loginUsingId($user->id);
             if ($user->active == 0) {
                 $commentTitle = $memberShipType->title;
-                $price = ($request->get('year') == 3) ? $memberShipType->price * 2 : $memberShipType->price;
+                $price = ($request->get('year') == 1) ? $memberShipType->price : $memberShipType->second_price;
                 //premium user
                 $order = new Order([
                     'user_id' => $user->id,
@@ -333,7 +337,7 @@ class AuthController extends Controller
         }
         $checkType = checkUserNameType($request->post('username'));
         if ($checkType->status) {
-            if (Auth::attempt([$checkType->type => $request->post('username'), 'password' => $request->post('password')], ['remember'=>$request->has('rememberMe')])) {
+            if (Auth::attempt([$checkType->type => $request->post('username'), 'password' => $request->post('password')], ['remember' => $request->has('rememberMe')])) {
                 return response()->json(array(
                     'status' => true,
                     'code' => 200,
@@ -424,14 +428,23 @@ class AuthController extends Controller
             return redirect()->back()->with("errorField", "رمز عبور اشتباه");
         auth()->loginUsingId($user->id);
         if (($user->active == 2 || $user->active == 3) && $user->membership_type_id != 4) {
-            $year = ($request->has('year')) ? $request->get('year') : 1;
+            if ($request->has('year')) {
+                if ($request->get('year') != 1){
+                    $year = ($user->membership_type_id == 3) ? 2 : 3;
+                }else{
+                    $year = 1;
+                }
+            } else {
+                $year = 1;
+            }
+//            $year = ($request->has('year')) ? $request->get('year') : 1;
             $memberShipType = MembershipType::find($user->membership_type_id);
             $memberShip = new Membership([
                 'user_id' => $user->id,
                 'membership_type_id' => $user->membership_type_id,
                 'year' => $year,
             ]);
-            $price = ($year == 3) ? 2 * $memberShipType->price : $year * $memberShipType->price;
+            $price = ($year == 1) ? $memberShipType->price : $memberShipType->second_price;
             $memberShipTypeTitle = $memberShipType->title;
             $year = tr_num($year);
             $comment = "پرداخت جهت تمدید $memberShipTypeTitle به مدت $year سال";

@@ -18,6 +18,8 @@ class CreateMembershipTypesLogsTable extends Migration
             $table->bigInteger('user_id');
             $table->string('old_price');
             $table->string('new_price');
+            $table->string('old_second_price');
+            $table->string('new_second_price');
             $table->string('old_period');
             $table->string('new_period');
             $table->string('old_title');

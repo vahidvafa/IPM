@@ -48,10 +48,23 @@
                                             @endif
                                         </div>
                                         <div class="form-group col-lg-12 mb-4">
-                                            <label class="col-12">بازه زمانی</label>
+                                            <label class="col-12">قیمت دوم</label>
+                                            <input class="form-control" name="second_price" type="text"
+                                                   placeholder="قیمت دوم"
+                                                   value="{{$membership->second_price}}">
+                                            @if ($errors->has('second_price'))
+                                                <div id="title-error"
+                                                     class="error text-danger pl-3" for="price"
+                                                     style="display: block;">
+                                                    <strong>{{ $errors->first('second_price') }}</strong>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="form-group col-lg-12 mb-4">
+                                            <label class="col-12">بازه زمانی (روز)</label>
                                             <input id="period" name="period"
                                                    class="form-control ckeditor cke_rtl"
-                                                   value="{{ $membership->period }}">
+                                                   value="{{ unixToDay($membership->period) }}">
 
                                             @if ($errors->has('period'))
                                                 <div id="title-error"

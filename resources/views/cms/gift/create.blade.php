@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="col-lg-6 mb-4 mt-3">
                                             <label class="col-12">حداکثر تعداد استفاده</label>
-                                            <input type="text" name="maximum_count" class="form-control" placeholder="اگر کد به صورت نامحدود است 0 وارد کنید">
+                                            <input type="text" name="maximum_count" class="form-control" placeholder="اگر کد به صورت نامحدود است چیزی وارد نکنید">
                                             @if($errors->has('maximum_count'))
                                                 <div class="error text-danger">{{ $errors->first('maximum_count') }}</div>
                                             @endif
@@ -98,21 +98,21 @@
                                         <div class="form-group col-lg-12 mb-4">
                                             <label class="col-12" id="price_label">مبلغ</label>
                                             <input class="form-control" name="price" id="price" type="text"
-                                                   value="{{old('price')}}">
+                                                   value="{{old('price')}}" required>
                                             @if($errors->has('price'))
                                                 <div class="error text-danger">{{ $errors->first('price') }}</div>
                                             @endif
                                         </div>
                                         <div class="col-lg-6 mb-4">
                                             <label class="col-12">حداقل قیمت ( به ریال )</label>
-                                            <input type="text" name="minimum_price" class="form-control" placeholder="اگر محدودیتی نیست 0 وارد کنید">
+                                            <input type="text" name="minimum_price" class="form-control" placeholder="اگر کد به صورت نامحدود است چیزی وارد نکنید">
                                             @if($errors->has('minimum_price'))
                                                 <div class="error text-danger">{{ $errors->first('minimum_price') }}</div>
                                             @endif
                                         </div>
                                         <div class="col-lg-6 mb-4">
                                             <label class="col-12">حداکثر قیمت ( به ریال )</label>
-                                            <input type="text" name="maximum_price" class="form-control" placeholder="اگر محدودیتی نیست 0 وارد کنید">
+                                            <input type="text" name="maximum_price" class="form-control" placeholder="اگر کد به صورت نامحدود است چیزی وارد نکنید">
                                             @if($errors->has('maximum_price'))
                                                 <div class="error text-danger">{{ $errors->first('maximum_price') }}</div>
                                             @endif

@@ -1592,10 +1592,8 @@
                                 <label>مدت زمان : </label>
                                 <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="1" checked>عضویت
                                     یکساله</label>
-                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="3">عضویت سه
+                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="2">عضویت دو
                                     ساله</label>
-                                {{--            <input type="radio" id="year_3" name="year" value="3" style="all: unset;">--}}
-                                {{--            <label for="year_3">عضویت سه ساله</label>--}}
                                 @if (Session::get('type') == 3 && $errors->has('year'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
@@ -2622,12 +2620,12 @@
 
             // $("#national_code").val("31231213");
 
-            $("input[type=text]").val("aksj da sj");
+            // $("input[type=text]").val("aksj da sj");
 
-            $("input[name=national_code]").val("31231213");
-            $("input[name=certificate_number]").val("31231213");
-            $("input[type=password]").val("12345678");
-
+            // $("input[name=national_code]").val("31231213");
+            // $("input[name=certificate_number]").val("31231213");
+            // $("input[type=password]").val("12345678");
+            //
 
             $(".datePickerInput").pDatepicker(
                 {

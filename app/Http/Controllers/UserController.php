@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\Document;
+use App\Exports\UsersExport;
 use App\Membership;
 use App\MembershipType;
 use App\Profile;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 use Intervention\Image\Facades\Image;
+use Maatwebsite\Excel\Facades\Excel;
 use Validator;
 
 class UserController extends Controller
@@ -553,4 +555,8 @@ class UserController extends Controller
 
     }
 
+    public function export()
+    {
+        return Excel::download(new UsersExport(), 'users.xlsx');
+    }
 }
