@@ -11,6 +11,7 @@
             <div class="profile-main mt-5 mb-5">
                 <div class="row pb-5">
                     <div class="col-12">
+
                         <div class="row profile-top pt-5 pb-5 mb-3">
                             <div class="col-12 col-lg-4 mb-5 mb-lg-0">
                                 <div class="row justify-content-center">
@@ -414,9 +415,7 @@
                 </div>
                 <form class="sidebar-form-body" action="{{route('user.update')}}" method="POST"
                       enctype="multipart/form-data">
-
                     @csrf
-
                     <div class="modal-body form-profile">
                         <div class="row">
                             <div class="input-form col-lg-12">
@@ -426,7 +425,7 @@
                                        aria-invalid="false"
                                        placeholder="حوضه های تخصصی"
                                        value="{{$user->profile[0]->specialized_basins}}"
-                                       required>
+                                       >
 
                             </div>
 
