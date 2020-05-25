@@ -5,9 +5,9 @@
         <div class="card">
             <div class="card-header card-header-warning">
                 <div>
-                    {{--                    <a href="{{route('job.create')}}">--}}
-                    {{--<i class="material-icons" style="float: left;font-size: 32px;color: white">add_box</i>--}}
-                    {{--</a>--}}
+                    <a href="{{route('orders.excel')}}">
+                        <i class="material-icons" style="float: left;font-size: 32px;color: white">attach_file</i>
+                    </a>
                     <h4 class="card-title">گزارشات مالی</h4>
                 </div>
             </div>

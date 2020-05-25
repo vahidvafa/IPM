@@ -4,9 +4,9 @@
         <div class="card">
             <div class="card-header card-header-warning">
                 <div>
-                    {{--                    <a href="{{route('news.create')}}">--}}
-                    {{--<i class="material-icons" style="float: left;font-size: 32px;color: white">add_box</i>--}}
-                    {{--</a>--}}
+                    <a href="{{route('users.excel')}}">
+                        <i class="material-icons" style="float: left;font-size: 32px;color: white">attach_file</i>
+                    </a>
                     <h4 class="card-title">لیست کاربران</h4>
                 </div>
             </div>

@@ -53,8 +53,8 @@
                             <td data-th="حداقل قیمت" class="text-right">{{($gift->minimum_price == 0) ? 'بدون محدودیت' : tr_num(number_format($gift->minimum_price),'fa')}}</td>
                             <td data-th="حداقل قیمت" class="text-right">{{($gift->maximum_price == 0) ? 'بدون محدودیت' : tr_num(number_format($gift->maximum_price),'fa')}}</td>
                             <td data-th="کاربران مجاز" class="text-right">{{($gift->members_usage == 0) ? 'اعضای انجمن' : 'همه'}}</td>
-                            <td data-th="از تاریخ" class="text-right">{{$gift->from_date->date_time}}</td>
-                            <td data-th="تا تاریخ" class="text-right">{{$gift->to_date->date_time}}</td>
+                            <td data-th="از تاریخ" class="text-right">{{($gift->from_date->unix == 0) ? 'بدون محدودیت' : $gift->from_date->date_time}}</td>
+                            <td data-th="تا تاریخ" class="text-right">{{($gift->to_date->unix == 0) ? 'بدون محدودیت' : $gift->to_date->date_time}}</td>
                             <td data-th="حذف" class="text-right">
                                 <form action="{{route('gift.delete',[$gift->id])}}" method="post">
                                     @csrf

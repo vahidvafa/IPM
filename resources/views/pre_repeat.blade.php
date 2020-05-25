@@ -34,7 +34,7 @@
                 <div class="input-form col-6">
                     <label>مدت زمان : </label>
                     <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="1" checked>عضویت یکساله</label>
-                    <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="3">عضویت سه ساله</label>
+                    <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="3">عضویت دو/سه ساله</label>
                 </div>
                 <div class="row col-12 col-sm-12">
                     <input type="submit" value="اعتبار سنجی"
