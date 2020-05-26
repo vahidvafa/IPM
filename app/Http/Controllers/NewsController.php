@@ -99,7 +99,7 @@ class NewsController extends Controller
             else
                 return redirect()->route('news.en.index');
         } catch (\Exception $exception) {
-            return $exception->getMessage();
+//            return $exception->getMessage();
             flash_message('error', __('string.unsuccessful'));
             return back()->withInput($request->all());
         }
