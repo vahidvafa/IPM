@@ -40,7 +40,7 @@ class NewsController extends Controller
     {
         $titleHeader = "News Archive";
         $breadcrumb = "News";
-        $news = News::whereState(1)->latest()->paginate(15);
+        $news = News::whereState(1)->whereLangId(2)->latest()->paginate(15);
         return view('en.news', compact('news', 'titleHeader', "breadcrumb"));
     }
 
