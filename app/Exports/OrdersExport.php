@@ -13,12 +13,9 @@ class OrdersExport implements FromView
 
     protected $event_id;
 
-    protected $orderModel;
-
-    public function __construct(int $event_id,$order)
+    public function __construct(int $event_id)
     {
         $this->event_id = $event_id;
-        $this->orderModel = $order;
     }
 
     /**
