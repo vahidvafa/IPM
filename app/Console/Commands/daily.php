@@ -42,7 +42,6 @@ class daily extends Command
     public function handle()
     {
         //check expire events
-
         $events = Event::where('to_date', '<=', time())->latest()->get();
         foreach ($events as $event) {
             if ((time() - $event->to_date) <= 86400) {
@@ -64,7 +63,7 @@ class daily extends Command
             ->update(['active' => 3]);
 
         // reminder
-        $users = User::whereActive(2)->where('reminder', '<', 2);
+        $users = User::whereActive(2)->where('reminder', '<', 2)->get();
         foreach ($users as $user) {
             if ($user->reminder == 0) {
                 $time = 7;
