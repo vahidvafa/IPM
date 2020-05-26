@@ -49,7 +49,7 @@ class IndexController extends Controller
 
     public function indexEn()
     {
-        $news = News::whereLangId(2)->latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
+        $news = News::whereLangId(2)->whereState(1)->latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
         $ipma = IPMA::latest()->first();
         return view('en.indexEn', compact('news', 'ipma'));
     }
@@ -59,15 +59,15 @@ class IndexController extends Controller
         $titleHeader = $breadcrumb = "جستجو";
         if (\request()->has('search')) {
             $searchString = \request()->get('search');
-            $news = News::where("title", "LIKE", "%$searchString%")->get(['id', 'title', 'photo']);
+            $news = News::whereState(1)->where("title", "LIKE", "%$searchString%")->get(['id', 'title', 'photo']);
             $events = Event::where("title", "LIKE", "%$searchString%")
                 ->orWhere("address", "LIKE", "%$searchString%")
                 ->orWhere("tel", "LIKE", "%$searchString%")
                 ->orWhere("course_headings", "LIKE", "%$searchString%")
                 ->get(['id', 'title', 'photo']);
         } else {
-            $news = News::latest()->limit(10)->get(['id', 'title', 'photo']);
-            $events = Event::latest()->limit(10)->get(['id', 'title', 'photo']);
+            $news = News::whereState(1)->latest()->limit(10)->get(['id', 'title', 'photo']);
+            $events = Event::whereState(1)->latest()->limit(10)->get(['id', 'title', 'photo']);
         }
         return view('search', compact('titleHeader', 'breadcrumb', 'news', 'events'));
     }
