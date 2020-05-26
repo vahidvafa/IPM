@@ -5,14 +5,11 @@
         <div class="link-main mt-5 mb-5">
             <div class="row pb-5">
                 <div class="col-lg-4 mt-5">
-                    <h3 class="font-20 text-yellow text-light2 col-12 mb-3">گزارش ها</h3>
-                    <h2 class=" font-24 text-medium text-black  mb-4">دنبال چه نوع گزارشی هستید؟
+                    <h3 class="font-20 text-yellow text-light2 col-12 mb-3">؟؟؟</h3>
+                    <h2 class=" font-24 text-medium text-black  mb-4">؟؟؟
                     </h2>
                     <p class=" text-black-light font-16 mb-5">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                        است. چاپگرها و متون بلکه روزنامه و مجله در لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
-                        صنعت چاپ و با استفاده از طراحان گرافیک
-                        است. چاپگرها و متون بلکه روزنامه و مجله در
+                        در این قسمت اساسنامه محوز و گزارش های انجمن با هدف شفاف سازی توسط دبیر انجمن منتشر می شود
                     </p>
                 </div>
                 <div class="col-lg-8">
@@ -38,13 +35,13 @@
                                 </div>
                                 <h4 class="popular-pack-in-info-title font-16 text-medium text-black mb-3 "><a
                                             class="text-black hover-text-black" href="{{url('files/reference_documents.docx')}}">
-                                        اسناد مرجع
+                                        اساسنامه
                                     </a></h4>
-                                <p class=" text-black-light font-14 text-light2 mb-0">
+                                {{--<p class=" text-black-light font-14 text-light2 mb-0">
                                     لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
                                     گرافیک
                                     است. چاپگرها و متون بلکه روزنامه و مجله در
-                                </p>
+                                </p>--}}
                                 <a href="{{route('statute')}}" class="more-link-in">
                                     <i class="fas fa-arrow-left"></i>
                                 </a>
@@ -164,11 +161,11 @@
                                             class="text-black hover-text-black" href="{{url('files/certificate.pdf')}}">
                                         مجوز ها
                                     </a></h4>
-                                <p class=" text-black-light font-14 text-light2 mb-0">
+                                {{--<p class=" text-black-light font-14 text-light2 mb-0">
                                     لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
                                     گرافیک
                                     است. چاپگرها و متون بلکه روزنامه و مجله در
-                                </p>
+                                </p>--}}
                                 <a href="{{url('files/certificate.pdf')}}" class="more-link-in">
                                     <i class="fas fa-arrow-left"></i>
                                 </a>
@@ -196,11 +193,11 @@
                                             class="text-black hover-text-black" href="/">
                                         گزارش ها
                                     </a></h4>
-                                <p class=" text-black-light font-14 text-light2 mb-0">
+                             {{--   <p class=" text-black-light font-14 text-light2 mb-0">
                                     لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
                                     گرافیک
                                     است. چاپگرها و متون بلکه روزنامه و مجله در
-                                </p>
+                                </p>--}}
                                 <a href="/" class="more-link-in">
                                     <i class="fas fa-arrow-left"></i>
                                 </a>

@@ -109,7 +109,7 @@
                                     </div>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item profile-dropdown"
-                                           href="{{route('profile',auth()->user()->slug)}}" target="_blank" ><i
+                                           href="{{route('profile',auth()->user()->slug)}}" target="_blank"><i
                                                     class="fa fa-user mr-1"></i><span>مشاهده پروفایل</span></a>
                                         <hr class="m-0">
                                         <a class="dropdown-item profile-dropdown " href="{{route('logout')}}"><i
@@ -145,22 +145,28 @@
                             <ul class="navbar-nav header-main">
 
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" target="_blank"
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
+                                       target="_blank"
                                     >درباره انجمن</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{{route('about-us')}}#more">بیشتر بدانیم</a>
                                         <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#history">تاریخچه</a>
-                                        <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#target">اهداف و نقشه
+                                        <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#target">اهداف
+                                            و نقشه
                                             راهبردی</a>
                                         <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#creator">موسسین</a>
-                                        <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#board-of-directors">هیات
+                                        <a class="dropdown-item" target="_blank"
+                                           href="{{route('about-us')}}#board-of-directors">هیات
                                             مدیره</a>
-                                        <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#chart">چارت سازمانی</a>
+                                        <a class="dropdown-item" target="_blank" href="{{route('about-us')}}#chart">چارت
+                                            سازمانی</a>
                                         <div class="dropdown-divider">برای دانلود</div>
-                                        <a class="dropdown-item" target="_blank" href="{{route('download')}}">اسناد مرجع</a>
+                                        <a class="dropdown-item" target="_blank" href="{{route('download')}}">اسناد
+                                            مرجع</a>
                                         <a class="dropdown-item" href="{{route('download')}}"
                                            target="_blank">مجوزها</a>
-                                        <a class="dropdown-item"  target="_blank" href="{{route('download')}}">گزارش ها</a>
+                                        <a class="dropdown-item" target="_blank" href="{{route('download')}}">گزارش
+                                            ها</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -171,16 +177,21 @@
                                             <a class="dropdown-item has-sub dropdown-toggle">کمیته ها</a>
 
                                             <div class="submenu submenu-left dropdown-menu">
-                                                <a class="dropdown-item" target="_blank" href="{{route('committees.register')}}">کمیته
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('committees.register')}}">کمیته
                                                     عضویت</a>
-                                                <a class="dropdown-item" target="_blank" href="{{route('committees.awards')}}">کمیته
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('committees.awards')}}">کمیته
                                                     جایزه
                                                     ملی</a>
-                                                <a class="dropdown-item" target="_blank" href="{{route('committees.education')}}">کمیته
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('committees.education')}}">کمیته
                                                     آموزش</a>
-                                                <a class="dropdown-item" target="_blank" href="{{route('committees.researches')}}">کمیته
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('committees.researches')}}">کمیته
                                                     پژوهش و انتشارات</a>
-                                                <a class="dropdown-item" target="_blank" href="{{route('committees.certificate')}}">مرکز
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('committees.certificate')}}">مرکز
                                                     گواهینامه ها</a>
                                             </div>
                                         </li>
@@ -188,24 +199,30 @@
                                             <a class="dropdown-item has-sub dropdown-toggle">شاخه ها</a>
 
                                             <div class="submenu submenu-left dropdown-menu">
-                                                <a class="dropdown-item" target="_blank" href="{{route('branches.northWest')}}">شاخه
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('branches.northWest')}}">شاخه
                                                     شمال
                                                     غرب</a>
-                                                <a class="dropdown-item" target="_blank" href="{{route('branches.khozestan')}}">شاخه
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('branches.khozestan')}}">شاخه
                                                     خوزستان</a>
-                                                <a class="dropdown-item" target="_blank" href="{{route('branches.esfehan')}}">شاخه
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('branches.esfehan')}}">شاخه
                                                     اصفهان</a>
-                                                <a class="dropdown-item" target="_blank" href="{{route('branches.khorasan')}}">شاخه
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('branches.khorasan')}}">شاخه
                                                     خراسان</a>
                                             </div>
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="dropdown-item has-sub dropdown-toggle">کارگروه ها</a>
                                             <div class="submenu submenu-left dropdown-menu">
-                                                <a class="dropdown-item" target="_blank" href="{{route('WorkingGroups.women')}}">کار
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('WorkingGroups.women')}}">کار
                                                     گروه
                                                     زنان</a>
-                                                <a class="dropdown-item" target="_blank" href="{{route('WorkingGroups.PMIS')}}">کار
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('WorkingGroups.PMIS')}}">کار
                                                     گروه
                                                     PMIS</a>
                                                 <a class="dropdown-item" target="_blank"
@@ -224,14 +241,17 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" target="_blank" >
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
+                                       target="_blank">
                                         درباره اعضا </a>
                                     <div class="dropdown-menu">
                                         @guest
-                                            <a class="dropdown-item" target="_blank" href="{{route('register')}}">ثبت عضویت</a>
+                                            <a class="dropdown-item" target="_blank" href="{{route('register')}}">ثبت
+                                                عضویت</a>
                                         @endguest
 
-                                        <a class="dropdown-item" target="_blank" href="{{route('user.search')}}">يافتن اعضا</a>
+                                        <a class="dropdown-item" target="_blank" href="{{route('user.search')}}">يافتن
+                                            اعضا</a>
                                         <a class="dropdown-item" href="http://yc.ipma.ir/" target="_blank">شبكه اعضا
                                             جوان</a>
                                     </div>
@@ -241,13 +261,15 @@
                                 </li>
 
                                 <li class="nav-item ">
-                                    <a class="nav-link " target="_blank" href="{{route('message.create')}}">تماس با ما</a>
+                                    <a class="nav-link " target="_blank" href="{{route('message.create')}}">تماس با
+                                        ما</a>
                                 </li>
 
                                 @auth()
                                     @if(auth()->user()->roles == 0 || auth()->user()->roles == 1)
                                         <li class="nav-item ">
-                                            <a class="nav-link" target="_blank" href="{{route('cms.index')}}">پنل مدیریت</a>
+                                            <a class="nav-link" target="_blank" href="{{route('cms.index')}}">پنل
+                                                مدیریت</a>
                                         </li>
                                     @endif
 
@@ -274,7 +296,8 @@
                             {{$ipma->head_subtitle}}
                         </h3>
                         <p class="font-16 text-white ">{{$ipma->head_description}}</p>
-                        <a target="_blank" href="{{route($ipma->event_id==null ? "news.show":"event",[$ipma->event_id==null?$ipma->news_id:$ipma->event_id])}}"
+                        <a target="_blank"
+                           href="{{route($ipma->event_id==null ? "news.show":"event",[$ipma->event_id==null?$ipma->news_id:$ipma->event_id])}}"
                            class="btn btn-white font-16 text-black mt-5">ادامه مطلب</a>
                     </div>
                 </div>
@@ -318,7 +341,8 @@
                                     <img class="rounded" src="img/posts/{{$event->photo}}" alt="انجمن مدیریت پروژه">
                                 </div>
                                 <div class="popular-pack-in-img-mores">
-                                    <a target="_blank" href="{{route('event',[$event->id])}}" class="popular-pack-in-img-more font-16">شرکت
+                                    <a target="_blank" href="{{route('event',[$event->id])}}"
+                                       class="popular-pack-in-img-more font-16">شرکت
                                         در رویداد</a>
 
                                 </div>
@@ -394,7 +418,8 @@
 
                                         <div
                                                 class="last-pack-content-in-more text-center col-12 col-lg-2 text-lg-left text-center">
-                                            <a target="_blank" href="{{route("event",[$event->id])}}" class="btn btn-white-border">شرکت
+                                            <a target="_blank" href="{{route("event",[$event->id])}}"
+                                               class="btn btn-white-border">شرکت
                                                 در رویداد</a>
                                         </div>
                                     </div>
@@ -407,7 +432,8 @@
 
                 </div>
                 <div class="col-12 text-center last-pack-calender">
-                    <a class="btn text-center last-pack-calender-btn" target="_blank" href="{{route('event.calender')}}">مشاهده تقویم
+                    <a class="btn text-center last-pack-calender-btn" target="_blank"
+                       href="{{route('event.calender')}}">مشاهده تقویم
                         رویدادها</a>
                 </div>
             </div>
@@ -433,7 +459,8 @@
                         <div class="row">
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
 
-                                <a class="Committee-icons-text d-block text-white text-medium" target="_blank" href="{{route('gov')}}">
+                                <a class="Committee-icons-text d-block text-white text-medium" target="_blank"
+                                   href="{{route('gov')}}">
                                     <img class="mb-3" src="{{asset('img/003-patent-1.png')}}" alt="anjoman">
                                     <p>گواهینامه های چهار سطحی</p></a>
                             </div>
@@ -447,12 +474,13 @@
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
 
                                 <a class="Committee-icons-text d-block text-white text-medium"
-                                   target="_blank"  href="{{route('delta_gov')}}">
+                                   target="_blank" href="{{route('delta_gov')}}">
                                     <img class="mb-3" src="{{asset('img/delta.png')}}" alt="anjoman">
                                     <p>گواهینامه های دلتا</p></a>
                             </div>
                             <div class="col-6 text-center pt-5 pb-5">
-                                <a class="Committee-icons-text d-block text-white text-medium" target="_blank" href="//">
+                                <a class="Committee-icons-text d-block text-white text-medium" target="_blank"
+                                   href="//">
                                     <img class="mb-3" src="{{asset('img/branches.png')}}" alt="anjoman">
                                     <p>شاخه ها</p></a>
                             </div>
@@ -464,13 +492,15 @@
                             <div class="col-6 text-center bl-1 bb-1 pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
                                    target="_blank" href="{{route('gifts')}}">
-                                    <img class="mb-3" src="{{asset('img/006-sports-and-competition-1.png')}}" alt="anjoman">
+                                    <img class="mb-3" src="{{asset('img/006-sports-and-competition-1.png')}}"
+                                         alt="anjoman">
                                     <p>جایزه ملی مدیریت پروژه</p></a>
                             </div>
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
                                    target="_blank" href="{{route('research')}}">
-                                    <img class="mb-3" src="{{asset('img/006-sports-and-competition-1.png')}}" alt="anjoman">
+                                    <img class="mb-3" src="{{asset('img/006-sports-and-competition-1.png')}}"
+                                         alt="anjoman">
                                     <p>جایزه پژوهش</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
@@ -624,7 +654,7 @@
                 <div class="row">
                     <div class="link-img col-12 col-sm p-0">
                         <img class="img-fluid" alt="..." src="{{asset('img/camera-lens.jpg')}}">
-                        <a href="{{route('ImageArchive')}}" class="link-img-more" target="_blank" >
+                        <a href="{{route('ImageArchive')}}" class="link-img-more" target="_blank">
                             <i class="fa fa-image fa-2x"></i>
                             <p>آرشیو تصاویر</p>
                         </a>
@@ -632,7 +662,7 @@
                     </div>
                     <div class="link-img col-12 col-sm p-0">
                         <img class="img-fluid" alt="..." src="{{asset('img/film-camera.jpg')}}">
-                        <a class="link-img-more" href="{{route('VideoArchive')}}" target="_blank" >
+                        <a class="link-img-more" href="{{route('VideoArchive')}}" target="_blank">
                             <i class="fas fa-video fa-2x"></i>
                             <p>آرشیو ویدیو </p>
                         </a>
@@ -656,22 +686,10 @@
             <div class="row">
                 <div class="col-12 mt-sm-5 pt-sm-5">
                     <div class="logo-slid ">
-                        <div><a href="https://mci.ir/" target="_blank"><img src="{{asset('img/b1.png')}}"
-                                                                            style="zoom:1.3;"></a></div>
-                        <div><a href="https://www.iranianatlas.ir/" target="_blank"><img src="{{asset('img/b2.png')}}"
-                                                                                         style="zoom:1.3;"></a></div>
-                        <div><a href="http://www.farab.com/fa/" target="_blank"><img src="{{asset('img/b3.png')}}"
-                                                                                     style="zoom:1.3;"></a></div>
-                        <div><a href="https://www.mapnanyp.com/" target="_blank"><img src="{{asset('img/b4.png')}}"
-                                                                                      style="zoom:1.3;"></a></div>
-                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}"
-                                                                                 style="zoom:1.3;"></a></div>
-                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}"
-                                                                                 style="zoom:1.3;"></a></div>
-                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}"
-                                                                                 style="zoom:1.3;"></a></div>
-                        <div><a href="https://www.nyu.edu/" target="_blank"><img src="{{asset('img/b5.png')}}"
-                                                                                 style="zoom:1.3;"></a></div>
+                        @foreach($sponsors as $sponsor)
+                            <div><a href="{{$sponsor->url}}" target="_blank"><img src="{{asset('img/sponsor/'.$sponsor->photo)}}"
+                                                                     style="zoom:1.3;"></a></div>
+                        @endforeach
                     </div>
                 </div>
 
@@ -715,17 +733,20 @@
                     <!-- Links -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="http://yc.ipma.ir/" target="_blank" >شبکه اعضای جوان</a>
+                            <a class="nav-link text-gray font-14" href="http://yc.ipma.ir/" target="_blank">شبکه اعضای
+                                جوان</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="https://isac.msrt.ir/fa" target="_blank" >كميسيون انجمن هاي
+                            <a class="nav-link text-gray font-14" href="https://isac.msrt.ir/fa" target="_blank">كميسيون
+                                انجمن هاي
                                 علمي</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="https://www.ipma.world/" target="_blank" >ipma جهانی</a>
+                            <a class="nav-link text-gray font-14" href="https://www.ipma.world/" target="_blank">ipma
+                                جهانی</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-gray font-14" href="https://www.become.pm/" target="_blank" >become.pm</a>
+                            <a class="nav-link text-gray font-14" href="https://www.become.pm/" target="_blank">become.pm</a>
                         </li>
                         {{--    <li class="nav-item">
                                 <a class="nav-link text-gray font-14" href="{{route('about-us')}}#board-of-directors">اعضای
@@ -790,8 +811,8 @@
             </div>
             <div class="col-12 col-lg-6 ">
                 <ul class="social m-0 text-center text-lg-right">
-                    <li><a href="https://telegram.me/PMAIran" target="_blank" ></a></li>
-                    <li><a href="https://www.instagram.com/iranpma/" target="_blank" ></a></li>
+                    <li><a href="https://telegram.me/PMAIran" target="_blank"></a></li>
+                    <li><a href="https://www.instagram.com/iranpma/" target="_blank"></a></li>
                     {{--<li><a href="https://www.aparat.com/iranpma"></a></li>--}}
 
 
@@ -844,8 +865,8 @@
 
 
                     <div class="col-12 d-block mt-4 text-left">
-                        <label >مرا به خاظر بسپار</label>
-                        <input type="checkbox" name="rememberMe" id="rememberMe" value="remember" >
+                        <label>مرا به خاظر بسپار</label>
+                        <input type="checkbox" name="rememberMe" id="rememberMe" value="remember">
                     </div>
 
 
@@ -960,13 +981,13 @@
         clearLoginErrors();
         var username = $('#input_username').val();
         var password = $('#input_password').val();
-        var rememberMe =  $('#rememberMe').prop('checked');
+        var rememberMe = $('#rememberMe').prop('checked');
         $.post("/login",
             {
                 '_token': $('meta[name=csrf-token]').attr('content'),
                 username: username,
                 password: password,
-                rememberMe:rememberMe
+                rememberMe: rememberMe
             },
             function (json) {
                 console.log(json);

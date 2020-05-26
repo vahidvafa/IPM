@@ -26,7 +26,7 @@ class EventController extends Controller
 
     public function index()
     {
-        $events = Event::latest()->paginate(15);
+        $events = Event::whereState(1)->latest()->paginate(15);
         $titleHeader = $breadcrumb = "لیست تمام رویداد ها";
         return view('events', compact('events', 'titleHeader', 'breadcrumb'));
     }
@@ -121,7 +121,11 @@ class EventController extends Controller
      }
 return;*/
 
-        $event = Event::findOrFail($id);
+        $event = Event::whereState(1)->find($id);
+
+        if ($event ==null)
+            abort(404,"متاسفانه رویداد مورد نظر یافت نشد");
+
         $similars = Event::where("event_category_id", '=', $event->event_category_id)->where('id', '!=', $id)->limit(5)->get();
         $titleHeader = $event->title;
         $breadcrumb = "رویداد";

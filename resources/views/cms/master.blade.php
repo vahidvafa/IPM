@@ -91,6 +91,12 @@
                         <p>ویرایش صفحه اصلی</p>
                     </a>
                 </li>
+                <li class="nav-item {{checkMenu("cms/mainPage/sponsor",$title)}}">
+                    <a class="nav-link" href="{{route('cms.sponsor.edit')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>ویرایش اسپانسر ها</p>
+                    </a>
+                </li>
                 <li class="nav-item {{checkMenu("cms/events",$title)}}">
                     <a class="nav-link" href="{{route('event.index')}}">
                         <i class="material-icons">library_books</i>
@@ -103,12 +109,12 @@
                         <p>اخبار</p>
                     </a>
                 </li>
-{{--                <li class="nav-item {{checkMenu("cms/en/news",$title)}}">--}}
-{{--                    <a class="nav-link" href="{{route('news.en.index')}}">--}}
-{{--                        <i class="material-icons">library_books</i>--}}
-{{--                        <p>اخبار انگلیسی</p>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                <li class="nav-item {{checkMenu("cms/news/en",$title)}}">
+                    <a class="nav-link" href="{{route('news.en.index')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>اخبار انگلیسی</p>
+                    </a>
+                </li>
                 <li class="nav-item {{checkMenu("cms/messages",$title)}}">
                     <a class="nav-link" href="{{route('message.index')}}">
                         <i class="material-icons">library_books</i>

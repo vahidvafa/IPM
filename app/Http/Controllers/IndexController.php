@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Event;
 use App\EventCategory;
 use App\IPMA;
+use App\MainPageSponsor;
 use App\MembershipType;
 use App\News;
 use App\Order;
@@ -26,12 +27,14 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $events = Event::latest()->limit(2)->get(['id', 'photo', 'title', 'description', 'from_date']);
-        $news = News::latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
+        $events = Event::whereState(1)->latest()->limit(2)->get(['id', 'photo', 'title', 'description', 'from_date']);
+        $news = News::whereState(1)->latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
         $ipma = IPMA::latest()->first();
-        $eventsWithCats = EventCategory::withCount(["event"])->get();
+        $eventsWithCats = EventCategory::withCount(["event"=>function($q){
+            $q->whereState(1);
+        }])->get();
         $eventsWithCats->transform(function ($category) {
-            $category->event = Event::whereHas('category', function ($q) use ($category) {
+            $category->event = Event::whereState(1)->whereHas('category', function ($q) use ($category) {
                 $q->where('id', $category->id);
             })
                 ->take(3)
@@ -39,16 +42,16 @@ class IndexController extends Controller
             return $category;
         });
 
-//        return $eventsWithCats;
+        $sponsors = MainPageSponsor::all();
 
-        return view('index', compact('events', 'news', 'ipma', 'eventsWithCats'));
+        return view('index', compact('events', 'news', 'ipma', 'eventsWithCats','sponsors'));
     }
 
     public function indexEn()
     {
         $news = News::whereLangId(1)->latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
         $ipma = IPMA::latest()->first();
-        return view('en.indexEn', compact( 'news', 'ipma'));
+        return view('en.indexEn', compact('news', 'ipma'));
     }
 
     public function search()
@@ -112,10 +115,10 @@ class IndexController extends Controller
         $referenceId = ($request->has('ResNum')) ? $request->get('ResNum') : '----';
         if ($request->has('State') && $request->get('State') == "OK") {
             $referenceNumber = $request->get('RefNum');
-            try{
+            try {
                 $order = Order::whereReferenceId($referenceId)->whereStateId(0)->firstOrFail();
                 $find = true;
-            }catch (ModelNotFoundException $exception){
+            } catch (ModelNotFoundException $exception) {
                 $find = false;
             }
             if ($find) {
@@ -352,7 +355,6 @@ class IndexController extends Controller
         $request = \Request::except(['_token']);
 
 
-
         if ($request['newsOrEvent'] == 1) {
             $request['news_id'] = null;
             if (!\request()->has('event_id')) {
@@ -371,9 +373,7 @@ class IndexController extends Controller
         }
 
 
-
         unset($request['newsOrEvent'], $request['eventInput'], $request['newsInput']);
-
 
 
         if ($ipma->update($request))
@@ -401,8 +401,5 @@ class IndexController extends Controller
     }
 
 
-    public function test()
-    {
-        return "asdhasjdhaskh dkashdajshdkash dahs dasjd kdasd";
-    }
 }
+

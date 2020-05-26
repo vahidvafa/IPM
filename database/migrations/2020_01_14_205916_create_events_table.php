@@ -35,17 +35,13 @@ class CreateEventsTable extends Migration
             $table->bigInteger('working_group_id')->nullable();
             $table->bigInteger('user_id');
             $table->text('link')->nullable();
+            $table->tinyInteger('state')->unsigned()->default(0);
             $table->tinyInteger('lang_id',false,true)->default(1);
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('events');

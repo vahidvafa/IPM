@@ -2620,12 +2620,10 @@
 
             // $("#national_code").val("31231213");
 
-            $("input[type=text]").val("aksj da sj");
-
-            $("input[name=national_code]").val("31231213");
-            $("input[name=certificate_number]").val("31231213");
-            $("input[type=password]").val("12345678");
-
+            // $("input[type=text]").val("aksj da sj");
+            // $("input[name=national_code]").val("31231213");
+            // $("input[name=certificate_number]").val("31231213");
+            // $("input[type=password]").val("12345678");
 
             $(".datePickerInput").pDatepicker(
                 {

@@ -2,10 +2,12 @@
     <thead>
     <tr>
         <th>ردیف</th>
-        <th>کاربر</th>
-        <th>قیمت خرید</th>
+        <th>نام و نام خانوادگی</th>
+        <th>مبلغ</th>
         <th>تاریخ خرید</th>
         <th>توضیحات</th>
+        <th>شماره پیگیری بانک</th>
+        <th>وضغیت پرداخت</th>
     </tr>
     </thead>
     <tbody>
@@ -17,6 +19,8 @@
             <td>{{ number_format($order->total_price)}}</td>
             <td>{{ jdate($order->updated_at)->format('Y/m/d H:i') }}</td>
             <td>{{ $order->comment }}</td>
+            <td>{{ $order->reference_number }}</td>
+            <td>@switch($order->state_id) @case(0) منتظر پرداخت @break @case(1) موفق @break @case(2) ناموفق @break @endswitch</td>
         </tr>
     @endforeach
     </tbody>

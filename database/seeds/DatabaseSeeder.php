@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EventCategorySeeder::class);
         $this->call(CommitteeSeeder::class);
         $this->call(WorkingGroupSeeder::class);
+        $this->call(MainPageSponsorSeeder::class);
         factory(\App\User::class,10)->create();
         factory(\App\Event::class,40)->create();
         factory(\App\Profile::class,10)->create();

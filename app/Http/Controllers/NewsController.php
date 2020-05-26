@@ -72,7 +72,10 @@ class NewsController extends Controller
             "image" => "required|image",
         ], ['*.required' => 'وارد کردن این فیلد الزامی است']);
         try {
-            $news = new News($request->all());
+            $requestt = $request->all();
+            $requestt['state'] = (int) $request->has('state');
+
+            $news = new News($requestt);
             $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->move(public_path('/img/posts/'), $imageName);
             $news->photo = $imageName;
@@ -86,6 +89,7 @@ class NewsController extends Controller
             flash_message('success', __('string.successful'));
             return redirect()->route('news.index');
         } catch (\Exception $exception) {
+            return $exception->getMessage();
             flash_message('error', __('string.unsuccessful'));
             return back()->withInput($request->all());
         }
@@ -100,7 +104,10 @@ class NewsController extends Controller
             "image" => "required|image",
         ], ['*.required' => 'وارد کردن این فیلد الزامی است']);
         try {
-            $news = new News($request->all());
+            $requestt = $request->all();
+            $requestt['state'] = (int) (int) $request->has('state');
+
+            $news = new News($requestt);
             $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->move(public_path('/img/posts/'), $imageName);
             $news->photo = $imageName;
@@ -183,7 +190,11 @@ class NewsController extends Controller
             "image" => "image"
         ], ['*.required' => 'وارد کردن این فیلد الزامی است']);
         try {
-            $news->update($request->all());
+            $requestt = $request->all();
+            $requestt['state'] = (int) $request->has('state');
+
+            $news->update($requestt);
+
             if ($request->has('image')) {
                 $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
                 $request->file('image')->move(public_path('/img/posts/'), $imageName);
@@ -215,7 +226,10 @@ class NewsController extends Controller
             "image" => "image"
         ], ['*.required' => 'وارد کردن این فیلد الزامی است']);
         try {
-            $news->update($request->all());
+            $requestt = $request->all();
+            $requestt['state'] =(int) $request->has('state');
+
+            $news->update($requestt);
             if ($request->has('image')) {
                 $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
                 $request->file('image')->move(public_path('/img/posts/'), $imageName);

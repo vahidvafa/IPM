@@ -49,7 +49,7 @@
                                         </div>
                                         <div class="col-lg-12 mb-4">
                                             <label class="col-12">عکس خبر</label>
-                                            <input class="form-control-file my-2" type="file" name="image" id="image">
+                                            <input class="form-control-file my-2" type="file" name="image" id="image" >
                                             @if($errors->has('image'))
                                                 <div class="error text-danger">{{ $errors->first('image') }}</div>
                                             @endif
@@ -62,6 +62,15 @@
                                                 <div class="error text-danger">{{ $errors->first('pictures') }}</div>
                                             @endif
                                         </div>
+                                        <div class="col-lg-12 mb-4 ">
+                                            <label class="col-1">انتشار</label>
+                                            <input class="option-input"
+                                                   name="state" type="checkbox" @if((old('state')??request('state'))== 1) checked @endif >
+                                            @if($errors->has('state'))
+                                                <div class="error text-danger">{{ $errors->first('state') }}</div>
+                                            @endif
+                                        </div>
+
                                     </div>
                                     <div class="card-footer">
                                         <button class="btn btn-success" type="submit">افزودن</button>

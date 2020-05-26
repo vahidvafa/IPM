@@ -90,6 +90,11 @@ Route::middleware('auth')->group(function () {
             Route::post('mainPage/search', 'IndexController@mainPageSearch')->name('cms.mainPage.search');
 
 
+            Route::get('mainPage/sponsor', 'MainPageSponsorController@edit')->name('cms.sponsor.edit');
+            Route::post('mainPage/sponsor', 'MainPageSponsorController@store')->name('cms.sponsor.store');
+            Route::post('mainPage/sponsor/{id}/del', 'MainPageSponsorController@destroy')->name('cms.sponsor.del');
+
+
             Route::get('news/', 'NewsController@indexCms')->name('news.index');
             Route::get('news/create', 'NewsController@create')->name('news.create');
             Route::get('news/{news}/edit', 'NewsController@edit')->name('news.edit');
@@ -432,10 +437,6 @@ Route::get('test',function (){
         ->where('id','<=','40')->update(['branch_id'=>6,'committee_id'=>6,'working_group_id'=>6]);
 });
 
-Route::get('tst',function (){
-//    auth()->loginUsingId(1,true);
-//    return back();
-});
 
 Route::get('top-research-award',function (){
     $breadcrumb = $titleHeader = "جایزه پژوهش برتر";
@@ -459,6 +460,7 @@ Route::get('Periods-of-association',function (){
     $breadcrumb = $titleHeader = "ادوار انجمن";
     return view('Periods_of_association',compact('breadcrumb','titleHeader'));
 })->name('Periods_of_association');
+
 
 
 

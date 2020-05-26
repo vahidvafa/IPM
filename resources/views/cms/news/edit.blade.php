@@ -54,12 +54,22 @@
                                                 <div class="error text-danger">{{ $errors->first('image') }}</div>
                                             @endif
                                         </div>
+
                                         <div class="col-lg-12 mb-4">
                                             <label class="col-12">گالری ( همه ی عکس ها را انتخاب کنید )</label>
                                             <input class="form-control"
                                                    name="pictures[]" id="input-content" type="file" multiple>
                                             @if($errors->has('pictures'))
                                                 <div class="error text-danger">{{ $errors->first('pictures') }}</div>
+                                            @endif
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4 ">
+                                            <label class="col-1">انتشار</label>
+                                            <input class="option-input"
+                                                   name="state" type="checkbox" @if($news->state == 1) checked @endif >
+                                            @if($errors->has('state'))
+                                                <div class="error text-danger">{{ $errors->first('state') }}</div>
                                             @endif
                                         </div>
                                     </div>

@@ -17,7 +17,7 @@ class CreateMembershipTypesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('price');
-            $table->string('second_price');
+            $table->string('second_price')->nullable();
             $table->bigInteger('period')->default(0);
             $table->text('required_documents')->nullable();
             $table->tinyInteger('lang_id',false,true)->default(1);
