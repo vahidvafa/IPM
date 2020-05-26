@@ -28,7 +28,7 @@ class IndexController extends Controller
     public function index()
     {
         $events = Event::whereState(1)->latest()->limit(2)->get(['id', 'photo', 'title', 'description', 'from_date']);
-        $news = News::whereState(1)->latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
+        $news = News::whereState(1)->whereLangId(1)->latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
         $ipma = IPMA::latest()->first();
         $eventsWithCats = EventCategory::withCount(["event"=>function($q){
             $q->whereState(1);
@@ -49,7 +49,7 @@ class IndexController extends Controller
 
     public function indexEn()
     {
-        $news = News::whereLangId(1)->latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
+        $news = News::whereLangId(2)->latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
         $ipma = IPMA::latest()->first();
         return view('en.indexEn', compact('news', 'ipma'));
     }

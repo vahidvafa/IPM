@@ -85,7 +85,10 @@ class EventController extends Controller
             'start_register_date.*' => 'فرمت تاریخ انتخابی صحیح نمی باشد'
         ]);
         try {
-            $event = new Event($request->all());
+            $requestt = $request->all();
+            $requestt['state'] = (int) $request->has('state');
+
+            $event = new Event($requestt);
             $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->move(public_path('img/posts'), $imageName);
             $event->photo = $imageName;
@@ -186,7 +189,10 @@ return;*/
 
 
         try {
-            $event->update($request->all());
+            $requestt = $request->all();
+            $requestt['state'] = (int) $request->has('state');
+
+            $event->update($requestt);
             if ($request->has('image')) {
                 $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
                 $request->file('image')->move(public_path('/img/posts'), $imageName);

@@ -65,6 +65,13 @@
                                     <span class="text-black-light">{{$user->email}}</span>
                                 </p>
 
+                                    @if($user->membership_type_id == 2)
+                                <p class="font-16 text-regular text-black">
+                                    <span>نام شرکت:</span>
+                                    <span class="text-black-light">{{$user->companies[0]->name}}</span>
+                                </p>
+                                    @endif
+
                                 @if( $user->resume_address!=null && File::exists("files/resume/$user->resume_address"))
                                     <p class="font-16 text-regular text-black ">
                                         <a href="{{asset("files/resume/$user->resume_address")}}" class=" text-black">

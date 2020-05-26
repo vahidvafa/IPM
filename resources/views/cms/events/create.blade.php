@@ -218,6 +218,14 @@
                                                 <div class="error text-danger">{{ $errors->first('link') }}</div>
                                             @endif
                                         </div>
+                                        <div class="col-lg-12 mb-4 ">
+                                            <label class="col-1">انتشار</label>
+                                            <input class="option-input"
+                                                   name="state" type="checkbox" @if((old('state') ?? request('state'))== 1) checked @endif >
+                                            @if($errors->has('state'))
+                                                <div class="error text-danger">{{ $errors->first('state') }}</div>
+                                            @endif
+                                        </div>
 
                                     </div>
                                     <div class="card-footer">
