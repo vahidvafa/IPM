@@ -44,7 +44,7 @@ class News extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title', 'description', 'detail','photo','state'];
+    protected $fillable = ['title', 'description', 'detail','photo','lang_id','state'];
 
     public function pictures()
     {

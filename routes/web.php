@@ -105,9 +105,9 @@ Route::middleware('auth')->group(function () {
             // add edit del update english news
             Route::get('news/en', 'NewsController@indexCmsEn')->name('news.en.index');
             Route::get('news/en/create', 'NewsController@createEn')->name('news.en.create');
-            Route::get('news/en/{news}/edit', 'NewsController@editEn')->name('news.en.edit');
-            Route::post('news/en/store', 'NewsController@storeEn')->name('news.en.store');
-            Route::post('news/en/{news}/update', 'NewsController@updateEn')->name('news.en.update');
+//            Route::get('news/en/{news}/edit', 'NewsController@editEn')->name('news.en.edit');
+//            Route::post('news/en/store', 'NewsController@storeEn')->name('news.en.store');
+//            Route::post('news/en/{news}/update', 'NewsController@updateEn')->name('news.en.update');
 
 
             Route::post('picture/{picture}/delete', 'PictureController@destroy')->name('picture.delete');

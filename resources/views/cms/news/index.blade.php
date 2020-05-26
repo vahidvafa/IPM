@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-header card-header-warning">
                 <div>
-                    <a href="{{route('news.create')}}">
+                    <a href="{{($lang_id == 1 ) ? route('news.create') : route('news.en.create')}}">
                         <i class="material-icons" style="float: left;font-size: 32px;color: white">add_box</i>
                     </a>
                     <h4 class="card-title">لیست خبر ها</h4>

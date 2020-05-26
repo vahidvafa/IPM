@@ -19,6 +19,8 @@
                             <div class="card-body">
                                 <form action="{{route('news.update',[$news->id])}}" method="post" enctype="multipart/form-data">
                                     @csrf
+                                    <input type="hidden" name="lang_id" value="{{$news->lang_id}}">
+
                                     <div class="row">
                                         <div class="form-group col-lg-12 mb-4">
                                             <label class="col-12">عنوان خبر</label>

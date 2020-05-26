@@ -15,15 +15,17 @@ class NewsController extends Controller
      */
     public function indexCms()
     {
-        $news = News::latest()->paginate(10);
-        return view('cms.news.index', compact('news'));
+        $news = News::latest()->where('lang_id',1)->paginate(10);
+        $lang_id = 1;
+        return view('cms.news.index', compact('news','lang_id'));
     }
 
 
     public function indexCmsEn()
     {
-        $news = News::latest()->paginate(10);
-        return view('cms.news.en.index', compact('news'));
+        $news = News::latest()->where('lang_id',2)->paginate(10);
+        $lang_id = 2;
+        return view('cms.news.index', compact('news','lang_id'));
     }
 
     public function index()
@@ -49,12 +51,14 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('cms.news.create');
+        $lang_id = 1;
+        return view('cms.news.create',compact('lang_id'));
     }
 
     public function createEn()
     {
-        return view('cms.news.en.create');
+        $lang_id = 2;
+        return view('cms.news.create',compact('lang_id'));
     }
 
     /**
@@ -65,6 +69,7 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+//        return response()->json($request->all());
         $this->validate($request, [
             "title" => "required",
             "description" => "required",
@@ -80,14 +85,19 @@ class NewsController extends Controller
             $request->file('image')->move(public_path('/img/posts/'), $imageName);
             $news->photo = $imageName;
             $news->save();
-            for ($i = 0; $i < count($request->file('pictures')); $i++) {
-                $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
-                $request->file('pictures')[$i]->move(public_path('/img/posts/'), $imageName);
-                $photo = new Picture(['url' => $imageName]);
-                $news->pictures()->save($photo);
+            if ($request->has('pictures')) {
+                for ($i = 0; $i < count($request->file('pictures')); $i++) {
+                    $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
+                    $request->file('pictures')[$i]->move(public_path('/img/posts/'), $imageName);
+                    $photo = new Picture(['url' => $imageName]);
+                    $news->pictures()->save($photo);
+                }
             }
             flash_message('success', __('string.successful'));
-            return redirect()->route('news.index');
+            if ($request->get('lang_id') == 1)
+                return redirect()->route('news.index');
+            else
+                return redirect()->route('news.en.index');
         } catch (\Exception $exception) {
             return $exception->getMessage();
             flash_message('error', __('string.unsuccessful'));
@@ -95,36 +105,36 @@ class NewsController extends Controller
         }
     }
 
-    public function storeEn(Request $request)
-    {
-        $this->validate($request, [
-            "title" => "required",
-            "description" => "required",
-            "detail" => "required",
-            "image" => "required|image",
-        ], ['*.required' => 'وارد کردن این فیلد الزامی است']);
-        try {
-            $requestt = $request->all();
-            $requestt['state'] = (int) (int) $request->has('state');
-
-            $news = new News($requestt);
-            $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('/img/posts/'), $imageName);
-            $news->photo = $imageName;
-            $news->save();
-            for ($i = 0; $i < count($request->file('pictures')); $i++) {
-                $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
-                $request->file('pictures')[$i]->move(public_path('/img/posts/'), $imageName);
-                $photo = new Picture(['url' => $imageName]);
-                $news->pictures()->save($photo);
-            }
-            flash_message('success', __('string.successful'));
-            return redirect()->route('news.index');
-        } catch (\Exception $exception) {
-            flash_message('error', __('string.unsuccessful'));
-            return back()->withInput($request->all());
-        }
-    }
+//    public function storeEn(Request $request)
+//    {
+//        $this->validate($request, [
+//            "title" => "required",
+//            "description" => "required",
+//            "detail" => "required",
+//            "image" => "required|image",
+//        ], ['*.required' => 'وارد کردن این فیلد الزامی است']);
+//        try {
+//            $requestt = $request->all();
+//            $requestt['state'] = (int) (int) $request->has('state');
+//
+//            $news = new News($requestt);
+//            $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+//            $request->file('image')->move(public_path('/img/posts/'), $imageName);
+//            $news->photo = $imageName;
+//            $news->save();
+//            for ($i = 0; $i < count($request->file('pictures')); $i++) {
+//                $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
+//                $request->file('pictures')[$i]->move(public_path('/img/posts/'), $imageName);
+//                $photo = new Picture(['url' => $imageName]);
+//                $news->pictures()->save($photo);
+//            }
+//            flash_message('success', __('string.successful'));
+//            return redirect()->route('news.index');
+//        } catch (\Exception $exception) {
+//            flash_message('error', __('string.unsuccessful'));
+//            return back()->withInput($request->all());
+//        }
+//    }
 
     /**
      * Display the specified resource.
@@ -169,10 +179,10 @@ class NewsController extends Controller
         return view('cms.news.edit', compact('news'));
     }
 
-    public function editEn(News $news)
-    {
-        return view('cms.news.en.edit', compact('news'));
-    }
+//    public function editEn(News $news)
+//    {
+//        return view('cms.news.en.edit', compact('news'));
+//    }
 
     /**
      * Update the specified resource in storage.
@@ -210,47 +220,50 @@ class NewsController extends Controller
                 }
             }
             flash_message('success', __('string.successful.edit'));
-            return redirect()->route('news.index');
+            if ($request->get('lang_id') == 1)
+                return redirect()->route('news.index');
+            else
+                return redirect()->route('news.en.index');
         } catch (\Exception $exception) {
             flash_message('error', __('string.unsuccessful'));
             return back();
         }
     }
 
-    public function updateEn(Request $request, News $news)
-    {
-        $this->validate($request, [
-            "title" => "required",
-            "description" => "required",
-            "detail" => "required",
-            "image" => "image"
-        ], ['*.required' => 'وارد کردن این فیلد الزامی است']);
-        try {
-            $requestt = $request->all();
-            $requestt['state'] =(int) $request->has('state');
-
-            $news->update($requestt);
-            if ($request->has('image')) {
-                $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $request->file('image')->move(public_path('/img/posts/'), $imageName);
-                $news->photo = $imageName;
-                $news->save();
-            }
-            if ($request->hasFile('pictures')) {
-                for ($i = 0; $i < count($request->file('pictures')); $i++) {
-                    $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
-                    $request->file('pictures')[$i]->move(public_path('/img/posts/'), $imageName);
-                    $photo = new Picture(['url' => $imageName]);
-                    $news->pictures()->save($photo);
-                }
-            }
-            flash_message('success', __('string.successful.edit'));
-            return redirect()->route('news.index');
-        } catch (\Exception $exception) {
-            flash_message('error', __('string.unsuccessful'));
-            return back();
-        }
-    }
+//    public function updateEn(Request $request, News $news)
+//    {
+//        $this->validate($request, [
+//            "title" => "required",
+//            "description" => "required",
+//            "detail" => "required",
+//            "image" => "image"
+//        ], ['*.required' => 'وارد کردن این فیلد الزامی است']);
+//        try {
+//            $requestt = $request->all();
+//            $requestt['state'] =(int) $request->has('state');
+//
+//            $news->update($requestt);
+//            if ($request->has('image')) {
+//                $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+//                $request->file('image')->move(public_path('/img/posts/'), $imageName);
+//                $news->photo = $imageName;
+//                $news->save();
+//            }
+//            if ($request->hasFile('pictures')) {
+//                for ($i = 0; $i < count($request->file('pictures')); $i++) {
+//                    $imageName = time() . $i . '.' . $request->file('pictures')[$i]->getClientOriginalExtension();
+//                    $request->file('pictures')[$i]->move(public_path('/img/posts/'), $imageName);
+//                    $photo = new Picture(['url' => $imageName]);
+//                    $news->pictures()->save($photo);
+//                }
+//            }
+//            flash_message('success', __('string.successful.edit'));
+//            return redirect()->route('news.index');
+//        } catch (\Exception $exception) {
+//            flash_message('error', __('string.unsuccessful'));
+//            return back();
+//        }
+//    }
 
     /**
      * Remove the specified resource from storage.
