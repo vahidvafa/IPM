@@ -441,8 +441,8 @@
                             <strong id="password-error-text"></strong>
                         </div>
                     </div>
-                    <a href="/" class="d-block text-left text-dark-violet font-14 text-light2">رمز عبور خود را فراموش
-                        کرده ام؟</a>
+                    <a href="{{(isset($event)) ? route('register.free',[$event]): route('register.free')}}" class="d-block text-left text-dark-violet font-14 text-light2">عضویت هواداری</a>
+{{--                    <a href="#" class="d-block text-left text-dark-violet font-14 text-light2">رمز عبور خود را فراموش کرده ام؟</a>--}}
                     <div id="text-error" class="error text-danger pl-3"
                          style="display: block;">
                         <strong id="text-error"></strong>
@@ -450,7 +450,7 @@
 
 
                     <div class="col-12 d-block mt-4 text-left">
-                        <label >مرا به خاظر بسپار</label>
+                        <label >مرا به خاطر بسپار</label>
                         <input type="checkbox" name="rememberMe" id="rememberMe" value="remember" >
                     </div>
 

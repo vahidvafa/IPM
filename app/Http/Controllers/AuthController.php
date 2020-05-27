@@ -31,11 +31,13 @@ class AuthController extends Controller
         return view('register', compact('memberships', 'titleHeader', 'breadcrumb', 'type', 'branches'));
     }
 
-    public function freeRegister()
+    public function freeRegister($event = null)
     {
         $titleHeader = $breadcrumb = "عضویت هواداری";
         $type = 0;
-        return view('free_register', compact('titleHeader', 'breadcrumb', 'type'));
+        if (!$event)
+            $event = 0;
+        return view('free_register', compact('titleHeader', 'breadcrumb', 'type','event'));
     }
 
     public function postRegister(Request $request)
@@ -276,6 +278,7 @@ class AuthController extends Controller
             'email.unique' => 'این ایمیل قبلا ثبت شده است',
             'mobile.unique' => 'این شماره موبایل قبلا ثبت شده است',
         ]);
+        $request->merge(['birth_date' => tr_num($request->get('birth_date'), 'en')]);
         $slug = str_replace(' ', '-', $request->get('name_en'));
         $number = 1;
         while (User::whereSlug($slug)->exists()) {
@@ -312,9 +315,13 @@ class AuthController extends Controller
         });
         if ($isSuccessful) {
             auth()->loginUsingId($user->id);
-            return redirect()->to(route('main'));
+            if ($request->get('event') == 0) {
+                return redirect()->to(route('main'));
+            }else {
+                return redirect()->to(route('event', [$request->get('event')]));
+            }
         }
-        return back();
+        return back()->withInput();
     }
 
     public function postLogin(Request $request)

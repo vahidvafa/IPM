@@ -36,7 +36,7 @@ Route::get('/searchResult/', 'IndexController@search')->name('search');
 Route::post('/searchResult', 'IndexController@search')->name('search.post');
 
 Route::get('/register', 'AuthController@register')->name('register')->middleware('guest');
-Route::get('/register/free', 'AuthController@freeRegister')->name('register.free')->middleware('guest');
+Route::get('/register/free/{event?}', 'AuthController@freeRegister')->name('register.free')->middleware('guest');
 Route::post('/register/free/store', 'AuthController@postFreeRegister')->name('register.free.store')->middleware('guest');
 Route::post('/register/store', 'AuthController@postRegister')->name('register.store')->middleware('guest');
 
