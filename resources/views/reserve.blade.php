@@ -66,10 +66,10 @@
                                 <div class="input-form col-md-3">
                                     <div class="row">
                                         <div class="col-12">
-                                            <label style="color: #D21F3C;">حذف کردن </label>
+                                            <label style="color: #D21F3C;"> </label>
                                         </div>
-                                        <div class="col-12">
-                                            <button class="deleteBtn col-3 btn btn-white-border center-y disabled" style="background-color: dimgray;border: dimgray;color: white;">حذف کردن -</button>
+                                        <div class="col-12 mt-5">
+                                            <button class="deleteBtn col-3 btn btn-white-border center-y disabled" style="background-color: dimgray;border: dimgray;color: white;">حذف کردن</button>
                                         </div>
                                     </div>
                                 </div>
@@ -139,11 +139,8 @@
                                     </div>
                                     <div class="input-form col-md-3">
                                         <div class="row">
-                                            <div class="col-12">
-                                                <label style="color: #D21F3C;">حذف کردن </label>
-                                            </div>
-                                            <div class="col-12">
-                                                <button onclick="deleteRow('old-{{$i}}')" class="deleteBtn col-3 btn btn-white-border center-y" style="background-color: #D21F3C;border: #D21F3C;color: white;">حذف کردن -</button>
+                                            <div class="col-12 mt-5">
+                                                <button onclick="deleteRow('old-{{$i}}')" class="deleteBtn col-3 btn btn-white-border center-y" style="background-color: #D21F3C;border: #D21F3C;color: white;">حذف کردن</button>
                                             </div>
                                         </div>
                                     </div>
@@ -159,14 +156,19 @@
                         <button type="button" onclick="addRow()" class="col-3 btn btn-white-border center-y" style="background-color: #4CBB17;border: #4CBB17;color: white;">اضافه کردن +</button>
                     </div>
                     <div class="row mt-5">
-                        <div class="col-12 col-md-8">
+                        <div class="col-12 col-md-5">
                             <input class="form-control w-100" type="text" name="gift" placeholder="کد هدیه ( در صورت داشتن کد هدیه وارد کنید )" value="{{old('gift')}}">
                                 <div id="gift-error" class="error text-danger pl-3" for="gift"
                                      style="display: block;">
                                     <strong>{{ old('gift_error') }}</strong>
                                 </div>
                         </div>
-                        <div class="col-12 col-md-2">
+                        @if($event->link !=null )
+                        <div class="col-12 col-md-3 ml-5">
+                            <a class="btn btn-success" href="{{$event->link}}" target="_blank" >فرم ساز</a>
+                        </div>
+                        @endif
+                        <div class="col-12 col-md-12 text-center mt-5">
                             <button type="submit" class="col-3 btn btn-white-border centr-ey ">ادامه</button>
                         </div>
                     </div>
@@ -297,10 +299,10 @@
             "                            <div class=\"input-form col-md-3\">\n" +
             "                                <div class=\"row\">\n" +
             "                                    <div class=\"col-12\">\n" +
-            "                                        <label style=\"color: #D21F3C;\">حذف کردن </label>\n" +
+            "                                        <label style=\"color: #D21F3C;\"></label>\n" +
             "                                    </div>\n" +
-            "                                    <div class=\"col-12\">\n" +
-            "                                        <button  onclick=\"deleteRow(" + row_id + ")\" class=\"deleteBtn col-3 btn btn-white-border center-y \" style=\"background-color: #D21F3C;border: #D21F3C;color: white;\">حذف کردن -</button>\n" +
+            "                                    <div class=\"col-12 mt-5\">\n" +
+            "                                        <button  onclick=\"deleteRow(" + row_id + ")\" class=\"deleteBtn col-3 btn btn-white-border center-y \" style=\"background-color: #D21F3C;border: #D21F3C;color: white;\">حذف کردن</button>\n" +
             "                                    </div>\n" +
             "                                </div>\n" +
             "                            </div>\n" +

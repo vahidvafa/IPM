@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\Document;
 use App\Exports\UsersExport;
+use App\Mail\ReminderMail;
 use App\Membership;
 use App\MembershipType;
 use App\Profile;
@@ -309,6 +310,8 @@ class UserController extends Controller
                     $user->education()->update($request->all('education')['education']);
                 break;
         }
+
+
 
         flash_message("success", __('string.successful'));
 

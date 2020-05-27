@@ -74,7 +74,7 @@
                     @foreach($orders as $order)
                         <tr class="table-@switch($order->state_id) @case(0)light @break @case(1)success @break @case(2)danger @break @endswitch " >
                             <th class="row">{{($loop->index)+1}}</th>
-                            <td>{{$order->user->first_name}} {{$order->user->last_name}}</td>
+                            <td>{{$order->user->first_name??""}} {{$order->user->last_name??""}}</td>
                             <td>عنوان</td>
                             <td>{{$order->total_price}}</td>
                             <td>{{$order->reference_id}}</td>

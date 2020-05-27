@@ -483,7 +483,7 @@
                                        aria-invalid="false"
                                        placeholder="لینک یوتویوپ"
                                        value="{{$user->profile[0]->youTube}}"
-                                       required>
+                                       >
 
                             </div>
 
@@ -493,7 +493,7 @@
                                        aria-invalid="false"
                                        placeholder="لینک فیسبوک"
                                        value="{{$user->profile[0]->facebook}}"
-                                       required>
+                                       >
 
                             </div>
 
@@ -503,7 +503,7 @@
                                        aria-invalid="false"
                                        placeholder="لینک اینستاگرام"
                                        value="{{$user->profile[0]->instagram}}"
-                                       required>
+                                       >
 
                             </div>
 
@@ -513,7 +513,7 @@
                                        aria-invalid="false"
                                        placeholder="لینک تلگرام"
                                        value="{{$user->profile[0]->telegram}}"
-                                       required>
+                                       >
 
                             </div>
 
@@ -523,7 +523,7 @@
                                        aria-invalid="false"
                                        placeholder="لینک تویتر"
                                        value="{{$user->profile[0]->twitter}}"
-                                       required>
+                                       >
 
                             </div>
 

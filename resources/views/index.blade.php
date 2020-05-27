@@ -240,7 +240,38 @@
                                         </li>
                                     </ul>
                                 </li>
+
                                 <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                        درباره اعضا</a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+
+                                        @guest
+                                            <a class="nav-item dropdown-item" target="_blank" href="{{route('register')}}">ثبت
+                                                عضویت</a>
+                                        @endguest
+
+                                        <li class="nav-item dropdown">
+                                            <a class="dropdown-item has-sub dropdown-toggle">اعضای</a>
+
+                                            <div class="submenu submenu-left dropdown-menu">
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('user.index')}}">حقیقی
+                                                </a>
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('committees')}}">حقوقی
+                                                    </a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="dropdown-item" href="http://yc.ipma.ir/" target="_blank">شبكه اعضا
+                                                جوان</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+
+                                {{--<li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
                                        target="_blank">
                                         درباره اعضا </a>
@@ -250,12 +281,18 @@
                                                 عضویت</a>
                                         @endguest
 
-                                        <a class="dropdown-item" target="_blank" href="{{route('user.search')}}">يافتن
-                                            اعضا</a>
+                                        <a class="ropdown-item has-sub dropdown-toggle" --}}{{--target="_blank" href="{{route('user.search')}}"--}}{{-->يافتن
+                                            اعضا </a>
+                                            <div class="submenu submenu-left dropdown-menu">
+                                                <a class="dropdown-item" target="_blank">
+                                                </a>
+                                            </div>
+
                                         <a class="dropdown-item" href="http://yc.ipma.ir/" target="_blank">شبكه اعضا
                                             جوان</a>
                                     </div>
                                 </li>
+--}}
                                 <li class="nav-item">
                                     <a class="nav-link " target="_blank" href="{{route('job.index')}}">فرصت های شغلی</a>
                                 </li>
@@ -482,7 +519,7 @@
                                 <a class="Committee-icons-text d-block text-white text-medium" target="_blank"
                                    href="//">
                                     <img class="mb-3" src="{{asset('img/branches.png')}}" alt="anjoman">
-                                    <p>شاخه ها</p></a>
+                                    <p>همکاران آموزشی</p></a>
                             </div>
                         </div>
                     </div>
@@ -501,7 +538,7 @@
                                    target="_blank" href="{{route('research')}}">
                                     <img class="mb-3" src="{{asset('img/006-sports-and-competition-1.png')}}"
                                          alt="anjoman">
-                                    <p>جایزه پژوهش</p></a>
+                                    <p>جایزه پژوهش برتر</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
@@ -510,11 +547,12 @@
                                     <p>جستجوی اعضا</p></a>
                             </div>
 
-                            <div class="col-6 text-center   pt-5 pb-5">
+                            <div class="col-6 text-center pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
                                    target="_blank" href="{{route('top-research-award')}}">
-                                    <img class="mb-3" src="{{asset('img/link.png')}}" alt="anjoman">
-                                    <p>جایزه مدیریت پروژه برتر</p></a>
+                                    <img class="mb-3" src="{{asset('img/006-sports-and-competition-1.png')}}"
+                                         alt="anjoman">
+                                    <p>جایزه مدیر پروژه برتر</p></a>
                             </div>
 
                             <!--<div class="col-6 text-center bl-1  pt-5 pb-5">-->
@@ -687,8 +725,9 @@
                 <div class="col-12 mt-sm-5 pt-sm-5">
                     <div class="logo-slid ">
                         @foreach($sponsors as $sponsor)
-                            <div><a href="{{$sponsor->url}}" target="_blank"><img src="{{asset('img/sponsor/'.$sponsor->photo)}}"
-                                                                     style="zoom:1.3;"></a></div>
+                            <div><a href="{{$sponsor->url}}" target="_blank"><img
+                                            src="{{asset('img/sponsor/'.$sponsor->photo)}}"
+                                            style="zoom:1.3;"></a></div>
                         @endforeach
                     </div>
                 </div>
@@ -856,8 +895,9 @@
                             <strong id="password-error-text"></strong>
                         </div>
                     </div>
-                    <a href="{{route('register.free')}}" class="d-block text-left text-dark-violet font-14 text-light2">عضویت هواداری</a>
-{{--                    <a href="#" class="d-block text-left text-dark-violet font-14 text-light2">رمز عبور خود را فراموش کرده ام؟</a>--}}
+                    <a href="{{route('register.free')}}" class="d-block text-left text-dark-violet font-14 text-light2">عضویت
+                        هواداری</a>
+                    {{--                    <a href="#" class="d-block text-left text-dark-violet font-14 text-light2">رمز عبور خود را فراموش کرده ام؟</a>--}}
                     <div id="text-error" class="error text-danger pl-3"
                          style="display: block;">
                         <strong id="text-error"></strong>

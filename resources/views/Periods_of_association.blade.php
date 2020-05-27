@@ -13,9 +13,73 @@
                         <h4 class="card-title v-purple text-white text-center mt-5 mb-3 ">
                             ادوار انجمن (دوره اول)
                         </h4>
-                        
-                        <p>ادوار انجمن ادوار انجمن ادوار انجمن ادوار انجمن ادوار انجمن ادوار انجمن ادوار انجمن</p>
-                        
+
+                        <div class="col-12 text-center">
+                            <a href="{{asset('img/periods_of_association/1.png')}}" target="_blank" >
+                        <img src="{{asset('img/periods_of_association/1.png')}}" class="text-center" />
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="col-12">
+
+                        <h4 class="card-title v-purple text-white text-center mt-5 mb-3 ">
+                            ادوار انجمن (دوره دوم)
+                        </h4>
+
+                        <div class="col-12 text-center">
+                        <img src="{{asset('img/periods_of_association/2.png')}}" />
+                        </div>
+                    </div>
+                    <div class="col-12">
+
+                        <h4 class="card-title v-purple text-white text-center mt-5 mb-3 ">
+                            ادوار انجمن (دوره سوم)
+                        </h4>
+
+                        <div class="col-12 text-center">
+                        <img src="{{asset('img/periods_of_association/3.png')}}" />
+                        </div>
+                    </div>
+                    <div class="col-12">
+
+                        <h4 class="card-title v-purple text-white text-center mt-5 mb-3 ">
+                            ادوار انجمن (دوره چهارم)
+                        </h4>
+
+                        <div class="col-12 text-center">
+                        <img src="{{asset('img/periods_of_association/4.png')}}" />
+                        </div>
+                    </div>
+                    <div class="col-12">
+
+                        <h4 class="card-title v-purple text-white text-center mt-5 mb-3 ">
+                            ادوار انجمن (دوره پنجم)
+                        </h4>
+
+                        <div class="col-12 text-center">
+                        <img src="{{asset('img/periods_of_association/5.png')}}" />
+                        </div>
+                    </div>
+                    <div class="col-12">
+
+                        <h4 class="card-title v-purple text-white text-center mt-5 mb-3 ">
+                            ادوار انجمن (دوره ششم)
+                        </h4>
+
+                        <div class="col-12 text-center">
+                        <img src="{{asset('img/periods_of_association/6.png')}}" />
+                        </div>
+                    </div>
+                    <div class="col-12">
+
+                        <h4 class="card-title v-purple text-white text-center mt-5 mb-3 ">
+                            ادوار انجمن (دوره هفتم)
+                        </h4>
+
+                        <div class="col-12 text-center">
+                        <img src="{{asset('img/periods_of_association/7.png')}}" />
+                        </div>
                     </div>
                 </div>
             </div>

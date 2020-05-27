@@ -226,17 +226,33 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" target="_blank" >
-                                        درباره اعضا </a>
-                                    <div class="dropdown-menu">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                        درباره اعضا</a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+
                                         @guest
-                                            <a class="dropdown-item" target="_blank" href="{{route('register')}}">ثبت عضویت</a>
+                                            <a class="nav-item dropdown-item" target="_blank" href="{{route('register')}}">ثبت
+                                                عضویت</a>
                                         @endguest
 
-                                        <a class="dropdown-item" target="_blank" href="{{route('user.search')}}">يافتن اعضا</a>
-                                        <a class="dropdown-item" href="http://yc.ipma.ir/" target="_blank">شبكه اعضا
-                                            جوان</a>
-                                    </div>
+                                        <li class="nav-item dropdown">
+                                            <a class="dropdown-item has-sub dropdown-toggle">اعضای</a>
+
+                                            <div class="submenu submenu-left dropdown-menu">
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('user.index')}}">حقیقی
+                                                </a>
+                                                <a class="dropdown-item" target="_blank"
+                                                   href="{{route('committees')}}">حقوقی
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="dropdown-item" href="http://yc.ipma.ir/" target="_blank">شبكه اعضا
+                                                جوان</a>
+                                        </li>
+
+                                    </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link " target="_blank" href="{{route('job.index')}}">فرصت های شغلی</a>
