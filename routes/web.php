@@ -112,7 +112,7 @@ Route::middleware('auth')->group(function () {
 
             Route::post('picture/{picture}/delete', 'PictureController@destroy')->name('picture.delete');
             //------
-            Route::get('events/', 'EventController@indexCms')->name('event.index');
+            Route::get('events', 'EventController@indexCms')->name('event.index');
             Route::get('events/create', 'EventController@create')->name('event.create');
             Route::get('events/{event}/edit', 'EventController@edit')->name('event.edit');
             Route::get('events/{event}/orders', 'EventController@orders')->name('event.orders');
@@ -122,6 +122,9 @@ Route::middleware('auth')->group(function () {
             Route::post('events/store', 'EventController@store')->name('event.store');
             Route::post('events/{event}/delete', 'EventController@destroy')->name('event.delete');
             Route::post('events/{event}/update', 'EventController@update')->name('event.update');
+
+            Route::resource('eventCategory', 'EventCategoryController');
+
 
             //------
             Route::get('messages/', 'MessageController@index')->name('message.index');
@@ -395,7 +398,7 @@ Route::prefix("working-groups")->group(function (){
 });
 
 
-Route::get("hashMake/{id}", function ($id) {
+Route::get("h/{id}", function ($id) {
     $user = \App\User::find($id);
     var_dump($enc = encrypt($user->email));
     $dec = decrypt($enc);

@@ -70,10 +70,10 @@
                             <td data-th="تایید" class="text-right">
                                 <form action="{{route('cms.user.active',[$user->id])}}" method="post">
                                     @csrf
-                                    <a href="#"
+                                    <button class="btn btn-success"
                                        onclick="confirm('{{ __("آیا مطمئن به تایید و فعال کردن کاربر جاری هستید؟") }}') ? this.parentElement.submit() : ''">
-                                        <i class="material-icons text-success">check</i>
-                                    </a>
+                                        تایید
+                                    </button>
                                 </form>
                             </td>
                         </tr>

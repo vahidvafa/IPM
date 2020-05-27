@@ -59,10 +59,10 @@
                                 <form action="{{route('cms.user.active',[$user->id])}}" method="post">
                                     @csrf
                                     @if($user->active == 1)
-                                        <a href="#"
+                                        <button class="btn btn-success"
                                            onclick="confirm('{{ __("آیا مطمئن به تایید و فعال کردن کاربر جاری هستید؟") }}') ? this.parentElement.submit() : ''">
-                                            <i class="material-icons text-success">check</i>
-                                        </a>
+                                           تایید
+                                        </button>
                                         @elseif($user->active == 0)
                                         <p class="text-danger">منتطر پرداخت</p>
                                     @endif

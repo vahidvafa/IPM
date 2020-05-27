@@ -97,6 +97,12 @@
                         <p>ویرایش اسپانسر ها</p>
                     </a>
                 </li>
+                <li class="nav-item {{checkMenu("cms/eventCategory",$title)}}">
+                    <a class="nav-link" href="{{route('eventCategory.index')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>دسته بندی رویداد ها</p>
+                    </a>
+                </li>
                 <li class="nav-item {{checkMenu("cms/events",$title)}}">
                     <a class="nav-link" href="{{route('event.index')}}">
                         <i class="material-icons">library_books</i>

@@ -1,11 +1,14 @@
 <?php
 return [
-    'successful' => 'با موفقیت ثبت شد ! ',
+    'successful' => 'با موفقیت ثبت شد',
+    'unsuccessful.create' => 'عملیات ثبت با مشکل مواجه شد',
     'unsuccessful' => ' سیستم با مشکل مواجه شد ! ',
-    'successful.pay' => 'با موفقیت پرداخت شد ! ',
+    'successful.pay' => 'با موفقیت پرداخت شد',
     'unsuccessful.pay' => ' مشکلی در پرداخت به وجود آمد ! ',
-    'successful.edit' => 'با موفقیت ویرایش شد ! ',
-    'successful.delete' => 'با موفقیت حذف شد ! ',
+    'successful.edit' => 'با موفقیت ویرایش شد',
+    'unsuccessful.edit' => 'متاسفانه عملیات ویرایش با مشکل مواجه شد !',
+    'successful.delete' => 'با موفقیت حذف شد',
+    'unsuccessful.delete' => 'متاسفانه عملیات حذف با مشکل مواجه شد !',
     '404' => 'صفحه ی مورد نظر شما پیدا نشد !',
     'delete.sure' =>'آیا مطمئن هستید حذف شود ؟',
     'gift.error.exist' => 'کد هدیه مورد نظر وجود ندارید',

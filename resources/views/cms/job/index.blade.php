@@ -66,7 +66,7 @@
                         <th scope="col">ردیف</th>
                         <th scope="col">عنوان فرصت شغلی</th>
                         <th scope="col">نمایش جزئیات</th>
-                        <th scope="col">تایید</th>
+                        <th scope="col">وضعیت</th>
                         <th scope="col">حذف</th>
                     </tr>
                     </thead>
@@ -91,9 +91,9 @@
                                 @if($job->state == 0)
                                 <form action="{{route('cms.job.store',[$job->id])}}" method="post">
                                     @csrf
-                                    <a href="#" onclick="confirm('{{ __("آیا مطمئن به تایید این فرصت شغلی هستید؟") }}') ? this.parentElement.submit() : ''">
-                                        <i class="material-icons text-success">done</i>
-                                    </a>
+                                    <button class="btn btn-success" onclick="confirm('{{ __("آیا مطمئن به تایید این فرصت شغلی هستید؟") }}') ? this.parentElement.submit() : ''">
+                                        تایید
+                                    </button>
                                 </form>
                                     @endif
                             </td>
