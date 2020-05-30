@@ -405,27 +405,27 @@
                     </div>
 
                     <div class="form-group col-md-3 mb-3 mt-3 py-2 px-4">
-                        <span for="reagent_id" class="text-black mr-3">نوع عضویت:</span>
+                        <span class="text-black mr-3">نوع عضویت:</span>
 
-                        <label for="reagent_id0">وابسته</label>
+                        <label for="main0">وابسته</label>
                         <input type="radio" class="option-input mr-2"
-                               name="reagent_id"
+                               name="main"
                                value="0"
-                               id="reagent_id0"
-                               aria-invalid="false" @if($user->reagent_id == 0) checked @endif>
+                               id="main0"
+                               aria-invalid="false" @if($user->main == 0) checked @endif>
 
-                        <label for="reagent_id1">اصلی</label>
+                        <label for="main1">اصلی</label>
                         <input type="radio" class="option-input"
-                               name="reagent_id"
+                               name="main"
                                value="1"
-                               id="reagent_id1"
-                               aria-invalid="false" @if($user->reagent_id == 1) checked @endif>
+                               id="main1"
+                               aria-invalid="false" @if($user->main == 1) checked @endif>
 
-                        @if ($errors->has('reagent_id'))
+                        @if ($errors->has('main'))
                             <div id="name-error" class="error text-danger pl-3"
-                                 for="reagent_id"
+                                 for="main"
                                  style="display: block;">
-                                <strong>{{ $errors->first('reagent_id') }}</strong>
+                                <strong>{{ $errors->first('main') }}</strong>
                             </div>
                         @endif
                     </div>
@@ -434,6 +434,7 @@
                         <div class="form-group col-md-5 mb-3">
                             <label for="certificate-level">سطح مدرک</label>
                             <select class="form-control" name="certificate-level" id="certificate-level">
+                                <option value="null" @if($user->profile[0]->certificate == null) selected @endif >------------</option>
                                 <option value="A" @if(substr(explode("“",$user->profile[0]->certificate??"?“?")[1],0,1) == "A") selected @endif >IPMA CB Certificate Level A</option>
                                 <option value="B" @if(substr(explode("“",$user->profile[0]->certificate??"?“?")[1],0,1) == "B") selected @endif >IPMA CB Certificate Level B</option>
                                 <option value="C" @if(substr(explode("“",$user->profile[0]->certificate??"?“?")[1],0,1) == "C") selected @endif >IPMA CB Certificate Level C</option>
@@ -442,12 +443,12 @@
                         </div>
 
                         <div class="form-group col-md-6 mb-3 mt-4">
-                            <label for="certificate-date" class="col-12">تاریخ*</label>
+                            <label for="certificate-date" class="col-12">تاریخ</label>
                             <input type="text" name="certificate-date" id="certificate-date"
                                    value="{{old('certificate-date')??explode(" - ",$user->profile[0]->certificate??" - ")[1]}}"
                                    class="form-control datePickerInput" aria-invalid="false"
                                    style="margin-top: 19px"
-                                   required>
+                                   >
 
                             @if ($errors->has('certificate-date'))
                                 <div id="name-error" class="error text-danger pl-3"
@@ -460,27 +461,27 @@
 
                         <h3 class="font-22 text-medium text-black col-12">جوایز و مدارک: </h3>
                         <div class="form-group col-md-6 mb-3 mt-4">
-                            <label for="awards[1]" class="col-12">ردیف اول*</label>
+                            <label for="awards[1]" class="col-12">ردیف اول</label>
                             <input type="text" name="awards[1]" id="awards[1]"
                                    value="{{old('awards[1]')??explode("?!?",$user->profile[0]->awards??" ?!? ")[0]}}"
                                    class="form-control " aria-invalid="false"
-                                   required>
+                                   >
 
                         </div>
                         <div class="form-group col-md-6 mb-3 mt-4">
-                            <label for="awards[2]" class="col-12">ردیف دوم*</label>
+                            <label for="awards[2]" class="col-12">ردیف دوم</label>
                             <input type="text" name="awards[2]" id="awards[2]"
                                    value="{{old('awards[2]')??explode("?!?",$user->profile[0]->awards??" ?!? ")[1]}}"
                                    class="form-control " aria-invalid="false"
-                                   required>
+                                   >
 
                         </div>
                         <div class="form-group col-md-6 mb-3 mt-4">
-                            <label for="awards[3]" class="col-12">ردیف سوم*</label>
+                            <label for="awards[3]" class="col-12">ردیف سوم</label>
                             <input type="text" name="awards[3]" id="awards[3]"
                                    value="{{old('awards[3]')??explode("?!?",$user->profile[0]->awards??" ?!? ?!? ")[2]}}"
                                    class="form-control" aria-invalid="false"
-                                   required>
+                                   >
                         </div>
 
 

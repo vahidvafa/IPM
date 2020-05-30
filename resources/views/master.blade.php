@@ -243,7 +243,7 @@
                                                    href="{{route('user.index')}}">حقیقی
                                                 </a>
                                                 <a class="dropdown-item" target="_blank"
-                                                   href="{{route('committees')}}">حقوقی
+                                                   href="{{route('companies')}}">حقوقی
                                                 </a>
                                             </div>
                                         </li>

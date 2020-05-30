@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="shortcut icon" href=""/>
+
     <title>انجمن مدیریت پروژه</title>
     <link rel="stylesheet" href="{{asset('css/slick.css')}}">
     <link rel="stylesheet" href="{{asset('css/slick-theme.css')}}">
@@ -259,7 +260,7 @@
                                                    href="{{route('user.index')}}">حقیقی
                                                 </a>
                                                 <a class="dropdown-item" target="_blank"
-                                                   href="{{route('committees')}}">حقوقی
+                                                   href="{{route('companies')}}">حقوقی
                                                     </a>
                                             </div>
                                         </li>
@@ -505,7 +506,7 @@
 
                                 <a class="Committee-icons-text d-block text-white text-medium"
                                    target="_blank" href="{{route('consultants_gov')}}">
-                                    <img class="mb-3" src="{{asset('img/003-patent-1.png')}}" alt="anjoman">
+                                    <img class="mb-3" src="{{asset('img/certificate_of_consultants.png')}}" alt="anjoman">
                                     <p>گواهینامه های مشاوران</p></a>
                             </div>
                             <div class="col-6 text-center bl-1  pt-5 pb-5">
@@ -517,8 +518,8 @@
                             </div>
                             <div class="col-6 text-center pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium" target="_blank"
-                                   href="//">
-                                    <img class="mb-3" src="{{asset('img/branches.png')}}" alt="anjoman">
+                                   href="{{route('trainingColleagues')}}">
+                                    <img class="mb-3" src="{{asset('img/amozesh.png')}}" alt="anjoman">
                                     <p>همکاران آموزشی</p></a>
                             </div>
                         </div>
@@ -536,7 +537,7 @@
                             <div class="col-6 text-center  bb-1 pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
                                    target="_blank" href="{{route('research')}}">
-                                    <img class="mb-3" src="{{asset('img/006-sports-and-competition-1.png')}}"
+                                    <img class="mb-3" src="{{asset('img/best_researcher.png')}}"
                                          alt="anjoman">
                                     <p>جایزه پژوهش برتر</p></a>
                             </div>
@@ -550,7 +551,7 @@
                             <div class="col-6 text-center pt-5 pb-5">
                                 <a class="Committee-icons-text d-block text-white text-medium"
                                    target="_blank" href="{{route('top-research-award')}}">
-                                    <img class="mb-3" src="{{asset('img/006-sports-and-competition-1.png')}}"
+                                    <img class="mb-3" src="{{asset('img/best_manager_award.png')}}"
                                          alt="anjoman">
                                     <p>جایزه مدیر پروژه برتر</p></a>
                             </div>

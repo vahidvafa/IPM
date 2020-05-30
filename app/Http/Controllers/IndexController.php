@@ -49,7 +49,7 @@ class IndexController extends Controller
 
     public function indexEn()
     {
-        $news = News::whereLangId(2)->whereState(1)->latest()->limit(3)->get(['id', 'photo', 'title', 'created_at']);
+        $news = News::whereLangId(2)->whereState(1)->latest('updated_at')->limit(3)->get(['id', 'photo', 'title', 'created_at']);
         $ipma = IPMA::latest()->first();
         return view('en.indexEn', compact('news', 'ipma'));
     }

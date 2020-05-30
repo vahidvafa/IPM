@@ -346,27 +346,27 @@
                          </div>
      --}}
                     <div class="form-group col-md-3 mb-3 mt-3 py-2 px-4">
-                        <span for="reagent_id" class="text-black mr-3">نوع عضویت:</span>
+                        <span class="text-black mr-3">نوع عضویت:</span>
 
-                        <label for="reagent_id0">وابسته</label>
+                        <label for="main0">وابسته</label>
                         <input type="radio" class="option-input mr-2"
                                name="main"
                                value="0"
-                               id="reagent_id0"
+                               id="main0"
                                aria-invalid="false" @if($user->main ==null || $user->main == 0) checked @endif>
 
-                        <label for="reagent_id1">اصلی</label>
+                        <label for="main1">اصلی</label>
                         <input type="radio" class="option-input"
-                               name="reagent_id"
+                               name="main"
                                value="1"
-                               id="reagent_id1"
+                               id="main1"
                                aria-invalid="false" @if($user->main !=null && $user->main == 1) checked @endif>
 
-                        @if ($errors->has('reagent_id'))
+                        @if ($errors->has('main'))
                             <div id="name-error" class="error text-danger pl-3"
-                                 for="reagent_id"
+                                 for="main"
                                  style="display: block;">
-                                <strong>{{ $errors->first('reagent_id') }}</strong>
+                                <strong>{{ $errors->first('main') }}</strong>
                             </div>
                         @endif
                     </div>

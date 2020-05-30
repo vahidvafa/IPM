@@ -21,9 +21,11 @@
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[0]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
-                                {{tr_num(unixToDay($memberships[0]->period),'fa')}} روز
+                                <span id="day0" >{{tr_num(unixToDay($memberships[0]->period),'fa')}} روز</span>
                                 <br>
-                                {{tr_num(number_format($memberships[0]->price),'fa')}} ریال </p>
+                                <span class="font-12 text-black-light m-0 mt-4" id="price0">
+                                {{tr_num(number_format($memberships[0]->price),'fa')}} ریال </span>
+                            </p>
                         </a>
 
                     </li>
@@ -33,9 +35,11 @@
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[1]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
-                                {{tr_num(unixToDay($memberships[1]->period),'fa')}} روز
+                                <span id="day1" >{{tr_num(unixToDay($memberships[1]->period),'fa')}} روز</span>
                                 <br>
-                                {{tr_num(number_format($memberships[1]->price),'fa')}} ریال </p>
+                                <span class="font-12 text-black-light m-0 mt-4" id="price1">
+                                {{tr_num(number_format($memberships[1]->price),'fa')}} ریال </span>
+                            </p>
                         </a>
                     </li>
                     <li class="nav-item  col-12 col-sm-6 col-lg-3 mt-4 mt-lg-0">
@@ -44,9 +48,11 @@
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[2]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
-                                {{tr_num(unixToDay($memberships[2]->period),'fa')}} روز
+                                <span id="day2" >{{tr_num(unixToDay($memberships[2]->period),'fa')}} روز</span>
                                 <br>
-                                {{tr_num(number_format($memberships[2]->price),'fa')}} ریال </p>
+                                <span class="font-12 text-black-light m-0 mt-4" id="price2">
+                                {{tr_num(number_format($memberships[2]->price),'fa')}} ریال </span>
+                            </p>
                         </a>
                     </li>
                     <li class="nav-item  col-12 col-sm-6 col-lg-3  mt-4 mt-lg-0">
@@ -55,9 +61,11 @@
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[3]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
-                                {{tr_num(unixToDay($memberships[3]->period),'fa')}} روز
+                                <span id="day3" >{{tr_num(unixToDay($memberships[3]->period),'fa')}} روز</span>
                                 <br>
-                                {{tr_num(number_format($memberships[3]->price),'fa')}} ریال </p>
+                                <span class="font-12 text-black-light m-0 mt-4" id="price3">
+                                {{tr_num(number_format($memberships[3]->price),'fa')}} ریال </span>
+                            </p>
                         </a>
                     </li>
                 </ul>
@@ -1280,7 +1288,7 @@
                             <div class="input-form col-md-12 py-2 px-4">
                                 <label>مدت زمان : </label>
                                 <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="1" checked>عضویت یکساله</label>
-                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="3">عضویت سه ساله</label>
+                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="3">عضویت دو ساله</label>
                                 {{--            <input type="radio" id="year_3" name="year" value="3" style="all: unset;">--}}
                                 {{--            <label for="year_3">عضویت سه ساله</label>--}}
                                 @if (Session::get('membership_type_id') == 3 && $errors->has('year'))
@@ -2121,7 +2129,51 @@
         </div>
     </main>
     <script>
+
+
+
         $(document).ready(function () {
+
+            $("input[name=year]").on("change", function (e) {
+                attrHref = ($('.nav .active').attr('href'));
+
+                switch (attrHref) {
+                    case "#menu0":
+
+                        if ($(this).val() == 1) {
+                            $('#day0').html("{{tr_num(unixToDay($memberships[0]->period))}}"+" روز");
+                            $('#price0').html("{{tr_num($memberships[0]->price)}}"+" قیمت");
+                        }else {
+                            $('#day0').html("{{tr_num(unixToDay($memberships[0]->period * 3))}}"+" روز");
+                            $('#price0').html("{{tr_num($memberships[0]->second_price)}}"+" قیمت");
+                        }
+                        break;
+                    case "#menu1":
+                        if ($(this).val() == 1) {
+                            $('#day1').html("{{tr_num(unixToDay($memberships[1]->period))}}"+" روز");
+                            $('#price1').html("{{tr_num($memberships[1]->price)}}"+" قیمت");
+                        } else {
+                            $('#day1').html("{{tr_num(unixToDay($memberships[1]->period * 3))}}"+" روز");
+                            $('#price1').html("{{tr_num($memberships[1]->second_price)}}"+" قیمت");
+                        }
+                        break;
+                    case "#menu2":
+                        if ($(this).val() == 1) {
+                            $('#day2').html("{{tr_num(unixToDay($memberships[2]->period))}}"+" روز");
+                            $('#price2').html("{{tr_num($memberships[2]->price)}}"+" قیمت");
+                        }else {
+                            $('#day2').html("{{tr_num(unixToDay($memberships[2]->period * 2))}}"+" روز");
+                            $('#price2').html("{{tr_num($memberships[2]->second_price)}}"+" قیمت");
+                        }
+                        break;
+                    case "#menu3":
+                        break;
+                }
+
+
+            });
+
+
             $(".datePickerInput").pDatepicker(
                 {
                     initialValue: false,

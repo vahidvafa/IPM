@@ -204,7 +204,7 @@ body {
 .sidebar{
     padding-bottom: 45px;
     position:relative;
-    background-image: url("../img/portfolio.jpg");
+    background-image: url("../img/index_bg.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

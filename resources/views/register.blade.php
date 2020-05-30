@@ -1,4 +1,3 @@
-
 @extends('master')
 @section('header')
     <link href='{{asset('fullcalendar/core/main.css')}}' rel='stylesheet'/>
@@ -22,15 +21,17 @@
                 <!-- Nav pills -->
                 <ul class="nav nav-pills row">
                     <li class="nav-item col-12 col-sm-6 col-lg-3">
-
                         <a class="nav-link {{(Session::get('type') == 1) ? 'active':(!Session::get('type')?'active':'')}} p-4"
                            data-toggle="pill" href="#menu0" style="white-space: nowrap;">
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[0]->title}}</span>
-                            <p class="font-12 text-black-light m-0 mt-4">
-                                {{tr_num(unixToDay($memberships[0]->period),'fa')}} روز
+                            <p class="font-12 text-black-light m-0 mt-4" >
+
+                                <span id="day0" >{{tr_num(unixToDay($memberships[0]->period),'fa')}} روز</span>
                                 <br>
-                                {{tr_num(number_format($memberships[0]->price),'fa')}} ریال </p>
+                                <span class="font-12 text-black-light m-0 mt-4" id="price0">
+                                {{tr_num(number_format($memberships[0]->price),'fa')}} ریال </span>
+                            </p>
                         </a>
 
                     </li>
@@ -40,9 +41,11 @@
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[1]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
-                                {{tr_num(unixToDay($memberships[1]->period),'fa')}} روز
+                                <span id="day1" >{{tr_num(unixToDay($memberships[1]->period),'fa')}} روز</span>
                                 <br>
-                                {{tr_num(number_format($memberships[1]->price),'fa')}} ریال </p>
+                                <span class="font-12 text-black-light m-0 mt-4" id="price1">
+                                {{tr_num(number_format($memberships[1]->price),'fa')}} ریال </span>
+                            </p>
                         </a>
                     </li>
                     <li class="nav-item  col-12 col-sm-6 col-lg-3 mt-4 mt-lg-0">
@@ -51,9 +54,11 @@
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[2]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
-                                {{tr_num(unixToDay($memberships[2]->period),'fa')}} روز
+                                <span id="day2" >{{tr_num(unixToDay($memberships[2]->period),'fa')}} روز</span>
                                 <br>
-                                {{tr_num(number_format($memberships[2]->price),'fa')}} ریال </p>
+                                <span class="font-12 text-black-light m-0 mt-4" id="price2">
+                                {{tr_num(number_format($memberships[2]->price),'fa')}} ریال </span>
+                            </p>
                         </a>
                     </li>
                     <li class="nav-item  col-12 col-sm-6 col-lg-3  mt-4 mt-lg-0">
@@ -62,15 +67,18 @@
                             <span class="option-input "></span>
                             <span class=" text-medium text-black">{{$memberships[3]->title}}</span>
                             <p class="font-12 text-black-light m-0 mt-4">
-                                {{tr_num(unixToDay($memberships[3]->period),'fa')}} روز
+                                <span id="day3" >{{tr_num(unixToDay($memberships[3]->period),'fa')}} روز</span>
                                 <br>
-                                {{tr_num(number_format($memberships[3]->price),'fa')}} ریال </p>
+                                <span class="font-12 text-black-light m-0 mt-4" id="price3">
+                                {{tr_num(number_format($memberships[3]->price),'fa')}} ریال </span>
+                            </p>
                         </a>
                     </li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div class="tab-pane  {{(Session::get('type') == 1) ? 'active':(!Session::get('type')?'active':'fade')}}" id="menu0">
+                    <div class="tab-pane  {{(Session::get('type') == 1) ? 'active':(!Session::get('type')?'active':'fade')}}"
+                         id="menu0">
                         <h2 class=" font-22 text-medium text-black mt-5 mb-4"> فرم {{$memberships[0]->title}}
                         </h2>
                         <form class="sidebar-form-body row" action="{{route('register.store')}}" method="POST"
@@ -79,8 +87,10 @@
                             <input type="hidden" name="type" value="{{$memberships[0]->id}}">
                             <div class="input-form col-md-12 py-2 px-4">
                                 <label>مدت زمان : </label>
-                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="1" checked>عضویت یکساله</label>
-                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="3">عضویت سه ساله</label>
+                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="1"
+                                                                   checked>عضویت یکساله</label>
+                                <label class="radio-inline"><input class="radio-year" type="radio" name="year"
+                                                                   value="3">عضویت سه ساله</label>
                                 @if (Session::get('type') == 1 && $errors->has('year'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
                                          style="display: block;">
@@ -197,7 +207,7 @@
                                         <input type="text" name="mobile"
                                                value="{{(Session::get('type') == 1) ?request()->old('mobile'):''}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="شماره تماس*" required pattern="\d*" >
+                                               placeholder="شماره تماس*" required pattern="\d*">
                                         <img src="img/002-telephone.png" class="form-icon">
                                         @if (Session::get('type') == 1 && $errors->has('mobile'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"
@@ -293,8 +303,12 @@
                                 <label>جنسیت : </label>
                                 <select name="sex" required>
                                     <option disabled selected value>جنسیت مورد نظر را انتخاب کنید *</option>
-                                    <option value="1" {{((Session::get('type') == 1) && request()->old('sex') == 1 ) ?'selected':''}}>مرد</option>
-                                    <option value="0" {{((Session::get('type') == 1) && request()->old('sex') == 0 ) ?'selected':''}}>زن</option>
+                                    <option value="1" {{((Session::get('type') == 1) && request()->old('sex') == 1 ) ?'selected':''}}>
+                                        مرد
+                                    </option>
+                                    <option value="0" {{((Session::get('type') == 1) && request()->old('sex') == 0 ) ?'selected':''}}>
+                                        زن
+                                    </option>
                                 </select>
                                 @if (Session::get('type') == 1 && $errors->has('sex'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
@@ -408,8 +422,12 @@
                                 <label for="">انتخاب نشانی ارسال مراسلات : </label>
                                 <select name="receive_place" required>
                                     <option disabled selected value>نشانی مورد نظر را انتخاب کنید *</option>
-                                    <option value="0" {{((Session::get('type') == 1) && request()->old('receive_place') == 0 ) ?'selected':''}}>منزل</option>
-                                    <option value="1" {{((Session::get('type') == 1) && request()->old('receive_place') == 1 ) ?'selected':''}}>محل کار</option>
+                                    <option value="0" {{((Session::get('type') == 1) && request()->old('receive_place') == 0 ) ?'selected':''}}>
+                                        منزل
+                                    </option>
+                                    <option value="1" {{((Session::get('type') == 1) && request()->old('receive_place') == 1 ) ?'selected':''}}>
+                                        محل کار
+                                    </option>
                                 </select>
                                 @if (Session::get('type') == 1 && $errors->has('receive_place'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
@@ -603,21 +621,22 @@
                                     <div class="col-12">
                                         <label for="branch">مقطع تحصیلی : </label>
                                         <select name="education[grade]" required>
-                                            <option disabled selected value>مقطع تحصیلی مورد نظر را انتخاب کنید *</option>
+                                            <option disabled selected value>مقطع تحصیلی مورد نظر را انتخاب کنید *
+                                            </option>
                                             <option
-                                                value="کاردانی" {{((Session::get('type') == 1) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                    value="کاردانی" {{((Session::get('type') == 1) && request()->old('education.grade') == 1 ) ?'selected':''}}>
                                                 کاردانی
                                             </option>
                                             <option
-                                                value="کارشناسی" {{((Session::get('type') == 1) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                    value="کارشناسی" {{((Session::get('type') == 1) && request()->old('education.grade') == 1 ) ?'selected':''}}>
                                                 کارشناسی
                                             </option>
                                             <option
-                                                value="کارشناسی ارشد" {{((Session::get('type') == 1) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                    value="کارشناسی ارشد" {{((Session::get('type') == 1) && request()->old('education.grade') == 1 ) ?'selected':''}}>
                                                 کارشناسی ارشد
                                             </option>
                                             <option
-                                                value="دکتری" {{((Session::get('type') == 1) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                    value="دکتری" {{((Session::get('type') == 1) && request()->old('education.grade') == 1 ) ?'selected':''}}>
                                                 دکتری
                                             </option>
                                         </select>
@@ -758,8 +777,10 @@
                             <input type="hidden" name="type" value="{{$memberships[1]->id}}">
                             <div class="input-form col-md-12 py-2 px-4">
                                 <label>مدت زمان : </label>
-                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="1" checked>عضویت یکساله</label>
-                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="3">عضویت سه ساله</label>
+                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="1"
+                                                                   checked>عضویت یکساله</label>
+                                <label class="radio-inline"><input class="radio-year" type="radio" name="year"
+                                                                   value="3">عضویت سه ساله</label>
                                 {{--            <select name="year" required>--}}
                                 {{--                <option value="1" selected>عضویت یکساله</option>--}}
                                 {{--                <option value="3">عضویت سه ساله</option>--}}
@@ -863,7 +884,7 @@
                                         <input type="text" name="national_code"
                                                value="{{(Session::get('type') == 2) ?request()->old('national_code'):''}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="کد ملی*" required pattern="\d*" >
+                                               placeholder="کد ملی*" required pattern="\d*">
                                         <img src="img/004-key.png" class="form-icon">
                                         @if (Session::get('type') == 2 && $errors->has('national_code'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"
@@ -979,8 +1000,12 @@
                                 <label>جنسیت : </label>
                                 <select name="sex" required>
                                     <option disabled selected value>جنسیت مورد نظر را انتخاب کنید *</option>
-                                    <option value="1" {{((Session::get('type') == 2) && request()->old('sex') == 1 ) ?'selected':''}}>مرد</option>
-                                    <option value="0" {{((Session::get('type') == 2) && request()->old('sex') == 0 ) ?'selected':''}}>زن</option>
+                                    <option value="1" {{((Session::get('type') == 2) && request()->old('sex') == 1 ) ?'selected':''}}>
+                                        مرد
+                                    </option>
+                                    <option value="0" {{((Session::get('type') == 2) && request()->old('sex') == 0 ) ?'selected':''}}>
+                                        زن
+                                    </option>
                                 </select>
                                 @if (Session::get('type') == 2 && $errors->has('sex'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
@@ -1160,21 +1185,22 @@
                                     <div class="col-12">
                                         <label for="branch">مقطع تحصیلی : </label>
                                         <select name="education[grade]" required>
-                                            <option disabled selected value>مقطع تحصیلی مورد نظر را انتخاب کنید *</option>
+                                            <option disabled selected value>مقطع تحصیلی مورد نظر را انتخاب کنید *
+                                            </option>
                                             <option
-                                                value="کاردانی" {{((Session::get('type') == 2) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                    value="کاردانی" {{((Session::get('type') == 2) && request()->old('education.grade') == 1 ) ?'selected':''}}>
                                                 کاردانی
                                             </option>
                                             <option
-                                                value="کارشناسی" {{((Session::get('type') == 2) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                    value="کارشناسی" {{((Session::get('type') == 2) && request()->old('education.grade') == 1 ) ?'selected':''}}>
                                                 کارشناسی
                                             </option>
                                             <option
-                                                value="کارشناسی ارشد" {{((Session::get('type') == 2) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                    value="کارشناسی ارشد" {{((Session::get('type') == 2) && request()->old('education.grade') == 1 ) ?'selected':''}}>
                                                 کارشناسی ارشد
                                             </option>
                                             <option
-                                                value="دکتری" {{((Session::get('type') == 2) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                    value="دکتری" {{((Session::get('type') == 2) && request()->old('education.grade') == 1 ) ?'selected':''}}>
                                                 دکتری
                                             </option>
                                         </select>
@@ -1377,12 +1403,24 @@
                                 <label for="">نوع مالکیت شرکت : </label>
                                 <select name="company[ownership_type]" required>
                                     <option disabled selected value>نوع مالکیت را انتخاب کنید *</option>
-                                    <option value="دولتی" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'دولتی' ) ?'selected':''}}>دولتی</option>
-                                    <option value="خصوصی" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'خصوصی' ) ?'selected':''}}>خصوصی</option>
-                                    <option value="عمومی" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'عمومی' ) ?'selected':''}}>عمومی</option>
-                                    <option value="دولتی / خصوصی" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'دولتی / خصوصی' ) ?'selected':''}}>دولتی / خصوصی</option>
-                                    <option value="خصوصی / دولتی" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'خصوصی / دولتی' ) ?'selected':''}}>خصوصی / دولتی</option>
-                                    <option value="سایر" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'سایر' ) ?'selected':''}}>سایر</option>
+                                    <option value="دولتی" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'دولتی' ) ?'selected':''}}>
+                                        دولتی
+                                    </option>
+                                    <option value="خصوصی" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'خصوصی' ) ?'selected':''}}>
+                                        خصوصی
+                                    </option>
+                                    <option value="عمومی" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'عمومی' ) ?'selected':''}}>
+                                        عمومی
+                                    </option>
+                                    <option value="دولتی / خصوصی" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'دولتی / خصوصی' ) ?'selected':''}}>
+                                        دولتی / خصوصی
+                                    </option>
+                                    <option value="خصوصی / دولتی" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'خصوصی / دولتی' ) ?'selected':''}}>
+                                        خصوصی / دولتی
+                                    </option>
+                                    <option value="سایر" {{((Session::get('type') == 2) && request()->old('company.ownership_type') == 'سایر' ) ?'selected':''}}>
+                                        سایر
+                                    </option>
                                 </select>
                                 @if (Session::get('type') == 2 && $errors->has('company.ownership_type'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
@@ -1395,11 +1433,21 @@
                                 <label for="">نوع حقوقی شرکت : </label>
                                 <select name="company[legal_type]" required>
                                     <option disabled selected value>نوع حقوقی را انتخاب کنید *</option>
-                                    <option value="سهامی خاص" {{((Session::get('type') == 2) && request()->old('company.legal_type') == 'سهامی خاص' ) ?'selected':''}}>سهامی خاص</option>
-                                    <option value="سهامی عام" {{((Session::get('type') == 2) && request()->old('company.legal_type') == 'سهامی عام' ) ?'selected':''}}>سهامی عام</option>
-                                    <option value="با مسئولیت محدود" {{((Session::get('type') == 2) && request()->old('company.legal_type') == 'با مسئولیت محدود' ) ?'selected':''}}>با مسئولیت محدود</option>
-                                    <option value="تضامنیی" {{((Session::get('type') == 2) && request()->old('company.legal_type') == 'تضامنیی' ) ?'selected':''}}>تضامنی</option>
-                                    <option value="سایر" {{((Session::get('type') == 2) && request()->old('company.legal_type') == 'سایر' ) ?'selected':''}}>سایر</option>
+                                    <option value="سهامی خاص" {{((Session::get('type') == 2) && request()->old('company.legal_type') == 'سهامی خاص' ) ?'selected':''}}>
+                                        سهامی خاص
+                                    </option>
+                                    <option value="سهامی عام" {{((Session::get('type') == 2) && request()->old('company.legal_type') == 'سهامی عام' ) ?'selected':''}}>
+                                        سهامی عام
+                                    </option>
+                                    <option value="با مسئولیت محدود" {{((Session::get('type') == 2) && request()->old('company.legal_type') == 'با مسئولیت محدود' ) ?'selected':''}}>
+                                        با مسئولیت محدود
+                                    </option>
+                                    <option value="تضامنیی" {{((Session::get('type') == 2) && request()->old('company.legal_type') == 'تضامنیی' ) ?'selected':''}}>
+                                        تضامنی
+                                    </option>
+                                    <option value="سایر" {{((Session::get('type') == 2) && request()->old('company.legal_type') == 'سایر' ) ?'selected':''}}>
+                                        سایر
+                                    </option>
                                 </select>
                                 @if (Session::get('type') == 2 && $errors->has('company.legal_type'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
@@ -1590,9 +1638,11 @@
                             <input type="hidden" name="type" value="{{$memberships[2]->id}}">
                             <div class="input-form col-md-12 py-2 px-4">
                                 <label>مدت زمان : </label>
-                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="1" checked>عضویت
+                                <label class="radio-inline"><input class="radio-year"  type="radio" name="year" value="1"
+                                                                   checked>عضویت
                                     یکساله</label>
-                                <label class="radio-inline"><input class="radio-year" type="radio" name="year" value="2">عضویت دو
+                                <label class="radio-inline"><input class="radio-year" type="radio" name="year"
+                                                                   value="2">عضویت دو
                                     ساله</label>
                                 @if (Session::get('type') == 3 && $errors->has('year'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
@@ -1807,9 +1857,11 @@
                                 <label>جنسیت : </label>
                                 <select name="sex" required>
                                     <option disabled selected value>جنسیت مورد نظر را انتخاب کنید *</option>
-                                    <option value="1" {{((Session::get('type') == 3) && request()->old('sex') == 1 ) ?'selected':''}}>مرد
+                                    <option value="1" {{((Session::get('type') == 3) && request()->old('sex') == 1 ) ?'selected':''}}>
+                                        مرد
                                     </option>
-                                    <option value="0" {{((Session::get('type') == 3) && request()->old('sex') == 0 ) ?'selected':''}}>زن
+                                    <option value="0" {{((Session::get('type') == 3) && request()->old('sex') == 0 ) ?'selected':''}}>
+                                        زن
                                     </option>
                                 </select>
                                 @if (Session::get('type') == 3 && $errors->has('sex'))
@@ -1925,7 +1977,7 @@
                                 <select name="receive_place" required>
                                     <option disabled selected value>نشانی مورد نظر را انتخاب کنید *</option>
                                     <option
-                                        value="0" {{((Session::get('type') == 3) && request()->old('receive_place') == 1 ) ?'selected':''}}>
+                                            value="0" {{((Session::get('type') == 3) && request()->old('receive_place') == 1 ) ?'selected':''}}>
                                         منزل
                                     </option>
                                     <option value="1">محل کار</option>
@@ -2122,21 +2174,22 @@
                                     <div class="col-12">
                                         <label for="branch">مقطع تحصیلی : </label>
                                         <select name="education[grade]" required>
-                                            <option disabled selected value>مقطع تحصیلی مورد نظر را انتخاب کنید *</option>
+                                            <option disabled selected value>مقطع تحصیلی مورد نظر را انتخاب کنید *
+                                            </option>
                                             <option
-                                                value="کاردانی" {{((Session::get('type') == 3) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                    value="کاردانی" {{((Session::get('type') == 3) && request()->old('education.grade') == 1 ) ?'selected':''}}>
                                                 کاردانی
                                             </option>
                                             <option
-                                                value="کارشناسی" {{((Session::get('type') == 3) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                    value="کارشناسی" {{((Session::get('type') == 3) && request()->old('education.grade') == 1 ) ?'selected':''}}>
                                                 کارشناسی
                                             </option>
                                             <option
-                                                value="کارشناسی ارشد" {{((Session::get('type') == 3) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                    value="کارشناسی ارشد" {{((Session::get('type') == 3) && request()->old('education.grade') == 1 ) ?'selected':''}}>
                                                 کارشناسی ارشد
                                             </option>
                                             <option
-                                                value="دکتری" {{((Session::get('type') == 3) && request()->old('education.grade') == 1 ) ?'selected':''}}>
+                                                    value="دکتری" {{((Session::get('type') == 3) && request()->old('education.grade') == 1 ) ?'selected':''}}>
                                                 دکتری
                                             </option>
                                         </select>
@@ -2158,7 +2211,7 @@
                                         <input type="text" name="education[gpa]"
                                                value="{{(Session::get('type') == 3) ?request()->old('education.gpa'):0}}"
                                                size="40" aria-invalid="false"
-                                               placeholder="دانشگاه" pattern="\d*" >
+                                               placeholder="دانشگاه" pattern="\d*">
                                         <img src="img/003-envelope.png" class="form-icon">
                                         @if (Session::get('type') == 3 && $errors->has('education.gpa'))
                                             <div id="name-error" class="error text-danger pl-3" for="name"
@@ -2215,7 +2268,7 @@
                                     <option disabled selected value>شاخه مورد نظر را انتخاب کنید *</option>
                                     @foreach($branches as $branch)
                                         <option
-                                            value="{{$branch->id}}" {{((Session::get('type') == 3) && request()->old('branch_id') == $branch->id ) ?'selected':''}}>
+                                                value="{{$branch->id}}" {{((Session::get('type') == 3) && request()->old('branch_id') == $branch->id ) ?'selected':''}}>
                                             {{ $branch->title }}
                                         </option>
                                     @endforeach
@@ -2482,8 +2535,12 @@
                                 <label>جنسیت : </label>
                                 <select name="sex" required>
                                     <option disabled selected value>جنسیت مورد نظر را انتخاب کنید *</option>
-                                    <option value="1" {{((Session::get('type') == 4) && request()->old('sex') == 1 ) ?'selected':''}}>مرد</option>
-                                    <option value="0" {{((Session::get('type') == 4) && request()->old('sex') == 0 ) ?'selected':''}}>زن</option>
+                                    <option value="1" {{((Session::get('type') == 4) && request()->old('sex') == 1 ) ?'selected':''}}>
+                                        مرد
+                                    </option>
+                                    <option value="0" {{((Session::get('type') == 4) && request()->old('sex') == 0 ) ?'selected':''}}>
+                                        زن
+                                    </option>
                                 </select>
                                 @if (Session::get('type') == 4 && $errors->has('sex'))
                                     <div id="name-error" class="error text-danger pl-3" for="name"
@@ -2618,6 +2675,45 @@
     <script>
         $(document).ready(function () {
 
+            $("input[name=year]").on("change", function (e) {
+                attrHref = ($('.nav .active').attr('href'));
+
+                switch (attrHref) {
+                    case "#menu0":
+
+                        if ($(this).val() == 1) {
+                            $('#day0').html("{{tr_num(unixToDay($memberships[0]->period))}}"+" روز");
+                            $('#price0').html("{{tr_num($memberships[0]->price)}}"+" قیمت");
+                        }else {
+                            $('#day0').html("{{tr_num(unixToDay($memberships[0]->period * 3))}}"+" روز");
+                            $('#price0').html("{{tr_num($memberships[0]->second_price)}}"+" قیمت");
+                        }
+                        break;
+                    case "#menu1":
+                        if ($(this).val() == 1) {
+                            $('#day1').html("{{tr_num(unixToDay($memberships[1]->period))}}"+" روز");
+                            $('#price1').html("{{tr_num($memberships[1]->price)}}"+" قیمت");
+                        } else {
+                            $('#day1').html("{{tr_num(unixToDay($memberships[1]->period * 3))}}"+" روز");
+                            $('#price1').html("{{tr_num($memberships[1]->second_price)}}"+" قیمت");
+                        }
+                        break;
+                    case "#menu2":
+                        if ($(this).val() == 1) {
+                            $('#day2').html("{{tr_num(unixToDay($memberships[2]->period))}}"+" روز");
+                            $('#price2').html("{{tr_num($memberships[2]->price)}}"+" قیمت");
+                        }else {
+                            $('#day2').html("{{tr_num(unixToDay($memberships[2]->period * 2))}}"+" روز");
+                            $('#price2').html("{{tr_num($memberships[2]->second_price)}}"+" قیمت");
+                        }
+                        break;
+                    case "#menu3":
+                        break;
+                }
+
+
+            });
+
             // $("#national_code").val("31231213");
 
             // $("input[type=text]").val("aksj da sj");
@@ -2631,21 +2727,21 @@
                     responsive: true,
                     format: 'L',
                     calendarType: 'persian',
-                    onlySelectOnDate:true,
-                    autoClose:true,
+                    onlySelectOnDate: true,
+                    autoClose: true,
                     timePicker: {
                         enabled: false,
                     },
                     toolbox: {
                         enabled: true,
-                        submitButton:{
-                            enabled:true,
-                            text:{
-                                fa:"تایید"
+                        submitButton: {
+                            enabled: true,
+                            text: {
+                                fa: "تایید"
                             }
                         },
-                        calendarSwitch:{
-                            enabled:false
+                        calendarSwitch: {
+                            enabled: false
                         }
                     }
                 }
@@ -2678,7 +2774,9 @@
                 e.target.setCustomValidity("");
             };
         }
+
     });
+
 
     function addRow(id) {
         var row_id = Date.now();
@@ -2699,6 +2797,8 @@
     function deleteRow(id) {
         $("#" + id).remove();
     }
+
+
 </script>
 <style>
     .radio-year {
@@ -2708,4 +2808,6 @@
         -webkit-appearance: radio !important;
         margin-left: 5px !important;
     }
+
+
 </style>

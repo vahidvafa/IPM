@@ -2,8 +2,9 @@
 @section('content')
     <main id="content-page" role="main">
         <!-- calender main -->
-        <div class="container my-5">
-            <form action="{{route('user.search')}}" method="post" class="row">
+        <div class="container my-5 shadow p-5">
+            <h3>درحال به روزرسانی</h3>
+            {{--<form action="{{route('user.search')}}" method="post" class="row">
                 @csrf
                 <div class="row w-100">
                     <div class="col-12 col-md-8">
@@ -43,7 +44,7 @@
                 @endforeach
                 </tbody>
             </table>
-            {{$users->links()}}
+            {{$users->links()}}--}}
         </div>
     </main>
 @endsection

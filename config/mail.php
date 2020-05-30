@@ -58,6 +58,7 @@ return [
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'IPMA.ir'),
+        'title' => env('MAIL_FROM_TITLE', 'IPMA.ir'),
     ],
 
     /*
@@ -120,6 +121,14 @@ return [
         ],
     ],
 
+    'stream' => [
+        'ssl' => [
+            'allow_self_signed' => true,
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+        ],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Log Channel
@@ -132,5 +141,6 @@ return [
     */
 
     'log_channel' => env('MAIL_LOG_CHANNEL'),
+    'pretend' => false,
 
 ];

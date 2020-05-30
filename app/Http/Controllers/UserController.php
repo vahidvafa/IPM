@@ -5,14 +5,12 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\Document;
 use App\Exports\UsersExport;
-use App\Mail\ReminderMail;
-use App\Membership;
+use App\Mail\DefectiveDocumentsMail;
 use App\MembershipType;
 use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
 use Intervention\Image\Facades\Image;
 use Maatwebsite\Excel\Facades\Excel;
 use Validator;
@@ -20,7 +18,8 @@ use Validator;
 class UserController extends Controller
 {
 
-    public function doSearch(){
+    public function doSearch()
+    {
         if (\request()->has('search')) {
             $searchString = \request()->get('search');
             $users = User::where("first_name", "LIKE", "%$searchString%")
@@ -34,7 +33,6 @@ class UserController extends Controller
 
         return $users;
     }
-
 
 
     public function usersIndex()
@@ -61,7 +59,7 @@ class UserController extends Controller
 //            return var_dump($users->get());
         }
 
-        $users = $users->latest()->paginate(15)->appends($request->all());
+        $users = $users->where('membership_type_id','!=','5')->latest()->paginate(15)->appends($request->all());
 
         return view('cms.user.index', compact('users'));
     }
@@ -198,7 +196,7 @@ class UserController extends Controller
         $rq = $request;
 
 
-        $user = User::with("education", "companies", 'documents','profile')->find($request->get("tmp"));
+        $user = User::with("education", "companies", 'documents', 'profile')->find($request->get("tmp"));
 
 
         Document::whereUserId($user->id)->update(['state' => 0]);
@@ -243,15 +241,17 @@ class UserController extends Controller
         if ($user->email != $rq->get('email') || $user->mobile != $rq->get('mobile')) {
 
             if ($user->email != $rq->get('email')) {
-                if (User::whereEmail($rq->get('email')) != null)
+                if (User::whereEmail($rq->get('email'))->get()->count() >= 1) {
                     flash_message("error", "این ایمیل قبلا برای کاربر دیگه ای ثبت شده است");
-                return back();
+                    return back();
+                }
             }
 
             if ($user->mobile != $rq->get('mobile')) {
-                if (User::whereMobile($rq->get('mobile')) != null)
+                if (User::whereMobile($rq->get('mobile'))->get()->count() >= 1) {
                     flash_message("error", "این شماره قبلا برای کاربر دیگه ای ثبت شده است");
-                return back();
+                    return back();
+                }
             }
 
         }
@@ -280,18 +280,21 @@ class UserController extends Controller
 
         $rq['isShowMyPhone'] = (int)$request->has('isShowMyPhone');
 
-        unset($rq['active']);
+
+        unset($rq['active']); // becuse below update active and create personal cart
         $user->update($rq);
 
-
         if ($request->has('active')) {
-         $this->activeUser($user->id);
-        }
+            $this->activeUser($user->id);
+        } else
+            $user->update(['active' => 1]);
 
         $profile = $request->all('profile')['profile'];
 
+        if ($request->get('certificate-level') != 'null' )
         $profile['certificate'] = "IPMA CB Certificate Level “" . $request['certificate-level'] . "” - " . tr_num($request['certificate-date'], "en");
-
+else
+    $profile['certificate'] = null;
 
         $profile['awards'] =
             $request->all('awards')['awards']['1'] .
@@ -311,7 +314,7 @@ class UserController extends Controller
                 break;
         }
 
-
+        \Mail::to($user->email)->send(new DefectiveDocumentsMail($user->shortcomings));
 
         flash_message("success", __('string.successful'));
 
@@ -319,28 +322,27 @@ class UserController extends Controller
     }
 
 
-
     public function activeUser($id, User $user = null)
     {
         if ($user == null)
-        $user = User::find($id);
+            $user = User::find($id);
 
 //        if ($user->active == 1) {
-            $membershipType = MembershipType::find($user->membership_type_id);
-            $memberShip = $user->memberships()->get('year')->last();
-            $user->expire = time() + ($membershipType->period * $memberShip->year );
-            $user->active = 2;
-            $user->user_code = createUserCode($user->membership_type_id,$user->main);
-            $user->userCard = $this->showCard($user);
-            $user->profile()->update(['upgrade_update_data'=>null]);
+        $membershipType = MembershipType::find($user->membership_type_id);
+        $memberShip = $user->memberships()->get('year')->last();
+        $user->expire = time() + ($membershipType->period * $memberShip->year);
+        $user->active = 2;
+        $user->user_code = createUserCode($user->membership_type_id, $user->main);
+        $user->userCard = $this->showCard($user);
+        $user->profile()->update(['upgrade_update_data' => null]);
         $user->save();
+        \Mail::to($user->email)->send(new \App\Mail\RegisterMail($user->userCard));
+        $user->memberships()->update(['membership_type_id' => $user->membership_type_id,
+            'start' => time(), 'end' => $user->expire, 'state_id' => 1, 'year' => $memberShip->year]);
 
-            $user->memberships()->update(['membership_type_id'=>$user->membership_type_id,
-                'start'=>time(),'end'=>$user->expire,'state_id'=>1,'year'=>$memberShip->year]);
-
-            if ($id != null ){
-                return back();
-            }
+        if ($id != null) {
+            return back();
+        }
     }
 
     /**
@@ -466,11 +468,11 @@ class UserController extends Controller
         $name = persianText($user->first_name . ' ' . $user->last_name);
         $nameEn = persianText($user->name_en);
         $imageName = $user->id . time();
-        if ($user->membership_type_id == 2){
+        if ($user->membership_type_id == 2) {
             $img = Image::make(public_path('img/register/C.png'));
-        }else{
-            if ((jdate()->getYear() - (int)explode('/',$user->profile[0]->birth_date)[0]) > 35){
-                switch ($user->membership_type_id){
+        } else {
+            if ((jdate()->getYear() - (int)explode('/', $user->profile[0]->birth_date)[0]) > 35) {
+                switch ($user->membership_type_id) {
                     case 1:
                         if ($user->main == 1)
                             $img = Image::make(public_path('img/register/M.png'));
@@ -483,8 +485,8 @@ class UserController extends Controller
                     default:
                         $img = Image::make(public_path('img/register/S.png'));
                 }
-            }else{
-                switch ($user->membership_type_id){
+            } else {
+                switch ($user->membership_type_id) {
                     case 1:
                         if ($user->main == 1)
                             $img = Image::make(public_path('img/register/YC-M.png'));
@@ -515,7 +517,7 @@ class UserController extends Controller
             $font->valign('bottom');
             $font->angle(0);
         });
-        if ($user->membership_type_id != 2){
+        if ($user->membership_type_id != 2) {
             $img->text(persianText(tr_num($user->user_code)), 220, 340, function (\Intervention\Image\Gd\Font $font) {
                 $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
                 $font->size(28);
@@ -524,7 +526,7 @@ class UserController extends Controller
                 $font->valign('bottom');
                 $font->angle(0);
             });
-        }else{
+        } else {
             $img->text(persianText(tr_num($user->user_code)), 220, 290, function (\Intervention\Image\Gd\Font $font) {
                 $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
                 $font->size(28);
@@ -551,15 +553,21 @@ class UserController extends Controller
             $font->angle(0);
         });
 
-        $img->insert(asset('img/profile/'.($user->profile_picture??'profile-default.png')), 'right', 70, 0);
+        $img->insert(asset('img/profile/' . ($user->profile_picture ?? 'profile-default.png')), 'right', 70, 0);
         $img->save(public_path("img/userCards/$imageName.jpg"));
 //        return "<img src='" . asset("img/userCards/$imageName.jpg") . "'>";
-        return $imageName.'.jpg';
+        return $imageName . '.jpg';
 
     }
 
     public function export()
     {
         return Excel::download(new UsersExport(), 'users.xlsx');
+    }
+
+    public function SupportMembers()
+    {
+        $users = User::whereMembershipTypeId(5);
+        return view('cms.user.support_members_index',compact('users'));
     }
 }

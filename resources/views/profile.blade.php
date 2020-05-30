@@ -29,10 +29,18 @@
                                             </p>
 
                                         </div>
+
+                                        {{--@if($user->shortcomings == null && $user->active == 2 )--}}
                                         <p class="font-16 text-regular text-black">
                                             <span>کد عضویت: </span>
                                             <span class="text-black-light ">{{tr_num($user->user_code)}}</span>
                                         </p>
+                                       {{-- @elseif($user->shortcomings != null )
+                                        <p class="font-16 text-regular text-danger">
+                                            <span>نقص مدارک: </span>
+                                            <span class="text-black-light ">{{tr_num($user->shortcomings)}}</span>
+                                        </p>
+                                            @endif--}}
                                     </div>
                                 </div>
 
