@@ -59,7 +59,7 @@ class UserController extends Controller
 //            return var_dump($users->get());
         }
 
-        $users = $users->where('membership_type_id','!=','5')->latest()->paginate(15)->appends($request->all());
+        $users = $users->where('membership_type_id', '!=', '5')->latest()->paginate(15)->appends($request->all());
 
         return view('cms.user.index', compact('users'));
     }
@@ -199,17 +199,22 @@ class UserController extends Controller
         $user = User::with("education", "companies", 'documents', 'profile')->find($request->get("tmp"));
 
 
-        Document::whereUserId($user->id)->update(['state' => 0]);
-        if ($request->has('documents')) {
-            foreach ($request->get('documents') as $docId) {
-                Document::whereId($docId)->update(['state' => 1]);
+        /*--------------  check local logic test  ---------------------*/
+
+        if ($request->has('active')) {
+            if ($request->get('shortcomings') !=null ){
+                flash_message('error',"مادامی که کاربر را تایید میکنید فیلد نقص مدرک نمی تواند پر باشد لطفا فیلد را خالی کنید و مجدد تلاش کنید");
+                return back()->withInput();
             }
+        }else{
+            if ($request->get('shortcomings') !=null )
+            \Mail::to($user->email)->send(new DefectiveDocumentsMail($request->get('shortcomings'), $user->first_name . " " . $user->last_name));
         }
 
         if ($user->profile[0]->certificate_number != $request->get('profile')['certificate_number']) {
             if (Profile::whereCertificateNumber($request->get('profile')['certificate_number']))
                 flash_message("error", "متاسفانه این کد ملی قبلا ثبت شده است.");
-            return redirect()->back();
+            return back()->withInput();
         }
 
 
@@ -218,18 +223,18 @@ class UserController extends Controller
             if ($user->companies[0]->established_number != $request->get('company')['established_number']) {
                 if (Company::whereEstablishedNumber($request->get('company')['certificate_number']))
                     flash_message("error", "متاسفانه این شماره ثبت قبلا ثبت شده است.");
-                return redirect()->back();
+                return back()->withInput();
             }
             if ($user->companies[0]->economy_number != $request->get('company')['economy_number']) {
                 if (Company::whereEconomyNumber($request->get('company')['certificate_number']))
                     flash_message("error", "متاسفانه این شماره اقتصادی قبلا ثبت شده است.");
-                return redirect()->back();
+                return back()->withInput();
             }
 
             if ($user->companies[0]->national_number != $request->get('company')['national_number']) {
                 if (Company::whereNationalNumber($request->get('company')['certificate_number']))
                     flash_message("error", "متاسفانه این شناسه ملی قبلا ثبت شده است.");
-                return redirect()->back();
+                return back()->withInput();
             }
 
         }
@@ -243,30 +248,28 @@ class UserController extends Controller
             if ($user->email != $rq->get('email')) {
                 if (User::whereEmail($rq->get('email'))->get()->count() >= 1) {
                     flash_message("error", "این ایمیل قبلا برای کاربر دیگه ای ثبت شده است");
-                    return back();
+                    return back()->withInput();
                 }
             }
 
             if ($user->mobile != $rq->get('mobile')) {
                 if (User::whereMobile($rq->get('mobile'))->get()->count() >= 1) {
                     flash_message("error", "این شماره قبلا برای کاربر دیگه ای ثبت شده است");
-                    return back();
+                    return back()->withInput();
                 }
             }
 
         }
 
-        /*        $check_slug = str_replace(" ", "-", $rq->get('name_en'));
+        /*--------------  local logic test ok  ---------------------*/
 
-                if ($user->slug != $check_slug) {
-                    $slug = str_replace(' ', '-', $rq->get('name_en'));
 
-                    $number = 1;
-
-                    while (User::whereSlug($slug)->where('id','!=',$user->id)->exists()) {
-                        $slug .= '-' . ++$number;
-                    }
-                }*/
+        Document::whereUserId($user->id)->update(['state' => 0]);
+        if ($request->has('documents')) {
+            foreach ($request->get('documents') as $docId) {
+                Document::whereId($docId)->update(['state' => 1]);
+            }
+        }
 
 
         $pass = $rq->get('password');
@@ -291,10 +294,10 @@ class UserController extends Controller
 
         $profile = $request->all('profile')['profile'];
 
-        if ($request->get('certificate-level') != 'null' )
-        $profile['certificate'] = "IPMA CB Certificate Level “" . $request['certificate-level'] . "” - " . tr_num($request['certificate-date'], "en");
-else
-    $profile['certificate'] = null;
+        if ($request->get('certificate-level') != 'null')
+            $profile['certificate'] = "IPMA CB Certificate Level “" . $request['certificate-level'] . "” - " . tr_num($request['certificate-date'], "en");
+        else
+            $profile['certificate'] = null;
 
         $profile['awards'] =
             $request->all('awards')['awards']['1'] .
@@ -314,7 +317,6 @@ else
                 break;
         }
 
-        \Mail::to($user->email)->send(new DefectiveDocumentsMail($user->shortcomings));
 
         flash_message("success", __('string.successful'));
 
@@ -336,7 +338,7 @@ else
         $user->userCard = $this->showCard($user);
         $user->profile()->update(['upgrade_update_data' => null]);
         $user->save();
-        \Mail::to($user->email)->send(new \App\Mail\RegisterMail($user->userCard));
+        \Mail::to($user->email)->send(new \App\Mail\RegisterMail($user->userCard, $user->first_name . " " . $user->last_name));
         $user->memberships()->update(['membership_type_id' => $user->membership_type_id,
             'start' => time(), 'end' => $user->expire, 'state_id' => 1, 'year' => $memberShip->year]);
 
@@ -568,6 +570,6 @@ else
     public function SupportMembers()
     {
         $users = User::whereMembershipTypeId(5);
-        return view('cms.user.support_members_index',compact('users'));
+        return view('cms.user.support_members_index', compact('users'));
     }
 }

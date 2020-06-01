@@ -292,12 +292,14 @@ namespace App{
  * @property int|null $committee_id
  * @property int|null $working_group_id
  * @property string|null $link
+ * @property int $state
  * @property-read \App\Branch|null $branch
  * @property-read \App\Committee|null $committee
  * @property-read \App\WorkingGroup $group
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereBranchId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereCommitteeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereState($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereWorkingGroupId($value)
  */
 	class Event extends \Eloquent {}
@@ -660,6 +662,27 @@ namespace App{
  * @method static \Illuminate\Database\Query\Builder|\App\WorkingGroup withoutTrashed()
  */
 	class WorkingGroup extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\ImageGallery
+ *
+ * @property int $id
+ * @property string $photo
+ * @property string $url
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ImageGallery newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ImageGallery newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ImageGallery query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ImageGallery whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ImageGallery whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ImageGallery wherePhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ImageGallery whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ImageGallery whereUrl($value)
+ */
+	class ImageGallery extends \Eloquent {}
 }
 
 namespace App{
@@ -1244,6 +1267,25 @@ namespace App{
  * @mixin \Eloquent
  */
 	class Reservation extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\VideoGallery
+ *
+ * @property int $id
+ * @property string $sourceCode
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\VideoGallery newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\VideoGallery newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\VideoGallery query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\VideoGallery whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\VideoGallery whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\VideoGallery whereSourceCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\VideoGallery whereUpdatedAt($value)
+ */
+	class VideoGallery extends \Eloquent {}
 }
 
 namespace App{

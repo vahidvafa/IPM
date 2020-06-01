@@ -185,6 +185,10 @@ Route::middleware('auth')->group(function () {
             Route::get('membership/{id}/edit', 'MembershipTypeController@edit')->name('membership.edit');
             Route::post('membership/{id}/update', 'MembershipTypeController@update')->name('membership.update');
 
+            /*-------------------------------------------------------*/
+            Route::resource('imageGallery','ImageGalleryController');
+            Route::resource('videoGallery','VideoGalleryController');
+
 
         });
     });
@@ -470,9 +474,13 @@ Route::get('companies',function (){
 
 
 Route::get('mail',function (){
-    return \Mail::to("drvafaiee@gmail.com")->send(new \App\Mail\DefectiveDocumentsMail("ajshdkahdsd"));
-
+    return \Mail::to("drvafaiee@gmail.com")->send(new \App\Mail\RegisterMail("11590566826.jpg","محمد رضا وفایی"));
 })->name("mail");
+
+Route::get('mail2',function (){
+    $upgradeUrl =$repeatUrl =$text= "adad";
+    return view('email.reminder',compact("upgradeUrl","repeatUrl",'text'));
+})->name("mail2");
 
 Route::get('trainingColleagues',function (){
     return view('training_colleagues');

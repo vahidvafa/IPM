@@ -62,7 +62,7 @@
                                         </div>
                                         <div class="ceo-text text-center">
                                             <p class="text-black text-medium font-16 mb-0 mt-3">
-                                                مهندس حسین رادمهر
+                                                دکتر حسین رادمهر
                                             </p>
                                             <p class="text-yellow font-16 m-0">
                                                 رئیس کمیته آموزش
@@ -87,7 +87,7 @@
                                         </div>
                                         <div class="ceo-text text-center">
                                             <p class="text-black text-medium font-16 mb-0 mt-3">
-                                                مهندس منصور فردوسی
+                                                دکتر منصور فردوسی
                                             </p>
                                             <p class="text-yellow font-16 m-0">
                                                 عضو کمیته آموزش
@@ -136,7 +136,7 @@
                                         </div>
                                         <div class="ceo-text text-center">
                                             <p class="text-black text-medium font-16 mb-0 mt-3">
-                                                مهندس سید وحید معینی
+                                                مهندس وحید معینی
                                             </p>
                                             <p class="text-yellow font-16 m-0">
                                                 عضو کمیته آموزش

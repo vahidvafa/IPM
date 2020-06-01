@@ -13,15 +13,17 @@ class RegisterMail extends Mailable
 
 
     public $userCard;
+    public $name;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($userCard)
+    public function __construct($userCard,$name)
     {
         $this->userCard = $userCard;
+        $this->name = $name;
     }
 
     /**
@@ -32,6 +34,7 @@ class RegisterMail extends Mailable
     public function build()
     {
         $fileName = $this->userCard;
-        return $this->view('email.register')->attach(asset("img/userCards/$fileName"));
+        $name = $this->name;
+        return $this->view('email.register',compact('name'))->subject("مدارک شما تایید شد - انجمن مدیریت پروژه ایران")->attach(asset("img/userCards/$fileName"));
     }
 }

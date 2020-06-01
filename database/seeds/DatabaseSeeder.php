@@ -39,5 +39,8 @@ class DatabaseSeeder extends Seeder
         factory(\App\Message::class,10)->create();
         factory(\App\Order::class,40)->create();
         factory(\App\OrderCode::class,80)->create();
+        factory(\App\VideoGallery::class,30)->create();
+        factory(\App\ImageGallery::class,30)->create();
+
     }
 }

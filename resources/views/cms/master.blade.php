@@ -187,6 +187,20 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{checkMenu("cms/videoGallery",$title)}}">
+                    <a class="nav-link" href="{{route('videoGallery.index')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>آرشیو ویدیو ها</p>
+                    </a>
+                </li>
+
+                <li class="nav-item {{checkMenu("cms/imageGallery",$title)}}">
+                    <a class="nav-link" href="{{route('imageGallery.index')}}">
+                        <i class="material-icons">library_books</i>
+                        <p>آرشیو تصاویر</p>
+                    </a>
+                </li>
+
                 <form method="post" action="{{route('logout')}}">
                     @csrf
                     <li class="nav-item active">

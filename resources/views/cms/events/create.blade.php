@@ -110,7 +110,7 @@
                                         <div class="form-group col-lg-6 mb-4">
                                             <label>شماره تلفن</label>
                                             <input class="form-control" name="tel" type="text" placeholder="شماره تلفن"
-                                                   value="{{old('tel')}}">
+                                                   value="{{old('tel')??"(5خط) 88229406 021"}}">
                                             @if($errors->has('tel'))
                                                 <div class="error text-danger">{{ $errors->first('tel') }}</div>
                                             @endif
@@ -118,7 +118,7 @@
                                         <div class="form-group col-lg-6 mb-4">
                                             <label>آدرس</label>
                                             <input class="form-control" name="address" type="text" placeholder="آدرس"
-                                                   value="{{old('address')}}">
+                                                   value="{{old('address')??":تهران، امیرآباد شمالی، بالاتر از بزرگراه جلال آل احمد، پردیس دانشکده های فنی دانشگاه تهران، ساختمان انستیتو مهندسی نفت، طبقه همکف"}}">
                                             @if($errors->has('address'))
                                                 <div class="error text-danger">{{ $errors->first('address') }}</div>
                                             @endif
@@ -127,7 +127,7 @@
                                             <label>عرض جغرافیایی</label>
                                             <input class="form-control" name="latitude" type="text"
                                                    placeholder="عرض جغرافیایی"
-                                                   value="{{old('latitude')}}">
+                                                   value="{{old('latitude')??35.733249}}">
                                             @if($errors->has('latitude'))
                                                 <div class="error text-danger">{{ $errors->first('latitude') }}</div>
                                             @endif
@@ -136,7 +136,7 @@
                                             <label>طول جغرافیایی</label>
                                             <input class="form-control" name="longitude" type="text"
                                                    placeholder="طول جغرافیایی"
-                                                   value="{{old('longitude')}}">
+                                                   value="{{old('longitude')??51.388087}}">
                                             @if($errors->has('longitude'))
                                                 <div class="error text-danger">{{ $errors->first('longitude') }}</div>
                                             @endif
@@ -156,7 +156,7 @@
                                             <label>استان</label>
                                             <select class="form-control" name="province_id">
                                                 @foreach(\App\Province::all() as $province)
-                                                    <option value="{{$province->id}}"> {{$province->title}} </option>
+                                                    <option value="{{$province->id}}" @if($province->id == 24) selected @endif> {{$province->title}} </option>
                                                 @endforeach
                                             </select>
                                             @if($errors->has('province_id'))

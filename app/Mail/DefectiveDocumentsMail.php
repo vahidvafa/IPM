@@ -13,6 +13,7 @@ class DefectiveDocumentsMail extends Mailable
 
 
     public $shortcomings;
+    public $name;
 
     /**
      * Create a new message instance.
@@ -21,9 +22,10 @@ class DefectiveDocumentsMail extends Mailable
      */
 
 
-    public function __construct($shortcomings)
+    public function __construct($shortcomings,$name)
     {
         $this->shortcomings = $shortcomings;
+        $this->name = $name;
     }
 
 
@@ -36,6 +38,7 @@ class DefectiveDocumentsMail extends Mailable
     public function build()
     {
         $shortcomings = $this->shortcomings;
-        return $this->view('email.defective_documents',compact('shortcomings'));
+        $name = $this->name;
+        return $this->subject("نقص مدارک")->view('email.defective_documents',compact('name','shortcomings'));
     }
 }
