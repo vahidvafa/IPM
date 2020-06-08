@@ -40,18 +40,20 @@ class GiftController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-           'event_id'=> ' required | numeric',
-           'type_id'=> ' required | numeric',
-           'price'=> ' required | numeric',
-           'maximum_count'=> ' nullable | numeric',
-           'minimum_price'=> ' nullable | numeric',
-           'maximum_price'=> ' nullable | numeric',
-           'members_usage'=> ' required | numeric',
-           'from_date'=> ' nullable | numeric',
-           'to_date'=> ' nullable | numeric',
+            'event_id'=> ' required | numeric',
+            'type_id'=> ' required | numeric',
+            'price'=> ' required | numeric',
+            'maximum_count'=> ' nullable | numeric',
+            'minimum_price'=> ' nullable | numeric',
+            'maximum_price'=> ' nullable | numeric',
+            'members_usage'=> ' required | numeric',
+            'from_date'=> ' nullable | numeric | lte:to_date',
+            'to_date'=> ' nullable | numeric |gte:from_date',
         ],[
             '*.required' =>'وارد کردن این فیلد الزامی است',
             '*.numeric' =>'فرمت این فیلد اشتباه است',
+            'from_date.*' => 'فرمت تاریخ انتخابی صحیح نمی باشد',
+            'to_date.*' => 'فرمت تاریخ انتخابی صحیح نمی باشد',
         ]);
         try{
             $code = Str::upper(Str::random(7));

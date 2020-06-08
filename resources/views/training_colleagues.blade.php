@@ -99,7 +99,7 @@
                                     <td>شرکت سرآمد سازان مدیریت داتیس</td>
                                     <td>مهندس غلامرضا صفا کیش</td>
                                     <td>----‏</td>
-                                    <td>----</td>
+                                    <td><img style="max-height: 100px;" src="{{asset("img/datis.jpeg")}}"/></td>
                                 </tr>
 
                                 <tr >

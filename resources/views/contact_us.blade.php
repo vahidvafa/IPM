@@ -78,6 +78,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 mb-3">
                         <h2 class="title-contactus font-18 text-medium text-black  mb-3">
+
                             شماره حساب :
                         </h2>
                         <p class="font-16 text-black-light "> 261655640 به نام انجمن مدیریت پروژه ایران نزد بانک تجارت</p>
@@ -85,12 +86,14 @@
 
                     <div class="col-12 col-md-6 col-lg-4 mb-3">
                         <h2 class="title-contactus font-18 text-medium text-black  mb-3">
+
                             شماره کارت :
                         </h2>
                         <p class="font-16 text-black-light ">  6489 0185 8370 5859 به نام انجمن مدیریت پروژه ایران نزد بانک تجارت</p>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 mb-3">
                         <h2 class="title-contactus font-18 text-medium text-black  mb-3">
+
                             شماره شبا :
                         </h2>
                         <p class="font-16 text-black-light ">IR060180000000000261655640</p>

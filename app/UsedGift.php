@@ -38,6 +38,8 @@ class UsedGift extends Model
 {
     use SoftDeletes;
 
+    protected $fillable =['gift_id','order_id','total_order_price'];
+
     public function gift()
     {
         return $this->belongsTo(Gift::class);

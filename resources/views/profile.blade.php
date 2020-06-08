@@ -29,18 +29,10 @@
                                             </p>
 
                                         </div>
-
-                                        {{--@if($user->shortcomings == null && $user->active == 2 )--}}
                                         <p class="font-16 text-regular text-black">
                                             <span>کد عضویت: </span>
                                             <span class="text-black-light ">{{tr_num($user->user_code)}}</span>
                                         </p>
-                                       {{-- @elseif($user->shortcomings != null )
-                                        <p class="font-16 text-regular text-danger">
-                                            <span>نقص مدارک: </span>
-                                            <span class="text-black-light ">{{tr_num($user->shortcomings)}}</span>
-                                        </p>
-                                            @endif--}}
                                     </div>
                                 </div>
 
@@ -73,12 +65,12 @@
                                     <span class="text-black-light">{{$user->email}}</span>
                                 </p>
 
-                                    @if($user->membership_type_id == 2)
-                                <p class="font-16 text-regular text-black">
-                                    <span>نام شرکت:</span>
-                                    <span class="text-black-light">{{$user->companies[0]->name}}</span>
-                                </p>
-                                    @endif
+                                @if($user->membership_type_id == 2)
+                                    <p class="font-16 text-regular text-black">
+                                        <span>نام شرکت:</span>
+                                        <span class="text-black-light">{{$user->companies[0]->name}}</span>
+                                    </p>
+                                @endif
 
                                 @if( $user->resume_address!=null && File::exists("files/resume/$user->resume_address"))
                                     <p class="font-16 text-regular text-black ">
@@ -440,7 +432,7 @@
                                        aria-invalid="false"
                                        placeholder="حوضه های تخصصی"
                                        value="{{$user->profile[0]->specialized_basins}}"
-                                       >
+                                >
 
                             </div>
 
@@ -475,7 +467,24 @@
 
 
                             <div class="col-md-12" id="documentDefect">
-
+                                <div class="row" id="-10">
+                                    <div class="input-form col-md-3">
+                                        <label class="custom-file-label"
+                                               style="width: 166px;margin-right: 30px;">اسناد</label>
+                                        <input type="file"
+                                               class="custom-file-input"
+                                               name="files[]"
+                                               placeholder="آپلود مدارک"
+                                               required="">
+                                    </div>
+                                    <div class="input-form col-md-8">
+                                        <input type="text" name="files_explain[]" value="" size="40"
+                                               aria-invalid="false" placeholder="توضیحات مدارک *" required="">
+                                    </div>
+                                    <div class="col-md-1 py-2">
+                                        <button type="button" class="btn btn-danger" onclick="deleteRow(-10)">-</button>
+                                    </div>
+                                </div>
                             </div>
 
 
@@ -491,7 +500,7 @@
                                        aria-invalid="false"
                                        placeholder="لینک یوتویوپ"
                                        value="{{$user->profile[0]->youTube}}"
-                                       >
+                                >
 
                             </div>
 
@@ -501,7 +510,7 @@
                                        aria-invalid="false"
                                        placeholder="لینک فیسبوک"
                                        value="{{$user->profile[0]->facebook}}"
-                                       >
+                                >
 
                             </div>
 
@@ -511,7 +520,7 @@
                                        aria-invalid="false"
                                        placeholder="لینک اینستاگرام"
                                        value="{{$user->profile[0]->instagram}}"
-                                       >
+                                >
 
                             </div>
 
@@ -521,7 +530,7 @@
                                        aria-invalid="false"
                                        placeholder="لینک تلگرام"
                                        value="{{$user->profile[0]->telegram}}"
-                                       >
+                                >
 
                             </div>
 
@@ -531,7 +540,7 @@
                                        aria-invalid="false"
                                        placeholder="لینک تویتر"
                                        value="{{$user->profile[0]->twitter}}"
-                                       >
+                                >
 
                             </div>
 

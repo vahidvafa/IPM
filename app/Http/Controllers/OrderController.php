@@ -119,15 +119,19 @@ class OrderController extends Controller
                 $order->orderCodes()->save($orderCode);
             }
             if (!is_null($request->get('gift'))) {
-                $giftCode = Gift::whereCode($request->get('gift'));
-                if ($giftCode->exists()) {
-                    $giftCode = $giftCode->get();
-                    if ($giftCode->from_date == 0 || $giftCode->from_date <= time()) {
-                        if ($giftCode->to_date == 0 || $giftCode->to_date >= time()) {
+                try {
+                    $giftCode = Gift::whereEventId($event->id)->whereCode($request->get('gift'))->firstOrFail();
+                    $find = true;
+                } catch (ModelNotFoundException $exception) {
+                    $find = false;
+                }
+                if ($find) {
+                    if ($giftCode->from_date->unix == 0 || $giftCode->from_date->unix <= time()) {
+                        if ($giftCode->to_date->unix == 0 || $giftCode->to_date->unix >= time()) {
                             if ($giftCode->minimum_price == 0 || $giftCode->minimum_price <= $order->total_price) {
                                 if ($giftCode->maximum_price == 0 || $giftCode->maximum_price >= $order->total_price) {
-                                    if ($giftCode->maximum_count == 0 || $giftCode->maximum_count > UsedGift::whereGiftId($giftCode->id)->count()) {
-                                        if ($giftCode->members_usage == 0 || auth()->user()->active == 2) {
+                                    if (($giftCode->maximum_count == 0) || ($giftCode->maximum_count != 0 && $giftCode->maximum_count > UsedGift::whereGiftId($giftCode->id)->count())) {
+                                        if ($giftCode->members_usage == 1 || auth()->user()->active == 2) {
                                             if ($giftCode->type_id == 1) {
                                                 $finalPrice = $order->total_price * (1 - $giftCode->price);
                                             } else {
@@ -144,7 +148,7 @@ class OrderController extends Controller
                                             ]);
                                             return true;
                                         } else
-                                            $msg = __('string.gift.error.maximum_count');
+                                            $msg = __('string.gift.error.members_usage');
                                     } else
                                         $msg = __('string.gift.error.maximum_count');
                                 } else

@@ -68,6 +68,8 @@ Route::post('location', 'AuthController@locationSms')->name('location');
 Route::get('about-us', 'IndexController@about_us')->name('about-us');
 Route::get('/research', 'IndexController@research')->name('research');
 Route::get('/gifts', 'IndexController@gifts')->name('gifts');
+Route::get('/gifts/intro', 'IndexController@giftIntro')->name('giftIntro');
+Route::get('/gifts/{picture}/{type}', 'IndexController@giftPicture')->name('giftPicture');
 Route::get('/winners', 'IndexController@winners')->name('winners');
 Route::get('/winners/{id}', 'IndexController@winners_detail')->name('winners_detail');
 Route::get('/gov', 'IndexController@gov')->name('gov');
@@ -253,13 +255,12 @@ Route::get('ImageArchiveGallery', function () {
 
 })->name('ImageArchiveGallery');
 
-Route::get('VideoArchive', function () {
-    $breadcrumb = "آرشیو ویدیو ها";
-    $titleHeader = "ویدیو ها";
-    return view('video_archive', compact('breadcrumb', 'titleHeader'));
-
-})->name('VideoArchive');
-
+//Route::get('VideoArchive', function () {
+//    $breadcrumb = "آرشیو ویدیو ها";
+//    $titleHeader = "ویدیو ها";
+//    return view('video_archive', compact('breadcrumb', 'titleHeader'));
+//})->name('VideoArchive');
+Route::get('VideoArchive','VideoGalleryController@archive')->name('VideoArchive');
 
 /*Route::get('Committees', function () {
     $breadcrumb = "کمیته ها";
@@ -446,7 +447,7 @@ Route::get('test',function (){
 
 
 Route::get('top-research-award',function (){
-    $breadcrumb = $titleHeader = "جایزه پژوهش برتر";
+    $breadcrumb = $titleHeader = "جایزه مدیر پروژه برتر";
     return view('top_research_award',compact('breadcrumb','titleHeader'));
 })->name("top-research-award");
 
@@ -474,7 +475,7 @@ Route::get('companies',function (){
 
 
 Route::get('mail',function (){
-    return \Mail::to("drvafaiee@gmail.com")->send(new \App\Mail\RegisterMail("11590566826.jpg","محمد رضا وفایی"));
+    return \Mail::to("drvafaiee@gmail.com")->send(new \App\Mail\RegisterMail("11588752619.jpg","محمد رضا وفایی"));
 })->name("mail");
 
 Route::get('mail2',function (){
@@ -486,6 +487,9 @@ Route::get('trainingColleagues',function (){
     return view('training_colleagues');
 })->name('trainingColleagues');
 
+Route::get('excel',function (){
+    Excel::import(new \App\Import\UserXlsxImport ,public_path('1.xlsx'));
+});
 
 
 

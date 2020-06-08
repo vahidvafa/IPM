@@ -92,7 +92,7 @@ class Profile extends Model
 
     protected $guarded = ['id'];
 
-    protected $fillable = ['sex', 'father_name', 'certificate_number', 'birth_date', 'birth_place', 'national_code', 'work_name', 'work_address', 'home_address', 'work_post', 'home_post', 'work_tel', 'home_tel', 'receive_place'
+    protected $fillable = ['user_id','sex', 'father_name', 'certificate_number', 'birth_date', 'birth_place', 'national_code', 'work_name', 'work_address', 'home_address', 'work_post', 'home_post', 'work_tel', 'home_tel', 'receive_place'
         , 'youTube', 'facebook', 'instagram', 'telegram', 'twitter', 'honors', 'certificate', 'specialized_basins', 'lang_id'
     ];
 

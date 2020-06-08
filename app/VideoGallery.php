@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class VideoGallery extends Model
 {
-    protected $fillable = ['sourceCode','name'];
+    public $timestamps = false;
+
+    protected $fillable = ['sourceCode', 'name'];
 }

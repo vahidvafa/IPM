@@ -209,7 +209,6 @@
                                         دکتر مجتبی عزیزی</p>
                                     <p class="text-yellow font-16 m-0">
                                         نایب رئیس هیات مدیره
-                                        رئیس کارگروه تخصصی BIM
                                     </p>
                                 </div>
                             </div>
@@ -316,7 +315,7 @@
                                         دکتر آرنوش شاکری</p>
                                     <p class="text-yellow font-16 m-0">
                                         عضو هیات مدیره
-                                        رئیس کمیته جایزه پژوهش
+                                        رئیس کمیته جایزه پژوهش برتر
                                     </p>
                                 </div>
                             </div>
@@ -359,7 +358,7 @@
                                     <p class="text-black text-medium font-16 mb-0 mt-3">
                                         مهندس داود کشاورز </p>
                                     <p class="text-yellow font-16 m-0">
-                                        عضو علی البدل هیات مدیره </p>
+                                        عضو هیات مدیره </p>
                                 </div>
                             </div>
                         </div>
@@ -428,7 +427,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 col-lg-3">
+                    {{--<div class="col-12 col-sm-6 col-lg-3">
                         <div class="ceo-out">
                             <div class="ceo-in">
                                 <div class="ceo-img">
@@ -449,7 +448,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
 
                 </div>
             </div>

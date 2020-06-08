@@ -294,14 +294,26 @@ class IndexController extends Controller
 
     public function gifts()
     {
-        $breadcrumb = $titleHeader = "کمیته جایزه";
-        return view('gifts', compact('titleHeader', 'breadcrumb'));
+        $breadcrumb = $titleHeader = "جایزه ملی مدیریت پروژه";
+        return view('gifts', compact('breadcrumb'));
+    }
+
+    public function giftPicture($picture,$type)
+    {
+        $breadcrumb = $titleHeader = "جایزه ملی مدیریت پروژه";
+        return view('giftPicture',compact('titleHeader','breadcrumb','picture','type'));
+    }
+
+    public function giftIntro()
+    {
+        $breadcrumb = $titleHeader = "جایزه ملی مدیریت پروژه";
+        return view('giftText',compact('titleHeader','breadcrumb'));
     }
 
     public function winners()
     {
-        $breadcrumb = $titleHeader = "کارگروه های تخصصی";
-        return view('winners', compact('titleHeader', 'breadcrumb', 'id'));
+        $breadcrumb = $titleHeader = "جایزه ملی مدیریت پروژه";
+        return view('winners', compact('titleHeader', 'breadcrumb'));
     }
 
     public function winners_detail($id)

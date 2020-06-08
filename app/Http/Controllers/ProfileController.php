@@ -41,10 +41,14 @@ class ProfileController extends Controller
 
         $user = $user[0];
 
-        if ($user->active != 2 && $user->active != 4 && $user->active != 5) {
+        //0=> payment pending ( payment again , dont show , dont edit profile )| 1=>admin pending( dont show profile ) || 2
+        // 3=>expire ( offer member ) || 4=> payment pending for upgrade
+        if ($user->active == 0 || $user->active == 1 || $user->active == 3) {
             if (auth()->check()) {
-                if (auth()->user()->roles == 2)
+
+                if (auth()->id() != $user->id && auth()->user()->roles == 2)
                     abort(404, "متاسفانه صفحه مورد نظر در دسترس نمی باشد(1001)");
+
             } else
                 abort(404, "متاسفانه صفحه مورد نظر در دسترس نمی باشد(1002)");
 
@@ -52,7 +56,7 @@ class ProfileController extends Controller
 
         if (time() >= $user->expire) {
             if (auth()->check()) {
-                if (auth()->user()->roles == 2)
+                if ( auth()->id() != $user->id &&  auth()->user()->roles == 2)
                     abort(404, (auth()->id() == $user->id) ? "متاسفانه مدت اعتبار شنا به اتمام رسیده" : "متاسفانه صفحه مورد نظر در دسترس نمی باشد(1003)");
             } else
                 abort(404, "متاسفانه صفحه مورد نظر در دسترس نمی باشد(1004)");

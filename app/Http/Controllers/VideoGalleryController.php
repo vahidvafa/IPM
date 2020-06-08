@@ -14,7 +14,7 @@ class VideoGalleryController extends Controller
      */
     public function index()
     {
-        $videos = VideoGallery::latest()->paginate(5);
+        $videos = VideoGallery::paginate(5);
         return view('cms.archive.video.index',compact('videos'));
     }
 
@@ -108,5 +108,14 @@ class VideoGalleryController extends Controller
 
         return back();
 
+    }
+
+    public function archive()
+    {
+        $breadcrumb = "آرشیو ویدیو ها";
+        $titleHeader = "ویدیو ها";
+        $rows = collect(VideoGallery::all())->chunk(2);
+//        return response($videos);
+        return view('video_archive',compact('titleHeader','breadcrumb','rows'));
     }
 }
