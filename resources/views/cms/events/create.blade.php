@@ -226,6 +226,22 @@
                                                 <div class="error text-danger">{{ $errors->first('state') }}</div>
                                             @endif
                                         </div>
+                                        <div class="col-lg-12 mb-4 ">
+                                            <label class="col-2">مخاطبین</label>
+                                            <input class="form-control "
+                                                   name="contacts" type="text" value="{{(old('contacts') ?? request('contacts'))}}">
+                                            @if($errors->has('contacts'))
+                                                <div class="error text-danger">{{ $errors->first('contacts') }}</div>
+                                            @endif
+                                        </div>
+                                        <div class="col-lg-12 mb-4 ">
+                                            <label class="col-1">مدرس</label>
+                                            <input class="form-control "
+                                                   name="teacher" type="text" value="{{(old('teacher') ?? request('teacher'))}}" >
+                                            @if($errors->has('teacher'))
+                                                <div class="error text-danger">{{ $errors->first('teacher') }}</div>
+                                            @endif
+                                        </div>
 
                                     </div>
                                     <div class="card-footer">

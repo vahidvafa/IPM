@@ -72,11 +72,13 @@ class EventController extends Controller
             /*"branch_id" => "required | integer",
             "committee_id" => "required | integer",
             "working-group_id" => "required | integer",*/
-            "tel" => "required | numeric",
+            "tel" => "required ",
             "address" => "required",
             "latitude" => "required | numeric",
             "longitude" => "required | numeric",
             "image" => "required | image",
+            "teacher" => "required | string",
+            "contacts" => "required | string",
         ], [
             '*.required' => 'وارد کردن این فیلد الزامی است',
             '*.numeric' => 'این فیلد باید عدد باشد',
@@ -174,11 +176,13 @@ return;*/
             /*"branch_id" => "required | integer",
             "committee_id" => "required | integer",
             "working-group_id" => "required | integer",*/
-            "tel" => "required | numeric",
+            "tel" => "required ",
             "address" => "required",
             "latitude" => "required | numeric",
             "longitude" => "required | numeric",
             "image" => "nullable | image",
+            "teacher" => "required | string",
+            "contacts" => "required | string",
         ], [
             '*.required' => 'وارد کردن این فیلد الزامی است',
             '*.numeric' => 'این فیلد باید عدد باشد',

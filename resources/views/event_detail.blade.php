@@ -9,7 +9,7 @@
                 <div class="col-lg-9">
 
                     <div class="text-detail mt-4">
-                        <h2 class=" font-24 text-medium text-black  mb-4">توضیحات دوره
+                        <h2 class=" font-24 text-medium text-black  mb-4">خلاصه دوره
                         </h2>
                         {{--<p class=" text-black-light font-16 "></p>--}}
                         <p class=" text-black-light font-16 ">{!!$event->description !!}</p>
@@ -40,6 +40,15 @@
 
                         </ul>--}}
                     </div>
+
+                    <div class="text-detail mt-4">
+                        <h2 class=" font-24 text-medium text-black  mb-4">توضیحات دوره
+                        </h2>
+                        {{--<p class=" text-black-light font-16 "></p>--}}
+                        <p class=" text-black-light font-16 ">{!!$event->detail !!}</p>
+
+                    </div>
+
                     <div class="address-detail mt-4">
                         <h2 class=" font-24 text-medium text-black  mb-4">اطلاعات برگزاری
                         </h2>
@@ -71,8 +80,8 @@
                         <h2 class="title-bar-detail text-white font-18 text-medium mb-4">اطلاعات ثبت نام</h2>
 
                         <ul class="list-detail-in">
-                            <li ><span class="text-black pr-1 text-regular">مخاطبین  : </span><span class="text-black-light">متن تصادفی</span></li>
-                            <li ><span class="text-black pr-1 text-regular">مدرس : </span><span class="text-black-light">متن تصادفی</span></li>
+                            <li ><span class="text-black pr-1 text-regular">مخاطبین  : </span><span class="text-black-light">{{$event->contacts}}</span></li>
+                            <li ><span class="text-black pr-1 text-regular">مدرس : </span><span class="text-black-light">{{$event->teacher}}</span></li>
                             <li ><span class="text-black pr-1 text-regular">سرمایه گذاری : </span><span class="text-black-light">{{tr_num(number_format($event->price))}} ریال </span></li>
                         </ul>
                         @if(auth()->check())

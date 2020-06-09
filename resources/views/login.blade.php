@@ -31,7 +31,7 @@
                     کرده ام؟</a>
 
                 <div class="col-12 d-block mt-4 ">
-                    <label >مرا به خاظر بسپار</label>
+                    <label >مرا به خاطر بسپار</label>
                     <input type="checkbox" name="rememberMe" id="rememberMe" value="remember" >
                     </div>
                 <div class="row col-12">

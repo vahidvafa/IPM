@@ -64,6 +64,7 @@
                         <th scope="col">عنوان</th>
                         <th scope="col">مبلع</th>
                         <th scope="col">شماره پیگیری بانک</th>
+                        <th scope="col">شماره پیگیری سایت</th>
                         <th scope="col">تاریخ</th>
                         <th scope="col">وضعیت</th>
                         <th scope="col">مشاهده کدها</th>
@@ -77,6 +78,7 @@
                             <td>{{$order->user->first_name??""}} {{$order->user->last_name??""}}</td>
                             <td>عنوان</td>
                             <td>{{$order->total_price}}</td>
+                            <td>{{$order->reference_number}}</td>
                             <td>{{$order->reference_id}}</td>
                             <td>{{jdate($order->create_at)}}</td>
                             <td>@switch($order->state_id) @case(0) منتظر پرداخت@break @case(1) تراکنش موفق @break @case(2) تراکنش ناموفق @break @endswitch</td>

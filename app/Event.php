@@ -80,7 +80,7 @@ class Event extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title', 'description', 'detail', 'course_headings', 'from_date', 'to_date', 'start_register_date', 'price', 'province_id', 'tel', 'address', 'latitude', 'longitude', 'event_category_id', 'branch_id', 'branch_id', 'committee_id', 'working_group_id','link','state'];
+    protected $fillable = ['teacher','contacts','title', 'description', 'detail', 'course_headings', 'from_date', 'to_date', 'start_register_date', 'price', 'province_id', 'tel', 'address', 'latitude', 'longitude', 'event_category_id', 'branch_id', 'branch_id', 'committee_id', 'working_group_id','link','state'];
 
     public function category()
     {

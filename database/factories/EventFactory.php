@@ -42,6 +42,8 @@ $factory->define(Event::class, function (Faker $faker) {
         'photo' => 'popular'.random_int(1,4).'.jpg',
         'user_id' => \App\User::all('id')->random()->id,
         'lang_id' =>\App\Lang::all('id')->random()->id,
+        'contacts' =>"مخاطبین",
+        'teacher' =>"مغلممم",
         'created_at' => now(),
 
 

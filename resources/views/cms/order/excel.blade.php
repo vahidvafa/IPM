@@ -7,6 +7,7 @@
         <th>تاریخ خرید</th>
         <th>توضیحات</th>
         <th>شماره پیگیری بانک</th>
+        <th>شماره پیگیری سایت</th>
         <th>وضغیت پرداخت</th>
     </tr>
     </thead>
@@ -16,10 +17,11 @@
         <tr>
             <td>{{ ($loop->index + 1) }}</td>
             <td>{{ ($order->user->first_name??"").' '.($order->user->last_name??"") }}</td>
-            <td>{{ number_format($order->total_price)}}</td>
+            <td>'{{ number_format($order->total_price)}}</td>
             <td>{{ jdate($order->updated_at)->format('Y/m/d H:i') }}</td>
             <td>{{ $order->comment }}</td>
-            <td>{{ $order->reference_number }}</td>
+            <td>'{{ $order->reference_number }}</td>
+            <td>'{{ $order->reference_id }}</td>
             <td>@switch($order->state_id) @case(0) منتظر پرداخت @break @case(1) موفق @break @case(2) ناموفق @break @endswitch</td>
         </tr>
     @endforeach
