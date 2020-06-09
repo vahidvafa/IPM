@@ -316,7 +316,7 @@ class ProfileController extends Controller
                     if ($verify > 0) {
                         $order->update([
                             'state_id' => 1,
-                            'reference_number' => $referenceNumber,
+                            'reference_number' => $request->get('TRACENO'),
                         ]);
                         $user->active = 5;
                         $user->save();

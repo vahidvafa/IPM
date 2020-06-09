@@ -409,7 +409,7 @@ class AuthController extends Controller
                     if ($verify > 0) {
                         $order->update([
                             'state_id' => '1',
-                            'reference_number' => $referenceNumber,
+                            'reference_number' => $request->get('TRACENO'),
                         ]);
                         $user->active = 1;
                         $user->save();
@@ -498,7 +498,7 @@ class AuthController extends Controller
                     if ($verify > 0) {
                         $order->update([
                             'state_id' => 1,
-                            'reference_number' => $referenceNumber,
+                            'reference_number' => $request->get('TRACENO'),
                         ]);
                         $memberShip = $user->memberships()->latest()->first();
                         $memberShipType = MembershipType::find($memberShip->membership_type_id);

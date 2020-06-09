@@ -128,7 +128,7 @@ class IndexController extends Controller
                     if ($verify > 0) {
                         $order->update([
                             'state_id' => '1',
-                            'reference_number' => $referenceNumber,
+                            'reference_number' => $request->get('TRACENO'),
                         ]);
 
                         $event = $order->event()->get()->first();
