@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\{Branch, Document, Membership, MembershipType, Order, User};
 use Hash;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;

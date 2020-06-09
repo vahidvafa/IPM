@@ -210,7 +210,7 @@ Route::resource("job", "JobController");
 Route::post('/event/list', 'EventController@indexJs')->name('event.list');
 Route::get('callback', 'IndexController@callback')->name('callback');
 Route::get('bank', 'IndexController@bank')->name('bank');
-Route::post('verifyBank', 'IndexController@verify')->name('verifyBank');
+Route::any('verifyBank', 'IndexController@verify')->name('verifyBank');
 Route::get('orderCode/{orderCode}', 'OrderCodeController@show')->name('orderCode.show');
 
 Route::get('test', function () {
@@ -3639,7 +3639,7 @@ Route::get('tst', function () {
         ["3138","YC","1402/03/30","99-015","M","طرح و ساخت ساباط","فرشاد","بابائی زارع","9127389575",null,"farshadbabaei@yahoo.com","منزل","تهران","تهران - خیابان پاسداران - میدان اختیاریه - کوچه فتاحیان - پلاک26- واحد 2کدپستی 1958675481","تهران - میدان ونک - خیابان گاندی جنوبی - خیابان 23- پلاک19-واحد 503",null,"26133084","88671752","میکاییل",null,"10045521","1368","1",16,"عضو ارشد تیم مدیریت و کنترل پروژه","برنامه ریزی و کنترل و مدیریت پروژه های ساختمانی","7","کارشناسی مهندسی عمران","1399/02/31","3500000","1399/02/31","1399/02/31","861643","1","جناب آقای فرشاد بابائی زارع",null,"P","Farshid","Babaeizare",null,null,null,null  ],
         ["end",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null  ]
     );
-    
+
     DB::beginTransaction();
     foreach ($arr as $row) {
         $main = $memberType = 0;

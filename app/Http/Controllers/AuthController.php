@@ -9,6 +9,7 @@ use App\Education;
 use App\Order;
 use App\User;
 use App\WorkExperience;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Ixudra\Curl\Facades\Curl;

@@ -178,6 +178,10 @@ class OrderController extends Controller
             $comment = $order->comment;
             $merchantCode = '11175778';
             $redirectURL = route('verifyBank');
+            if ($price == 0 ){
+                \Session::put('freeOrder',$order->reference_id);
+                return redirect('verifyBank');
+            }
             return view('bank', compact('titleHeader', 'breadcrumb', 'price', 'resNum', 'merchantCode', 'redirectURL', 'comment'));
         } else {
             return back()->withInput($request->all());

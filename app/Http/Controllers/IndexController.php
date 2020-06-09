@@ -11,6 +11,7 @@ use App\News;
 use App\Order;
 use App\OrderCode;
 use App\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Ixudra\Curl\Facades\Curl;
@@ -30,7 +31,7 @@ class IndexController extends Controller
         $events = Event::whereState(1)->latest()->limit(2)->get(['id', 'photo', 'title', 'description', 'from_date']);
         $news = News::whereState(1)->whereLangId(1)->latest('updated_at')->limit(3)->get(['id', 'photo', 'title', 'created_at']);
         $ipma = IPMA::latest()->first();
-        $eventsWithCats = EventCategory::withCount(["event"=>function($q){
+        $eventsWithCats = EventCategory::withCount(["event" => function ($q) {
             $q->whereState(1);
         }])->get();
         $eventsWithCats->transform(function ($category) {
@@ -44,7 +45,7 @@ class IndexController extends Controller
 
         $sponsors = MainPageSponsor::all();
 
-        return view('index', compact('events', 'news', 'ipma', 'eventsWithCats','sponsors'));
+        return view('index', compact('events', 'news', 'ipma', 'eventsWithCats', 'sponsors'));
     }
 
     public function indexEn()
@@ -112,25 +113,41 @@ class IndexController extends Controller
         $titleHeader = $breadcrumb = 'وضعیت پرداخت';
         $status = false;
         $type_id = 0;
-        $referenceId = ($request->has('ResNum')) ? $request->get('ResNum') : '----';
-        if ($request->has('State') && $request->get('State') == "OK") {
-            $referenceNumber = $request->get('RefNum');
+        $isFree = \Session::has('freeOrder');
+        if ($isFree) {
+            $referenceId = \Session::get('freeOrder');
+        } else {
+            $referenceId = ($request->has('ResNum')) ? $request->get('ResNum') : '----';
+        }
+        if (($request->has('State') && $request->get('State') == "OK") || $isFree) {
             try {
                 $order = Order::whereReferenceId($referenceId)->whereStateId(0)->firstOrFail();
-                $find = true;
+                if ($isFree) {
+                    $find = ($order->total_price == 0);
+                    $request->merge(['Amount' => 0]);
+                } else {
+                    $find = true;
+                }
             } catch (ModelNotFoundException $exception) {
                 $find = false;
             }
             if ($find) {
                 if (($order->total_price) == $request->get('Amount')) {
-                    $soapClient = new soapclient('https://verify.sep.ir/Payments/ReferencePayment.asmx?WSDL');
-                    $verify = $soapClient->VerifyTransaction($referenceNumber, $MerchantCode);
+                    if (!$isFree) {
+                        $referenceNumber = $request->get('RefNum');
+                        $soapClient = new soapclient('https://verify.sep.ir/Payments/ReferencePayment.asmx?WSDL');
+                        $verify = $soapClient->VerifyTransaction($referenceNumber, $MerchantCode);
+                        $reference_bank_number = $request->get('TRACENO');
+                    } else {
+                        $reference_bank_number = "----";
+                        $verify = 1;
+                        \Session::remove('freeOrder');
+                    }
                     if ($verify > 0) {
                         $order->update([
                             'state_id' => '1',
-                            'reference_number' => $request->get('TRACENO'),
+                            'reference_number' => $reference_bank_number,
                         ]);
-
                         $event = $order->event()->get()->first();
                         $category = persianText($event->category()->get('name')->first()->name);
                         $date = $event->from_date;
@@ -298,16 +315,16 @@ class IndexController extends Controller
         return view('gifts', compact('breadcrumb'));
     }
 
-    public function giftPicture($picture,$type)
+    public function giftPicture($picture, $type)
     {
         $breadcrumb = $titleHeader = "جایزه ملی مدیریت پروژه";
-        return view('giftPicture',compact('titleHeader','breadcrumb','picture','type'));
+        return view('giftPicture', compact('titleHeader', 'breadcrumb', 'picture', 'type'));
     }
 
     public function giftIntro()
     {
         $breadcrumb = $titleHeader = "جایزه ملی مدیریت پروژه";
-        return view('giftText',compact('titleHeader','breadcrumb'));
+        return view('giftText', compact('titleHeader', 'breadcrumb'));
     }
 
     public function winners()

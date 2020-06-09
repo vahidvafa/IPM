@@ -180,17 +180,14 @@ function persianText($text)
 }
 
 
-function createUserCode($membershipType, $main = 0):string
+function createUserCode($membershipType, $main = 0): string
 {
-    $array = ['','A','C','S'];
+    $array = ['', 'A', 'C', 'S'];
     $year = jdate()->format('y');
     $year = (strlen($year) == 1) ? 0 . $year : $year;
-    $lastCode = \App\User::whereMembershipTypeId($membershipType)->whereMain($main)->orderByDesc('user_code')->get(['user_code'])->first()->user_code;
+    $lastCode = \App\User::where('active', '>', 1)->whereMain($main)->orderByDesc('user_code')->get(['user_code'])->first()->user_code;
     $lastCode = explode('-', $lastCode);
-    if ($main == 0)
-        $type = $array[$membershipType];
-    else
-        $type = 'M';
+    $type = ($main == 0) ? $array[$membershipType] : 'M';
 //    $type = $lastCode[2];
     if ($year == $lastCode[0]) {
         $counter = $lastCode[1] + 1;
@@ -199,10 +196,20 @@ function createUserCode($membershipType, $main = 0):string
         for ($i = 0; $i < $diff; $i++) {
             $zero .= "0";
         }
-        $counter = $zero.$counter;
+        $counter = $zero . $counter;
         $code = "$year-$counter-$type";
     } else {
         $code = "$year-001-$type";
     }
+    return $code;
+}
+
+function changeUserCode($userId, $membershipType, $main = 0): string
+{
+    $array = ['', 'A', 'C', 'S'];
+    $type = ($main == 0) ? $array[$membershipType] : 'M';
+    $userCode = \App\User::find($userId)->user_code;
+    $userCode = explode('-', $userCode);
+    $code = $userCode[0] . '-' . $userCode[1] . '-' . $type;
     return $code;
 }
