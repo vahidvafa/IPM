@@ -1,6 +1,10 @@
 @extends('cms.master')
 @section('content')
-
+    <style>
+        .text-center {
+            text-align: center
+        }
+    </style>
     <div class="col-12">
         <div class="card">
             <div class="card-header card-header-warning">
@@ -17,14 +21,16 @@
 
                     <div class="col-6 form-group mt-4 ">
                         <label for="user" class="col-12">نام یا مشخصات کاربر را تایپ کنید</label>
-                        <input value="{{request('user')}}" type="text" class="form-control" name="user" id="user" placeholder="نام و نام حانوادگی , ایمیل ,شماره موبایل ,کد کاربری" >
+                        <input value="{{request('user')}}" type="text" class="form-control" name="user" id="user"
+                               placeholder="نام و نام حانوادگی , ایمیل ,شماره موبایل ,کد کاربری">
                     </div>
 
                     <div class="col-4 " style="margin-top: -10px">
-                    <label for="payState" class="col-12">وضعیت پرداخت: </label>
+                        <label for="payState" class="col-12">وضعیت پرداخت: </label>
                         <select name="payState" id="payState" class="form-control">
-                            <option value="-100" @if(request("payState") == "-100") selected @endif>--------------</option>
-                            <option value="0" @if(request("payState") == "0") selected @endif >درجال پرداخت</option>
+                            <option value="-100" @if(request("payState") == "-100") selected @endif>--------------
+                            </option>
+                            <option value="0" @if(request("payState") == "0") selected @endif >درحال پرداخت</option>
                             <option value="1" @if(request("payState") == "1") selected @endif >موفق</option>
                             <option value="2" @if(request("payState") == "2") selected @endif >ناموفق</option>
 
@@ -32,12 +38,10 @@
                     </div>
 
 
-
                     <div class="col-6 form-group mt-4 ">
                         <label for="user" class="col-12">شماره پیگیری بانک</label>
-                        <input value="{{request('ref_id')}}" type="text" class="form-control" name="ref_id" id="ref_id" >
+                        <input value="{{request('ref_id')}}" type="text" class="form-control" name="ref_id" id="ref_id">
                     </div>
-
 
 
                     <div class="col-3 form-group">
@@ -56,33 +60,38 @@
 
                 </form>
                 {{$orders->links()}}
-                <table class="rwd-table table">
+                <table class="rwd-table table ">
                     <thead>
                     <tr>
-                        <th scope="col">ردیف</th>
-                        <th scope="col">نام و نام خانوادگی</th>
-                        <th scope="col">عنوان</th>
-                        <th scope="col">مبلع</th>
-                        <th scope="col">شماره پیگیری بانک</th>
-                        <th scope="col">شماره پیگیری سایت</th>
-                        <th scope="col">تاریخ</th>
-                        <th scope="col">وضعیت</th>
-                        <th scope="col">مشاهده کدها</th>
+                        <th scope="col" class="text-center">ردیف</th>
+                        <th scope="col" class="text-center">نام و نام خانوادگی</th>
+                        <th scope="col" class="text-center">عنوان</th>
+                        <th scope="col" class="text-center">مبلغ</th>
+                        <th scope="col" class="text-center">شماره پیگیری بانک</th>
+                        <th scope="col" class="text-center">شماره پیگیری سایت</th>
+                        <th scope="col" class="text-center">تاریخ</th>
+                        <th scope="col" class="text-center">وضعیت</th>
+                        <th scope="col" class="text-center">مشاهده کدها</th>
                     </tr>
                     </thead>
                     <tbody>
 
                     @foreach($orders as $order)
-                        <tr class="table-@switch($order->state_id) @case(0)light @break @case(1)success @break @case(2)danger @break @endswitch " >
-                            <th class="row">{{($loop->index)+1}}</th>
-                            <td>{{$order->user->first_name??""}} {{$order->user->last_name??""}}</td>
-                            <td>عنوان</td>
-                            <td>{{$order->total_price}}</td>
-                            <td>{{$order->reference_number}}</td>
-                            <td>{{$order->reference_id}}</td>
-                            <td>{{jdate($order->create_at)}}</td>
-                            <td>@switch($order->state_id) @case(0) منتظر پرداخت@break @case(1) تراکنش موفق @break @case(2) تراکنش ناموفق @break @endswitch</td>
-                            <td><button class="btn btn-info" data-toggle="modal" data-target="#order-code" data-extra="{{$order->ordercodes}}" >نمایش</button></td>
+                        <tr class="table-@switch($order->state_id) @case(0)light @break @case(1)success @break @case(2)danger @break @endswitch ">
+                            <th class="row text-center">{{($loop->index)+1}}</th>
+                            <td class="text-center">{{$order->user->first_name??""}} {{$order->user->last_name??""}}</td>
+                            <td class="text-center">{{$order->comment}}</td>
+                            <td class="text-center">{{$order->total_price}}</td>
+                            <td class="text-center">{{$order->reference_number}}</td>
+                            <td class="text-center">{{$order->reference_id}}</td>
+                            <td class="text-center">{{tr_num(jdate($order->created_at))}}</td>
+                            <td class="text-center">@switch($order->state_id) @case(0) منتظر پرداخت@break @case(1) تراکنش
+                                موفق @break @case(2) تراکنش ناموفق @break @endswitch</td>
+                            <td class="text-center">
+                                <button class="btn btn-info" data-toggle="modal" data-target="#order-code"
+                                        data-extra="{{$order->ordercodes}}">نمایش
+                                </button>
+                            </td>
                         </tr>
                     @endforeach
 
@@ -94,7 +103,8 @@
 
     </div>
 
-    <div class="modal fade" id="order-code" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="order-code" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -108,10 +118,10 @@
 
                         <thead>
                         <tr>
-                            <th scope="col" >#</th>
-                            <th scope="col" >نام</th>
-                            <th scope="col" >موبایل</th>
-                            <th scope="col" >کد</th>
+                            <th scope="col">#</th>
+                            <th scope="col">نام</th>
+                            <th scope="col">موبایل</th>
+                            <th scope="col">کد</th>
                         </tr>
                         </thead>
                         <tbody id="tbody-ordersCode">
@@ -125,18 +135,18 @@
 
     <script>
         $('#order-code').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) ;
-            var orderCodes = button.data('extra') ;
+            var button = $(event.relatedTarget);
+            var orderCodes = button.data('extra');
 
             var trs = '';
-            var i=0;
+            var i = 0;
             orderCodes.forEach(function (e) {
                 i++;
                 trs += "<tr>" +
-                    "<th scope='row' >"+i+"</th>"+
-                    "<td>"+e.name+"</td>"+
-                    "<td>"+e.mobile+"</td>"+
-                    "<td>"+e.code+"</td>"+
+                    "<th scope='row' >" + i + "</th>" +
+                    "<td>" + e.name + "</td>" +
+                    "<td>" + e.mobile + "</td>" +
+                    "<td>" + e.code + "</td>" +
                     "</tr>";
             });
 
