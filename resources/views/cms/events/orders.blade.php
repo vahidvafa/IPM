@@ -19,18 +19,13 @@
                         <th scope="col">کاربر</th>
                         <th scope="col">قیمت خرید</th>
                         <th scope="col">تاریخ خرید</th>
+                        <th scope="col"> تعداد خرید</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @php
-                        if (request('page'))
-                            $i = 10 * (request('page') - 1);
-                        else
-                            $i = 0;
-                    @endphp
                     @foreach($orders as $order)
                         <tr>
-                            <td data-th="ردیف" class="text-right">{{++$i}}</td>
+                            <td data-th="ردیف" class="text-right">{{$loop->index+1}}</td>
                             <td data-th="کاربر" class="text-right">
                                 <a href="{{route('profile',[$order->user->slug])}}" style="color: black !important;" target="_blank">
                                     {{ $order->user->first_name.' '.$order->user->last_name }}
@@ -38,6 +33,7 @@
                             </td>
                             <td data-th="قیمت خرید" class="text-right">{{ number_format($order->total_price) }}</td>
                             <td data-th="تاریخ خرید" class="text-right">{{ jdate($order->updated_at)->format('Y/m/d H:i') }}</td>
+                            <td data-th=" تعداد خرید" class="text-right">{{ $order->order_codes_count }}</td>
                         </tr>
                     @endforeach
                     </tbody>

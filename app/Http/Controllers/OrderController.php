@@ -112,6 +112,7 @@ class OrderController extends Controller
                 }
                 $orderCode = new OrderCode([
                     'name' => $user['name'],
+                    'en_name' => $user['en_name'],
                     'mobile' => $user['mobile'],
                     'email' => $user['email'],
                     'code' => $code

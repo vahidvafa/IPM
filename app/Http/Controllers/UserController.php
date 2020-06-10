@@ -283,7 +283,6 @@ class UserController extends Controller
 
         $rq['isShowMyPhone'] = (int)$request->has('isShowMyPhone');
 
-
         unset($rq['active']); // becuse below update active and create personal cart
         $user->update($rq);
 
@@ -333,8 +332,8 @@ class UserController extends Controller
         $membershipType = MembershipType::find($user->membership_type_id);
         $memberShip = $user->memberships()->get('year')->last();
         $user->expire = time() + ($membershipType->period * $memberShip->year);
+        $user->user_code = $user->active > 1 ?changeUserCode($user->id,$user->membership_type_id,$user->main):createUserCode($user->membership_type_id, $user->main);
         $user->active = 2;
-        $user->user_code = createUserCode($user->membership_type_id, $user->main);
         $user->userCard = $this->showCard($user);
         $user->profile()->update(['upgrade_update_data' => null]);
         $user->save();

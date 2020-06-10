@@ -21,21 +21,43 @@
                         @csrf
                         @if(is_null(old('users')))
                             <div class="row">
-                                <div class="input-form col-md-3">
+                                <div class="input-form col-md-12 mb-3 " >
                                     <div class="row">
                                         <div class="col-12">
-                                            <label>نام :</label>
+                                            <label style="color: #D21F3C;"> </label>
+                                        </div>
+                                        <div class="col-4 mt-5">
+                                            <button class="deleteBtn col-3 btn btn-white-border center-y disabled" style="background-color: dimgray;border: dimgray;color: white;">حذف ردیف</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-form col-md-5">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label>نام و نام خانوادگی (فارسی)* :</label>
                                         </div>
                                         <div class="col-12">
                                             <input type="text" name="users[0][name]"
                                                    value=""
-                                                   size="40" aria-invalid="false"
-                                                   placeholder="نام *" required>
+                                                   placeholder="نام و نام خانوادگی (فارسی)*" required>
                                             <img src="{{asset('img/001-user.png')}}" class="form-icon">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="input-form col-md-3">
+                                <div class="input-form col-md-5">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label>نام و نام خانوادگی (انگلیسی)* :</label>
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" name="users[0][en_name]"
+                                                   value=""
+                                                   placeholder="نام و نام خانوادگی (انگلیسی)*" required>
+                                            <img src="{{asset('img/001-user.png')}}" class="form-icon">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-form col-md-5">
                                     <div class="row">
                                         <div class="col-12">
                                             <label>تلفن همراه :</label>
@@ -49,7 +71,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="input-form col-md-3">
+                                <div class="input-form col-md-5">
                                     <div class="row">
                                         <div class="col-12">
                                             <label>ایمیل :</label>
@@ -63,21 +85,19 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="input-form col-md-3">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <label style="color: #D21F3C;"> </label>
-                                        </div>
-                                        <div class="col-12 mt-5">
-                                            <button class="deleteBtn col-3 btn btn-white-border center-y disabled" style="background-color: dimgray;border: dimgray;color: white;">حذف کردن</button>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         @else
                             @foreach(old('users') as $i => $field )
                                 <div class="row" id="old-{{$i}}">
-                                    <div class="input-form col-md-3">
+                                    <div class="input-form col-md-12 mb-3">
+                                        <div class="row">
+                                            <div class="col-4 mt-5">
+                                                <button onclick="deleteRow('old-{{$i}}')" class="deleteBtn col-3 btn btn-white-border center-y" style="background-color: #D21F3C;border: #D21F3C;color: white;">حذف ردیف</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-form col-md-5">
                                         <div class="row">
                                             <div class="col-12">
                                                 <label>نام :</label>
@@ -97,7 +117,26 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="input-form col-md-3">
+                                    <div class="input-form col-md-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label>نام و نام خانوادگی (انگلیسی) :</label>
+                                            </div>
+                                            <div class="col-12">
+                                                <input type="text" name="users[{{$i}}][en_name]"
+                                                       value="{{old("users.$i.en_name")}}"
+                                                       placeholder="نام و نام خانوادگی (انگلیسی) *" required>
+                                                <img src="{{asset('img/001-user.png')}}" class="form-icon">
+                                                @if ($errors->has("users.$i.en_name"))
+                                                    <div id="name-error" class="error text-danger pl-3" for="en_name"
+                                                         style="display: block;">
+                                                        <strong>{{ $errors->first("users.$i.en_name") }}</strong>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-form col-md-5">
                                         <div class="row">
                                             <div class="col-12">
                                                 <label>تلفن همراه :</label>
@@ -117,7 +156,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="input-form col-md-3">
+                                    <div class="input-form col-md-5">
                                         <div class="row">
                                             <div class="col-12">
                                                 <label>ایمیل :</label>
@@ -137,13 +176,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="input-form col-md-3">
-                                        <div class="row">
-                                            <div class="col-12 mt-5">
-                                                <button onclick="deleteRow('old-{{$i}}')" class="deleteBtn col-3 btn btn-white-border center-y" style="background-color: #D21F3C;border: #D21F3C;color: white;">حذف کردن</button>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                             @endforeach
                                 <script>
@@ -254,10 +287,20 @@
         var row_id = Date.now();
         var index = $('.deleteBtn').length;
         var new_row = "                        <div class=\"row\" id=\""+row_id+"\">\n" +
-            "                            <div class=\"input-form col-md-3\">\n" +
+            "                            <div class=\"input-form col-md-12 mb-3\">\n" +
             "                                <div class=\"row\">\n" +
             "                                    <div class=\"col-12\">\n" +
-            "                                        <label>نام :</label>\n" +
+            "                                        <label style=\"color: #D21F3C;\"></label>\n" +
+            "                                    </div>\n" +
+            "                                    <div class=\"col-4 mt-5\">\n" +
+            "                                        <button  onclick=\"deleteRow(" + row_id + ")\" class=\"deleteBtn col-3 btn btn-white-border center-y \" style=\"background-color: #D21F3C;border: #D21F3C;color: white;\">حذف ردیف</button>\n" +
+            "                                    </div>\n" +
+            "                                </div>\n" +
+            "                            </div>\n" +
+            "                            <div class=\"input-form col-md-5\">\n" +
+            "                                <div class=\"row\">\n" +
+            "                                    <div class=\"col-12\">\n" +
+            "                                        <label>نام و نام خانوادگی (فارسی)* :</label>\n" +
             "                                    </div>\n" +
             "                                    <div class=\"col-12\">\n" +
             "                                        <input type=\"text\" name=\"users["+index+"][name]\"\n" +
@@ -268,7 +311,20 @@
             "                                    </div>\n" +
             "                                </div>\n" +
             "                            </div>\n" +
-            "                            <div class=\"input-form col-md-3\">\n" +
+            "                               <div class=\"input-form col-md-5\">\n" +
+            "                                <div class=\"row\">\n" +
+            "                                    <div class=\"col-12\">\n" +
+            "                                        <label>نام و نام خانوادگی (انگلیسی)* :</label>\n" +
+            "                                    </div>\n" +
+            "                                    <div class=\"col-12\">\n" +
+            "                                        <input type=\"text\" name=\"users["+index+"][en_name]\"\n" +
+            "                                               value=\"\"\n" +
+            "                                               placeholder=\"نام و نام خانوادگی (انگلیسی)* *\" required>\n" +
+            "                                        <img src=\"{{asset('img/001-user.png')}}\" class=\"form-icon\">\n" +
+            "                                    </div>\n" +
+            "                                </div>\n" +
+            "                            </div>\n" +
+            "                            <div class=\"input-form col-md-5\">\n" +
             "                                <div class=\"row\">\n" +
             "                                    <div class=\"col-12\">\n" +
             "                                        <label>تلفن همراه :</label>\n" +
@@ -282,7 +338,7 @@
             "                                    </div>\n" +
             "                                </div>\n" +
             "                            </div>\n" +
-            "                            <div class=\"input-form col-md-3\">\n" +
+            "                            <div class=\"input-form col-md-5\">\n" +
             "                                <div class=\"row\">\n" +
             "                                    <div class=\"col-12\">\n" +
             "                                        <label>ایمیل :</label>\n" +
@@ -296,16 +352,7 @@
             "                                    </div>\n" +
             "                                </div>\n" +
             "                            </div>\n" +
-            "                            <div class=\"input-form col-md-3\">\n" +
-            "                                <div class=\"row\">\n" +
-            "                                    <div class=\"col-12\">\n" +
-            "                                        <label style=\"color: #D21F3C;\"></label>\n" +
-            "                                    </div>\n" +
-            "                                    <div class=\"col-12 mt-5\">\n" +
-            "                                        <button  onclick=\"deleteRow(" + row_id + ")\" class=\"deleteBtn col-3 btn btn-white-border center-y \" style=\"background-color: #D21F3C;border: #D21F3C;color: white;\">حذف کردن</button>\n" +
-            "                                    </div>\n" +
-            "                                </div>\n" +
-            "                            </div>\n" +
+
             "                        </div>\n";
         $("#users").append(new_row);
         calculatePrice();

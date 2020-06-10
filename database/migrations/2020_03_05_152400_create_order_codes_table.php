@@ -18,6 +18,7 @@ class CreateOrderCodesTable extends Migration
             $table->unsignedBigInteger('order_id');
             $table->tinyInteger('state_id')->default(0);
             $table->string('name')->nullable();
+            $table->string('en_name')->nullable();
             $table->string('mobile')->nullable();
             $table->string('email')->nullable();
             $table->string('code');

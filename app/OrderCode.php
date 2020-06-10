@@ -42,7 +42,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class OrderCode extends Model
 {
 
-    protected $fillable = ['name', 'mobile', 'email', 'code','picture'];
+    protected $fillable = ['name','en_name', 'mobile', 'email', 'code','picture'];
 
     use SoftDeletes;
 

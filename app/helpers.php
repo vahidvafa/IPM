@@ -186,6 +186,7 @@ function createUserCode($membershipType, $main = 0): string
     $year = jdate()->format('y');
     $year = (strlen($year) == 1) ? 0 . $year : $year;
     $lastCode = \App\User::where('active', '>', 1)->whereMain($main)->orderByDesc('user_code')->get(['user_code'])->first()->user_code;
+
     $lastCode = explode('-', $lastCode);
     $type = ($main == 0) ? $array[$membershipType] : 'M';
 //    $type = $lastCode[2];

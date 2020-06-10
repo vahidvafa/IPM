@@ -28,8 +28,7 @@
                     <div class="col-4 " style="margin-top: -10px">
                         <label for="payState" class="col-12">وضعیت پرداخت: </label>
                         <select name="payState" id="payState" class="form-control">
-                            <option value="-100" @if(request("payState") == "-100") selected @endif>--------------
-                            </option>
+                            <option value="-100" @if(request("payState") == "-100") selected @endif>--------------</option>
                             <option value="0" @if(request("payState") == "0") selected @endif >درحال پرداخت</option>
                             <option value="1" @if(request("payState") == "1") selected @endif >موفق</option>
                             <option value="2" @if(request("payState") == "2") selected @endif >ناموفق</option>
