@@ -31,7 +31,7 @@
                                         </div>
                                         <p class="font-16 text-regular text-black">
                                             <span>کد عضویت: </span>
-                                            <span class="text-black-light ">{{tr_num($user->user_code)}}</span>
+                                            <span class="text-black-light " dir="ltr">{{tr_num($user->user_code)}}</span>
                                         </p>
                                     </div>
                                 </div>

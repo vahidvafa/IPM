@@ -188,19 +188,13 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), $roles, $messages);
 
         if ($validator->fails()) {
-
             flash_message("error", "لطفا فیلد هارو به درستی پر کنید");
             return redirect()->back()->withErrors($validator);
         }
-
         $rq = $request;
-
-
         $user = User::with("education", "companies", 'documents', 'profile')->find($request->get("tmp"));
 
-
         /*--------------  check local logic test  ---------------------*/
-
         if ($request->has('active')) {
             if ($request->get('shortcomings') !=null ){
                 flash_message('error',"مادامی که کاربر را تایید میکنید فیلد نقص مدرک نمی تواند پر باشد لطفا فیلد را خالی کنید و مجدد تلاش کنید");
@@ -211,37 +205,28 @@ class UserController extends Controller
             \Mail::to($user->email)->send(new DefectiveDocumentsMail($request->get('shortcomings'), $user->first_name . " " . $user->last_name));
         }
 
-        if ($user->profile[0]->certificate_number != $request->get('profile')['certificate_number']) {
-            if (Profile::whereCertificateNumber($request->get('profile')['certificate_number']))
-                flash_message("error", "متاسفانه این کد ملی قبلا ثبت شده است.");
-            return back()->withInput();
-        }
-
-
         if ($request->get('type') == 2) {
-
             if ($user->companies[0]->established_number != $request->get('company')['established_number']) {
-                if (Company::whereEstablishedNumber($request->get('company')['certificate_number']))
+                if (Company::whereEstablishedNumber($request->get('company')['certificate_number'])->get()->count() > 0) {
                     flash_message("error", "متاسفانه این شماره ثبت قبلا ثبت شده است.");
-                return back()->withInput();
+                    return back()->withInput();
+                }
             }
             if ($user->companies[0]->economy_number != $request->get('company')['economy_number']) {
-                if (Company::whereEconomyNumber($request->get('company')['certificate_number']))
+                if (Company::whereEconomyNumber($request->get('company')['certificate_number'])->get()->count() > 0) {
                     flash_message("error", "متاسفانه این شماره اقتصادی قبلا ثبت شده است.");
-                return back()->withInput();
+                    return back()->withInput();
+                }
             }
 
             if ($user->companies[0]->national_number != $request->get('company')['national_number']) {
-                if (Company::whereNationalNumber($request->get('company')['certificate_number']))
+                if (Company::whereNationalNumber($request->get('company')['certificate_number'])->get()->count() > 0) {
                     flash_message("error", "متاسفانه این شناسه ملی قبلا ثبت شده است.");
-                return back()->withInput();
+                    return back()->withInput();
+                }
             }
 
         }
-        /*'company.established_number' => 'bail | required | string | max:255',
-                    'company.economy_number' => 'bail | required | string',
-                    'company.national_number' => 'bail | required | string',*/
-
 
         if ($user->email != $rq->get('email') || $user->mobile != $rq->get('mobile')) {
 
@@ -259,6 +244,25 @@ class UserController extends Controller
                 }
             }
 
+            if ($user->profile[0]->certificate_number != $request->get('profile')['certificate_number']) {
+                if (  Profile::whereCertificateNumber($request->get('profile')['certificate_number'])->get()->count() > 0) {
+                    flash_message("error", "متاسفانه این شماره ملی قبلا ثبت شده است.");
+                    return back()->withInput();
+                }
+            }
+            if ($user->profile[0]->national_code !=null && $user->profile[0]->national_code != $request->get('profile')['national_code']) {
+                if (  Profile::whereNationalCode($request->get('profile')['national_code'])->get()->count() > 0) {
+                    flash_message("error", "متاسفانه این کد ملی قبلا ثبت شده است.");
+                    return back()->withInput();
+                }
+            }
+        }
+
+        if ( substr($user->user_code,0,strlen($user->user_code)-2) != $request->get('user_code') ) {
+            if ( User::where( 'user_code','like',$request->get('user_code')."%")->get()->count() > 0) {
+                flash_message("error", "متاسفانه این کد کاربری قبلا ثبت شده است.");
+                return back()->withInput();
+            }
         }
 
         /*--------------  local logic test ok  ---------------------*/

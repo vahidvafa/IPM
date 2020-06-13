@@ -911,6 +911,12 @@
                     </div>
 
 
+                    <div class="form-group col-6 mt-5 mb-5 pt-2 pb-3 " dir="ltr">
+                        <label for="user_code_tmp" class="col-12">کد کاربری</label>
+                    <input placeholder="00-001-M" value="{{$user->active >1 ?substr($user->user_code,0,strlen($user->user_code)-2):$user->user_code}}" name="user_code" id="user_code_tmp" class="form-control text-right"  />
+                    </div>
+
+
                     <div class="col-md-12 card-footer">
                         <div class="col-md-4 col-sm-8">
                             <input type="submit" value="ثبت اطلاعات"
