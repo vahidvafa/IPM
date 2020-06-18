@@ -643,7 +643,7 @@ class ProfileController extends Controller
                 $font->angle(0);
             });
         } else {
-            $img->text(persianText(tr_num($user->user_code)), 220, 290, function (\Intervention\Image\Gd\Font $font) {
+            $img->text(persianText(tr_num($user->user_code)), 220, 330, function (\Intervention\Image\Gd\Font $font) {
                 $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
                 $font->size(28);
                 $font->color('#000000');
@@ -651,7 +651,7 @@ class ProfileController extends Controller
                 $font->valign('bottom');
                 $font->angle(0);
             });
-            $img->text(persianText(tr_num($user->companies[0]->name)), 220, 380, function (\Intervention\Image\Gd\Font $font) {
+            $img->text(persianText(tr_num($user->companies[0]->name)), 220, 245, function (\Intervention\Image\Gd\Font $font) {
                 $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
                 $font->size(24);
                 $font->color('#000000');
@@ -669,12 +669,17 @@ class ProfileController extends Controller
             $font->angle(0);
         });
 
-        $img->insert(asset('img/profile/' . ($user->profile_picture ?? 'profile-default.png')), 'right', 70, 0);
+        $img->insert(asset('img/profile/' . ($user->profile_picture ?? 'profile-default.png')), 'top-right', 50, 105);
+        $img->insert((new \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator())->format('png')->size(200)->generate(route('profile',$user->slug)), 'top-left', 330, 245);
+//        $img->insert((new \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator())->format('png')->size(400)->backgroundColor(100,10,8)->generate(route('profile',$user->slug)), 'top-right', 50, 100);
         $img->save(public_path("img/userCards/$imageName.jpg"));
 //        return "<img src='" . asset("img/userCards/$imageName.jpg") . "'>";
         return $imageName . '.jpg';
 
     }
 
+    function showCartProfileBlade(){
+        return "<img src='".asset("img/userCards/".$this->showCard(\Auth::user()))."''  download >";
+    }
 
 }

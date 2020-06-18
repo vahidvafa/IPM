@@ -861,27 +861,28 @@
                                 <th scope="col">ردیف</th>
                                 <th scope="col">توضیخات</th>
                                 <th scope="col">عکس مدرک</th>
+                                <th scope="col">حذف</th>
                                 <th scope="col">تایید</th>
                                 {{--<th scope="col">حذف</th>--}}
                             </tr>
                             </thead>
                             <tbody>
-
-                            @php
-
-                                $i = 0;
-                            @endphp
-
-
                             @foreach($user->documents as $doc)
-                                @php
-                                    $i++;
-                                @endphp
                                 <tr>
-                                    <td data-th="ردیف" class="text-right">{{++$i}}</td>
-                                    <td data-th="عنوان خبر" class="text-right">{{$doc->explain}}</td>
+                                    <td data-th="ردیف" class="text-right">{{$loop->index+1}}</td>
+                                    <td data-th="توضیخات" class="text-right">{{$doc->explain}}</td>
                                     <td data-th="عکس مدرک" class="text-right">
                                         <img src="{{asset('img/documents/'.$doc->address)}}" class="col-8" style="height: 150px;" >
+                                    </td>
+                                    <td data-th="حذف" class="text-right">
+                                                <form action="/" method="post"></form>
+                                        <form action="{{route('document.del')}}" method="post" id="form{{$doc->id}}" >
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{$doc->id}}" >
+                                            <span style="cursor: pointer;" onclick="delDoc('form{{$doc->id}}')"   >
+                                                <i class="material-icons text-danger">delete</i>
+                                            </span>
+                                        </form>
                                     </td>
                                     <td data-th="تایید" class="text-right">
                                         <input type="checkbox" class="option-input"
@@ -889,15 +890,6 @@
                                                value="{{$doc->id}}"
                                                aria-invalid="false" @if($doc->state == 1 ) checked @endif>
                                     </td>
-                                    {{--<td data-th="حذف" class="text-right">
-                                        <form action="{{route('document.del')}}" method="post" id="form{{$doc->id}}" >
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{$doc->id}}" >
-                                            <input type="submit" class="btn btn-danger" value="حذف" >
-
-                                        </form>
-
-                                    </td>--}}
                                 </tr>
                             @endforeach
                             </tbody>
@@ -949,9 +941,12 @@
             }
         );
     });
-
+    function delDoc(id){
+        document.getElementById(id).submit();
+    }
 
     $(document).ready(function () {
+
         $("#birth_date").pDatepicker(
             {
                 initialValue: false,
@@ -966,9 +961,7 @@
                 }
             }
         );
-    });
 
-    $(document).ready(function () {
         $("#from_date").pDatepicker(
             {
                 initialValue: false,
@@ -983,9 +976,7 @@
                 }
             }
         );
-    });
 
-    $(document).ready(function () {
         $("#to_date").pDatepicker(
             {
                 initialValue: false,

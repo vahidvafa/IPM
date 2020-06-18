@@ -80,7 +80,15 @@
                                         </a>
                                     </p>
                                 @endif
-
+                                    @if( auth()->check() && $user->active > 1 )
+                                        @if(auth()->user()->role <=1 || auth()->id() == $user->id )
+                                    <form action="{{route('profileBlade.showCart')}}" method="post">
+                                        @csrf
+                                    <button class="btn btn-white-border " onclick="this.parentElement.submit();">
+                                        صدور کارت عضویت</button>
+                                    </form>
+                                        @endif
+                                        @endif
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <!--<div class="row col-6 mb-3 "  >-->
@@ -441,7 +449,7 @@
                                     <label class="custom-file-label" id="resumeLbl" for="resume">انتخاب عکس پروفایل
                                     </label>
                                     <input type="file" name="profile_pic" class="custom-file-input"
-                                           id="profile_pic">
+                                           id="profile_pic"  accept="image/*"  >
 
                                 </div>
                             </div>
@@ -575,6 +583,8 @@
     <script async>
         // Add the following code if you want the name of the file appear on select
         $("#profile_pic").on("input", function () {
+            var img = new Image();
+
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });

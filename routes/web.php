@@ -83,6 +83,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/event/{event}/reserve/store', 'OrderController@store')->name("order.store");
     Route::get('logout', 'UserController@logout')->name('logout');
     Route::post('/logout', 'UserController@logout')->name('logout.post');
+    Route::post('profile/showCart','ProfileController@showCartProfileBlade')->name('profileBlade.showCart');
+
     Route::middleware('checkAdmin')->group(function () {
         Route::prefix('/cms/')->group(function () {
 
@@ -389,7 +391,7 @@ Route::prefix("working-groups")->group(function () {
         $breadcrumb = "کار گروه ها";
         $titleHeader = "کار گروه استارت آپ";
         $events = \App\Event::whereWorkGroupId(4);
-        return view('WorkingGroups.index', compact('titleHeader', 'breadcrumb', 'events'));
+        return view('WorkingGroups.startup', compact('titleHeader', 'breadcrumb', 'events'));
     })->name('WorkingGroups.startup');
 
 
@@ -475,7 +477,11 @@ Route::get('companies', function () {
 
 
 Route::get('mail', function () {
-    return \Mail::to("drvafaiee@gmail.com")->send(new \App\Mail\RegisterMail("11588752619.jpg", "محمد رضا وفایی"));
+    $name = "mohammad vafaei";
+//    $name = "محمد رضا وفایی";
+    $main = 1;
+    return view('email.register',compact('name','main'));
+//    return \Mail::to("drvafaiee@gmail.com")->send(new \App\Mail\RegisterMail("11588752619.jpg", "محمد رضا وفایی"));
 })->name("mail");
 
 Route::get('mail2', function () {
@@ -516,9 +522,7 @@ Route::get('tst', function () {
         $i = 1;
         if ($row[37] != null) {
             foreach (explode(" ", $row[37]) as $slg) {
-
                 $slug .= $slg . ($i == count(explode(" ", $row[37])) ? "" : "-");
-
                 $i++;
             }
 

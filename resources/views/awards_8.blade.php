@@ -1,8 +1,6 @@
 @extends('master')
 @section('header')
-
 @stop
-
 @section('content')
     <main id="content-page" role="main">
         <div class="history-about pt-5 pb-5">

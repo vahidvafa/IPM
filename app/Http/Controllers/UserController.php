@@ -24,9 +24,9 @@ class UserController extends Controller
             $searchString = \request()->get('search');
             $users = User::where("first_name", "LIKE", "%$searchString%")
                 ->orWhere("last_name", "LIKE", "%$searchString%")
-                ->orWhere("mobile", "LIKE", "%$searchString%")
-                ->orWhere("email", "LIKE", "%$searchString%")
-                ->orWhere("user_code", "LIKE", "%$searchString%")->latest()->paginate(10);
+                ->orWhere("mobile", "LIKE", "$searchString%")
+                ->orWhere("email", "LIKE", "$searchString%")
+                ->orWhere("user_code", "LIKE", "$searchString%")->latest("id")->paginate(10);
         } else {
             $users = User::latest()->paginate(10);
         }
@@ -241,20 +241,18 @@ class UserController extends Controller
                 if (User::whereMobile($rq->get('mobile'))->get()->count() >= 1) {
                     flash_message("error", "این شماره قبلا برای کاربر دیگه ای ثبت شده است");
                     return back()->withInput();
-                }
-            }
+                }}}
 
-            if ($user->profile[0]->certificate_number != $request->get('profile')['certificate_number']) {
-                if (  Profile::whereCertificateNumber($request->get('profile')['certificate_number'])->get()->count() > 0) {
-                    flash_message("error", "متاسفانه این شماره ملی قبلا ثبت شده است.");
-                    return back()->withInput();
-                }
+        if ($user->profile[0]->certificate_number != $request->get('profile')['certificate_number']) {
+            if (  Profile::whereCertificateNumber($request->get('profile')['certificate_number'])->get()->count() > 0) {
+                flash_message("error", "متاسفانه این شماره ملی قبلا ثبت شده است.");
+                return back()->withInput();
             }
-            if ($user->profile[0]->national_code !=null && $user->profile[0]->national_code != $request->get('profile')['national_code']) {
-                if (  Profile::whereNationalCode($request->get('profile')['national_code'])->get()->count() > 0) {
-                    flash_message("error", "متاسفانه این کد ملی قبلا ثبت شده است.");
-                    return back()->withInput();
-                }
+        }
+        if ($user->profile[0]->national_code != $request->get('profile')['national_code']) {
+            if (  Profile::whereNationalCode($request->get('profile')['national_code'])->get()->count() > 0) {
+                flash_message("error", "متاسفانه این کد ملی قبلا ثبت شده است.");
+                return back()->withInput();
             }
         }
 
@@ -341,7 +339,7 @@ class UserController extends Controller
         $user->userCard = $this->showCard($user);
         $user->profile()->update(['upgrade_update_data' => null]);
         $user->save();
-        \Mail::to($user->email)->send(new \App\Mail\RegisterMail($user->userCard, $user->first_name . " " . $user->last_name));
+        \Mail::to($user->email)->send(new \App\Mail\RegisterMail($user->main, $user->first_name . " " . $user->last_name));
         $user->memberships()->update(['membership_type_id' => $user->membership_type_id,
             'start' => time(), 'end' => $user->expire, 'state_id' => 1, 'year' => $memberShip->year]);
 
@@ -532,7 +530,7 @@ class UserController extends Controller
                 $font->angle(0);
             });
         } else {
-            $img->text(persianText(tr_num($user->user_code)), 220, 290, function (\Intervention\Image\Gd\Font $font) {
+            $img->text(persianText(tr_num($user->user_code)), 220, 330, function (\Intervention\Image\Gd\Font $font) {
                 $font->file(public_path('fonts/ttf/IRANSansWeb_Bold.ttf'));
                 $font->size(28);
                 $font->color('#000000');
@@ -559,6 +557,7 @@ class UserController extends Controller
         });
 
         $img->insert(asset('img/profile/' . ($user->profile_picture ?? 'profile-default.png')), 'right', 70, 0);
+        $img->insert((new \SimpleSoftwareIO\QrCode\BaconQrCodeGenerator())->format('png')->size(200)->generate(route('profile',$user->slug)), 'top-left', 330, 245);
         $img->save(public_path("img/userCards/$imageName.jpg"));
 //        return "<img src='" . asset("img/userCards/$imageName.jpg") . "'>";
         return $imageName . '.jpg';

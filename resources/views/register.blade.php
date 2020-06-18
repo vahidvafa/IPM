@@ -17,7 +17,10 @@
                 <h2 class=" font-24 text-medium text-black  mb-4">درخواست چه نوع عضویتی دارید؟
                 </h2>
                 <p class=" text-black-light font-16 mb-5">لطفا نوع عضویت خود را انتخاب نمایید و فرم عضویت مرتبط با آن را
-                    پر نمایید</p>
+                    پر نمایید
+                    <br>
+                <a href="{{asset('files/Binder1.pdf')}}" target="_blank"  >مشاهده آیین نامه عضویت</a>
+                </p>
                 <!-- Nav pills -->
                 <ul class="nav nav-pills row">
                     <li class="nav-item col-12 col-sm-6 col-lg-3">
@@ -457,7 +460,7 @@
                                 <div class="row">
                                     <div class="input-form col-md-2">
                                         <input type="file" name="files[]" value="" size="40" aria-invalid="false"
-                                               placeholder="آپلود مدارک" required>
+                                               placeholder="آپلود مدارک" required  accept="image/*">
                                     </div>
                                     <div class="input-form col-md-8">
                                         <input type="text" name="files_explain[]" value="" size="40"
@@ -1538,7 +1541,7 @@
                                 <div class="row">
                                     <div class="input-form col-md-2">
                                         <input type="file" name="files[]" value="" size="40" aria-invalid="false"
-                                               placeholder="آپلود مدارک" required>
+                                               placeholder="آپلود مدارک" required  accept="image/*">
                                     </div>
                                     <div class="input-form col-md-8">
                                         <input type="text" name="files_explain[]" value="" size="40"
@@ -2010,7 +2013,7 @@
                                 <div class="row">
                                     <div class="input-form col-md-2">
                                         <input type="file" name="files[]" value="" size="40" aria-invalid="false"
-                                               placeholder="آپلود مدارک" required>
+                                               placeholder="آپلود مدارک" required  accept="image/*">
                                     </div>
                                     <div class="input-form col-md-8">
                                         <input type="text" name="files_explain[]" value="" size="40"
@@ -2715,7 +2718,6 @@
             });
 
             // $("#national_code").val("31231213");
-
             // $("input[type=text]").val("aksj da sj");
             // $("input[name=national_code]").val("31231213");
             // $("input[name=certificate_number]").val("31231213");
@@ -2782,7 +2784,7 @@
         var row_id = Date.now();
         var new_row = "                                <div class=\"row\" id=" + row_id + ">\n" +
             "                                    <div class=\"input-form col-md-2\">\n" +
-            "                                        <input type=\"file\" name=\"files[]\" value=\"\" size=\"40\" aria-invalid=\"false\" placeholder=\"آپلود مدارک\" required>\n" +
+            "                                        <input  accept=\"image/*\" type=\"file\" name=\"files[]\" value=\"\" size=\"40\" aria-invalid=\"false\" placeholder=\"آپلود مدارک\" required>\n" +
             "                                    </div>\n" +
             "                                    <div class=\"input-form col-md-8\">\n" +
             "                                        <input type=\"text\" name=\"files_explain[]\" value=\"\" size=\"40\" aria-invalid=\"false\" placeholder=\"توضیحات مدارک *\" required>\n" +

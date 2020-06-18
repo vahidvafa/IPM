@@ -12,7 +12,7 @@ class RegisterMail extends Mailable
     use Queueable, SerializesModels;
 
 
-    public $userCard;
+    public $main;
     public $name;
 
     /**
@@ -20,9 +20,9 @@ class RegisterMail extends Mailable
      *
      * @return void
      */
-    public function __construct($userCard,$name)
+    public function __construct($main,$name)
     {
-        $this->userCard = $userCard;
+        $this->main = $main;
         $this->name = $name;
     }
 
@@ -33,8 +33,8 @@ class RegisterMail extends Mailable
      */
     public function build()
     {
-        $fileName = $this->userCard;
+        $main = $this->main;
         $name = $this->name;
-        return $this->view('email.register',compact('name'))->subject("مدارک شما تایید شد - انجمن مدیریت پروژه ایران")->attach(asset("img/userCards/$fileName"));
+        return $this->view('email.register',compact('name','main'))->subject("مدارک شما تایید شد - انجمن مدیریت پروژه ایران");
     }
 }

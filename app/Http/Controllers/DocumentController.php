@@ -81,10 +81,10 @@ class DocumentController extends Controller
      */
     public function destroy(Request $request)
     {
+
         $document = Document::findOrFail($request->get('id'));
-
+        unlink(public_path("img/documents/$document->address"));
         $document->delete();
-
         flash_message("success",__('successful.delete'));
         return back();
     }
